@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new TripleArrow(), new Snare(), new HuntersMark() };
             CharacterType = "Hunter";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 4;
+            DodgeChance = 40;
         }
 
         public Hunter(BaseFighter fighter) : base(fighter) { }
@@ -28,7 +28,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             Health += 3;
             MaxHealth += 3;
             PhysicalAttack += 2;
-            Speed += 3;
+            Speed += 4;
         }
 
         public override void IncreaseLevel()
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

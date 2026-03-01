@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new SpiritAttack(), new PreciseStrike(), new Meditate() };
             CharacterType = "Monk";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
         public Monk(BaseFighter fighter) : base(fighter) { }
 
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(4, 7);
             MagicDefense += random.Next(5, 8);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new SpectralLance(), new Hex() };
             CharacterType = "Shaman";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Shrunkenhead, UpgradeItemEnum.SpiritOrb };
         }
 
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(2, 4);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

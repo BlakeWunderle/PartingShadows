@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new FireBall(), new BurningBrand(), new Enrage() };
             CharacterType = "Infernalist";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public Infernalist(BaseFighter fighter) : base(fighter) { }
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 5;
-            Speed += 3;
+            Speed += 4;
         }
 
         public override void IncreaseLevel()
@@ -41,7 +41,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(5, 8);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

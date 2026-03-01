@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new FalconStrike(), new SkyDive(), new RaptorsMark() };
             CharacterType = "Falconer";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 3;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Falconer(BaseFighter fighter) : base(fighter) { }
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         protected override void ApplyUpgradeBonuses()
         {
             PhysicalAttack += 4;
-            Speed += 3;
+            Speed += 4;
         }
 
         public override void IncreaseLevel()
@@ -41,7 +41,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(3, 5);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new Jump(), new WyvernStrike(), new DragonWard() };
             CharacterType = "Dragoon";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
         public Dragoon(BaseFighter fighter) : base(fighter) { }
 
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(4, 7);
             MagicDefense += random.Next(4, 7);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

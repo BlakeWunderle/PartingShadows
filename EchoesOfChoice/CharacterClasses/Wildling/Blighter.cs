@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new Blight(), new LifeSiphon(), new PoisonSting() };
             CharacterType = "Blighter";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Blighter(BaseFighter fighter) : base(fighter) { }
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(4, 7);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

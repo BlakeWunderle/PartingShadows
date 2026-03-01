@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new ArcaneBolt(), new ElementalSurge() };
             CharacterType = "Invoker";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.FireStone, UpgradeItemEnum.WaterStone, UpgradeItemEnum.LightningStone };
         }
 
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

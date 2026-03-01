@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new Recite(), new Calculate() };
             CharacterType = "Arithmancer";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.ClockworkCore, UpgradeItemEnum.Computer };
         }
 
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

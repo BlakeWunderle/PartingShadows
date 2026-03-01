@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new Nightfall(), new Inspire(), new Dirge() };
             CharacterType = "Elegist";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
         public Elegist(BaseFighter fighter) : base(fighter) { }
 
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 5;
-            Speed += 5;
+            Speed += 6;
             MagicDefense += 3;
             Health += 5;
             MaxHealth += 5;
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(6, 9);
             MagicDefense += random.Next(7, 10);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

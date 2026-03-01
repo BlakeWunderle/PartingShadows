@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new Pierce(), new DoubleArrow() };
             CharacterType = "Ranger";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Gun, UpgradeItemEnum.Trap };
         }
 
@@ -30,7 +30,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             MaxHealth += 4;
             PhysicalAttack += 3;
             PhysicalDefense += 2;
-            Speed += 3;
+            Speed += 4;
         }
 
         public override void IncreaseLevel()
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 5);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new VineWall(), new RootTrap(), new Overgrowth() };
             CharacterType = "Grove Keeper";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public GroveKeeper(BaseFighter fighter) : base(fighter) { }
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(3, 5);
             MagicAttack += random.Next(2, 4);
             MagicDefense += random.Next(3, 5);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

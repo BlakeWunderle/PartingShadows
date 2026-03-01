@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new Hurricane(), new Tornado(), new Knockdown() };
             CharacterType = "Tempest";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 4;
+            DodgeChance = 40;
         }
 
         public Tempest(BaseFighter fighter) : base(fighter) { }
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 5;
-            Speed += 5;
+            Speed += 7;
             MagicDefense += 3;
         }
 
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(5, 8);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

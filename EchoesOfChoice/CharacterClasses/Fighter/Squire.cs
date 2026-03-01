@@ -16,15 +16,15 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense = random.Next(10, 14);
             MagicAttack = random.Next(7, 10);
             MagicDefense = random.Next(10, 15);
-            Speed = random.Next(10, 15);
+            Speed = random.Next(20, 25);
             Abilities = new List<Ability>() { new Slash(), new Guard() };
             CharacterType = "Squire";
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Sword, UpgradeItemEnum.Bow, UpgradeItemEnum.Headband };
             Mana = random.Next(4, 13);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Squire(BaseFighter fighter) : base(fighter) { }
@@ -47,7 +47,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

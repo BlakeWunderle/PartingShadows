@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new ServoStrike(), new ProgramDefense(), new Overclock() };
             CharacterType = "Automaton";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Automaton(BaseFighter fighter) : base(fighter) { }
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(4, 7);
             MagicAttack += random.Next(6, 9);
             MagicDefense += random.Next(4, 7);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

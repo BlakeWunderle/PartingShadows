@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new SavageMaul(), new Frenzy(), new PrimalRoar() };
             CharacterType = "Shapeshifter";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 3;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Shapeshifter(BaseFighter fighter) : base(fighter) { }
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

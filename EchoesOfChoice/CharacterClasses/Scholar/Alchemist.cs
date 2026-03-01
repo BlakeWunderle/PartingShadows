@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new Transmute(), new CorrosiveAcid(), new Elixir() };
             CharacterType = "Alchemist";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Alchemist(BaseFighter fighter) : base(fighter) { }
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalAttack += random.Next(5, 8);
             PhysicalDefense += random.Next(2, 4);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

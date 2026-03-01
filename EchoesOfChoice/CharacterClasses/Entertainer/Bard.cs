@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new Seduce(), new Melody(), new Encourage() };
             CharacterType = "Bard";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 2;
+            DodgeChance = 20;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.WarHorn, UpgradeItemEnum.Hat };
         }
 
@@ -27,7 +27,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 3;
-            Speed += 2;
+            Speed += 3;
         }
 
         public override void IncreaseLevel()
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new Ovation(), new Recite(), new Eulogy() };
             CharacterType = "Laureate";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Laureate(BaseFighter fighter) : base(fighter) { }
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(7, 10);
             MagicDefense += random.Next(3, 6);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

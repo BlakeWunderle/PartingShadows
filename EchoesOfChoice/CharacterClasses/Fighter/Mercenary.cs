@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new GunShot(), new CalledShot(), new QuickDraw() };
             CharacterType = "Mercenary";
-            CritChance = 4;
+            CritChance = 40;
             CritDamage = 7;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
         public Mercenary(BaseFighter fighter) : base(fighter) { }
 
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         protected override void ApplyUpgradeBonuses()
         {
             PhysicalAttack += 5;
-            Speed += 3;
+            Speed += 4;
         }
 
         public override void IncreaseLevel()
@@ -41,7 +41,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

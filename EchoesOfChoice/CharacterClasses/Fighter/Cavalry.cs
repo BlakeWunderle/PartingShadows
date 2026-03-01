@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new Lance(), new Trample(), new Rally() };
             CharacterType = "Cavalry";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Cavalry(BaseFighter fighter) : base(fighter) { }
@@ -28,7 +28,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             Health += 4;
             MaxHealth += 4;
             PhysicalAttack += 3;
-            Speed += 2;
+            Speed += 3;
         }
 
         public override void IncreaseLevel()
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(2, 5);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(3, 5);
-            Speed += random.Next(4, 7);
+            Speed += random.Next(2, 4);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

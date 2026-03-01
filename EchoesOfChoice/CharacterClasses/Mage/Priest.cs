@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new Restoration(), new HeavenlyBody(), new Holy() };
             CharacterType = "Priest";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Priest(BaseFighter fighter) : base(fighter) { }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(5, 8);
             MagicDefense += random.Next(4, 7);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

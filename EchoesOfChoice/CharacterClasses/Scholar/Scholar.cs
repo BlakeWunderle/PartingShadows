@@ -16,15 +16,15 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense = random.Next(10, 13);
             MagicAttack = random.Next(15, 20);
             MagicDefense = random.Next(15, 20);
-            Speed = random.Next(10, 15);
+            Speed = random.Next(17, 22);
             Abilities = new List<Ability>() { new Proof(), new EnergyBlast() };
             CharacterType = "Tinker";
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Crystal, UpgradeItemEnum.Textbook, UpgradeItemEnum.Abacus };
             Mana = random.Next(10, 17);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Scholar(BaseFighter fighter) : base(fighter) { }
@@ -47,7 +47,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

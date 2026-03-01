@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new InvisibleWall(), new Anvil(), new InvisibleBox() };
             CharacterType = "Mime";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public Mime(BaseFighter fighter) : base(fighter) { }
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(5, 8);
             MagicDefense += random.Next(5, 8);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

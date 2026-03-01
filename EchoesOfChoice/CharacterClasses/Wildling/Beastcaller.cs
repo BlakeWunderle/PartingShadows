@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new FeralStrike(), new PackHowl() };
             CharacterType = "Beastcaller";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Feather, UpgradeItemEnum.Pelt };
         }
 
@@ -29,7 +29,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             Health += 4;
             MaxHealth += 4;
             PhysicalAttack += 3;
-            Speed += 2;
+            Speed += 3;
         }
 
         public override void IncreaseLevel()
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

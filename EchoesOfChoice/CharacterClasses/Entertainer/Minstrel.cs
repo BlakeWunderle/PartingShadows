@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new Ballad(), new Frustrate(), new Serenade() };
             CharacterType = "Minstrel";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Minstrel(BaseFighter fighter) : base(fighter) { }
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(3, 6);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

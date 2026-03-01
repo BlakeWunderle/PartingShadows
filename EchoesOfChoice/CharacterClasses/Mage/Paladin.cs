@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new Cure(), new Smash(), new Smite() };
             CharacterType = "Paladin";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Paladin(BaseFighter fighter) : base(fighter) { }
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(4, 6);
             MagicDefense += random.Next(5, 8);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

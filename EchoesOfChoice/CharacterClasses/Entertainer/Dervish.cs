@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new Seduce(), new Dance() };
             CharacterType = "Dervish";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 3;
+            DodgeChance = 30;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Light, UpgradeItemEnum.Paint };
         }
         public Dervish(BaseFighter fighter) : base(fighter) { }
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
 
         protected override void ApplyUpgradeBonuses()
         {
-            Speed += 4;
+            Speed += 6;
             PhysicalAttack += 2;
         }
 
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(4, 7);
+            Speed += random.Next(2, 4);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

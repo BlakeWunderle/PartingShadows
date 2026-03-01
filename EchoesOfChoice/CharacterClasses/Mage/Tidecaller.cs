@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new Purify(), new Tsunami(), new Undertow() };
             CharacterType = "Tidecaller";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Tidecaller(BaseFighter fighter) : base(fighter) { }
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(4, 7);
             MagicDefense += random.Next(3, 5);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

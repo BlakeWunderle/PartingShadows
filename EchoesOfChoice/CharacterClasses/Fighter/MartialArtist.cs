@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new Punch(), new Topple() };
             CharacterType = "Martial Artist";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 2;
+            DodgeChance = 20;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Sword, UpgradeItemEnum.Staff };
         }
 
@@ -28,7 +28,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Health += 4;
             MaxHealth += 4;
-            Speed += 3;
+            Speed += 4;
             PhysicalAttack += 2;
             PhysicalDefense += 2;
         }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 5);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

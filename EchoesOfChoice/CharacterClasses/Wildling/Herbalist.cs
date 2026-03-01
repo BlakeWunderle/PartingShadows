@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new MendingHerbs(), new SappingVine() };
             CharacterType = "Herbalist";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Venom, UpgradeItemEnum.Seedling };
         }
 
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(3, 5);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

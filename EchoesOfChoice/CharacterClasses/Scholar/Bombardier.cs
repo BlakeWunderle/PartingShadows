@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new Shrapnel(), new Explosion(), new Detonate() };
             CharacterType = "Bombardier";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Bombardier(BaseFighter fighter) : base(fighter) { }
@@ -44,7 +44,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(4, 7);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

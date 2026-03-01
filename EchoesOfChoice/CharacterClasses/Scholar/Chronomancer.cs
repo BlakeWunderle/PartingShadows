@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new WarpSpeed(), new TimeBomb(), new TimeFreeze() };
             CharacterType = "Chronomancer";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Chronomancer(BaseFighter fighter) : base(fighter) { }
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 5;
-            Speed += 5;
+            Speed += 7;
             MagicDefense += 3;
         }
 
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(5, 8);
             MagicDefense += random.Next(5, 8);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

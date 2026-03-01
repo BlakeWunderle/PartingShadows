@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new Starfall(), new MeteorShower(), new Eclipse() };
             CharacterType = "Astronomer";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Astronomer(BaseFighter fighter) : base(fighter) { }
@@ -41,7 +41,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(7, 10);
             MagicDefense += random.Next(5, 8);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

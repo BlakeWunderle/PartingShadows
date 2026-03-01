@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
         {
             Abilities = new List<Ability>() { new TimeWarp(), new BlackHole(), new Gravity() };
             CharacterType = "Philosopher";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.TimeMachine, UpgradeItemEnum.Telescope };
         }
 
@@ -29,7 +29,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             Health += 3;
             MaxHealth += 3;
             MagicAttack += 4;
-            Speed += 3;
+            Speed += 4;
         }
 
         public override void IncreaseLevel()
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Scholar
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 5);
             MagicDefense += random.Next(3, 6);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         {
             Abilities = new List<Ability>() { new SweepingSlash(), new Dash(), new SmokeBomb() };
             CharacterType = "Ninja";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
         public Ninja(BaseFighter fighter) : base(fighter) { }
 
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
         protected override void ApplyUpgradeBonuses()
         {
             PhysicalAttack += 5;
-            Speed += 5;
+            Speed += 7;
         }
 
         public override void IncreaseLevel()
@@ -41,7 +41,7 @@ namespace EchoesOfChoice.CharacterClasses.Fighter
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(2, 4);
             MagicDefense += random.Next(3, 5);
-            Speed += random.Next(4, 7);
+            Speed += random.Next(2, 4);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

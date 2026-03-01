@@ -11,9 +11,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new ShadowAttack(), new Mirage(), new Bewilderment() };
             CharacterType = "Illusionist";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 2;
-            DodgeChance = 4;
+            DodgeChance = 40;
         }
         public Illusionist(BaseFighter fighter) : base(fighter) { }
 
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 7;
-            Speed += 5;
+            Speed += 7;
             Health += 5;
             MaxHealth += 5;
         }
@@ -43,7 +43,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(3, 6);
             MagicAttack += random.Next(5, 8);
             MagicDefense += random.Next(3, 5);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 4);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

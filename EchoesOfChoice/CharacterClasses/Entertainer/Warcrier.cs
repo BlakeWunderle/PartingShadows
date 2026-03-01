@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             Abilities = new List<Ability>() { new BattleCry(), new Smash(), new Encore() };
             CharacterType = "Warcrier";
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
         public Warcrier(BaseFighter fighter) : base(fighter) { }
 
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(3, 5);
             MagicAttack += random.Next(2, 5);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

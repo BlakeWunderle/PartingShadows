@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             Abilities = new List<Ability>() { new ShadowBolt(), new Curse(), new DrainLife() };
             CharacterType = "Warlock";
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Warlock(BaseFighter fighter) : base(fighter) { }
@@ -26,7 +26,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
         {
             MagicAttack += 5;
             MagicDefense += 3;
-            Speed += 2;
+            Speed += 3;
         }
 
         public override void IncreaseLevel()
@@ -42,7 +42,7 @@ namespace EchoesOfChoice.CharacterClasses.Mage
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(4, 7);
             MagicDefense += random.Next(3, 5);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

@@ -10,9 +10,9 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         {
             Abilities = new List<Ability>() { new VoodooBolt(), new DarkHex(), new CreepingRot() };
             CharacterType = "Witch Doctor";
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public WitchDoctor(BaseFighter fighter) : base(fighter) { }
@@ -25,7 +25,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
         protected override void ApplyUpgradeBonuses()
         {
             MagicAttack += 4;
-            Speed += 2;
+            Speed += 3;
         }
 
         public override void IncreaseLevel()
@@ -41,7 +41,7 @@ namespace EchoesOfChoice.CharacterClasses.Wildling
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(4, 7);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)
