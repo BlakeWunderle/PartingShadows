@@ -7,23 +7,23 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
 {
     public class RoyalGuard : BaseFighter
     {
-        public RoyalGuard(int level = 9)
+        public RoyalGuard(int level = 12)
         {
             Level = level;
-            Health = Stat(155, 175, 5, 8, 9);
+            Health = Stat(200, 230, 8, 12, 12);
             MaxHealth = Health;
-            PhysicalAttack = Stat(26, 30, 2, 3, 9);
-            PhysicalDefense = Stat(24, 28, 2, 3, 9);
-            MagicAttack = Stat(6, 10, 0, 2, 9);
-            MagicDefense = Stat(18, 22, 1, 3, 9);
-            Speed = Stat(22, 28, 1, 2, 9);
-            Abilities = new List<Ability>() { new ShieldSlam(), new DefensiveFormation() };
+            PhysicalAttack = Stat(40, 48, 3, 5, 12);
+            PhysicalDefense = Stat(34, 40, 3, 4, 12);
+            MagicAttack = Stat(6, 10, 0, 2, 12);
+            MagicDefense = Stat(24, 30, 2, 3, 12);
+            Speed = Stat(26, 32, 2, 3, 12);
+            Abilities = new List<Ability>() { new ShieldSlam(), new SwordStrike(), new DefensiveFormation() };
             CharacterType = "Royal Guard";
-            Mana = Stat(12, 16, 1, 3, 9);
+            Mana = Stat(16, 22, 2, 4, 12);
             MaxMana = Mana;
-            CritChance = 10;
-            CritDamage = 2;
-            DodgeChance = 10;
+            CritChance = 18;
+            CritDamage = 3;
+            DodgeChance = 15;
         }
 
         public RoyalGuard(BaseFighter fighter) : base(fighter) { }

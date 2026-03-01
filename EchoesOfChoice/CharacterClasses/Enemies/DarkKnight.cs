@@ -6,23 +6,23 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
 {
     public class DarkKnight : BaseFighter
     {
-        public DarkKnight(int level = 16)
+        public DarkKnight(int level = 18)
         {
             Level = level;
-            Health = Stat(300, 340, 8, 12, 16);
+            Health = Stat(345, 385, 8, 12, 18);
             MaxHealth = Health;
-            PhysicalAttack = Stat(48, 56, 3, 5, 16);
-            PhysicalDefense = Stat(34, 40, 3, 4, 16);
-            MagicAttack = Stat(28, 34, 2, 3, 16);
-            MagicDefense = Stat(28, 34, 2, 3, 16);
-            Speed = Stat(30, 36, 2, 3, 16);
+            PhysicalAttack = Stat(62, 70, 4, 6, 18);
+            PhysicalDefense = Stat(40, 48, 3, 5, 18);
+            MagicAttack = Stat(34, 42, 2, 4, 18);
+            MagicDefense = Stat(34, 42, 2, 4, 18);
+            Speed = Stat(34, 40, 2, 4, 18);
             Abilities = new List<Ability>() { new DarkBlade(), new ShadowGuard(), new Cleave() };
             CharacterType = "Dark Knight";
-            Mana = Stat(24, 30, 2, 4, 16);
+            Mana = Stat(30, 38, 3, 5, 18);
             MaxMana = Mana;
-            CritChance = 25;
+            CritChance = 26;
             CritDamage = 5;
-            DodgeChance = 15;
+            DodgeChance = 19;
         }
 
         public DarkKnight(BaseFighter fighter) : base(fighter) { }

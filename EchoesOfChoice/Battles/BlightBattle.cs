@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new Dragon() { CharacterName = "Vexaris" });
             Enemies.Add(new BlightedStag() { CharacterName = "Withered Crown" });
             Enemies.Add(new BlightedStag() { CharacterName = "Rotted Tine" });
+            Enemies.Add(new Dragon() { CharacterName = "Malachar" });
             IsFinalBattle = false;
         }
 

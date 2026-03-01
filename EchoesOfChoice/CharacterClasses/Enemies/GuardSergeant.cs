@@ -7,23 +7,23 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
 {
     public class GuardSergeant : BaseFighter
     {
-        public GuardSergeant(int level = 9)
+        public GuardSergeant(int level = 12)
         {
             Level = level;
-            Health = Stat(170, 195, 5, 8, 9);
+            Health = Stat(210, 240, 8, 12, 12);
             MaxHealth = Health;
-            PhysicalAttack = Stat(30, 34, 2, 4, 9);
-            PhysicalDefense = Stat(20, 24, 1, 3, 9);
-            MagicAttack = Stat(8, 12, 0, 2, 9);
-            MagicDefense = Stat(16, 20, 1, 2, 9);
-            Speed = Stat(24, 30, 1, 3, 9);
+            PhysicalAttack = Stat(44, 52, 3, 5, 12);
+            PhysicalDefense = Stat(24, 30, 2, 3, 12);
+            MagicAttack = Stat(8, 12, 0, 2, 12);
+            MagicDefense = Stat(20, 24, 1, 2, 12);
+            Speed = Stat(28, 34, 2, 3, 12);
             Abilities = new List<Ability>() { new SwordStrike(), new Rally(), new DecisiveBlow() };
             CharacterType = "Guard Sergeant";
-            Mana = Stat(14, 18, 1, 3, 9);
+            Mana = Stat(18, 24, 2, 4, 12);
             MaxMana = Mana;
-            CritChance = 15;
-            CritDamage = 3;
-            DodgeChance = 10;
+            CritChance = 22;
+            CritDamage = 4;
+            DodgeChance = 12;
         }
 
         public GuardSergeant(BaseFighter fighter) : base(fighter) { }

@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new Lich() { CharacterName = "Mortuus" });
             Enemies.Add(new Ghast() { CharacterName = "Putrefax" });
             Enemies.Add(new Ghast() { CharacterName = "Bloatus" });
+            Enemies.Add(new Lich() { CharacterName = "Necrus" });
             IsFinalBattle = false;
         }
 

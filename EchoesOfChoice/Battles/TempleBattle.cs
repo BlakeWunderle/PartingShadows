@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new Hellion() { CharacterName = "Ashara" });
             Enemies.Add(new Fiendling() { CharacterName = "Cinder" });
             Enemies.Add(new Fiendling() { CharacterName = "Ember" });
+            Enemies.Add(new Hellion() { CharacterName = "Pyrath" });
             IsFinalBattle = false;
         }
 

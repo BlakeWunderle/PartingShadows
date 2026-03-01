@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new Demon() { CharacterName = "Bael" });
             Enemies.Add(new CorruptedTreant() { CharacterName = "Rothollow" });
             Enemies.Add(new CorruptedTreant() { CharacterName = "Blightsnarl" });
+            Enemies.Add(new Demon() { CharacterName = "Moloch" });
             IsFinalBattle = false;
         }
 

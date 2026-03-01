@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new RoyalGuard() { CharacterName = "Aldric" });
             Enemies.Add(new GuardSergeant() { CharacterName = "Brennan" });
             Enemies.Add(new GuardArcher() { CharacterName = "Tamsin" });
+            Enemies.Add(new GuardArcher() { CharacterName = "Corwin" });
 
             IsFinalBattle = false;
         }

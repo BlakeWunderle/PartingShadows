@@ -6,23 +6,23 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
 {
     public class GuardArcher : BaseFighter
     {
-        public GuardArcher(int level = 9)
+        public GuardArcher(int level = 12)
         {
             Level = level;
-            Health = Stat(130, 150, 4, 6, 9);
+            Health = Stat(170, 200, 6, 10, 12);
             MaxHealth = Health;
-            PhysicalAttack = Stat(28, 32, 2, 3, 9);
-            PhysicalDefense = Stat(14, 18, 1, 2, 9);
-            MagicAttack = Stat(6, 10, 0, 2, 9);
-            MagicDefense = Stat(14, 18, 1, 2, 9);
-            Speed = Stat(26, 32, 2, 3, 9);
+            PhysicalAttack = Stat(42, 50, 3, 5, 12);
+            PhysicalDefense = Stat(18, 24, 1, 3, 12);
+            MagicAttack = Stat(6, 10, 0, 2, 12);
+            MagicDefense = Stat(18, 24, 1, 3, 12);
+            Speed = Stat(32, 38, 3, 4, 12);
             Abilities = new List<Ability>() { new ArrowShot(), new Volley(), new PinDown() };
             CharacterType = "Guard Archer";
-            Mana = Stat(14, 18, 1, 3, 9);
+            Mana = Stat(18, 24, 2, 4, 12);
             MaxMana = Mana;
-            CritChance = 20;
-            CritDamage = 3;
-            DodgeChance = 15;
+            CritChance = 25;
+            CritDamage = 4;
+            DodgeChance = 20;
         }
 
         public GuardArcher(BaseFighter fighter) : base(fighter) { }

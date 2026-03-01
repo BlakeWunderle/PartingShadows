@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new DarkKnight() { CharacterName = "Ser Malachar" });
             Enemies.Add(new FellHound() { CharacterName = "Duskfang" });
             Enemies.Add(new FellHound() { CharacterName = "Gloomjaw" });
+            Enemies.Add(new DarkKnight() { CharacterName = "Ser Dravus" });
             IsFinalBattle = false;
         }
 

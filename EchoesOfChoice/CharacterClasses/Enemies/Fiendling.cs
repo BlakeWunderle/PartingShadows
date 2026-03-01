@@ -6,23 +6,23 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
 {
     public class Fiendling : BaseFighter
     {
-        public Fiendling(int level = 15)
+        public Fiendling(int level = 17)
         {
             Level = level;
-            Health = Stat(180, 210, 6, 10, 15);
+            Health = Stat(230, 270, 7, 10, 17);
             MaxHealth = Health;
-            PhysicalAttack = Stat(18, 22, 1, 2, 15);
-            PhysicalDefense = Stat(20, 26, 1, 3, 15);
-            MagicAttack = Stat(44, 52, 3, 5, 15);
-            MagicDefense = Stat(26, 32, 2, 3, 15);
-            Speed = Stat(34, 40, 3, 4, 15);
+            PhysicalAttack = Stat(20, 26, 1, 3, 17);
+            PhysicalDefense = Stat(24, 30, 2, 3, 17);
+            MagicAttack = Stat(66, 76, 5, 7, 17);
+            MagicDefense = Stat(32, 38, 2, 4, 17);
+            Speed = Stat(38, 44, 3, 5, 17);
             Abilities = new List<Ability>() { new Brimstone(), new Dread(), new Hex() };
             CharacterType = "Fiendling";
-            Mana = Stat(34, 40, 3, 5, 15);
+            Mana = Stat(40, 48, 3, 5, 17);
             MaxMana = Mana;
-            CritChance = 22;
-            CritDamage = 3;
-            DodgeChance = 22;
+            CritChance = 25;
+            CritDamage = 4;
+            DodgeChance = 21;
         }
 
         public Fiendling(BaseFighter fighter) : base(fighter) { }

@@ -13,6 +13,7 @@ namespace EchoesOfChoice.Battles
             Enemies.Add(new Imp() { CharacterName = "Skritch" });
             Enemies.Add(new CaveSpider() { CharacterName = "Silkfang" });
             Enemies.Add(new CaveSpider() { CharacterName = "Webweaver" });
+            Enemies.Add(new Imp() { CharacterName = "Gnash" });
             IsFinalBattle = false;
         }
 

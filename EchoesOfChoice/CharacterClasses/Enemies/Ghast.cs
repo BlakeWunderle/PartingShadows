@@ -6,21 +6,21 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
 {
     public class Ghast : BaseFighter
     {
-        public Ghast(int level = 14)
+        public Ghast(int level = 16)
         {
             Level = level;
-            Health = Stat(240, 270, 7, 10, 14);
+            Health = Stat(240, 280, 7, 10, 16);
             MaxHealth = Health;
-            PhysicalAttack = Stat(44, 52, 3, 5, 14);
-            PhysicalDefense = Stat(26, 32, 2, 3, 14);
-            MagicAttack = Stat(16, 20, 1, 2, 14);
-            MagicDefense = Stat(18, 22, 1, 2, 14);
-            Speed = Stat(24, 30, 1, 3, 14);
+            PhysicalAttack = Stat(49, 57, 3, 5, 16);
+            PhysicalDefense = Stat(30, 36, 2, 4, 16);
+            MagicAttack = Stat(18, 24, 1, 2, 16);
+            MagicDefense = Stat(22, 28, 1, 3, 16);
+            Speed = Stat(28, 34, 2, 3, 16);
             Abilities = new List<Ability>() { new Slam(), new PoisonCloud(), new Rend() };
             CharacterType = "Ghast";
-            Mana = Stat(18, 24, 2, 4, 14);
+            Mana = Stat(22, 28, 2, 4, 16);
             MaxMana = Mana;
-            CritChance = 20;
+            CritChance = 17;
             CritDamage = 4;
             DodgeChance = 8;
         }
