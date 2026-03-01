@@ -10,10 +10,10 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Bandit(int level = 3)
         {
             Level = level;
-            Health = Stat(60, 72, 3, 6, 3);
+            Health = Stat(74, 88, 5, 8, 3);
             MaxHealth = Health;
-            PhysicalAttack = Stat(18, 22, 1, 3, 3);
-            PhysicalDefense = Stat(10, 14, 1, 2, 3);
+            PhysicalAttack = Stat(22, 27, 2, 4, 3);
+            PhysicalDefense = Stat(12, 16, 1, 3, 3);
             MagicAttack = Stat(4, 7, 0, 2, 3);
             MagicDefense = Stat(8, 12, 1, 2, 3);
             Speed = Stat(22, 28, 1, 3, 3);
@@ -36,14 +36,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public override void IncreaseLevel()
         {
             Level += 1;
-            var healthIncrease = random.Next(3, 6);
+            var healthIncrease = random.Next(4, 7);
             Health += healthIncrease;
             MaxHealth += healthIncrease;
             var manaIncrease = random.Next(1, 3);
             Mana += manaIncrease;
             MaxMana += manaIncrease;
-            PhysicalAttack += random.Next(1, 3);
-            PhysicalDefense += random.Next(1, 2);
+            PhysicalAttack += random.Next(2, 4);
+            PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(0, 2);
             MagicDefense += random.Next(1, 2);
             Speed += random.Next(1, 3);

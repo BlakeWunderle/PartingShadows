@@ -9,12 +9,12 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Witch(int level = 4)
         {
             Level = level;
-            Health = Stat(80, 102, 5, 10, 4);
+            Health = Stat(94, 120, 5, 10, 4);
             MaxHealth = Health;
             PhysicalAttack = Stat(7, 11, 1, 2, 4);
-            PhysicalDefense = Stat(8, 12, 1, 2, 4);
-            MagicAttack = Stat(25, 36, 3, 6, 4);
-            MagicDefense = Stat(15, 23, 2, 4, 4);
+            PhysicalDefense = Stat(9, 14, 1, 2, 4);
+            MagicAttack = Stat(30, 43, 4, 7, 4);
+            MagicDefense = Stat(17, 26, 2, 5, 4);
             Speed = Stat(20, 28, 1, 2, 4);
             Abilities = new List<Ability>() { new Hex(), new Bramble(), new DarkBlessing() };
             CharacterType = "Witch";

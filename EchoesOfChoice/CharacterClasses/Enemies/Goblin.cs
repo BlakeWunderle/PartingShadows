@@ -9,10 +9,10 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Goblin(int level = 2)
         {
             Level = level;
-            Health = Stat(30, 40, 2, 5, 2);
+            Health = Stat(37, 49, 3, 6, 2);
             MaxHealth = Health;
-            PhysicalAttack = Stat(12, 16, 1, 3, 2);
-            PhysicalDefense = Stat(5, 8, 0, 2, 2);
+            PhysicalAttack = Stat(16, 20, 2, 3, 2);
+            PhysicalDefense = Stat(7, 10, 1, 2, 2);
             MagicAttack = Stat(3, 6, 0, 2, 2);
             MagicDefense = Stat(5, 8, 0, 2, 2);
             Speed = Stat(26, 32, 2, 4, 2);
@@ -35,14 +35,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public override void IncreaseLevel()
         {
             Level += 1;
-            var healthIncrease = random.Next(2, 5);
+            var healthIncrease = random.Next(3, 6);
             Health += healthIncrease;
             MaxHealth += healthIncrease;
             var manaIncrease = random.Next(1, 3);
             Mana += manaIncrease;
             MaxMana += manaIncrease;
-            PhysicalAttack += random.Next(1, 3);
-            PhysicalDefense += random.Next(0, 2);
+            PhysicalAttack += random.Next(2, 3);
+            PhysicalDefense += random.Next(1, 2);
             MagicAttack += random.Next(0, 2);
             MagicDefense += random.Next(0, 2);
             Speed += random.Next(2, 4);

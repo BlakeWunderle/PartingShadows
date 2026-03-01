@@ -9,10 +9,10 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Hound(int level = 2)
         {
             Level = level;
-            Health = Stat(36, 44, 2, 5, 2);
+            Health = Stat(44, 54, 3, 6, 2);
             MaxHealth = Health;
-            PhysicalAttack = Stat(14, 18, 1, 3, 2);
-            PhysicalDefense = Stat(6, 10, 1, 2, 2);
+            PhysicalAttack = Stat(18, 22, 2, 3, 2);
+            PhysicalDefense = Stat(8, 12, 1, 2, 2);
             MagicAttack = Stat(2, 4, 0, 1, 2);
             MagicDefense = Stat(5, 8, 0, 2, 2);
             Speed = Stat(26, 32, 2, 3, 2);
@@ -35,13 +35,13 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public override void IncreaseLevel()
         {
             Level += 1;
-            var healthIncrease = random.Next(2, 5);
+            var healthIncrease = random.Next(3, 6);
             Health += healthIncrease;
             MaxHealth += healthIncrease;
             var manaIncrease = random.Next(1, 2);
             Mana += manaIncrease;
             MaxMana += manaIncrease;
-            PhysicalAttack += random.Next(1, 3);
+            PhysicalAttack += random.Next(2, 3);
             PhysicalDefense += random.Next(1, 2);
             MagicAttack += random.Next(0, 1);
             MagicDefense += random.Next(0, 2);

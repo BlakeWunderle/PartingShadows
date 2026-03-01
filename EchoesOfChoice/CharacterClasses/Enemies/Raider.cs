@@ -9,9 +9,9 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Raider(int level = 4)
         {
             Level = level;
-            Health = Stat(78, 90, 3, 6, 4);
+            Health = Stat(86, 100, 4, 7, 4);
             MaxHealth = Health;
-            PhysicalAttack = Stat(20, 24, 1, 3, 4);
+            PhysicalAttack = Stat(22, 26, 2, 3, 4);
             PhysicalDefense = Stat(12, 16, 1, 2, 4);
             MagicAttack = Stat(4, 8, 0, 2, 4);
             MagicDefense = Stat(10, 14, 1, 2, 4);

@@ -9,9 +9,9 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Orc(int level = 4)
         {
             Level = level;
-            Health = Stat(100, 115, 4, 7, 4);
+            Health = Stat(112, 130, 5, 8, 4);
             MaxHealth = Health;
-            PhysicalAttack = Stat(22, 26, 2, 3, 4);
+            PhysicalAttack = Stat(25, 30, 2, 4, 4);
             PhysicalDefense = Stat(16, 20, 1, 3, 4);
             MagicAttack = Stat(3, 6, 0, 1, 4);
             MagicDefense = Stat(10, 14, 1, 2, 4);

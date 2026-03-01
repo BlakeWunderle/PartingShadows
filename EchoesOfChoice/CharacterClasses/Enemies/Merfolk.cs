@@ -9,12 +9,12 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public Merfolk(int level = 4)
         {
             Level = level;
-            Health = Stat(72, 85, 3, 6, 4);
+            Health = Stat(86, 102, 4, 7, 4);
             MaxHealth = Health;
-            PhysicalAttack = Stat(18, 22, 1, 3, 4);
-            PhysicalDefense = Stat(10, 14, 1, 2, 4);
-            MagicAttack = Stat(14, 18, 1, 3, 4);
-            MagicDefense = Stat(12, 16, 1, 2, 4);
+            PhysicalAttack = Stat(22, 26, 2, 4, 4);
+            PhysicalDefense = Stat(12, 17, 1, 3, 4);
+            MagicAttack = Stat(17, 22, 2, 4, 4);
+            MagicDefense = Stat(14, 19, 1, 3, 4);
             Speed = Stat(22, 28, 1, 3, 4);
             Abilities = new List<Ability>() { new TridentThrust(), new TidalSplash() };
             CharacterType = "Merfolk";
@@ -35,16 +35,16 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
         public override void IncreaseLevel()
         {
             Level += 1;
-            var healthIncrease = random.Next(3, 6);
+            var healthIncrease = random.Next(4, 7);
             Health += healthIncrease;
             MaxHealth += healthIncrease;
             var manaIncrease = random.Next(1, 3);
             Mana += manaIncrease;
             MaxMana += manaIncrease;
-            PhysicalAttack += random.Next(1, 3);
-            PhysicalDefense += random.Next(1, 2);
-            MagicAttack += random.Next(1, 3);
-            MagicDefense += random.Next(1, 2);
+            PhysicalAttack += random.Next(2, 4);
+            PhysicalDefense += random.Next(1, 3);
+            MagicAttack += random.Next(2, 4);
+            MagicDefense += random.Next(1, 3);
             Speed += random.Next(1, 3);
         }
 
