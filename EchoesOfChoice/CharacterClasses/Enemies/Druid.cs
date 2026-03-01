@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(28, 38, 2, 4, 9);
             MagicAttack = Stat(41, 55, 4, 7, 9);
             MagicDefense = Stat(32, 42, 3, 5, 9);
-            Speed = Stat(26, 36, 2, 4, 9);
+            Speed = Stat(33, 43, 1, 2, 9);
             Abilities = new List<Ability>() { new Thornlash(), new Regrowth(), new Entangle() };
             CharacterType = "Druid";
             Mana = Stat(41, 60, 3, 6, 9);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Druid(BaseFighter fighter) : base(fighter) { }

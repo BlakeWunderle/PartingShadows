@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(8, 15, 1, 3, 4);
             MagicAttack = Stat(8, 15, 1, 3, 4);
             MagicDefense = Stat(9, 16, 1, 3, 4);
-            Speed = Stat(21, 32, 2, 5, 4);
+            Speed = Stat(24, 35, 1, 3, 4);
             Abilities = new List<Ability>() { new Thorn(), new Pollen() };
             CharacterType = "Sprite";
             Mana = Stat(21, 37, 2, 5, 4);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 1;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public Sprite(BaseFighter fighter) : base(fighter) { }
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

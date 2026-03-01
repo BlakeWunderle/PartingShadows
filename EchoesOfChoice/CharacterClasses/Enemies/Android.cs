@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(18, 22, 0, 0, 6);
             MagicAttack = Stat(26, 30, 0, 0, 6);
             MagicDefense = Stat(22, 27, 0, 0, 6);
-            Speed = Stat(24, 28, 0, 0, 6);
+            Speed = Stat(35, 40, 0, 0, 6);
             Abilities = new List<Ability>() { new CircuitBurst(), new Firewall(), new Overdrive() };
             CharacterType = "Android";
             Mana = Stat(28, 33, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Android(BaseFighter fighter) : base(fighter) { }

@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(21, 25, 0, 0, 6);
             MagicAttack = Stat(24, 28, 0, 0, 6);
             MagicDefense = Stat(21, 25, 0, 0, 6);
-            Speed = Stat(23, 27, 0, 0, 6);
+            Speed = Stat(35, 40, 0, 0, 6);
             Abilities = new List<Ability>() { new WhipCrack(), new Showstopper(), new CenterRing() };
             CharacterType = "Ringmaster";
             Mana = Stat(28, 32, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Ringmaster(BaseFighter fighter) : base(fighter) { }

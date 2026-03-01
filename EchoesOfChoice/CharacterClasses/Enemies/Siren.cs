@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(9, 16, 1, 3, 3);
             MagicAttack = Stat(21, 30, 3, 6, 3);
             MagicDefense = Stat(14, 23, 2, 5, 3);
-            Speed = Stat(15, 22, 2, 4, 3);
+            Speed = Stat(20, 28, 1, 2, 3);
             Abilities = new List<Ability>() { new SirenSong(), new Torrent() };
             CharacterType = "Siren";
             Mana = Stat(19, 33, 2, 5, 3);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Siren(BaseFighter fighter) : base(fighter) { }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(2, 5);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

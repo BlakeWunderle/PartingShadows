@@ -16,15 +16,15 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(4, 8, 2, 4);
             MagicAttack = Stat(2, 5, 1, 2);
             MagicDefense = Stat(4, 8, 1, 3);
-            Speed = Stat(12, 22, 1, 3);
+            Speed = Stat(18, 28, 1, 2);
             Abilities = new List<Ability>() { new Claw() };
             CharacterType = "Bear Cub";
             CharacterName = "Roo";
             Mana = Stat(4, 8, 1, 3);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public BearCub(BaseFighter fighter) : base(fighter) { }
@@ -47,7 +47,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(1, 2);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

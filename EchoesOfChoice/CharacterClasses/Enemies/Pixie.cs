@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(7, 11, 1, 2, 4);
             MagicAttack = Stat(8, 15, 1, 3, 4);
             MagicDefense = Stat(8, 15, 1, 3, 4);
-            Speed = Stat(27, 39, 3, 6, 4);
+            Speed = Stat(30, 42, 2, 3, 4);
             Abilities = new List<Ability>() { new Sting(), new PixieDust() };
             CharacterType = "Pixie";
             Mana = Stat(21, 37, 2, 5, 4);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 1;
-            DodgeChance = 4;
+            DodgeChance = 40;
         }
 
         public Pixie(BaseFighter fighter) : base(fighter) { }
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 2);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(3, 6);
+            Speed += random.Next(2, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

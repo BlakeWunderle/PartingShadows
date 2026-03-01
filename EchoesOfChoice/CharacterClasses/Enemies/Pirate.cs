@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(16, 25, 2, 5, 4);
             MagicAttack = Stat(8, 16, 1, 3, 4);
             MagicDefense = Stat(8, 16, 1, 3, 4);
-            Speed = Stat(11, 22, 2, 5, 4);
+            Speed = Stat(18, 28, 1, 3, 4);
             Abilities = new List<Ability>() { new Flintlock(), new DirtyTrick() };
             CharacterType = "Pirate";
             Mana = Stat(16, 38, 2, 7, 4);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 4;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Pirate(BaseFighter fighter) : base(fighter) { }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(2, 5);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

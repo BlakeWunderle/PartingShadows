@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(20, 24, 0, 0, 6);
             MagicAttack = Stat(37, 42, 0, 0, 6);
             MagicDefense = Stat(24, 28, 0, 0, 6);
-            Speed = Stat(21, 25, 0, 0, 6);
+            Speed = Stat(33, 38, 0, 0, 6);
             Abilities = new List<Ability>() { new PantomimeWall(), new PropDrop(), new MimeTrap() };
             CharacterType = "Harlequin";
             Mana = Stat(33, 37, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public Harlequin(BaseFighter fighter) : base(fighter) { }

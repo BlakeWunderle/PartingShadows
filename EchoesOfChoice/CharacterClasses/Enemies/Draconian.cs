@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(19, 23, 0, 0, 6);
             MagicAttack = Stat(33, 37, 0, 0, 6);
             MagicDefense = Stat(22, 27, 0, 0, 6);
-            Speed = Stat(21, 25, 0, 0, 6);
+            Speed = Stat(32, 37, 0, 0, 6);
             Abilities = new List<Ability>() { new Skewer(), new DrakeStrike(), new ScaleGuard() };
             CharacterType = "Draconian";
             Mana = Stat(25, 29, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Draconian(BaseFighter fighter) : base(fighter) { }

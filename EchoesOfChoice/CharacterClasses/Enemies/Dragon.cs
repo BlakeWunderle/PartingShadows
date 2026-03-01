@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(23, 27, 0, 0, 6);
             MagicAttack = Stat(27, 31, 0, 0, 6);
             MagicDefense = Stat(18, 22, 0, 0, 6);
-            Speed = Stat(13, 17, 0, 0, 6);
+            Speed = Stat(25, 30, 0, 0, 6);
             Abilities = new List<Ability>() { new DragonBreath(), new TailStrike(), new Roar() };
             CharacterType = "Dragon";
             Mana = Stat(29, 34, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Dragon(BaseFighter fighter) : base(fighter) { }

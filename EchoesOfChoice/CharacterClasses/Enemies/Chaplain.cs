@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(24, 28, 0, 0, 6);
             MagicAttack = Stat(25, 29, 0, 0, 6);
             MagicDefense = Stat(25, 29, 0, 0, 6);
-            Speed = Stat(16, 20, 0, 0, 6);
+            Speed = Stat(28, 33, 0, 0, 6);
             Abilities = new List<Ability>() { new Blessing(), new MaceStrike(), new Consecrate() };
             CharacterType = "Chaplain";
             Mana = Stat(32, 36, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Chaplain(BaseFighter fighter) : base(fighter) { }

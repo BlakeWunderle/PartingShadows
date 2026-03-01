@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(8, 12, 1, 2);
             MagicAttack = Stat(3, 6, 0, 2);
             MagicDefense = Stat(8, 12, 1, 2);
-            Speed = Stat(12, 16, 1, 3);
+            Speed = Stat(18, 24, 1, 2);
             Abilities = new List<Ability>() { new Haymaker() };
             CharacterType = "Thug";
             Mana = Stat(4, 8, 1, 3);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Thug(BaseFighter fighter) : base(fighter) { }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 2);
             MagicAttack += random.Next(0, 2);
             MagicDefense += random.Next(1, 2);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

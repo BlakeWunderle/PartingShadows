@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(22, 30, 1, 3, 9);
             MagicAttack = Stat(48, 58, 6, 10, 9);
             MagicDefense = Stat(26, 34, 2, 4, 9);
-            Speed = Stat(28, 36, 2, 4, 9);
+            Speed = Stat(35, 44, 1, 2, 9);
             Abilities = new List<Ability>() { new Hellfire(), new Corruption(), new Torment() };
             CharacterType = "Fiend";
             Mana = Stat(55, 75, 4, 8, 9);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Fiend(BaseFighter fighter) : base(fighter) { }

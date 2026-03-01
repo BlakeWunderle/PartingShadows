@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(20, 30, 1, 3, 9);
             MagicAttack = Stat(54, 68, 6, 9, 9);
             MagicDefense = Stat(26, 36, 2, 4, 9);
-            Speed = Stat(30, 40, 2, 4, 9);
+            Speed = Stat(38, 48, 1, 2, 9);
             Abilities = new List<Ability>() { new ShadowBolt(), new Hex(), new DarkPact() };
             CharacterType = "Warlock";
             Mana = Stat(48, 67, 4, 7, 9);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Warlock(BaseFighter fighter) : base(fighter) { }

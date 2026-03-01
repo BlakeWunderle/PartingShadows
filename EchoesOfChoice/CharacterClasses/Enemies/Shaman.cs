@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(34, 44, 3, 5, 9);
             MagicAttack = Stat(35, 45, 3, 5, 9);
             MagicDefense = Stat(34, 44, 3, 5, 9);
-            Speed = Stat(20, 30, 1, 3, 9);
+            Speed = Stat(30, 38, 1, 2, 9);
             Abilities = new List<Ability>() { new SpiritBolt(), new Rejuvenate(), new AncestralWard() };
             CharacterType = "Shaman";
             Mana = Stat(41, 60, 3, 6, 9);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Shaman(BaseFighter fighter) : base(fighter) { }

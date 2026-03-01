@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(8, 16, 1, 3, 4);
             MagicAttack = Stat(16, 27, 2, 5, 4);
             MagicDefense = Stat(13, 24, 2, 5, 4);
-            Speed = Stat(21, 32, 2, 5, 4);
+            Speed = Stat(24, 35, 1, 3, 4);
             Abilities = new List<Ability>() { new Spark(), new Ember() };
             CharacterType = "Imp";
             Mana = Stat(26, 49, 2, 7, 4);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Imp(BaseFighter fighter) : base(fighter) { }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(2, 5);
             MagicDefense += random.Next(2, 5);
-            Speed += random.Next(2, 5);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

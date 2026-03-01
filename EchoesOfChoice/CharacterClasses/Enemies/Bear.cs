@@ -16,15 +16,15 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(7, 12, 1, 3, 2);
             MagicAttack = Stat(5, 10, 1, 3, 2);
             MagicDefense = Stat(7, 12, 1, 3, 2);
-            Speed = Stat(11, 27, 1, 3, 2);
+            Speed = Stat(17, 30, 1, 2, 2);
             Abilities = new List<Ability>() { new Claw(), new Roar() };
             CharacterType = "Bear";
             CharacterName = "Winnie";
             Mana = Stat(5, 16, 1, 4, 2);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Bear(BaseFighter fighter) : base(fighter) { }
@@ -47,7 +47,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

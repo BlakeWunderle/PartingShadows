@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(35, 46, 3, 5, 10);
             MagicAttack = Stat(42, 53, 3, 5, 10);
             MagicDefense = Stat(35, 46, 3, 5, 10);
-            Speed = Stat(26, 37, 2, 4, 10);
+            Speed = Stat(33, 43, 1, 2, 10);
             Abilities = new List<Ability>() { new RuneStrike(), new Inscribe(), new GlyphOfPower() };
             CharacterType = "Runewright";
             Mana = Stat(44, 65, 3, 6, 10);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Runewright(BaseFighter fighter) : base(fighter) { }

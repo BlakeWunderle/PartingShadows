@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(28, 38, 0, 0, 10);
             MagicAttack = Stat(45, 58, 0, 0, 10);
             MagicDefense = Stat(35, 45, 0, 0, 10);
-            Speed = Stat(28, 38, 0, 0, 10);
+            Speed = Stat(40, 50, 0, 0, 10);
             Abilities = new List<Ability>() { new TidalSurge(), new HealingRain(), new Riptide() };
             CharacterType = "Water Elemental";
             Mana = Stat(70, 90, 0, 0, 10);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 5;
+            DodgeChance = 50;
         }
 
         public WaterElemental(BaseFighter fighter) : base(fighter) { }

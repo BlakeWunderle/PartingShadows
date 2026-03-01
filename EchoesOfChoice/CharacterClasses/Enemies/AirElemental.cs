@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(22, 32, 0, 0, 10);
             MagicAttack = Stat(42, 54, 0, 0, 10);
             MagicDefense = Stat(22, 32, 0, 0, 10);
-            Speed = Stat(42, 55, 0, 0, 10);
+            Speed = Stat(55, 70, 0, 0, 10);
             Abilities = new List<Ability>() { new GaleForce(), new RazorWind(), new Updraft() };
             CharacterType = "Air Elemental";
             Mana = Stat(55, 75, 0, 0, 10);
             MaxMana = Mana;
-            CritChance = 5;
+            CritChance = 50;
             CritDamage = 4;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public AirElemental(BaseFighter fighter) : base(fighter) { }

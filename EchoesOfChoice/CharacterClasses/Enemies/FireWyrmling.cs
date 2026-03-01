@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(16, 20, 0, 0, 6);
             MagicAttack = Stat(28, 32, 0, 0, 6);
             MagicDefense = Stat(20, 24, 0, 0, 6);
-            Speed = Stat(16, 20, 0, 0, 6);
+            Speed = Stat(28, 33, 0, 0, 6);
             Abilities = new List<Ability>() { new DragonBreath(), new TailStrike(), new Roar() };
             CharacterType = "FireWyrmling";
             Mana = Stat(25, 29, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public FireWyrmling(BaseFighter fighter) : base(fighter) { }

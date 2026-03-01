@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(8, 12, 1, 2, 4);
             MagicAttack = Stat(25, 36, 3, 6, 4);
             MagicDefense = Stat(15, 23, 2, 4, 4);
-            Speed = Stat(16, 23, 2, 4, 4);
+            Speed = Stat(20, 28, 1, 2, 4);
             Abilities = new List<Ability>() { new Hex(), new Bramble(), new DarkBlessing() };
             CharacterType = "Witch";
             Mana = Stat(29, 45, 3, 6, 4);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Witch(BaseFighter fighter) : base(fighter) { }
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 2);
             MagicAttack += random.Next(3, 6);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

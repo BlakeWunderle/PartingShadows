@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(10, 18, 1, 3, 4);
             MagicAttack = Stat(9, 16, 1, 3, 4);
             MagicDefense = Stat(10, 17, 1, 3, 4);
-            Speed = Stat(18, 26, 2, 4, 4);
+            Speed = Stat(22, 30, 1, 3, 4);
             Abilities = new List<Ability>() { new HoofStomp(), new PanPipes() };
             CharacterType = "Satyr";
             Mana = Stat(22, 36, 2, 5, 4);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 1;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Satyr(BaseFighter fighter) : base(fighter) { }
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(1, 3);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 3);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

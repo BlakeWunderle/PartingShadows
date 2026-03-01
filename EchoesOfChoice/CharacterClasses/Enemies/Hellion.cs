@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(20, 24, 0, 0, 6);
             MagicAttack = Stat(18, 22, 0, 0, 6);
             MagicDefense = Stat(16, 20, 0, 0, 6);
-            Speed = Stat(15, 19, 0, 0, 6);
+            Speed = Stat(27, 32, 0, 0, 6);
             Abilities = new List<Ability>() { new InfernalStrike(), new ShadowStrike(), new Hex() };
             CharacterType = "Hellion";
             Mana = Stat(22, 26, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Hellion(BaseFighter fighter) : base(fighter) { }

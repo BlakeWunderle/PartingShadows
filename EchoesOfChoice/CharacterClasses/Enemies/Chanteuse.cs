@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(24, 28, 0, 0, 6);
             MagicAttack = Stat(36, 40, 0, 0, 6);
             MagicDefense = Stat(20, 24, 0, 0, 6);
-            Speed = Stat(31, 35, 0, 0, 6);
+            Speed = Stat(40, 45, 0, 0, 6);
             Abilities = new List<Ability>() { new Aria(), new Crescendo(), new Cadence() };
             CharacterType = "Chanteuse";
             Mana = Stat(34, 38, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public Chanteuse(BaseFighter fighter) : base(fighter) { }

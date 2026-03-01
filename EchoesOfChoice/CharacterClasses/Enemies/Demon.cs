@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(17, 21, 0, 0, 6);
             MagicAttack = Stat(40, 44, 0, 0, 6);
             MagicDefense = Stat(22, 26, 0, 0, 6);
-            Speed = Stat(13, 17, 0, 0, 6);
+            Speed = Stat(25, 30, 0, 0, 6);
             Abilities = new List<Ability>() { new Brimstone(), new InfernalStrike(), new Dread() };
             CharacterType = "Demon";
             Mana = Stat(38, 42, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 3;
+            DodgeChance = 30;
         }
 
         public Demon(BaseFighter fighter) : base(fighter) { }

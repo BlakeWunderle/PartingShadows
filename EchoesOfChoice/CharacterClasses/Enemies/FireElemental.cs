@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(20, 28, 0, 0, 10);
             MagicAttack = Stat(55, 70, 0, 0, 10);
             MagicDefense = Stat(20, 28, 0, 0, 10);
-            Speed = Stat(22, 32, 0, 0, 10);
+            Speed = Stat(35, 45, 0, 0, 10);
             Abilities = new List<Ability>() { new MagmaBurst(), new Scorch(), new Eruption() };
             CharacterType = "Fire Elemental";
             Mana = Stat(65, 85, 0, 0, 10);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public FireElemental(BaseFighter fighter) : base(fighter) { }

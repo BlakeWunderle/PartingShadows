@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(30, 38, 3, 5, 9);
             MagicAttack = Stat(37, 47, 3, 6, 9);
             MagicDefense = Stat(28, 36, 3, 5, 9);
-            Speed = Stat(24, 32, 2, 4, 9);
+            Speed = Stat(32, 40, 1, 2, 9);
             Abilities = new List<Ability>() { new Judgment(), new Sanctuary(), new Consecrate() };
             CharacterType = "Seraph";
             Mana = Stat(50, 65, 3, 6, 9);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Seraph(BaseFighter fighter) : base(fighter) { }

@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(19, 29, 2, 4, 6);
             MagicAttack = Stat(29, 40, 3, 5, 6);
             MagicDefense = Stat(19, 29, 2, 4, 6);
-            Speed = Stat(15, 25, 1, 3, 6);
+            Speed = Stat(25, 35, 1, 2, 6);
             Abilities = new List<Ability>() { new Rend(), new Blight(), new Devour() };
             CharacterType = "Zombie";
             Mana = Stat(22, 35, 2, 5, 6);
             MaxMana = Mana;
-            CritChance = 3;
+            CritChance = 30;
             CritDamage = 3;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Zombie(BaseFighter fighter) : base(fighter) { }
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(2, 4);
             MagicAttack += random.Next(3, 5);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

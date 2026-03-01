@@ -16,14 +16,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(30, 34, 0, 0, 6);
             MagicAttack = Stat(12, 16, 0, 0, 6);
             MagicDefense = Stat(24, 29, 0, 0, 6);
-            Speed = Stat(17, 21, 0, 0, 6);
+            Speed = Stat(30, 35, 0, 0, 6);
             Abilities = new List<Ability>() { new ShieldWall(), new RallyStrike(), new WarWard() };
             CharacterType = "Commander";
             Mana = Stat(22, 26, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 2;
+            CritChance = 20;
             CritDamage = 2;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Commander(BaseFighter fighter) : base(fighter) { }

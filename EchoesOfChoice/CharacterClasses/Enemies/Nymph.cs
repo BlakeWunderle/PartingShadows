@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(9, 16, 1, 3, 4);
             MagicAttack = Stat(24, 32, 3, 5, 4);
             MagicDefense = Stat(15, 22, 2, 4, 4);
-            Speed = Stat(18, 25, 2, 4, 4);
+            Speed = Stat(22, 30, 1, 2, 4);
             Abilities = new List<Ability>() { new NaturesWrath(), new Charm() };
             CharacterType = "Nymph";
             Mana = Stat(24, 40, 2, 5, 4);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 2;
+            DodgeChance = 20;
         }
 
         public Nymph(BaseFighter fighter) : base(fighter) { }
@@ -45,7 +45,7 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(3, 5);
             MagicDefense += random.Next(2, 4);
-            Speed += random.Next(2, 4);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

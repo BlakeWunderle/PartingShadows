@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(29, 33, 0, 0, 6);
             MagicAttack = Stat(17, 21, 0, 0, 6);
             MagicDefense = Stat(28, 32, 0, 0, 6);
-            Speed = Stat(16, 20, 0, 0, 6);
+            Speed = Stat(25, 30, 0, 0, 6);
             Abilities = new List<Ability>() { new HammerBlow(), new Temper(), new SteelPlating() };
             CharacterType = "Ironclad";
             Mana = Stat(21, 26, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Ironclad(BaseFighter fighter) : base(fighter) { }

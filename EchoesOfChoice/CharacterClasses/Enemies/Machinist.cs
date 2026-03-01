@@ -15,14 +15,14 @@ namespace EchoesOfChoice.CharacterClasses.Enemies
             PhysicalDefense = Stat(26, 31, 0, 0, 6);
             MagicAttack = Stat(23, 27, 0, 0, 6);
             MagicDefense = Stat(21, 26, 0, 0, 6);
-            Speed = Stat(20, 24, 0, 0, 6);
+            Speed = Stat(32, 37, 0, 0, 6);
             Abilities = new List<Ability>() { new SeismicCharge(), new Reinforce(), new Dismantle() };
             CharacterType = "Machinist";
             Mana = Stat(21, 26, 0, 0, 6);
             MaxMana = Mana;
-            CritChance = 1;
+            CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 1;
+            DodgeChance = 10;
         }
 
         public Machinist(BaseFighter fighter) : base(fighter) { }
