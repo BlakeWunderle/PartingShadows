@@ -1,89 +1,21 @@
 class_name Enums
 
+## Stat types matching C# StatEnum. Used for ability targeting and stat modification.
 enum StatType {
 	PHYSICAL_ATTACK,
 	PHYSICAL_DEFENSE,
 	MAGIC_ATTACK,
 	MAGIC_DEFENSE,
-	ATTACK,
-	DEFENSE,
-	MIXED_ATTACK,
+	ATTACK,       ## Both physical + magic attack
+	DEFENSE,      ## Both physical + magic defense
 	SPEED,
-	DODGE_CHANCE,
+	HEALTH,       ## Used for DoT effects
+	MIXED_ATTACK, ## Average of physical + magic
 	TAUNT,
-	MAX_HEALTH,
-	MAX_MANA,
-	CRIT_CHANCE,
-	CRIT_DAMAGE,
-	MOVEMENT,
-	JUMP,
-}
-
-enum AbilityType {
-	DAMAGE,
-	HEAL,
-	BUFF,
-	DEBUFF,
-	TERRAIN,
-}
-
-enum AoEShape {
-	SINGLE,
-	LINE,
-	CROSS,
-	DIAMOND,
-	SQUARE,
-	GLOBAL,
-}
-
-enum TileType {
-	FLOOR,
-	WALL,
-	WATER,
-	ROUGH_TERRAIN,
-	DESTRUCTIBLE,
-	ICE_WALL,
-	FIRE_TILE,
-	TRAP,
-}
-
-enum Facing {
-	NORTH,
-	SOUTH,
-	EAST,
-	WEST,
-}
-
-enum ReactionType {
-	OPPORTUNITY_ATTACK,
-	FLANKING_STRIKE,
-	SNAP_SHOT,
-	REACTIVE_HEAL,
-	DAMAGE_MITIGATION,
-	BODYGUARD,
-}
-
-enum TurnPhase {
-	AWAITING_INPUT,
-	MOVE,
-	ACT,
-	CHOOSE_FACING,
-	DONE,
+	DODGE_CHANCE,
 }
 
 enum Team {
 	PLAYER,
 	ENEMY,
-}
-
-enum ItemType {
-	CONSUMABLE,
-	EQUIPMENT,
-}
-
-enum ConsumableEffect {
-	HEAL_HP,
-	RESTORE_MANA,
-	BUFF_STAT,
-	FULL_REST_ALL,
 }
