@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Dragon() { CharacterName = "Vexaris" });
             Enemies.Add(new BlightedStag() { CharacterName = "Withered Crown" });
+            Enemies.Add(new BlightedStag() { CharacterName = "Rotted Tine" });
             IsFinalBattle = false;
         }
 

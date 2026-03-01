@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Zombie() { CharacterName = "Mort--" });
             Enemies.Add(new Ghoul() { CharacterName = "Rave--" });
+            Enemies.Add(new Zombie() { CharacterName = "Dredg--" });
 
             IsFinalBattle = false;
         }

@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Troll() { CharacterName = "Grendal" });
             Enemies.Add(new Harpy() { CharacterName = "Screecher" });
+            Enemies.Add(new Harpy() { CharacterName = "Shrieker" });
 
             IsFinalBattle = false;
         }

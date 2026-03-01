@@ -11,6 +11,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new FireWyrmling() { CharacterName = "Raysses" });
             Enemies.Add(new FrostWyrmling() { CharacterName = "Sythara" });
+            Enemies.Add(new FireWyrmling() { CharacterName = "Cindrak" });
 
             IsFinalBattle = false;
         }

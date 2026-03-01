@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new DarkKnight() { CharacterName = "Ser Malachar" });
             Enemies.Add(new FellHound() { CharacterName = "Duskfang" });
+            Enemies.Add(new FellHound() { CharacterName = "Gloomjaw" });
             IsFinalBattle = false;
         }
 

@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Imp() { CharacterName = "Skritch" });
             Enemies.Add(new CaveSpider() { CharacterName = "Silkfang" });
+            Enemies.Add(new CaveSpider() { CharacterName = "Webweaver" });
             IsFinalBattle = false;
         }
 

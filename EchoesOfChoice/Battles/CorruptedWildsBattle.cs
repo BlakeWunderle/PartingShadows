@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Demon() { CharacterName = "Bael" });
             Enemies.Add(new CorruptedTreant() { CharacterName = "Rothollow" });
+            Enemies.Add(new CorruptedTreant() { CharacterName = "Blightsnarl" });
             IsFinalBattle = false;
         }
 

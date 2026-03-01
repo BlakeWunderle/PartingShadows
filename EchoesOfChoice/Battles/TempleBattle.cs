@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Hellion() { CharacterName = "Ashara" });
             Enemies.Add(new Fiendling() { CharacterName = "Cinder" });
+            Enemies.Add(new Fiendling() { CharacterName = "Ember" });
             IsFinalBattle = false;
         }
 

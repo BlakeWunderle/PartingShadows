@@ -12,6 +12,7 @@ namespace EchoesOfChoice.Battles
             Enemies = new List<BaseFighter>();
             Enemies.Add(new Lich() { CharacterName = "Mortuus" });
             Enemies.Add(new Ghast() { CharacterName = "Putrefax" });
+            Enemies.Add(new Ghast() { CharacterName = "Bloatus" });
             IsFinalBattle = false;
         }
 
