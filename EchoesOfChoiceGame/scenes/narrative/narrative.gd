@@ -75,9 +75,14 @@ func _on_text_finished() -> void:
 	match GameState.game_phase:
 		GameState.GamePhase.NARRATIVE:
 			if GameState.narrative_mode == GameState.NarrativeMode.PRE_BATTLE:
-				# Go to battle
-				GameState.game_phase = GameState.GamePhase.BATTLE
-				SceneManager.change_scene("res://scenes/battle/battle.tscn")
+				if GameState.current_battle.enemies.is_empty():
+					# No enemies — skip battle, go straight to post-battle text
+					GameState.narrative_mode = GameState.NarrativeMode.POST_BATTLE
+					_show_narrative()
+				else:
+					# Go to battle
+					GameState.game_phase = GameState.GamePhase.BATTLE
+					SceneManager.change_scene("res://scenes/battle/battle.tscn")
 			else:
 				# Post-battle: level up first
 				GameState.level_up_party()
