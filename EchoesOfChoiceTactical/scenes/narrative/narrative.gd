@@ -70,8 +70,10 @@ func _on_text_finished() -> void:
 				GameState.advance_to_next_battle()
 				if GameState.game_phase == GameState.GamePhase.ENDING:
 					GameState.game_won = true
+					SaveManager.delete_save(SaveManager.AUTOSAVE_SLOT)
 					_show_ending()
 				else:
+					SaveManager.auto_save()
 					# Next battle's pre-narrative
 					_show_narrative()
 		GameState.GamePhase.ENDING:

@@ -152,6 +152,7 @@ func _on_class_selected(index: int) -> void:
 func _finish() -> void:
 	GameState.set_party(_party)
 	GameState.advance_to_battle("CityStreetBattle")
+	SaveManager.auto_save()
 	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 
