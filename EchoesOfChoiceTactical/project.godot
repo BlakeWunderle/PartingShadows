@@ -27,6 +27,7 @@ MusicManager="*res://scripts/autoload/music_manager.gd"
 SFXManager="*res://scripts/autoload/sfx_manager.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
+PauseOverlay="*res://scripts/autoload/pause_overlay.gd"
 
 [display]
 

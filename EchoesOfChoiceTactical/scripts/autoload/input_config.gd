@@ -33,7 +33,7 @@ func _setup_actions() -> void:
 		_joy_button(JOY_BUTTON_A),
 	])
 	_add_action("cancel", [
-		_key(KEY_ESCAPE), _key(KEY_X),
+		_key(KEY_X),
 		_joy_button(JOY_BUTTON_B),
 	])
 	_add_action("inspect", [
@@ -41,6 +41,7 @@ func _setup_actions() -> void:
 		_joy_button(JOY_BUTTON_Y),
 	])
 	_add_action("pause", [
+		_key(KEY_ESCAPE),
 		_joy_button(JOY_BUTTON_START),
 	])
 
