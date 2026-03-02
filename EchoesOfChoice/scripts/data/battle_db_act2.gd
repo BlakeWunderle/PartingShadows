@@ -340,14 +340,16 @@ static func outpost_defense_battle() -> BattleData:
 static func mirror_battle() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "MirrorBattle"
-	# Clone the player's party as shadow enemies at 98% attack stats
+	# Clone the player's party as shadow enemies at reduced stats
 	var clones: Array = []
 	for fighter: FighterData in GameState.party:
 		var shadow: FighterData = fighter.clone()
 		shadow.character_name = "Shadow " + fighter.character_name
 		shadow.is_user_controlled = false
+		shadow.health = int(shadow.health * 0.94); shadow.max_health = shadow.health
 		shadow.physical_attack = int(shadow.physical_attack * 0.98)
 		shadow.magic_attack = int(shadow.magic_attack * 0.98)
+		shadow.speed = int(shadow.speed * 0.97)
 		clones.append(shadow)
 	b.enemies = clones
 	var observer_name: String = "the adventurer"

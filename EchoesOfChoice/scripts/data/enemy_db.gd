@@ -68,7 +68,7 @@ static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = _es(2, 4, 0, 1, lvl, 1)
 	f.magic_defense = _es(5, 9, 0, 2, lvl, 1)
 	f.speed = _es(22, 28, 2, 3, lvl, 1)
-	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 20
+	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [AbilityDB.quick_stab(), AbilityDB.pilfer()]
 	return f
 
@@ -194,7 +194,7 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 2, lvl, 5)
 	f.magic_defense = _es(12, 16, 1, 2, lvl, 5)
 	f.speed = _es(28, 34, 2, 3, lvl, 5)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 25
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.talon_rake(), EAB.shriek()]
 	return f
 
@@ -320,7 +320,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = _fixed(22, 26); f.physical_defense = _fixed(20, 24)
 	f.magic_attack = _fixed(23, 27); f.magic_defense = _fixed(20, 24)
 	f.speed = _fixed(32, 37)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	return f
 
@@ -331,7 +331,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.physical_attack = _fixed(22, 26); f.physical_defense = _fixed(19, 23)
 	f.magic_attack = _fixed(35, 39); f.magic_defense = _fixed(22, 26)
 	f.speed = _fixed(31, 36)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 23
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	return f
 
@@ -342,7 +342,7 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.physical_attack = _fixed(15, 19); f.physical_defense = _fixed(21, 25)
 	f.magic_attack = _fixed(34, 38); f.magic_defense = _fixed(19, 23)
 	f.speed = _fixed(36, 41)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 23
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
 	return f
 
@@ -585,7 +585,7 @@ static func create_hellion(n: String, lvl: int = 17) -> FighterData:
 	f.physical_attack = _fixed(61, 69); f.physical_defense = _fixed(30, 36)
 	f.magic_attack = _fixed(52, 60); f.magic_defense = _fixed(28, 34)
 	f.speed = _fixed(36, 42)
-	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 21
+	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 18
 	f.abilities = [EAB.infernal_strike(), EAB.shadow_strike(), EAB.enemy_hex()]
 	return f
 
@@ -596,7 +596,7 @@ static func create_fiendling(n: String, lvl: int = 17) -> FighterData:
 	f.physical_attack = _fixed(20, 26); f.physical_defense = _fixed(24, 30)
 	f.magic_attack = _fixed(68, 78); f.magic_defense = _fixed(32, 38)
 	f.speed = _fixed(38, 44)
-	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 21
+	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 18
 	f.abilities = [EAB.brimstone(), EAB.dread(), EAB.enemy_hex()]
 	return f
 
@@ -607,7 +607,7 @@ static func create_dragon(n: String, lvl: int = 17) -> FighterData:
 	f.physical_attack = _fixed(40, 48); f.physical_defense = _fixed(36, 42)
 	f.magic_attack = _fixed(61, 69); f.magic_defense = _fixed(32, 38)
 	f.speed = _fixed(34, 40)
-	f.crit_chance = 28; f.crit_damage = 5; f.dodge_chance = 21
+	f.crit_chance = 28; f.crit_damage = 4; f.dodge_chance = 16
 	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), AbilityDB.roar()]
 	return f
 
@@ -618,7 +618,7 @@ static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
 	f.physical_attack = _fixed(56, 64); f.physical_defense = _fixed(26, 32)
 	f.magic_attack = _fixed(24, 30); f.magic_defense = _fixed(24, 30)
 	f.speed = _fixed(38, 44)
-	f.crit_chance = 19; f.crit_damage = 4; f.dodge_chance = 20
+	f.crit_chance = 19; f.crit_damage = 4; f.dodge_chance = 17
 	f.abilities = [EAB.antler_charge(), EAB.rot_aura(), EAB.enemy_blight()]
 	return f
 
@@ -684,6 +684,6 @@ static func create_stranger_final(n: String, lvl: int = 20) -> FighterData:
 	f.magic_attack = _es(83, 93, 5, 7, lvl, 20)
 	f.magic_defense = _es(52, 60, 3, 5, lvl, 20)
 	f.speed = _es(49, 55, 3, 5, lvl, 20)
-	f.crit_chance = 29; f.crit_damage = 6; f.dodge_chance = 26
+	f.crit_chance = 29; f.crit_damage = 6; f.dodge_chance = 23
 	f.abilities = [EAB.shadow_blast(), EAB.siphon(), EAB.dark_veil(), EAB.unmake(), AbilityDB.corruption()]
 	return f
