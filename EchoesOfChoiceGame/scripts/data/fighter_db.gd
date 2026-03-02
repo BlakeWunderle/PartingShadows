@@ -77,7 +77,7 @@ static func create_entertainer(fighter_name: String) -> FighterData:
 	f.crit_damage = 1
 	f.dodge_chance = 10
 	f.abilities = [AbilityDB.sing(), AbilityDB.demoralize()]
-	f.upgrade_items = ["Guitar", "Slippers", "Scroll"]
+	f.upgrade_items = ["Lyre", "Slippers", "Scroll"]
 	return f
 
 
@@ -238,7 +238,7 @@ static func upgrade_class(fighter: FighterData, item: String) -> bool:
 		"Squire:Headband": T1.upgrade_to_martial_artist(fighter)
 		"Mage:RedStone": T1.upgrade_to_invoker(fighter)
 		"Mage:WhiteStone": T1.upgrade_to_acolyte(fighter)
-		"Entertainer:Guitar": T1.upgrade_to_bard(fighter)
+		"Entertainer:Lyre": T1.upgrade_to_bard(fighter)
 		"Entertainer:Slippers": T1.upgrade_to_dervish(fighter)
 		"Entertainer:Scroll": T1.upgrade_to_orator(fighter)
 		"Tinker:Crystal": T1.upgrade_to_artificer(fighter)

@@ -19,7 +19,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             Speed = random.Next(25, 30);
             Abilities = new List<Ability>() { new Sing(), new Demoralize() };
             CharacterType = "Entertainer";
-            UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Guitar, UpgradeItemEnum.Slippers, UpgradeItemEnum.Scroll };
+            UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Lyre, UpgradeItemEnum.Slippers, UpgradeItemEnum.Scroll };
             Mana = random.Next(10, 17);
             MaxMana = Mana;
             CritChance = 10;
@@ -53,7 +53,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
         {
             switch (upgradeItem)
             {
-                case UpgradeItemEnum.Guitar:
+                case UpgradeItemEnum.Lyre:
                     {
                         var upgradedUnit = new Bard();
                         upgradedUnit.KeepStatsOnUpgrade(this);

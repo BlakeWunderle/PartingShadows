@@ -61,7 +61,7 @@ Each base class branches into four Tier 1 specializations, and each Tier 1 class
 
 **Entertainer**
 
-- Bard (Guitar) -- a musician whose songs cut deep
+- Bard (Lyre) -- a musician whose songs cut deep
   - Minstrel (Hat)
   - ???
 - Dervish (Slippers) -- a dancer who fights with grace

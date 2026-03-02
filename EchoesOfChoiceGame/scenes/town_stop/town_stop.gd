@@ -109,7 +109,7 @@ func _get_upgrade_preview(class_id: String, item: String) -> String:
 		"Squire:Headband": return "Become a Martial Artist"
 		"Mage:RedStone": return "Become an Invoker"
 		"Mage:WhiteStone": return "Become an Acolyte"
-		"Entertainer:Guitar": return "Become a Bard"
+		"Entertainer:Lyre": return "Become a Bard"
 		"Entertainer:Slippers": return "Become a Dervish"
 		"Entertainer:Scroll": return "Become an Orator"
 		"Tinker:Crystal": return "Become an Artificer"

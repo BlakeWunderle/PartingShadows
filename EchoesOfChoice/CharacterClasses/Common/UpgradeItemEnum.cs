@@ -6,7 +6,7 @@ namespace EchoesOfChoice.CharacterClasses.Common
         Shield,
         Bow,
         Headband,
-        Guitar,
+
         Slippers,
         Scroll,
         Hymnal,

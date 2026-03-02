@@ -71,7 +71,7 @@ static func create_entertainer(fighter_name: String) -> FighterData:
 	f.crit_damage = 1
 	f.dodge_chance = 10
 	f.abilities = [AbilityDB.sing(), AbilityDB.demoralize()]
-	f.upgrade_items = ["Guitar", "Slippers", "Scroll"]
+	f.upgrade_items = ["Lyre", "Slippers", "Scroll"]
 	return f
 
 

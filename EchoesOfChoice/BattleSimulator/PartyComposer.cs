@@ -32,7 +32,7 @@ namespace EchoesOfChoice.BattleSimulator
         {
             ["Squire"] = new[] { UpgradeItemEnum.Sword, UpgradeItemEnum.Bow, UpgradeItemEnum.Headband },
             ["Mage"] = new[] { UpgradeItemEnum.RedStone, UpgradeItemEnum.WhiteStone },
-            ["Entertainer"] = new[] { UpgradeItemEnum.Guitar, UpgradeItemEnum.Slippers, UpgradeItemEnum.Scroll },
+            ["Entertainer"] = new[] { UpgradeItemEnum.Lyre, UpgradeItemEnum.Slippers, UpgradeItemEnum.Scroll },
             ["Scholar"] = new[] { UpgradeItemEnum.Crystal, UpgradeItemEnum.Textbook, UpgradeItemEnum.Abacus },
             ["Wildling"] = new[] { UpgradeItemEnum.Herbs, UpgradeItemEnum.Totem, UpgradeItemEnum.BeastClaw }
         };

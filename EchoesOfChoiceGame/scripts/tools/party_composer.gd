@@ -14,7 +14,7 @@ const BASE_TYPES: Array[String] = ["Squire", "Mage", "Entertainer", "Tinker", "W
 const T1_UPGRADES := {
 	"Squire": ["Sword", "Bow", "Headband"],
 	"Mage": ["RedStone", "WhiteStone"],
-	"Entertainer": ["Guitar", "Slippers", "Scroll"],
+	"Entertainer": ["Lyre", "Slippers", "Scroll"],
 	"Tinker": ["Crystal", "Textbook", "Abacus"],
 	"Wildling": ["Herbs", "Totem", "BeastClaw"],
 }
