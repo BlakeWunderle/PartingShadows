@@ -204,7 +204,7 @@ namespace EchoesOfChoice.Battles
             }
         }
 
-        public void UseAbilityOnTeammate(BaseFighter actingUnit, BaseFighter helpedUnit, Ability abilityToUse)
+        public void UseAbilityOnTeammate(BaseFighter actingUnit, BaseFighter helpedUnit, Ability abilityToUse, bool showFlavorText = true)
         {
             if (abilityToUse.impactedTurns == 0)
             {
@@ -221,7 +221,7 @@ namespace EchoesOfChoice.Battles
                 if (!IsSilent)
                 {
                     Console.WriteLine();
-                    Console.WriteLine(abilityToUse.FlavorText);
+                    if (showFlavorText) Console.WriteLine(abilityToUse.FlavorText);
                     Console.WriteLine($"{helpedUnit.CharacterName} healed {healthRegen} points of damage.");
                     CombatPause();
                 }
@@ -241,14 +241,14 @@ namespace EchoesOfChoice.Battles
                 if (!IsSilent)
                 {
                     Console.WriteLine();
-                    Console.WriteLine(abilityToUse.FlavorText);
+                    if (showFlavorText) Console.WriteLine(abilityToUse.FlavorText);
                     Console.WriteLine($"{helpedUnit.CharacterName} was impacted by the ability.");
                     CombatPause();
                 }
             }
         }
 
-        public void UseAbilityOnEnemy(BaseFighter actingUnit, BaseFighter attackedEnemy, Ability abilityToUse)
+        public void UseAbilityOnEnemy(BaseFighter actingUnit, BaseFighter attackedEnemy, Ability abilityToUse, bool showFlavorText = true)
         {
             if (abilityToUse.impactedTurns == 0)
             {
@@ -283,7 +283,7 @@ namespace EchoesOfChoice.Battles
                 if (!IsSilent)
                 {
                     Console.WriteLine();
-                    Console.WriteLine(abilityToUse.FlavorText);
+                    if (showFlavorText) Console.WriteLine(abilityToUse.FlavorText);
                     Console.WriteLine($"{actingUnit.CharacterName} did {damage} points of damage to {attackedEnemy.CharacterName}.");
                     CombatPause();
                 }
@@ -315,7 +315,7 @@ namespace EchoesOfChoice.Battles
                     if (!IsSilent)
                     {
                         Console.WriteLine();
-                        Console.WriteLine(abilityToUse.FlavorText);
+                        if (showFlavorText) Console.WriteLine(abilityToUse.FlavorText);
                         Console.WriteLine($"{attackedEnemy.CharacterName} will take {abilityToUse.DamagePerTurn} damage per turn for {abilityToUse.impactedTurns} turns.");
                         CombatPause();
                     }
@@ -336,7 +336,7 @@ namespace EchoesOfChoice.Battles
                     if (!IsSilent && abilityToUse.DamagePerTurn == 0)
                     {
                         Console.WriteLine();
-                        Console.WriteLine(abilityToUse.FlavorText);
+                        if (showFlavorText) Console.WriteLine(abilityToUse.FlavorText);
                         Console.WriteLine($"{attackedEnemy.CharacterName} was hit with this ability.");
                         CombatPause();
                     }
@@ -558,8 +558,9 @@ namespace EchoesOfChoice.Battles
                 if (abilityToUse.TargetAll)
                 {
                     Console.WriteLine($"{actingUnit.CharacterName} targets all enemies!");
+                    if (!IsSilent) { Console.WriteLine(); Console.WriteLine(abilityToUse.FlavorText); }
                     foreach (var enemy in Enemies.ToList())
-                        UseAbilityOnEnemy(actingUnit, enemy, abilityToUse);
+                        UseAbilityOnEnemy(actingUnit, enemy, abilityToUse, showFlavorText: false);
                 }
                 else
                 {
@@ -572,8 +573,9 @@ namespace EchoesOfChoice.Battles
                 if (abilityToUse.TargetAll)
                 {
                     Console.WriteLine($"{actingUnit.CharacterName} targets all allies!");
+                    if (!IsSilent) { Console.WriteLine(); Console.WriteLine(abilityToUse.FlavorText); }
                     foreach (var ally in Units.ToList())
-                        UseAbilityOnTeammate(actingUnit, ally, abilityToUse);
+                        UseAbilityOnTeammate(actingUnit, ally, abilityToUse, showFlavorText: false);
                 }
                 else
                 {
@@ -827,9 +829,10 @@ namespace EchoesOfChoice.Battles
                     unit.Mana -= heal.ManaCost;
                     if (heal.TargetAll)
                     {
+                        if (!IsSilent) { Console.WriteLine(); Console.WriteLine(heal.FlavorText); }
                         for (int i = 0; i < allies.Count; i++)
                             if (allies[i].Health > 0)
-                                UseAbilityOnTeammate(unit, allies[i], heal);
+                                UseAbilityOnTeammate(unit, allies[i], heal, showFlavorText: false);
                     }
                     else
                     {
@@ -877,9 +880,10 @@ namespace EchoesOfChoice.Battles
                         if (anyUnbuffed)
                         {
                             unit.Mana -= buff.ManaCost;
+                            if (!IsSilent) { Console.WriteLine(); Console.WriteLine(buff.FlavorText); }
                             for (int i = 0; i < allies.Count; i++)
                                 if (allies[i].Health > 0)
-                                    UseAbilityOnTeammate(unit, allies[i], buff);
+                                    UseAbilityOnTeammate(unit, allies[i], buff, showFlavorText: false);
                             return;
                         }
                     }
@@ -932,8 +936,9 @@ namespace EchoesOfChoice.Battles
                 unit.Mana -= ability.ManaCost;
                 if (ability.TargetAll)
                 {
+                    if (!IsSilent) { Console.WriteLine(); Console.WriteLine(ability.FlavorText); }
                     for (int i = targets.Count - 1; i >= 0; i--)
-                        UseAbilityOnEnemy(unit, targets[i], ability);
+                        UseAbilityOnEnemy(unit, targets[i], ability, showFlavorText: false);
                 }
                 else
                 {
