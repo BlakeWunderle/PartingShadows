@@ -2,10 +2,13 @@ extends Control
 
 ## Generic narrative scene for pre-battle, post-battle, and ending text.
 ## Reads GameState to determine which text to show and where to go next.
+## After post-battle text, handles branch choices and town stop transitions.
 
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
+const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 
 var _dialogue: DialoguePanel
+var _choice_menu: ChoiceMenu
 
 
 func _ready() -> void:
@@ -22,10 +25,19 @@ func _build_ui() -> void:
 	margin.add_theme_constant_override("margin_bottom", 60)
 	add_child(margin)
 
+	var vbox := VBoxContainer.new()
+	vbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	margin.add_child(vbox)
+
 	_dialogue = DialoguePanel.new()
 	_dialogue.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_dialogue.all_text_finished.connect(_on_text_finished)
-	margin.add_child(_dialogue)
+	vbox.add_child(_dialogue)
+
+	_choice_menu = ChoiceMenu.new()
+	_choice_menu.visible = false
+	_choice_menu.choice_selected.connect(_on_branch_selected)
+	vbox.add_child(_choice_menu)
 
 
 func _show_narrative() -> void:
@@ -67,15 +79,49 @@ func _on_text_finished() -> void:
 				GameState.game_phase = GameState.GamePhase.BATTLE
 				SceneManager.change_scene("res://scenes/battle/battle.tscn")
 			else:
-				# Post-battle: level up, advance
+				# Post-battle: level up first
 				GameState.level_up_party()
-				GameState.advance_to_next_battle()
-				if GameState.game_phase == GameState.GamePhase.ENDING:
-					GameState.game_won = true
-					_show_ending()
+				# Check for branch choices
+				if not GameState.current_battle.choices.is_empty():
+					_show_branch_choices()
 				else:
-					# Next battle's pre-narrative
-					_show_narrative()
+					_advance_after_battle()
 		GameState.GamePhase.ENDING:
 			# Return to title
 			SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _show_branch_choices() -> void:
+	_dialogue.visible = false
+	var options: Array[Dictionary] = []
+	for choice: Dictionary in GameState.current_battle.choices:
+		options.append({"label": choice["label"]})
+	_choice_menu.show_choices(options)
+
+
+func _on_branch_selected(index: int) -> void:
+	_choice_menu.hide_menu()
+	var battle_id: String = GameState.current_battle.choices[index]["battle_id"]
+	GameState.advance_with_choice(battle_id)
+	match GameState.game_phase:
+		GameState.GamePhase.TOWN_STOP:
+			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
+		GameState.GamePhase.ENDING:
+			GameState.game_won = true
+			_dialogue.visible = true
+			_show_ending()
+		_:
+			_dialogue.visible = true
+			_show_narrative()
+
+
+func _advance_after_battle() -> void:
+	GameState.advance_to_next_battle()
+	match GameState.game_phase:
+		GameState.GamePhase.ENDING:
+			GameState.game_won = true
+			_show_ending()
+		GameState.GamePhase.TOWN_STOP:
+			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
+		_:
+			_show_narrative()

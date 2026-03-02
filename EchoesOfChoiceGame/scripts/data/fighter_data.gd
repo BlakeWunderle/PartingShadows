@@ -29,6 +29,28 @@ var modified_stats: Array[Dictionary] = []  ## {stat, modifier, turns, is_negati
 var upgrade_items: Array[String] = []       ## For class upgrade paths
 
 
+func clone() -> FighterData:
+	var c := FighterData.new()
+	c.character_name = character_name
+	c.character_type = character_type
+	c.class_id = class_id
+	c.is_user_controlled = is_user_controlled
+	c.level = level
+	c.health = health; c.max_health = max_health
+	c.mana = mana; c.max_mana = max_mana
+	c.physical_attack = physical_attack
+	c.physical_defense = physical_defense
+	c.magic_attack = magic_attack
+	c.magic_defense = magic_defense
+	c.speed = speed
+	c.crit_chance = crit_chance
+	c.crit_damage = crit_damage
+	c.dodge_chance = dodge_chance
+	c.abilities = abilities.duplicate()
+	c.upgrade_items = upgrade_items.duplicate()
+	return c
+
+
 func reset_for_battle() -> void:
 	health = max_health
 	mana = max_mana

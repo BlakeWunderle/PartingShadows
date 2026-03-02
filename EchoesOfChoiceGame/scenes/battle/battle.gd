@@ -34,6 +34,8 @@ var _current_actor: FighterData
 var _selected_ability: AbilityData
 var _message_queue: Array[String] = []
 var _processing_messages: bool = false
+var _escape_hp_pct: float = 0.0  ## Boss escape threshold from BattleData
+var _boss_escaped: bool = false
 
 signal _player_turn_done
 
@@ -143,6 +145,8 @@ func _start_battle() -> void:
 	_engine.battle_lost.connect(_on_battle_lost)
 
 	var battle: BattleData = GameState.current_battle
+	_escape_hp_pct = battle.escape_hp_pct
+	_boss_escaped = false
 	_engine.start_battle(GameState.party, battle.enemies)
 
 	_build_status_bars()
@@ -241,6 +245,12 @@ func _tick_loop() -> void:
 			# Post-action (same for player and AI)
 			await _drain_messages()
 			_refresh_bars()
+
+			# Check boss escape before death — escape triggers at HP threshold
+			if _check_boss_escape():
+				_end_battle()
+				return
+
 			_engine.check_for_death()
 			_rebuild_bars_if_needed()
 			await _drain_messages()
@@ -503,15 +513,30 @@ func _drain_messages() -> void:
 # Battle end
 # =============================================================================
 
+func _check_boss_escape() -> bool:
+	if _escape_hp_pct <= 0.0:
+		return false
+	for enemy: FighterData in _engine.enemies:
+		if enemy.health > 0 and float(enemy.health) / float(enemy.max_health) <= _escape_hp_pct:
+			_boss_escaped = true
+			_combat_log.add_message("")
+			_combat_log.add_message("[color=yellow]%s staggers back, then vanishes in a flash of dark energy![/color]" % enemy.character_name)
+			return true
+	return false
+
+
 func _end_battle() -> void:
 	_phase = Phase.BATTLE_END
 	await _drain_messages()
 
 	_engine.finish_battle()
 
-	if _engine.did_player_win():
+	if _boss_escaped or _engine.did_player_win():
 		_combat_log.add_message("")
-		_combat_log.add_message("[color=gold]Victory! The enemies have been vanquished.[/color]")
+		if _boss_escaped:
+			_combat_log.add_message("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
+		else:
+			_combat_log.add_message("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		await get_tree().create_timer(2.0).timeout
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
