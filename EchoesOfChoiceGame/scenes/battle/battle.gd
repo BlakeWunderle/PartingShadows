@@ -35,6 +35,8 @@ var _selected_ability: AbilityData
 var _message_queue: Array[String] = []
 var _processing_messages: bool = false
 
+signal _player_turn_done
+
 # UI elements
 var _party_bars: Array[FighterBar] = []
 var _enemy_bars: Array[FighterBar] = []
@@ -48,6 +50,7 @@ var _top_panel: HBoxContainer
 var _party_vbox: VBoxContainer
 var _enemy_vbox: VBoxContainer
 var _bottom_panel: VBoxContainer
+var _turn_order_label: RichTextLabel
 
 
 func _ready() -> void:
@@ -87,6 +90,15 @@ func _build_ui() -> void:
 	enemy_header.add_theme_font_size_override("font_size", 16)
 	_enemy_vbox.add_child(enemy_header)
 
+	# Turn order bar
+	_turn_order_label = RichTextLabel.new()
+	_turn_order_label.bbcode_enabled = true
+	_turn_order_label.fit_content = true
+	_turn_order_label.scroll_active = false
+	_turn_order_label.add_theme_font_size_override("normal_font_size", 13)
+	_turn_order_label.custom_minimum_size = Vector2(0, 20)
+	root.add_child(_turn_order_label)
+
 	# Middle: combat log
 	_combat_log = CombatLog.new()
 	_combat_log.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -116,7 +128,9 @@ func _build_ui() -> void:
 	_stats_panel.closed.connect(_on_stats_closed)
 	_stats_panel.visible = false
 	_stats_panel.set_anchors_preset(Control.PRESET_CENTER)
-	_stats_panel.custom_minimum_size = Vector2(350, 400)
+	_stats_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_stats_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
+	_stats_panel.custom_minimum_size = Vector2(350, 0)
 	add_child(_stats_panel)
 
 
@@ -132,6 +146,7 @@ func _start_battle() -> void:
 
 	_build_status_bars()
 	_combat_log.add_message("[color=gold]Battle begins![/color]")
+	_update_turn_order()
 	_phase = Phase.TICKING_ATB
 	_tick_loop()
 
@@ -177,15 +192,14 @@ func _refresh_bars() -> void:
 # =============================================================================
 
 func _tick_loop() -> void:
-	while _phase == Phase.TICKING_ATB:
+	_phase = Phase.TICKING_ATB
+	while true:
 		if not _engine.tick_atb():
 			continue
 
 		var actors: Array = _engine.get_acting_units()
 		for actor: FighterData in actors:
 			if actor.health <= 0:
-				_engine.check_for_death()
-				_rebuild_bars_if_needed()
 				continue
 
 			_current_actor = actor
@@ -208,7 +222,7 @@ func _tick_loop() -> void:
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
 				_show_action_menu(actor)
-				return  # Wait for player input
+				await _player_turn_done
 			else:
 				# AI turn
 				_phase = Phase.AI_ACTING
@@ -216,19 +230,22 @@ func _tick_loop() -> void:
 				var targets: Array = _engine.enemies if is_party else _engine.units
 				var allies: Array = _engine.units if is_party else _engine.enemies
 				_engine.execute_ai_turn(actor, targets, allies)
-				await _drain_messages()
-				_refresh_bars()
-				_engine.check_for_death()
-				_rebuild_bars_if_needed()
-				await _drain_messages()
 
-				if _engine.is_battle_over():
-					_end_battle()
-					return
+			# Post-action (same for player and AI)
+			await _drain_messages()
+			_refresh_bars()
+			_engine.check_for_death()
+			_rebuild_bars_if_needed()
+			await _drain_messages()
+
+			if _engine.is_battle_over():
+				_end_battle()
+				return
+
+			_phase = Phase.TICKING_ATB
+			_update_turn_order()
 
 		_engine.reset_turns()
-
-	# If we exit the loop due to phase change, the phase handler will resume
 
 
 # =============================================================================
@@ -297,6 +314,7 @@ func _on_target_selected(index: int) -> void:
 	_action_menu.choice_selected.disconnect(_on_target_selected)
 	_action_menu.choice_selected.connect(_on_action_selected)
 	_action_menu.hide_menu()
+	_turn_label.visible = false
 
 	match _phase:
 		Phase.PLAYER_TARGET_ATTACK:
@@ -323,18 +341,7 @@ func _on_target_selected(index: int) -> void:
 			_engine.use_ability_on_teammate(
 				_current_actor, _engine.units[index], _selected_ability)
 
-	await _drain_messages()
-	_refresh_bars()
-	_engine.check_for_death()
-	_rebuild_bars_if_needed()
-	await _drain_messages()
-
-	if _engine.is_battle_over():
-		_end_battle()
-		return
-
-	_phase = Phase.TICKING_ATB
-	_tick_loop()
+	_player_turn_done.emit()
 
 
 func _show_ability_menu() -> void:
@@ -377,18 +384,7 @@ func _on_ability_selected(index: int) -> void:
 			for ally: FighterData in _engine.units.duplicate():
 				_engine.use_ability_on_teammate(_current_actor, ally, _selected_ability)
 
-		await _drain_messages()
-		_refresh_bars()
-		_engine.check_for_death()
-		_rebuild_bars_if_needed()
-		await _drain_messages()
-
-		if _engine.is_battle_over():
-			_end_battle()
-			return
-
-		_phase = Phase.TICKING_ATB
-		_tick_loop()
+		_player_turn_done.emit()
 	elif _selected_ability.use_on_enemy:
 		_phase = Phase.PLAYER_ABILITY_TARGET_ENEMY
 		_show_target_menu(_engine.enemies)
@@ -410,8 +406,10 @@ func _show_stats_pick() -> void:
 	options.append({"label": "Back"})
 
 	_action_menu.show_choices(options)
-	_action_menu.choice_selected.disconnect(_on_action_selected)
-	_action_menu.choice_selected.connect(_on_stats_pick_selected)
+	if _action_menu.choice_selected.is_connected(_on_action_selected):
+		_action_menu.choice_selected.disconnect(_on_action_selected)
+	if not _action_menu.choice_selected.is_connected(_on_stats_pick_selected):
+		_action_menu.choice_selected.connect(_on_stats_pick_selected)
 
 
 func _on_stats_pick_selected(index: int) -> void:
@@ -504,3 +502,59 @@ func _rebuild_bars_if_needed() -> void:
 		_enemy_bars[i].visible = i < _engine.enemies.size()
 		if i < _engine.enemies.size():
 			_enemy_bars[i].update_display(_engine.enemies[i])
+
+
+func _update_turn_order() -> void:
+	## Predict the next several turns by simulating ATB ticks forward.
+	var all_fighters: Array = []
+	for f: FighterData in _engine.units:
+		all_fighters.append(f)
+	for f: FighterData in _engine.enemies:
+		all_fighters.append(f)
+
+	if all_fighters.is_empty():
+		_turn_order_label.text = ""
+		return
+
+	# Snapshot current ATB values
+	var atb: Dictionary = {}
+	for f: FighterData in all_fighters:
+		atb[f] = f.turn_calculation
+
+	var order: Array = []
+	var show_count: int = mini(8, all_fighters.size() * 2)
+
+	while order.size() < show_count:
+		# Tick until someone reaches 100
+		var ready: Array = []
+		for _i: int in 200:  # safety limit
+			for f: FighterData in all_fighters:
+				atb[f] += f.speed
+			ready.clear()
+			for f: FighterData in all_fighters:
+				if atb[f] >= 100:
+					ready.append(f)
+			if not ready.is_empty():
+				break
+
+		if ready.is_empty():
+			break
+
+		# Sort by highest ATB (same as get_acting_units)
+		ready.sort_custom(func(a: FighterData, b: FighterData) -> bool:
+			return atb[a] > atb[b])
+
+		for f: FighterData in ready:
+			atb[f] -= 100
+			order.append(f)
+
+	# Build display string
+	var parts: Array[String] = []
+	for f: FighterData in order:
+		var is_player: bool = _engine.units.has(f)
+		var color: String = "cyan" if is_player else "salmon"
+		parts.append("[color=%s]%s[/color]" % [color, f.character_name])
+
+	_turn_order_label.clear()
+	_turn_order_label.append_text(
+		"[color=gray]Turn Order:[/color]  " + "  >  ".join(parts))

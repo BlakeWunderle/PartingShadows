@@ -23,8 +23,8 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
-	size_flags_horizontal = Control.SIZE_FILL
-	size_flags_vertical = Control.SIZE_FILL
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	size_flags_vertical = Control.SIZE_EXPAND_FILL
 
 	_margin = MarginContainer.new()
 	_margin.add_theme_constant_override("margin_left", 24)

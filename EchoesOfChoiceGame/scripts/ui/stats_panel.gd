@@ -33,7 +33,9 @@ func _build_ui() -> void:
 
 
 func show_fighter(fighter: FighterData) -> void:
-	# Clear previous
+	# Remove close button before clearing (preserve it for reuse)
+	if _close_btn.get_parent() == _vbox:
+		_vbox.remove_child(_close_btn)
 	for child: Node in _vbox.get_children():
 		child.queue_free()
 
