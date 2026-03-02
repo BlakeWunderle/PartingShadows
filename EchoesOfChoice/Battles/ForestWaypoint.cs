@@ -17,9 +17,9 @@ namespace EchoesOfChoice.Battles
         public override void PreBattleInteraction()
         {
             Console.WriteLine();
-            Console.WriteLine("A small waypoint inn appears at a crossroads, barely holding itself together. The sign over the door reads 'The Wanderer's Rest.'");
-            Console.WriteLine("The innkeeper, a weathered woman who looks like she hasn't slept in weeks, waves them inside.");
-            Console.WriteLine("'You saved my inn. Least I can do is open the storeroom. Take what you need.'");
+            Console.WriteLine("The innkeeper unlocks a heavy door behind the bar and pulls it open. The storeroom is larger than it looks from outside.");
+            Console.WriteLine("Racks of gear line the walls — mismatched but well-maintained. More than a roadside inn should have.");
+            Console.WriteLine("'Take what speaks to you,' she says. 'Folks leave things here all the time. I've learned not to ask why.'");
             Console.WriteLine();
 
             var newUnits = new List<BaseFighter>();

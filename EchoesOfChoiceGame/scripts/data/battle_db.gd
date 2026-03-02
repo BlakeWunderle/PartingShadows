@@ -130,9 +130,9 @@ static func forest_waypoint() -> BattleData:
 	b.battle_id = "ForestWaypoint"
 	b.is_town_stop = true
 	b.pre_battle_text = [
-		"A small waypoint inn appears at a crossroads, barely holding itself together. The sign over the door reads 'The Wanderer's Rest.'",
-		"The innkeeper, a weathered woman who looks like she hasn't slept in weeks, waves them inside.",
-		"'You saved my inn. Least I can do is open the storeroom. Take what you need.'",
+		"The innkeeper unlocks a heavy door behind the bar and pulls it open. The storeroom is larger than it looks from outside.",
+		"Racks of gear line the walls — mismatched but well-maintained. More than a roadside inn should have.",
+		"'Take what speaks to you,' she says. 'Folks leave things here all the time. I've learned not to ask why.'",
 	]
 	b.post_battle_text = [
 		"The innkeeper leans on the counter. 'Three roads lead out from here. None of them are safe.'",
