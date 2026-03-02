@@ -75,23 +75,59 @@ static func bark_skin() -> AbilityData:
 		Enums.StatType.DEFENSE, 2, 2, false, 1)
 
 
+# --- Shared abilities (used by both player classes and enemies) ---
+
+static func smash() -> AbilityData:
+	return _make("Smash", "A powerful overhead blow.",
+		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2)
+
+static func torrent() -> AbilityData:
+	return _make("Torrent", "A surge of water magic crashes into the target.",
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3)
+
+static func roar() -> AbilityData:
+	return _make("Roar", "A fearsome roar that shakes the enemy's confidence.",
+		Enums.StatType.ATTACK, 3, 2, true, 2)
+
+static func shadow_attack() -> AbilityData:
+	return _make("Shadow Attack", "Strike from the shadows with dark energy.",
+		Enums.StatType.MIXED_ATTACK, 7, 0, true, 4)
+
+static func frustrate() -> AbilityData:
+	return _make("Frustrate", "Undermine the enemy's will to fight.",
+		Enums.StatType.ATTACK, 7, 2, true, 3)
+
+static func ember() -> AbilityData:
+	return _make("Ember", "A searing bolt of flame.",
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3)
+
+static func corruption() -> AbilityData:
+	return _make("Corruption", "Dark magic that corrodes the target.",
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4)
+
+static func shield_slam() -> AbilityData:
+	return _make("Shield Slam", "Bash the enemy with a heavy shield.",
+		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2)
+
+static func rally() -> AbilityData:
+	return _make("Rally", "Sound the charge! Allies move faster.",
+		Enums.StatType.SPEED, 5, 2, false, 2, true)
+
+
 # --- Enemy abilities ---
 
 static func haymaker() -> AbilityData:
 	return _make("Haymaker", "A wild, heavy-fisted swing.",
 		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2)
 
-
 static func intimidate() -> AbilityData:
 	return _make("Intimidate",
 		"A menacing glare that weakens the target's resolve. Reduces attack.",
 		Enums.StatType.ATTACK, 3, 2, true, 2)
 
-
 static func quick_stab() -> AbilityData:
 	return _make("Quick Stab", "A swift blade flashes in the dark.",
 		Enums.StatType.PHYSICAL_ATTACK, 2, 0, true, 1)
-
 
 static func pilfer() -> AbilityData:
 	return _make("Pilfer",
