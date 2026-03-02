@@ -131,7 +131,7 @@ static func _lu_monk(f: FighterData) -> void:
 static func upgrade_to_infernalist(f: FighterData) -> void:
 	f.class_id = "Infernalist"; f.character_type = "Infernalist"
 	f.magic_attack += 5; f.speed += 4
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [PAB.fire_ball(), PAB.burning_brand(), PAB.enrage()]
 	f.upgrade_items = []
 
