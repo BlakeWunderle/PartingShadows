@@ -19,12 +19,12 @@ NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string
 
 ### Build (verify no errors)
 ```bash
-"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoiceTactical --headless --quit 2>&1 | grep -v "$NOISE"
+"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoiceGame --headless --quit 2>&1 | grep -v "$NOISE"
 ```
 
 ### Run a tool script
 ```bash
-"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoiceTactical --headless --script res://tools/<tool>.gd
+"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoiceGame --headless --script res://tools/<tool>.gd
 ```
 
 ### Run a tool with arguments

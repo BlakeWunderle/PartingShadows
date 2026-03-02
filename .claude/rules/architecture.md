@@ -1,41 +1,53 @@
 # Project Architecture
 
-Godot 4 project using GDScript at `EchoesOfChoiceTactical/`. Building a visual RPG based on the C# console RPG at `EchoesOfChoice/`.
+Godot 4 project using GDScript at `EchoesOfChoiceGame/`. Building a visual RPG based on the C# console RPG at `EchoesOfChoice/`.
 
 ## File Map
 
-All paths below are relative to `EchoesOfChoiceTactical/`.
+All paths below are relative to `EchoesOfChoiceGame/`.
 
 ### Core Data (`scripts/data/`)
-- `enums.gd` -- All enums: StatType, AbilityType, AoEShape, TileType, Facing, ReactionType, TurnPhase, Team
+- `ability_data.gd` -- Ability model (name, type, modifier, targets, flavor text)
+- `ability_db.gd` -- Ability factory: static methods returning AbilityData for all abilities
+- `battle_data.gd` -- Battle definition (enemies, narrative text, choices, music_track)
+- `battle_db.gd` -- Battle database: all 27 battles with enemy composition and story text
+- `enemy_db.gd` -- Enemy factory: creates FighterData for all enemy types
+- `fighter_data.gd` -- Fighter stat model (HP, MP, ATK, DEF, SPD, abilities, buffs/debuffs)
+- `fighter_db.gd` -- Player class factory: base classes (T0), display names, ability lookups
+- `fighter_db_t1.gd` -- Tier 1 class upgrades and level-up functions
+- `fighter_db_t2.gd` -- Tier 2 class upgrades (A-M) and level-up functions
+- `fighter_db_t2b.gd` -- Tier 2 class upgrades (N-Z) and level-up functions
 
 ### Autoload (`scripts/autoload/`)
-- `scene_manager.gd` -- Scene transitions with fade overlay, threaded preloading, async scene swapping
+- `scene_manager.gd` -- Scene transitions with fade overlay, stops music on transition
 - `music_manager.gd` -- Background music with crossfade, context-based track pools (battle, exploration, town, menu, boss, cutscene)
-- `sfx_manager.gd` -- SFX playback: 28 category enum with folder-based pools, 8-player polyphonic pool, per-category cooldown (80ms), voice pack system (per-unit packs x 4 actions), play_ability_sfx() maps ability type/name to SFX category
-- `audio_loader.gd` -- Static utility (class_name AudioLoader, not autoloaded): runtime audio file loading via load_from_file() for WAV/OGG/MP3, headless mode detection, path globalization
-- `input_config.gd` -- Input action registration (keyboard mappings)
+- `sfx_manager.gd` -- SFX playback: category enum with folder-based pools, 8-player polyphonic pool, per-category cooldown
+- `audio_loader.gd` -- Static utility (class_name AudioLoader, not autoloaded): runtime audio file loading for WAV/OGG/MP3
+- `input_config.gd` -- Input action registration (keyboard + gamepad mappings)
+- `save_manager.gd` -- Multi-slot save system (3 manual + autosave), JSON serialization
+- `pause_overlay.gd` -- CanvasLayer pause menu with save sub-menu, ESC keybinding
+- `game_state.gd` -- Game state: party, battle progression, phase tracking
 
 ### Scenes (`scenes/`)
-- `Main.tscn` -- Placeholder main scene (empty Control node)
+- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Quit
+- `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops
+- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings
+- `battle/battle.gd/.tscn` -- ATB battle scene with turn order, buff/debuff indicators
+- `town_stop/town_stop.gd/.tscn` -- Town rest stops between battles
+- `class_upgrade/class_upgrade.gd/.tscn` -- Class upgrade selection and reveal
 
-### Resources (`resources/`)
-- `gui/` -- `game_theme.tres` project-wide Theme (dark panels, gold borders, green buttons, Oswald-Bold font)
+### UI (`scripts/ui/`)
+- `dialogue_panel.gd` -- Typewriter text display with input guards
+- `choice_menu.gd` -- Vertical choice menu with keyboard/gamepad navigation
+- `name_input.gd` -- Text input for character naming
+- `fighter_bar.gd` -- HP/MP bars with status effect indicators
+- `combat_log.gd` -- Scrolling battle log
+- `stats_panel.gd` -- Character stats display with close button
 
 ### Assets (`assets/`)
 - `audio/music/` -- ~90 music tracks across contexts (menu, battle, boss, exploration, town, cutscene, game_over, victory)
 - `audio/sfx/` -- ~600 sound effects in 28 categories + 8 voice packs
-- `art/gui/` -- CraftPix RPG GUI elements (reusable UI graphics)
-
-### Reference (`reference/`)
-
-Previous tactical RPG code preserved for reference (excluded from Godot build via `.gdignore`):
-
-- `reference/scenes/` -- All 25 tactical game scenes (.tscn + .gd scripts): battle map, overworld, town, story, UI, units
-- `reference/systems/` -- Grid engine, combat formulas, reaction system, battle AI, ability executor, combat animator, terrain renderer
-- `reference/data/` -- Data models: fighter_data, ability_data, item_data, battle configs, map data, XP/JP config, travel events
-- `reference/autoload/` -- Game state, equipment manager, save/load, sprite loader, battle preloader
-- `reference/tools/` -- Build/balance/art tools: battle simulator, sprite generators, palette swap, theme generator, orphan checker
+- `fonts/` -- Oswald-Bold.ttf for game theme
 
 ## Reference Codebase
 

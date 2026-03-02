@@ -5,7 +5,7 @@ description: Verify asset organization, check for missing references, manage mus
 
 # Asset Audit & Management
 
-Manages the split between the Godot project (`EchoesOfChoiceTactical/assets/`) and the asset library (`assets_library/`). Verifies no referenced assets are missing, manages music track selection, and maintains `.gdignore` exclusions.
+Manages the split between the Godot project (`EchoesOfChoiceGame/assets/`) and the asset library (`assets_library/`). Verifies no referenced assets are missing, manages music track selection, and maintains `.gdignore` exclusions.
 
 ## Architecture
 
@@ -13,7 +13,7 @@ Assets are organized into three tiers:
 
 | Location | Purpose | Size |
 |----------|---------|------|
-| `EchoesOfChoiceTactical/assets/` | Runtime assets (sprites, music, tilesets, audio) | ~2-3 GB |
+| `EchoesOfChoiceGame/assets/` | Runtime assets (sprites, music, tilesets, audio) | ~2-3 GB |
 | `assets_library/` | Source packs + excess music (not in Godot project) | ~20 GB |
 | `.gdignore`'d dirs | Downloaded but unused art packs (excluded from import/export) | ~900 MB |
 
@@ -30,13 +30,13 @@ Assets are organized into three tiers:
 
 ```bash
 # Full audit: check references + report sizes
-python EchoesOfChoiceTactical/tools/asset_audit.py
+python EchoesOfChoiceGame/tools/asset_audit.py
 
 # Place .gdignore files in unused directories
-python EchoesOfChoiceTactical/tools/asset_audit.py --fix
+python EchoesOfChoiceGame/tools/asset_audit.py --fix
 
 # Size report only
-python EchoesOfChoiceTactical/tools/asset_audit.py --sizes
+python EchoesOfChoiceGame/tools/asset_audit.py --sizes
 ```
 
 The audit checks:
@@ -48,16 +48,16 @@ The audit checks:
 
 ```bash
 # Initial curation — select 5 tracks per context, move rest to library
-python EchoesOfChoiceTactical/tools/curate_music.py
+python EchoesOfChoiceGame/tools/curate_music.py
 
 # Change tracks per context
-python EchoesOfChoiceTactical/tools/curate_music.py --per-context 10
+python EchoesOfChoiceGame/tools/curate_music.py --per-context 10
 
 # Sync from existing manifest (restore selections after fresh clone)
-python EchoesOfChoiceTactical/tools/curate_music.py --sync
+python EchoesOfChoiceGame/tools/curate_music.py --sync
 
 # List current track selections and check for missing files
-python EchoesOfChoiceTactical/tools/curate_music.py --list
+python EchoesOfChoiceGame/tools/curate_music.py --list
 ```
 
 Music contexts: `battle`, `battle_dark`, `battle_scifi`, `boss`, `cutscene`, `exploration`, `menu`, `town`
@@ -70,25 +70,25 @@ The manifest at `assets/audio/music/MUSIC_MANIFEST.json` is tracked in git and i
 
 1. Downloads go to `assets_library/` (configured in `tools/download_craftpix.py`)
 2. Run sprite generation tools which read from `assets_library/sprites/` and write to the Godot project
-3. Run `python EchoesOfChoiceTactical/tools/asset_audit.py` to verify
+3. Run `python EchoesOfChoiceGame/tools/asset_audit.py` to verify
 
 ### Swapping music tracks
 
 1. Edit `assets/audio/music/MUSIC_MANIFEST.json` — replace a track name with one from `assets_library/music/{context}/`
-2. Run `python EchoesOfChoiceTactical/tools/curate_music.py --sync` to move files accordingly
+2. Run `python EchoesOfChoiceGame/tools/curate_music.py --sync` to move files accordingly
 3. Commit the updated manifest
 
 ### Before export
 
-1. Run `python EchoesOfChoiceTactical/tools/asset_audit.py` — should pass with 0 warnings
-2. Run `python EchoesOfChoiceTactical/tools/asset_audit.py --fix` to ensure all `.gdignore` files are placed
-3. Build: `"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoiceTactical --headless --quit`
+1. Run `python EchoesOfChoiceGame/tools/asset_audit.py` — should pass with 0 warnings
+2. Run `python EchoesOfChoiceGame/tools/asset_audit.py --fix` to ensure all `.gdignore` files are placed
+3. Build: `"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoiceGame --headless --quit`
 
 ### After fresh clone / new machine
 
 1. Download asset packs (or copy `assets_library/` from backup)
-2. Run `python EchoesOfChoiceTactical/tools/curate_music.py --sync` to restore music selections
-3. Run `python EchoesOfChoiceTactical/tools/asset_audit.py --fix` to place `.gdignore` files
+2. Run `python EchoesOfChoiceGame/tools/curate_music.py --sync` to restore music selections
+3. Run `python EchoesOfChoiceGame/tools/asset_audit.py --fix` to place `.gdignore` files
 
 ## .gdignore Managed Directories
 

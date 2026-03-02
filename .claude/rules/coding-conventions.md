@@ -1,7 +1,5 @@
 ---
-description: GDScript coding conventions for the Echoes of Choice Tactical project
-globs: "EchoesOfChoiceTactical/**/*.gd"
-alwaysApply: false
+description: GDScript coding conventions for the Echoes of Choice project
 ---
 
 # GDScript Conventions

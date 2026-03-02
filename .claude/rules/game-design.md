@@ -1,8 +1,8 @@
 # Echoes of Choice -- Design Reference
 
-This file documents the design decisions from the original tactical RPG implementation. It is kept as reference for building the new visual version. The tactical game code is preserved in `EchoesOfChoiceTactical/reference/`.
+This file documents the design decisions for Echoes of Choice.
 
-The new project is a visual RPG built in Godot 4 with GDScript at `EchoesOfChoiceTactical/`, based on the C# console RPG at `EchoesOfChoice/`.
+The project is a visual RPG built in Godot 4 with GDScript at `EchoesOfChoiceGame/`, based on the C# console RPG at `EchoesOfChoice/`.
 
 ## Class System
 
@@ -16,12 +16,9 @@ The new project is a visual RPG built in Godot 4 with GDScript at `EchoesOfChoic
 - Crit: roll 1-10, crit if > (10 - crit_chance), adds crit_damage
 - Dodge: roll 1-10, dodge if <= dodge_chance
 
-## Previous Tactical Design (reference only)
+## Current Battle System
 
-The following systems were implemented in the tactical version and are preserved in `reference/`:
-
-- **ATB turn system**: Speed accumulates to 100 threshold, act-then-move, facing selection
-- **Grid movement**: BFS flood fill, A* pathfinding, elevation with jump stats
-- **Reactions**: 6 types (opportunity attack, flanking strike, snap shot, reactive heal, damage mitigation, bodyguard)
-- **Abilities**: 5 types (damage, heal, buff, debuff, terrain), AoE shapes, elevation-aware range
-- **Progression**: XP/JP economy, class unlock/upgrade via JP thresholds, gold economy, equipment tiers
+- **ATB turn system**: Speed accumulates to 100 threshold, turn order prediction display
+- **Abilities**: 5 types (damage, heal, buff, debuff, terrain), AoE targeting
+- **Status effects**: Buff/debuff indicators on fighter bars, stat modification tracking
+- **Progression**: Level-up after battles, class upgrades at town stops (T0 -> T1 -> T2)
