@@ -16,15 +16,15 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense = random.Next(10, 15);
             MagicAttack = random.Next(12, 20);
             MagicDefense = random.Next(15, 20);
-            Speed = random.Next(25, 30);
-            Abilities = new List<Ability>() { new Sing(), new Demoralize() };
+            Speed = random.Next(16, 21);
+            Abilities = new List<Ability>() { new Mockery(), new Demoralize() };
             CharacterType = "Entertainer";
             UpgradeItems = new List<UpgradeItemEnum>() { UpgradeItemEnum.Lyre, UpgradeItemEnum.Slippers, UpgradeItemEnum.Scroll };
             Mana = random.Next(10, 17);
             MaxMana = Mana;
             CritChance = 10;
             CritDamage = 1;
-            DodgeChance = 10;
+            DodgeChance = 5;
         }
 
         public Entertainer(BaseFighter fighter) : base(fighter) { }
@@ -46,7 +46,7 @@ namespace EchoesOfChoice.CharacterClasses.Entertainer
             PhysicalDefense += random.Next(1, 3);
             MagicAttack += random.Next(2, 4);
             MagicDefense += random.Next(1, 3);
-            Speed += random.Next(1, 3);
+            Speed += random.Next(1, 2);
         }
 
         public override BaseFighter UpgradeClass(UpgradeItemEnum upgradeItem)

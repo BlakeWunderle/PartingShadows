@@ -66,11 +66,11 @@ static func create_entertainer(fighter_name: String) -> FighterData:
 	f.physical_defense = randi_range(10, 14)
 	f.magic_attack = randi_range(12, 19)
 	f.magic_defense = randi_range(15, 19)
-	f.speed = randi_range(25, 29)
+	f.speed = randi_range(16, 20)
 	f.crit_chance = 10
 	f.crit_damage = 1
-	f.dodge_chance = 10
-	f.abilities = [AbilityDB.sing(), AbilityDB.demoralize()]
+	f.dodge_chance = 5
+	f.abilities = [AbilityDB.mockery(), AbilityDB.demoralize()]
 	f.upgrade_items = ["Lyre", "Slippers", "Scroll"]
 	return f
 
@@ -110,10 +110,10 @@ static func create_wildling(fighter_name: String) -> FighterData:
 	f.physical_defense = randi_range(10, 13)
 	f.magic_attack = randi_range(12, 15)
 	f.magic_defense = randi_range(12, 15)
-	f.speed = randi_range(15, 19)
+	f.speed = randi_range(22, 26)
 	f.crit_chance = 10
 	f.crit_damage = 1
-	f.dodge_chance = 10
+	f.dodge_chance = 15
 	f.abilities = [AbilityDB.thorn_whip(), AbilityDB.bark_skin()]
 	f.upgrade_items = ["Herbs", "Totem", "BeastClaw"]
 	return f
@@ -242,7 +242,7 @@ static func _level_up_entertainer(f: FighterData) -> void:
 	f.physical_defense += randi_range(1, 2)
 	f.magic_attack += randi_range(2, 3)
 	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 2)
+	f.speed += randi_range(1, 1)
 
 
 static func _level_up_scholar(f: FighterData) -> void:
@@ -264,7 +264,7 @@ static func _level_up_wildling(f: FighterData) -> void:
 	f.physical_defense += randi_range(1, 2)
 	f.magic_attack += randi_range(2, 3)
 	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 1)
+	f.speed += randi_range(1, 2)
 
 
 static func _level_up_generic(f: FighterData) -> void:
@@ -312,7 +312,7 @@ static func get_abilities_for_class(class_id: String) -> Array[AbilityData]:
 	match class_id:
 		"Squire": return [AbilityDB.slash(), AbilityDB.guard()]
 		"Mage": return [AbilityDB.arcane_bolt()]
-		"Entertainer": return [AbilityDB.sing(), AbilityDB.demoralize()]
+		"Entertainer": return [AbilityDB.mockery(), AbilityDB.demoralize()]
 		"Tinker": return [AbilityDB.proof(), AbilityDB.energy_blast()]
 		"Wildling": return [AbilityDB.thorn_whip(), AbilityDB.bark_skin()]
 		_:
