@@ -1,13 +1,16 @@
 class_name NameInput extends VBoxContainer
 
 ## Text entry field for character names.
-## Replaces Console.ReadLine for free-text input in C#.
+## Shows a virtual on-screen keyboard when controller input is detected.
 
 signal name_entered(player_name: String)
+
+const _VirtualKeyboard := preload("res://scripts/ui/virtual_keyboard.gd")
 
 var _prompt_label: Label
 var _line_edit: LineEdit
 var _confirm_btn: Button
+var _virtual_kb: VirtualKeyboard
 
 
 func _ready() -> void:
@@ -37,12 +40,63 @@ func _build_ui() -> void:
 	_confirm_btn.pressed.connect(_on_confirm_pressed)
 	add_child(_confirm_btn)
 
+	_virtual_kb = _VirtualKeyboard.new()
+	_virtual_kb.visible = false
+	_virtual_kb.character_entered.connect(_on_vk_char)
+	_virtual_kb.backspace_pressed.connect(_on_vk_backspace)
+	_virtual_kb.confirmed.connect(_on_confirm_pressed)
+	add_child(_virtual_kb)
+
 
 func show_prompt(text: String) -> void:
 	_prompt_label.text = text
 	_line_edit.text = ""
+	_line_edit.editable = true
+	_virtual_kb.visible = false
 	visible = true
 	_line_edit.grab_focus()
+
+
+func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+	# Controller input while virtual keyboard hidden → show it
+	if not _virtual_kb.visible:
+		if event is InputEventJoypadButton and event.pressed:
+			_show_virtual_keyboard()
+			get_viewport().set_input_as_handled()
+		elif event is InputEventJoypadMotion and absf(event.axis_value) >= 0.5:
+			_show_virtual_keyboard()
+			get_viewport().set_input_as_handled()
+	# Keyboard input while virtual keyboard shown → hide it
+	elif event is InputEventKey and event.pressed and not event.echo:
+		_hide_virtual_keyboard()
+
+
+func _show_virtual_keyboard() -> void:
+	_virtual_kb.visible = true
+	_line_edit.editable = false
+	_confirm_btn.visible = false
+	_virtual_kb.grab_first_focus()
+
+
+func _hide_virtual_keyboard() -> void:
+	_virtual_kb.visible = false
+	_line_edit.editable = true
+	_confirm_btn.visible = true
+	_line_edit.grab_focus()
+
+
+func _on_vk_char(ch: String) -> void:
+	if _line_edit.text.length() < _line_edit.max_length:
+		_line_edit.text += ch
+		_line_edit.caret_column = _line_edit.text.length()
+
+
+func _on_vk_backspace() -> void:
+	if not _line_edit.text.is_empty():
+		_line_edit.text = _line_edit.text.substr(0, _line_edit.text.length() - 1)
+		_line_edit.caret_column = _line_edit.text.length()
 
 
 func _on_text_submitted(_text: String) -> void:
@@ -53,6 +107,9 @@ func _on_confirm_pressed() -> void:
 	var entered: String = _line_edit.text.strip_edges()
 	if entered.is_empty():
 		_line_edit.placeholder_text = "Please enter a name..."
-		_line_edit.grab_focus()
+		if _virtual_kb.visible:
+			_virtual_kb.grab_first_focus()
+		else:
+			_line_edit.grab_focus()
 		return
 	name_entered.emit(entered)
