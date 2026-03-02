@@ -83,8 +83,5 @@ static func stranger_tower_battle() -> BattleData:
 		"Outside, the sky has turned the color of ash. The horizon ripples like heat off a forge, but the air is cold.",
 		"The world is breaking.",
 	]
-	b.choices = [
-		{"label": "City — The city center pulses with necrotic energy.", "battle_id": "CorruptedCityBattle"},
-		{"label": "Wilds — The wilderness writhes with darkness.", "battle_id": "CorruptedWildsBattle"},
-	]
+	b.next_battle_id = "CopperMugStop"
 	return b

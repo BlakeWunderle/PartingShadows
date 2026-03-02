@@ -36,12 +36,11 @@ static func create_battle(battle_id: String) -> BattleData:
 		"ReturnToCityStreetBattle": return Act3.return_to_city_street_battle()
 		"StrangerTowerBattle": return Act3.stranger_tower_battle()
 		# Act IV-V
+		"CopperMugStop": return Act45.copper_mug_stop()
 		"CorruptedCityBattle": return Act45.corrupted_city_battle()
 		"CorruptedWildsBattle": return Act45.corrupted_wilds_battle()
-		"TempleBattle": return Act45.temple_battle()
-		"BlightBattle": return Act45.blight_battle()
-		"GateBattle": return Act45.gate_battle()
 		"DepthsBattle": return Act45.depths_battle()
+		"GateBattle": return Act45.gate_battle()
 		"StrangerFinalBattle": return Act45.stranger_final_battle()
 		_:
 			push_error("Unknown battle: %s" % battle_id)
