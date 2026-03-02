@@ -3,6 +3,9 @@ class_name BattleDB
 ## Static factory for battle configurations.
 ## Narrative text copied from C# battle classes.
 
+const BattleData = preload("res://scripts/data/battle_data.gd")
+const FighterDB = preload("res://scripts/data/fighter_db.gd")
+
 
 static func create_battle(battle_id: String) -> BattleData:
 	match battle_id:

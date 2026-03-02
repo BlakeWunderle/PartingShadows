@@ -2,6 +2,11 @@ extends Node
 
 ## Global game state that persists across scene transitions.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+const BattleData = preload("res://scripts/data/battle_data.gd")
+const BattleDB = preload("res://scripts/data/battle_db.gd")
+const FighterDB = preload("res://scripts/data/fighter_db.gd")
+
 enum NarrativeMode { PRE_BATTLE, POST_BATTLE }
 enum GamePhase { TITLE, PARTY_CREATION, NARRATIVE, BATTLE, ENDING }
 

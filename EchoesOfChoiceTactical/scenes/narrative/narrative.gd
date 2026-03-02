@@ -3,6 +3,8 @@ extends Control
 ## Generic narrative scene for pre-battle, post-battle, and ending text.
 ## Reads GameState to determine which text to show and where to go next.
 
+const DialoguePanel = preload("res://scripts/ui/dialogue_panel.gd")
+
 var _dialogue: DialoguePanel
 
 

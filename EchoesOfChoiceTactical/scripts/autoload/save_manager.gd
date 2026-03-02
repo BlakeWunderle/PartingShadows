@@ -3,6 +3,9 @@ extends Node
 ## Multi-slot save persistence. 3 manual slots + 1 autosave.
 ## Saves party data and current battle ID as JSON to user://.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+const FighterDB = preload("res://scripts/data/fighter_db.gd")
+
 const MAX_SAVE_SLOTS := 3
 const AUTOSAVE_SLOT := 3
 const SAVE_META_PATH := "user://save_meta.json"

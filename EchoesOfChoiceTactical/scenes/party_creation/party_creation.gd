@@ -3,6 +3,12 @@ extends Control
 ## Party creation scene — tavern introduction + 3 character creation loops.
 ## Text and flow from C# Program.cs CreateParty().
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+const FighterDB = preload("res://scripts/data/fighter_db.gd")
+const DialoguePanel = preload("res://scripts/ui/dialogue_panel.gd")
+const NameInput = preload("res://scripts/ui/name_input.gd")
+const ChoiceMenu = preload("res://scripts/ui/choice_menu.gd")
+
 enum State {
 	INTRO, NAME_1, CLASS_1, CONFIRM_1,
 	BRIDGE_1, NAME_2, CLASS_2, CONFIRM_2,

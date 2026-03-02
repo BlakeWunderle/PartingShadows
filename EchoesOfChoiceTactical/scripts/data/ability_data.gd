@@ -2,6 +2,8 @@ class_name AbilityData extends Resource
 
 ## Mirrors C# Ability.cs — defines a single ability's properties.
 
+const Enums = preload("res://scripts/data/enums.gd")
+
 @export var ability_name: String
 @export var flavor_text: String
 @export var modified_stat: Enums.StatType

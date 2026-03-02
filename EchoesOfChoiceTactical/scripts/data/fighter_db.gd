@@ -4,6 +4,10 @@ class_name FighterDB
 ## C# random.Next(min, max) is exclusive upper bound.
 ## GDScript randi_range(min, max) is inclusive — so we use max-1.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+const AbilityData = preload("res://scripts/data/ability_data.gd")
+const AbilityDB = preload("res://scripts/data/ability_db.gd")
+
 
 # =============================================================================
 # Player base classes (Tier 0)

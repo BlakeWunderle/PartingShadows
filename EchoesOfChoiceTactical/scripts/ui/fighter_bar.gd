@@ -2,6 +2,8 @@ class_name FighterBar extends HBoxContainer
 
 ## Health/mana bar for a single fighter in the battle HUD.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+
 var _name_label: Label
 var _hp_bar: ProgressBar
 var _hp_label: Label

@@ -3,6 +3,8 @@ extends Control
 ## Title screen with animated reveal and menu.
 ## Shows Continue and Load Game options when saves exist.
 
+const ChoiceMenu = preload("res://scripts/ui/choice_menu.gd")
+
 enum Mode { MAIN_MENU, LOAD_SLOTS }
 
 var _title_label: Label

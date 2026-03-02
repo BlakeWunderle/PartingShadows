@@ -3,6 +3,9 @@ class_name AbilityDB
 ## Static factory for all abilities. Each function returns a configured AbilityData.
 ## C# source: EchoesOfChoice/CharacterClasses/Abilities/
 
+const AbilityData = preload("res://scripts/data/ability_data.gd")
+const Enums = preload("res://scripts/data/enums.gd")
+
 
 static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int,
 		turns: int, on_enemy: bool, cost: int, all: bool = false,

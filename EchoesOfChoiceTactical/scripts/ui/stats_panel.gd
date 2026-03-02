@@ -2,6 +2,8 @@ class_name StatsPanel extends PanelContainer
 
 ## Shows detailed stats for a fighter. Used in battle stats view.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+
 signal closed
 
 var _vbox: VBoxContainer

@@ -2,6 +2,15 @@ extends Control
 
 ## Battle scene — connects BattleEngine to visual UI.
 
+const BattleEngine = preload("res://scripts/battle/battle_engine.gd")
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+const AbilityData = preload("res://scripts/data/ability_data.gd")
+const BattleData = preload("res://scripts/data/battle_data.gd")
+const FighterBar = preload("res://scripts/ui/fighter_bar.gd")
+const CombatLog = preload("res://scripts/ui/combat_log.gd")
+const ChoiceMenu = preload("res://scripts/ui/choice_menu.gd")
+const StatsPanel = preload("res://scripts/ui/stats_panel.gd")
+
 enum Phase {
 	STARTING,
 	TICKING_ATB,

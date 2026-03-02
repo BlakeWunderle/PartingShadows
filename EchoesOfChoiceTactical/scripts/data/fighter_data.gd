@@ -2,6 +2,9 @@ class_name FighterData extends RefCounted
 
 ## Mirrors C# BaseFighter — a live fighter instance with mutable combat state.
 
+const Enums = preload("res://scripts/data/enums.gd")
+const AbilityData = preload("res://scripts/data/ability_data.gd")
+
 var character_name: String
 var character_type: String  ## Class display name (e.g. "Squire", "Thug")
 var class_id: String        ## Internal class key for save/load and level-up routing

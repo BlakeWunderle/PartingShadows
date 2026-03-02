@@ -175,19 +175,6 @@ func play_ability_sfx(ability: Resource) -> void:
 	if ability.is_buff_or_debuff():
 		play(Category.SHIMMER, 0.8)
 		return
-	if ability.is_terrain_ability():
-		match ability.terrain_tile:
-			Enums.TileType.FIRE_TILE:
-				play(Category.FIRE)
-			Enums.TileType.ICE_WALL:
-				play(Category.SPELL)
-			Enums.TileType.WALL, Enums.TileType.DESTRUCTIBLE:
-				play(Category.EARTH)
-			Enums.TileType.TRAP:
-				play(Category.SPELL, 0.7)
-			_:
-				play(Category.SPELL)
-		return
 	# Ranged physical
 	if ability.ability_range >= 2 and ability.modified_stat == Enums.StatType.PHYSICAL_ATTACK:
 		play(Category.RANGED_IMPACT)

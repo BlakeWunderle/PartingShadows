@@ -3,6 +3,10 @@ class_name BattleEngine extends RefCounted
 ## Port of C# Battle.cs — pure combat logic, no UI.
 ## Emits signals for the battle scene to visualize.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+const AbilityData = preload("res://scripts/data/ability_data.gd")
+const Enums = preload("res://scripts/data/enums.gd")
+
 signal combat_message(text: String)
 signal turn_started(fighter: FighterData)
 signal action_needed(fighter: FighterData)

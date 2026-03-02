@@ -2,6 +2,8 @@ class_name BattleData extends RefCounted
 
 ## Configuration for a single battle encounter.
 
+const FighterData = preload("res://scripts/data/fighter_data.gd")
+
 var battle_id: String
 var enemies: Array[FighterData] = []
 var pre_battle_text: Array[String] = []
