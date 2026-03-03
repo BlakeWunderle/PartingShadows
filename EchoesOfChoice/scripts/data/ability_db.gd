@@ -9,7 +9,7 @@ const Enums := preload("res://scripts/data/enums.gd")
 
 static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int,
 		turns: int, on_enemy: bool, cost: int, all: bool = false,
-		dot: int = 0, steal: float = 0.0) -> AbilityData:
+		dot: int = 0, steal: float = 0.0, cd: int = 0) -> AbilityData:
 	var a := AbilityData.new()
 	a.ability_name = p_name
 	a.flavor_text = flavor
@@ -21,6 +21,7 @@ static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int
 	a.target_all = all
 	a.damage_per_turn = dot
 	a.life_steal_percent = steal
+	a.cooldown = cd
 	return a
 
 

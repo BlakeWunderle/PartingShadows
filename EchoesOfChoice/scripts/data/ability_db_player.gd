@@ -9,8 +9,8 @@ const AbilityDB := preload("res://scripts/data/ability_db.gd")
 
 static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int,
 		turns: int, on_enemy: bool, cost: int, all: bool = false,
-		dot: int = 0, steal: float = 0.0) -> AbilityData:
-	return AbilityDB._make(p_name, flavor, stat, mod, turns, on_enemy, cost, all, dot, steal)
+		dot: int = 0, steal: float = 0.0, cd: int = 0) -> AbilityData:
+	return AbilityDB._make(p_name, flavor, stat, mod, turns, on_enemy, cost, all, dot, steal, cd)
 
 
 # =============================================================================

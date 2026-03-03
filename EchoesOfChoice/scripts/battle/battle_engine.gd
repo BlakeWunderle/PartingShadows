@@ -275,6 +275,15 @@ func finish_battle() -> void:
 
 
 # =============================================================================
+# Cooldown
+# =============================================================================
+
+func _set_cooldown(fighter: FighterData, ability: AbilityData) -> void:
+	if ability.cooldown > 0:
+		fighter.ability_cooldowns[ability.ability_name] = ability.cooldown
+
+
+# =============================================================================
 # Crit & dodge
 # =============================================================================
 
@@ -325,6 +334,8 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 	for a: AbilityData in unit.abilities:
 		if a.mana_cost > unit.mana:
 			continue
+		if unit.ability_cooldowns.get(a.ability_name, 0) > 0:
+			continue
 		affordable.append(a)
 
 		if a.use_on_enemy:
@@ -351,6 +362,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		if wounded != null:
 			var heal: AbilityData = heal_abilities[randi_range(0, heal_abilities.size() - 1)]
 			unit.mana -= heal.mana_cost
+			_set_cooldown(unit, heal)
 			if heal.target_all:
 				for ally: FighterData in allies:
 					if ally.health > 0:
@@ -367,6 +379,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var taunt_chance: float = tank_ratio * (targets.size() / 3.0)
 		if randf() < taunt_chance:
 			unit.mana -= taunt_ability.mana_cost
+			_set_cooldown(unit, taunt_ability)
 			use_ability_on_teammate(unit, unit, taunt_ability)
 			return
 
@@ -384,6 +397,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 						break
 				if any_unbuffed:
 					unit.mana -= buff.mana_cost
+					_set_cooldown(unit, buff)
 					for ally: FighterData in allies:
 						if ally.health > 0:
 							use_ability_on_teammate(unit, ally, buff)
@@ -399,6 +413,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 							buff_target = ally
 				if buff_target != null and not _has_modifier(buff_target, buff.modified_stat, false):
 					unit.mana -= buff.mana_cost
+					_set_cooldown(unit, buff)
 					use_ability_on_teammate(unit, buff_target, buff)
 					return
 
@@ -417,6 +432,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var ability: AbilityData = _choose_offensive_ability(
 			unit, offensive_abilities, magic_ratio)
 		unit.mana -= ability.mana_cost
+		_set_cooldown(unit, ability)
 		if ability.target_all:
 			for target: FighterData in targets.duplicate():
 				use_ability_on_enemy(unit, target, ability)

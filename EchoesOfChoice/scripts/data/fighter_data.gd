@@ -26,6 +26,7 @@ var dodge_chance: int
 var turn_calculation: int = 0  ## ATB accumulator
 var abilities: Array = []  ## Array of AbilityData
 var modified_stats: Array[Dictionary] = []  ## {stat, modifier, turns, is_negative, damage_per_turn}
+var ability_cooldowns: Dictionary = {}      ## ability_name -> remaining turns
 var upgrade_items: Array[String] = []       ## For class upgrade paths
 
 
@@ -47,6 +48,7 @@ func clone() -> FighterData:
 	c.crit_damage = crit_damage
 	c.dodge_chance = dodge_chance
 	c.abilities = abilities.duplicate()
+	c.ability_cooldowns = ability_cooldowns.duplicate()
 	c.upgrade_items = upgrade_items.duplicate()
 	return c
 
@@ -55,6 +57,7 @@ func reset_for_battle() -> void:
 	health = max_health
 	mana = max_mana
 	turn_calculation = 0
+	ability_cooldowns.clear()
 	# Revert any lingering stat mods
 	for mod: Dictionary in modified_stats:
 		_revert_mod(mod)

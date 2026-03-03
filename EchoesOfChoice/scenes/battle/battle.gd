@@ -219,6 +219,7 @@ func _tick_loop() -> void:
 			_display_turn_order()
 
 			_engine.reset_modified_stat(actor)
+			_tick_cooldowns(actor)
 			await _drain_messages()
 
 			if _engine.is_battle_over():
@@ -271,6 +272,30 @@ func _tick_loop() -> void:
 
 
 # =============================================================================
+# Cooldown management
+# =============================================================================
+
+func _tick_cooldowns(fighter: FighterData) -> void:
+	var expired: Array[String] = []
+	for ability_name: String in fighter.ability_cooldowns:
+		fighter.ability_cooldowns[ability_name] -= 1
+		if fighter.ability_cooldowns[ability_name] <= 0:
+			expired.append(ability_name)
+	for ability_name: String in expired:
+		fighter.ability_cooldowns.erase(ability_name)
+
+
+func _set_cooldown(fighter: FighterData, ability: AbilityData) -> void:
+	if ability.cooldown > 0:
+		fighter.ability_cooldowns[ability.ability_name] = ability.cooldown
+
+
+func _is_ability_available(fighter: FighterData, ability: AbilityData) -> bool:
+	return ability.mana_cost <= fighter.mana \
+		and fighter.ability_cooldowns.get(ability.ability_name, 0) <= 0
+
+
+# =============================================================================
 # Player action handling
 # =============================================================================
 
@@ -278,14 +303,14 @@ func _show_action_menu(actor: FighterData) -> void:
 	_turn_label.text = "[%s the %s]" % [actor.character_name, actor.character_type]
 	_turn_label.visible = true
 
-	var has_affordable: bool = false
+	var has_available: bool = false
 	for a: AbilityData in actor.abilities:
-		if a.mana_cost <= actor.mana:
-			has_affordable = true
+		if _is_ability_available(actor, a):
+			has_available = true
 			break
 
 	var options: Array[Dictionary] = [{"label": "Attack"}]
-	if has_affordable:
+	if has_available:
 		options.append({"label": "Ability"})
 	options.append({"label": "Stats"})
 	_action_menu.show_choices(options)
@@ -296,16 +321,16 @@ func _on_action_selected(index: int) -> void:
 	_turn_label.visible = false
 
 	# Map index accounting for possibly missing Ability option
-	var has_affordable: bool = false
+	var has_available: bool = false
 	for a: AbilityData in _current_actor.abilities:
-		if a.mana_cost <= _current_actor.mana:
-			has_affordable = true
+		if _is_ability_available(_current_actor, a):
+			has_available = true
 			break
 
 	var action: String
 	if index == 0:
 		action = "attack"
-	elif has_affordable and index == 1:
+	elif has_available and index == 1:
 		action = "ability"
 	else:
 		action = "stats"
@@ -382,9 +407,11 @@ func _on_target_selected(index: int) -> void:
 			else:
 				target = _engine.enemies[index]
 			_current_actor.mana -= _selected_ability.mana_cost
+			_set_cooldown(_current_actor, _selected_ability)
 			_engine.use_ability_on_enemy(_current_actor, target, _selected_ability)
 		Phase.PLAYER_ABILITY_TARGET_ALLY:
 			_current_actor.mana -= _selected_ability.mana_cost
+			_set_cooldown(_current_actor, _selected_ability)
 			_engine.use_ability_on_teammate(
 				_current_actor, _engine.units[index], _selected_ability)
 
@@ -392,15 +419,17 @@ func _on_target_selected(index: int) -> void:
 
 
 func _show_ability_menu() -> void:
-	var affordable: Array[AbilityData] = []
+	var available: Array[AbilityData] = []
 	for a: AbilityData in _current_actor.abilities:
-		if a.mana_cost <= _current_actor.mana:
-			affordable.append(a)
+		if _is_ability_available(_current_actor, a):
+			available.append(a)
 
 	var options: Array[Dictionary] = []
-	for a: AbilityData in affordable:
-		options.append({"label": "%s (Mana: %d)" % [a.ability_name, a.mana_cost],
-			"description": a.get_description()})
+	for a: AbilityData in available:
+		var label: String = "%s (%d MP)" % [a.ability_name, a.mana_cost]
+		if a.cooldown > 0:
+			label += " [CD %d]" % a.cooldown
+		options.append({"label": label, "description": a.get_description()})
 	options.append({"label": "Back"})
 
 	_action_menu.show_choices(options)
@@ -409,13 +438,13 @@ func _show_ability_menu() -> void:
 
 
 func _on_ability_selected(index: int) -> void:
-	var affordable: Array[AbilityData] = []
+	var available: Array[AbilityData] = []
 	for a: AbilityData in _current_actor.abilities:
-		if a.mana_cost <= _current_actor.mana:
-			affordable.append(a)
+		if _is_ability_available(_current_actor, a):
+			available.append(a)
 
 	# Back option
-	if index >= affordable.size():
+	if index >= available.size():
 		_action_menu.choice_selected.disconnect(_on_ability_selected)
 		_action_menu.choice_selected.connect(_on_action_selected)
 		_action_menu.hide_menu()
@@ -427,11 +456,12 @@ func _on_ability_selected(index: int) -> void:
 	_action_menu.choice_selected.connect(_on_action_selected)
 	_action_menu.hide_menu()
 
-	_selected_ability = affordable[index]
+	_selected_ability = available[index]
 
 	if _selected_ability.target_all:
 		# AoE — no target selection needed
 		_current_actor.mana -= _selected_ability.mana_cost
+		_set_cooldown(_current_actor, _selected_ability)
 		if _selected_ability.use_on_enemy:
 			_combat_log.add_message("%s targets all enemies!" % _current_actor.character_name)
 			for enemy: FighterData in _engine.enemies.duplicate():
