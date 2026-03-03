@@ -38,7 +38,7 @@ static func _lu_warcrier(f: FighterData) -> void:
 static func _lu_minstrel(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(4, 6); f.health += hp; f.max_health += hp
-	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(3, 5); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 4); f.physical_defense += randi_range(1, 2)
 	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(3, 5)
 	f.speed += randi_range(2, 2)
@@ -75,7 +75,7 @@ static func _lu_illusionist(f: FighterData) -> void:
 static func _lu_mime(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
-	var mp := randi_range(5, 7); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(3, 4); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(5, 7)
 	f.speed += randi_range(1, 2)
@@ -105,7 +105,7 @@ static func upgrade_to_elegist(f: FighterData) -> void:
 static func _lu_laureate(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
-	var mp := randi_range(6, 8); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(5, 7); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(3, 5)
 	f.speed += randi_range(1, 2)
@@ -143,7 +143,7 @@ static func upgrade_to_bombardier(f: FighterData) -> void:
 static func _lu_alchemist(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
-	var mp := randi_range(5, 7); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 1)
@@ -151,7 +151,7 @@ static func _lu_alchemist(f: FighterData) -> void:
 static func _lu_bombardier(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(14, 16); f.health += hp; f.max_health += hp
-	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(3, 5); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(6, 8); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(1, 1)
@@ -179,7 +179,7 @@ static func upgrade_to_astronomer(f: FighterData) -> void:
 static func _lu_chronomancer(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
-	var mp := randi_range(7, 9); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(6, 8); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(5, 7)
 	f.speed += randi_range(1, 2)
@@ -215,7 +215,7 @@ static func upgrade_to_technomancer(f: FighterData) -> void:
 static func _lu_automaton(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
-	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(3, 5); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(4, 6)
 	f.magic_attack += randi_range(6, 8); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(1, 1)
@@ -224,7 +224,7 @@ static func _lu_automaton(f: FighterData) -> void:
 static func _lu_technomancer(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
-	var mp := randi_range(5, 7); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 1)
