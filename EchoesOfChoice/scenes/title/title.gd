@@ -42,7 +42,7 @@ func _build_ui() -> void:
 
 	# Subtitle
 	_subtitle_label = Label.new()
-	_subtitle_label.text = "Every choice leaves an echo..."
+	_subtitle_label.text = "Some paths can't be retraced."
 	_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_subtitle_label.add_theme_font_size_override("font_size", 20)
 	_subtitle_label.modulate.a = 0.0
