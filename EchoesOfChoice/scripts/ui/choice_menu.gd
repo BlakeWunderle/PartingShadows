@@ -28,6 +28,7 @@ func show_choices(options: Array) -> void:
 		var btn := Button.new()
 		btn.custom_minimum_size = BUTTON_MIN_SIZE
 		btn.focus_mode = Control.FOCUS_ALL
+		_style_button(btn)
 
 		if opt.has("description") and not opt["description"].is_empty():
 			btn.text = "%s\n  %s" % [opt["label"], opt["description"]]
@@ -65,6 +66,31 @@ func _clear_buttons() -> void:
 func hide_menu() -> void:
 	_clear_buttons()
 	visible = false
+
+
+static func _make_style(bg_color: Color, border_color: Color) -> StyleBoxFlat:
+	var s := StyleBoxFlat.new()
+	s.bg_color = bg_color
+	s.border_color = border_color
+	s.set_border_width_all(2)
+	s.set_corner_radius_all(6)
+	s.set_content_margin_all(12)
+	return s
+
+
+func _style_button(btn: Button) -> void:
+	var normal := _make_style(Color(0.1, 0.16, 0.22), Color(0.2, 0.4, 0.45))
+	var hover := _make_style(Color(0.14, 0.22, 0.3), Color(0.3, 0.55, 0.6))
+	var pressed := _make_style(Color(0.08, 0.12, 0.18), Color(0.25, 0.5, 0.55))
+	var focus := _make_style(Color(0.12, 0.19, 0.26), Color(0.35, 0.65, 0.7))
+	btn.add_theme_stylebox_override("normal", normal)
+	btn.add_theme_stylebox_override("hover", hover)
+	btn.add_theme_stylebox_override("pressed", pressed)
+	btn.add_theme_stylebox_override("focus", focus)
+	btn.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
+	btn.add_theme_color_override("font_hover_color", Color(0.95, 1.0, 1.0))
+	btn.add_theme_color_override("font_pressed_color", Color(0.7, 0.8, 0.85))
+	btn.add_theme_color_override("font_focus_color", Color(0.9, 0.95, 1.0))
 
 
 func _wire_focus() -> void:
