@@ -154,9 +154,9 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		# Instant heal
 		var heal_amount: int
 		if ability.modified_stat == Enums.StatType.MIXED_ATTACK:
-			heal_amount = ability.modifier + (caster.physical_attack + caster.magic_attack) / 2
+			heal_amount = ability.modifier + (caster.physical_attack + caster.magic_attack) / 4
 		else:
-			heal_amount = ability.modifier + caster.magic_attack
+			heal_amount = ability.modifier + caster.magic_attack / 2
 
 		target.health += heal_amount
 		if target.health > target.max_health:

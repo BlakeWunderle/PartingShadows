@@ -101,7 +101,7 @@ static func shadow_attack() -> AbilityData:
 
 static func frustrate() -> AbilityData:
 	return _make("Frustrate", "Undermine the enemy's will to fight.",
-		Enums.StatType.ATTACK, 7, 2, true, 3)
+		Enums.StatType.ATTACK, 5, 2, true, 3)
 
 static func ember() -> AbilityData:
 	return _make("Ember", "A searing bolt of flame.",

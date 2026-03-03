@@ -137,7 +137,7 @@ static func upgrade_to_bombardier(f: FighterData) -> void:
 	f.health += 8; f.max_health += 8
 	f.physical_attack += 5; f.physical_defense += 3; f.magic_defense += 3
 	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 10
-	f.abilities = [PAB.shrapnel(), PAB.explosion(), PAB.detonate()]
+	f.abilities = [PAB.shrapnel(), PAB.explosion(), PAB.field_repair()]
 	f.upgrade_items = []
 
 static func _lu_alchemist(f: FighterData) -> void:
@@ -246,7 +246,7 @@ static func upgrade_to_grove_keeper(f: FighterData) -> void:
 	f.class_id = "GroveKeeper"; f.character_type = "Grove Keeper"
 	f.health += 5; f.max_health += 5; f.physical_defense += 3; f.magic_defense += 3
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
-	f.abilities = [PAB.vine_wall(), PAB.root_trap(), PAB.overgrowth()]
+	f.abilities = [PAB.thorn_burst(), PAB.root_trap(), PAB.draining_vines()]
 	f.upgrade_items = []
 
 static func _lu_blighter(f: FighterData) -> void:
@@ -264,7 +264,7 @@ static func _lu_grove_keeper(f: FighterData) -> void:
 	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(3, 4)
+	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(1, 1)
 
 

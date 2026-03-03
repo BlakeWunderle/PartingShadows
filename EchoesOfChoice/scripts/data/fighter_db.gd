@@ -415,14 +415,14 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Elegist": return [PAB.nightfall(), PAB.inspire(), PAB.dirge()]
 		# T2 — Tinker
 		"Alchemist": return [PAB.transmute(), PAB.corrosive_acid(), PAB.elixir()]
-		"Bombardier": return [PAB.shrapnel(), PAB.explosion(), PAB.detonate()]
+		"Bombardier": return [PAB.shrapnel(), PAB.explosion(), PAB.field_repair()]
 		"Chronomancer": return [PAB.warp_speed(), PAB.time_bomb(), PAB.time_freeze()]
 		"Astronomer": return [PAB.starfall(), PAB.meteor_shower(), PAB.eclipse()]
 		"Automaton": return [PAB.servo_strike(), PAB.program_defense(), PAB.overclock()]
 		"Technomancer": return [PAB.circuit_blast(), PAB.arcane_shield(), PAB.siphon_charge()]
 		# T2 — Wildling
 		"Blighter": return [PAB.blight(), PAB.life_siphon(), PAB.poison_sting()]
-		"GroveKeeper": return [PAB.vine_wall(), PAB.root_trap(), PAB.overgrowth()]
+		"GroveKeeper": return [PAB.thorn_burst(), PAB.root_trap(), PAB.draining_vines()]
 		"WitchDoctor": return [PAB.voodoo_bolt(), PAB.dark_hex(), PAB.creeping_rot()]
 		"Spiritwalker": return [PAB.spirit_shield(), PAB.ancestral_blessing(), PAB.spirit_mend()]
 		"Falconer": return [PAB.falcon_strike(), PAB.sky_dive(), PAB.raptor_mend()]

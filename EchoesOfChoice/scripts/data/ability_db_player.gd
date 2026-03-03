@@ -258,7 +258,7 @@ static func encore() -> AbilityData:
 
 static func rally_cry() -> AbilityData:
 	return _make("Rally Cry", "A thunderous shout that steels an ally's resolve.",
-		Enums.StatType.MIXED_ATTACK, 8, 0, false, 3)
+		Enums.StatType.MIXED_ATTACK, 2, 0, false, 5)
 
 # Minstrel
 static func ballad() -> AbilityData:
@@ -267,7 +267,7 @@ static func ballad() -> AbilityData:
 
 static func serenade() -> AbilityData:
 	return _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 15, 0, false, 4)
+		Enums.StatType.HEALTH, 2, 0, false, 4)
 
 # Illusionist
 static func mirage() -> AbilityData:
@@ -369,11 +369,11 @@ static func shrapnel() -> AbilityData:
 
 static func explosion() -> AbilityData:
 	return _make("Explosion", "A massive detonation.",
-		Enums.StatType.MIXED_ATTACK, 10, 0, true, 6)
+		Enums.StatType.MIXED_ATTACK, 10, 0, true, 5)
 
-static func detonate() -> AbilityData:
-	return _make("Detonate", "A blast that weakens defenses.",
-		Enums.StatType.DEFENSE, 5, 2, true, 3)
+static func field_repair() -> AbilityData:
+	return _make("Field Repair", "Patch wounds with salvaged materials.",
+		Enums.StatType.HEALTH, 8, 0, false, 7)
 
 # Chronomancer
 static func warp_speed() -> AbilityData:
@@ -484,12 +484,16 @@ static func vine_wall() -> AbilityData:
 		Enums.StatType.DEFENSE, 3, 2, false, 4)
 
 static func root_trap() -> AbilityData:
-	return _make("Root Trap", "Roots that entangle the enemy.",
-		Enums.StatType.SPEED, 4, 2, true, 3)
+	return _make("Root Trap", "Roots that entangle all enemies.",
+		Enums.StatType.SPEED, 4, 2, true, 4, true)
 
-static func overgrowth() -> AbilityData:
-	return _make("Overgrowth", "Nature's vitality heals all allies.",
-		Enums.StatType.HEALTH, 6, 0, false, 5, true)
+static func thorn_burst() -> AbilityData:
+	return _make("Thorn Burst", "A violent eruption of razor-sharp thorns.",
+		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3)
+
+static func draining_vines() -> AbilityData:
+	return _make("Draining Vines", "Thorned vines that drain the life from a foe.",
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.5)
 
 # Witch Doctor
 static func voodoo_bolt() -> AbilityData:
