@@ -78,9 +78,9 @@ func reset_turns() -> void:
 # =============================================================================
 
 func physical_attack(attacker: FighterData, defender: FighterData) -> void:
-	var damage: int = attacker.physical_attack - defender.physical_defense
-	if damage < 0:
-		damage = 0
+	var phys_damage: int = maxi(attacker.physical_attack - defender.physical_defense, 0)
+	var mag_damage: int = maxi((attacker.magic_attack - defender.magic_defense) / 2, 0)
+	var damage: int = maxi(phys_damage, mag_damage)
 
 	if _check_for_critical(attacker):
 		damage += attacker.crit_damage
