@@ -22,6 +22,17 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
+	# Background image
+	var bg := TextureRect.new()
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	bg.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	var bg_path := "res://assets/art/ui/title_background.png"
+	if ResourceLoader.exists(bg_path):
+		bg.texture = load(bg_path)
+	add_child(bg)
+
 	# Center container
 	var center := CenterContainer.new()
 	center.set_anchors_preset(Control.PRESET_FULL_RECT)
