@@ -105,12 +105,34 @@ func _update_status(fighter: FighterData) -> void:
 	if fighter.modified_stats.is_empty():
 		return
 
-	var parts: Array[String] = []
+	# Aggregate same-type effects: group by (stat, is_negative, damage_per_turn)
+	var groups: Dictionary = {}  # key -> { "count": int, "max_turns": int }
+	var group_order: Array = []  # preserve first-seen order
 	for mod: Dictionary in fighter.modified_stats:
 		var stat: Enums.StatType = mod["stat"]
 		var turns: int = mod["turns"]
 		var is_negative: bool = mod["is_negative"]
 		var dpt: int = mod.get("damage_per_turn", 0)
+		var key: String = "%d_%s_%d" % [stat, is_negative, dpt]
+
+		if groups.has(key):
+			groups[key]["count"] += 1
+			groups[key]["max_turns"] = maxi(groups[key]["max_turns"], turns)
+		else:
+			groups[key] = {
+				"stat": stat, "is_negative": is_negative, "dpt": dpt,
+				"count": 1, "max_turns": turns,
+			}
+			group_order.append(key)
+
+	var parts: Array[String] = []
+	for key: String in group_order:
+		var g: Dictionary = groups[key]
+		var stat: Enums.StatType = g["stat"]
+		var is_negative: bool = g["is_negative"]
+		var dpt: int = g["dpt"]
+		var count: int = g["count"]
+		var max_turns: int = g["max_turns"]
 
 		var tag: String
 		if dpt > 0:
@@ -128,7 +150,10 @@ func _update_status(fighter: FighterData) -> void:
 		else:
 			color = "lime"
 
-		parts.append("[color=%s]%s(%dt)[/color]" % [color, tag, turns])
+		if count > 1:
+			parts.append("[color=%s]%s x%d(%dt)[/color]" % [color, tag, count, max_turns])
+		else:
+			parts.append("[color=%s]%s(%dt)[/color]" % [color, tag, max_turns])
 
 	_status_label.append_text(" ".join(parts))
 
