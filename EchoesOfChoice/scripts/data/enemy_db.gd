@@ -440,27 +440,27 @@ static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
 
 static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Shade", lvl)
-	f.health = _es(124, 148, 5, 9, lvl, 7); f.max_health = f.health
+	f.health = _es(122, 146, 5, 9, lvl, 7); f.max_health = f.health
 	f.mana = _es(24, 34, 2, 5, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(26, 32, 1, 3, lvl, 7)
+	f.physical_attack = _es(25, 31, 1, 3, lvl, 7)
 	f.physical_defense = _es(15, 20, 1, 3, lvl, 7)
-	f.magic_attack = _es(36, 44, 3, 5, lvl, 7)
+	f.magic_attack = _es(38, 46, 3, 5, lvl, 7)
 	f.magic_defense = _es(18, 24, 2, 4, lvl, 7)
-	f.speed = _es(33, 39, 2, 4, lvl, 7)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 33
+	f.speed = _es(34, 40, 2, 4, lvl, 7)
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 31
 	f.abilities = [AbilityDB.shadow_attack(), EAB.enemy_blight(), AbilityDB.frustrate()]
 	return f
 
 static func create_wraith(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Wraith", lvl)
-	f.health = _es(140, 162, 5, 9, lvl, 7); f.max_health = f.health
+	f.health = _es(138, 160, 5, 9, lvl, 7); f.max_health = f.health
 	f.mana = _es(18, 22, 2, 4, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(24, 30, 0, 2, lvl, 7)
+	f.physical_attack = _es(23, 29, 0, 2, lvl, 7)
 	f.physical_defense = _es(12, 16, 1, 2, lvl, 7)
-	f.magic_attack = _es(35, 43, 3, 5, lvl, 7)
+	f.magic_attack = _es(36, 45, 3, 5, lvl, 7)
 	f.magic_defense = _es(18, 24, 2, 3, lvl, 7)
 	f.speed = _es(31, 37, 2, 4, lvl, 7)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 26
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.soul_drain(), EAB.enemy_blight(), EAB.terrify()]
 	return f
 
