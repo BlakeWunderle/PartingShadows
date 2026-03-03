@@ -15,7 +15,7 @@ static func upgrade_to_warcrier(f: FighterData) -> void:
 	f.class_id = "Warcrier"; f.character_type = "Warcrier"
 	f.health += 8; f.max_health += 8; f.physical_attack += 5; f.physical_defense += 3
 	f.crit_chance = 30; f.crit_damage = 3; f.dodge_chance = 20
-	f.abilities = [PAB.battle_cry(), AbilityDB.smash(), PAB.encore()]
+	f.abilities = [PAB.battle_cry(), PAB.encore(), PAB.rally_cry()]
 	f.upgrade_items = []
 
 static func upgrade_to_minstrel(f: FighterData) -> void:
@@ -208,8 +208,8 @@ static func upgrade_to_automaton(f: FighterData) -> void:
 static func upgrade_to_technomancer(f: FighterData) -> void:
 	f.class_id = "Technomancer"; f.character_type = "Technomancer"
 	f.magic_attack += 8; f.mana += 5; f.max_mana += 5
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
-	f.abilities = [PAB.random_attack(), PAB.program_defense(), PAB.program_offense()]
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 10
+	f.abilities = [PAB.circuit_blast(), PAB.arcane_shield(), PAB.siphon_charge()]
 	f.upgrade_items = []
 
 static func _lu_automaton(f: FighterData) -> void:
@@ -224,7 +224,7 @@ static func _lu_automaton(f: FighterData) -> void:
 static func _lu_technomancer(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
-	var mp := randi_range(14, 16); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(5, 7); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 1)
@@ -314,8 +314,8 @@ static func upgrade_to_falconer(f: FighterData) -> void:
 	f.class_id = "Falconer"; f.character_type = "Falconer"
 	f.physical_attack += 7; f.speed += 5
 	f.health += 5; f.max_health += 5
-	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
-	f.abilities = [PAB.falcon_strike(), PAB.sky_dive(), PAB.raptors_mark()]
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 10
+	f.abilities = [PAB.falcon_strike(), PAB.sky_dive(), PAB.raptor_mend()]
 	f.upgrade_items = []
 
 static func upgrade_to_shapeshifter(f: FighterData) -> void:

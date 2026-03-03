@@ -400,14 +400,14 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Ninja": return [PAB.sweeping_slash(), PAB.dash(), PAB.smoke_bomb()]
 		"Monk": return [PAB.spirit_attack(), PAB.precise_strike(), PAB.meditate()]
 		# T2 — Mage
-		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.enrage()]
+		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]
 		"Tidecaller": return [PAB.purify(), PAB.tsunami(), PAB.undertow()]
-		"Tempest": return [PAB.hurricane(), PAB.tornado(), PAB.knockdown()]
+		"Tempest": return [PAB.hurricane(), PAB.tornado(), PAB.eye_of_the_storm()]
 		"Paladin": return [PAB.cure(), AbilityDB.smash(), PAB.smite()]
 		"Priest": return [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]
 		"Warlock": return [PAB.shadow_bolt(), PAB.curse(), PAB.drain_life()]
 		# T2 — Entertainer
-		"Warcrier": return [PAB.battle_cry(), AbilityDB.smash(), PAB.encore()]
+		"Warcrier": return [PAB.battle_cry(), PAB.encore(), PAB.rally_cry()]
 		"Minstrel": return [PAB.ballad(), AbilityDB.frustrate(), PAB.serenade()]
 		"Illusionist": return [AbilityDB.shadow_attack(), PAB.mirage(), PAB.bewilderment()]
 		"Mime": return [PAB.invisible_wall(), PAB.anvil(), PAB.invisible_box()]
@@ -419,13 +419,13 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Chronomancer": return [PAB.warp_speed(), PAB.time_bomb(), PAB.time_freeze()]
 		"Astronomer": return [PAB.starfall(), PAB.meteor_shower(), PAB.eclipse()]
 		"Automaton": return [PAB.servo_strike(), PAB.program_defense(), PAB.overclock()]
-		"Technomancer": return [PAB.random_attack(), PAB.program_defense(), PAB.program_offense()]
+		"Technomancer": return [PAB.circuit_blast(), PAB.arcane_shield(), PAB.siphon_charge()]
 		# T2 — Wildling
 		"Blighter": return [PAB.blight(), PAB.life_siphon(), PAB.poison_sting()]
 		"GroveKeeper": return [PAB.vine_wall(), PAB.root_trap(), PAB.overgrowth()]
 		"WitchDoctor": return [PAB.voodoo_bolt(), PAB.dark_hex(), PAB.creeping_rot()]
 		"Spiritwalker": return [PAB.spirit_shield(), PAB.ancestral_blessing(), PAB.spirit_mend()]
-		"Falconer": return [PAB.falcon_strike(), PAB.sky_dive(), PAB.raptors_mark()]
+		"Falconer": return [PAB.falcon_strike(), PAB.sky_dive(), PAB.raptor_mend()]
 		"Shapeshifter": return [PAB.savage_maul(), PAB.frenzy(), PAB.primal_roar()]
 		_:
 			push_error("Unknown class_id for abilities: %s" % class_id)
