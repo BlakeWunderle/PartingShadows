@@ -125,6 +125,28 @@ static func create_wildling(fighter_name: String) -> FighterData:
 	return f
 
 
+static func create_wanderer(fighter_name: String) -> FighterData:
+	var f := FighterData.new()
+	f.character_name = fighter_name
+	f.character_type = "Wanderer"
+	f.class_id = "Wanderer"
+	f.is_user_controlled = true
+	f.level = 1
+	f.health = randi_range(41, 49); f.max_health = f.health
+	f.mana = randi_range(6, 10); f.max_mana = f.mana
+	f.physical_attack = randi_range(10, 14)
+	f.physical_defense = randi_range(8, 11)
+	f.magic_attack = randi_range(9, 12)
+	f.magic_defense = randi_range(14, 18)
+	f.speed = randi_range(21, 25)
+	f.crit_chance = 15
+	f.crit_damage = 2
+	f.dodge_chance = 15
+	f.abilities = [AbilityDB.wild_strike(), AbilityDB.natures_ward()]
+	f.upgrade_items = ["Shield", "Compass"]
+	return f
+
+
 # =============================================================================
 # Level up: chains through T0 → T1 → T2/T2B
 # =============================================================================
@@ -136,6 +158,7 @@ static func level_up(fighter: FighterData) -> void:
 		"Entertainer": _level_up_entertainer(fighter)
 		"Tinker": _level_up_scholar(fighter)
 		"Wildling": _level_up_wildling(fighter)
+		"Wanderer": _level_up_wanderer(fighter)
 		_:
 			if T1.level_up(fighter): return
 			if T2.level_up(fighter): return
@@ -203,6 +226,19 @@ static func _level_up_wildling(f: FighterData) -> void:
 	f.crit_chance += randi_range(0, 1)
 
 
+static func _level_up_wanderer(f: FighterData) -> void:
+	f.level += 1
+	var hp: int = randi_range(6, 8); f.health += hp; f.max_health += hp
+	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(1, 2)
+	f.physical_defense += randi_range(1, 2)
+	f.magic_attack += randi_range(1, 2)
+	f.magic_defense += randi_range(2, 3)
+	f.speed += randi_range(1, 2)
+	f.dodge_chance += randi_range(0, 1)
+	f.crit_chance += randi_range(0, 1)
+
+
 static func _level_up_generic(f: FighterData) -> void:
 	f.level += 1
 	var hp: int = randi_range(5, 8); f.health += hp; f.max_health += hp
@@ -227,6 +263,7 @@ static func create_player(class_id: String, fighter_name: String) -> FighterData
 		"Entertainer": return create_entertainer(fighter_name)
 		"Tinker": return create_scholar(fighter_name)
 		"Wildling": return create_wildling(fighter_name)
+		"Wanderer": return create_wanderer(fighter_name)
 		_:
 			push_error("Unknown player class: %s" % class_id)
 			return create_squire(fighter_name)
@@ -254,6 +291,8 @@ static func upgrade_class(fighter: FighterData, item: String) -> bool:
 		"Wildling:Herbs": T1.upgrade_to_herbalist(fighter)
 		"Wildling:Totem": T1.upgrade_to_shaman(fighter)
 		"Wildling:BeastClaw": T1.upgrade_to_beastcaller(fighter)
+		"Wanderer:Shield": T1.upgrade_to_sentinel(fighter)
+		"Wanderer:Compass": T1.upgrade_to_pathfinder(fighter)
 		# T1 → T2 (Squire tree)
 		"Duelist:Horse": T2.upgrade_to_cavalry(fighter)
 		"Duelist:Spear": T2.upgrade_to_dragoon(fighter)
@@ -289,6 +328,11 @@ static func upgrade_class(fighter: FighterData, item: String) -> bool:
 		"Shaman:SpiritOrb": T2B.upgrade_to_spiritwalker(fighter)
 		"Beastcaller:Feather": T2B.upgrade_to_falconer(fighter)
 		"Beastcaller:Pelt": T2B.upgrade_to_shapeshifter(fighter)
+		# T1 → T2 (Wanderer tree)
+		"Sentinel:Fortress": T2.upgrade_to_bulwark(fighter)
+		"Sentinel:Mirror": T2.upgrade_to_aegis(fighter)
+		"Pathfinder:Torch": T2B.upgrade_to_trailblazer(fighter)
+		"Pathfinder:Waterskin": T2B.upgrade_to_survivalist(fighter)
 		_:
 			push_error("Unknown upgrade: %s" % key)
 			return false
@@ -326,6 +370,11 @@ static func get_display_name(class_id: String) -> String:
 		"Herbalist": return "Herbalist"
 		"Shaman": return "Shaman"
 		"Beastcaller": return "Beastcaller"
+		# T0:Wanderer
+		"Wanderer": return "Wanderer"
+		# T1:Wanderer
+		"Sentinel": return "Sentinel"
+		"Pathfinder": return "Pathfinder"
 		# T2:Squire
 		"Cavalry": return "Cavalry"
 		"Dragoon": return "Dragoon"
@@ -361,6 +410,11 @@ static func get_display_name(class_id: String) -> String:
 		"Spiritwalker": return "Spiritwalker"
 		"Falconer": return "Falconer"
 		"Shapeshifter": return "Shapeshifter"
+		# T2:Wanderer
+		"Bulwark": return "Bulwark"
+		"Aegis": return "Aegis"
+		"Trailblazer": return "Trailblazer"
+		"Survivalist": return "Survivalist"
 		_: return class_id
 
 
@@ -373,6 +427,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Entertainer": return [AbilityDB.mockery(), AbilityDB.demoralize()]
 		"Tinker": return [AbilityDB.proof(), AbilityDB.energy_blast()]
 		"Wildling": return [AbilityDB.thorn_whip(), AbilityDB.bark_skin()]
+		"Wanderer": return [AbilityDB.wild_strike(), AbilityDB.natures_ward()]
 		# T1:Squire
 		"Duelist": return [AbilityDB.slash(), PAB.feint()]
 		"Ranger": return [PAB.pierce(), PAB.double_arrow()]
@@ -392,6 +447,9 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Herbalist": return [PAB.mending_herbs(), PAB.sapping_vine()]
 		"Shaman": return [PAB.spectral_lance(), PAB.player_hex()]
 		"Beastcaller": return [PAB.feral_strike(), PAB.pack_howl()]
+		# T1:Wanderer
+		"Sentinel": return [PAB.shield_bash(), PAB.barrier(), PAB.fortify()]
+		"Pathfinder": return [PAB.keen_strike(), PAB.exploit_weakness()]
 		# T2:Squire
 		"Cavalry": return [PAB.lance(), PAB.trample(), AbilityDB.rally()]
 		"Dragoon": return [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_ward()]
@@ -427,6 +485,11 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Spiritwalker": return [PAB.spirit_shield(), PAB.ancestral_blessing(), PAB.spirit_mend()]
 		"Falconer": return [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptor_mend()]
 		"Shapeshifter": return [PAB.savage_maul(), PAB.frenzy(), PAB.primal_roar()]
+		# T2:Wanderer
+		"Bulwark": return [PAB.iron_wall(), PAB.repel(), PAB.sanctuary()]
+		"Aegis": return [PAB.spell_mirror(), PAB.arcane_counter(), PAB.nullify()]
+		"Trailblazer": return [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
+		"Survivalist": return [PAB.endure(), PAB.resourceful_strike(), PAB.adapt()]
 		_:
 			push_error("Unknown class_id for abilities: %s" % class_id)
 			return []

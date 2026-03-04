@@ -353,6 +353,44 @@ static func _lu_shapeshifter(f: FighterData) -> void:
 
 
 # =============================================================================
+# Wanderer tree:Pathfinder branch
+# =============================================================================
+
+static func upgrade_to_trailblazer(f: FighterData) -> void:
+	f.class_id = "Trailblazer"; f.character_type = "Trailblazer"
+	f.physical_attack += 4; f.magic_attack += 3; f.speed += 4
+	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 20
+	f.abilities = [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
+	f.upgrade_items = []
+
+static func upgrade_to_survivalist(f: FighterData) -> void:
+	f.class_id = "Survivalist"; f.character_type = "Survivalist"
+	f.health += 5; f.max_health += 5
+	f.physical_attack += 2; f.magic_defense += 3; f.speed += 2
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 20
+	f.abilities = [PAB.endure(), PAB.resourceful_strike(), PAB.adapt()]
+	f.upgrade_items = []
+
+static func _lu_trailblazer(f: FighterData) -> void:
+	f.level += 1
+	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
+	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(4, 6); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(2, 3)
+	f.speed += randi_range(2, 3)
+	f.crit_chance += randi_range(1, 2)
+
+static func _lu_survivalist(f: FighterData) -> void:
+	f.level += 1
+	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
+	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(4, 6)
+	f.speed += randi_range(1, 2)
+	f.dodge_chance += randi_range(0, 1)
+
+
+# =============================================================================
 # Level-up router
 # =============================================================================
 
@@ -376,5 +414,7 @@ static func level_up(f: FighterData) -> bool:
 		"Spiritwalker": _lu_spiritwalker(f)
 		"Falconer": _lu_falconer(f)
 		"Shapeshifter": _lu_shapeshifter(f)
+		"Trailblazer": _lu_trailblazer(f)
+		"Survivalist": _lu_survivalist(f)
 		_: return false
 	return true

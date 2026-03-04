@@ -260,6 +260,44 @@ static func _lu_beastcaller(f: FighterData) -> void:
 
 
 # =============================================================================
+# Wanderer tree
+# =============================================================================
+
+static func upgrade_to_sentinel(f: FighterData) -> void:
+	f.class_id = "Sentinel"; f.character_type = "Sentinel"
+	f.health += 4; f.max_health += 4
+	f.physical_defense += 2; f.magic_defense += 4
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 10
+	f.abilities = [PAB.shield_bash(), PAB.barrier(), PAB.fortify()]
+	f.upgrade_items = ["Fortress", "Mirror"]
+
+static func upgrade_to_pathfinder(f: FighterData) -> void:
+	f.class_id = "Pathfinder"; f.character_type = "Pathfinder"
+	f.physical_attack += 2; f.magic_attack += 2; f.speed += 3
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
+	f.abilities = [PAB.keen_strike(), PAB.exploit_weakness()]
+	f.upgrade_items = ["Torch", "Waterskin"]
+
+static func _lu_sentinel(f: FighterData) -> void:
+	f.level += 1
+	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
+	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(3, 5)
+	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(3, 5)
+	f.speed += randi_range(1, 1)
+
+static func _lu_pathfinder(f: FighterData) -> void:
+	f.level += 1
+	var hp := randi_range(7, 9); f.health += hp; f.max_health += hp
+	var mp := randi_range(1, 3); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(2, 4); f.physical_defense += randi_range(1, 2)
+	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(2, 3)
+	f.speed += randi_range(2, 3)
+	f.dodge_chance += randi_range(0, 1)
+	f.crit_chance += randi_range(0, 1)
+
+
+# =============================================================================
 # Level-up router
 # =============================================================================
 
@@ -279,5 +317,7 @@ static func level_up(f: FighterData) -> bool:
 		"Herbalist": _lu_herbalist(f)
 		"Shaman": _lu_shaman(f)
 		"Beastcaller": _lu_beastcaller(f)
+		"Sentinel": _lu_sentinel(f)
+		"Pathfinder": _lu_pathfinder(f)
 		_: return false
 	return true

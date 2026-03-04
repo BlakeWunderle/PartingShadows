@@ -82,6 +82,16 @@ static func bark_skin() -> AbilityData:
 		Enums.StatType.DEFENSE, 2, 2, false, 1)
 
 
+static func wild_strike() -> AbilityData:
+	return _make("Wild Strike", "A practiced blow honed through survival.",
+		Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0, 1)
+
+
+static func natures_ward() -> AbilityData:
+	return _make("Nature's Ward", "Channel the land's resilience against magic.",
+		Enums.StatType.MAGIC_DEFENSE, 3, 2, false, 1)
+
+
 # --- Shared abilities (used by both player classes and enemies) ---
 
 static func smash() -> AbilityData:
