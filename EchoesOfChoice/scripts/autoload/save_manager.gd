@@ -46,6 +46,7 @@ func _build_save_data() -> Dictionary:
 		"save_version": SAVE_VERSION,
 		"timestamp": Time.get_datetime_string_from_system(),
 		"current_battle_id": GameState.current_battle_id,
+		"story_id": GameState.current_story_id,
 		"party": party_data,
 	}
 
@@ -73,6 +74,7 @@ func load_from_slot(slot: int) -> bool:
 		party.append(fighter)
 
 	GameState.party = party
+	GameState.current_story_id = data.get("story_id", "story_1")
 	GameState.advance_to_battle(data["current_battle_id"])
 	# advance_to_battle sets narrative_mode=PRE_BATTLE, game_phase=NARRATIVE
 
@@ -147,6 +149,7 @@ func get_save_summary(slot: int) -> Dictionary:
 		"level": int(lead.get("level", 1)),
 		"party_size": party.size(),
 		"battle_id": data.get("current_battle_id", ""),
+		"story_id": data.get("story_id", "story_1"),
 	}
 
 
