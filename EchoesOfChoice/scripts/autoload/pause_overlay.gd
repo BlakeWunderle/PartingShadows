@@ -4,6 +4,8 @@ extends CanvasLayer
 ## Shows Resume, Save, Quit to Title, and Quit Game options.
 ## Save opens a slot picker sub-menu.
 
+const StoryDB := preload("res://scripts/data/story_db.gd")
+
 enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS }
 
 var _mode: Mode = Mode.HIDDEN
@@ -199,11 +201,14 @@ func _show_save_slots() -> void:
 		var summary: Dictionary = SaveManager.get_save_summary(i)
 		var label: String
 		if summary.get("exists", false):
-			label = "Slot %d: %s the %s - Lv %d" % [
+			var story_title: String = StoryDB.get_story(
+				summary.get("story_id", "story_1")).get("title", "")
+			label = "Slot %d: %s the %s - Lv %d (%s)" % [
 				i + 1,
 				summary.get("lead_name", "???"),
 				summary.get("lead_class", "???"),
 				summary.get("level", 1),
+				story_title,
 			]
 		else:
 			label = "Slot %d: Empty" % [i + 1]

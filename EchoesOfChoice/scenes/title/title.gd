@@ -4,6 +4,7 @@ extends Control
 ## Shows Continue and Load Game options when saves exist.
 
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const StoryDB := preload("res://scripts/data/story_db.gd")
 
 enum Mode { MAIN_MENU, LOAD_SLOTS }
 
@@ -164,11 +165,14 @@ func _show_load_slots() -> void:
 	for i: int in SaveManager.MAX_SAVE_SLOTS:
 		var summary: Dictionary = SaveManager.get_save_summary(i)
 		if summary.get("exists", false):
-			options.append({"label": "Slot %d: %s the %s - Lv %d" % [
+			var story_title: String = StoryDB.get_story(
+				summary.get("story_id", "story_1")).get("title", "")
+			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)" % [
 				i + 1,
 				summary.get("lead_name", "???"),
 				summary.get("lead_class", "???"),
 				summary.get("level", 1),
+				story_title,
 			]})
 		else:
 			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
@@ -176,10 +180,13 @@ func _show_load_slots() -> void:
 	# Autosave slot
 	var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
 	if auto_summary.get("exists", false):
-		options.append({"label": "Autosave: %s the %s - Lv %d" % [
+		var auto_story: String = StoryDB.get_story(
+			auto_summary.get("story_id", "story_1")).get("title", "")
+		options.append({"label": "Autosave: %s the %s - Lv %d (%s)" % [
 			auto_summary.get("lead_name", "???"),
 			auto_summary.get("lead_class", "???"),
 			auto_summary.get("level", 1),
+			auto_story,
 		]})
 	else:
 		options.append({"label": "Autosave: Empty", "disabled": true})
