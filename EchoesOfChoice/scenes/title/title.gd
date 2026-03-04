@@ -130,8 +130,12 @@ func _handle_main_choice(index: int) -> void:
 		return
 
 	if index == offset:
-		# New Game
-		SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
+		# New Game: go straight to party creation unless multiple stories unlocked
+		if UnlockManager.is_unlocked("story_1_complete"):
+			SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
+		else:
+			GameState.start_new_game("story_1")
+			SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
 	elif _has_saves and index == offset + 1:
 		# Load Game
 		_show_load_slots()
