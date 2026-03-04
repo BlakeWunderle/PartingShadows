@@ -130,8 +130,7 @@ func _handle_main_choice(index: int) -> void:
 
 	if index == offset:
 		# New Game
-		GameState.start_new_game()
-		SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
+		SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
 	elif _has_saves and index == offset + 1:
 		# Load Game
 		_show_load_slots()

@@ -160,7 +160,7 @@ func _finish() -> void:
 	GameState.set_party(_party)
 	for fighter: RefCounted in _party:
 		GameLog.info("Party: %s the %s" % [fighter.character_name, fighter.character_type])
-	GameState.advance_to_battle("CityStreetBattle")
+	GameState.advance_to_battle(GameState.get_first_battle_id())
 	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 

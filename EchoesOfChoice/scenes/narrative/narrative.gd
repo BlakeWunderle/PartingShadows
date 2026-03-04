@@ -6,6 +6,7 @@ extends Control
 
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const _StoryDB := preload("res://scripts/data/story_db.gd")
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
@@ -60,6 +61,10 @@ func _show_narrative() -> void:
 
 func _show_ending() -> void:
 	if GameState.game_won:
+		var story: Dictionary = _StoryDB.get_story(GameState.current_story_id)
+		var completion_key: String = story.get("completion_unlock", "")
+		if not completion_key.is_empty():
+			UnlockManager.unlock(completion_key)
 		MusicManager.play_music("res://assets/audio/music/victory/SHORT Action #5 LOOP.wav")
 	else:
 		MusicManager.play_music("res://assets/audio/music/game_over/Sad Despair 03.wav")
