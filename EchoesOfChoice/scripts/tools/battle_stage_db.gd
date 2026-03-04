@@ -173,8 +173,8 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBS2.create_echo_wisp("Resonance")]
 		"S2_CaveExit":
 			return [EnemyDBS2.create_cave_maw("The Threshold"),
-				EnemyDBS2.create_echo_wisp("Warden"),
-				EnemyDBS2.create_crystal_spider("Sentinel")]
+				EnemyDBS2.create_vein_leech("Gnawer"),
+				EnemyDBS2.create_stone_moth("Dustwing")]
 		_:
 			push_error("Unknown stage: %s" % stage_name)
 			return []

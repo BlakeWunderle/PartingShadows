@@ -78,14 +78,14 @@ static func s2_cave_exit() -> BattleData:
 	b.scene_image = "res://assets/art/battles/void_cavern.png"
 	b.enemies = [
 		EnemyDBS2.create_cave_maw("The Threshold"),
-		EnemyDBS2.create_echo_wisp("Warden"),
-		EnemyDBS2.create_crystal_spider("Sentinel"),
+		EnemyDBS2.create_vein_leech("Gnawer"),
+		EnemyDBS2.create_stone_moth("Dustwing"),
 	]
 	b.pre_battle_text = [
 		"The exit is close. A ragged circle of daylight glows at the end of the chamber.",
 		"But between the party and the light, the cave itself moves.",
 		"The stone floor splits open. Rows of crystalline teeth line the gap, grinding slowly. The cave has a mouth.",
-		"Flanking it, a wisp and a spider materialize from the walls, guardians of whatever this place is.",
+		"A bloated leech clings to the wall beside it, pulsing with stolen light. Above, a grey moth the size of a shield hovers on stone-dust wings.",
 		"The message is clear. This cave does not want them to leave.",
 	]
 	b.post_battle_text = [

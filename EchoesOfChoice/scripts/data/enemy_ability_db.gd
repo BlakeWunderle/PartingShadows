@@ -392,3 +392,19 @@ static func swallow() -> AbilityData:
 
 static func tremor() -> AbilityData:
 	return _make("Tremor", "The cave shakes violently.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0, 3)
+
+# --- Vein Leech ---
+
+static func latch() -> AbilityData:
+	return _make("Latch", "Barbed tendrils dig into flesh and drain.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.3, 1)
+
+static func siphon_glow() -> AbilityData:
+	return _make("Siphon Glow", "Stolen light weakens the target's defenses.", Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0, 2)
+
+# --- Stone Moth ---
+
+static func wing_dust() -> AbilityData:
+	return _make("Wing Dust", "A cloud of mineral dust slows reflexes.", Enums.StatType.SPEED, 4, 2, true, 3, true, 0, 0.0, 3)
+
+static func petrify_pulse() -> AbilityData:
+	return _make("Petrify Pulse", "A flash of stone-grey light.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)

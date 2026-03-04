@@ -97,3 +97,31 @@ static func create_cave_maw(n: String, lvl: int = 3) -> FighterData:
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.gnash(), EAB.swallow(), EAB.tremor()]
 	return f
+
+
+static func create_vein_leech(n: String, lvl: int = 3) -> FighterData:
+	var f := _base(n, "Vein Leech", lvl)
+	f.health = _es(55, 65, 3, 5, lvl, 3); f.max_health = f.health
+	f.mana = _es(6, 10, 1, 3, lvl, 3); f.max_mana = f.mana
+	f.physical_attack = _es(20, 24, 2, 3, lvl, 3)
+	f.physical_defense = _es(8, 11, 1, 2, lvl, 3)
+	f.magic_attack = _es(5, 8, 0, 2, lvl, 3)
+	f.magic_defense = _es(7, 10, 1, 2, lvl, 3)
+	f.speed = _es(22, 28, 1, 3, lvl, 3)
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 10
+	f.abilities = [EAB.latch(), EAB.siphon_glow()]
+	return f
+
+
+static func create_stone_moth(n: String, lvl: int = 3) -> FighterData:
+	var f := _base(n, "Stone Moth", lvl)
+	f.health = _es(42, 50, 2, 4, lvl, 3); f.max_health = f.health
+	f.mana = _es(10, 14, 1, 3, lvl, 3); f.max_mana = f.mana
+	f.physical_attack = _es(8, 11, 0, 2, lvl, 3)
+	f.physical_defense = _es(6, 9, 0, 1, lvl, 3)
+	f.magic_attack = _es(18, 22, 1, 3, lvl, 3)
+	f.magic_defense = _es(12, 16, 1, 2, lvl, 3)
+	f.speed = _es(26, 32, 2, 3, lvl, 3)
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 20
+	f.abilities = [EAB.petrify_pulse(), EAB.wing_dust()]
+	return f
