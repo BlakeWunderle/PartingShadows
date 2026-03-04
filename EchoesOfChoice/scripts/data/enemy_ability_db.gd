@@ -344,3 +344,51 @@ static func firewall() -> AbilityData:
 	var mod: int = randi_range(0, 9)
 	var cost: int = randi_range(3, 6)
 	return _make("Firewall", "A digital barrier. Results vary.", Enums.StatType.DEFENSE, mod, 2, false, cost, false, 0, 0.0, 2)
+
+
+# =============================================================================
+# Story 2: Cave creature abilities
+# =============================================================================
+
+# --- Glow Worm ---
+
+static func luminous_pulse() -> AbilityData:
+	return _make("Luminous Pulse", "A blinding pulse of bioluminescence.", Enums.StatType.MAGIC_ATTACK, 3, 0, true, 2, false, 0, 0.0, 1)
+
+static func glare() -> AbilityData:
+	return _make("Glare", "Intense light sears the eyes.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
+
+# --- Crystal Spider ---
+
+static func crystal_fang() -> AbilityData:
+	return _make("Crystal Fang", "Crystalline mandibles pierce deep.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 1)
+
+static func refract() -> AbilityData:
+	return _make("Refract", "Light bends around the crystal body.", Enums.StatType.DEFENSE, 3, 2, false, 2, false, 0, 0.0, 2)
+
+# --- Shade Crawler ---
+
+static func shadow_lash() -> AbilityData:
+	return _make("Shadow Lash", "A tendril of darkness whips forward.", Enums.StatType.MIXED_ATTACK, 4, 0, true, 3, false, 0, 0.0, 1)
+
+static func dissolve() -> AbilityData:
+	return _make("Dissolve", "The crawler's form blurs and shifts.", Enums.StatType.DODGE_CHANCE, 10, 2, false, 2, false, 0, 0.0, 2)
+
+# --- Echo Wisp ---
+
+static func resonance() -> AbilityData:
+	return _make("Resonance", "Sound warps into a concussive blast.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+static func distortion() -> AbilityData:
+	return _make("Distortion", "Reality warps, slowing all enemies.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0, 3)
+
+# --- Cave Maw ---
+
+static func gnash() -> AbilityData:
+	return _make("Gnash", "Rows of stone teeth grind together.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
+
+static func swallow() -> AbilityData:
+	return _make("Swallow", "The maw tries to consume its prey.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+
+static func tremor() -> AbilityData:
+	return _make("Tremor", "The cave shakes violently.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0, 3)

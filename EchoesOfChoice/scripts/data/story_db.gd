@@ -36,9 +36,9 @@ static func _story_1() -> Dictionary:
 static func _story_2() -> Dictionary:
 	return {
 		"story_id": "story_2",
-		"title": "TBD",
-		"description": "A new adventure awaits.",
-		"first_battle_id": "S2_OpeningBattle",
+		"title": "Echoes in the Dark",
+		"description": "Three strangers wake in a cave with no memory. Something is wrong with this place.",
+		"first_battle_id": "S2_CaveAwakening",
 		"unlock_requirement": "story_1_complete",
 		"completion_unlock": "story_2_complete",
 	}

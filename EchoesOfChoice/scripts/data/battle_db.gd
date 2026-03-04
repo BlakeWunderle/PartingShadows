@@ -44,7 +44,8 @@ static func create_battle(battle_id: String) -> BattleData:
 		"GateBattle": return Act45.gate_battle()
 		"StrangerFinalBattle": return Act45.stranger_final_battle()
 		# Story 2
-		"S2_OpeningBattle": return S2.create_battle(battle_id)
+		"S2_CaveAwakening", "S2_DeepCavern", "S2_CaveExit":
+			return S2.create_battle(battle_id)
 		_:
 			push_error("Unknown battle: %s" % battle_id)
 			return city_street_battle()

@@ -4,6 +4,7 @@ class_name BattleStageDB
 ## Each stage has a story field (1 or 2) for filtering by story.
 
 const EnemyDB := preload("res://scripts/data/enemy_db.gd")
+const EnemyDBS2 := preload("res://scripts/data/enemy_db_s2.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 
@@ -45,6 +46,13 @@ static func get_all_stages() -> Array:
 		_s("GateBattle", 14, "tier2", 0.69, 12),
 		# Prog 13: Tier 2, 15 total level ups (final boss)
 		_s("StrangerFinalBattle", 15, "tier2", 0.65, 13),
+		# --- Story 2: Echoes in the Dark ---
+		# Prog 0: Base classes, no level ups
+		_s("S2_CaveAwakening", 0, "base", 0.85, 0, 2),
+		# Prog 1: Base classes, 1 level up
+		_s("S2_DeepCavern", 1, "base", 0.83, 1, 2),
+		# Prog 2: Base classes, 2 level ups
+		_s("S2_CaveExit", 2, "base", 0.81, 2, 2),
 	]
 
 
@@ -154,6 +162,19 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDB.create_tunnel_lurker("Webweaver")]
 		"StrangerFinalBattle":
 			return [EnemyDB.create_stranger_final("The Stranger")]
+		# Story 2
+		"S2_CaveAwakening":
+			return [EnemyDBS2.create_glow_worm("Luminara"),
+				EnemyDBS2.create_glow_worm("Flicker"),
+				EnemyDBS2.create_crystal_spider("Prism")]
+		"S2_DeepCavern":
+			return [EnemyDBS2.create_shade_crawler("Umbral"),
+				EnemyDBS2.create_shade_crawler("Murk"),
+				EnemyDBS2.create_echo_wisp("Resonance")]
+		"S2_CaveExit":
+			return [EnemyDBS2.create_cave_maw("The Threshold"),
+				EnemyDBS2.create_echo_wisp("Warden"),
+				EnemyDBS2.create_crystal_spider("Sentinel")]
 		_:
 			push_error("Unknown stage: %s" % stage_name)
 			return []
