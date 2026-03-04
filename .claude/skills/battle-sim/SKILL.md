@@ -1,13 +1,13 @@
 ---
 name: battle-sim
-description: Full balance feedback loop for Echoes of Choice. Iterates enemy tuning, player power curve validation, and per-class win rate banding until all stages pass. Use when the user wants to run the full balance loop, do a complete balance pass, iterate on game balance, or ensure the difficulty gradient and class power curve are correct.
+description: Full balance feedback loop for Echoes of Choice. Iterates enemy tuning, player power curve validation, and per-class win rate banding until all stages pass. Supports Story 1 and Story 2 independently via --story flag. Use when the user wants to run the full balance loop, do a complete balance pass, iterate on game balance, or ensure the difficulty gradient and class power curve are correct.
 ---
 
 # Balance Feedback Loop
 
 All paths are relative to the workspace root. The Godot project lives at `EchoesOfChoice/`.
 
-Iterative balancing process for all 14 progression stages. Each cycle has three phases that must all pass before the game is considered balanced.
+Iterative balancing process for progression stages. Each cycle has three phases that must all pass before a story is considered balanced. Use `--story 1` or `--story 2` to target a specific story.
 
 ## The Loop
 
@@ -33,7 +33,7 @@ FOR each progression 0 -> 13, in order:
   +-------------------------------------------------+
 
 AFTER all progressions locked:
-  -> Final validation pass (--auto --all)
+  -> Final validation pass (--story <N> --auto --all)
   -> If any stage broke, restart FROM that progression forward
 ```
 
@@ -43,13 +43,13 @@ AFTER all progressions locked:
 - **Player-side changes** (Steps 2-3) cascade forward through every later stage because growth rates compound with level-ups. A Tier 1 buff applies at Prog 3+ and a base stat change applies everywhere.
 - By locking stages low-to-high, earlier work is preserved. A player change at Prog 8 only requires re-validating Prog 8-13, not restarting from Prog 0.
 
-### Cascade Scope
+### Cascade Scope (Story 1)
 
 | Change Type | Affects | Restart From |
 |-------------|---------|-------------|
 | Enemy stat ranges in `enemy_db.gd` | The battle using that enemy | Re-sim that battle |
 | Enemy ability Modifier | All battles with enemies using that ability | Earliest battle using that ability |
-| Player base stats (Squire/Mage/Entertainer/Tinker/Wildling) | ALL stages | Prog 0 |
+| Player base stats (Squire/Mage/Entertainer/Tinker/Wildling/Wanderer) | ALL stages | Prog 0 |
 | Player Tier 1 growth rates | Prog 3+ (Tier 1 and later) | Prog 3 |
 | Player Tier 2 growth rates | Prog 8+ (Tier 2 only) | Prog 8 |
 | Ability Modifier changes | All stages using that ability | Earliest stage with a class that has the ability |
@@ -81,7 +81,7 @@ f.health = _es(98, 113, 4, 7, 4, 1)
 
 ### 3-Enemy Rule
 
-Every battle after WolfForestBattle (Prog 1) must have **at least 3 enemies**, unless it is a boss fight. Boss fights (StrangerTowerBattle, StrangerFinalBattle) and the special MirrorBattle are exempt.
+Every battle after the first must have **at least 3 enemies**, unless it is a boss fight. Boss fights and special battles (MirrorBattle) are exempt.
 
 3v2 battles give players a 50% action economy advantage, making stat tuning extremely sensitive. If a battle has only 2 enemies, add a 3rd by duplicating an existing enemy type with a new character name before tuning stats.
 
@@ -96,25 +96,46 @@ GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotE
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
 ```
 
+### Story Filtering
+
+Use `--story <n>` to target a specific story's stages:
+
+```bash
+# Story 1 only
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --auto --all 2>&1 | grep -v "$NOISE"
+
+# Story 2 only
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 2 --auto --all 2>&1 | grep -v "$NOISE"
+
+# All stories (default)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --all 2>&1 | grep -v "$NOISE"
+```
+
+---
+
+# Story 1 Balance
+
+Story 1 has 14 progressions (Prog 0-13), 22 battle stages, and uses all 6 base class archetypes (Squire, Mage, Entertainer, Tinker, Wildling, Wanderer).
+
 ## Step 1: Enemy Tuning
 
 **Goal:** This stage's overall win rate falls within its target +/- 3%.
 
 ### Run sims for the current progression
 
-For Progressions 0-2 (Base classes, 35 combos):
+For Progressions 0-2 (Base classes, 56 combos):
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
 ```
 
-For Progressions 3-7 (Tier 1 classes, ~560 combos), use `--sample 100` for fast iteration:
+For Progressions 3-7 (Tier 1 classes, ~816 combos), use `--sample 100` for fast iteration:
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --sample 100 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --sample 100 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
 ```
 
-For Progressions 8-13 (Tier 2 classes, ~4960 combos), use `--sample 100` for fast iteration:
+For Progressions 8-13 (Tier 2 classes, ~8436 combos), use `--sample 100` for fast iteration:
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --sample 100 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --sample 100 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
 ```
 
 ### Check each battle's STATUS line
@@ -129,7 +150,7 @@ All enemy stats are set in `scripts/data/enemy_db.gd` factory functions. Battle 
 
 Use `--sample 100 --sims 50` for quick iteration. Drop `--sample` for Steps 2-3 and final validation, which need the full party list for accurate class breakdowns.
 
-### Difficulty Gradient
+### Story 1 Difficulty Gradient
 
 | Prog | Target | Range | Tier | Battles |
 |------|--------|-------|------|---------|
@@ -144,8 +165,8 @@ Use `--sample 100 --sims 50` for quick iteration. Drop `--sample` for Steps 2-3 
 | 8 | 80% | 77-83% | T2 | ReturnToCityStreetBattle |
 | 9 | 78% | 75-81% | T2 | StrangerTowerBattle |
 | 10 | 75% | 72-78% | T2 | CorruptedCityBattle, CorruptedWildsBattle |
-| 11 | 72% | 69-75% | T2 | TempleBattle, BlightBattle |
-| 12 | 69% | 66-72% | T2 | GateBattle, DepthsBattle |
+| 11 | 72% | 69-75% | T2 | DepthsBattle |
+| 12 | 69% | 66-72% | T2 | GateBattle |
 | 13 | 65% | 62-68% | T2 | StrangerFinalBattle |
 
 ---
@@ -154,11 +175,12 @@ Use `--sample 100 --sims 50` for quick iteration. Drop `--sample` for Steps 2-3 
 
 **Goal:** The archetype ranking at this stage roughly follows the expected power curve. This is a guideline, not a hard rule -- individual battles will naturally favor certain archetypes based on enemy composition. The concern is persistent, stage-wide deviations, not per-battle variation.
 
-### Expected Power Curve (5 Archetypes)
+### Expected Power Curve (6 Archetypes)
 
 | Archetype | Peak Window | Behavior |
 |-----------|-------------|----------|
 | **Squire (Fighter tree)** | Prog 0-2 (early) | Highest class win rate at base tier. Strong physical stats out of the gate. Should taper to middle-of-pack by Prog 5+. |
+| **Wanderer** | Prog 0-4 (early-mid) | Magic-defense fighter. Strong early alongside Squire, especially vs magic enemies. Tapers to mid-pack by Prog 5+. |
 | **Mage** | Prog 3-7 (mid) | Ramps after Tier 1 upgrade. Peaks during mid-game battles with magic scaling. |
 | **Entertainer** | Throughout (flexible) | Consistently strong across all stages. Buffs/debuffs scale well. Can lead individual battles but shouldn't have extreme spikes or troughs. Never flagged WEAK. |
 | **Tinker (Scholar tree)** | Prog 8-13 (late) | Weakest early but highest growth rates catch up. Utility and tech abilities pay off in complex late fights. Top performer by endgame. |
@@ -170,8 +192,8 @@ Classes that bridge archetypes (e.g., Paladin from Mage tree, Monk from Squire t
 
 Group classes by archetype in the CLASS BREAKDOWN and average their win rates for the current stage.
 
-- **Prog 0-2:** Squire classes should lead.
-- **Prog 3-7:** Mage classes should lead (or be close). Wildling competitive.
+- **Prog 0-2:** Squire and Wanderer classes should lead.
+- **Prog 3-7:** Mage classes should lead (or be close). Wildling and Wanderer competitive.
 - **Prog 8-13:** Tinker classes should lead.
 - **Any stage:** Entertainer should be strong. No extreme spikes (>95%) or troughs (<57%). Wildling should stay mid-pack.
 
@@ -183,6 +205,8 @@ If the ranking is roughly correct (or deviations are explained by matchup) -> mo
 |---------|-----|-------|---------|
 | Squire too weak early | Buff Squire base stats | `fighter_db.gd` (Squire factory) | Restart from Prog 0 |
 | Squire too strong late | Reduce Squire T2 growth | `fighter_db_t2.gd` / `fighter_db_t2b.gd` | Restart from Prog 8 |
+| Wanderer too weak early | Buff Wanderer base stats | `fighter_db.gd` (Wanderer factory) | Restart from Prog 0 |
+| Wanderer too strong mid | Reduce Wanderer T1 growth | `fighter_db_t1.gd` (Sentinel, Pathfinder) | Restart from Prog 3 |
 | Mage doesn't spike mid | Buff T1 Mage growth | `fighter_db_t1.gd` (Invoker, Acolyte) | Restart from Prog 3 |
 | Entertainer flagged WEAK | Buff Entertainer base or growth | `fighter_db.gd` / `fighter_db_t1.gd` (Bard, Dervish, Orator) | Restart from affected prog |
 | Tinker still weak late | Buff T2 Tinker growth | `fighter_db_t2.gd` / `fighter_db_t2b.gd` | Restart from Prog 8 |
@@ -253,12 +277,12 @@ If all classes are within band -> **LOCK this progression** and move to the next
 
 ---
 
-## Final Validation
+## Final Validation (Story 1)
 
 After all progressions are locked at `--sims 50`, run a full validation pass:
 
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --all 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --auto --all 2>&1 | grep -v "$NOISE"
 ```
 
 This takes 2-5 minutes. Use a 600000ms timeout.
@@ -267,7 +291,7 @@ If any stage flips to TOO HARD / TOO EASY at full sample size, make small adjust
 
 ---
 
-## Battle -> Enemy Mapping
+## Story 1 Battle -> Enemy Mapping
 
 | Battle | Prog | Enemies | Format |
 |--------|------|---------|--------|
@@ -284,42 +308,40 @@ If any stage flips to TOO HARD / TOO EASY at full sample size, make small adjust
 | LabBattle | 5 | Android, Machinist, Ironclad | 3v3 |
 | ArmyBattle | 5 | Commander, Draconian, Chaplain | 3v3 |
 | CemeteryBattle | 5 | 2x Zombie, Ghoul | 3v3 |
-| OutpostDefenseBattle | 6 | 2x Shade, Wraith | 3v3 |
+| OutpostDefenseBattle | 6 | 2x Shade, 2x Wraith | 3v4 |
 | MirrorBattle | 7 | Shadow clones (98% stat copies of party) | 3vN |
-| ReturnToCityStreetBattle | 8 | RoyalGuard, GuardSergeant, GuardArcher | 3v3 |
+| ReturnToCityStreetBattle | 8 | RoyalGuard, GuardSergeant, 2x GuardArcher | 3v4 |
 | StrangerTowerBattle | 9 | Stranger | 3v1 (boss) |
-| CorruptedCityBattle | 10 | Lich, 2x Ghast | 3v3 |
-| CorruptedWildsBattle | 10 | Demon, 2x CorruptedTreant | 3v3 |
-| TempleBattle | 11 | Hellion, 2x Fiendling | 3v3 |
-| BlightBattle | 11 | Dragon, 2x BlightedStag | 3v3 |
-| GateBattle | 12 | DarkKnight, 2x FellHound | 3v3 |
-| DepthsBattle | 12 | Imp, 2x CaveSpider | 3v3 |
+| CorruptedCityBattle | 10 | 2x Lich, 2x Ghast | 3v4 |
+| CorruptedWildsBattle | 10 | 2x Demon, 2x CorruptedTreant | 3v4 |
+| DepthsBattle | 11 | SigilWretch, 2x TunnelLurker | 3v3 |
+| GateBattle | 12 | 2x DarkKnight, 2x FellHound | 3v4 |
 | StrangerFinalBattle | 13 | StrangerFinal | 3v1 (boss) |
 
 Enemy factories are in `scripts/data/enemy_db.gd`. Battle compositions are in `scripts/data/battle_db.gd` (and act-specific files). When tuning a battle, check this table to know which enemy factories to modify.
 
 ---
 
-## Iteration Checklist
+## Story 1 Iteration Checklist
 
 Copy and track progress. Each progression is locked only after all three steps pass.
 
 ```
 PROGRESSION 0 (CityStreetBattle, target 87-93%):
 - [ ] Step 1: Enemy tuning PASS
-- [ ] Step 2: Squire leads class breakdown
+- [ ] Step 2: Squire/Wanderer lead class breakdown
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
 PROGRESSION 1 (WolfForestBattle, target 85-91%):
 - [ ] Step 1: Enemy tuning PASS
-- [ ] Step 2: Squire leads class breakdown
+- [ ] Step 2: Squire/Wanderer lead class breakdown
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
 PROGRESSION 2 (WaypointDefenseBattle, target 82-88%):
 - [ ] Step 1: Enemy tuning PASS
-- [ ] Step 2: Squire leads (transitioning)
+- [ ] Step 2: Squire/Wanderer lead (transitioning)
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
@@ -371,14 +393,14 @@ PROGRESSION 10 (CorruptedCity/CorruptedWilds, target 72-78%):
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
-PROGRESSION 11 (Temple/Blight, target 69-75%):
-- [ ] Step 1: Both battles PASS
+PROGRESSION 11 (DepthsBattle, target 69-75%):
+- [ ] Step 1: Enemy tuning PASS
 - [ ] Step 2: Tinker leads
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
-PROGRESSION 12 (Gate/Depths, target 66-72%):
-- [ ] Step 1: Both battles PASS
+PROGRESSION 12 (GateBattle, target 66-72%):
+- [ ] Step 1: Enemy tuning PASS
 - [ ] Step 2: Tinker leads
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
@@ -389,8 +411,8 @@ PROGRESSION 13 (StrangerFinalBattle, target 62-68%):
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
-FINAL VALIDATION:
-- [ ] All Prog 0-13 validated with --auto --all
+FINAL VALIDATION (Story 1):
+- [ ] All Prog 0-13 validated with --story 1 --auto --all
 - [ ] No stage broke at full sample size
 
 RESULT: [ ] ALL LOCKED -> balanced  |  [ ] Stage broke -> restart from that prog
@@ -398,26 +420,142 @@ RESULT: [ ] ALL LOCKED -> balanced  |  [ ] Stage broke -> restart from that prog
 
 ---
 
-## When to Stop
+## When to Stop (Story 1)
 
 The loop converges when:
 
-1. All 24 battles show PASS at `--auto` sample sizes
+1. All 22 battles show PASS at `--auto` sample sizes
 2. The archetype power curve roughly follows the expected peaks (per-battle variation is fine)
 3. Every class sits within or near the 57-93% band at every stage (borderline 55-57% is acceptable variance)
 
 **Perfection is not the goal.** If a class is at 58% in one stage and 92% in another, that's fine -- it's within band. Borderline cases (55-57%) are acceptable variance in individual battles, especially when the class recovers to healthy rates in other battles at the same stage. Focus effort on classes that are clearly outside the band or violating the power curve, not on chasing every decimal.
 
-## Key Files
+---
+---
+
+# Story 2 Balance
+
+Story 2 is a separate adventure with fresh characters. Players create a new party using all 6 base classes (including Wanderer, unlocked by completing Story 1). The same tier transitions and progression structure apply.
+
+## Story 2 Constraint Rule
+
+**Story 1 balance is LOCKED.** When balancing Story 2, ONLY modify:
+
+- **Story 2 enemies**: stats/abilities in `enemy_db.gd` / `enemy_ability_db.gd`, compositions in `battle_db_s2.gd`
+- **Wanderer tree**: stats/abilities in `fighter_db.gd` (Wanderer factory), `fighter_db_t1.gd` (Sentinel, Pathfinder), `fighter_db_t2.gd` (Bulwark, Aegis), `fighter_db_t2b.gd` (Trailblazer, Survivalist), `ability_db.gd` (wild_strike, natures_ward), `ability_db_player.gd` (Wanderer tree abilities)
+
+**Do NOT modify** Squire, Mage, Entertainer, Tinker, or Wildling class trees. These are shared with Story 1 and any changes would break Story 1 balance.
+
+### Story 2 Cascade Scope
+
+| Change Type | Affects | Restart From |
+|-------------|---------|-------------|
+| S2 enemy stat ranges | The S2 battle using that enemy | Re-sim that battle |
+| S2 enemy ability Modifier | All S2 battles with enemies using that ability | Earliest S2 battle using it |
+| Wanderer base stats (T0) | ALL stages (both stories) | S2 Prog 0 + re-validate S1 |
+| Wanderer T1 growth (Sentinel/Pathfinder) | S2 Prog 3+ | S2 Prog 3 + re-validate S1 Prog 3+ |
+| Wanderer T2 growth (Bulwark/Aegis/Trailblazer/Survivalist) | S2 Prog 8+ | S2 Prog 8 + re-validate S1 Prog 8+ |
+| Wanderer ability Modifier | All stages with Wanderer classes using that ability | Earliest affected stage + re-validate S1 |
+
+**Cross-story validation**: After ANY Wanderer tree change, re-validate Story 1:
+```bash
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --auto --all 2>&1 | grep -v "$NOISE"
+```
+If any Story 1 stage breaks, revert the Wanderer change and compensate by adjusting Story 2 enemies instead.
+
+---
+
+## Story 2 Power Curve (6 Archetypes)
+
+| Archetype | Peak Window | Behavior | Tunable? |
+|-----------|-------------|----------|----------|
+| **Squire** | Prog 0-2 | Strong fighter early, tapers mid-game | LOCKED |
+| **Wanderer** | Prog 0-4 | Magic-defense fighter, strong early-mid vs magic enemies, tapers late | **YES** |
+| **Mage** | Prog 3-7 | Ramps after T1, peaks mid-game | LOCKED |
+| **Entertainer** | Throughout | Consistently strong, never WEAK | LOCKED |
+| **Tinker** | Prog 8+ | Weakest early, strongest late | LOCKED |
+| **Wildling** | Prog 2-8 | Mid-range utility, competitive mid-game | LOCKED |
+
+Wanderer's magic-defense focus means it should perform especially well against magic-heavy enemies but weaker against purely physical enemies. Story 2 enemy compositions can exploit this -- mix physical and magic enemies to create matchup variety. This is a natural matchup variance, not a balance problem.
+
+---
+
+## Story 2 Difficulty Gradient
+
+Same 14-progression structure, same tier transitions, same win rate targets as Story 1.
+
+| Prog | Target | Range | Tier | Battles |
+|------|--------|-------|------|---------|
+| 0 | 90% | 87-93% | Base | [TBD] |
+| 1 | 88% | 85-91% | Base | [TBD] |
+| 2 | 85% | 82-88% | Base | [TBD] |
+| 3 | 83% | 80-86% | T1 | [TBD] |
+| 4 | 81% | 78-84% | T1 | [TBD] |
+| 5 | 79% | 76-82% | T1 | [TBD] |
+| 6 | 77% | 74-80% | T1 | [TBD] |
+| 7 | 75% | 72-78% | T1 | [TBD] |
+| 8 | 80% | 77-83% | T2 | [TBD] |
+| 9 | 78% | 75-81% | T2 | [TBD] |
+| 10 | 75% | 72-78% | T2 | [TBD] |
+| 11 | 72% | 69-75% | T2 | [TBD] |
+| 12 | 69% | 66-72% | T2 | [TBD] |
+| 13 | 65% | 62-68% | T2 | [TBD] |
+
+---
+
+## Story 2 Sim Commands
+
+```bash
+# All Story 2 stages
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 2 --auto --all 2>&1 | grep -v "$NOISE"
+
+# Single Story 2 progression
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 2 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
+
+# Validate Story 1 unchanged after Wanderer tweak
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --auto --all 2>&1 | grep -v "$NOISE"
+```
+
+---
+
+## Story 2 Battle -> Enemy Mapping
+
+| Battle | Prog | Enemies | Format |
+|--------|------|---------|--------|
+| [TBD] | ... | ... | ... |
+
+To be filled in when Story 2 battles are created. Enemy factories go in `scripts/data/enemy_db.gd`, battle compositions in `scripts/data/battle_db_s2.gd`, and stage definitions in `scripts/tools/battle_stage_db.gd` (with `story = 2`).
+
+---
+
+## Story 2 Iteration Checklist
+
+To be filled in when Story 2 battles are created. Same structure as Story 1 -- each progression locked after all 3 steps pass.
+
+```
+[TBD -- populate when Story 2 battles are defined]
+
+FINAL VALIDATION (Story 2):
+- [ ] All S2 progressions validated with --story 2 --auto --all
+- [ ] Story 1 re-validated with --story 1 --auto --all (no regressions)
+
+RESULT: [ ] ALL LOCKED -> balanced  |  [ ] Stage broke -> restart from that prog
+```
+
+---
+---
+
+# Key Files
 
 | File | Purpose |
 |------|---------|
 | `EchoesOfChoice/scripts/data/enemy_db.gd` | Primary tuning lever for Step 1 -- all enemy stat factories live here |
 | `EchoesOfChoice/scripts/data/enemy_ability_db.gd` | Enemy-specific abilities and their Modifiers |
-| `EchoesOfChoice/scripts/data/battle_db.gd` | Enemy composition (which enemies appear in each battle) |
-| `EchoesOfChoice/scripts/data/battle_db_act2.gd` | Act 2 battle compositions |
-| `EchoesOfChoice/scripts/data/battle_db_act3.gd` | Act 3 battle compositions |
-| `EchoesOfChoice/scripts/data/battle_db_act45.gd` | Act 4-5 battle compositions |
+| `EchoesOfChoice/scripts/data/battle_db.gd` | Story 1 enemy composition (which enemies appear in each battle) |
+| `EchoesOfChoice/scripts/data/battle_db_act2.gd` | Story 1 Act 2 battle compositions |
+| `EchoesOfChoice/scripts/data/battle_db_act3.gd` | Story 1 Act 3 battle compositions |
+| `EchoesOfChoice/scripts/data/battle_db_act45.gd` | Story 1 Act 4-5 battle compositions |
+| `EchoesOfChoice/scripts/data/battle_db_s2.gd` | Story 2 battle compositions |
 | `EchoesOfChoice/scripts/data/fighter_db.gd` | Base (T0) player class factories and stats |
 | `EchoesOfChoice/scripts/data/fighter_db_t1.gd` | Tier 1 player class factories and growth |
 | `EchoesOfChoice/scripts/data/fighter_db_t2.gd` | Tier 2 player class factories and growth (part 1) |
@@ -425,6 +563,6 @@ The loop converges when:
 | `EchoesOfChoice/scripts/data/ability_db.gd` | Base player ability definitions (T0 + shared) |
 | `EchoesOfChoice/scripts/data/ability_db_player.gd` | T1/T2 player ability definitions |
 | `EchoesOfChoice/scripts/tools/simulation_runner.gd` | CLASS BREAKDOWN output, WEAK flags |
-| `EchoesOfChoice/scripts/tools/battle_stage_db.gd` | Target win rates per stage |
+| `EchoesOfChoice/scripts/tools/battle_stage_db.gd` | Target win rates per stage (story-aware) |
 | `EchoesOfChoice/scripts/tools/party_composer.gd` | All valid party compositions |
-| `EchoesOfChoice/tools/battle_simulator.gd` | CLI entry point for the simulator |
+| `EchoesOfChoice/tools/battle_simulator.gd` | CLI entry point for the simulator (supports --story flag) |

@@ -16,9 +16,12 @@ func _init() -> void:
 	var auto_sims := false
 	var sims_explicit := false
 	var run_all := false
+	var show_list := false
+	var show_help := false
 	var progression_filter := -1
 	var sample_size := 0
 	var stage_name := ""
+	var story_filter := 0
 
 	var i := 0
 	while i < args.size():
@@ -40,18 +43,32 @@ func _init() -> void:
 				if i + 1 < args.size():
 					sample_size = int(args[i + 1])
 					i += 1
+			"--story":
+				if i + 1 < args.size():
+					story_filter = int(args[i + 1])
+					i += 1
 			"--list":
-				_print_stage_list(stages)
-				quit()
-				return
+				show_list = true
 			"--help":
-				_print_help()
-				quit()
-				return
+				show_help = true
 			_:
 				if not args[i].begins_with("--"):
 					stage_name = args[i]
 		i += 1
+
+	if story_filter > 0:
+		stages = stages.filter(
+			func(s: Dictionary) -> bool: return s.story == story_filter)
+
+	if show_list:
+		_print_stage_list(stages)
+		quit()
+		return
+
+	if show_help:
+		_print_help()
+		quit()
+		return
 
 	if auto_sims and sims_explicit:
 		print("Warning: --auto overrides --sims. Using auto-calculated sim counts.\n")
@@ -149,11 +166,12 @@ func _run_stages(stages: Array, sims_per_combo: int,
 
 
 func _print_stage_list(stages: Array) -> void:
-	print("  %-25s %6s %8s" % ["Battle", "Stage", "Target"])
-	print("  " + "-".repeat(41))
+	print("  %-25s %6s %6s %8s" % ["Battle", "Story", "Stage", "Target"])
+	print("  " + "-".repeat(49))
 	for s: Dictionary in stages:
-		print("  %-25s %6d %7d%%" % [
-			s.name, s.progression_stage, int(s.target_win_rate * 100)])
+		print("  %-25s %6d %6d %7d%%" % [
+			s.name, s.get("story", 1), s.progression_stage,
+			int(s.target_win_rate * 100)])
 
 
 func _print_help() -> void:
@@ -164,16 +182,19 @@ func _print_help() -> void:
 	print("  --auto               Auto-calculate sims to hit 200k+ total battles")
 	print("  --sample <n>         Use stratified sample of n party combos")
 	print("  --progression <n>    Run all battles in a progression stage")
+	print("  --story <n>          Filter to story 1 or 2")
 	print("  --all                Run all battles")
 	print("  --list               List available battle stages")
 	print("  --help               Show this help\n")
 	print("Auto mode sims by tier:")
-	print("  Base (35 combos)      -> 5,715 sims/combo = 200k battles")
-	print("  Tier 1 (~560 combos)  ->   358 sims/combo = 200k battles")
-	print("  Tier 2 (~4960 combos) ->    41 sims/combo = 203k battles\n")
+	print("  Base (56 combos)      -> 3,572 sims/combo = 200k battles")
+	print("  Tier 1 (~816 combos)  ->   246 sims/combo = 200k battles")
+	print("  Tier 2 (~8436 combos) ->    24 sims/combo = 202k battles\n")
 	print("Examples:")
 	print("  ... -- CityStreetBattle")
 	print("  ... -- --sims 500 WolfForestBattle")
 	print("  ... -- --auto --progression 0")
 	print("  ... -- --auto --all")
+	print("  ... -- --story 1 --auto --all")
+	print("  ... -- --story 2 --sims 50 --progression 0")
 	print("  ... -- --sample 500 --sims 50 --progression 4")

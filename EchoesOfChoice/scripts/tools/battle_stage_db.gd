@@ -1,7 +1,7 @@
 class_name BattleStageDB
 
-## All 22 battle stages with enemy compositions and balance targets.
-## Port of C# EchoesOfChoice/BattleSimulator/BattleStage.cs.
+## All battle stages with enemy compositions and balance targets.
+## Each stage has a story field (1 or 2) for filtering by story.
 
 const EnemyDB := preload("res://scripts/data/enemy_db.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
@@ -48,11 +48,17 @@ static func get_all_stages() -> Array:
 	]
 
 
+static func get_story_stages(story: int) -> Array:
+	return get_all_stages().filter(
+		func(s: Dictionary) -> bool: return s.story == story)
+
+
 static func _s(n: String, lu: int, tier: String, target: float,
-		prog: int) -> Dictionary:
+		prog: int, story: int = 1) -> Dictionary:
 	return {
 		"name": n, "level_ups": lu, "tier": tier,
 		"target_win_rate": target, "progression_stage": prog,
+		"story": story,
 	}
 
 
