@@ -408,3 +408,75 @@ static func wing_dust() -> AbilityData:
 
 static func petrify_pulse() -> AbilityData:
 	return _make("Petrify Pulse", "A flash of stone-grey light.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+# --- Spore Stalker ---
+
+static func toxic_dart() -> AbilityData:
+	return _make("Toxic Dart", "A barb dripping with fungal venom.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 3, false, 0, 0.0, 1)
+
+static func spore_burst() -> AbilityData:
+	return _make("Spore Burst", "A cloud of toxic spores settles over the target.", Enums.StatType.MAGIC_ATTACK, 3, 3, true, 3, false, 3, 0.0, 2)
+
+# --- Fungal Hulk ---
+
+static func fungal_slam() -> AbilityData:
+	return _make("Fungal Slam", "A massive fungal limb crashes down.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
+
+static func mycelium_shield() -> AbilityData:
+	return _make("Mycelium Shield", "Fibrous growth hardens into armor.", Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0, 2)
+
+# --- Cap Wisp ---
+
+static func hallucinate() -> AbilityData:
+	return _make("Hallucinate", "Spores cloud the mind with visions.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+static func befuddle() -> AbilityData:
+	return _make("Befuddle", "A wave of confusion dulls reflexes.", Enums.StatType.SPEED, 4, 2, true, 3, true, 0, 0.0, 3)
+
+# --- Cave Eel ---
+
+static func jolt() -> AbilityData:
+	return _make("Jolt", "An electric snap from the darkness.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 1)
+
+static func arc_flash() -> AbilityData:
+	return _make("Arc Flash", "Electricity arcs through the water.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, true, 0, 0.0, 3)
+
+# --- Blind Angler ---
+
+static func lure_light() -> AbilityData:
+	return _make("Lure Light", "A hypnotic glow draws the unwary close.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+static func abyssal_gaze() -> AbilityData:
+	return _make("Abyssal Gaze", "Empty eyes strip away defenses.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0, 2)
+
+# --- Pale Crayfish ---
+
+static func pincer_crush() -> AbilityData:
+	return _make("Pincer Crush", "Armored claws close with terrible force.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
+
+static func shell_up() -> AbilityData:
+	return _make("Shell Up", "The crayfish withdraws into its shell.", Enums.StatType.DEFENSE, 5, 2, false, 2, false, 0, 0.0, 2)
+
+# --- Cave Dweller ---
+
+static func crude_axe() -> AbilityData:
+	return _make("Crude Axe", "A rough-hewn axe swings with brute force.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 1)
+
+static func rock_toss() -> AbilityData:
+	return _make("Rock Toss", "Stones rain down from the darkness.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 3, true, 0, 0.0, 3)
+
+# --- Tunnel Shaman ---
+
+static func hex_flame() -> AbilityData:
+	return _make("Hex Flame", "Cursed fire leaps from painted fingers.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
+
+static func ward_bones() -> AbilityData:
+	return _make("Ward Bones", "Bone totems flare with protective light.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, true, 0, 0.0, 3)
+
+# --- Burrow Scout ---
+
+static func dart_strike() -> AbilityData:
+	return _make("Dart Strike", "A quick jab from the shadows.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 1)
+
+static func smoke_bomb() -> AbilityData:
+	return _make("Smoke Bomb", "Acrid smoke obscures the scout's movements.", Enums.StatType.DODGE_CHANCE, 12, 2, false, 2, false, 0, 0.0, 2)
