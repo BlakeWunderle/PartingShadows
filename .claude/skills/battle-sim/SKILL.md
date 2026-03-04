@@ -482,24 +482,45 @@ Wanderer's magic-defense focus means it should perform especially well against m
 
 ## Story 2 Difficulty Gradient
 
-Same 14-progression structure, same tier transitions, same win rate targets as Story 1.
+Story 2 is harder than Story 1. Starts at 85% (vs 90%) and drops to 55% (vs 65%). Same tier transitions and T2 bump structure.
 
 | Prog | Target | Range | Tier | Battles |
 |------|--------|-------|------|---------|
-| 0 | 90% | 87-93% | Base | [TBD] |
-| 1 | 88% | 85-91% | Base | [TBD] |
-| 2 | 85% | 82-88% | Base | [TBD] |
-| 3 | 83% | 80-86% | T1 | [TBD] |
-| 4 | 81% | 78-84% | T1 | [TBD] |
-| 5 | 79% | 76-82% | T1 | [TBD] |
-| 6 | 77% | 74-80% | T1 | [TBD] |
-| 7 | 75% | 72-78% | T1 | [TBD] |
-| 8 | 80% | 77-83% | T2 | [TBD] |
-| 9 | 78% | 75-81% | T2 | [TBD] |
-| 10 | 75% | 72-78% | T2 | [TBD] |
-| 11 | 72% | 69-75% | T2 | [TBD] |
-| 12 | 69% | 66-72% | T2 | [TBD] |
-| 13 | 65% | 62-68% | T2 | [TBD] |
+| 0 | 85% | 82-88% | Base | S2_CaveAwakening |
+| 1 | 83% | 80-86% | Base | S2_DeepCavern |
+| 2 | 80% | 77-83% | Base | S2_CaveExit |
+| 3 | 78% | 75-81% | T1 | [TBD] |
+| 4 | 76% | 73-79% | T1 | [TBD] |
+| 5 | 73% | 70-76% | T1 | [TBD] |
+| 6 | 71% | 68-74% | T1 | [TBD] |
+| 7 | 68% | 65-71% | T1 | [TBD] |
+| 8 | 73% | 70-76% | T2 | [TBD] |
+| 9 | 70% | 67-73% | T2 | [TBD] |
+| 10 | 67% | 64-70% | T2 | [TBD] |
+| 11 | 64% | 61-67% | T2 | [TBD] |
+| 12 | 60% | 57-63% | T2 | [TBD] |
+| 13 | 55% | 52-58% | T2 | [TBD] |
+
+### Story 2 Class Band Formula
+
+Same `target +/- 15%` rule, but the lower targets mean tighter absolute bands at late game:
+
+| Prog | Target | Class Floor | Class Ceiling |
+|------|--------|-------------|---------------|
+| 0 | 85% | 70% | 100% |
+| 1 | 83% | 68% | 98% |
+| 2 | 80% | 65% | 95% |
+| 3 | 78% | 63% | 93% |
+| 4 | 76% | 61% | 91% |
+| 5 | 73% | 58% | 88% |
+| 6 | 71% | 56% | 86% |
+| 7 | 68% | 53% | 83% |
+| 8 | 73% | 58% | 88% |
+| 9 | 70% | 55% | 85% |
+| 10 | 67% | 52% | 82% |
+| 11 | 64% | 49% | 79% |
+| 12 | 60% | 45% | 75% |
+| 13 | 55% | 40% | 70% |
 
 ---
 
@@ -522,18 +543,38 @@ Same 14-progression structure, same tier transitions, same win rate targets as S
 
 | Battle | Prog | Enemies | Format |
 |--------|------|---------|--------|
-| [TBD] | ... | ... | ... |
+| S2_CaveAwakening | 0 | 2x GlowWorm, CrystalSpider | 3v3 |
+| S2_DeepCavern | 1 | 2x ShadeCrawler, EchoWisp | 3v3 |
+| S2_CaveExit | 2 | CaveMaw, VeinLeech, StoneMoth | 3v3 |
 
-To be filled in when Story 2 battles are created. Enemy factories go in `scripts/data/enemy_db.gd`, battle compositions in `scripts/data/battle_db_s2.gd`, and stage definitions in `scripts/tools/battle_stage_db.gd` (with `story = 2`).
+Story 2 enemy factories are in `scripts/data/enemy_db_s2.gd`. Battle compositions are in `scripts/data/battle_db_s2.gd`. Stage definitions are in `scripts/tools/battle_stage_db.gd` (with `story = 2`).
 
 ---
 
 ## Story 2 Iteration Checklist
 
-To be filled in when Story 2 battles are created. Same structure as Story 1 -- each progression locked after all 3 steps pass.
+Same structure as Story 1 -- each progression locked after all 3 steps pass.
 
 ```
-[TBD -- populate when Story 2 battles are defined]
+PROGRESSION 0 (S2_CaveAwakening, target 82-88%):
+- [ ] Step 1: Enemy tuning PASS
+- [ ] Step 2: Squire/Wanderer lead class breakdown
+- [ ] Step 3: All classes within target +/- 15%
+- [ ] LOCKED
+
+PROGRESSION 1 (S2_DeepCavern, target 80-86%):
+- [ ] Step 1: Enemy tuning PASS
+- [ ] Step 2: Squire/Wanderer lead class breakdown
+- [ ] Step 3: All classes within target +/- 15%
+- [ ] LOCKED
+
+PROGRESSION 2 (S2_CaveExit, target 77-83%):
+- [ ] Step 1: Enemy tuning PASS
+- [ ] Step 2: Squire/Wanderer lead (transitioning)
+- [ ] Step 3: All classes within target +/- 15%
+- [ ] LOCKED
+
+[Prog 3-13 TBD -- populate when remaining Story 2 battles are defined]
 
 FINAL VALIDATION (Story 2):
 - [ ] All S2 progressions validated with --story 2 --auto --all

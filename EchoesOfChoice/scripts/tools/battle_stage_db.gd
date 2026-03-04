@@ -52,7 +52,7 @@ static func get_all_stages() -> Array:
 		# Prog 1: Base classes, 1 level up
 		_s("S2_DeepCavern", 1, "base", 0.83, 1, 2),
 		# Prog 2: Base classes, 2 level ups
-		_s("S2_CaveExit", 2, "base", 0.81, 2, 2),
+		_s("S2_CaveExit", 2, "base", 0.80, 2, 2),
 	]
 
 
