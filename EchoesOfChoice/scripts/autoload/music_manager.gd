@@ -54,7 +54,7 @@ func play_context(context: int, fade: float = 1.0) -> void:
 		return
 	var tracks: Array[String] = _list_tracks(folder)
 	if tracks.is_empty():
-		push_warning("MusicManager: No tracks found for context %d in %s" % [context, folder])
+		Logger.warn("MusicManager: No tracks found for context %d in %s" % [context, folder])
 		return
 	_current_context = context
 	var path: String = tracks[randi() % tracks.size()]
@@ -70,7 +70,7 @@ func play_music(path: String, fade_duration: float = 0.5) -> void:
 
 	var stream: AudioStream = _load_cached_stream(path)
 	if stream == null:
-		push_warning("MusicManager: Could not load: " + path)
+		Logger.warn("MusicManager: Could not load: " + path)
 		return
 
 	_fade_out_player(fade_duration)

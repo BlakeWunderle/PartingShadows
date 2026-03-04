@@ -11,6 +11,7 @@ var _panel: Control
 var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
 var _resume_btn: Button
+var _feedback_label: Label
 
 
 func _ready() -> void:
@@ -39,9 +40,9 @@ func _build_ui() -> void:
 	var center := PanelContainer.new()
 	center.set_anchors_preset(Control.PRESET_CENTER)
 	center.offset_left = -180.0
-	center.offset_top = -160.0
+	center.offset_top = -190.0
 	center.offset_right = 180.0
-	center.offset_bottom = 160.0
+	center.offset_bottom = 190.0
 	_panel.add_child(center)
 
 	var margin := MarginContainer.new()
@@ -79,6 +80,10 @@ func _build_ui() -> void:
 	save_btn.pressed.connect(_show_save_slots)
 	_main_vbox.add_child(save_btn)
 
+	var logs_btn := _make_button("Copy Logs")
+	logs_btn.pressed.connect(_copy_logs)
+	_main_vbox.add_child(logs_btn)
+
 	var title_btn := _make_button("Quit to Title")
 	title_btn.pressed.connect(_quit_to_title)
 	_main_vbox.add_child(title_btn)
@@ -86,6 +91,14 @@ func _build_ui() -> void:
 	var quit_btn := _make_button("Quit Game")
 	quit_btn.pressed.connect(_quit_game)
 	_main_vbox.add_child(quit_btn)
+
+	# Feedback label for copy confirmation
+	_feedback_label = Label.new()
+	_feedback_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_feedback_label.add_theme_font_size_override("font_size", 16)
+	_feedback_label.add_theme_color_override("font_color", Color(0.5, 1.0, 0.5))
+	_feedback_label.visible = false
+	root_vbox.add_child(_feedback_label)
 
 	# Save slot sub-menu (hidden by default)
 	_save_vbox = VBoxContainer.new()
@@ -149,6 +162,15 @@ func _quit_to_title() -> void:
 	get_tree().paused = false
 	GameState.game_phase = GameState.GamePhase.TITLE
 	SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _copy_logs() -> void:
+	Logger.copy_to_clipboard()
+	_feedback_label.text = "Copied to clipboard!"
+	_feedback_label.visible = true
+	await get_tree().create_timer(1.5).timeout
+	if _mode != Mode.HIDDEN:
+		_feedback_label.visible = false
 
 
 func _quit_game() -> void:

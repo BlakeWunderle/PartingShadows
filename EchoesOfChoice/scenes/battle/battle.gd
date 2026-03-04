@@ -178,6 +178,8 @@ func _start_battle() -> void:
 	else:
 		MusicManager.play_context(MusicManager.MusicContext.BATTLE)
 	_engine.start_battle(GameState.party, battle.enemies)
+	Logger.info("Battle started: %s (%d enemies)" % [
+		GameState.current_battle_id, battle.enemies.size()])
 
 	_build_status_bars()
 	_combat_log.add_message("[color=gold]Battle begins![/color]")
@@ -582,6 +584,7 @@ func _end_battle() -> void:
 	_engine.finish_battle()
 
 	if _boss_escaped or _engine.did_player_win():
+		Logger.info("Battle won: %s" % GameState.current_battle_id)
 		_combat_log.add_message("")
 		if _boss_escaped:
 			_combat_log.add_message("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
@@ -591,6 +594,7 @@ func _end_battle() -> void:
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 	else:
+		Logger.info("Battle lost: %s" % GameState.current_battle_id)
 		_combat_log.add_message("")
 		_combat_log.add_message("[color=red]The party has been defeated...[/color]")
 		await get_tree().create_timer(2.0).timeout

@@ -33,6 +33,7 @@ func preload_resources(paths: Array) -> void:
 
 
 func change_scene(path: String, fade_duration: float = 0.4) -> void:
+	Logger.info("Scene: %s" % path)
 	_fader.mouse_filter = Control.MOUSE_FILTER_STOP
 	MusicManager.stop_music(fade_duration)
 
@@ -74,6 +75,6 @@ func _await_threaded_load(path: String) -> PackedScene:
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 				await get_tree().process_frame
 			_:
-				push_error("SceneManager: Threaded load failed for '%s', falling back to sync" % path)
+				Logger.error("SceneManager: Threaded load failed for '%s', falling back to sync" % path)
 				return load(path) as PackedScene
 	return load(path) as PackedScene
