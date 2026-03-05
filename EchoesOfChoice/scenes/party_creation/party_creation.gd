@@ -35,6 +35,7 @@ var _class_ids: Array[String] = []
 var _dialogue: DialoguePanel
 var _name_input: NameInput
 var _choice_menu: ChoiceMenu
+var _scene_image: TextureRect
 var _vbox: VBoxContainer
 
 
@@ -61,12 +62,33 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
+	# Background image
+	_scene_image = TextureRect.new()
+	_scene_image.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_scene_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	if _is_s2():
+		_scene_image.texture = load("res://assets/art/battles/cave_awakening.png")
+	else:
+		_scene_image.texture = load("res://assets/art/battles/copper_mug.png")
+	add_child(_scene_image)
+
+	# Dark overlay for text readability
+	var overlay := ColorRect.new()
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.color = Color(0, 0, 0, 0.55)
+	add_child(overlay)
+
 	var margin := MarginContainer.new()
-	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.anchor_left = 0.0
+	margin.anchor_top = 0.0
+	margin.anchor_right = 1.0
+	margin.anchor_bottom = 0.5
 	margin.add_theme_constant_override("margin_left", 80)
 	margin.add_theme_constant_override("margin_right", 80)
-	margin.add_theme_constant_override("margin_top", 40)
-	margin.add_theme_constant_override("margin_bottom", 40)
+	margin.add_theme_constant_override("margin_top", 60)
+	margin.add_theme_constant_override("margin_bottom", 20)
 	add_child(margin)
 
 	_vbox = VBoxContainer.new()
