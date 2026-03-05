@@ -10,6 +10,7 @@ const _StoryDB := preload("res://scripts/data/story_db.gd")
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
+var _scene_image: TextureRect
 
 
 func _ready() -> void:
@@ -18,12 +19,29 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
+	# Background image (behind everything)
+	_scene_image = TextureRect.new()
+	_scene_image.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_scene_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	add_child(_scene_image)
+
+	# Dark overlay for text readability
+	var overlay := ColorRect.new()
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.color = Color(0, 0, 0, 0.55)
+	add_child(overlay)
+
 	var margin := MarginContainer.new()
-	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.anchor_left = 0.0
+	margin.anchor_top = 0.0
+	margin.anchor_right = 1.0
+	margin.anchor_bottom = 0.5
 	margin.add_theme_constant_override("margin_left", 80)
 	margin.add_theme_constant_override("margin_right", 80)
 	margin.add_theme_constant_override("margin_top", 60)
-	margin.add_theme_constant_override("margin_bottom", 60)
+	margin.add_theme_constant_override("margin_bottom", 20)
 	add_child(margin)
 
 	var vbox := VBoxContainer.new()
@@ -42,6 +60,11 @@ func _build_ui() -> void:
 
 
 func _show_narrative() -> void:
+	var battle = GameState.current_battle
+	if battle and not battle.scene_image.is_empty() and ResourceLoader.exists(battle.scene_image):
+		_scene_image.texture = load(battle.scene_image)
+	else:
+		_scene_image.texture = null
 	match GameState.game_phase:
 		GameState.GamePhase.NARRATIVE:
 			if not GameState.current_battle.cutscene_track.is_empty():
