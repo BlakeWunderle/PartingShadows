@@ -29,7 +29,7 @@ static func create_battle(battle_id: String) -> BattleData:
 static func s2_cave_awakening() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_CaveAwakening"
-	b.scene_image = "res://assets/art/battles/void_cavern.png"
+	b.scene_image = "res://assets/art/battles/cave_awakening.png"
 	b.enemies = [
 		EnemyDBS2.create_glow_worm("Luminara"),
 		EnemyDBS2.create_glow_worm("Flicker"),
@@ -65,7 +65,7 @@ static func s2_cave_awakening() -> BattleData:
 static func s2_deep_cavern() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_DeepCavern"
-	b.scene_image = "res://assets/art/battles/tunnels.png"
+	b.scene_image = "res://assets/art/battles/deep_cavern.png"
 	b.enemies = [
 		EnemyDBS2.create_shade_crawler("Umbral"),
 		EnemyDBS2.create_shade_crawler("Murk"),
@@ -100,7 +100,7 @@ static func s2_deep_cavern() -> BattleData:
 static func s2_fungal_hollow() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_FungalHollow"
-	b.scene_image = "res://assets/art/battles/tunnels.png"
+	b.scene_image = "res://assets/art/battles/fungal_hollow.png"
 	b.enemies = [
 		EnemyDBS2.create_spore_stalker("Creeper"),
 		EnemyDBS2.create_fungal_hulk("Mossback"),
@@ -134,7 +134,7 @@ static func s2_fungal_hollow() -> BattleData:
 static func s2_tranquil_pool() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_TranquilPool"
-	b.scene_image = "res://assets/art/battles/rocky_shore.png"
+	b.scene_image = "res://assets/art/battles/tranquil_pool.png"
 	b.enemies = [
 		EnemyDBS2.create_cave_eel("Voltfin"),
 		EnemyDBS2.create_blind_angler("The Lure"),
@@ -166,7 +166,7 @@ static func s2_tranquil_pool() -> BattleData:
 static func s2_torch_chamber() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_TorchChamber"
-	b.scene_image = "res://assets/art/battles/dragons_lair.png"
+	b.scene_image = "res://assets/art/battles/torch_chamber.png"
 	b.enemies = [
 		EnemyDBS2.create_cave_dweller("Grimjaw"),
 		EnemyDBS2.create_tunnel_shaman("Ember Eye"),
@@ -198,7 +198,7 @@ static func s2_torch_chamber() -> BattleData:
 static func s2_cave_merchant() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_CaveMerchant"
-	b.scene_image = "res://assets/art/battles/tunnels.png"
+	b.scene_image = "res://assets/art/battles/cave_merchant.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
 		"The passage widens into a small alcove. A fire burns in a shallow pit, impossibly steady. No smoke.",
@@ -226,7 +226,7 @@ static func s2_cave_merchant() -> BattleData:
 static func s2_cave_exit() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_CaveExit"
-	b.scene_image = "res://assets/art/battles/void_cavern.png"
+	b.scene_image = "res://assets/art/battles/cave_exit.png"
 	b.enemies = [
 		EnemyDBS2.create_cave_maw("The Threshold", 5),
 		EnemyDBS2.create_vein_leech("Gnawer", 5),
