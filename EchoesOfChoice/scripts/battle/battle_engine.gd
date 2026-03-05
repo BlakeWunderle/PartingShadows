@@ -93,7 +93,7 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 
 
 func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
-		ability: AbilityData) -> void:
+		ability: AbilityData, skip_flavor: bool = false) -> void:
 	if _check_for_ability_dodge(defender):
 		combat_message.emit("%s dodged %s's ability!" % [
 			defender.character_name, attacker.character_name])
@@ -108,7 +108,8 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			damage += attacker.crit_damage
 
 		defender.health -= damage
-		combat_message.emit(ability.flavor_text)
+		if not skip_flavor:
+			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s did %d points of damage to %s." % [
 			attacker.character_name, damage, defender.character_name])
 
@@ -127,7 +128,8 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"is_negative": true,
 				"damage_per_turn": ability.damage_per_turn,
 			})
-			combat_message.emit(ability.flavor_text)
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
 			combat_message.emit("%s will take %d damage per turn for %d turns." % [
 				defender.character_name, ability.damage_per_turn, ability.impacted_turns])
 
@@ -142,12 +144,13 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			})
 			_modify_stats(defender, ability.modified_stat, ability.modifier, true)
 			if ability.damage_per_turn == 0:
-				combat_message.emit(ability.flavor_text)
+				if not skip_flavor:
+					combat_message.emit(ability.flavor_text)
 				combat_message.emit("%s was hit with this ability." % defender.character_name)
 
 
 func use_ability_on_teammate(caster: FighterData, target: FighterData,
-		ability: AbilityData) -> void:
+		ability: AbilityData, skip_flavor: bool = false) -> void:
 	if ability.impacted_turns == 0:
 		# Instant heal
 		var heal_amount: int
@@ -160,7 +163,8 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		if target.health > target.max_health:
 			target.health = target.max_health
 
-		combat_message.emit(ability.flavor_text)
+		if not skip_flavor:
+			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s healed %d points of damage." % [
 			target.character_name, heal_amount])
 	else:
@@ -173,7 +177,8 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			"damage_per_turn": 0,
 		})
 		_modify_stats(target, ability.modified_stat, ability.modifier, false)
-		combat_message.emit(ability.flavor_text)
+		if not skip_flavor:
+			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s was impacted by the ability." % target.character_name)
 
 
@@ -372,9 +377,10 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 			unit.mana -= heal.mana_cost
 			_set_cooldown(unit, heal)
 			if heal.target_all:
+				combat_message.emit(heal.flavor_text)
 				for ally: FighterData in allies:
 					if ally.health > 0:
-						use_ability_on_teammate(unit, ally, heal)
+						use_ability_on_teammate(unit, ally, heal, true)
 			else:
 				use_ability_on_teammate(unit, wounded, heal)
 			return
@@ -406,9 +412,10 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 				if any_unbuffed:
 					unit.mana -= buff.mana_cost
 					_set_cooldown(unit, buff)
+					combat_message.emit(buff.flavor_text)
 					for ally: FighterData in allies:
 						if ally.health > 0:
-							use_ability_on_teammate(unit, ally, buff)
+							use_ability_on_teammate(unit, ally, buff, true)
 					return
 			else:
 				var buff_target: FighterData = null
@@ -442,8 +449,9 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		unit.mana -= ability.mana_cost
 		_set_cooldown(unit, ability)
 		if ability.target_all:
+			combat_message.emit(ability.flavor_text)
 			for target: FighterData in targets.duplicate():
-				use_ability_on_enemy(unit, target, ability)
+				use_ability_on_enemy(unit, target, ability, true)
 		else:
 			var target: FighterData = _choose_target(unit, targets, magic_ratio)
 			use_ability_on_enemy(unit, target, ability)

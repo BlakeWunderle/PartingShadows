@@ -482,12 +482,14 @@ func _on_ability_selected(index: int) -> void:
 		_set_cooldown(_current_actor, _selected_ability)
 		if _selected_ability.use_on_enemy:
 			_combat_log.add_message("%s targets all enemies!" % _current_actor.character_name)
+			_combat_log.add_message(_selected_ability.flavor_text)
 			for enemy: FighterData in _engine.enemies.duplicate():
-				_engine.use_ability_on_enemy(_current_actor, enemy, _selected_ability)
+				_engine.use_ability_on_enemy(_current_actor, enemy, _selected_ability, true)
 		else:
 			_combat_log.add_message("%s targets all allies!" % _current_actor.character_name)
+			_combat_log.add_message(_selected_ability.flavor_text)
 			for ally: FighterData in _engine.units.duplicate():
-				_engine.use_ability_on_teammate(_current_actor, ally, _selected_ability)
+				_engine.use_ability_on_teammate(_current_actor, ally, _selected_ability, true)
 
 		_player_turn_done.emit()
 	elif _selected_ability.use_on_enemy:
