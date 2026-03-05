@@ -12,6 +12,7 @@ enum TownPhase { INTRO_TEXT, UPGRADING, UPGRADE_REVEAL, OUTRO_TEXT, BRANCH_CHOIC
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
 var _upgrade_label: Label
+var _scene_image: TextureRect
 var _phase: TownPhase = TownPhase.INTRO_TEXT
 var _upgrade_index: int = 0  ## Which party member is choosing
 
@@ -22,6 +23,20 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
+	# Background image (behind everything)
+	_scene_image = TextureRect.new()
+	_scene_image.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_scene_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	add_child(_scene_image)
+
+	# Dark overlay for text readability
+	var overlay := ColorRect.new()
+	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.color = Color(0, 0, 0, 0.55)
+	add_child(overlay)
+
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
 	margin.add_theme_constant_override("margin_left", 80)
@@ -53,6 +68,8 @@ func _build_ui() -> void:
 
 func _start_town() -> void:
 	var battle = GameState.current_battle
+	if not battle.scene_image.is_empty() and ResourceLoader.exists(battle.scene_image):
+		_scene_image.texture = load(battle.scene_image)
 	if not battle.music_track.is_empty():
 		MusicManager.play_music(battle.music_track)
 	else:
