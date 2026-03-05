@@ -594,7 +594,7 @@ func _end_battle() -> void:
 			_combat_log.add_message("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		await get_tree().create_timer(2.0).timeout
 		GameState.advance_to_post_battle()
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
 		GameLog.info("Battle lost: %s" % GameState.current_battle_id)
 		_combat_log.add_message("")

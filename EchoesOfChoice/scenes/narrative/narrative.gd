@@ -67,10 +67,10 @@ func _show_narrative() -> void:
 		_scene_image.texture = null
 	match GameState.game_phase:
 		GameState.GamePhase.NARRATIVE:
-			if not GameState.current_battle.cutscene_track.is_empty():
-				MusicManager.play_music(GameState.current_battle.cutscene_track)
+			if not battle.music_track.is_empty():
+				MusicManager.play_music(battle.music_track)
 			else:
-				MusicManager.play_context(MusicManager.MusicContext.CUTSCENE)
+				MusicManager.play_context(MusicManager.MusicContext.BATTLE)
 			if GameState.narrative_mode == GameState.NarrativeMode.PRE_BATTLE:
 				_dialogue.show_text(GameState.current_battle.pre_battle_text)
 			else:
@@ -170,9 +170,9 @@ func _on_text_finished() -> void:
 					GameState.narrative_mode = GameState.NarrativeMode.POST_BATTLE
 					_show_narrative()
 				else:
-					# Go to battle
+					# Go to battle (keep music playing across transition)
 					GameState.game_phase = GameState.GamePhase.BATTLE
-					SceneManager.change_scene("res://scenes/battle/battle.tscn")
+					SceneManager.change_scene("res://scenes/battle/battle.tscn", 0.4, true)
 			else:
 				# Post-battle: level up first
 				GameState.level_up_party()

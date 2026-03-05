@@ -23,13 +23,14 @@ func preload_scene(path: String) -> void:
 
 
 
-func change_scene(path: String, fade_duration: float = 0.4) -> void:
+func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = false) -> void:
 	if _transitioning:
 		return
 	_transitioning = true
 	GameLog.info("Scene: %s" % path)
 	_fader.mouse_filter = Control.MOUSE_FILTER_STOP
-	MusicManager.stop_music(fade_duration)
+	if not keep_music:
+		MusicManager.stop_music(fade_duration)
 
 	# Kick off threaded load immediately (runs in parallel with fade)
 	if not _preload_requests.has(path):
