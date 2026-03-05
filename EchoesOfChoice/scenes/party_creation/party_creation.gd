@@ -47,12 +47,15 @@ func _ready() -> void:
 		MusicManager.play_music("res://assets/audio/music/cutscene/#12 Cave Horn.wav")
 	else:
 		MusicManager.play_music("res://assets/audio/music/town/Medieval Tavern 03.wav")
-	_class_options = BASE_CLASS_OPTIONS.duplicate()
+	_class_options = BASE_CLASS_OPTIONS.duplicate(true)
 	_class_ids = BASE_CLASS_IDS.duplicate()
 	if UnlockManager.is_unlocked("story_1_complete"):
 		_class_options.append({"label": "Wanderer",
 			"description": "A wilderness-raised fighter who learned to endure the land's magic."})
 		_class_ids.append("Wanderer")
+	if _is_s2():
+		for i: int in range(_class_options.size()):
+			_class_options[i]["label"] = "???"
 	_build_ui()
 	_set_state(State.INTRO)
 
