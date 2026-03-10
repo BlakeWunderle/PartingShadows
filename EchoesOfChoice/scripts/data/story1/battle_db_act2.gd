@@ -3,7 +3,7 @@ class_name BattleDBACT2
 ## Act II battle configurations. The Wilds (Battles 4-8).
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
-const EnemyDB := preload("res://scripts/data/enemy_db.gd")
+const EnemyDB := preload("res://scripts/data/story1/enemy_db.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 

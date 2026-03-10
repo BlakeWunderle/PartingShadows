@@ -3,11 +3,11 @@ class_name BattleStageDB
 ## All battle stages with enemy compositions and balance targets.
 ## Each stage has a story field (1 or 2) for filtering by story.
 
-const EnemyDB := preload("res://scripts/data/enemy_db.gd")
-const EnemyDBS2 := preload("res://scripts/data/enemy_db_s2.gd")
-const EnemyDBS2Act2 := preload("res://scripts/data/enemy_db_s2_act2.gd")
-const EnemyDBS2Act3 := preload("res://scripts/data/enemy_db_s2_act3.gd")
-const EnemyDBS2Act4 := preload("res://scripts/data/enemy_db_s2_act4.gd")
+const EnemyDB := preload("res://scripts/data/story1/enemy_db.gd")
+const EnemyDBS2 := preload("res://scripts/data/story2/enemy_db_s2.gd")
+const EnemyDBS2Act2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
+const EnemyDBS2Act3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
+const EnemyDBS2Act4 := preload("res://scripts/data/story2/enemy_db_s2_act4.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 

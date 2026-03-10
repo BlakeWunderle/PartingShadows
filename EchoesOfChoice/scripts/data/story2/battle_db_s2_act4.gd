@@ -5,7 +5,7 @@ class_name BattleDBS2Act4
 ##   -> [Sera's sacrifice] -> EyeOfOblivion (Phase 2, final)
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
-const EnemyDBS2Act4 := preload("res://scripts/data/enemy_db_s2_act4.gd")
+const EnemyDBS2Act4 := preload("res://scripts/data/story2/enemy_db_s2_act4.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:

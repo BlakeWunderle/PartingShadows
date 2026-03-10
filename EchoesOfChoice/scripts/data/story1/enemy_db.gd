@@ -4,7 +4,7 @@ class_name EnemyDB
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityDB := preload("res://scripts/data/ability_db.gd")
-const EAB := preload("res://scripts/data/enemy_ability_db.gd")
+const EAB := preload("res://scripts/data/story1/enemy_ability_db.gd")
 
 
 static func _es(base_min: int, base_max: int, gmin: int, gmax: int, level: int, base_level: int = 1) -> int:

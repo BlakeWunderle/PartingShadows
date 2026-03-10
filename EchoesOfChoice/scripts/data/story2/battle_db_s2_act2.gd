@@ -6,7 +6,7 @@ class_name BattleDBS2Act2
 ##   -> LighthouseStorm
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
-const EnemyDBS2Act2 := preload("res://scripts/data/enemy_db_s2_act2.gd")
+const EnemyDBS2Act2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:

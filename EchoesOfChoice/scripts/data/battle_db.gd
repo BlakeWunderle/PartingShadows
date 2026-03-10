@@ -4,14 +4,14 @@ class_name BattleDB
 ## Narrative text copied from C# battle classes.
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
-const EnemyDB := preload("res://scripts/data/enemy_db.gd")
-const Act2 := preload("res://scripts/data/battle_db_act2.gd")
-const Act3 := preload("res://scripts/data/battle_db_act3.gd")
-const Act45 := preload("res://scripts/data/battle_db_act45.gd")
-const S2 := preload("res://scripts/data/battle_db_s2.gd")
-const S2Act2 := preload("res://scripts/data/battle_db_s2_act2.gd")
-const S2Act3 := preload("res://scripts/data/battle_db_s2_act3.gd")
-const S2Act4 := preload("res://scripts/data/battle_db_s2_act4.gd")
+const EnemyDB := preload("res://scripts/data/story1/enemy_db.gd")
+const Act2 := preload("res://scripts/data/story1/battle_db_act2.gd")
+const Act3 := preload("res://scripts/data/story1/battle_db_act3.gd")
+const Act45 := preload("res://scripts/data/story1/battle_db_act45.gd")
+const S2 := preload("res://scripts/data/story2/battle_db_s2.gd")
+const S2Act2 := preload("res://scripts/data/story2/battle_db_s2_act2.gd")
+const S2Act3 := preload("res://scripts/data/story2/battle_db_s2_act3.gd")
+const S2Act4 := preload("res://scripts/data/story2/battle_db_s2_act4.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:

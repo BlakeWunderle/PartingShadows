@@ -3,7 +3,7 @@ class_name EnemyDBS2Act4
 ## Story 2 Act IV enemy factory: the Eye's domain.
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
-const EAB := preload("res://scripts/data/enemy_ability_db_s2.gd")
+const EAB := preload("res://scripts/data/story2/enemy_ability_db_s2.gd")
 
 
 static func _es(base_min: int, base_max: int, gmin: int, gmax: int, level: int, base_level: int = 1) -> int:

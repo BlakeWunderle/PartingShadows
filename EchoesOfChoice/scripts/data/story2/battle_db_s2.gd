@@ -5,7 +5,7 @@ class_name BattleDBS2
 ##   → (TranquilPool | TorchChamber) → CaveMerchant → CaveExit
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
-const EnemyDBS2 := preload("res://scripts/data/enemy_db_s2.gd")
+const EnemyDBS2 := preload("res://scripts/data/story2/enemy_db_s2.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:
