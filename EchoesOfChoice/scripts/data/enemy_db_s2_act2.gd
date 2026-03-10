@@ -203,31 +203,32 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 
 # =============================================================================
 # P7: Blackwater Bay (unique enemies)
+# All stats match base SP/AL exactly, HP -3% only
 # =============================================================================
 
 static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Drowned Sailor", lvl)
-	f.health = _es(202, 232, 5, 7, lvl, 9); f.max_health = f.health  # +20-25 HP
-	f.mana = _es(15, 19, 2, 4, lvl, 9); f.max_mana = f.mana
+	f.health = _es(196, 223, 5, 8, lvl, 9); f.max_health = f.health
+	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = _es(8, 11, 0, 2, lvl, 9)
-	f.physical_defense = _es(16, 21, 1, 2, lvl, 9)
-	f.magic_attack = _es(58, 66, 3, 5, lvl, 9)  # +2-3 Mag ATK
-	f.magic_defense = _es(29, 36, 2, 3, lvl, 9)
-	f.speed = _es(31, 37, 2, 3, lvl, 9)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 16
+	f.physical_defense = _es(17, 22, 1, 2, lvl, 9)
+	f.magic_attack = _es(56, 64, 3, 5, lvl, 9)
+	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
+	f.speed = _es(32, 38, 2, 3, lvl, 9)
+	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.spectral_chill(), EAB.memory_fog()]
 	return f
 
 
 static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Depth Horror", lvl)
-	f.health = _es(217, 247, 5, 8, lvl, 9); f.max_health = f.health  # +24-27 HP
-	f.mana = _es(15, 19, 2, 3, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(9, 13, 0, 2, lvl, 9)
-	f.physical_defense = _es(27, 33, 2, 3, lvl, 9)
-	f.magic_attack = _es(53, 60, 3, 5, lvl, 9)  # +2-3 Mag ATK
-	f.magic_defense = _es(25, 31, 2, 3, lvl, 9)
-	f.speed = _es(23, 29, 1, 3, lvl, 9)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 7
+	f.health = _es(208, 237, 6, 9, lvl, 9); f.max_health = f.health
+	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 9)
+	f.physical_defense = _es(29, 35, 2, 3, lvl, 9)
+	f.magic_attack = _es(51, 58, 3, 5, lvl, 9)
+	f.magic_defense = _es(27, 33, 2, 3, lvl, 9)
+	f.speed = _es(24, 30, 1, 3, lvl, 9)
+	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.depth_pulse(), EAB.tidal_drain()]
 	return f
