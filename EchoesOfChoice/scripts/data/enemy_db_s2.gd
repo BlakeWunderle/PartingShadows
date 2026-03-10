@@ -63,11 +63,11 @@ static func create_crystal_spider(n: String, lvl: int = 1) -> FighterData:
 
 static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Shade Crawler", lvl)
-	f.health = _es(54, 63, 3, 5, lvl, 2); f.max_health = f.health
+	f.health = _es(52, 61, 3, 5, lvl, 2); f.max_health = f.health  # -2 HP
 	f.mana = _es(7, 11, 1, 3, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = _es(15, 19, 1, 3, lvl, 2)
+	f.physical_attack = _es(15, 19, 1, 3, lvl, 2)  # Restored
 	f.physical_defense = _es(9, 12, 1, 2, lvl, 2)
-	f.magic_attack = _es(13, 16, 1, 2, lvl, 2)
+	f.magic_attack = _es(13, 16, 1, 2, lvl, 2)  # Restored
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 2)
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 15
@@ -77,11 +77,11 @@ static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 
 static func create_echo_wisp(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Echo Wisp", lvl)
-	f.health = _es(37, 45, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(36, 44, 2, 4, lvl, 2); f.max_health = f.health  # -1 HP
 	f.mana = _es(11, 15, 1, 3, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 2)
-	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)
+	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)  # Restored
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 2)
 	f.speed = _es(27, 33, 2, 3, lvl, 2)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 18
