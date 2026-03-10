@@ -6,6 +6,8 @@ class_name BattleStageDB
 const EnemyDB := preload("res://scripts/data/enemy_db.gd")
 const EnemyDBS2 := preload("res://scripts/data/enemy_db_s2.gd")
 const EnemyDBS2Act2 := preload("res://scripts/data/enemy_db_s2_act2.gd")
+const EnemyDBS2Act3 := preload("res://scripts/data/enemy_db_s2_act3.gd")
+const EnemyDBS2Act4 := preload("res://scripts/data/enemy_db_s2_act4.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 
@@ -71,6 +73,28 @@ static func get_all_stages() -> Array:
 		_s("S2_BlackwaterBay", 9, "tier2", 0.68, 7, 2),
 		# Prog 8: Tier 2, 10 level ups (Act II boss)
 		_s("S2_LighthouseStorm", 10, "tier2", 0.66, 8, 2),
+		# --- Story 2 Act III: The Truth ---
+		# Prog 9: Tier 2, 11 level ups (beneath the lighthouse)
+		_s("S2_BeneathTheLighthouse", 11, "tier2", 0.62, 9, 2),
+		# Prog 10: Tier 2, 12 level ups (branch pair)
+		_s("S2_MemoryVault", 12, "tier2", 0.60, 10, 2),
+		_s("S2_EchoGallery", 12, "tier2", 0.60, 10, 2),
+		# Prog 11: Tier 2, 13 level ups (convergence + reveal)
+		_s("S2_ShatteredSanctum", 13, "tier2", 0.58, 11, 2),
+		# Prog 12: Tier 2, 14 level ups (branch pair)
+		_s("S2_GuardiansThreshold", 14, "tier2", 0.55, 12, 2),
+		_s("S2_ForgottenArchive", 14, "tier2", 0.55, 12, 2),
+		# Prog 13: Tier 2, 15 level ups (Act III boss)
+		_s("S2_TheReveal", 15, "tier2", 0.52, 13, 2),
+		# --- Story 2 Act IV: The Reckoning ---
+		# Prog 14: Tier 2, 16 level ups
+		_s("S2_DepthsOfRemembrance", 16, "tier2", 0.50, 14, 2),
+		# Prog 15: Tier 2, 17 level ups
+		_s("S2_MawOfTheEye", 17, "tier2", 0.48, 15, 2),
+		# Prog 16: Tier 2, 18 level ups (Phase 1 boss)
+		_s("S2_EyeAwakening", 18, "tier2", 0.45, 16, 2),
+		# Prog 17: Tier 2, 19 level ups (final boss)
+		_s("S2_EyeOfOblivion", 19, "tier2", 0.42, 17, 2),
 	]
 
 
@@ -233,6 +257,49 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 		"S2_LighthouseStorm":
 			return [EnemyDBS2Act2.create_tidecaller_revenant("The Keeper"),
 				EnemyDBS2Act2.create_salt_phantom("The Watcher")]
+		# Story 2 Act III
+		"S2_BeneathTheLighthouse":
+			return [EnemyDBS2Act3.create_memory_wisp("Glimmer"),
+				EnemyDBS2Act3.create_memory_wisp("Shimmer"),
+				EnemyDBS2Act3.create_echo_sentinel("Resonance")]
+		"S2_MemoryVault":
+			return [EnemyDBS2Act3.create_thought_eater("Gnaw"),
+				EnemyDBS2Act3.create_memory_wisp("Shimmer"),
+				EnemyDBS2Act3.create_echo_sentinel("Vigil")]
+		"S2_EchoGallery":
+			return [EnemyDBS2Act3.create_hollow_watcher("Flicker"),
+				EnemyDBS2Act3.create_grief_shade("Reverb"),
+				EnemyDBS2Act3.create_memory_wisp("Whisper")]
+		"S2_ShatteredSanctum":
+			return [EnemyDBS2Act3.create_mirror_self("Reflection"),
+				EnemyDBS2Act3.create_void_weaver("Unmaker"),
+				EnemyDBS2Act3.create_grief_shade("Mourning")]
+		"S2_GuardiansThreshold":
+			return [EnemyDBS2Act3.create_mnemonic_golem("Remembrance"),
+				EnemyDBS2Act3.create_void_weaver("Erasure"),
+				EnemyDBS2Act3.create_mirror_self("Echo")]
+		"S2_ForgottenArchive":
+			return [EnemyDBS2Act3.create_mnemonic_golem("Archivist"),
+				EnemyDBS2Act3.create_hollow_watcher("Cataloger"),
+				EnemyDBS2Act3.create_memory_wisp("Lost Entry"),
+				EnemyDBS2Act3.create_echo_sentinel("Faded Page")]
+		"S2_TheReveal":
+			return [EnemyDBS2Act3.create_the_warden("The Warden"),
+				EnemyDBS2Act3.create_fractured_protector("Sera")]
+		# Story 2 Act IV
+		"S2_DepthsOfRemembrance":
+			return [EnemyDBS2Act4.create_gaze_stalker("Lidwatch"),
+				EnemyDBS2Act4.create_gaze_stalker("Duskpupil"),
+				EnemyDBS2Act4.create_memory_harvester("The Gleaner")]
+		"S2_MawOfTheEye":
+			return [EnemyDBS2Act4.create_thoughtform_knight("Oathbound"),
+				EnemyDBS2Act4.create_oblivion_shade("The Hollow"),
+				EnemyDBS2Act4.create_memory_harvester("The Reaper")]
+		"S2_EyeAwakening":
+			return [EnemyDBS2Act4.create_the_iris("The Iris"),
+				EnemyDBS2Act4.create_oblivion_shade("Nullsight")]
+		"S2_EyeOfOblivion":
+			return [EnemyDBS2Act4.create_the_lidless_eye("The Lidless Eye")]
 		_:
 			push_error("Unknown stage: %s" % stage_name)
 			return []

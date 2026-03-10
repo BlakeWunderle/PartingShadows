@@ -67,8 +67,8 @@ static func s2_memory_vault() -> BattleData:
 	b.scene_image = "res://assets/art/battles/memory_vault.png"
 	b.enemies = [
 		EnemyDBS2Act3.create_thought_eater("Gnaw"),
-		EnemyDBS2Act3.create_grief_shade("Weeping"),
-		EnemyDBS2Act3.create_memory_wisp("Flicker"),
+		EnemyDBS2Act3.create_memory_wisp("Shimmer"),
+		EnemyDBS2Act3.create_echo_sentinel("Vigil"),
 	]
 	b.pre_battle_text = [
 		"Rows of crystalline containers stretch into darkness, each holding a shimmer of captured light. Hundreds of them. Thousands.",
@@ -98,9 +98,9 @@ static func s2_echo_gallery() -> BattleData:
 	b.battle_id = "S2_EchoGallery"
 	b.scene_image = "res://assets/art/battles/echo_gallery.png"
 	b.enemies = [
-		EnemyDBS2Act3.create_hollow_watcher("The Silent"),
-		EnemyDBS2Act3.create_echo_sentinel("Reverb"),
-		EnemyDBS2Act3.create_thought_eater("Whisper"),
+		EnemyDBS2Act3.create_hollow_watcher("Flicker"),
+		EnemyDBS2Act3.create_grief_shade("Reverb"),
+		EnemyDBS2Act3.create_memory_wisp("Whisper"),
 	]
 	b.pre_battle_text = [
 		"A long corridor where the walls are not walls but windows into moments that already happened. Voices repeat in fragments, layered and overlapping.",
@@ -199,7 +199,8 @@ static func s2_forgotten_archive() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act3.create_mnemonic_golem("Archivist"),
 		EnemyDBS2Act3.create_hollow_watcher("Cataloger"),
-		EnemyDBS2Act3.create_grief_shade("Lost Entry"),
+		EnemyDBS2Act3.create_memory_wisp("Lost Entry"),
+		EnemyDBS2Act3.create_echo_sentinel("Faded Page"),
 	]
 	b.pre_battle_text = [
 		"The archive stretches into shadow. Shelf after shelf of records, each one a life unmade. Hundreds of names. Hundreds of people who walked into the Eye's reach and walked out empty.",

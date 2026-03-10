@@ -31,56 +31,56 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Gaze Stalker", lvl)
-	f.health = _es(130, 148, 5, 7, lvl, 14); f.max_health = f.health
-	f.mana = _es(10, 14, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(38, 44, 2, 4, lvl, 14)
-	f.physical_defense = _es(18, 22, 1, 3, lvl, 14)
-	f.magic_attack = _es(10, 14, 0, 2, lvl, 14)
-	f.magic_defense = _es(16, 20, 1, 2, lvl, 14)
-	f.speed = _es(34, 40, 2, 3, lvl, 14)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
+	f.health = _es(309, 351, 5, 8, lvl, 14); f.max_health = f.health
+	f.mana = _es(18, 23, 1, 3, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(90, 105, 3, 5, lvl, 14)
+	f.physical_defense = _es(35, 43, 2, 3, lvl, 14)
+	f.magic_attack = _es(19, 27, 1, 2, lvl, 14)
+	f.magic_defense = _es(31, 39, 2, 3, lvl, 14)
+	f.speed = _es(36, 42, 2, 3, lvl, 14)
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.piercing_gaze_strike(), EAB.focus_break()]
 	return f
 
 
 static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Memory Harvester", lvl)
-	f.health = _es(140, 158, 5, 7, lvl, 14); f.max_health = f.health
-	f.mana = _es(22, 26, 2, 4, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = _es(14, 18, 1, 2, lvl, 14)
-	f.magic_attack = _es(38, 44, 2, 4, lvl, 14)
-	f.magic_defense = _es(22, 26, 2, 3, lvl, 14)
-	f.speed = _es(28, 34, 2, 3, lvl, 14)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
+	f.health = _es(358, 404, 5, 8, lvl, 14); f.max_health = f.health
+	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(20, 28, 1, 2, lvl, 14)
+	f.physical_defense = _es(29, 37, 2, 3, lvl, 14)
+	f.magic_attack = _es(97, 112, 3, 5, lvl, 14)
+	f.magic_defense = _es(46, 54, 2, 4, lvl, 14)
+	f.speed = _es(30, 36, 2, 3, lvl, 14)
+	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 11
 	f.abilities = [EAB.harvest_thought(), EAB.mass_extraction()]
 	return f
 
 
 static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Oblivion Shade", lvl)
-	f.health = _es(120, 136, 4, 6, lvl, 14); f.max_health = f.health
-	f.mana = _es(18, 22, 2, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = _es(12, 16, 1, 2, lvl, 14)
-	f.magic_attack = _es(36, 42, 2, 4, lvl, 14)
-	f.magic_defense = _es(20, 24, 2, 3, lvl, 14)
-	f.speed = _es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 16
+	f.health = _es(310, 351, 5, 8, lvl, 14); f.max_health = f.health
+	f.mana = _es(28, 34, 2, 4, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(20, 28, 1, 2, lvl, 14)
+	f.physical_defense = _es(25, 34, 2, 3, lvl, 14)
+	f.magic_attack = _es(93, 109, 3, 5, lvl, 14)
+	f.magic_defense = _es(42, 51, 2, 4, lvl, 14)
+	f.speed = _es(34, 40, 2, 3, lvl, 14)
+	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.wave_of_oblivion(), EAB.nihil_bolt()]
 	return f
 
 
 static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Thoughtform Knight", lvl)
-	f.health = _es(190, 210, 6, 9, lvl, 14); f.max_health = f.health
-	f.mana = _es(12, 16, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(40, 46, 2, 4, lvl, 14)
-	f.physical_defense = _es(28, 32, 2, 4, lvl, 14)
-	f.magic_attack = _es(8, 11, 0, 1, lvl, 14)
-	f.magic_defense = _es(22, 26, 2, 3, lvl, 14)
-	f.speed = _es(22, 28, 1, 2, lvl, 14)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 6
+	f.health = _es(595, 660, 7, 10, lvl, 14); f.max_health = f.health
+	f.mana = _es(23, 29, 2, 3, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(125, 145, 3, 5, lvl, 14)
+	f.physical_defense = _es(60, 70, 3, 5, lvl, 14)
+	f.magic_attack = _es(16, 23, 1, 2, lvl, 14)
+	f.magic_defense = _es(48, 56, 2, 4, lvl, 14)
+	f.speed = _es(24, 30, 1, 3, lvl, 14)
+	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 7
 	f.abilities = [EAB.memory_blade(), EAB.ironclad_will()]
 	return f
 
@@ -91,27 +91,27 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 
 static func create_the_iris(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "The Iris", lvl)
-	f.health = _es(260, 290, 6, 9, lvl, 15); f.max_health = f.health
-	f.mana = _es(28, 32, 2, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(14, 18, 0, 2, lvl, 15)
-	f.physical_defense = _es(24, 28, 2, 3, lvl, 15)
-	f.magic_attack = _es(48, 55, 3, 5, lvl, 15)
-	f.magic_defense = _es(30, 34, 2, 4, lvl, 15)
-	f.speed = _es(30, 36, 2, 3, lvl, 15)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 8
+	f.health = _es(755, 842, 8, 11, lvl, 15); f.max_health = f.health
+	f.mana = _es(44, 52, 3, 5, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = _es(27, 36, 1, 3, lvl, 15)
+	f.physical_defense = _es(59, 70, 3, 5, lvl, 15)
+	f.magic_attack = _es(137, 158, 4, 7, lvl, 15)
+	f.magic_defense = _es(74, 84, 3, 5, lvl, 15)
+	f.speed = _es(32, 38, 2, 3, lvl, 15)
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.prismatic_blast(), EAB.refraction_beam(), EAB.crystalline_ward()]
 	return f
 
 
 static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "The Lidless Eye", lvl)
-	f.health = _es(220, 250, 5, 8, lvl, 15); f.max_health = f.health
-	f.mana = _es(26, 30, 2, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 15)
-	f.physical_defense = _es(20, 24, 2, 3, lvl, 15)
-	f.magic_attack = _es(44, 50, 3, 5, lvl, 15)
-	f.magic_defense = _es(26, 30, 2, 4, lvl, 15)
-	f.speed = _es(28, 34, 2, 3, lvl, 15)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 10
+	f.health = _es(1029, 1169, 9, 13, lvl, 15); f.max_health = f.health
+	f.mana = _es(52, 60, 3, 5, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = _es(22, 30, 1, 3, lvl, 15)
+	f.physical_defense = _es(62, 74, 3, 5, lvl, 15)
+	f.magic_attack = _es(141, 160, 5, 8, lvl, 15)
+	f.magic_defense = _es(81, 94, 4, 6, lvl, 15)
+	f.speed = _es(33, 39, 2, 4, lvl, 15)
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.gaze_of_forgetting(), EAB.memory_devour(), EAB.final_blink()]
 	return f

@@ -131,7 +131,7 @@ static func s2_eye_awakening() -> BattleData:
 static func s2_eye_of_oblivion() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_EyeOfOblivion"
-	b.scene_image = "res://assets/art/battles/the_eye.png"
+	b.scene_image = "res://assets/art/battles/eye_of_oblivion.png"
 	b.enemies = [
 		EnemyDBS2Act4.create_the_lidless_eye("The Lidless Eye"),
 	]
