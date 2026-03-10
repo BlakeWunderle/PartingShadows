@@ -225,9 +225,9 @@ static func s2_blackwater_bay() -> BattleData:
 	b.battle_id = "S2_BlackwaterBay"
 	b.scene_image = "res://assets/art/battles/blackwater_bay.png"
 	b.enemies = [
-		EnemyDBS2Act2.create_salt_phantom("The Drowned"),
-		EnemyDBS2Act2.create_salt_phantom("The Forgotten"),
-		EnemyDBS2Act2.create_abyssal_lurker("Undertow"),
+		EnemyDBS2Act2.create_drowned_sailor("The Drowned"),
+		EnemyDBS2Act2.create_drowned_sailor("The Forgotten"),
+		EnemyDBS2Act2.create_depth_horror("Undertow"),
 	]
 	b.pre_battle_text = [
 		"Blackwater Bay. A stretch of dark-sand beach where the town's fishing boats do not go.",

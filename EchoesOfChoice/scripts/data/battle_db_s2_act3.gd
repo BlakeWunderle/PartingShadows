@@ -32,9 +32,9 @@ static func s2_beneath_the_lighthouse() -> BattleData:
 	b.battle_id = "S2_BeneathTheLighthouse"
 	b.scene_image = "res://assets/art/battles/memory_sanctum.png"
 	b.enemies = [
-		EnemyDBS2Act3.create_memory_wisp("Glimmer"),
-		EnemyDBS2Act3.create_memory_wisp("Shimmer"),
-		EnemyDBS2Act3.create_echo_sentinel("Resonance"),
+		EnemyDBS2Act3.create_fading_wisp("Glimmer"),
+		EnemyDBS2Act3.create_fading_wisp("Shimmer"),
+		EnemyDBS2Act3.create_dim_guardian("Resonance"),
 	]
 	b.pre_battle_text = [
 		"The key with the wave-and-eye symbol fits the door beneath the lighthouse foundation. A staircase spirals downward into blue-lit stone.",
@@ -166,9 +166,9 @@ static func s2_guardians_threshold() -> BattleData:
 	b.battle_id = "S2_GuardiansThreshold"
 	b.scene_image = "res://assets/art/battles/shattered_sanctum.png"
 	b.enemies = [
-		EnemyDBS2Act3.create_mnemonic_golem("Remembrance"),
-		EnemyDBS2Act3.create_void_weaver("Erasure"),
-		EnemyDBS2Act3.create_mirror_self("Echo"),
+		EnemyDBS2Act3.create_ward_construct("Remembrance"),
+		EnemyDBS2Act3.create_null_phantom("Erasure"),
+		EnemyDBS2Act3.create_threshold_echo("Echo"),
 	]
 	b.pre_battle_text = [
 		"The inner ward. Massive crystalline constructs stand sentinel before the sanctum core, inert until the party crosses an invisible threshold.",
@@ -197,10 +197,10 @@ static func s2_forgotten_archive() -> BattleData:
 	b.battle_id = "S2_ForgottenArchive"
 	b.scene_image = "res://assets/art/battles/forgotten_archive.png"
 	b.enemies = [
-		EnemyDBS2Act3.create_mnemonic_golem("Archivist"),
-		EnemyDBS2Act3.create_hollow_watcher("Cataloger"),
-		EnemyDBS2Act3.create_memory_wisp("Lost Entry"),
-		EnemyDBS2Act3.create_echo_sentinel("Faded Page"),
+		EnemyDBS2Act3.create_archive_keeper("Archivist"),
+		EnemyDBS2Act3.create_silent_archivist("Cataloger"),
+		EnemyDBS2Act3.create_lost_record("Lost Entry"),
+		EnemyDBS2Act3.create_faded_page("Faded Page"),
 	]
 	b.pre_battle_text = [
 		"The archive stretches into shadow. Shelf after shelf of records, each one a life unmade. Hundreds of names. Hundreds of people who walked into the Eye's reach and walked out empty.",

@@ -251,17 +251,17 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBS2Act2.create_stormwrack_raptor("Voltwing"),
 				EnemyDBS2Act2.create_blighted_gull("Shriek")]
 		"S2_BlackwaterBay":
-			return [EnemyDBS2Act2.create_salt_phantom("The Drowned"),
-				EnemyDBS2Act2.create_salt_phantom("The Forgotten"),
-				EnemyDBS2Act2.create_abyssal_lurker("Undertow")]
+			return [EnemyDBS2Act2.create_drowned_sailor("The Drowned"),
+				EnemyDBS2Act2.create_drowned_sailor("The Forgotten"),
+				EnemyDBS2Act2.create_depth_horror("Undertow")]
 		"S2_LighthouseStorm":
 			return [EnemyDBS2Act2.create_tidecaller_revenant("The Keeper"),
 				EnemyDBS2Act2.create_salt_phantom("The Watcher")]
 		# Story 2 Act III
 		"S2_BeneathTheLighthouse":
-			return [EnemyDBS2Act3.create_memory_wisp("Glimmer"),
-				EnemyDBS2Act3.create_memory_wisp("Shimmer"),
-				EnemyDBS2Act3.create_echo_sentinel("Resonance")]
+			return [EnemyDBS2Act3.create_fading_wisp("Glimmer"),
+				EnemyDBS2Act3.create_fading_wisp("Shimmer"),
+				EnemyDBS2Act3.create_dim_guardian("Resonance")]
 		"S2_MemoryVault":
 			return [EnemyDBS2Act3.create_thought_eater("Gnaw"),
 				EnemyDBS2Act3.create_memory_wisp("Shimmer"),
@@ -275,14 +275,14 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBS2Act3.create_void_weaver("Unmaker"),
 				EnemyDBS2Act3.create_grief_shade("Mourning")]
 		"S2_GuardiansThreshold":
-			return [EnemyDBS2Act3.create_mnemonic_golem("Remembrance"),
-				EnemyDBS2Act3.create_void_weaver("Erasure"),
-				EnemyDBS2Act3.create_mirror_self("Echo")]
+			return [EnemyDBS2Act3.create_ward_construct("Remembrance"),
+				EnemyDBS2Act3.create_null_phantom("Erasure"),
+				EnemyDBS2Act3.create_threshold_echo("Echo")]
 		"S2_ForgottenArchive":
-			return [EnemyDBS2Act3.create_mnemonic_golem("Archivist"),
-				EnemyDBS2Act3.create_hollow_watcher("Cataloger"),
-				EnemyDBS2Act3.create_memory_wisp("Lost Entry"),
-				EnemyDBS2Act3.create_echo_sentinel("Faded Page")]
+			return [EnemyDBS2Act3.create_archive_keeper("Archivist"),
+				EnemyDBS2Act3.create_silent_archivist("Cataloger"),
+				EnemyDBS2Act3.create_lost_record("Lost Entry"),
+				EnemyDBS2Act3.create_faded_page("Faded Page")]
 		"S2_TheReveal":
 			return [EnemyDBS2Act3.create_the_warden("The Warden"),
 				EnemyDBS2Act3.create_fractured_protector("Sera")]
