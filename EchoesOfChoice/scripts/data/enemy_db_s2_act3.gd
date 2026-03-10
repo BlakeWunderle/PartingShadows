@@ -183,133 +183,135 @@ static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 
 static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Fading Wisp", lvl)
-	f.health = _es(210, 245, 4, 6, lvl, 10); f.max_health = f.health
-	f.mana = _es(24, 30, 2, 3, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = _es(9, 13, 0, 2, lvl, 10)
-	f.physical_defense = _es(18, 24, 1, 3, lvl, 10)
-	f.magic_attack = _es(56, 66, 2, 4, lvl, 10)
-	f.magic_defense = _es(28, 34, 2, 3, lvl, 10)
-	f.speed = _es(30, 36, 2, 3, lvl, 10)
-	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 14
-	f.abilities = [EAB.recall_bolt(), EAB.memory_drain()]
+	f.health = _es(215, 250, 4, 7, lvl, 10); f.max_health = f.health  # -6 to -8 HP
+	f.mana = _es(26, 32, 2, 3, lvl, 10); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 10)
+	f.physical_defense = _es(20, 26, 1, 3, lvl, 10)
+	f.magic_attack = _es(66, 76, 2, 4, lvl, 10)  # -1 to -2 Mag ATK
+	f.magic_defense = _es(30, 37, 2, 3, lvl, 10)
+	f.speed = _es(31, 37, 2, 3, lvl, 10)
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 16
+	f.abilities = [EAB.recall_bolt(), EAB.hallucinate()]  # Replaced debuff with pure damage
 	return f
 
 
 static func create_dim_guardian(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Dim Guardian", lvl)
-	f.health = _es(310, 355, 4, 7, lvl, 10); f.max_health = f.health
-	f.mana = _es(11, 15, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = _es(46, 55, 2, 4, lvl, 10)
-	f.physical_defense = _es(35, 42, 2, 3, lvl, 10)
-	f.magic_attack = _es(7, 11, 0, 1, lvl, 10)
-	f.magic_defense = _es(30, 37, 1, 3, lvl, 10)
-	f.speed = _es(22, 28, 1, 2, lvl, 10)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 5
-	f.abilities = [EAB.crystal_strike(), EAB.ward_of_echoes()]
+	f.health = _es(312, 355, 5, 8, lvl, 10); f.max_health = f.health  # -12 to -14 HP
+	f.mana = _es(12, 16, 1, 2, lvl, 10); f.max_mana = f.mana
+	f.physical_attack = _es(53, 63, 2, 4, lvl, 10)  # -1 Phys ATK
+	f.physical_defense = _es(39, 46, 2, 3, lvl, 10)
+	f.magic_attack = _es(8, 12, 0, 1, lvl, 10)
+	f.magic_defense = _es(33, 40, 1, 3, lvl, 10)
+	f.speed = _es(23, 29, 1, 2, lvl, 10)
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 5
+	f.abilities = [EAB.crystal_strike(), EAB.gnash()]  # Replaced defense buff with pure damage
 	return f
 
 
 # =============================================================================
 # P12 GT: Guardian's Threshold (unique enemies)
+# All stats match base Golem/VW/MS exactly, HP -2% only
 # =============================================================================
 
 static func create_ward_construct(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Ward Construct", lvl)
-	f.health = _es(475, 545, 6, 9, lvl, 12); f.max_health = f.health  # +20-25 HP
+	f.health = _es(455, 519, 6, 9, lvl, 12); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 2, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = _es(97, 112, 3, 5, lvl, 12)  # +4 Phys ATK
-	f.physical_defense = _es(51, 60, 2, 4, lvl, 12)
+	f.physical_attack = _es(97, 112, 3, 5, lvl, 12)
+	f.physical_defense = _es(53, 62, 2, 4, lvl, 12)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 12)
-	f.magic_defense = _es(41, 48, 2, 3, lvl, 12)
+	f.magic_defense = _es(42, 49, 2, 3, lvl, 12)
 	f.speed = _es(19, 25, 1, 2, lvl, 12)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 4
+	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 4
 	f.abilities = [EAB.memory_slam(), EAB.crystallize()]
 	return f
 
 
 static func create_null_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Null Phantom", lvl)
-	f.health = _es(335, 380, 4, 7, lvl, 12); f.max_health = f.health  # +20 HP
-	f.mana = _es(31, 37, 2, 4, lvl, 12); f.max_mana = f.mana
+	f.health = _es(317, 360, 4, 7, lvl, 12); f.max_health = f.health
+	f.mana = _es(32, 38, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(25, 32, 1, 3, lvl, 12)
-	f.magic_attack = _es(72, 83, 3, 5, lvl, 12)  # +4 Mag ATK
-	f.magic_defense = _es(46, 54, 2, 4, lvl, 12)
+	f.physical_defense = _es(26, 33, 1, 3, lvl, 12)
+	f.magic_attack = _es(71, 82, 3, 5, lvl, 12)
+	f.magic_defense = _es(48, 56, 2, 4, lvl, 12)
 	f.speed = _es(29, 35, 2, 3, lvl, 12)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.void_bolt(), EAB.unravel()]
 	return f
 
 
 static func create_threshold_echo(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Threshold Echo", lvl)
-	f.health = _es(371, 421, 5, 8, lvl, 12); f.max_health = f.health  # +19 HP
-	f.mana = _es(25, 31, 2, 3, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = _es(67, 77, 2, 4, lvl, 12)  # +3 both attacks
-	f.physical_defense = _es(32, 40, 2, 3, lvl, 12)
-	f.magic_attack = _es(67, 77, 2, 4, lvl, 12)  # +3 both attacks
-	f.magic_defense = _es(32, 40, 2, 3, lvl, 12)
-	f.speed = _es(30, 36, 2, 3, lvl, 12)
-	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 13
+	f.health = _es(354, 404, 5, 8, lvl, 12); f.max_health = f.health
+	f.mana = _es(26, 32, 2, 3, lvl, 12); f.max_mana = f.mana
+	f.physical_attack = _es(67, 77, 2, 4, lvl, 12)
+	f.physical_defense = _es(33, 41, 2, 3, lvl, 12)
+	f.magic_attack = _es(67, 77, 2, 4, lvl, 12)
+	f.magic_defense = _es(33, 41, 2, 3, lvl, 12)
+	f.speed = _es(31, 37, 2, 3, lvl, 12)
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.mirrored_slash(), EAB.reflected_spell()]
 	return f
 
 
 # =============================================================================
 # P12 FA: Forgotten Archive (unique enemies)
+# All stats match base Golem/HW/MW/ES exactly, HP -4% only
 # =============================================================================
 
 static func create_archive_keeper(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Archive Keeper", lvl)
-	f.health = _es(485, 555, 6, 9, lvl, 12); f.max_health = f.health  # +37-43 HP
+	f.health = _es(445, 509, 6, 9, lvl, 12); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 2, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = _es(97, 112, 3, 5, lvl, 12)  # +7-8 Phys ATK
-	f.physical_defense = _es(50, 59, 2, 4, lvl, 12)
+	f.physical_attack = _es(97, 112, 3, 5, lvl, 12)
+	f.physical_defense = _es(53, 62, 2, 4, lvl, 12)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 12)
-	f.magic_defense = _es(40, 47, 2, 3, lvl, 12)
-	f.speed = _es(18, 24, 1, 2, lvl, 12)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 4
+	f.magic_defense = _es(42, 49, 2, 3, lvl, 12)
+	f.speed = _es(19, 25, 1, 2, lvl, 12)
+	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 4
 	f.abilities = [EAB.memory_slam(), EAB.crystallize()]
 	return f
 
 
 static func create_silent_archivist(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Silent Archivist", lvl)
-	f.health = _es(373, 426, 5, 8, lvl, 11); f.max_health = f.health  # +33-38 HP
+	f.health = _es(338, 385, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(74, 87, 2, 4, lvl, 11)  # +6-7 Phys ATK
-	f.physical_defense = _es(32, 39, 2, 3, lvl, 11)
-	f.magic_attack = _es(11, 15, 0, 2, lvl, 11)
-	f.magic_defense = _es(26, 32, 1, 3, lvl, 11)
-	f.speed = _es(26, 32, 1, 3, lvl, 11)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 7
+	f.physical_attack = _es(73, 85, 2, 4, lvl, 11)
+	f.physical_defense = _es(34, 41, 2, 3, lvl, 11)
+	f.magic_attack = _es(12, 16, 0, 2, lvl, 11)
+	f.magic_defense = _es(27, 34, 1, 3, lvl, 11)
+	f.speed = _es(27, 33, 1, 3, lvl, 11)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.blind_strike(), EAB.sense_intent()]
 	return f
 
 
 static func create_lost_record(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Lost Record", lvl)
-	f.health = _es(265, 310, 4, 7, lvl, 10); f.max_health = f.health  # +30-35 HP
-	f.mana = _es(25, 31, 2, 3, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = _es(9, 13, 0, 2, lvl, 10)
-	f.physical_defense = _es(19, 25, 1, 3, lvl, 10)
-	f.magic_attack = _es(67, 78, 2, 4, lvl, 10)  # +5-6 Mag ATK
-	f.magic_defense = _es(29, 36, 2, 3, lvl, 10)
-	f.speed = _es(30, 36, 2, 3, lvl, 10)
-	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 15
+	f.health = _es(236, 276, 4, 7, lvl, 10); f.max_health = f.health
+	f.mana = _es(26, 32, 2, 3, lvl, 10); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 10)
+	f.physical_defense = _es(20, 26, 1, 3, lvl, 10)
+	f.magic_attack = _es(67, 78, 2, 4, lvl, 10)
+	f.magic_defense = _es(30, 37, 2, 3, lvl, 10)
+	f.speed = _es(31, 37, 2, 3, lvl, 10)
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.recall_bolt(), EAB.memory_drain()]
 	return f
 
 
 static func create_faded_page(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Faded Page", lvl)
-	f.health = _es(380, 435, 5, 8, lvl, 10); f.max_health = f.health  # +35-40 HP
-	f.mana = _es(11, 15, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = _es(55, 66, 2, 4, lvl, 10)  # +5-6 Phys ATK
-	f.physical_defense = _es(37, 44, 2, 3, lvl, 10)
-	f.magic_attack = _es(7, 11, 0, 1, lvl, 10)
-	f.magic_defense = _es(32, 38, 1, 3, lvl, 10)
-	f.speed = _es(22, 28, 1, 2, lvl, 10)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 5
+	f.health = _es(346, 394, 5, 8, lvl, 10); f.max_health = f.health
+	f.mana = _es(12, 16, 1, 2, lvl, 10); f.max_mana = f.mana
+	f.physical_attack = _es(54, 64, 2, 4, lvl, 10)
+	f.physical_defense = _es(39, 46, 2, 3, lvl, 10)
+	f.magic_attack = _es(8, 12, 0, 1, lvl, 10)
+	f.magic_defense = _es(33, 40, 1, 3, lvl, 10)
+	f.speed = _es(23, 29, 1, 2, lvl, 10)
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.crystal_strike(), EAB.ward_of_echoes()]
 	return f
