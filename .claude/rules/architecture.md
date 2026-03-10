@@ -6,18 +6,12 @@ Godot 4 project using GDScript at `EchoesOfChoice/`.
 
 All paths below are relative to `EchoesOfChoice/`.
 
-### Core Data (`scripts/data/`)
+### Core Data -- Shared (`scripts/data/`)
 - `ability_data.gd` -- Ability model (name, type, modifier, targets, flavor text)
 - `ability_db.gd` -- Ability factory: static methods returning AbilityData for enemy abilities
 - `ability_db_player.gd` -- Player ability factory: static methods for all player class abilities
 - `battle_data.gd` -- Battle definition (enemies, narrative text, choices, music_track)
-- `battle_db.gd` -- Battle router: dispatches battle_id to act-specific DB files
-- `battle_db_act2.gd` -- Act II battles (branching wilds)
-- `battle_db_act3.gd` -- Act III battles (city return + tower reveal)
-- `battle_db_act45.gd` -- Act IV-V battles (corruption + final)
-- `battle_db_s2.gd` -- Story 2 battles (placeholder)
-- `enemy_ability_db.gd` -- Enemy-specific ability definitions
-- `enemy_db.gd` -- Enemy factory: creates FighterData for all enemy types
+- `battle_db.gd` -- Battle router: dispatches battle_id to story1/ and story2/ act modules
 - `enums.gd` -- Shared enums (ability types, targeting, etc.)
 - `fighter_data.gd` -- Fighter stat model (HP, MP, ATK, DEF, SPD, abilities, buffs/debuffs)
 - `fighter_db.gd` -- Player class factory: base classes (T0), display names, ability lookups
@@ -25,6 +19,27 @@ All paths below are relative to `EchoesOfChoice/`.
 - `fighter_db_t2.gd` -- Tier 2 class upgrades (A-M) and level-up functions
 - `fighter_db_t2b.gd` -- Tier 2 class upgrades (N-Z) and level-up functions
 - `story_db.gd` -- Story registry: available stories, unlock requirements, first battle IDs
+
+### Core Data -- Story 1 (`scripts/data/story1/`)
+- `battle_db_act1.gd` -- Act I battles (city streets, forest, waypoint, forest waypoint town)
+- `battle_db_act2.gd` -- Act II battles (branching wilds)
+- `battle_db_act3.gd` -- Act III battles (city return + tower reveal)
+- `battle_db_act45.gd` -- Act IV-V battles (corruption + final)
+- `enemy_db.gd` -- Act I enemies (thug, ruffian, pickpocket, wolf, boar, goblin, hound, bandit)
+- `enemy_db_act2.gd` -- Act II enemies (raider through wraith, 26 types)
+- `enemy_db_act345.gd` -- Acts III-V enemies (royal_guard through stranger_final, 17 types)
+- `enemy_ability_db.gd` -- Story 1 enemy ability definitions
+
+### Core Data -- Story 2 (`scripts/data/story2/`)
+- `battle_db_s2.gd` -- Act I battles (cave awakening through cave exit)
+- `battle_db_s2_act2.gd` -- Act II battles (coastal descent through lighthouse storm)
+- `battle_db_s2_act3.gd` -- Act III battles (beneath lighthouse through the reveal)
+- `battle_db_s2_act4.gd` -- Act IV battles (depths through Eye of Oblivion)
+- `enemy_db_s2.gd` -- Act I enemies
+- `enemy_db_s2_act2.gd` -- Act II enemies
+- `enemy_db_s2_act3.gd` -- Act III enemies
+- `enemy_db_s2_act4.gd` -- Act IV enemies
+- `enemy_ability_db_s2.gd` -- Story 2 enemy ability definitions
 
 ### Autoload (`scripts/autoload/`)
 - `logger.gd` -- GameLog autoload: info/warn logging, clipboard export
