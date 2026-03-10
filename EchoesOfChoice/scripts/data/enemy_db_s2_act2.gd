@@ -207,11 +207,11 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 
 static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Drowned Sailor", lvl)
-	f.health = _es(192, 220, 5, 7, lvl, 9); f.max_health = f.health
+	f.health = _es(202, 232, 5, 7, lvl, 9); f.max_health = f.health  # +20-25 HP
 	f.mana = _es(15, 19, 2, 4, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = _es(8, 11, 0, 2, lvl, 9)
 	f.physical_defense = _es(16, 21, 1, 2, lvl, 9)
-	f.magic_attack = _es(50, 58, 3, 5, lvl, 9)
+	f.magic_attack = _es(58, 66, 3, 5, lvl, 9)  # +2-3 Mag ATK
 	f.magic_defense = _es(29, 36, 2, 3, lvl, 9)
 	f.speed = _es(31, 37, 2, 3, lvl, 9)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 16
@@ -221,11 +221,11 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 
 static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Depth Horror", lvl)
-	f.health = _es(204, 234, 5, 8, lvl, 9); f.max_health = f.health
+	f.health = _es(217, 247, 5, 8, lvl, 9); f.max_health = f.health  # +24-27 HP
 	f.mana = _es(15, 19, 2, 3, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = _es(9, 13, 0, 2, lvl, 9)
 	f.physical_defense = _es(27, 33, 2, 3, lvl, 9)
-	f.magic_attack = _es(46, 53, 3, 5, lvl, 9)
+	f.magic_attack = _es(53, 60, 3, 5, lvl, 9)  # +2-3 Mag ATK
 	f.magic_defense = _es(25, 31, 2, 3, lvl, 9)
 	f.speed = _es(23, 29, 1, 3, lvl, 9)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 7
