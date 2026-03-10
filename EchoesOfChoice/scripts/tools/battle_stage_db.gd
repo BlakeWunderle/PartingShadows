@@ -4,6 +4,8 @@ class_name BattleStageDB
 ## Each stage has a story field (1 or 2) for filtering by story.
 
 const EnemyDB := preload("res://scripts/data/story1/enemy_db.gd")
+const EnemyDBAct2 := preload("res://scripts/data/story1/enemy_db_act2.gd")
+const EnemyDBAct345 := preload("res://scripts/data/story1/enemy_db_act345.gd")
 const EnemyDBS2 := preload("res://scripts/data/story2/enemy_db_s2.gd")
 const EnemyDBS2Act2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
 const EnemyDBS2Act3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
@@ -130,80 +132,80 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDB.create_goblin("Snitch"),
 				EnemyDB.create_hound("Fang")]
 		"HighlandBattle":
-			return [EnemyDB.create_raider("Wulfric"),
-				EnemyDB.create_raider("Bjorn"),
-				EnemyDB.create_orc("Grath")]
+			return [EnemyDBAct2.create_raider("Wulfric"),
+				EnemyDBAct2.create_raider("Bjorn"),
+				EnemyDBAct2.create_orc("Grath")]
 		"DeepForestBattle":
-			return [EnemyDB.create_witch("Morwen"),
-				EnemyDB.create_wisp("Flicker"),
-				EnemyDB.create_sprite("Briar")]
+			return [EnemyDBAct2.create_witch("Morwen"),
+				EnemyDBAct2.create_wisp("Flicker"),
+				EnemyDBAct2.create_sprite("Briar")]
 		"ShoreBattle":
-			return [EnemyDB.create_siren("Lorelei"),
-				EnemyDB.create_merfolk("Thalassa"),
-				EnemyDB.create_merfolk("Nereus")]
+			return [EnemyDBAct2.create_siren("Lorelei"),
+				EnemyDBAct2.create_merfolk("Thalassa"),
+				EnemyDBAct2.create_merfolk("Nereus")]
 		"MountainPassBattle":
-			return [EnemyDB.create_troll("Grendal"),
-				EnemyDB.create_harpy("Screecher"),
-				EnemyDB.create_harpy("Shrieker")]
+			return [EnemyDBAct2.create_troll("Grendal"),
+				EnemyDBAct2.create_harpy("Screecher"),
+				EnemyDBAct2.create_harpy("Shrieker")]
 		"CaveBattle":
-			return [EnemyDB.create_fire_wyrmling("Raysses"),
-				EnemyDB.create_frost_wyrmling("Sythara"),
-				EnemyDB.create_fire_wyrmling("Cindrak")]
+			return [EnemyDBAct2.create_fire_wyrmling("Raysses"),
+				EnemyDBAct2.create_frost_wyrmling("Sythara"),
+				EnemyDBAct2.create_fire_wyrmling("Cindrak")]
 		"BeachBattle":
-			return [EnemyDB.create_captain("Greybeard"),
-				EnemyDB.create_pirate("Flint"),
-				EnemyDB.create_pirate("Bonny")]
+			return [EnemyDBAct2.create_captain("Greybeard"),
+				EnemyDBAct2.create_pirate("Flint"),
+				EnemyDBAct2.create_pirate("Bonny")]
 		"CircusBattle":
-			return [EnemyDB.create_harlequin("Louis"),
-				EnemyDB.create_chanteuse("Erembour"),
-				EnemyDB.create_ringmaster("Gaspard")]
+			return [EnemyDBAct2.create_harlequin("Louis"),
+				EnemyDBAct2.create_chanteuse("Erembour"),
+				EnemyDBAct2.create_ringmaster("Gaspard")]
 		"LabBattle":
-			return [EnemyDB.create_android("Deus"),
-				EnemyDB.create_machinist("Ananiah"),
-				EnemyDB.create_ironclad("Acrid")]
+			return [EnemyDBAct2.create_android("Deus"),
+				EnemyDBAct2.create_machinist("Ananiah"),
+				EnemyDBAct2.create_ironclad("Acrid")]
 		"ArmyBattle":
-			return [EnemyDB.create_commander("Varro"),
-				EnemyDB.create_draconian("Theron"),
-				EnemyDB.create_chaplain("Cristole")]
+			return [EnemyDBAct2.create_commander("Varro"),
+				EnemyDBAct2.create_draconian("Theron"),
+				EnemyDBAct2.create_chaplain("Cristole")]
 		"CemeteryBattle":
-			return [EnemyDB.create_zombie("Mort"),
-				EnemyDB.create_ghoul("Rave"),
-				EnemyDB.create_zombie("Dredge")]
+			return [EnemyDBAct2.create_zombie("Mort"),
+				EnemyDBAct2.create_ghoul("Rave"),
+				EnemyDBAct2.create_zombie("Dredge")]
 		"OutpostDefenseBattle":
-			return [EnemyDB.create_shade("Umbra"),
-				EnemyDB.create_wraith("Revenant"),
-				EnemyDB.create_shade("Penumbra"),
-				EnemyDB.create_wraith("Specter")]
+			return [EnemyDBAct2.create_shade("Umbra"),
+				EnemyDBAct2.create_wraith("Revenant"),
+				EnemyDBAct2.create_shade("Penumbra"),
+				EnemyDBAct2.create_wraith("Specter")]
 		"MirrorBattle":
 			return _mirror_enemies(party)
 		"ReturnToCityStreetBattle":
-			return [EnemyDB.create_royal_guard("Aldric"),
-				EnemyDB.create_guard_sergeant("Brennan"),
-				EnemyDB.create_guard_archer("Tamsin"),
-				EnemyDB.create_guard_archer("Corwin")]
+			return [EnemyDBAct345.create_royal_guard("Aldric"),
+				EnemyDBAct345.create_guard_sergeant("Brennan"),
+				EnemyDBAct345.create_guard_archer("Tamsin"),
+				EnemyDBAct345.create_guard_archer("Corwin")]
 		"StrangerTowerBattle":
-			return [EnemyDB.create_stranger("The Stranger")]
+			return [EnemyDBAct345.create_stranger("The Stranger")]
 		"CorruptedCityBattle":
-			return [EnemyDB.create_lich("Mortuus"),
-				EnemyDB.create_ghast("Putrefax"),
-				EnemyDB.create_ghast("Bloatus"),
-				EnemyDB.create_lich("Necrus")]
+			return [EnemyDBAct345.create_lich("Mortuus"),
+				EnemyDBAct345.create_ghast("Putrefax"),
+				EnemyDBAct345.create_ghast("Bloatus"),
+				EnemyDBAct345.create_lich("Necrus")]
 		"CorruptedWildsBattle":
-			return [EnemyDB.create_demon("Bael"),
-				EnemyDB.create_corrupted_treant("Rothollow"),
-				EnemyDB.create_corrupted_treant("Blightsnarl"),
-				EnemyDB.create_demon("Moloch")]
+			return [EnemyDBAct345.create_demon("Bael"),
+				EnemyDBAct345.create_corrupted_treant("Rothollow"),
+				EnemyDBAct345.create_corrupted_treant("Blightsnarl"),
+				EnemyDBAct345.create_demon("Moloch")]
 		"GateBattle":
-			return [EnemyDB.create_dark_knight("Ser Malachar"),
-				EnemyDB.create_fell_hound("Duskfang"),
-				EnemyDB.create_fell_hound("Gloomjaw"),
-				EnemyDB.create_dark_knight("Ser Dravus")]
+			return [EnemyDBAct345.create_dark_knight("Ser Malachar"),
+				EnemyDBAct345.create_fell_hound("Duskfang"),
+				EnemyDBAct345.create_fell_hound("Gloomjaw"),
+				EnemyDBAct345.create_dark_knight("Ser Dravus")]
 		"DepthsBattle":
-			return [EnemyDB.create_sigil_wretch("Skritch"),
-				EnemyDB.create_tunnel_lurker("Silkfang"),
-				EnemyDB.create_tunnel_lurker("Webweaver")]
+			return [EnemyDBAct345.create_sigil_wretch("Skritch"),
+				EnemyDBAct345.create_tunnel_lurker("Silkfang"),
+				EnemyDBAct345.create_tunnel_lurker("Webweaver")]
 		"StrangerFinalBattle":
-			return [EnemyDB.create_stranger_final("The Stranger")]
+			return [EnemyDBAct345.create_stranger_final("The Stranger")]
 		# Story 2
 		"S2_CaveAwakening":
 			return [EnemyDBS2.create_glow_worm("Luminara"),

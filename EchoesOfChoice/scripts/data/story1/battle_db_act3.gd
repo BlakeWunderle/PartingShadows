@@ -3,7 +3,7 @@ class_name BattleDBACT3
 ## Act III battle configurations. The Return (Battles 9-10 + CityOutskirtsStop).
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
-const EnemyDB := preload("res://scripts/data/story1/enemy_db.gd")
+const EnemyDB := preload("res://scripts/data/story1/enemy_db_act345.gd")
 
 
 # =============================================================================
