@@ -240,32 +240,37 @@ static func _lu_warlock(f: FighterData) -> void:
 
 static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.class_id = "Bulwark"; f.character_type = "Bulwark"
-	f.health += 6; f.max_health += 6; f.physical_defense += 3; f.magic_defense += 5
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
-	f.abilities = [PAB.iron_wall(), PAB.repel(), PAB.sanctuary()]
+	f.health += 6; f.max_health += 6
+	f.physical_attack += 4; f.magic_attack += 3  # Balanced attacker
+	f.physical_defense += 3; f.magic_defense += 3  # Solid defense
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 10
+	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
 	f.upgrade_items = []
 
 static func upgrade_to_aegis(f: FighterData) -> void:
 	f.class_id = "Aegis"; f.character_type = "Aegis"
-	f.health += 3; f.max_health += 3; f.magic_attack += 4; f.magic_defense += 4
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
-	f.abilities = [PAB.spell_mirror(), PAB.arcane_counter(), PAB.nullify()]
+	f.health += 4; f.max_health += 4
+	f.physical_defense += 2; f.magic_defense += 2  # Moderate defense
+	f.mana += 4; f.max_mana += 4  # More mana for support abilities
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
+	f.abilities = [PAB.guardians_blessing(), PAB.protective_ward(), PAB.aegis_barrier()]
 	f.upgrade_items = []
 
 static func _lu_bulwark(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
-	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(4, 6)
-	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(5, 7)
-	f.speed += randi_range(1, 1)
+	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
+	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(3, 4); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(2, 3)
+	f.speed += randi_range(1, 2)
+	f.crit_chance += randi_range(0, 1)
 
 static func _lu_aegis(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
-	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(4, 6)
+	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
+	var mp := randi_range(3, 5); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 2)
 
 

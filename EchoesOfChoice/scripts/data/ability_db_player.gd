@@ -578,31 +578,31 @@ static func exploit_weakness() -> AbilityData:
 # Wanderer tree:T2
 # =============================================================================
 
-# Bulwark
-static func iron_wall() -> AbilityData:
-	return _make("Iron Wall", "Encase an ally in an immovable fortress of defense.",
-		Enums.StatType.DEFENSE, 5, 3, false, 4)
+# Bulwark - balanced attacker/defender
+static func fortress_strike() -> AbilityData:
+	return _make("Fortress Strike", "Strike with the weight of an immovable fortress.",
+		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
 
-static func repel() -> AbilityData:
-	return _make("Repel", "Channel defensive energy into a devastating counterblast.",
-		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+static func iron_fist() -> AbilityData:
+	return _make("Iron Fist", "A devastating blow that shatters defenses.",
+		Enums.StatType.MIXED_ATTACK, 8, 0, true, 6, false, 0, 0.0, 3)
 
-static func sanctuary() -> AbilityData:
-	return _make("Sanctuary", "Extend your protective ward to shield all nearby allies.",
-		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 5, true)
+static func bulwarks_stand() -> AbilityData:
+	return _make("Bulwark's Stand", "Plant yourself firmly and bolster your defenses.",
+		Enums.StatType.DEFENSE, 4, 2, false, 4)
 
-# Aegis
-static func spell_mirror() -> AbilityData:
-	return _make("Spell Mirror", "Coat yourself in reflective arcane energy.",
-		Enums.StatType.MAGIC_DEFENSE, 5, 2, false, 3)
+# Aegis - support tank with party buffs and healing
+static func guardians_blessing() -> AbilityData:
+	return _make("Guardian's Blessing", "Channel protective energy to mend all allies.",
+		Enums.StatType.HEALTH, 6, 0, false, 8, true, 0, 0.0, 3)
 
-static func arcane_counter() -> AbilityData:
-	return _make("Arcane Counter", "Release stored magical energy in a devastating pulse.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 6, false, 0, 0.0, 2)
+static func protective_ward() -> AbilityData:
+	return _make("Protective Ward", "Extend a shield of protection to all nearby allies.",
+		Enums.StatType.DEFENSE, 3, 2, false, 5, true)
 
-static func nullify() -> AbilityData:
-	return _make("Nullify", "Suppress the enemy's ability to channel magic.",
-		Enums.StatType.MAGIC_ATTACK, 4, 2, true, 3)
+static func aegis_barrier() -> AbilityData:
+	return _make("Aegis Barrier", "Raise a barrier of pure defensive magic.",
+		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 4)
 
 # Trailblazer
 static func blaze_trail() -> AbilityData:

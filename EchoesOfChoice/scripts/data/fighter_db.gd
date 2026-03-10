@@ -520,8 +520,8 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Falconer": return [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptor_mend()]
 		"Shapeshifter": return [PAB.savage_maul(), PAB.frenzy(), PAB.primal_roar()]
 		# T2:Wanderer
-		"Bulwark": return [PAB.iron_wall(), PAB.repel(), PAB.sanctuary()]
-		"Aegis": return [PAB.spell_mirror(), PAB.arcane_counter(), PAB.nullify()]
+		"Bulwark": return [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
+		"Aegis": return [PAB.guardians_blessing(), PAB.protective_ward(), PAB.aegis_barrier()]
 		"Trailblazer": return [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
 		"Survivalist": return [PAB.endure(), PAB.resourceful_strike(), PAB.adapt()]
 		_:
