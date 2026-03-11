@@ -3,13 +3,14 @@ class_name StoryDB
 ## Static registry of available stories.
 ## Each story defines its title, description, first battle, and unlock requirements.
 
-const STORIES: Array[String] = ["story_1", "story_2"]
+const STORIES: Array[String] = ["story_1", "story_2", "story_3"]
 
 
 static func get_story(story_id: String) -> Dictionary:
 	match story_id:
 		"story_1": return _story_1()
 		"story_2": return _story_2()
+		"story_3": return _story_3()
 		_:
 			push_error("Unknown story: %s" % story_id)
 			return _story_1()
@@ -41,4 +42,15 @@ static func _story_2() -> Dictionary:
 		"first_battle_id": "S2_CaveAwakening",
 		"unlock_requirement": "story_1_complete",
 		"completion_unlock": "story_2_complete",
+	}
+
+
+static func _story_3() -> Dictionary:
+	return {
+		"story_id": "story_3",
+		"title": "The Woven Night",
+		"description": "Three travelers rest at a quiet inn. Their dreams are not their own.",
+		"first_battle_id": "S3_WearyTraveler",
+		"unlock_requirement": "story_2_complete",
+		"completion_unlock": "story_3_complete",
 	}

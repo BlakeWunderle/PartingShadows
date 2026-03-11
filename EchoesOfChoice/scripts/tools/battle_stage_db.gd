@@ -10,6 +10,9 @@ const EnemyDBS2 := preload("res://scripts/data/story2/enemy_db_s2.gd")
 const EnemyDBS2Act2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
 const EnemyDBS2Act3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
 const EnemyDBS2Act4 := preload("res://scripts/data/story2/enemy_db_s2_act4.gd")
+const EnemyDBS3 := preload("res://scripts/data/story3/enemy_db_s3.gd")
+const EnemyDBS3Act3 := preload("res://scripts/data/story3/enemy_db_s3_act3.gd")
+const EnemyDBS3Act45 := preload("res://scripts/data/story3/enemy_db_s3_act45.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 
@@ -97,6 +100,34 @@ static func get_all_stages() -> Array:
 		_s("S2_EyeAwakening", 18, "tier2", 0.45, 16, 2),
 		# Prog 17: Tier 2, 19 level ups (final boss)
 		_s("S2_EyeOfOblivion", 19, "tier2", 0.42, 17, 2),
+		# --- Story 3: The Woven Night ---
+		# Prog 0: Base classes, no level ups (first dream)
+		_s("S3_DreamMeadow", 0, "base", 0.85, 0, 3),
+		# Prog 1: Base classes, 1 level up (branch pair)
+		_s("S3_DreamMirrorHall", 1, "base", 0.83, 1, 3),
+		_s("S3_DreamFogGarden", 1, "base", 0.83, 1, 3),
+		# Prog 3: Tier 1, 3 level ups (second dream, post-upgrade)
+		_s("S3_DreamReturn", 3, "tier1", 0.78, 3, 3),
+		# Prog 4: Tier 1, 4 level ups (branch pair)
+		_s("S3_DreamLabyrinth", 4, "tier1", 0.76, 4, 3),
+		_s("S3_DreamClockTower", 4, "tier1", 0.76, 4, 3),
+		# Prog 5: Tier 1, 5 level ups (Act II boss)
+		_s("S3_DreamNightmare", 5, "tier1", 0.73, 5, 3),
+		# Prog 6: Tier 2, 7 level ups (lucid dream, post-upgrade)
+		_s("S3_LucidDream", 7, "tier2", 0.70, 6, 3),
+		# Prog 7: Tier 2, 8 level ups (branch pair)
+		_s("S3_DreamTemple", 8, "tier2", 0.68, 7, 3),
+		_s("S3_DreamVoid", 8, "tier2", 0.68, 7, 3),
+		# Prog 8: Tier 2, 9 level ups (Act III boss)
+		_s("S3_DreamSanctum", 9, "tier2", 0.64, 8, 3),
+		# Prog 9: Tier 2, 10 level ups (cult investigation)
+		_s("S3_CultUnderbelly", 10, "tier2", 0.62, 9, 3),
+		# Prog 10: Tier 2, 11 level ups
+		_s("S3_CultCatacombs", 11, "tier2", 0.60, 10, 3),
+		# Prog 11: Tier 2, 12 level ups
+		_s("S3_CultRitualChamber", 12, "tier2", 0.57, 11, 3),
+		# Prog 12: Tier 2, 13 level ups (final boss)
+		_s("S3_DreamNexus", 13, "tier2", 0.55, 12, 3),
 	]
 
 
@@ -302,6 +333,66 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBS2Act4.create_oblivion_shade("Nullsight")]
 		"S2_EyeOfOblivion":
 			return [EnemyDBS2Act4.create_the_lidless_eye("The Lidless Eye")]
+		# Story 3
+		"S3_DreamMeadow":
+			return [EnemyDBS3.create_dream_wisp("Glimmer"),
+				EnemyDBS3.create_dream_wisp("Flicker"),
+				EnemyDBS3.create_phantasm("The Unseen")]
+		"S3_DreamMirrorHall":
+			return [EnemyDBS3.create_mirror_shade("Reflected Self"),
+				EnemyDBS3.create_sleep_stalker("Prowler"),
+				EnemyDBS3.create_shade_moth("Duskwing")]
+		"S3_DreamFogGarden":
+			return [EnemyDBS3.create_fog_wraith("Pale Mist"),
+				EnemyDBS3.create_thorn_dreamer("Brambleshade"),
+				EnemyDBS3.create_slumber_beast("Drowsy Bear")]
+		"S3_DreamReturn":
+			return [EnemyDBS3.create_nightmare_hound("Gnasher"),
+				EnemyDBS3.create_dream_weaver("Silken One"),
+				EnemyDBS3.create_hollow_echo("Fading Voice")]
+		"S3_DreamLabyrinth":
+			return [EnemyDBS3.create_twilight_stalker("Duskfang"),
+				EnemyDBS3.create_waking_terror("Screamer"),
+				EnemyDBS3.create_somnolent_serpent("Coilshadow")]
+		"S3_DreamClockTower":
+			return [EnemyDBS3.create_clock_specter("Frozen Hand"),
+				EnemyDBS3.create_clock_specter("Still Pendulum"),
+				EnemyDBS3.create_dusk_sentinel("Twilight Warden")]
+		"S3_DreamNightmare":
+			return [EnemyDBS3.create_the_nightmare("The Nightmare"),
+				EnemyDBS3.create_nightmare_hound("Shadow Fang"),
+				EnemyDBS3.create_hollow_echo("Distant Cry")]
+		"S3_LucidDream":
+			return [EnemyDBS3Act3.create_lucid_phantom("Aware One"),
+				EnemyDBS3Act3.create_thread_spinner("Spindle"),
+				EnemyDBS3Act3.create_cult_shade("Dark Strand")]
+		"S3_DreamTemple":
+			return [EnemyDBS3Act3.create_dream_warden("Temple Guard"),
+				EnemyDBS3Act3.create_thought_leech("Mind Eater"),
+				EnemyDBS3Act3.create_loom_sentinel("Stone Thread")]
+		"S3_DreamVoid":
+			return [EnemyDBS3Act3.create_void_spinner("Thread Ripper"),
+				EnemyDBS3Act3.create_lucid_phantom("Watcher"),
+				EnemyDBS3Act3.create_thread_spinner("Mender")]
+		"S3_DreamSanctum":
+			return [EnemyDBS3Act3.create_sanctum_guardian("Loom Guardian"),
+				EnemyDBS3Act3.create_cult_shade("Shadow Weaver"),
+				EnemyDBS3Act3.create_dream_warden("Core Defender")]
+		"S3_CultUnderbelly":
+			return [EnemyDBS3Act45.create_cult_acolyte("Brother Voss"),
+				EnemyDBS3Act45.create_cult_enforcer("Sister Maren"),
+				EnemyDBS3Act45.create_cult_hexer("Brother Callum")]
+		"S3_CultCatacombs":
+			return [EnemyDBS3Act45.create_thread_guard("Loom Watcher"),
+				EnemyDBS3Act45.create_dream_hound("Bound Hound"),
+				EnemyDBS3Act45.create_dream_hound("Chain Fang")]
+		"S3_CultRitualChamber":
+			return [EnemyDBS3Act45.create_cult_ritualist("High Ritualist Sera"),
+				EnemyDBS3Act45.create_high_weaver("Weaver Aldric"),
+				EnemyDBS3Act45.create_thread_guard("Loom Champion")]
+		"S3_DreamNexus":
+			return [EnemyDBS3Act45.create_the_threadmaster("The Threadmaster"),
+				EnemyDBS3Act45.create_high_weaver("Loom Echo")]
 		_:
 			push_error("Unknown stage: %s" % stage_name)
 			return []

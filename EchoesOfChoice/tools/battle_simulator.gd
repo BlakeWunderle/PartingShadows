@@ -182,7 +182,7 @@ func _print_help() -> void:
 	print("  --auto               Auto-calculate sims to hit 200k+ total battles")
 	print("  --sample <n>         Use stratified sample of n party combos")
 	print("  --progression <n>    Run all battles in a progression stage")
-	print("  --story <n>          Filter to story 1 or 2")
+	print("  --story <n>          Filter to story 1, 2, or 3")
 	print("  --all                Run all battles")
 	print("  --list               List available battle stages")
 	print("  --help               Show this help\n")

@@ -94,10 +94,13 @@ func _show_ending() -> void:
 	else:
 		MusicManager.play_music("res://assets/audio/music/game_over/Sad Despair 03.wav")
 	var lines: Array[String]
-	if GameState.current_story_id == "story_2":
-		lines = _ending_text_story_2()
-	else:
-		lines = _ending_text_story_1()
+	match GameState.current_story_id:
+		"story_2":
+			lines = _ending_text_story_2()
+		"story_3":
+			lines = _ending_text_story_3()
+		_:
+			lines = _ending_text_story_1()
 	if is_first_completion:
 		lines.append_array(_unlock_notification_lines())
 	_dialogue.show_text(lines)
@@ -142,6 +145,26 @@ func _ending_text_story_2() -> Array[String]:
 		]
 
 
+func _ending_text_story_3() -> Array[String]:
+	if GameState.game_won:
+		return [
+			"The Loom is broken. The threads dissolve into the morning light, carrying with them every stolen dream, every pilfered night of rest.",
+			"Across the town, people wake feeling something they cannot name. A lightness. A clarity. As if a weight they never knew they carried has been lifted.",
+			"The innkeeper sleeps on, aged and hollow, the decades of stolen vitality finally spent. She will wake eventually, old and ordinary, the Thread's power gone.",
+			"The travelers stand in the street as the sun rises. For the first time in days, they are not tired. The weariness is gone, truly gone, and the road ahead feels possible again.",
+			"'The Weary Traveler,' one of them reads aloud from the sign, shaking their head. 'She named the inn after what she was doing to people.'",
+			"They leave the town behind. Their dreams that night are their own.",
+			"",
+			"Thank you for playing Echoes of Choice.",
+		]
+	else:
+		return [
+			"The Loom holds. The threads tighten. The dream does not end.",
+			"Somewhere in a quiet town, the innkeeper smiles and pours ale for the next weary traveler.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+
+
 func _unlock_notification_lines() -> Array[String]:
 	match GameState.current_story_id:
 		"story_1":
@@ -152,6 +175,12 @@ func _unlock_notification_lines() -> Array[String]:
 				"A new class has emerged: the Wanderer. A wilderness fighter who learned to endure the land's magic.",
 			]
 		"story_2":
+			return [
+				"",
+				"New content unlocked!",
+				"A new story awaits: \"The Woven Night.\" Three travelers rest at a quiet inn. Their dreams are not their own.",
+			]
+		"story_3":
 			return [
 				"",
 				"New content unlocked!",

@@ -11,6 +11,9 @@ const S2 := preload("res://scripts/data/story2/battle_db_s2.gd")
 const S2Act2 := preload("res://scripts/data/story2/battle_db_s2_act2.gd")
 const S2Act3 := preload("res://scripts/data/story2/battle_db_s2_act3.gd")
 const S2Act4 := preload("res://scripts/data/story2/battle_db_s2_act4.gd")
+const S3 := preload("res://scripts/data/story3/battle_db_s3.gd")
+const S3Act3 := preload("res://scripts/data/story3/battle_db_s3_act3.gd")
+const S3Act45 := preload("res://scripts/data/story3/battle_db_s3_act45.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:
@@ -64,6 +67,19 @@ static func create_battle(battle_id: String) -> BattleData:
 		"S2_DepthsOfRemembrance", "S2_MawOfTheEye", \
 		"S2_EyeAwakening", "S2_EyeOfOblivion":
 			return S2Act4.create_battle(battle_id)
+		# Story 3 - Acts I-II
+		"S3_WearyTraveler", "S3_DreamMeadow", "S3_DreamMirrorHall", \
+		"S3_DreamFogGarden", "S3_TownMorning", "S3_DreamReturn", \
+		"S3_DreamLabyrinth", "S3_DreamClockTower", "S3_DreamNightmare":
+			return S3.create_battle(battle_id)
+		# Story 3 - Act III
+		"S3_TownRealization", "S3_LucidDream", "S3_DreamTemple", \
+		"S3_DreamVoid", "S3_DreamSanctum":
+			return S3Act3.create_battle(battle_id)
+		# Story 3 - Acts IV-V
+		"S3_CultUnderbelly", "S3_CultCatacombs", \
+		"S3_CultRitualChamber", "S3_DreamNexus":
+			return S3Act45.create_battle(battle_id)
 		_:
 			push_error("Unknown battle: %s" % battle_id)
 			return Act1.city_street_battle()
