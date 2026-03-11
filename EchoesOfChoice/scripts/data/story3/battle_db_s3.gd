@@ -35,6 +35,7 @@ static func s3_weary_traveler() -> BattleData:
 		"The road has been long. Three travelers arrive at a quiet town nestled between rolling hills, drawn by the warm glow of a sign reading 'The Weary Traveler.'",
 		"The innkeeper, a thin woman with deep-set eyes and a practiced smile, offers rooms at a fair price. The common room smells of woodsmoke and stew.",
 		"'You look exhausted,' she says, pouring ale without being asked. 'Most who come through here are. Something about the road. But you'll sleep well tonight. Everyone does.'",
+		"A young serving girl with auburn hair moves between the tables, refilling cups and clearing plates. She catches one traveler's eye and smiles, quick and warm, before disappearing into the kitchen.",
 		"The party eats, talks quietly about the journey ahead, and retires to their rooms. Sleep comes fast, as if the beds were pulling them under.",
 	]
 	b.post_battle_text = [
@@ -63,6 +64,7 @@ static func s3_dream_meadow() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The lights scatter. The meadow ripples like the surface of a pond, and the dream collapses inward.",
+		"In the moment before waking, something else moves at the edge of the meadow. A figure, small and luminous, dancing between the tall grass. It pauses, turns, and seems to wave. Then the dream is gone.",
 		"Each traveler wakes in their bed at the inn, gasping. Dawn light presses through the shutters. It was just a dream. A strange one, but nothing more.",
 		"They dress and head downstairs, none mentioning the unease that lingers behind their eyes.",
 	]
@@ -91,6 +93,7 @@ static func s3_dream_mirror_hall() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The last mirror cracks and the hall dissolves into white noise. The dream is ending.",
+		"In the final unbroken mirror, a figure dances, bright and quick. It presses a hand to the glass and the mirror glows warm before shattering. The hall feels safer for an instant.",
 		"Morning. The shutters rattle in a breeze. It was a strange night, but the bed was comfortable and the dawn is bright.",
 	]
 	b.next_battle_id = "S3_TownMorning"
@@ -114,6 +117,7 @@ static func s3_dream_fog_garden() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The garden folds in on itself like a closing book. The fog recedes into nothing.",
+		"As the mist clears, a faint trail of golden light lingers in the air, as if someone danced through the garden ahead of them, leaving a path to follow.",
 		"Sunlight. Birdsong. The smell of breakfast from the common room below. Just a bad dream.",
 	]
 	b.next_battle_id = "S3_TownMorning"
@@ -134,6 +138,7 @@ static func s3_town_morning() -> BattleData:
 		"The morning is pleasant. The town square is busy with merchants, and the air smells of fresh bread and iron from the smithy.",
 		"The innkeeper suggests visiting the market. 'We get good traders through here. Weapons, armor, supplies. You'll want to be prepared for the road ahead.'",
 		"The travelers spend the day exploring. The town is charming. Normal. Friendly faces and honest prices.",
+		"The serving girl from the night before brings their breakfast. Her name is Lira, the innkeeper says. Lira lingers a moment too long, watching them with an expression that is hard to read, before retreating to the kitchen.",
 		"Only one thing nags at the back of each mind: last night's dream. But dreams are just dreams.",
 	]
 	b.post_battle_text = [
@@ -163,6 +168,7 @@ static func s3_dream_return() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The dream shudders. The broken architecture groans. Through the noise, two paths appear.",
+		"The dancing figure is back. Brighter than before, moving with purpose through the wreckage. It pauses at the junction, gestures toward both passages, and fades into a trail of light.",
 	]
 	b.choices = [
 		{"label": "Left: Walls of shifting stone form a labyrinth that breathes.", "battle_id": "S3_DreamLabyrinth"},
@@ -189,6 +195,7 @@ static func s3_dream_labyrinth() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The walls stop moving. A passage opens in the floor, dropping into a vast dark space below.",
+		"A trail of soft light leads through the passage, as though the dancing figure passed this way moments ago, leaving breadcrumbs in the dark.",
 		"In the distance, something enormous stirs.",
 	]
 	b.next_battle_id = "S3_DreamNightmare"
@@ -212,6 +219,7 @@ static func s3_dream_clock_tower() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The clock strikes thirteen. The tower cracks open, revealing the dark space beneath all dreams.",
+		"A luminous figure stands on the lowest landing, dancing in place. It points downward, toward the dark space, then vanishes like a blown candle.",
 		"Something waits below. Something that has been dreaming of them.",
 	]
 	b.next_battle_id = "S3_DreamNightmare"
@@ -240,8 +248,10 @@ static func s3_dream_nightmare() -> BattleData:
 		"Morning. All three travelers are standing in the hallway outside their rooms, pale and shaking.",
 		"'I heard you,' one says. 'In the dream. I heard your voice.'",
 		"'I heard you too.'",
+		"'There was someone else,' the third says. 'A figure. Dancing. It was helping us. I think it distracted the creature at the end.'",
+		"'I saw it too,' another confirms. 'Both nights. The same figure. Glowing. It has been in every dream.'",
 		"Silence. Then the third speaks: 'We were in the same dream. All three of us. Both nights.'",
-		"They sit in the common room and compare notes. The meadow. The creatures. The voice at the end. Every detail matches.",
+		"They sit in the common room and compare notes. The meadow. The creatures. The dancing figure. Every detail matches.",
 		"Something in this town is doing this to them. And tonight, it will happen again.",
 	]
 	b.next_battle_id = "S3_TownRealization"

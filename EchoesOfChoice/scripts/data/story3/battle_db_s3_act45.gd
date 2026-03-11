@@ -32,6 +32,7 @@ static func s3_cult_underbelly() -> BattleData:
 	]
 	b.pre_battle_text = [
 		"The town wears a different face in the gray hours before dawn. Alleyways that seemed charming by day are narrow and watchful in the dark.",
+		"Lira leads them through the back alleys. 'The baker, the blacksmith, the woman who sells flowers. Half the town serves the Thread. They have been watching you since you arrived.'",
 		"They do not get far before they are noticed. A shopkeeper steps from a doorway, but in his hand is a blade, not a broom. Two more appear behind him.",
 		"'The innkeeper said you might be trouble,' the shopkeeper says. His eyes are wrong. Too calm. Too certain. 'We cannot let you interfere with the Loom.'",
 		"The cult of the Thread has been hiding in plain sight. Half the town is in on it.",
@@ -60,7 +61,7 @@ static func s3_cult_catacombs() -> BattleData:
 		"Beneath the inn, the cellar gives way to something much older. Stone corridors stretch in directions that no building above could contain.",
 		"The walls are carved with the Thread's symbols, and real threads, physical ones, are strung between pillars. They hum with a low vibration, like plucked harp strings.",
 		"A guard in woven armor stands at a junction. Beside it, two hounds made of dream-stuff, tethered to the physical world by the same threads that power the Loom.",
-		"'The Loom is not just in the dream,' one traveler realizes. 'It has roots here. Physical roots.'",
+		"'I told you,' Lira says quietly. 'The Loom is not just in the dream. It has roots here. Physical roots. I have been listening to them hum through the floorboards my entire life.'",
 	]
 	b.post_battle_text = [
 		"The hounds dissolve, their threads severed. The guard collapses, and the passage ahead opens into a vast underground chamber.",
@@ -88,6 +89,7 @@ static func s3_cult_ritual_chamber() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The ritualist and weaver fall. The physical loom cracks, but does not break. The threads flare, brighter than before.",
+		"Lira stares at the cracking loom. 'She is not just the leader,' Lira says quietly. 'She IS the Loom. Destroying her agents will not stop it.'",
 		"A voice fills the chamber. The innkeeper's voice, but amplified, echoing from the threads themselves.",
 		"'Fools. The Loom does not need me to operate it. It needs me to restrain it.'",
 		"The threads whip outward. The chamber dissolves. The travelers are dragged back into the dream, deeper than they have ever been.",
@@ -114,6 +116,7 @@ static func s3_dream_nexus() -> BattleData:
 	]
 	b.pre_battle_text = [
 		"The Dream Nexus is the heart of the Loom. Every thread converges here, every stolen dream, every drained night of rest. The air is thick with the energy of a thousand sleepers.",
+		"Lira stands beside them, her form flickering between the serving girl and the luminous dancer. 'This is everything I have been fighting against my whole life,' she says. 'Let us end it.'",
 		"The Threadmaster stands at the center, threads extending from her fingers like puppet strings. She is not the innkeeper anymore. She is something older, something that learned to weave dreams before the town existed.",
 		"'I built the Loom to feed,' she says. 'Every weary traveler. Every restless sleeper. Their dreams sustained me, and the town prospered in return. A fair trade.'",
 		"'There is nothing fair about stealing from the unconscious,' one traveler replies.",
@@ -123,9 +126,11 @@ static func s3_dream_nexus() -> BattleData:
 		"The Threadmaster screams as the last thread snaps. The Loom collapses inward, threads unraveling in cascading waves. The nexus tears itself apart.",
 		"For one moment, the travelers see every dream the Loom ever stole: a child's nightmare, a mother's hope, an old man's memory of a face he loved. Thousands of stolen fragments, set free.",
 		"Then they are standing in the cellar. The physical loom is dark, its threads disintegrated. The walls are just walls. The hum is gone.",
+		"Lira stands in the silence, unchanged. The power that the Loom stole from her as a child flows back through her. She looks different now. Steadier. Freer. The luminous dancer and the quiet serving girl finally the same person.",
 		"Dawn light streams through the cellar door. The innkeeper lies unconscious on the floor, aged decades in an instant, the power that sustained her finally spent.",
 		"The town wakes up. For the first time in years, every person in it slept through the night without dreaming. Without losing anything.",
 		"The sign above the inn door has faded. 'The Weary Traveler.' It makes a different kind of sense now.",
+		"Lira walks them to the edge of town. 'I spent my whole life dreaming of escape,' she says. 'Now I think I will stay. Someone needs to make sure the threads stay quiet.'",
 		"They leave the town by midmorning, rested for the first time since they arrived.",
 	]
 	b.music_track = "res://assets/audio/music/boss/The Battle of Ages_FULL.wav"

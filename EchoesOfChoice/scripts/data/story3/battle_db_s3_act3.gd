@@ -29,9 +29,14 @@ static func s3_town_realization() -> BattleData:
 		"'Tonight, we go in together,' one says. 'On purpose. If we are sharing dreams, we need to understand why.'",
 		"'And we need to stay awake as long as we can. Watch who watches us.'",
 		"They spend the day preparing. Sharpening weapons. Studying the town. They notice things they missed before: a symbol carved into a doorframe, a shopkeeper who watches them too carefully, a cellar door that has three locks.",
+		"A knock at the door. The serving girl, Lira, stands in the hallway, pale and trembling.",
+		"'I know what you are planning,' she says. 'Because I have been there too. Every night. I am the one who has been dancing.'",
+		"She steps inside and closes the door. 'I have lived in this town my whole life. The dreams started when I was a child. I learned to move through them, to resist what the Loom does. But I could never fight it alone.'",
+		"'I can help you. I know the dream better than anyone. And I know things about this town that will make your blood run cold.'",
+		"She spends the day training them, teaching them how to hold their awareness in the dream, how to recognize the Thread's traps, how to fight while sleeping. Her years of navigating the dream world have taught her things about mind and body that no academy could. Old limitations fall away under her guidance.",
 	]
 	b.post_battle_text = [
-		"Night falls. They fight the pull of sleep for as long as they can, talking in one room with the candles burning.",
+		"Night falls. They fight the pull of sleep for as long as they can, talking in one room with the candles burning. Lira sits with them, steady and calm.",
 		"But the exhaustion is not natural. It settles like a weight, and one by one their eyes close.",
 		"The dream is waiting. And this time, they step into it together.",
 	]
@@ -52,8 +57,10 @@ static func s3_lucid_dream() -> BattleData:
 	]
 	b.pre_battle_text = [
 		"The dream is different this time. They are standing together, aware, remembering who they are and how they got here.",
+		"Lira is beside them. Not the luminous fae of previous nights, but herself, solid and aware. She moves with a dancer's grace, her familiarity with this place evident in every step.",
 		"The landscape is the same broken architecture, but now they can see what holds it together: threads. Thousands of luminous threads stretching between every surface, vibrating like the strings of an instrument.",
 		"Symbols are woven into the threads. Not random patterns. Deliberate markings. The sigils of a cult.",
+		"'Stay close,' Lira says. 'The deeper we go, the more the Loom will fight us.'",
 		"A phantom turns to face them. Unlike the mindless creatures of previous nights, this one is aware. It sees them seeing it.",
 		"'You should not be awake,' it says.",
 	]
@@ -82,6 +89,7 @@ static func s3_dream_temple() -> BattleData:
 	b.pre_battle_text = [
 		"The temple is old. Not old like ruins. Old like the idea of temples, as if this is the first one ever dreamed.",
 		"The walls are woven from threads of light, and the cult's sigils are everywhere. This is not a place the cult found. They built it, thread by thread, in the dreams of every traveler who slept at the inn.",
+		"Lira's hand brushes one of the sigils and it flares. 'I have seen this place before,' she whispers. 'They built it from the dreams of children. My dreams, when I was young.'",
 		"Guardians stand at the altar. They are not creatures of nightmare. They are constructs of purpose, placed here to protect something.",
 	]
 	b.post_battle_text = [
@@ -105,6 +113,7 @@ static func s3_dream_void() -> BattleData:
 	b.pre_battle_text = [
 		"The void between dreams is a place that should not exist. It is the gap between threads, the space where the weaving fails.",
 		"Here, the cult's work is visible for what it is. A loom of psychic energy, stretching across hundreds of sleeping minds, harvesting something from each dreamer.",
+		"Lira moves carefully through the torn threads. 'This is where the weaving is weakest,' she says. 'If we can reach the core, we can see what they are really doing.'",
 		"Spinners work frantically to repair the gaps, while phantoms patrol the edges. They are not happy to see intruders who are awake enough to understand what they are looking at.",
 	]
 	b.post_battle_text = [
@@ -126,6 +135,7 @@ static func s3_dream_sanctum() -> BattleData:
 	]
 	b.pre_battle_text = [
 		"The sanctum pulses with stolen energy. Threads converge here from every direction, each one connected to a sleeping mind somewhere in the town. Somewhere beyond the town.",
+		"Lira steps forward. 'I have fought this guardian before,' she says. 'Always alone. Always losing. Not tonight.'",
 		"At the center stands the Loom Guardian. It is not a creature. It is a function, woven into the dream itself, tasked with one purpose: protect the Loom at any cost.",
 		"Beyond the guardian, in the threads themselves, the travelers can see flashes of the cult's purpose. Robed figures chanting. A cellar beneath the inn. A ritual that requires the psychic energy of dreamers.",
 		"'They are harvesting us,' one traveler says. 'Every night. Every dream. They take something and we wake up tired.'",
