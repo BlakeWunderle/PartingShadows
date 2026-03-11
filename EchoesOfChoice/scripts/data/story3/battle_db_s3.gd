@@ -35,7 +35,6 @@ static func s3_weary_traveler() -> BattleData:
 		"Before heading upstairs, the innkeeper slides a worn leather journal across the bar. 'Just sign the guest book,' she says. 'Everyone does.'",
 		"The pages are thick and yellowed with age. Hundreds of names in hundreds of hands. The travelers write their names and trades without a second thought.",
 		"The rooms are small but clean. The beds are soft. The pillows smell faintly of lavender.",
-		"Sleep comes fast, as if the beds were pulling them under.",
 	]
 	b.post_battle_text = [
 		"The candles gutter. The inn grows silent. And somewhere between waking and dreaming, something stirs.",

@@ -242,7 +242,11 @@ func _finish() -> void:
 	for fighter: RefCounted in _party:
 		GameLog.info("Party: %s the %s" % [fighter.character_name, fighter.character_type])
 	GameState.advance_to_battle(GameState.get_first_battle_id())
-	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+	match GameState.game_phase:
+		GameState.GamePhase.TOWN_STOP:
+			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
+		_:
+			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 
 # --- Story 1: Tavern narrative ---
