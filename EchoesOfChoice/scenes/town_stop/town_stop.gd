@@ -104,17 +104,16 @@ func _begin_upgrades() -> void:
 
 
 func _show_next_upgrade() -> void:
+	# Skip party members with no upgrades available
+	while _upgrade_index < GameState.party.size() \
+			and GameState.party[_upgrade_index].upgrade_items.is_empty():
+		_upgrade_index += 1
+
 	if _upgrade_index >= GameState.party.size():
 		_finish_upgrades()
 		return
 
 	var fighter: FighterData = GameState.party[_upgrade_index]
-	if fighter.upgrade_items.is_empty():
-		# No upgrades available, skip
-		_upgrade_index += 1
-		_show_next_upgrade()
-		return
-
 	_phase = TownPhase.UPGRADING
 	_upgrade_label.text = "%s the %s. Choose an upgrade:" % [
 		fighter.character_name, fighter.character_type]
