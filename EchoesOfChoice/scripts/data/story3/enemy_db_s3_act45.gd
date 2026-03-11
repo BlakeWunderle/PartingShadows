@@ -78,9 +78,9 @@ static func create_cult_hexer(n: String, lvl: int = 10) -> FighterData:
 # Shared Prog 10 & 11 (+38%, unchanged)
 static func create_thread_guard(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Thread Guard", lvl)
-	f.health = _es(345, 393, 8, 14, lvl, 11); f.max_health = f.health
+	f.health = _es(373, 424, 8, 14, lvl, 11); f.max_health = f.health
 	f.mana = _es(15, 20, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(50, 55, 3, 4, lvl, 11)
+	f.physical_attack = _es(53, 58, 3, 4, lvl, 11)
 	f.physical_defense = _es(39, 44, 3, 4, lvl, 11)
 	f.magic_attack = _es(22, 28, 1, 3, lvl, 11)
 	f.magic_defense = _es(36, 41, 1, 4, lvl, 11)
@@ -93,9 +93,9 @@ static func create_thread_guard(n: String, lvl: int = 11) -> FighterData:
 # Prog 10 (+40%)
 static func create_dream_hound(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Dream Hound", lvl)
-	f.health = _es(308, 350, 7, 11, lvl, 11); f.max_health = f.health
+	f.health = _es(333, 378, 7, 11, lvl, 11); f.max_health = f.health
 	f.mana = _es(12, 17, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(49, 53, 3, 4, lvl, 11)
+	f.physical_attack = _es(51, 56, 3, 4, lvl, 11)
 	f.physical_defense = _es(31, 36, 1, 3, lvl, 11)
 	f.magic_attack = _es(20, 25, 1, 3, lvl, 11)
 	f.magic_defense = _es(28, 34, 1, 3, lvl, 11)
