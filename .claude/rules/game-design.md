@@ -6,7 +6,7 @@ The project is a visual RPG built in Godot 4 with GDScript at `EchoesOfChoice/`.
 
 ## Class System
 
-51 player classes. 5 base -> 14 Tier 1 -> 30 Tier 2 + 2 Royal via upgrades. See `class-trees.md` for the full tree structure. The GDScript data layer at `EchoesOfChoice/scripts/data/` is the authoritative source for stat values and ability definitions.
+56 player classes. 6 base (Tier 0) -> 16 Tier 1 -> 34 Tier 2. See `class-trees.md` for the full tree structure. The GDScript data layer at `EchoesOfChoice/scripts/data/` is the authoritative source for stat values and ability definitions.
 
 ## Combat Formulas
 

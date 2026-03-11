@@ -80,7 +80,7 @@ All paths below are relative to `EchoesOfChoice/`.
 - `tools/battle_simulator.gd` -- Headless battle simulator entry point
 
 ### Assets (`assets/`)
-- `audio/music/` -- ~90 music tracks across contexts (menu, battle, boss, exploration, town, cutscene, game_over, victory)
+- `audio/music/` -- ~70 music tracks across contexts (menu, battle, battle_dark, battle_scifi, boss, town, cutscene, game_over, victory)
 - `art/ui/` -- Title background, Wunderelf Studios logo
-- `art/battles/` -- 26 battle scene background images
+- `art/battles/` -- 51 battle scene background images
 - `fonts/` -- Oswald-Bold.ttf for game theme

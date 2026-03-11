@@ -1,6 +1,6 @@
 # Class Upgrade Trees
 
-58 player classes: 6 base (Tier 0), 16 Tier 1, 34 Tier 2, 2 Royal.
+56 player classes: 6 base (Tier 0), 16 Tier 1, 34 Tier 2.
 Each T0 has 2-3 T1 branches. Each T1 has 2-3 T2 upgrades.
 
 ## Squire Tree (physical fighters)
@@ -78,12 +78,3 @@ Wanderer (T0)
 
 - Sentinel branch: stoic protector with wards/barriers → ultimate magic defense tank / counter-magic warrior
 - Pathfinder branch: adaptive battlefield reader → aggressive mixed attacker / self-sustaining endurance fighter
-
-## Royal Classes (standalone)
-
-```
-Prince (T0) ── no upgrades
-Princess (T0) ── no upgrades
-```
-
-High-stat special classes unlocked by story. Prince is armored royal, Princess is warrior royal.
