@@ -100,34 +100,34 @@ static func get_all_stages() -> Array:
 		_s("S2_EyeAwakening", 18, "tier2", 0.45, 16, 2),
 		# Prog 17: Tier 2, 19 level ups (final boss)
 		_s("S2_EyeOfOblivion", 19, "tier2", 0.42, 17, 2),
-		# --- Story 3: The Woven Night ---
+		# --- Story 3: The Woven Night (hardest story: 80% → 50%) ---
 		# Prog 0: Base classes, no level ups (first dream)
-		_s("S3_DreamMeadow", 0, "base", 0.85, 0, 3),
+		_s("S3_DreamMeadow", 0, "base", 0.80, 0, 3),
 		# Prog 1: Base classes, 1 level up (branch pair)
-		_s("S3_DreamMirrorHall", 1, "base", 0.83, 1, 3),
-		_s("S3_DreamFogGarden", 1, "base", 0.83, 1, 3),
+		_s("S3_DreamMirrorHall", 1, "base", 0.78, 1, 3),
+		_s("S3_DreamFogGarden", 1, "base", 0.78, 1, 3),
 		# Prog 3: Tier 1, 3 level ups (second dream, post-upgrade)
-		_s("S3_DreamReturn", 3, "tier1", 0.78, 3, 3),
+		_s("S3_DreamReturn", 3, "tier1", 0.73, 3, 3),
 		# Prog 4: Tier 1, 4 level ups (branch pair)
-		_s("S3_DreamLabyrinth", 4, "tier1", 0.76, 4, 3),
-		_s("S3_DreamClockTower", 4, "tier1", 0.76, 4, 3),
+		_s("S3_DreamLabyrinth", 4, "tier1", 0.71, 4, 3),
+		_s("S3_DreamClockTower", 4, "tier1", 0.71, 4, 3),
 		# Prog 5: Tier 1, 5 level ups (Act II boss)
-		_s("S3_DreamNightmare", 5, "tier1", 0.73, 5, 3),
+		_s("S3_DreamNightmare", 5, "tier1", 0.68, 5, 3),
 		# Prog 6: Tier 2, 7 level ups (lucid dream, post-upgrade)
-		_s("S3_LucidDream", 7, "tier2", 0.70, 6, 3),
+		_s("S3_LucidDream", 7, "tier2", 0.65, 6, 3),
 		# Prog 7: Tier 2, 8 level ups (branch pair)
-		_s("S3_DreamTemple", 8, "tier2", 0.68, 7, 3),
-		_s("S3_DreamVoid", 8, "tier2", 0.68, 7, 3),
+		_s("S3_DreamTemple", 8, "tier2", 0.63, 7, 3),
+		_s("S3_DreamVoid", 8, "tier2", 0.63, 7, 3),
 		# Prog 8: Tier 2, 9 level ups (Act III boss)
-		_s("S3_DreamSanctum", 9, "tier2", 0.64, 8, 3),
+		_s("S3_DreamSanctum", 9, "tier2", 0.59, 8, 3),
 		# Prog 9: Tier 2, 10 level ups (cult investigation)
-		_s("S3_CultUnderbelly", 10, "tier2", 0.62, 9, 3),
+		_s("S3_CultUnderbelly", 10, "tier2", 0.57, 9, 3),
 		# Prog 10: Tier 2, 11 level ups
-		_s("S3_CultCatacombs", 11, "tier2", 0.60, 10, 3),
+		_s("S3_CultCatacombs", 11, "tier2", 0.55, 10, 3),
 		# Prog 11: Tier 2, 12 level ups
-		_s("S3_CultRitualChamber", 12, "tier2", 0.57, 11, 3),
+		_s("S3_CultRitualChamber", 12, "tier2", 0.52, 11, 3),
 		# Prog 12: Tier 2, 13 level ups (final boss)
-		_s("S3_DreamNexus", 13, "tier2", 0.55, 12, 3),
+		_s("S3_DreamNexus", 13, "tier2", 0.50, 12, 3),
 	]
 
 
