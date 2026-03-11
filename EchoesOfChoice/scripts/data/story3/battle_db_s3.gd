@@ -29,7 +29,7 @@ static func create_battle(battle_id: String) -> BattleData:
 static func s3_weary_traveler() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_WearyTraveler"
-	b.scene_image = "res://assets/art/battles/wanderers_rest.png"
+	b.scene_image = "res://assets/art/battles/weary_traveler_inn.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
 		"The road has been long. Three travelers arrive at a quiet town nestled between rolling hills, drawn by the warm glow of a sign reading 'The Weary Traveler.'",
@@ -51,7 +51,7 @@ static func s3_weary_traveler() -> BattleData:
 static func s3_dream_meadow() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamMeadow"
-	b.scene_image = "res://assets/art/battles/old_growth_forest.png"
+	b.scene_image = "res://assets/art/battles/dream_meadow.png"
 	b.enemies = [
 		EnemyDB.create_dream_wisp("Glimmer"),
 		EnemyDB.create_dream_wisp("Flicker"),
@@ -80,7 +80,7 @@ static func s3_dream_meadow() -> BattleData:
 static func s3_dream_mirror_hall() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamMirrorHall"
-	b.scene_image = "res://assets/art/battles/mirror_battle.png"
+	b.scene_image = "res://assets/art/battles/dream_mirror_hall.png"
 	b.enemies = [
 		EnemyDB.create_mirror_shade("Reflected Self"),
 		EnemyDB.create_sleep_stalker("Prowler"),
@@ -105,7 +105,7 @@ static func s3_dream_mirror_hall() -> BattleData:
 static func s3_dream_fog_garden() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamFogGarden"
-	b.scene_image = "res://assets/art/battles/fungal_hollow.png"
+	b.scene_image = "res://assets/art/battles/dream_fog_garden.png"
 	b.enemies = [
 		EnemyDB.create_fog_wraith("Pale Mist"),
 		EnemyDB.create_thorn_dreamer("Brambleshade"),
@@ -134,7 +134,7 @@ static func s3_dream_fog_garden() -> BattleData:
 static func s3_town_morning() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_TownMorning"
-	b.scene_image = "res://assets/art/battles/wanderers_rest.png"
+	b.scene_image = "res://assets/art/battles/town_square_day.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
 		"The morning is pleasant. The town square is busy with merchants, and the air smells of fresh bread and iron from the smithy.",
@@ -157,7 +157,7 @@ static func s3_town_morning() -> BattleData:
 static func s3_dream_return() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamReturn"
-	b.scene_image = "res://assets/art/battles/deep_cavern.png"
+	b.scene_image = "res://assets/art/battles/dream_return.png"
 	b.enemies = [
 		EnemyDB.create_nightmare_hound("Gnasher"),
 		EnemyDB.create_dream_weaver("Silken One"),
@@ -186,7 +186,7 @@ static func s3_dream_return() -> BattleData:
 static func s3_dream_labyrinth() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamLabyrinth"
-	b.scene_image = "res://assets/art/battles/tunnels.png"
+	b.scene_image = "res://assets/art/battles/dream_labyrinth.png"
 	b.enemies = [
 		EnemyDB.create_twilight_stalker("Duskfang"),
 		EnemyDB.create_waking_terror("Screamer"),
@@ -211,7 +211,7 @@ static func s3_dream_labyrinth() -> BattleData:
 static func s3_dream_clock_tower() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamClockTower"
-	b.scene_image = "res://assets/art/battles/stranger_tower.png"
+	b.scene_image = "res://assets/art/battles/dream_clock_tower.png"
 	b.enemies = [
 		EnemyDB.create_clock_specter("Frozen Hand"),
 		EnemyDB.create_clock_specter("Still Pendulum"),
@@ -236,7 +236,7 @@ static func s3_dream_clock_tower() -> BattleData:
 static func s3_dream_nightmare() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamNightmare"
-	b.scene_image = "res://assets/art/battles/void_cavern.png"
+	b.scene_image = "res://assets/art/battles/dream_nightmare.png"
 	b.enemies = [
 		EnemyDB.create_the_nightmare("The Nightmare"),
 		EnemyDB.create_nightmare_hound("Shadow Fang"),

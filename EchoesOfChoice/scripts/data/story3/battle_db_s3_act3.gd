@@ -21,7 +21,7 @@ static func create_battle(battle_id: String) -> BattleData:
 static func s3_town_realization() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_TownRealization"
-	b.scene_image = "res://assets/art/battles/wanderers_rest.png"
+	b.scene_image = "res://assets/art/battles/weary_traveler_inn.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
 		"The innkeeper smiles when they come downstairs. 'Sleep well?' she asks, as if she already knows the answer.",
@@ -52,7 +52,7 @@ static func s3_town_realization() -> BattleData:
 static func s3_lucid_dream() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_LucidDream"
-	b.scene_image = "res://assets/art/battles/memory_sanctum.png"
+	b.scene_image = "res://assets/art/battles/dream_lucid.png"
 	b.enemies = [
 		EnemyDB.create_lucid_phantom("Aware One"),
 		EnemyDB.create_thread_spinner("Spindle"),
@@ -84,7 +84,7 @@ static func s3_lucid_dream() -> BattleData:
 static func s3_dream_temple() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamTemple"
-	b.scene_image = "res://assets/art/battles/shattered_sanctum.png"
+	b.scene_image = "res://assets/art/battles/dream_temple.png"
 	b.enemies = [
 		EnemyDB.create_dream_warden("Temple Guard"),
 		EnemyDB.create_thought_leech("Mind Eater"),
@@ -109,7 +109,7 @@ static func s3_dream_temple() -> BattleData:
 static func s3_dream_void() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamVoid"
-	b.scene_image = "res://assets/art/battles/memory_depths.png"
+	b.scene_image = "res://assets/art/battles/dream_void.png"
 	b.enemies = [
 		EnemyDB.create_void_spinner("Thread Ripper"),
 		EnemyDB.create_lucid_phantom("Watcher"),
@@ -133,7 +133,7 @@ static func s3_dream_void() -> BattleData:
 static func s3_dream_sanctum() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamSanctum"
-	b.scene_image = "res://assets/art/battles/sanctum_core.png"
+	b.scene_image = "res://assets/art/battles/dream_sanctum.png"
 	b.enemies = [
 		EnemyDB.create_sanctum_guardian("Loom Guardian"),
 		EnemyDB.create_cult_shade("Shadow Weaver"),

@@ -24,7 +24,7 @@ static func create_battle(battle_id: String) -> BattleData:
 static func s3_cult_underbelly() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_CultUnderbelly"
-	b.scene_image = "res://assets/art/battles/city_streets.png"
+	b.scene_image = "res://assets/art/battles/cult_alleys.png"
 	b.enemies = [
 		EnemyDB.create_cult_acolyte("Brother Voss"),
 		EnemyDB.create_cult_enforcer("Sister Maren"),
@@ -51,7 +51,7 @@ static func s3_cult_underbelly() -> BattleData:
 static func s3_cult_catacombs() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_CultCatacombs"
-	b.scene_image = "res://assets/art/battles/sealed_gate.png"
+	b.scene_image = "res://assets/art/battles/cult_catacombs.png"
 	b.enemies = [
 		EnemyDB.create_thread_guard("Loom Watcher"),
 		EnemyDB.create_dream_hound("Bound Hound"),
@@ -75,7 +75,7 @@ static func s3_cult_catacombs() -> BattleData:
 static func s3_cult_ritual_chamber() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_CultRitualChamber"
-	b.scene_image = "res://assets/art/battles/echo_gallery.png"
+	b.scene_image = "res://assets/art/battles/cult_ritual_chamber.png"
 	b.enemies = [
 		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
 		EnemyDB.create_high_weaver("Weaver Aldric"),
@@ -112,7 +112,7 @@ static func s3_cult_ritual_chamber() -> BattleData:
 static func s3_dream_nexus() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamNexus"
-	b.scene_image = "res://assets/art/battles/eye_of_oblivion.png"
+	b.scene_image = "res://assets/art/battles/dream_nexus.png"
 	b.is_final_battle = true
 	b.enemies = [
 		EnemyDB.create_the_threadmaster("The Threadmaster"),
