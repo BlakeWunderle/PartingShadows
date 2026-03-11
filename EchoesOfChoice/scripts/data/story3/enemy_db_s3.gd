@@ -61,39 +61,39 @@ static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 # Prog 1 MirrorHall enemies (+10%)
 static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Shade Moth", lvl)
-	f.health = _es(24, 32, 2, 3, lvl, 1); f.max_health = f.health
+	f.health = _es(29, 37, 2, 3, lvl, 1); f.max_health = f.health
 	f.mana = _es(7, 11, 1, 2, lvl, 1); f.max_mana = f.mana
-	f.physical_attack = _es(9, 13, 1, 2, lvl, 1)
+	f.physical_attack = _es(11, 14, 1, 2, lvl, 1)
 	f.physical_defense = _es(4, 8, 0, 1, lvl, 1)
 	f.magic_attack = _es(9, 12, 0, 2, lvl, 1)
 	f.magic_defense = _es(7, 10, 0, 1, lvl, 1)
 	f.speed = _es(29, 35, 1, 3, lvl, 1)
-	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 15
+	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 20
 	f.abilities = [EAB.dust_wing(), EAB.flit()]
 	return f
 
 
 static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Sleep Stalker", lvl)
-	f.health = _es(40, 48, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(47, 56, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(7, 11, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = _es(18, 21, 1, 3, lvl, 2)
+	f.physical_attack = _es(20, 24, 1, 3, lvl, 2)
 	f.physical_defense = _es(8, 11, 1, 2, lvl, 2)
 	f.magic_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = _es(8, 11, 0, 1, lvl, 2)
 	f.speed = _es(26, 32, 1, 3, lvl, 2)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	return f
 
 
 static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Mirror Shade", lvl)
-	f.health = _es(39, 47, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(44, 53, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(9, 13, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = _es(12, 16, 1, 2, lvl, 2)
+	f.physical_attack = _es(14, 18, 1, 2, lvl, 2)
 	f.physical_defense = _es(10, 13, 1, 2, lvl, 2)
-	f.magic_attack = _es(12, 16, 1, 2, lvl, 2)
+	f.magic_attack = _es(14, 18, 1, 2, lvl, 2)
 	f.magic_defense = _es(10, 13, 1, 2, lvl, 2)
 	f.speed = _es(24, 30, 1, 2, lvl, 2)
 	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 11

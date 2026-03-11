@@ -405,9 +405,9 @@ static func _mirror_enemies(party: Array) -> Array:
 		var c := f.clone()
 		c.character_name = "Shadow " + f.character_name
 		c.is_user_controlled = false
-		c.health = int(c.health * 0.95); c.max_health = c.health
-		c.physical_attack = int(c.physical_attack * 0.95)
-		c.magic_attack = int(c.magic_attack * 0.95)
-		c.speed = int(c.speed * 0.94)
+		c.health = int(c.health * 0.98); c.max_health = c.health
+		c.physical_attack = int(c.physical_attack * 0.98)
+		c.magic_attack = int(c.magic_attack * 0.98)
+		c.speed = int(c.speed * 0.96)
 		enemies.append(c)
 	return enemies

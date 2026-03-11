@@ -34,11 +34,11 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # Shared Prog 6 & 7 (+27%)
 static func create_lucid_phantom(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Lucid Phantom", lvl)
-	f.health = _es(207, 237, 6, 10, lvl, 7); f.max_health = f.health
+	f.health = _es(211, 242, 6, 10, lvl, 7); f.max_health = f.health
 	f.mana = _es(16, 20, 1, 3, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(23, 28, 1, 3, lvl, 7)
 	f.physical_defense = _es(25, 30, 1, 3, lvl, 7)
-	f.magic_attack = _es(36, 41, 3, 4, lvl, 7)
+	f.magic_attack = _es(38, 43, 3, 4, lvl, 7)
 	f.magic_defense = _es(28, 33, 1, 4, lvl, 7)
 	f.speed = _es(41, 47, 1, 4, lvl, 7)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 18
@@ -49,11 +49,11 @@ static func create_lucid_phantom(n: String, lvl: int = 7) -> FighterData:
 # Shared Prog 6 & 7 (+27%)
 static func create_thread_spinner(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Thread Spinner", lvl)
-	f.health = _es(213, 244, 6, 10, lvl, 7); f.max_health = f.health
+	f.health = _es(216, 248, 6, 10, lvl, 7); f.max_health = f.health
 	f.mana = _es(18, 23, 2, 3, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(20, 25, 1, 3, lvl, 7)
 	f.physical_defense = _es(28, 33, 1, 4, lvl, 7)
-	f.magic_attack = _es(29, 35, 1, 4, lvl, 7)
+	f.magic_attack = _es(30, 36, 1, 4, lvl, 7)
 	f.magic_defense = _es(30, 36, 1, 4, lvl, 7)
 	f.speed = _es(36, 42, 1, 3, lvl, 7)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
@@ -79,11 +79,11 @@ static func create_loom_sentinel(n: String, lvl: int = 8) -> FighterData:
 # Shared Prog 6 & 8 (+27%)
 static func create_cult_shade(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Cult Shade", lvl)
-	f.health = _es(200, 232, 5, 9, lvl, 7); f.max_health = f.health
+	f.health = _es(203, 235, 5, 9, lvl, 7); f.max_health = f.health
 	f.mana = _es(18, 23, 2, 3, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(18, 23, 1, 3, lvl, 7)
 	f.physical_defense = _es(23, 28, 1, 3, lvl, 7)
-	f.magic_attack = _es(39, 44, 3, 4, lvl, 7)
+	f.magic_attack = _es(42, 47, 3, 4, lvl, 7)
 	f.magic_defense = _es(25, 30, 1, 3, lvl, 7)
 	f.speed = _es(38, 44, 1, 4, lvl, 7)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
@@ -124,11 +124,11 @@ static func create_thought_leech(n: String, lvl: int = 8) -> FighterData:
 # Prog 7 DreamVoid only (+36%)
 static func create_void_spinner(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Void Spinner", lvl)
-	f.health = _es(230, 263, 7, 9, lvl, 8); f.max_health = f.health
+	f.health = _es(238, 272, 7, 9, lvl, 8); f.max_health = f.health
 	f.mana = _es(21, 25, 2, 4, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = _es(16, 22, 0, 3, lvl, 8)
 	f.physical_defense = _es(27, 33, 1, 3, lvl, 8)
-	f.magic_attack = _es(42, 47, 3, 4, lvl, 8)
+	f.magic_attack = _es(44, 49, 3, 4, lvl, 8)
 	f.magic_defense = _es(33, 38, 1, 4, lvl, 8)
 	f.speed = _es(41, 48, 1, 4, lvl, 8)
 	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 10
@@ -139,11 +139,11 @@ static func create_void_spinner(n: String, lvl: int = 8) -> FighterData:
 # Prog 8 boss (+23%)
 static func create_sanctum_guardian(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Sanctum Guardian", lvl)
-	f.health = _es(307, 354, 10, 15, lvl, 9); f.max_health = f.health
+	f.health = _es(320, 369, 10, 15, lvl, 9); f.max_health = f.health
 	f.mana = _es(25, 30, 2, 5, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(40, 45, 2, 4, lvl, 9)
+	f.physical_attack = _es(42, 47, 2, 4, lvl, 9)
 	f.physical_defense = _es(32, 37, 3, 4, lvl, 9)
-	f.magic_attack = _es(40, 45, 2, 4, lvl, 9)
+	f.magic_attack = _es(42, 47, 2, 4, lvl, 9)
 	f.magic_defense = _es(32, 37, 3, 4, lvl, 9)
 	f.speed = _es(42, 48, 2, 4, lvl, 9)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
