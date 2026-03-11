@@ -143,6 +143,8 @@ func _show_pause() -> void:
 		return
 	if GameState.game_phase == GameState.GamePhase.ENDING:
 		return
+	if SceneManager.is_transitioning():
+		return
 
 	_mode = Mode.MAIN_MENU
 	_panel.visible = true

@@ -15,6 +15,10 @@ func _ready() -> void:
 	add_child(_fader)
 
 
+func is_transitioning() -> bool:
+	return _transitioning
+
+
 func preload_scene(path: String) -> void:
 	if path.is_empty() or _preload_requests.has(path):
 		return
@@ -51,6 +55,7 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 		recover.tween_property(_fader, "modulate:a", 0.0, fade_duration)
 		await recover.finished
 		_fader.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_transitioning = false
 		return
 
 	# Swap scenes manually
@@ -80,4 +85,3 @@ func _await_threaded_load(path: String) -> PackedScene:
 			_:
 				GameLog.error("SceneManager: Threaded load failed for '%s', falling back to sync" % path)
 				return load(path) as PackedScene
-	return load(path) as PackedScene
