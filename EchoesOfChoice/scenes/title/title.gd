@@ -85,10 +85,13 @@ func _build_ui() -> void:
 func _pick_title_background() -> String:
 	var s1 := "res://assets/art/ui/title_background.png"
 	var s2 := "res://assets/art/ui/title_background_s2.png"
-	if UnlockManager.is_unlocked("story_1_complete") and randi() % 2 == 0 \
-			and ResourceLoader.exists(s2):
-		return s2
-	return s1
+	var s3 := "res://assets/art/ui/title_background_s3.png"
+	var options: Array[String] = [s1]
+	if UnlockManager.is_unlocked("story_1_complete") and ResourceLoader.exists(s2):
+		options.append(s2)
+	if UnlockManager.is_unlocked("story_2_complete") and ResourceLoader.exists(s3):
+		options.append(s3)
+	return options[randi() % options.size()]
 
 
 func _play_reveal() -> void:
