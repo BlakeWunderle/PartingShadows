@@ -45,11 +45,11 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 
 static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Memory Harvester", lvl)
-	f.health = _es(358, 404, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = _es(376, 424, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = _es(29, 37, 2, 3, lvl, 14)
-	f.magic_attack = _es(97, 112, 3, 5, lvl, 14)
+	f.magic_attack = _es(100, 115, 3, 5, lvl, 14)
 	f.magic_defense = _es(46, 54, 2, 4, lvl, 14)
 	f.speed = _es(30, 36, 2, 3, lvl, 14)
 	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 11
@@ -59,11 +59,11 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 
 static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Oblivion Shade", lvl)
-	f.health = _es(310, 351, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = _es(326, 369, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(28, 34, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = _es(25, 34, 2, 3, lvl, 14)
-	f.magic_attack = _es(93, 109, 3, 5, lvl, 14)
+	f.magic_attack = _es(96, 112, 3, 5, lvl, 14)
 	f.magic_defense = _es(42, 51, 2, 4, lvl, 14)
 	f.speed = _es(34, 40, 2, 3, lvl, 14)
 	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 17
@@ -73,9 +73,9 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 
 static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Thoughtform Knight", lvl)
-	f.health = _es(595, 660, 7, 10, lvl, 14); f.max_health = f.health
+	f.health = _es(625, 693, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = _es(23, 29, 2, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(125, 145, 3, 5, lvl, 14)
+	f.physical_attack = _es(129, 149, 3, 5, lvl, 14)
 	f.physical_defense = _es(60, 70, 3, 5, lvl, 14)
 	f.magic_attack = _es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = _es(48, 56, 2, 4, lvl, 14)
