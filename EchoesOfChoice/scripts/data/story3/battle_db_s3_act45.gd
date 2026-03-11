@@ -116,7 +116,8 @@ static func s3_dream_nexus() -> BattleData:
 	b.is_final_battle = true
 	b.enemies = [
 		EnemyDB.create_the_threadmaster("The Threadmaster"),
-		EnemyDB.create_high_weaver("Loom Echo"),
+		EnemyDB.create_shadow_fragment("Tattered Shadow"),
+		EnemyDB.create_shadow_fragment("Fraying Darkness"),
 	]
 	b.pre_battle_text = [
 		"The Dream Nexus is the heart of the Loom. Every thread converges here, every stolen dream, every drained night of rest. The air is thick with the energy of a thousand sleepers.",

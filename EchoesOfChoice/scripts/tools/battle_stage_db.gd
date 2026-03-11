@@ -392,7 +392,8 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBS3Act45.create_thread_guard("Loom Champion")]
 		"S3_DreamNexus":
 			return [EnemyDBS3Act45.create_the_threadmaster("The Threadmaster"),
-				EnemyDBS3Act45.create_high_weaver("Loom Echo")]
+				EnemyDBS3Act45.create_shadow_fragment("Tattered Shadow"),
+				EnemyDBS3Act45.create_shadow_fragment("Fraying Darkness")]
 		_:
 			push_error("Unknown stage: %s" % stage_name)
 			return []

@@ -27,115 +27,125 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 # =============================================================================
 # Act III: Cult dream guardians (Progression 6-8)
+# Per-enemy calibration from R4/R5 interpolation.
+# Shared enemies constrained; non-shared tuned per-battle.
 # =============================================================================
 
+# Shared Prog 6 & 7 (+27%)
 static func create_lucid_phantom(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Lucid Phantom", lvl)
-	f.health = _es(206, 238, 6, 9, lvl, 7); f.max_health = f.health
-	f.mana = _es(17, 22, 1, 3, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(23, 28, 1, 2, lvl, 7)
-	f.physical_defense = _es(25, 30, 1, 2, lvl, 7)
-	f.magic_attack = _es(38, 43, 2, 3, lvl, 7)
-	f.magic_defense = _es(28, 33, 1, 3, lvl, 7)
-	f.speed = _es(34, 39, 1, 3, lvl, 7)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 16
+	f.health = _es(210, 241, 6, 10, lvl, 7); f.max_health = f.health
+	f.mana = _es(16, 20, 1, 3, lvl, 7); f.max_mana = f.mana
+	f.physical_attack = _es(23, 28, 1, 3, lvl, 7)
+	f.physical_defense = _es(25, 30, 1, 3, lvl, 7)
+	f.magic_attack = _es(38, 43, 3, 4, lvl, 7)
+	f.magic_defense = _es(28, 33, 1, 4, lvl, 7)
+	f.speed = _es(41, 47, 1, 4, lvl, 7)
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
 	return f
 
 
+# Shared Prog 6 & 7 (+27%)
 static func create_thread_spinner(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Thread Spinner", lvl)
-	f.health = _es(213, 244, 6, 9, lvl, 7); f.max_health = f.health
-	f.mana = _es(20, 24, 2, 3, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(20, 25, 1, 2, lvl, 7)
-	f.physical_defense = _es(28, 33, 1, 3, lvl, 7)
-	f.magic_attack = _es(30, 35, 1, 3, lvl, 7)
-	f.magic_defense = _es(30, 35, 1, 3, lvl, 7)
-	f.speed = _es(30, 35, 1, 2, lvl, 7)
+	f.health = _es(216, 248, 6, 10, lvl, 7); f.max_health = f.health
+	f.mana = _es(18, 23, 2, 3, lvl, 7); f.max_mana = f.mana
+	f.physical_attack = _es(20, 25, 1, 3, lvl, 7)
+	f.physical_defense = _es(28, 33, 1, 4, lvl, 7)
+	f.magic_attack = _es(30, 36, 1, 4, lvl, 7)
+	f.magic_defense = _es(30, 36, 1, 4, lvl, 7)
+	f.speed = _es(36, 42, 1, 3, lvl, 7)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.woven_mend(), EAB.thread_snare()]
 	return f
 
 
+# Prog 7 DreamTemple only (+25%)
 static func create_loom_sentinel(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Loom Sentinel", lvl)
-	f.health = _es(250, 288, 7, 11, lvl, 8); f.max_health = f.health
-	f.mana = _es(12, 16, 1, 2, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(38, 43, 2, 3, lvl, 8)
-	f.physical_defense = _es(33, 38, 2, 3, lvl, 8)
+	f.health = _es(250, 288, 8, 13, lvl, 8); f.max_health = f.health
+	f.mana = _es(13, 18, 1, 2, lvl, 8); f.max_mana = f.mana
+	f.physical_attack = _es(37, 43, 3, 4, lvl, 8)
+	f.physical_defense = _es(33, 38, 3, 4, lvl, 8)
 	f.magic_attack = _es(18, 23, 1, 2, lvl, 8)
-	f.magic_defense = _es(30, 35, 1, 3, lvl, 8)
-	f.speed = _es(28, 33, 1, 2, lvl, 8)
-	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 5
+	f.magic_defense = _es(30, 35, 1, 4, lvl, 8)
+	f.speed = _es(33, 39, 1, 3, lvl, 8)
+	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
 	return f
 
 
+# Shared Prog 6 & 8 (+27%)
 static func create_cult_shade(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Cult Shade", lvl)
-	f.health = _es(200, 231, 5, 8, lvl, 7); f.max_health = f.health
-	f.mana = _es(20, 24, 2, 3, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(18, 23, 1, 2, lvl, 7)
-	f.physical_defense = _es(23, 28, 1, 2, lvl, 7)
-	f.magic_attack = _es(40, 45, 2, 3, lvl, 7)
-	f.magic_defense = _es(25, 30, 1, 2, lvl, 7)
-	f.speed = _es(32, 37, 1, 3, lvl, 7)
+	f.health = _es(203, 235, 5, 9, lvl, 7); f.max_health = f.health
+	f.mana = _es(18, 23, 2, 3, lvl, 7); f.max_mana = f.mana
+	f.physical_attack = _es(18, 23, 1, 3, lvl, 7)
+	f.physical_defense = _es(23, 28, 1, 3, lvl, 7)
+	f.magic_attack = _es(41, 46, 3, 4, lvl, 7)
+	f.magic_defense = _es(25, 30, 1, 3, lvl, 7)
+	f.speed = _es(38, 44, 1, 4, lvl, 7)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	return f
 
 
+# Shared Prog 7 & 8 (+22%)
 static func create_dream_warden(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Dream Warden", lvl)
-	f.health = _es(231, 263, 6, 9, lvl, 8); f.max_health = f.health
-	f.mana = _es(14, 18, 1, 3, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(30, 35, 1, 3, lvl, 8)
-	f.physical_defense = _es(30, 35, 2, 3, lvl, 8)
-	f.magic_attack = _es(35, 40, 1, 3, lvl, 8)
-	f.magic_defense = _es(28, 33, 1, 3, lvl, 8)
-	f.speed = _es(32, 37, 1, 3, lvl, 8)
+	f.health = _es(226, 256, 6, 10, lvl, 8); f.max_health = f.health
+	f.mana = _es(15, 20, 1, 3, lvl, 8); f.max_mana = f.mana
+	f.physical_attack = _es(29, 34, 1, 4, lvl, 8)
+	f.physical_defense = _es(29, 34, 2, 4, lvl, 8)
+	f.magic_attack = _es(34, 39, 1, 4, lvl, 8)
+	f.magic_defense = _es(27, 32, 1, 4, lvl, 8)
+	f.speed = _es(37, 43, 1, 3, lvl, 8)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
 	return f
 
 
+# Prog 7 DreamTemple only (+25%)
 static func create_thought_leech(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Thought Leech", lvl)
-	f.health = _es(213, 244, 5, 8, lvl, 8); f.max_health = f.health
-	f.mana = _es(20, 24, 2, 3, lvl, 8); f.max_mana = f.mana
+	f.health = _es(213, 244, 5, 9, lvl, 8); f.max_health = f.health
+	f.mana = _es(20, 25, 2, 3, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = _es(18, 23, 1, 2, lvl, 8)
 	f.physical_defense = _es(23, 28, 1, 2, lvl, 8)
-	f.magic_attack = _es(38, 43, 2, 3, lvl, 8)
-	f.magic_defense = _es(28, 33, 1, 3, lvl, 8)
-	f.speed = _es(30, 35, 1, 2, lvl, 8)
+	f.magic_attack = _es(38, 43, 2, 4, lvl, 8)
+	f.magic_defense = _es(28, 33, 1, 4, lvl, 8)
+	f.speed = _es(34, 41, 1, 3, lvl, 8)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.psychic_siphon(), EAB.mind_fog()]
 	return f
 
 
+# Prog 7 DreamVoid only (+36%)
 static func create_void_spinner(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Void Spinner", lvl)
-	f.health = _es(219, 250, 6, 8, lvl, 8); f.max_health = f.health
-	f.mana = _es(22, 26, 2, 3, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(15, 20, 0, 2, lvl, 8)
-	f.physical_defense = _es(25, 30, 1, 2, lvl, 8)
-	f.magic_attack = _es(40, 45, 2, 3, lvl, 8)
-	f.magic_defense = _es(30, 35, 1, 3, lvl, 8)
-	f.speed = _es(32, 37, 1, 3, lvl, 8)
-	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 10
+	f.health = _es(238, 272, 7, 9, lvl, 8); f.max_health = f.health
+	f.mana = _es(21, 25, 2, 4, lvl, 8); f.max_mana = f.mana
+	f.physical_attack = _es(16, 22, 0, 3, lvl, 8)
+	f.physical_defense = _es(27, 33, 1, 3, lvl, 8)
+	f.magic_attack = _es(44, 49, 3, 4, lvl, 8)
+	f.magic_defense = _es(33, 38, 1, 4, lvl, 8)
+	f.speed = _es(41, 48, 1, 4, lvl, 8)
+	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.void_thread(), EAB.nullify()]
 	return f
 
 
+# Prog 8 boss (+23%)
 static func create_sanctum_guardian(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Sanctum Guardian", lvl)
-	f.health = _es(325, 375, 9, 13, lvl, 9); f.max_health = f.health
-	f.mana = _es(24, 28, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(43, 48, 2, 3, lvl, 9)
-	f.physical_defense = _es(33, 38, 2, 3, lvl, 9)
-	f.magic_attack = _es(43, 48, 2, 3, lvl, 9)
-	f.magic_defense = _es(33, 38, 2, 3, lvl, 9)
-	f.speed = _es(36, 41, 2, 3, lvl, 9)
+	f.health = _es(320, 369, 10, 15, lvl, 9); f.max_health = f.health
+	f.mana = _es(25, 30, 2, 5, lvl, 9); f.max_mana = f.mana
+	f.physical_attack = _es(42, 47, 2, 4, lvl, 9)
+	f.physical_defense = _es(32, 37, 3, 4, lvl, 9)
+	f.magic_attack = _es(42, 47, 2, 4, lvl, 9)
+	f.magic_defense = _es(32, 37, 3, 4, lvl, 9)
+	f.speed = _es(42, 48, 2, 4, lvl, 9)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.loom_slam(), EAB.thread_storm(), EAB.guardians_veil()]
 	return f
