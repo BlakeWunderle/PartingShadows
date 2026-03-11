@@ -18,12 +18,12 @@ const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 static func get_all_stages() -> Array:
 	return [
-		# Prog 0: Base classes, no level ups
-		_s("CityStreetBattle", 0, "base", 0.90, 0),
+		# Prog 0: Base classes, no level ups (targets adjusted for 6th T0 class Wanderer)
+		_s("CityStreetBattle", 0, "base", 0.85, 0),
 		# Prog 1: Base classes, 1 level up
-		_s("WolfForestBattle", 1, "base", 0.88, 1),
+		_s("WolfForestBattle", 1, "base", 0.83, 1),
 		# Prog 2: Base classes, 2 level ups
-		_s("WaypointDefenseBattle", 2, "base", 0.85, 2),
+		_s("WaypointDefenseBattle", 2, "base", 0.78, 2),
 		# Prog 3: Tier 1, 4 total level ups
 		_s("HighlandBattle", 4, "tier1", 0.83, 3),
 		_s("DeepForestBattle", 4, "tier1", 0.83, 3),
@@ -405,9 +405,9 @@ static func _mirror_enemies(party: Array) -> Array:
 		var c := f.clone()
 		c.character_name = "Shadow " + f.character_name
 		c.is_user_controlled = false
-		c.health = int(c.health * 0.99); c.max_health = c.health
-		c.physical_attack = int(c.physical_attack * 0.99)
-		c.magic_attack = int(c.magic_attack * 0.99)
-		c.speed = int(c.speed * 0.97)
+		c.health = int(c.health * 0.95); c.max_health = c.health
+		c.physical_attack = int(c.physical_attack * 0.95)
+		c.magic_attack = int(c.magic_attack * 0.95)
+		c.speed = int(c.speed * 0.94)
 		enemies.append(c)
 	return enemies
