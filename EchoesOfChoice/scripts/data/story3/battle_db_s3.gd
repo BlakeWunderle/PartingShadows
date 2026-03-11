@@ -65,9 +65,7 @@ static func s3_dream_meadow() -> BattleData:
 	b.post_battle_text = [
 		"The lights scatter. The meadow ripples like the surface of a pond, and the dream collapses inward.",
 		"In the moment before waking, something else moves at the edge of the meadow. A figure, small and luminous, dancing between the tall grass. It pauses, turns, and seems to wave.",
-		"Behind it, something follows. A shape of pure darkness, ragged at the edges, moving with the deliberate speed of a predator. The dancer's pace quickens, and it vanishes into the grass just ahead of the shadow's reach. Then the dream is gone.",
-		"Each traveler wakes in their bed at the inn, gasping. Dawn light presses through the shutters. It was just a dream. A strange one, but nothing more.",
-		"They dress and head downstairs, none mentioning the unease that lingers behind their eyes.",
+		"Behind it, something follows. A shape of pure darkness, ragged at the edges, moving with the deliberate speed of a predator. The dancer's pace quickens, and it vanishes into the grass just ahead of the shadow's reach.",
 	]
 	b.choices = [
 		{"label": "The meadow forks: left, a corridor of silver mirrors stretches into the distance.", "battle_id": "S3_DreamMirrorHall"},
@@ -140,8 +138,8 @@ static func s3_town_morning() -> BattleData:
 	b.pre_battle_text = [
 		"The morning is pleasant. The town square is busy with merchants, and the air smells of fresh bread and iron from the smithy.",
 		"The innkeeper suggests visiting the market. 'We get good traders through here. Weapons, armor, supplies. You'll want to be prepared for the road ahead.'",
-		"The travelers spend the day exploring. The town is charming. Normal. Friendly faces and honest prices.",
 		"The serving girl from the night before brings their breakfast. Her name is Lira, the innkeeper says. Lira lingers a moment too long, watching them with an expression that is hard to read, before retreating to the kitchen.",
+		"The travelers spend the day exploring. The town is charming. Normal. Friendly faces and honest prices.",
 		"Only one thing nags at the back of each mind: last night's dream. But dreams are just dreams.",
 	]
 	b.post_battle_text = [

@@ -77,7 +77,7 @@ static func s3_cult_ritual_chamber() -> BattleData:
 	b.battle_id = "S3_CultRitualChamber"
 	b.scene_image = "res://assets/art/battles/echo_gallery.png"
 	b.enemies = [
-		EnemyDB.create_cult_ritualist("High Ritualist Sera"),
+		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
 		EnemyDB.create_high_weaver("Weaver Aldric"),
 		EnemyDB.create_thread_guard("Loom Champion"),
 	]
@@ -89,12 +89,15 @@ static func s3_cult_ritual_chamber() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The ritualist and weaver fall. The physical loom cracks, but does not break. The threads flare, brighter than before.",
-		"Lira stares at the cracking loom. 'She is not just the leader,' Lira says quietly. 'She IS the Loom. Destroying her agents will not stop it.'",
-		"A voice fills the chamber. The innkeeper's voice, but amplified, echoing from the threads themselves.",
-		"'Fools. The Loom does not need me to operate it. It needs me to restrain it.'",
-		"The threads whip outward. The shadow erupts from the cracking loom, larger than it has ever been, and wraps itself around Lira before anyone can move. She screams, and the darkness swallows her whole.",
-		"The chamber dissolves. The travelers are dragged back into the dream, deeper than they have ever been. But Lira is not beside them. The shadow has her, bound in threads of darkness at the heart of the Loom.",
-		"They stand in a nexus of woven light, and at its center stands the Threadmaster, the innkeeper, her true form revealed: a weaver of dreams who has spent decades building the Loom and feeding it the psychic energy of hundreds.",
+		"A figure steps from behind the loom. The innkeeper. She moves without urgency, without fear, her practiced smile fixed in place.",
+		"'You should not have come this far,' she says. But her voice is wrong. Layered. As if something else is speaking through her.",
+		"Her form ripples. Darkens. The practiced smile dissolves into something ragged and formless. The warm eyes become hollow points of shadow. The innkeeper was never real. She was the shadow, given a face and a name.",
+		"Lira stumbles backward. 'It is her,' she whispers. 'The shadow. The thing that has been hunting me. It was her. It was always her.'",
+		"The shadow erupts outward, larger than it has ever been, and wraps itself around Lira before anyone can move. She screams, and the darkness swallows her whole.",
+		"A voice rises from the Loom itself. Not the innkeeper's voice. Something far older, woven into the threads for longer than the town has existed.",
+		"'My shadow served its purpose,' the voice says. 'It kept the inn. It kept the travelers coming. And it kept the girl running. But you have forced my hand.'",
+		"The chamber dissolves. The travelers are dragged into the dream, deeper than they have ever been. But Lira is not beside them. The shadow has her, bound in threads of darkness at the heart of the Loom.",
+		"They stand in a nexus of woven light, and at its center stands a figure they have never seen. The Threadmaster. Not the innkeeper, not any person from the town, but something that abandoned flesh long ago to live within the dream itself.",
 	]
 	b.next_battle_id = "S3_DreamNexus"
 	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - Arcane Thrones.ogg"
@@ -117,12 +120,12 @@ static func s3_dream_nexus() -> BattleData:
 	]
 	b.pre_battle_text = [
 		"The Dream Nexus is the heart of the Loom. Every thread converges here, every stolen dream, every drained night of rest. The air is thick with the energy of a thousand sleepers.",
-		"Behind the Threadmaster, Lira hangs suspended in a web of dark threads, the shadow coiled around her like a cage. Her eyes are open but distant, trapped between sleep and waking.",
+		"The Threadmaster stands at the center, threads extending from its fingers like puppet strings. It has no true face. Its form is woven from light and thread, a being that was once human but chose the dream over waking long ago.",
+		"Behind it, Lira hangs suspended in a web of dark threads, the shadow coiled around her like a cage. Her eyes are open but distant, trapped between sleep and waking.",
 		"'Your little dancer belongs to the Loom now,' the Threadmaster says. 'She always did. She just did not know it.'",
-		"The Threadmaster stands at the center, threads extending from her fingers like puppet strings. She is not the innkeeper anymore. She is something older, something that learned to weave dreams before the town existed.",
-		"'I built the Loom to feed,' she says. 'Every weary traveler. Every restless sleeper. Their dreams sustained me, and the town prospered in return. A fair trade.'",
+		"'I built this Loom centuries ago,' it says. 'I wove the shadow to keep the inn, to keep the travelers coming. Every weary sleeper fed me, and the town prospered in return. A fair trade.'",
 		"'There is nothing fair about stealing from the unconscious,' one traveler replies.",
-		"The Threadmaster's face hardens. 'Then let us settle this the way dreams always end. With one side waking, and the other forgotten.'",
+		"The Threadmaster's form brightens, threads pulling taut. 'Then let us settle this the way dreams always end. With one side waking, and the other forgotten.'",
 	]
 	b.post_battle_text = [
 		"The Threadmaster screams as the last thread snaps. The Loom collapses inward, threads unraveling in cascading waves. The nexus tears itself apart.",
@@ -131,8 +134,8 @@ static func s3_dream_nexus() -> BattleData:
 		"For one moment, the travelers see every dream the Loom ever stole: a child's nightmare, a mother's hope, an old man's memory of a face he loved. Thousands of stolen fragments, set free.",
 		"Then they are standing in the cellar. The physical loom is dark, its threads disintegrated. The walls are just walls. The hum is gone.",
 		"Lira stands in the silence, shaken but whole. The power that the Loom stole from her as a child flows back through her. She looks different now. Steadier. Freer. The luminous dancer and the quiet serving girl finally the same person.",
-		"Dawn light streams through the cellar door. The innkeeper lies unconscious on the floor, aged decades in an instant, the power that sustained her finally spent.",
-		"The town wakes up. For the first time in years, every person in it slept through the night without dreaming. Without losing anything.",
+		"Dawn light streams through the cellar door. Behind the bar upstairs, an apron hangs on a hook. A cup sits half-filled. But the woman who poured it never existed. She was thread and shadow, given a face and a smile.",
+		"The town wakes up. For the first time in years, every person in it slept through the night without dreaming. Without losing anything. The cult members stir from a fog they did not know they were in, blinking at the sigils on their hands as if seeing them for the first time.",
 		"The sign above the inn door has faded. 'The Weary Traveler.' It makes a different kind of sense now.",
 		"Lira walks them to the edge of town. 'I spent my whole life dreaming of escape,' she says. 'Now I think I will stay. Someone needs to make sure the threads stay quiet.'",
 		"They leave the town by midmorning, rested for the first time since they arrived.",

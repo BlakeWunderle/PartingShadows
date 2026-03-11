@@ -146,7 +146,8 @@ static func s3_dream_sanctum() -> BattleData:
 		"'They are harvesting us,' one traveler says. 'Every night. Every dream. They take something and we wake up tired.'",
 	]
 	b.post_battle_text = [
-		"The guardian shatters. The threads go wild, snapping and reforming. The dream convulses.",
+		"The guardian shatters. The shadow screams and tears free from the wreckage, fleeing into the threads like a wounded animal. It is fast, but it is diminished. Without the guardian, it has lost something.",
+		"The threads go wild, snapping and reforming. The dream convulses.",
 		"In the last moment before waking, the travelers see it clearly: the cellar beneath the inn. Robed figures around a circle of woven thread. The innkeeper, standing at the center, eyes closed, hands raised.",
 		"They wake up. It is still dark. And now they know exactly what they are dealing with.",
 		"'The Thread,' one says, reading a symbol sketched from memory. 'That is what they call themselves. And they have been doing this for years.'",
