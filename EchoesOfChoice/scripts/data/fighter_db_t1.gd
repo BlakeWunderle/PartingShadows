@@ -30,8 +30,8 @@ static func upgrade_to_ranger(f: FighterData) -> void:
 static func upgrade_to_martial_artist(f: FighterData) -> void:
 	f.class_id = "MartialArtist"; f.character_type = "Martial Artist"
 	f.health += 4; f.max_health += 4
-	f.physical_attack += 2; f.physical_defense += 2; f.speed += 4
-	f.crit_chance = 30; f.crit_damage = 3; f.dodge_chance = 20
+	f.physical_attack += 2; f.physical_defense += 2; f.speed += 3
+	f.crit_chance = 30; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [PAB.punch(), PAB.topple()]
 	f.upgrade_items = ["Sword", "Staff"]
 
@@ -57,12 +57,12 @@ static func _lu_ranger(f: FighterData) -> void:
 
 static func _lu_martial_artist(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
+	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(2, 2)
-	f.dodge_chance += randi_range(1, 2)
+	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
 
 

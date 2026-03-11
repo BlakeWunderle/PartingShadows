@@ -116,7 +116,7 @@ static func precise_strike() -> AbilityData:
 
 static func meditate() -> AbilityData:
 	return _make("Meditate", "Center the mind against magical attacks.",
-		Enums.StatType.MAGIC_DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
+		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0, 2)
 
 
 # =============================================================================
@@ -192,11 +192,11 @@ static func smite() -> AbilityData:
 # Priest
 static func restoration() -> AbilityData:
 	return _make("Restoration", "A powerful prayer of healing.",
-		Enums.StatType.HEALTH, 30, 0, false, 7, false, 0, 0.0, 3)
+		Enums.StatType.HEALTH, 25, 0, false, 7, false, 0, 0.0, 3)
 
 static func heavenly_body() -> AbilityData:
 	return _make("Heavenly Body", "Divine protection for all allies.",
-		Enums.StatType.DEFENSE, 4, 2, false, 5, true, 0, 0.0, 2)
+		Enums.StatType.DEFENSE, 3, 2, false, 5, true, 0, 0.0, 2)
 
 static func holy() -> AbilityData:
 	return _make("Holy", "A ray of pure divine energy.",
@@ -267,7 +267,7 @@ static func ballad() -> AbilityData:
 
 static func serenade() -> AbilityData:
 	return _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 2, 0, false, 5, false, 0, 0.0, 3)
+		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0, 3)
 
 # Illusionist
 static func mirage() -> AbilityData:
@@ -293,12 +293,12 @@ static func invisible_box() -> AbilityData:
 
 # Laureate
 static func ovation() -> AbilityData:
-	return _make("Ovation", "A masterful speech that empowers.",
-		Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0, 2)
+	return _make("Ovation", "A masterful speech that empowers all allies.",
+		Enums.StatType.ATTACK, 6, 2, false, 3, true, 0, 0.0, 2)
 
 static func recite() -> AbilityData:
 	return _make("Recite", "Words of power that wound.",
-		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
 
 static func eulogy() -> AbilityData:
 	return _make("Eulogy", "Speak their end into being.",
@@ -498,7 +498,7 @@ static func draining_vines() -> AbilityData:
 # Witch Doctor
 static func voodoo_bolt() -> AbilityData:
 	return _make("Voodoo Bolt", "Dark spiritual energy strikes the enemy.",
-		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, false, 0, 0.3, 2)
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, false, 0, 0.4, 2)
 
 static func dark_hex() -> AbilityData:
 	return _make("Dark Hex", "A potent curse that weakens magic resistance.",
@@ -506,7 +506,7 @@ static func dark_hex() -> AbilityData:
 
 static func creeping_rot() -> AbilityData:
 	return _make("Creeping Rot", "A slow decay that saps strength.",
-		Enums.StatType.ATTACK, 2, 3, true, 3, false, 3, 0.0, 2)
+		Enums.StatType.ATTACK, 3, 3, true, 3, false, 4, 0.0, 2)
 
 # Spiritwalker
 static func spirit_shield() -> AbilityData:
@@ -585,11 +585,11 @@ static func fortress_strike() -> AbilityData:
 
 static func iron_fist() -> AbilityData:
 	return _make("Iron Fist", "A devastating blow that shatters defenses.",
-		Enums.StatType.MIXED_ATTACK, 8, 0, true, 6, false, 0, 0.0, 3)
+		Enums.StatType.MIXED_ATTACK, 9, 0, true, 6, false, 0, 0.0, 3)
 
 static func bulwarks_stand() -> AbilityData:
-	return _make("Bulwark's Stand", "Plant yourself firmly and bolster your defenses.",
-		Enums.StatType.DEFENSE, 4, 2, false, 4)
+	return _make("Bulwark's Stand", "Plant yourself firmly and bolster all allies' defenses.",
+		Enums.StatType.DEFENSE, 5, 2, false, 4, true)
 
 # Aegis - support tank with party buffs and healing
 static func guardians_blessing() -> AbilityData:
@@ -607,11 +607,11 @@ static func aegis_barrier() -> AbilityData:
 # Trailblazer
 static func blaze_trail() -> AbilityData:
 	return _make("Blaze Trail", "Charge forward with reckless, blazing speed.",
-		Enums.StatType.MIXED_ATTACK, 8, 0, true, 5, false, 0, 0.0, 2)
+		Enums.StatType.MIXED_ATTACK, 8, 0, true, 5, false, 0, 0.3, 2)
 
 static func ambush() -> AbilityData:
 	return _make("Ambush", "Strike from an unexpected angle, hitting all foes.",
-		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 5, true)
+		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 5, true)
 
 static func expose() -> AbilityData:
 	return _make("Expose", "Reveal the enemy's vulnerabilities for all to exploit.",
