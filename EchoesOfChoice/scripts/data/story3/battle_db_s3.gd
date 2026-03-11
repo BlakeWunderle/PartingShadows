@@ -64,7 +64,8 @@ static func s3_dream_meadow() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The lights scatter. The meadow ripples like the surface of a pond, and the dream collapses inward.",
-		"In the moment before waking, something else moves at the edge of the meadow. A figure, small and luminous, dancing between the tall grass. It pauses, turns, and seems to wave. Then the dream is gone.",
+		"In the moment before waking, something else moves at the edge of the meadow. A figure, small and luminous, dancing between the tall grass. It pauses, turns, and seems to wave.",
+		"Behind it, something follows. A shape of pure darkness, ragged at the edges, moving with the deliberate speed of a predator. The dancer's pace quickens, and it vanishes into the grass just ahead of the shadow's reach. Then the dream is gone.",
 		"Each traveler wakes in their bed at the inn, gasping. Dawn light presses through the shutters. It was just a dream. A strange one, but nothing more.",
 		"They dress and head downstairs, none mentioning the unease that lingers behind their eyes.",
 	]
@@ -93,7 +94,8 @@ static func s3_dream_mirror_hall() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The last mirror cracks and the hall dissolves into white noise. The dream is ending.",
-		"In the final unbroken mirror, a figure dances, bright and quick. It presses a hand to the glass and the mirror glows warm before shattering. The hall feels safer for an instant.",
+		"In the final unbroken mirror, a figure dances, bright and quick. It presses a hand to the glass and the mirror glows warm before shattering.",
+		"Then a shadow fills every remaining reflection at once. A dark shape, formless and hungry, slamming against the glass from the inside. The mirrors crack under the impact. Whatever the dancer is running from, it is close behind.",
 		"Morning. The shutters rattle in a breeze. It was a strange night, but the bed was comfortable and the dawn is bright.",
 	]
 	b.next_battle_id = "S3_TownMorning"
@@ -118,6 +120,7 @@ static func s3_dream_fog_garden() -> BattleData:
 	b.post_battle_text = [
 		"The garden folds in on itself like a closing book. The fog recedes into nothing.",
 		"As the mist clears, a faint trail of golden light lingers in the air, as if someone danced through the garden ahead of them, leaving a path to follow.",
+		"But behind the trail, the fog darkens. Something moves through it, low and fast, swallowing the light where it passes. The golden path fades to nothing in its wake.",
 		"Sunlight. Birdsong. The smell of breakfast from the common room below. Just a bad dream.",
 	]
 	b.next_battle_id = "S3_TownMorning"
@@ -169,6 +172,7 @@ static func s3_dream_return() -> BattleData:
 	b.post_battle_text = [
 		"The dream shudders. The broken architecture groans. Through the noise, two paths appear.",
 		"The dancing figure is back. Brighter than before, moving with purpose through the wreckage. It pauses at the junction, gestures toward both passages, and fades into a trail of light.",
+		"But the figure does not linger. A dark shape surges through the wreckage behind it, fast and silent. The dancer flees, and the shadow follows, close enough to touch.",
 	]
 	b.choices = [
 		{"label": "Left: Walls of shifting stone form a labyrinth that breathes.", "battle_id": "S3_DreamLabyrinth"},
@@ -196,6 +200,7 @@ static func s3_dream_labyrinth() -> BattleData:
 	b.post_battle_text = [
 		"The walls stop moving. A passage opens in the floor, dropping into a vast dark space below.",
 		"A trail of soft light leads through the passage, as though the dancing figure passed this way moments ago, leaving breadcrumbs in the dark.",
+		"Behind them, something scrapes against the walls. The shadow again, closer now. The breadcrumbs of light flicker and die where it passes.",
 		"In the distance, something enormous stirs.",
 	]
 	b.next_battle_id = "S3_DreamNightmare"
@@ -220,6 +225,7 @@ static func s3_dream_clock_tower() -> BattleData:
 	b.post_battle_text = [
 		"The clock strikes thirteen. The tower cracks open, revealing the dark space beneath all dreams.",
 		"A luminous figure stands on the lowest landing, dancing in place. It points downward, toward the dark space, then vanishes like a blown candle.",
+		"A shadow pours down from the broken clockface like spilled ink, reaching for the spot where the figure stood. It pools at the base of the tower, coiling and waiting.",
 		"Something waits below. Something that has been dreaming of them.",
 	]
 	b.next_battle_id = "S3_DreamNightmare"
@@ -239,6 +245,7 @@ static func s3_dream_nightmare() -> BattleData:
 	b.pre_battle_text = [
 		"The space beneath the dream is vast and formless. A presence fills it, heavier than air, denser than thought.",
 		"It takes shape slowly. A face made of every fear that was ever forgotten upon waking. Eyes like collapsed stars. A mouth that speaks in the language of paralysis.",
+		"At the edge of the vast space, the dark shape that has stalked through every dream coils around the creature's base, feeding it. The Nightmare and the shadow are connected. One hunts. The other devours.",
 		"For the first time in the dream, a voice cuts through the silence. Not the creature's voice. A human voice.",
 		"'Can you hear me?' One of the travelers is speaking. And the others can hear them.",
 		"In a dream. They can hear each other. In the same dream.",
@@ -250,6 +257,7 @@ static func s3_dream_nightmare() -> BattleData:
 		"'I heard you too.'",
 		"'There was someone else,' the third says. 'A figure. Dancing. It was helping us. I think it distracted the creature at the end.'",
 		"'I saw it too,' another confirms. 'Both nights. The same figure. Glowing. It has been in every dream.'",
+		"'And something was chasing it,' one adds. 'Every time it appeared, something dark followed. Fast. Relentless.'",
 		"Silence. Then the third speaks: 'We were in the same dream. All three of us. Both nights.'",
 		"They sit in the common room and compare notes. The meadow. The creatures. The dancing figure. Every detail matches.",
 		"Something in this town is doing this to them. And tonight, it will happen again.",

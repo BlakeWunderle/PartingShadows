@@ -92,7 +92,8 @@ static func s3_cult_ritual_chamber() -> BattleData:
 		"Lira stares at the cracking loom. 'She is not just the leader,' Lira says quietly. 'She IS the Loom. Destroying her agents will not stop it.'",
 		"A voice fills the chamber. The innkeeper's voice, but amplified, echoing from the threads themselves.",
 		"'Fools. The Loom does not need me to operate it. It needs me to restrain it.'",
-		"The threads whip outward. The chamber dissolves. The travelers are dragged back into the dream, deeper than they have ever been.",
+		"The threads whip outward. The shadow erupts from the cracking loom, larger than it has ever been, and wraps itself around Lira before anyone can move. She screams, and the darkness swallows her whole.",
+		"The chamber dissolves. The travelers are dragged back into the dream, deeper than they have ever been. But Lira is not beside them. The shadow has her, bound in threads of darkness at the heart of the Loom.",
 		"They stand in a nexus of woven light, and at its center stands the Threadmaster, the innkeeper, her true form revealed: a weaver of dreams who has spent decades building the Loom and feeding it the psychic energy of hundreds.",
 	]
 	b.next_battle_id = "S3_DreamNexus"
@@ -116,7 +117,8 @@ static func s3_dream_nexus() -> BattleData:
 	]
 	b.pre_battle_text = [
 		"The Dream Nexus is the heart of the Loom. Every thread converges here, every stolen dream, every drained night of rest. The air is thick with the energy of a thousand sleepers.",
-		"Lira stands beside them, her form flickering between the serving girl and the luminous dancer. 'This is everything I have been fighting against my whole life,' she says. 'Let us end it.'",
+		"Behind the Threadmaster, Lira hangs suspended in a web of dark threads, the shadow coiled around her like a cage. Her eyes are open but distant, trapped between sleep and waking.",
+		"'Your little dancer belongs to the Loom now,' the Threadmaster says. 'She always did. She just did not know it.'",
 		"The Threadmaster stands at the center, threads extending from her fingers like puppet strings. She is not the innkeeper anymore. She is something older, something that learned to weave dreams before the town existed.",
 		"'I built the Loom to feed,' she says. 'Every weary traveler. Every restless sleeper. Their dreams sustained me, and the town prospered in return. A fair trade.'",
 		"'There is nothing fair about stealing from the unconscious,' one traveler replies.",
@@ -124,9 +126,11 @@ static func s3_dream_nexus() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The Threadmaster screams as the last thread snaps. The Loom collapses inward, threads unraveling in cascading waves. The nexus tears itself apart.",
+		"The shadow shrieks, a sound like tearing cloth, and dissolves into wisps of dark thread that scatter and fade. The thing that hunted Lira's dreams for years is gone in an instant.",
+		"Lira falls free from the web, gasping. One of the travelers catches her before she hits the ground.",
 		"For one moment, the travelers see every dream the Loom ever stole: a child's nightmare, a mother's hope, an old man's memory of a face he loved. Thousands of stolen fragments, set free.",
 		"Then they are standing in the cellar. The physical loom is dark, its threads disintegrated. The walls are just walls. The hum is gone.",
-		"Lira stands in the silence, unchanged. The power that the Loom stole from her as a child flows back through her. She looks different now. Steadier. Freer. The luminous dancer and the quiet serving girl finally the same person.",
+		"Lira stands in the silence, shaken but whole. The power that the Loom stole from her as a child flows back through her. She looks different now. Steadier. Freer. The luminous dancer and the quiet serving girl finally the same person.",
 		"Dawn light streams through the cellar door. The innkeeper lies unconscious on the floor, aged decades in an instant, the power that sustained her finally spent.",
 		"The town wakes up. For the first time in years, every person in it slept through the night without dreaming. Without losing anything.",
 		"The sign above the inn door has faded. 'The Weary Traveler.' It makes a different kind of sense now.",
