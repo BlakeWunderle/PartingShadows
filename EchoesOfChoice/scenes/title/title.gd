@@ -14,6 +14,7 @@ var _menu: ChoiceMenu
 var _vbox: VBoxContainer
 var _mode: Mode = Mode.MAIN_MENU
 var _has_saves: bool = false
+var _error_label: Label
 
 
 func _ready() -> void:
@@ -72,6 +73,14 @@ func _build_ui() -> void:
 	_menu.choice_selected.connect(_on_menu_choice)
 	_vbox.add_child(_menu)
 
+	# Error label (hidden by default)
+	_error_label = Label.new()
+	_error_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_error_label.add_theme_font_size_override("font_size", 16)
+	_error_label.add_theme_color_override("font_color", Color(1.0, 0.4, 0.4))
+	_error_label.visible = false
+	_vbox.add_child(_error_label)
+
 
 func _pick_title_background() -> String:
 	var s1 := "res://assets/art/ui/title_background.png"
@@ -102,6 +111,13 @@ func _play_reveal() -> void:
 # =============================================================================
 # Main menu
 # =============================================================================
+
+func _show_load_error() -> void:
+	_error_label.text = "Save data could not be loaded."
+	_error_label.visible = true
+	await get_tree().create_timer(2.0).timeout
+	_error_label.visible = false
+
 
 func _show_main_menu() -> void:
 	_mode = Mode.MAIN_MENU
@@ -136,6 +152,8 @@ func _handle_main_choice(index: int) -> void:
 		var slot: int = _find_best_continue_slot()
 		if slot >= 0 and SaveManager.load_from_slot(slot):
 			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+		else:
+			_show_load_error()
 		return
 
 	if index == offset:
@@ -222,3 +240,5 @@ func _handle_load_choice(index: int) -> void:
 
 	if SaveManager.load_from_slot(slot):
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+	else:
+		_show_load_error()

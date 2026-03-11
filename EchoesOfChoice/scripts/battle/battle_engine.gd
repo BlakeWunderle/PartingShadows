@@ -158,6 +158,7 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			heal_amount = ability.modifier + (caster.physical_attack + caster.magic_attack) / 4
 		else:
 			heal_amount = ability.modifier + caster.magic_attack / 2
+		heal_amount = maxi(0, heal_amount)
 
 		target.health += heal_amount
 		if target.health > target.max_health:
@@ -337,6 +338,8 @@ func _has_modifier(fighter: FighterData, stat: Enums.StatType,
 
 func execute_ai_turn(unit: FighterData, targets: Array,
 		allies: Array) -> void:
+	if targets.is_empty():
+		return
 	var affordable: Array[AbilityData] = []
 	var heal_abilities: Array[AbilityData] = []
 	var buff_abilities: Array[AbilityData] = []
@@ -472,6 +475,8 @@ func _choose_target(unit: FighterData, targets: Array,
 
 
 func _find_min_health(targets: Array) -> FighterData:
+	if targets.is_empty():
+		return null
 	var best: FighterData = targets[0]
 	for i: int in range(1, targets.size()):
 		if targets[i].health < best.health:
@@ -480,6 +485,8 @@ func _find_min_health(targets: Array) -> FighterData:
 
 
 func _find_max_health(targets: Array) -> FighterData:
+	if targets.is_empty():
+		return null
 	var best: FighterData = targets[0]
 	for i: int in range(1, targets.size()):
 		if targets[i].health > best.health:

@@ -24,6 +24,8 @@ func _build_ui() -> void:
 	_name_label = Label.new()
 	_name_label.custom_minimum_size = Vector2(140, 0)
 	_name_label.add_theme_font_size_override("font_size", 14)
+	_name_label.clip_text = true
+	_name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	add_child(_name_label)
 
 	# HP bar
@@ -83,7 +85,7 @@ func update_display(fighter: FighterData) -> void:
 	_hp_label.text = "%d/%d" % [maxi(0, fighter.health), fighter.max_health]
 
 	# Color HP bar based on percentage
-	var hp_pct: float = float(fighter.health) / float(fighter.max_health)
+	var hp_pct: float = float(fighter.health) / float(maxi(1, fighter.max_health))
 	if hp_pct > 0.5:
 		_hp_bar.modulate = Color(0.3, 0.85, 0.3)  # Green
 	elif hp_pct > 0.25:
