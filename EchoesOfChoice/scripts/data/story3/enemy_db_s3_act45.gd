@@ -78,14 +78,14 @@ static func create_cult_hexer(n: String, lvl: int = 10) -> FighterData:
 # Shared Prog 10 & 11 (+38%, unchanged)
 static func create_thread_guard(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Thread Guard", lvl)
-	f.health = _es(373, 424, 8, 14, lvl, 11); f.max_health = f.health
+	f.health = _es(299, 339, 8, 14, lvl, 11); f.max_health = f.health
 	f.mana = _es(15, 20, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(53, 58, 3, 4, lvl, 11)
-	f.physical_defense = _es(39, 44, 3, 4, lvl, 11)
+	f.physical_attack = _es(42, 46, 3, 4, lvl, 11)
+	f.physical_defense = _es(33, 37, 3, 4, lvl, 11)
 	f.magic_attack = _es(22, 28, 1, 3, lvl, 11)
-	f.magic_defense = _es(36, 41, 1, 4, lvl, 11)
-	f.speed = _es(41, 48, 1, 3, lvl, 11)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 11
+	f.magic_defense = _es(31, 35, 1, 4, lvl, 11)
+	f.speed = _es(35, 41, 1, 3, lvl, 11)
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
 	return f
 
@@ -93,14 +93,14 @@ static func create_thread_guard(n: String, lvl: int = 11) -> FighterData:
 # Prog 10 (+40%)
 static func create_dream_hound(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Dream Hound", lvl)
-	f.health = _es(333, 378, 7, 11, lvl, 11); f.max_health = f.health
+	f.health = _es(253, 287, 7, 11, lvl, 11); f.max_health = f.health
 	f.mana = _es(12, 17, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(51, 56, 3, 4, lvl, 11)
-	f.physical_defense = _es(31, 36, 1, 3, lvl, 11)
+	f.physical_attack = _es(39, 43, 3, 4, lvl, 11)
+	f.physical_defense = _es(25, 29, 1, 3, lvl, 11)
 	f.magic_attack = _es(20, 25, 1, 3, lvl, 11)
 	f.magic_defense = _es(28, 34, 1, 3, lvl, 11)
-	f.speed = _es(48, 55, 3, 4, lvl, 11)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 16
+	f.speed = _es(39, 44, 3, 4, lvl, 11)
+	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
 	return f
 
@@ -108,12 +108,12 @@ static func create_dream_hound(n: String, lvl: int = 11) -> FighterData:
 # Prog 11 (+63%)
 static func create_cult_ritualist(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Cult Ritualist", lvl)
-	f.health = _es(399, 456, 8, 13, lvl, 12); f.max_health = f.health
+	f.health = _es(339, 388, 8, 13, lvl, 12); f.max_health = f.health
 	f.mana = _es(26, 31, 3, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(29, 36, 1, 3, lvl, 12)
 	f.physical_defense = _es(42, 49, 1, 5, lvl, 12)
-	f.magic_attack = _es(59, 65, 3, 5, lvl, 12)
-	f.magic_defense = _es(46, 52, 3, 5, lvl, 12)
+	f.magic_attack = _es(50, 55, 3, 5, lvl, 12)
+	f.magic_defense = _es(39, 44, 3, 5, lvl, 12)
 	f.speed = _es(49, 57, 1, 3, lvl, 12)
 	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.thread_lash(), EAB.ritual_chant()]
@@ -123,12 +123,12 @@ static func create_cult_ritualist(n: String, lvl: int = 12) -> FighterData:
 # Prog 11 (+63%)
 static func create_high_weaver(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "High Weaver", lvl)
-	f.health = _es(424, 481, 8, 15, lvl, 12); f.max_health = f.health
+	f.health = _es(360, 409, 8, 15, lvl, 12); f.max_health = f.health
 	f.mana = _es(28, 33, 3, 5, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(26, 33, 1, 3, lvl, 12)
 	f.physical_defense = _es(39, 46, 1, 5, lvl, 12)
-	f.magic_attack = _es(65, 72, 3, 6, lvl, 12)
-	f.magic_defense = _es(46, 52, 3, 5, lvl, 12)
+	f.magic_attack = _es(55, 61, 3, 6, lvl, 12)
+	f.magic_defense = _es(39, 44, 3, 5, lvl, 12)
 	f.speed = _es(52, 60, 1, 5, lvl, 12)
 	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.loom_blast(), EAB.unweave()]
