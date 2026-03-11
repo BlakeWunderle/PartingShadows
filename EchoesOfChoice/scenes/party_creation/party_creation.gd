@@ -1,7 +1,7 @@
 extends Control
 
-## Party creation scene. Story-aware: tavern intro (S1) or cave amnesia (S2).
-## 3 character creation loops with story-specific narrative text.
+## Party creation scene. Story-aware: tavern intro (S1), cave amnesia (S2),
+## or inn arrival (S3). 3 character creation loops with story-specific narrative.
 
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const NameInput := preload("res://scripts/ui/name_input.gd")
@@ -43,6 +43,10 @@ func _is_s2() -> bool:
 	return GameState.current_story_id == "story_2"
 
 
+func _is_s3() -> bool:
+	return GameState.current_story_id == "story_3"
+
+
 func _ready() -> void:
 	if _is_s2():
 		MusicManager.play_music("res://assets/audio/music/cutscene/#12 Cave Horn.wav")
@@ -68,7 +72,9 @@ func _build_ui() -> void:
 	_scene_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	if _is_s2():
+	if _is_s3():
+		_scene_image.texture = load("res://assets/art/battles/weary_traveler_inn.png")
+	elif _is_s2():
 		_scene_image.texture = load("res://assets/art/battles/cave_awakening.png")
 	else:
 		_scene_image.texture = load("res://assets/art/battles/copper_mug.png")
@@ -124,21 +130,29 @@ func _set_state(new_state: State) -> void:
 		State.NAME_1:
 			if _is_s2():
 				_name_input.show_prompt("A leather bracelet on this one's wrist. Letters are stamped into it...")
+			elif _is_s3():
+				_name_input.show_prompt("The traveler nearest the fire raises a cup. 'Long road? I'm...'")
 			else:
 				_name_input.show_prompt("'What is your name, young warrior?'")
 		State.NAME_2:
 			if _is_s2():
 				_name_input.show_prompt("Scratched into the back of a belt buckle, barely legible...")
+			elif _is_s3():
+				_name_input.show_prompt("The second traveler leans forward. 'Name's...'")
 			else:
 				_name_input.show_prompt("'And what is your name?'")
 		State.NAME_3:
 			if _is_s2():
 				_name_input.show_prompt("Stitched into the collar of a torn cloak...")
+			elif _is_s3():
+				_name_input.show_prompt("The third traveler nods a greeting. 'Call me...'")
 			else:
 				_name_input.show_prompt("'And you? What is your name?'")
 		State.CLASS_1, State.CLASS_2, State.CLASS_3:
 			if _is_s2():
 				_show_dialogue(["Something stirs. A reflex. A memory buried in muscle and bone. What comes naturally?"])
+			elif _is_s3():
+				_show_dialogue(["'And what do you do for a living?' the innkeeper asks, refilling their cup."])
 			else:
 				_show_dialogue(["What is your calling?"])
 		State.CONFIRM_1, State.CONFIRM_2, State.CONFIRM_3:
@@ -188,18 +202,24 @@ func _on_name_entered(player_name: String) -> void:
 		State.NAME_1:
 			if _is_s2():
 				_show_dialogue(["'%s.' The name feels right. But nothing else does." % player_name])
+			elif _is_s3():
+				_show_dialogue(["'%s.' A firm handshake. The firelight catches old scars on their knuckles." % player_name])
 			else:
 				_show_dialogue(["'Greetings, %s. You look like someone who can handle themselves.'" % player_name])
 			_state = State.CLASS_1
 		State.NAME_2:
 			if _is_s2():
 				_show_dialogue(["'%s.' Another name reclaimed from the dark." % player_name])
+			elif _is_s3():
+				_show_dialogue(["'%s.' They pull up a chair without being invited. Road dust on their boots." % player_name])
 			else:
 				_show_dialogue(["'Greetings, %s. Good, we'll need the help.'" % player_name])
 			_state = State.CLASS_2
 		State.NAME_3:
 			if _is_s2():
 				_show_dialogue(["'%s.' Three names. Three strangers. It's a start." % player_name])
+			elif _is_s3():
+				_show_dialogue(["'%s.' Three travelers at one table. The innkeeper smiles as if she expected it." % player_name])
 			else:
 				_show_dialogue(["'Greetings, %s. That makes three. That should be enough.'" % player_name])
 			_state = State.CLASS_3
@@ -230,6 +250,8 @@ func _finish() -> void:
 func _get_intro_text() -> Array[String]:
 	if _is_s2():
 		return _get_intro_text_s2()
+	if _is_s3():
+		return _get_intro_text_s3()
 	return [
 		"The Copper Mug. Your regular haunt. You know every crack in the floorboards, every stain on the bar.",
 		"But tonight something is different. The fire burns low without anyone stoking it. The other regulars have gone quiet.",
@@ -242,6 +264,8 @@ func _get_intro_text() -> Array[String]:
 func _get_bridge_1_text() -> Array[String]:
 	if _is_s2():
 		return _get_bridge_1_text_s2()
+	if _is_s3():
+		return _get_bridge_1_text_s3()
 	return [
 		"Shortly after, another warrior overhears the conversation and slides into the booth.",
 		"The stranger looks them over and asks the same question.",
@@ -251,6 +275,8 @@ func _get_bridge_1_text() -> Array[String]:
 func _get_bridge_2_text() -> Array[String]:
 	if _is_s2():
 		return _get_bridge_2_text_s2()
+	if _is_s3():
+		return _get_bridge_2_text_s3()
 	return [
 		"One last warrior takes a seat at the now crowded table.",
 		"The stranger doesn't even hesitate.",
@@ -260,6 +286,8 @@ func _get_bridge_2_text() -> Array[String]:
 func _get_outro_text() -> Array[String]:
 	if _is_s2():
 		return _get_outro_text_s2()
+	if _is_s3():
+		return _get_outro_text_s3()
 	return [
 		"The stranger leans in close, voice barely above a whisper.",
 		"'Something evil has taken root beyond the forest. The city needs heroes whether it knows it or not.'",
@@ -301,4 +329,41 @@ func _get_outro_text_s2() -> Array[String]:
 		"Three strangers. No memories. A cave that hums with a light that shouldn't exist.",
 		"The crystal veins in the walls pulse faintly, pointing deeper into the dark.",
 		"Whatever answers exist, they're not here. The only way out is forward.",
+	]
+
+
+# --- Story 3: Inn arrival narrative ---
+
+func _get_intro_text_s3() -> Array[String]:
+	return [
+		"The road has been long and the light is fading. A town appears between the hills, smaller than expected, but the sign above the inn door glows warm in the dusk.",
+		"'The Weary Traveler.' The name alone is enough.",
+		"Inside, the common room is everything a tired body could want. A fire crackles in the hearth. The smell of roasted meat and fresh bread fills the air.",
+		"The innkeeper, a thin woman with deep-set eyes, looks up from behind the bar. Her smile is practiced and perfect.",
+		"'Welcome. You look like you could use a meal and a bed. Sit anywhere you like.'",
+		"The long table near the fire has room. Other travelers are already eating.",
+	]
+
+
+func _get_bridge_1_text_s3() -> Array[String]:
+	return [
+		"Another traveler settles onto the bench across the table, setting down a heavy pack.",
+		"'Mind if I sit? Everywhere else is taken.' It isn't, but the fire is warm and the company is welcome.",
+	]
+
+
+func _get_bridge_2_text_s3() -> Array[String]:
+	return [
+		"A third traveler appears at the end of the table, plate in hand, looking for a seat.",
+		"'Room for one more?' They sit without waiting for an answer.",
+	]
+
+
+func _get_outro_text_s3() -> Array[String]:
+	return [
+		"Three strangers sharing a table, a meal, and stories of the road.",
+		"The innkeeper refills their cups without being asked. 'Stay as long as you like,' she says. 'Most people do.'",
+		"A young serving girl with auburn hair clears the plates. She pauses, watching the three of them for a moment longer than seems natural, then disappears into the kitchen.",
+		"The fire burns low. The conversation fades. The beds upstairs are calling.",
+		"Sleep comes fast. Faster than it should.",
 	]
