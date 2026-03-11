@@ -29,6 +29,8 @@ static func s3_town_realization() -> BattleData:
 		"'Tonight, we go in together,' one says. 'On purpose. If we are sharing dreams, we need to understand why.'",
 		"'And we need to stay awake as long as we can. Watch who watches us.'",
 		"They spend the day preparing. Sharpening weapons. Studying the town. They notice things they missed before: a symbol carved into a doorframe, a shopkeeper who watches them too carefully, a cellar door that has three locks.",
+		"One of them pulls the guest book from behind the bar and spreads it open. The entries go back decades. Name after name. But the later pages are wrong. The handwriting grows unsteady. Some names are half-formed, as if the writers fell asleep mid-stroke. A few entries are just meaningless scrawls. And on every page, faint lines of thread-thin ink connect the names like a web.",
+		"'Every name in this book,' one traveler says quietly. 'Every person who ever slept here. They were all feeding it.'",
 		"A knock at the door. The serving girl, Lira, stands in the hallway, pale and trembling.",
 		"'I know what you are planning,' she says. 'Because I have been there too. Every night. I am the one who has been dancing.'",
 		"She steps inside and closes the door. 'I have lived in this town my whole life. The dreams started when I was a child. I learned to move through them, to resist what the Loom does. But I could never fight it alone.'",
