@@ -85,3 +85,4 @@ func _await_threaded_load(path: String) -> PackedScene:
 			_:
 				GameLog.error("SceneManager: Threaded load failed for '%s', falling back to sync" % path)
 				return load(path) as PackedScene
+	return null
