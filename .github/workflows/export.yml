@@ -158,11 +158,13 @@ jobs:
         run: |
           cd build/macos
           unzip -q ${GAME_NAME}.zip
+          APP_NAME=$(ls -d *.app)
+          echo "Found app: $APP_NAME"
           codesign --deep --force --options runtime \
             --sign "Developer ID Application" \
-            "${GAME_NAME}.app"
+            "$APP_NAME"
           rm ${GAME_NAME}.zip
-          zip -r -y ${GAME_NAME}.zip ${GAME_NAME}.app
+          zip -r -y ${GAME_NAME}.zip "$APP_NAME"
 
       - name: Notarize app
         env:
@@ -171,15 +173,16 @@ jobs:
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           cd build/macos
+          APP_NAME=$(ls -d *.app)
           xcrun notarytool submit ${GAME_NAME}.zip \
             --apple-id "$APPLE_ID" \
             --password "$APPLE_PASSWORD" \
             --team-id "$APPLE_TEAM_ID" \
             --wait
           unzip -q -o ${GAME_NAME}.zip
-          xcrun stapler staple ${GAME_NAME}.app
+          xcrun stapler staple "$APP_NAME"
           rm ${GAME_NAME}.zip
-          zip -r -y ${GAME_NAME}.zip ${GAME_NAME}.app
+          zip -r -y ${GAME_NAME}.zip "$APP_NAME"
 
       - name: Rename archive
         run: mv build/macos/${GAME_NAME}.zip ${GAME_NAME}-macos.zip
