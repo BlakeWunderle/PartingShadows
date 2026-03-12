@@ -134,10 +134,18 @@ jobs:
           security create-keychain -p "build" build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p "build" build.keychain
+          # Install Apple Developer ID intermediate certificate
+          curl -sL -o AppleDevIDCA.cer \
+            "https://www.apple.com/certificateauthority/DeveloperIDG2CA.cer"
+          security import AppleDevIDCA.cer -k build.keychain
+          rm AppleDevIDCA.cer
+          # Install signing certificate
           security import cert.p12 -k build.keychain \
             -P "$APPLE_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple: \
             -s -k "build" build.keychain
+          # Verify identity is available
+          security find-identity -v -p codesigning build.keychain
           rm cert.p12
 
       - name: Export
