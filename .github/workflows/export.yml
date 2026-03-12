@@ -167,23 +167,19 @@ jobs:
           rm ${GAME_NAME}.zip
           zip -r -y ${GAME_NAME}.zip "$APP_NAME"
 
-      - name: Notarize app
+      - name: Notarize app (non-blocking)
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           cd build/macos
-          APP_NAME=$(ls -d *.app)
           xcrun notarytool submit ${GAME_NAME}.zip \
             --apple-id "$APPLE_ID" \
             --password "$APPLE_PASSWORD" \
-            --team-id "$APPLE_TEAM_ID" \
-            --wait --timeout 30m
-          unzip -q -o ${GAME_NAME}.zip
-          xcrun stapler staple "$APP_NAME"
-          rm ${GAME_NAME}.zip
-          zip -r -y ${GAME_NAME}.zip "$APP_NAME"
+            --team-id "$APPLE_TEAM_ID"
+          echo "Notarization submitted. Apple will process in the background."
+          echo "Gatekeeper will check online when users open the app."
 
       - name: Rename archive
         run: mv build/macos/${GAME_NAME}.zip ${GAME_NAME}-macos.zip
