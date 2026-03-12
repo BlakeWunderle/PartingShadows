@@ -1,0 +1,175 @@
+name: Export Game
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version label (e.g. v1.0.0-beta)"
+        required: false
+        default: "dev"
+
+env:
+  GODOT_VERSION: "4.6.1"
+  PROJECT_PATH: EchoesOfChoice
+  GAME_NAME: EchoesOfChoice
+
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup
+        run: |
+          mkdir -p ~/.local/share/godot/export_templates/
+          mkdir -p ~/.config/
+          mv /root/.config/godot ~/.config/godot || true
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable \
+             ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable || true
+
+      - name: Import project
+        run: godot --headless --path $PROJECT_PATH --import || true
+
+      - name: Export
+        run: |
+          mkdir -p build/windows
+          godot --headless --path $PROJECT_PATH --export-release \
+            "Windows Desktop" "$(pwd)/build/windows/${GAME_NAME}.exe"
+
+      - name: Archive
+        run: |
+          cd build/windows
+          zip -r ../../${GAME_NAME}-windows.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: ${{ env.GAME_NAME }}-windows.zip
+          retention-days: 14
+
+  export-linux:
+    name: Linux Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup
+        run: |
+          mkdir -p ~/.local/share/godot/export_templates/
+          mkdir -p ~/.config/
+          mv /root/.config/godot ~/.config/godot || true
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable \
+             ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable || true
+
+      - name: Import project
+        run: godot --headless --path $PROJECT_PATH --import || true
+
+      - name: Export
+        run: |
+          mkdir -p build/linux
+          godot --headless --path $PROJECT_PATH --export-release \
+            "Linux" "$(pwd)/build/linux/${GAME_NAME}.x86_64"
+
+      - name: Archive
+        run: |
+          cd build/linux
+          chmod +x ${GAME_NAME}.x86_64
+          zip -r ../../${GAME_NAME}-linux.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: ${{ env.GAME_NAME }}-linux.zip
+          retention-days: 14
+
+  export-macos:
+    name: macOS Export
+    runs-on: ubuntu-24.04
+    container:
+      image: barichello/godot-ci:4.6.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup
+        run: |
+          mkdir -p ~/.local/share/godot/export_templates/
+          mkdir -p ~/.config/
+          mv /root/.config/godot ~/.config/godot || true
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable \
+             ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable || true
+
+      - name: Import project
+        run: godot --headless --path $PROJECT_PATH --import || true
+
+      - name: Export
+        run: |
+          mkdir -p build/macos
+          godot --headless --path $PROJECT_PATH --export-release \
+            "macOS" "$(pwd)/build/macos/${GAME_NAME}.zip"
+
+      - name: Rename archive
+        run: mv build/macos/${GAME_NAME}.zip ${GAME_NAME}-macos.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos
+          path: ${{ env.GAME_NAME }}-macos.zip
+          retention-days: 14
+
+  release:
+    name: Create GitHub Release
+    needs: [export-windows, export-linux, export-macos]
+    runs-on: ubuntu-24.04
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Determine version
+        id: version
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+
+      - name: Rename artifacts with version
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          mv artifacts/windows/${GAME_NAME}-windows.zip \
+             "${GAME_NAME}-${TAG}-windows.zip"
+          mv artifacts/linux/${GAME_NAME}-linux.zip \
+             "${GAME_NAME}-${TAG}-linux.zip"
+          mv artifacts/macos/${GAME_NAME}-macos.zip \
+             "${GAME_NAME}-${TAG}-macos.zip"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Echoes of Choice ${{ steps.version.outputs.tag }}"
+          draft: true
+          generate_release_notes: true
+          files: |
+            ${{ env.GAME_NAME }}-${{ steps.version.outputs.tag }}-windows.zip
+            ${{ env.GAME_NAME }}-${{ steps.version.outputs.tag }}-linux.zip
+            ${{ env.GAME_NAME }}-${{ steps.version.outputs.tag }}-macos.zip
