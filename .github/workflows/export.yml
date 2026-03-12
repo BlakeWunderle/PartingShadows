@@ -100,31 +100,78 @@ jobs:
 
   export-macos:
     name: macOS Export
-    runs-on: ubuntu-24.04
-    container:
-      image: barichello/godot-ci:4.6.1
+    runs-on: macos-14
     steps:
       - name: Checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 1
 
-      - name: Setup
+      - name: Install Godot
         run: |
-          mkdir -p ~/.local/share/godot/export_templates/
-          mkdir -p ~/.config/
-          mv /root/.config/godot ~/.config/godot || true
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable \
-             ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable || true
+          curl -sL -o godot.zip \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_macos.universal.zip"
+          unzip -q godot.zip
+          sudo cp -r Godot.app /Applications/
+
+      - name: Install export templates
+        run: |
+          mkdir -p ~/Library/Application\ Support/Godot/export_templates/${GODOT_VERSION}.stable/
+          curl -sL -o templates.tpz \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q templates.tpz
+          mv templates/* ~/Library/Application\ Support/Godot/export_templates/${GODOT_VERSION}.stable/
 
       - name: Import project
-        run: godot --headless --path $PROJECT_PATH --import || true
+        run: /Applications/Godot.app/Contents/MacOS/Godot --headless --path $PROJECT_PATH --import || true
+
+      - name: Setup signing certificate
+        env:
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+        run: |
+          echo "$APPLE_CERTIFICATE" | base64 --decode > cert.p12
+          security create-keychain -p "build" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "build" build.keychain
+          security import cert.p12 -k build.keychain \
+            -P "$APPLE_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: \
+            -s -k "build" build.keychain
+          rm cert.p12
 
       - name: Export
         run: |
           mkdir -p build/macos
-          godot --headless --path $PROJECT_PATH --export-release \
-            "macOS" "$(pwd)/build/macos/${GAME_NAME}.zip"
+          /Applications/Godot.app/Contents/MacOS/Godot --headless --path $PROJECT_PATH \
+            --export-release "macOS" "$(pwd)/build/macos/${GAME_NAME}.zip"
+
+      - name: Sign app
+        run: |
+          cd build/macos
+          unzip -q ${GAME_NAME}.zip
+          codesign --deep --force --options runtime \
+            --sign "Developer ID Application" \
+            "${GAME_NAME}.app"
+          rm ${GAME_NAME}.zip
+          zip -r -y ${GAME_NAME}.zip ${GAME_NAME}.app
+
+      - name: Notarize app
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          cd build/macos
+          xcrun notarytool submit ${GAME_NAME}.zip \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_PASSWORD" \
+            --team-id "$APPLE_TEAM_ID" \
+            --wait
+          unzip -q -o ${GAME_NAME}.zip
+          xcrun stapler staple ${GAME_NAME}.app
+          rm ${GAME_NAME}.zip
+          zip -r -y ${GAME_NAME}.zip ${GAME_NAME}.app
 
       - name: Rename archive
         run: mv build/macos/${GAME_NAME}.zip ${GAME_NAME}-macos.zip
@@ -135,6 +182,10 @@ jobs:
           name: macos
           path: ${{ env.GAME_NAME }}-macos.zip
           retention-days: 14
+
+      - name: Cleanup keychain
+        if: always()
+        run: security delete-keychain build.keychain || true
 
   release:
     name: Create GitHub Release
