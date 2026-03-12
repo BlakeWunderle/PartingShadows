@@ -26,7 +26,7 @@ enum Phase {
 	BATTLE_END,
 }
 
-const COMBAT_PAUSE: float = 1.2  ## Seconds between combat messages (C# Thread.Sleep(1200))
+var COMBAT_PAUSE: float = 1.2  ## Seconds between combat messages
 
 var _engine: BattleEngine
 var _phase: Phase = Phase.STARTING
@@ -59,6 +59,8 @@ var _turn_queue: Array = []  ## Predicted turn order, depleted as actors act
 
 
 func _ready() -> void:
+	COMBAT_PAUSE = SettingsManager.combat_pause
+	SettingsManager.combat_pause_changed.connect(func(s: float) -> void: COMBAT_PAUSE = s)
 	_build_ui()
 	_start_battle()
 

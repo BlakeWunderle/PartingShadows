@@ -5,7 +5,7 @@ class_name DialoguePanel extends PanelContainer
 
 signal all_text_finished
 
-const CHAR_DELAY: float = 0.02  ## Seconds between characters for typewriter effect
+var CHAR_DELAY: float = 0.02  ## Seconds between characters for typewriter effect
 
 var _lines: Array = []
 var _current_line: int = 0
@@ -20,6 +20,8 @@ var _margin: MarginContainer
 
 
 func _ready() -> void:
+	CHAR_DELAY = SettingsManager.text_speed
+	SettingsManager.text_speed_changed.connect(func(delay: float) -> void: CHAR_DELAY = delay)
 	_build_ui()
 
 
