@@ -39,6 +39,9 @@ func show_choices(options: Array) -> void:
 			btn.disabled = true
 			btn.modulate.a = 0.5
 
+		if SettingsManager.screen_reader:
+			btn.tooltip_text = "Option %d of %d: %s" % [i + 1, options.size(), opt["label"]]
+
 		var idx: int = i
 		btn.pressed.connect(func() -> void: _on_button_pressed(idx))
 		add_child(btn)

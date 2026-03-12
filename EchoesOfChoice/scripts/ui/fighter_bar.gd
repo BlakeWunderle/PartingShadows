@@ -84,14 +84,15 @@ func update_display(fighter: FighterData) -> void:
 	_hp_bar.value = maxi(0, fighter.health)
 	_hp_label.text = "%d/%d" % [maxi(0, fighter.health), fighter.max_health]
 
-	# Color HP bar based on percentage
+	# Color HP bar based on percentage (color blind aware)
+	var palette: Dictionary = SettingsManager.get_palette()
 	var hp_pct: float = float(fighter.health) / float(maxi(1, fighter.max_health))
 	if hp_pct > 0.5:
-		_hp_bar.modulate = Color(0.3, 0.85, 0.3)  # Green
+		_hp_bar.modulate = palette["hp_high"]
 	elif hp_pct > 0.25:
-		_hp_bar.modulate = Color(0.9, 0.7, 0.1)  # Yellow
+		_hp_bar.modulate = palette["hp_mid"]
 	else:
-		_hp_bar.modulate = Color(0.9, 0.2, 0.2)  # Red
+		_hp_bar.modulate = palette["hp_low"]
 
 	if not _is_enemy:
 		_mp_bar.max_value = fighter.max_mana
@@ -105,7 +106,12 @@ func update_display(fighter: FighterData) -> void:
 func _update_status(fighter: FighterData) -> void:
 	_status_label.clear()
 	if fighter.modified_stats.is_empty():
+		_update_tooltip(fighter, [])
 		return
+
+	var palette: Dictionary = SettingsManager.get_palette()
+	var buff_hex: String = palette["buff"].to_html(false)
+	var debuff_hex: String = palette["debuff"].to_html(false)
 
 	# Aggregate same-type effects: group by (stat, is_negative, damage_per_turn)
 	var groups: Dictionary = {}  # key -> { "count": int, "max_turns": int }
@@ -128,6 +134,7 @@ func _update_status(fighter: FighterData) -> void:
 			group_order.append(key)
 
 	var parts: Array[String] = []
+	var status_texts: Array[String] = []  # Plain text for screen reader
 	for key: String in group_order:
 		var g: Dictionary = groups[key]
 		var stat: Enums.StatType = g["stat"]
@@ -148,16 +155,31 @@ func _update_status(fighter: FighterData) -> void:
 		if stat == Enums.StatType.TAUNT:
 			color = "yellow"
 		elif is_negative:
-			color = "salmon"
+			color = "#" + debuff_hex
 		else:
-			color = "lime"
+			color = "#" + buff_hex
 
 		if count > 1:
 			parts.append("[color=%s]%s x%d(%dt)[/color]" % [color, tag, count, max_turns])
+			status_texts.append("%s x%d (%d turns)" % [tag, count, max_turns])
 		else:
 			parts.append("[color=%s]%s(%dt)[/color]" % [color, tag, max_turns])
+			status_texts.append("%s (%d turns)" % [tag, max_turns])
 
 	_status_label.append_text(" ".join(parts))
+	_update_tooltip(fighter, status_texts)
+
+
+func _update_tooltip(fighter: FighterData, status_texts: Array[String]) -> void:
+	if not SettingsManager.screen_reader:
+		tooltip_text = ""
+		return
+	var tip: String = "%s: HP %d/%d" % [fighter.character_name, maxi(0, fighter.health), fighter.max_health]
+	if not _is_enemy:
+		tip += ", MP %d/%d" % [maxi(0, fighter.mana), fighter.max_mana]
+	if not status_texts.is_empty():
+		tip += ", Status: " + ", ".join(status_texts)
+	tooltip_text = tip
 
 
 static func _stat_abbrev(stat: Enums.StatType) -> String:
