@@ -39,6 +39,13 @@ var _folder_cache: Dictionary = {}
 func _ready() -> void:
 	if AudioLoader.is_headless():
 		_headless = true
+	SettingsManager.music_volume_changed.connect(set_music_volume)
+
+
+func set_music_volume(linear: float) -> void:
+	_music_volume_linear = clampf(linear, 0.0, 1.0)
+	if _player and _player.playing:
+		_player.volume_db = linear_to_db(maxf(0.0001, _music_volume_linear))
 
 
 func play_context(context: int, fade: float = 1.0) -> void:
