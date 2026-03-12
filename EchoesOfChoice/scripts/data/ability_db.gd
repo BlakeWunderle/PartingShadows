@@ -62,12 +62,12 @@ static func demoralize() -> AbilityData:
 
 static func proof() -> AbilityData:
 	return _make("Proof",
-		"Pull out a blackboard and stump your enemy with your big brains. Lowers magical defenses",
+		"Pull out a blackboard and stump your enemy with your big brains. Lowers magical defenses.",
 		Enums.StatType.MAGIC_DEFENSE, 3, 2, true, 3, false, 0, 0.0, 2)
 
 
 static func energy_blast() -> AbilityData:
-	return _make("Energy Blast", "Use a scientific explosion to hit an enemy",
+	return _make("Energy Blast", "Use a scientific explosion to hit an enemy.",
 		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, false, 0, 0.0, 2)
 
 

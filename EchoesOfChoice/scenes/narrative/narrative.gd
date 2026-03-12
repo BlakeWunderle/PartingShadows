@@ -150,7 +150,7 @@ func _ending_text_story_3() -> Array[String]:
 		return [
 			"The Loom is broken. The threads dissolve into the morning light, carrying with them every stolen dream, every pilfered night of rest.",
 			"Across the town, people wake feeling something they cannot name. A lightness. A clarity. As if a weight they never knew they carried has been lifted.",
-			"The innkeeper sleeps on, aged and hollow, the decades of stolen vitality finally spent. She will wake eventually, old and ordinary, the Thread's power gone.",
+			"Where the innkeeper stood, there is nothing. No body, no trace. She was never real. Just another thread in the Loom, a familiar face woven from stolen dreams to lure the weary inside.",
 			"The travelers stand in the street as the sun rises. For the first time in days, they are not tired. The weariness is gone, truly gone, and the road ahead feels possible again.",
 			"'The Weary Traveler,' one of them reads aloud from the sign, shaking their head. 'She named the inn after what she was doing to people.'",
 			"They leave the town behind. Their dreams that night are their own.",
@@ -160,7 +160,7 @@ func _ending_text_story_3() -> Array[String]:
 	else:
 		return [
 			"The Loom holds. The threads tighten. The dream does not end.",
-			"Somewhere in a quiet town, the innkeeper smiles and pours ale for the next weary traveler.",
+			"Somewhere in a quiet town, a kind face smiles and pours ale for the next weary traveler. She was never real, but no one will ever know.",
 			"This journey may be over, but every great story deserves another telling.",
 		]
 
