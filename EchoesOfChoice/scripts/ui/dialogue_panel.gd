@@ -22,6 +22,7 @@ var _margin: MarginContainer
 func _ready() -> void:
 	CHAR_DELAY = SettingsManager.text_speed
 	SettingsManager.text_speed_changed.connect(func(delay: float) -> void: CHAR_DELAY = delay)
+	SettingsManager.font_size_changed.connect(_on_font_size_changed)
 	_build_ui()
 
 
@@ -46,7 +47,7 @@ func _build_ui() -> void:
 	_label.scroll_following = true
 	_label.fit_content = false
 	_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_label.add_theme_font_size_override("normal_font_size", 18)
+	_label.add_theme_font_size_override("normal_font_size", SettingsManager.font_size)
 	vbox.add_child(_label)
 
 	_continue_label = Label.new()
@@ -136,3 +137,8 @@ func _input(event: InputEvent) -> void:
 		# All lines shown and player pressed continue
 		_continue_label.modulate.a = 0.0
 		all_text_finished.emit()
+
+
+func _on_font_size_changed(size: int) -> void:
+	if _label:
+		_label.add_theme_font_size_override("normal_font_size", size)

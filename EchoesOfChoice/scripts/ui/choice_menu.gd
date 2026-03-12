@@ -91,6 +91,7 @@ func _style_button(btn: Button) -> void:
 	btn.add_theme_color_override("font_hover_color", Color(0.95, 1.0, 1.0))
 	btn.add_theme_color_override("font_pressed_color", Color(0.7, 0.8, 0.85))
 	btn.add_theme_color_override("font_focus_color", Color(0.9, 0.95, 1.0))
+	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 
 
 func _wire_focus() -> void:
