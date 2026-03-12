@@ -5,13 +5,15 @@ extends CanvasLayer
 ## Save opens a slot picker sub-menu.
 
 const StoryDB := preload("res://scripts/data/story_db.gd")
+const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 
-enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS }
+enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS }
 
 var _mode: Mode = Mode.HIDDEN
 var _panel: Control
 var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
+var _settings_panel: SettingsPanel
 var _resume_btn: Button
 var _feedback_label: Label
 
@@ -41,10 +43,10 @@ func _build_ui() -> void:
 	# Center panel container
 	var center := PanelContainer.new()
 	center.set_anchors_preset(Control.PRESET_CENTER)
-	center.offset_left = -180.0
-	center.offset_top = -190.0
-	center.offset_right = 180.0
-	center.offset_bottom = 190.0
+	center.offset_left = -200.0
+	center.offset_top = -280.0
+	center.offset_right = 200.0
+	center.offset_bottom = 280.0
 	_panel.add_child(center)
 
 	var margin := MarginContainer.new()
@@ -82,6 +84,10 @@ func _build_ui() -> void:
 	save_btn.pressed.connect(_show_save_slots)
 	_main_vbox.add_child(save_btn)
 
+	var settings_btn := _make_button("Settings")
+	settings_btn.pressed.connect(_show_settings)
+	_main_vbox.add_child(settings_btn)
+
 	var logs_btn := _make_button("Copy Logs")
 	logs_btn.pressed.connect(_copy_logs)
 	_main_vbox.add_child(logs_btn)
@@ -108,6 +114,12 @@ func _build_ui() -> void:
 	_save_vbox.visible = false
 	root_vbox.add_child(_save_vbox)
 
+	# Settings panel (hidden by default)
+	_settings_panel = SettingsPanel.new()
+	_settings_panel.visible = false
+	_settings_panel.back_pressed.connect(_back_to_main)
+	root_vbox.add_child(_settings_panel)
+
 
 func _make_button(text: String) -> Button:
 	var btn := Button.new()
@@ -130,6 +142,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_resume()
 			Mode.SAVE_SLOTS:
 				_back_to_main()
+			Mode.SETTINGS:
+				_back_to_main()
 		get_viewport().set_input_as_handled()
 
 
@@ -150,6 +164,7 @@ func _show_pause() -> void:
 	_panel.visible = true
 	_main_vbox.visible = true
 	_save_vbox.visible = false
+	_settings_panel.visible = false
 	get_tree().paused = true
 	_resume_btn.grab_focus()
 
@@ -184,6 +199,16 @@ func _copy_logs() -> void:
 
 func _quit_game() -> void:
 	get_tree().quit()
+
+
+# =============================================================================
+# Settings sub-menu
+# =============================================================================
+
+func _show_settings() -> void:
+	_mode = Mode.SETTINGS
+	_main_vbox.visible = false
+	_settings_panel.visible = true
 
 
 # =============================================================================
@@ -251,6 +276,7 @@ func _on_save_slot_selected(slot: int) -> void:
 func _back_to_main() -> void:
 	_mode = Mode.MAIN_MENU
 	_save_vbox.visible = false
+	_settings_panel.visible = false
 	_main_vbox.visible = true
 	_resume_btn.grab_focus()
 

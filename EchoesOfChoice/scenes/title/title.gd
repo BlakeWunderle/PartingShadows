@@ -5,8 +5,9 @@ extends Control
 
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
+const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 
-enum Mode { MAIN_MENU, LOAD_SLOTS }
+enum Mode { MAIN_MENU, LOAD_SLOTS, SETTINGS }
 
 var _title_label: Label
 var _subtitle_label: Label
@@ -15,6 +16,7 @@ var _vbox: VBoxContainer
 var _mode: Mode = Mode.MAIN_MENU
 var _has_saves: bool = false
 var _error_label: Label
+var _settings_panel: SettingsPanel
 
 
 func _ready() -> void:
@@ -81,6 +83,12 @@ func _build_ui() -> void:
 	_error_label.visible = false
 	_vbox.add_child(_error_label)
 
+	# Settings panel (hidden by default)
+	_settings_panel = SettingsPanel.new()
+	_settings_panel.visible = false
+	_settings_panel.back_pressed.connect(_show_main_menu)
+	_vbox.add_child(_settings_panel)
+
 
 func _pick_title_background() -> String:
 	var s1 := "res://assets/art/ui/title_background.png"
@@ -125,6 +133,8 @@ func _show_load_error() -> void:
 func _show_main_menu() -> void:
 	_mode = Mode.MAIN_MENU
 	_has_saves = SaveManager.has_any_save()
+	_settings_panel.visible = false
+	_menu.visible = true
 
 	var options: Array[Dictionary] = []
 	if _has_saves:
@@ -132,6 +142,7 @@ func _show_main_menu() -> void:
 	options.append({"label": "New Game"})
 	if _has_saves:
 		options.append({"label": "Load Game"})
+	options.append({"label": "Settings"})
 	options.append({"label": "Quit"})
 
 	_menu.show_choices(options)
@@ -148,30 +159,38 @@ func _on_menu_choice(index: int) -> void:
 
 
 func _handle_main_choice(index: int) -> void:
-	var offset: int = 1 if _has_saves else 0
+	# Map index to label based on menu structure
+	var labels: Array[String] = []
+	if _has_saves:
+		labels.append("Continue")
+	labels.append("New Game")
+	if _has_saves:
+		labels.append("Load Game")
+	labels.append("Settings")
+	labels.append("Quit")
 
-	if _has_saves and index == 0:
-		# Continue: load last-used slot, or autosave, or first available
-		var slot: int = _find_best_continue_slot()
-		if slot >= 0 and SaveManager.load_from_slot(slot):
-			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
-		else:
-			_show_load_error()
+	if index < 0 or index >= labels.size():
 		return
 
-	if index == offset:
-		# New Game: go straight to party creation unless multiple stories unlocked
-		if UnlockManager.is_unlocked("story_1_complete"):
-			SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
-		else:
-			GameState.start_new_game("story_1")
-			SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
-	elif _has_saves and index == offset + 1:
-		# Load Game
-		_show_load_slots()
-	else:
-		# Quit (last option)
-		get_tree().quit()
+	match labels[index]:
+		"Continue":
+			var slot: int = _find_best_continue_slot()
+			if slot >= 0 and SaveManager.load_from_slot(slot):
+				SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+			else:
+				_show_load_error()
+		"New Game":
+			if UnlockManager.is_unlocked("story_1_complete"):
+				SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
+			else:
+				GameState.start_new_game("story_1")
+				SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
+		"Load Game":
+			_show_load_slots()
+		"Settings":
+			_show_settings()
+		"Quit":
+			get_tree().quit()
 
 
 func _find_best_continue_slot() -> int:
@@ -184,6 +203,16 @@ func _find_best_continue_slot() -> int:
 		if SaveManager.has_save(i):
 			return i
 	return -1
+
+
+# =============================================================================
+# Settings
+# =============================================================================
+
+func _show_settings() -> void:
+	_mode = Mode.SETTINGS
+	_menu.hide_menu()
+	_settings_panel.visible = true
 
 
 # =============================================================================
