@@ -41,6 +41,15 @@ All paths below are relative to `EchoesOfChoice/`.
 - `enemy_db_s2_act4.gd` -- Act IV enemies
 - `enemy_ability_db_s2.gd` -- Story 2 enemy ability definitions
 
+### Core Data -- Story 3 (`scripts/data/story3/`)
+- `battle_db_s3.gd` -- Acts I-II battles (dream onset through cult discovery)
+- `battle_db_s3_act3.gd` -- Act III battles (cult confrontation)
+- `battle_db_s3_act45.gd` -- Acts IV-V battles (Loom approach through Woven Night)
+- `enemy_db_s3.gd` -- Acts I-II enemies
+- `enemy_db_s3_act3.gd` -- Act III enemies
+- `enemy_db_s3_act45.gd` -- Acts IV-V enemies
+- `enemy_ability_db_s3.gd` -- Story 3 enemy ability definitions
+
 ### Autoload (`scripts/autoload/`)
 - `logger.gd` -- GameLog autoload: info/warn logging, clipboard export
 - `scene_manager.gd` -- Scene transitions with fade overlay, stops music on transition
@@ -50,11 +59,12 @@ All paths below are relative to `EchoesOfChoice/`.
 - `game_state.gd` -- Game state: party, battle progression, story tracking, phase tracking
 - `save_manager.gd` -- Multi-slot save system (3 manual + autosave), JSON serialization with story_id
 - `unlock_manager.gd` -- Persistent unlock tracking (story completion, reward classes) via user://unlocks.json
-- `pause_overlay.gd` -- CanvasLayer pause menu with save sub-menu, ESC keybinding
+- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, ESC keybinding
+- `settings_manager.gd` -- Global settings persistence (volume, text speed, fullscreen, color blind mode, etc.) via user://settings.json
 
 ### Scenes (`scenes/`)
 - `splash/splash.gd/.tscn` -- Wunderelf Studios splash screen, auto-advances to title
-- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Quit
+- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Settings/Quit
 - `story_select/story_select.gd/.tscn` -- Story selection screen with lock state (New Game submenu)
 - `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops
 - `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, story completion unlocks
@@ -65,12 +75,13 @@ All paths below are relative to `EchoesOfChoice/`.
 - `battle_engine.gd` -- ATB combat loop, turn resolution, ability execution
 
 ### UI (`scripts/ui/`)
-- `dialogue_panel.gd` -- Typewriter text display with input guards
-- `choice_menu.gd` -- Vertical choice menu with keyboard/gamepad navigation
+- `dialogue_panel.gd` -- Typewriter text display with configurable speed, input guards
+- `choice_menu.gd` -- Vertical choice menu with keyboard/gamepad navigation, screen reader hints
 - `name_input.gd` -- Text input for character naming
-- `fighter_bar.gd` -- HP/MP bars with status effect indicators
-- `combat_log.gd` -- Scrolling battle log
+- `fighter_bar.gd` -- HP/MP bars with color-blind-aware palettes, status effect indicators, screen reader tooltips
+- `combat_log.gd` -- Scrolling battle log with configurable font size
 - `stats_panel.gd` -- Character stats display with close button
+- `settings_panel.gd` -- Reusable settings UI (volume sliders, speed/font/color blind dropdowns, toggles)
 - `virtual_keyboard.gd` -- On-screen keyboard for gamepad text input
 
 ### Tools (`scripts/tools/` and `tools/`)
