@@ -89,6 +89,20 @@ func _build_ui() -> void:
 	_settings_panel.back_pressed.connect(_show_main_menu)
 	_vbox.add_child(_settings_panel)
 
+	# Version label (bottom-right corner)
+	var version_label := Label.new()
+	var version_str: String = ProjectSettings.get_setting("application/config/version", "")
+	if not version_str.is_empty():
+		version_label.text = "v" + version_str
+	version_label.add_theme_font_size_override("font_size", 13)
+	version_label.add_theme_color_override("font_color", Color(0.5, 0.55, 0.6, 0.7))
+	version_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	version_label.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	version_label.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	version_label.offset_left = -80
+	version_label.offset_top = -30
+	add_child(version_label)
+
 
 func _pick_title_background() -> String:
 	var s1 := "res://assets/art/ui/title_background.png"
