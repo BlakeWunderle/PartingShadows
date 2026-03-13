@@ -12,6 +12,9 @@ config_version=5
 
 config/name="Echoes of Choice"
 config/description="A visual RPG built on the Echoes of Choice universe."
+config/version="1.0.0"
+config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 run/main_scene="res://scenes/splash/splash.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 

@@ -154,6 +154,21 @@ func get_save_summary(slot: int) -> Dictionary:
 
 
 # =============================================================================
+# Delete
+# =============================================================================
+
+func delete_save(slot: int) -> void:
+	var path: String = _save_path(slot)
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+		GameLog.info("Deleted save slot %d" % slot)
+	# Clear last-used metadata if this was the last-used slot
+	if get_last_used_slot() == slot:
+		if FileAccess.file_exists(SAVE_META_PATH):
+			DirAccess.remove_absolute(SAVE_META_PATH)
+
+
+# =============================================================================
 # Metadata
 # =============================================================================
 

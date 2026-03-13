@@ -6,6 +6,7 @@ extends Control
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const NameInput := preload("res://scripts/ui/name_input.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 
@@ -35,6 +36,7 @@ var _class_ids: Array[String] = []
 var _dialogue: DialoguePanel
 var _name_input: NameInput
 var _choice_menu: ChoiceMenu
+var _tip_overlay: TipOverlay
 var _scene_image: TextureRect
 var _vbox: VBoxContainer
 
@@ -117,6 +119,9 @@ func _build_ui() -> void:
 	_choice_menu.visible = false
 	_vbox.add_child(_choice_menu)
 
+	_tip_overlay = TipOverlay.new()
+	add_child(_tip_overlay)
+
 
 func _set_state(new_state: State) -> void:
 	_state = new_state
@@ -180,6 +185,14 @@ func _on_text_finished() -> void:
 		State.CLASS_1, State.CLASS_2, State.CLASS_3:
 			_dialogue.visible = false
 			_choice_menu.show_choices(_class_options)
+			if _state == State.CLASS_1:
+				_tip_overlay.show_tip_once("party_classes",
+					"Each class has unique abilities and a different combat role. " +
+					"Squires are sturdy fighters, Mages deal elemental damage, " +
+					"Entertainers support allies, Tinkers use gadgets and knowledge, " +
+					"and Wildlings channel nature.\n\n" +
+					"Your party of three can be any combination. " +
+					"Variety helps, but any team can win!")
 		State.CONFIRM_1:
 			_set_state(State.BRIDGE_1)
 		State.CONFIRM_2:

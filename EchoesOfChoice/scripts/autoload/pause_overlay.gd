@@ -6,6 +6,7 @@ extends CanvasLayer
 
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
+const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 
 enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS }
 
@@ -16,6 +17,8 @@ var _save_vbox: VBoxContainer
 var _settings_panel: SettingsPanel
 var _resume_btn: Button
 var _feedback_label: Label
+var _confirm_dialog: ConfirmDialog
+var _pending_save_slot: int = -1
 
 
 func _ready() -> void:
@@ -120,6 +123,10 @@ func _build_ui() -> void:
 	_settings_panel.back_pressed.connect(_back_to_main)
 	root_vbox.add_child(_settings_panel)
 
+	# Confirm dialog (overlays entire screen)
+	_confirm_dialog = ConfirmDialog.new()
+	_panel.add_child(_confirm_dialog)
+
 
 func _make_button(text: String) -> Button:
 	var btn := Button.new()
@@ -176,6 +183,13 @@ func _resume() -> void:
 
 
 func _quit_to_title() -> void:
+	_confirm_dialog.confirmed.connect(_on_quit_to_title_confirmed, CONNECT_ONE_SHOT)
+	_confirm_dialog.show_confirm("Return to title? Unsaved progress will be lost.")
+
+
+func _on_quit_to_title_confirmed(accepted: bool) -> void:
+	if not accepted:
+		return
 	_mode = Mode.HIDDEN
 	_panel.visible = false
 	get_tree().paused = false
@@ -198,6 +212,13 @@ func _copy_logs() -> void:
 
 
 func _quit_game() -> void:
+	_confirm_dialog.confirmed.connect(_on_quit_game_confirmed, CONNECT_ONE_SHOT)
+	_confirm_dialog.show_confirm("Are you sure you want to quit?")
+
+
+func _on_quit_game_confirmed(accepted: bool) -> void:
+	if not accepted:
+		return
 	get_tree().quit()
 
 
@@ -244,6 +265,14 @@ func _show_save_slots() -> void:
 		btn.pressed.connect(_on_save_slot_selected.bind(slot))
 		_save_vbox.add_child(btn)
 
+		# Delete button for occupied slots
+		if summary.get("exists", false):
+			var del_btn := _make_button("  Delete Slot %d" % [i + 1])
+			del_btn.add_theme_color_override("font_color", Color(0.8, 0.4, 0.4))
+			del_btn.custom_minimum_size.y = 28
+			del_btn.pressed.connect(_on_delete_slot_selected.bind(slot))
+			_save_vbox.add_child(del_btn)
+
 	# Back button
 	var back_btn := _make_button("Back")
 	back_btn.pressed.connect(_back_to_main)
@@ -260,17 +289,42 @@ func _show_save_slots() -> void:
 
 
 func _on_save_slot_selected(slot: int) -> void:
+	if SaveManager.has_save(slot):
+		_pending_save_slot = slot
+		_confirm_dialog.confirmed.connect(_on_overwrite_confirmed, CONNECT_ONE_SHOT)
+		_confirm_dialog.show_confirm("Overwrite this save?")
+	else:
+		_do_save(slot)
+
+
+func _on_overwrite_confirmed(accepted: bool) -> void:
+	if accepted and _pending_save_slot >= 0:
+		_do_save(_pending_save_slot)
+	_pending_save_slot = -1
+
+
+func _do_save(slot: int) -> void:
 	SaveManager.save_to_slot(slot)
-	# Show brief confirmation by updating button text
 	for i: int in _save_vbox.get_child_count():
 		var btn: Button = _save_vbox.get_child(i) as Button
 		if btn and i == slot:
-			var summary: Dictionary = SaveManager.get_save_summary(slot)
 			btn.text = "Slot %d: Saved!" % [slot + 1]
-	# Return to main after a brief delay
 	await get_tree().create_timer(0.6).timeout
 	if _mode == Mode.SAVE_SLOTS:
 		_back_to_main()
+
+
+func _on_delete_slot_selected(slot: int) -> void:
+	_pending_save_slot = slot
+	_confirm_dialog.confirmed.connect(_on_delete_confirmed, CONNECT_ONE_SHOT)
+	_confirm_dialog.show_confirm("Delete this save? This cannot be undone.")
+
+
+func _on_delete_confirmed(accepted: bool) -> void:
+	if accepted and _pending_save_slot >= 0:
+		SaveManager.delete_save(_pending_save_slot)
+		_show_save_slots()  # Refresh the slot list
+	_pending_save_slot = -1
 
 
 func _back_to_main() -> void:

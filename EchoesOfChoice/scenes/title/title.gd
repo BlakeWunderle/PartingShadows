@@ -6,6 +6,7 @@ extends Control
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
+const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 
 enum Mode { MAIN_MENU, LOAD_SLOTS, SETTINGS }
 
@@ -17,6 +18,8 @@ var _mode: Mode = Mode.MAIN_MENU
 var _has_saves: bool = false
 var _error_label: Label
 var _settings_panel: SettingsPanel
+var _confirm_dialog: ConfirmDialog
+var _pending_delete_slot: int = -1
 
 
 func _ready() -> void:
@@ -89,6 +92,24 @@ func _build_ui() -> void:
 	_settings_panel.back_pressed.connect(_show_main_menu)
 	_vbox.add_child(_settings_panel)
 
+	# Version label (bottom-right corner)
+	var version_label := Label.new()
+	var version_str: String = ProjectSettings.get_setting("application/config/version", "")
+	if not version_str.is_empty():
+		version_label.text = "v" + version_str
+	version_label.add_theme_font_size_override("font_size", 13)
+	version_label.add_theme_color_override("font_color", Color(0.5, 0.55, 0.6, 0.7))
+	version_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	version_label.grow_horizontal = Control.GROW_DIRECTION_BEGIN
+	version_label.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	version_label.offset_left = -80
+	version_label.offset_top = -30
+	add_child(version_label)
+
+	# Confirm dialog (overlays entire screen)
+	_confirm_dialog = ConfirmDialog.new()
+	add_child(_confirm_dialog)
+
 
 func _pick_title_background() -> String:
 	var s1 := "res://assets/art/ui/title_background.png"
@@ -143,6 +164,7 @@ func _show_main_menu() -> void:
 	if _has_saves:
 		options.append({"label": "Load Game"})
 	options.append({"label": "Settings"})
+	options.append({"label": "Credits"})
 	options.append({"label": "Quit"})
 
 	_menu.show_choices(options)
@@ -167,6 +189,7 @@ func _handle_main_choice(index: int) -> void:
 	if _has_saves:
 		labels.append("Load Game")
 	labels.append("Settings")
+	labels.append("Credits")
 	labels.append("Quit")
 
 	if index < 0 or index >= labels.size():
@@ -189,8 +212,11 @@ func _handle_main_choice(index: int) -> void:
 			_show_load_slots()
 		"Settings":
 			_show_settings()
+		"Credits":
+			SceneManager.change_scene("res://scenes/credits/credits.tscn")
 		"Quit":
-			get_tree().quit()
+			_confirm_dialog.confirmed.connect(_on_quit_confirmed, CONNECT_ONE_SHOT)
+			_confirm_dialog.show_confirm("Are you sure you want to quit?")
 
 
 func _find_best_continue_slot() -> int:
@@ -215,12 +241,21 @@ func _show_settings() -> void:
 	_settings_panel.visible = true
 
 
+func _on_quit_confirmed(accepted: bool) -> void:
+	if accepted:
+		get_tree().quit()
+
+
 # =============================================================================
 # Load slot picker
 # =============================================================================
 
+var _load_slot_actions: Array[Dictionary] = []  # [{action: "load"/"delete"/"back", slot: int}]
+
+
 func _show_load_slots() -> void:
 	_mode = Mode.LOAD_SLOTS
+	_load_slot_actions.clear()
 
 	var options: Array[Dictionary] = []
 
@@ -237,8 +272,12 @@ func _show_load_slots() -> void:
 				summary.get("level", 1),
 				story_title,
 			]})
+			_load_slot_actions.append({"action": "load", "slot": i})
+			options.append({"label": "  Delete Slot %d" % [i + 1]})
+			_load_slot_actions.append({"action": "delete", "slot": i})
 		else:
 			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
+			_load_slot_actions.append({"action": "load", "slot": i})
 
 	# Autosave slot
 	var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
@@ -251,26 +290,40 @@ func _show_load_slots() -> void:
 			auto_summary.get("level", 1),
 			auto_story,
 		]})
+		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
+		options.append({"label": "  Delete Autosave"})
+		_load_slot_actions.append({"action": "delete", "slot": SaveManager.AUTOSAVE_SLOT})
 	else:
 		options.append({"label": "Autosave: Empty", "disabled": true})
+		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
 
 	options.append({"label": "Back"})
+	_load_slot_actions.append({"action": "back", "slot": -1})
 	_menu.show_choices(options)
 
 
 func _handle_load_choice(index: int) -> void:
-	var total_slots: int = SaveManager.MAX_SAVE_SLOTS + 1  # 3 manual + 1 autosave
-	if index >= total_slots:
-		# Back
-		_show_main_menu()
+	if index < 0 or index >= _load_slot_actions.size():
 		return
 
-	# Map index to slot (0-2 = manual, 3 = autosave)
-	var slot: int = index
-	if index == SaveManager.MAX_SAVE_SLOTS:
-		slot = SaveManager.AUTOSAVE_SLOT
+	var entry: Dictionary = _load_slot_actions[index]
+	match entry["action"]:
+		"back":
+			_show_main_menu()
+		"delete":
+			_pending_delete_slot = int(entry["slot"])
+			_confirm_dialog.confirmed.connect(_on_delete_save_confirmed, CONNECT_ONE_SHOT)
+			_confirm_dialog.show_confirm("Delete this save? This cannot be undone.")
+		"load":
+			var slot: int = int(entry["slot"])
+			if SaveManager.load_from_slot(slot):
+				SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+			else:
+				_show_load_error()
 
-	if SaveManager.load_from_slot(slot):
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
-	else:
-		_show_load_error()
+
+func _on_delete_save_confirmed(accepted: bool) -> void:
+	if accepted and _pending_delete_slot >= 0:
+		SaveManager.delete_save(_pending_delete_slot)
+		_show_load_slots()  # Refresh
+	_pending_delete_slot = -1
