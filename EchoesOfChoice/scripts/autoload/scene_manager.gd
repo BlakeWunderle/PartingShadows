@@ -118,7 +118,7 @@ class _LoadingSpinner extends Control:
 
 	func _draw() -> void:
 		var center := size / 2.0
-		var radius := min(size.x, size.y) / 2.0 - 2.0
+		var radius: float = min(size.x, size.y) / 2.0 - 2.0
 		var arc_color := Color(0.3, 0.6, 0.65, 0.8)
 		var arc_length := TAU * 0.3
 		draw_arc(center, radius, _angle, _angle + arc_length, 24, arc_color, 3.0, true)

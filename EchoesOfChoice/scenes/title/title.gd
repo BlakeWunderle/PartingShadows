@@ -124,19 +124,13 @@ func _pick_title_background() -> String:
 
 
 func _play_reveal() -> void:
-	await get_tree().create_timer(0.3).timeout
-
-	var t1 := create_tween()
-	t1.tween_property(_title_label, "modulate:a", 1.0, 1.5)
-	await t1.finished
-
-	await get_tree().create_timer(0.3).timeout
-
-	var t2 := create_tween()
-	t2.tween_property(_subtitle_label, "modulate:a", 1.0, 1.0)
-	await t2.finished
-
-	await get_tree().create_timer(0.5).timeout
+	var tween := create_tween()
+	tween.tween_interval(0.3)
+	tween.tween_property(_title_label, "modulate:a", 1.0, 1.5)
+	tween.tween_interval(0.3)
+	tween.tween_property(_subtitle_label, "modulate:a", 1.0, 1.0)
+	tween.tween_interval(0.5)
+	await tween.finished
 	_show_main_menu()
 
 
