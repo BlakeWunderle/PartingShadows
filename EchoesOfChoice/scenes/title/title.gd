@@ -6,6 +6,7 @@ extends Control
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
+const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 
 enum Mode { MAIN_MENU, LOAD_SLOTS, SETTINGS }
 
@@ -17,6 +18,8 @@ var _mode: Mode = Mode.MAIN_MENU
 var _has_saves: bool = false
 var _error_label: Label
 var _settings_panel: SettingsPanel
+var _confirm_dialog: ConfirmDialog
+var _pending_delete_slot: int = -1
 
 
 func _ready() -> void:
@@ -102,6 +105,10 @@ func _build_ui() -> void:
 	version_label.offset_left = -80
 	version_label.offset_top = -30
 	add_child(version_label)
+
+	# Confirm dialog (overlays entire screen)
+	_confirm_dialog = ConfirmDialog.new()
+	add_child(_confirm_dialog)
 
 
 func _pick_title_background() -> String:
@@ -204,7 +211,8 @@ func _handle_main_choice(index: int) -> void:
 		"Settings":
 			_show_settings()
 		"Quit":
-			get_tree().quit()
+			_confirm_dialog.confirmed.connect(_on_quit_confirmed, CONNECT_ONE_SHOT)
+			_confirm_dialog.show_confirm("Are you sure you want to quit?")
 
 
 func _find_best_continue_slot() -> int:
@@ -229,12 +237,21 @@ func _show_settings() -> void:
 	_settings_panel.visible = true
 
 
+func _on_quit_confirmed(accepted: bool) -> void:
+	if accepted:
+		get_tree().quit()
+
+
 # =============================================================================
 # Load slot picker
 # =============================================================================
 
+var _load_slot_actions: Array[Dictionary] = []  # [{action: "load"/"delete"/"back", slot: int}]
+
+
 func _show_load_slots() -> void:
 	_mode = Mode.LOAD_SLOTS
+	_load_slot_actions.clear()
 
 	var options: Array[Dictionary] = []
 
@@ -251,8 +268,12 @@ func _show_load_slots() -> void:
 				summary.get("level", 1),
 				story_title,
 			]})
+			_load_slot_actions.append({"action": "load", "slot": i})
+			options.append({"label": "  Delete Slot %d" % [i + 1]})
+			_load_slot_actions.append({"action": "delete", "slot": i})
 		else:
 			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
+			_load_slot_actions.append({"action": "load", "slot": i})
 
 	# Autosave slot
 	var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
@@ -265,26 +286,40 @@ func _show_load_slots() -> void:
 			auto_summary.get("level", 1),
 			auto_story,
 		]})
+		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
+		options.append({"label": "  Delete Autosave"})
+		_load_slot_actions.append({"action": "delete", "slot": SaveManager.AUTOSAVE_SLOT})
 	else:
 		options.append({"label": "Autosave: Empty", "disabled": true})
+		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
 
 	options.append({"label": "Back"})
+	_load_slot_actions.append({"action": "back", "slot": -1})
 	_menu.show_choices(options)
 
 
 func _handle_load_choice(index: int) -> void:
-	var total_slots: int = SaveManager.MAX_SAVE_SLOTS + 1  # 3 manual + 1 autosave
-	if index >= total_slots:
-		# Back
-		_show_main_menu()
+	if index < 0 or index >= _load_slot_actions.size():
 		return
 
-	# Map index to slot (0-2 = manual, 3 = autosave)
-	var slot: int = index
-	if index == SaveManager.MAX_SAVE_SLOTS:
-		slot = SaveManager.AUTOSAVE_SLOT
+	var entry: Dictionary = _load_slot_actions[index]
+	match entry["action"]:
+		"back":
+			_show_main_menu()
+		"delete":
+			_pending_delete_slot = int(entry["slot"])
+			_confirm_dialog.confirmed.connect(_on_delete_save_confirmed, CONNECT_ONE_SHOT)
+			_confirm_dialog.show_confirm("Delete this save? This cannot be undone.")
+		"load":
+			var slot: int = int(entry["slot"])
+			if SaveManager.load_from_slot(slot):
+				SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+			else:
+				_show_load_error()
 
-	if SaveManager.load_from_slot(slot):
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
-	else:
-		_show_load_error()
+
+func _on_delete_save_confirmed(accepted: bool) -> void:
+	if accepted and _pending_delete_slot >= 0:
+		SaveManager.delete_save(_pending_delete_slot)
+		_show_load_slots()  # Refresh
+	_pending_delete_slot = -1
