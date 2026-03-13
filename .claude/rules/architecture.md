@@ -52,22 +52,23 @@ All paths below are relative to `EchoesOfChoice/`.
 
 ### Autoload (`scripts/autoload/`)
 - `logger.gd` -- GameLog autoload: info/warn logging, clipboard export
-- `scene_manager.gd` -- Scene transitions with fade overlay, stops music on transition
+- `scene_manager.gd` -- Scene transitions with fade overlay, loading spinner, stops music on transition
 - `music_manager.gd` -- Background music with crossfade, context-based track pools (battle, exploration, town, menu, boss, cutscene)
 - `audio_loader.gd` -- Static utility (class_name AudioLoader, not autoloaded): runtime audio file loading for WAV/OGG/MP3
 - `input_config.gd` -- Input action registration (keyboard + gamepad mappings)
 - `game_state.gd` -- Game state: party, battle progression, story tracking, phase tracking
-- `save_manager.gd` -- Multi-slot save system (3 manual + autosave), JSON serialization with story_id
+- `save_manager.gd` -- Multi-slot save system (3 manual + autosave), JSON serialization with story_id, delete_save
 - `unlock_manager.gd` -- Persistent unlock tracking (story completion, reward classes) via user://unlocks.json
-- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, ESC keybinding
+- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, confirmation dialogs, ESC keybinding
 - `settings_manager.gd` -- Global settings persistence (volume, text speed, fullscreen, color blind mode, etc.) via user://settings.json
 
 ### Scenes (`scenes/`)
 - `splash/splash.gd/.tscn` -- Wunderelf Studios splash screen, auto-advances to title
-- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Settings/Quit
+- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Settings/Credits/Quit, version display, confirmation dialogs
 - `story_select/story_select.gd/.tscn` -- Story selection screen with lock state (New Game submenu)
 - `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops
-- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, story completion unlocks
+- `credits/credits.gd/.tscn` -- Scrolling credits scene with music, any-key skip
+- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, defeat choices, story completion unlocks
 - `battle/battle.gd/.tscn` -- ATB battle scene with turn order, buff/debuff indicators
 - `town_stop/town_stop.gd/.tscn` -- Town rest stops between battles with class upgrades
 
@@ -82,6 +83,8 @@ All paths below are relative to `EchoesOfChoice/`.
 - `combat_log.gd` -- Scrolling battle log with configurable font size
 - `stats_panel.gd` -- Character stats display with close button
 - `settings_panel.gd` -- Reusable settings UI (volume sliders, speed/font/color blind dropdowns, toggles)
+- `confirm_dialog.gd` -- Modal Yes/No confirmation dialog with dark teal styling
+- `tip_overlay.gd` -- One-time contextual tutorial tips with JSON persistence (user://tips_seen.json)
 - `virtual_keyboard.gd` -- On-screen keyboard for gamepad text input
 
 ### Tools (`scripts/tools/` and `tools/`)
