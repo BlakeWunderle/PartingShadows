@@ -55,33 +55,17 @@ func _build_ui() -> void:
 
 
 func _play_sequence() -> void:
-	await get_tree().create_timer(_INITIAL_DELAY).timeout
-	if _transitioning:
-		return
-	_skip_enabled = true
-
-	# Fade in logo
+	var tween := create_tween()
+	tween.tween_interval(_INITIAL_DELAY)
+	tween.tween_callback(func() -> void: _skip_enabled = true)
 	if _logo:
-		var tween := create_tween()
 		tween.tween_property(_logo, "modulate:a", 1.0, _LOGO_FADE_IN)
-		await tween.finished
-		if _transitioning:
-			return
-
-	# Fade in studio name
 	if _studio_label:
-		var t_text := create_tween()
-		t_text.tween_property(_studio_label, "modulate:a", 1.0, _TEXT_FADE_IN)
-		await t_text.finished
-		if _transitioning:
-			return
-
-	# Hold
-	await get_tree().create_timer(_HOLD_DURATION).timeout
-	if _transitioning:
-		return
-
-	_go_to_title()
+		tween.tween_property(_studio_label, "modulate:a", 1.0, _TEXT_FADE_IN)
+	tween.tween_interval(_HOLD_DURATION)
+	await tween.finished
+	if not _transitioning:
+		_go_to_title()
 
 
 func _unhandled_input(event: InputEvent) -> void:
