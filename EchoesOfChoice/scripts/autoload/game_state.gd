@@ -16,6 +16,7 @@ var previous_battle_id: String = ""
 var narrative_mode: NarrativeMode = NarrativeMode.PRE_BATTLE
 var game_phase: GamePhase = GamePhase.TITLE
 var game_won: bool = false
+var battles_won: int = 0
 var current_story_id: String = "story_1"
 
 
@@ -29,6 +30,7 @@ func start_new_game(story_id: String = "story_1") -> void:
 	narrative_mode = NarrativeMode.PRE_BATTLE
 	game_phase = GamePhase.PARTY_CREATION
 	game_won = false
+	battles_won = 0
 
 
 func get_first_battle_id() -> String:
@@ -53,6 +55,7 @@ func advance_to_battle(battle_id: String) -> void:
 
 
 func advance_to_post_battle() -> void:
+	battles_won += 1
 	narrative_mode = NarrativeMode.POST_BATTLE
 	game_phase = GamePhase.NARRATIVE
 

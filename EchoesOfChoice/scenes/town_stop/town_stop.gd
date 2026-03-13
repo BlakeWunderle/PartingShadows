@@ -5,12 +5,14 @@ extends Control
 
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 enum TownPhase { INTRO_TEXT, UPGRADING, UPGRADE_REVEAL, OUTRO_TEXT, BRANCH_CHOICE }
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
+var _tip_overlay: TipOverlay
 var _upgrade_label: Label
 var _scene_image: TextureRect
 var _phase: TownPhase = TownPhase.INTRO_TEXT
@@ -68,6 +70,9 @@ func _build_ui() -> void:
 	_choice_menu.choice_selected.connect(_on_choice_selected)
 	vbox.add_child(_choice_menu)
 
+	_tip_overlay = TipOverlay.new()
+	add_child(_tip_overlay)
+
 
 func _start_town() -> void:
 	var battle = GameState.current_battle
@@ -100,6 +105,13 @@ func _begin_upgrades() -> void:
 	_phase = TownPhase.UPGRADING
 	_upgrade_index = 0
 	_dialogue.visible = false
+	_tip_overlay.show_tip_once("first_town",
+		"Town stops let you upgrade your party. " +
+		"Each character can evolve into a specialized class.\n\n" +
+		"Tier 0 classes upgrade to Tier 1, " +
+		"and Tier 1 upgrades to Tier 2. " +
+		"Each upgrade unlocks new abilities and improves stats.\n\n" +
+		"Choose wisely. Upgrades are permanent!")
 	_show_next_upgrade()
 
 

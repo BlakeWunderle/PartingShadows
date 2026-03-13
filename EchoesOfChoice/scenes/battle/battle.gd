@@ -7,6 +7,7 @@ const CombatLog := preload("res://scripts/ui/combat_log.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const FighterBar := preload("res://scripts/ui/fighter_bar.gd")
 const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityData := preload("res://scripts/data/ability_data.gd")
 const BattleData := preload("res://scripts/data/battle_data.gd")
@@ -56,6 +57,7 @@ var _enemy_vbox: VBoxContainer
 var _bottom_panel: VBoxContainer
 var _turn_order_label: RichTextLabel
 var _turn_queue: Array = []  ## Predicted turn order, depleted as actors act
+var _tip_overlay: TipOverlay
 
 
 func _ready() -> void:
@@ -161,6 +163,8 @@ func _build_ui() -> void:
 	_stats_panel.custom_minimum_size = Vector2(350, 0)
 	add_child(_stats_panel)
 
+	_tip_overlay = TipOverlay.new()
+	add_child(_tip_overlay)
 
 
 func _start_battle() -> void:
@@ -187,6 +191,16 @@ func _start_battle() -> void:
 	_combat_log.add_message("[color=gold]Battle begins![/color]")
 	_compute_turn_order()
 	_display_turn_order()
+
+	_tip_overlay.show_tip_once("first_battle",
+		"Combat uses an Active Time Battle system. " +
+		"Faster characters act more often.\n\n" +
+		"On your turn, choose Attack for basic damage, " +
+		"use an Ability for special moves (costs MP), " +
+		"or check Stats to review your party.\n\n" +
+		"Some abilities target all enemies or all allies. " +
+		"Buffs and debuffs last several turns.")
+
 	_phase = Phase.TICKING_ATB
 	_tick_loop()
 

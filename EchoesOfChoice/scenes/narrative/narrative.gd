@@ -82,8 +82,12 @@ func _show_narrative() -> void:
 			_dialogue.show_text(["Something went wrong. Press continue to return to title."])
 
 
+var _is_defeat: bool = false
+
+
 func _show_ending() -> void:
 	var is_first_completion: bool = false
+	_is_defeat = not GameState.game_won
 	if GameState.game_won:
 		var story: Dictionary = _StoryDB.get_story(GameState.current_story_id)
 		var completion_key: String = story.get("completion_unlock", "")
@@ -101,6 +105,9 @@ func _show_ending() -> void:
 			lines = _ending_text_story_3()
 		_:
 			lines = _ending_text_story_1()
+	if _is_defeat:
+		lines.append("")
+		lines.append("Battles won: %d" % GameState.battles_won)
 	if is_first_completion:
 		lines.append_array(_unlock_notification_lines())
 	_dialogue.show_text(lines)
@@ -211,10 +218,44 @@ func _on_text_finished() -> void:
 				else:
 					_advance_after_battle()
 		GameState.GamePhase.ENDING:
-			# Return to title
-			SceneManager.change_scene("res://scenes/title/title.tscn")
+			if _is_defeat:
+				_show_defeat_choices()
+			else:
+				SceneManager.change_scene("res://scenes/title/title.tscn")
 		_:
 			SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _show_defeat_choices() -> void:
+	_dialogue.visible = false
+	var options: Array[Dictionary] = []
+	if SaveManager.has_any_save():
+		options.append({"label": "Load Last Save"})
+	options.append({"label": "Return to Title"})
+	_choice_menu.show_choices(options)
+	_choice_menu.choice_selected.disconnect(_on_branch_selected)
+	_choice_menu.choice_selected.connect(_on_defeat_choice, CONNECT_ONE_SHOT)
+
+
+func _on_defeat_choice(index: int) -> void:
+	_choice_menu.hide_menu()
+	_choice_menu.choice_selected.connect(_on_branch_selected)
+	var has_saves: bool = SaveManager.has_any_save()
+	if has_saves and index == 0:
+		# Load last save
+		var slot: int = SaveManager.get_last_used_slot()
+		if slot < 0:
+			if SaveManager.has_autosave():
+				slot = SaveManager.AUTOSAVE_SLOT
+			else:
+				for i: int in SaveManager.MAX_SAVE_SLOTS:
+					if SaveManager.has_save(i):
+						slot = i
+						break
+		if slot >= 0 and SaveManager.load_from_slot(slot):
+			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+			return
+	SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
 func _show_branch_choices() -> void:
