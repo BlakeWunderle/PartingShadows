@@ -164,6 +164,7 @@ func _show_main_menu() -> void:
 	if _has_saves:
 		options.append({"label": "Load Game"})
 	options.append({"label": "Settings"})
+	options.append({"label": "Credits"})
 	options.append({"label": "Quit"})
 
 	_menu.show_choices(options)
@@ -188,6 +189,7 @@ func _handle_main_choice(index: int) -> void:
 	if _has_saves:
 		labels.append("Load Game")
 	labels.append("Settings")
+	labels.append("Credits")
 	labels.append("Quit")
 
 	if index < 0 or index >= labels.size():
@@ -210,6 +212,8 @@ func _handle_main_choice(index: int) -> void:
 			_show_load_slots()
 		"Settings":
 			_show_settings()
+		"Credits":
+			SceneManager.change_scene("res://scenes/credits/credits.tscn")
 		"Quit":
 			_confirm_dialog.confirmed.connect(_on_quit_confirmed, CONNECT_ONE_SHOT)
 			_confirm_dialog.show_confirm("Are you sure you want to quit?")
