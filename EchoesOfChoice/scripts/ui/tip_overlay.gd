@@ -31,13 +31,6 @@ func _build_ui() -> void:
 	add_child(center)
 
 	_panel = PanelContainer.new()
-	var panel_style := StyleBoxFlat.new()
-	panel_style.bg_color = Color(0.06, 0.1, 0.16)
-	panel_style.border_color = Color(0.2, 0.45, 0.5)
-	panel_style.set_border_width_all(2)
-	panel_style.set_corner_radius_all(10)
-	panel_style.set_content_margin_all(24)
-	_panel.add_theme_stylebox_override("panel", panel_style)
 	_panel.custom_minimum_size = Vector2(520, 0)
 	center.add_child(_panel)
 
@@ -58,7 +51,6 @@ func _build_ui() -> void:
 	_message_label.fit_content = true
 	_message_label.scroll_active = false
 	_message_label.add_theme_font_size_override("normal_font_size", SettingsManager.font_size)
-	_message_label.add_theme_color_override("default_color", Color(0.8, 0.85, 0.9))
 	vbox.add_child(_message_label)
 
 	_dismiss_btn = Button.new()
@@ -67,7 +59,7 @@ func _build_ui() -> void:
 	_dismiss_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	_dismiss_btn.focus_mode = Control.FOCUS_ALL
 	_dismiss_btn.pressed.connect(_dismiss)
-	_style_button(_dismiss_btn)
+	_dismiss_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	vbox.add_child(_dismiss_btn)
 
 
@@ -122,25 +114,6 @@ func _save_seen() -> void:
 	if file:
 		file.store_string(JSON.stringify(_seen_tips))
 		file.close()
-
-
-func _style_button(btn: Button) -> void:
-	var normal := _make_style(Color(0.1, 0.16, 0.22), Color(0.2, 0.4, 0.45))
-	var hover := _make_style(Color(0.14, 0.22, 0.3), Color(0.3, 0.55, 0.6))
-	btn.add_theme_stylebox_override("normal", normal)
-	btn.add_theme_stylebox_override("hover", hover)
-	btn.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
-	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
-
-
-func _make_style(bg_color: Color, border_color: Color) -> StyleBoxFlat:
-	var s := StyleBoxFlat.new()
-	s.bg_color = bg_color
-	s.border_color = border_color
-	s.set_border_width_all(2)
-	s.set_corner_radius_all(6)
-	s.set_content_margin_all(10)
-	return s
 
 
 func _unhandled_input(event: InputEvent) -> void:

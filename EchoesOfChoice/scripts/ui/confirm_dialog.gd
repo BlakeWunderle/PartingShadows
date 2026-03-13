@@ -29,26 +29,25 @@ func _build_ui() -> void:
 	add_child(center)
 
 	_panel = PanelContainer.new()
-	var panel_style := StyleBoxFlat.new()
-	panel_style.bg_color = Color(0.08, 0.12, 0.18)
-	panel_style.border_color = Color(0.2, 0.4, 0.45)
-	panel_style.set_border_width_all(2)
-	panel_style.set_corner_radius_all(8)
-	panel_style.set_content_margin_all(24)
-	_panel.add_theme_stylebox_override("panel", panel_style)
 	_panel.custom_minimum_size = Vector2(400, 0)
 	center.add_child(_panel)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 12)
+	margin.add_theme_constant_override("margin_top", 12)
+	margin.add_theme_constant_override("margin_right", 12)
+	margin.add_theme_constant_override("margin_bottom", 12)
+	_panel.add_child(margin)
 
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 20)
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	_panel.add_child(vbox)
+	margin.add_child(vbox)
 
 	_message_label = Label.new()
 	_message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_message_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	_message_label.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
 	vbox.add_child(_message_label)
 
 	var btn_row := HBoxContainer.new()
@@ -81,33 +80,11 @@ func _make_button(text: String) -> Button:
 	btn.text = text
 	btn.custom_minimum_size = Vector2(120, 40)
 	btn.focus_mode = Control.FOCUS_ALL
-
-	var normal := _make_style(Color(0.1, 0.16, 0.22), Color(0.2, 0.4, 0.45))
-	var hover := _make_style(Color(0.14, 0.22, 0.3), Color(0.3, 0.55, 0.6))
-	var pressed := _make_style(Color(0.08, 0.12, 0.18), Color(0.25, 0.5, 0.55))
-	var focus := _make_style(Color(0.12, 0.19, 0.26), Color(0.35, 0.65, 0.7))
-	btn.add_theme_stylebox_override("normal", normal)
-	btn.add_theme_stylebox_override("hover", hover)
-	btn.add_theme_stylebox_override("pressed", pressed)
-	btn.add_theme_stylebox_override("focus", focus)
-	btn.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
-	btn.add_theme_color_override("font_hover_color", Color(0.95, 1.0, 1.0))
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
-
 	# Wire focus neighbors for horizontal navigation
 	btn.focus_neighbor_left = btn.get_path()
 	btn.focus_neighbor_right = btn.get_path()
 	return btn
-
-
-func _make_style(bg_color: Color, border_color: Color) -> StyleBoxFlat:
-	var s := StyleBoxFlat.new()
-	s.bg_color = bg_color
-	s.border_color = border_color
-	s.set_border_width_all(2)
-	s.set_corner_radius_all(6)
-	s.set_content_margin_all(10)
-	return s
 
 
 func _unhandled_input(event: InputEvent) -> void:

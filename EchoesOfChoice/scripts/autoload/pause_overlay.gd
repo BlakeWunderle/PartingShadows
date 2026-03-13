@@ -120,6 +120,7 @@ func _build_ui() -> void:
 	# Settings panel (hidden by default)
 	_settings_panel = SettingsPanel.new()
 	_settings_panel.visible = false
+	_settings_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_settings_panel.back_pressed.connect(_back_to_main)
 	root_vbox.add_child(_settings_panel)
 
@@ -133,6 +134,8 @@ func _make_button(text: String) -> Button:
 	btn.text = text
 	btn.custom_minimum_size = Vector2(280, 36)
 	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	btn.focus_mode = Control.FOCUS_ALL
+	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	return btn
 
 

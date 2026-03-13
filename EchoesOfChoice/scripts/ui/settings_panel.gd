@@ -48,6 +48,7 @@ func _build_ui() -> void:
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.custom_minimum_size = Vector2(0, 300)
 	add_child(scroll)
 
 	var inner := VBoxContainer.new()
@@ -103,15 +104,11 @@ func _build_ui() -> void:
 	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	add_child(btn_row)
 
-	var defaults_btn := Button.new()
-	defaults_btn.text = "Reset Defaults"
-	defaults_btn.custom_minimum_size = Vector2(140, 36)
+	var defaults_btn := _styled_button("Reset Defaults")
 	defaults_btn.pressed.connect(_on_defaults_pressed)
 	btn_row.add_child(defaults_btn)
 
-	var back_btn := Button.new()
-	back_btn.text = "Back"
-	back_btn.custom_minimum_size = Vector2(140, 36)
+	var back_btn := _styled_button("Back")
 	back_btn.pressed.connect(func() -> void: back_pressed.emit())
 	btn_row.add_child(back_btn)
 
@@ -124,7 +121,6 @@ func _add_slider_row(parent: VBoxContainer, label_text: String, slider: HSlider,
 	var lbl := Label.new()
 	lbl.text = label_text
 	lbl.custom_minimum_size = Vector2(160, 0)
-	lbl.add_theme_font_size_override("font_size", 16)
 	row.add_child(lbl)
 
 	slider.min_value = 0.0
@@ -136,7 +132,6 @@ func _add_slider_row(parent: VBoxContainer, label_text: String, slider: HSlider,
 
 	value_label.custom_minimum_size = Vector2(48, 0)
 	value_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	value_label.add_theme_font_size_override("font_size", 16)
 	row.add_child(value_label)
 
 
@@ -148,7 +143,6 @@ func _add_dropdown_row(parent: VBoxContainer, label_text: String, option_btn: Op
 	var lbl := Label.new()
 	lbl.text = label_text
 	lbl.custom_minimum_size = Vector2(160, 0)
-	lbl.add_theme_font_size_override("font_size", 16)
 	row.add_child(lbl)
 
 	for item: String in items:
@@ -165,11 +159,19 @@ func _add_toggle_row(parent: VBoxContainer, label_text: String, check_btn: Check
 	var lbl := Label.new()
 	lbl.text = label_text
 	lbl.custom_minimum_size = Vector2(160, 0)
-	lbl.add_theme_font_size_override("font_size", 16)
 	row.add_child(lbl)
 
 	check_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(check_btn)
+
+
+func _styled_button(text: String) -> Button:
+	var btn := Button.new()
+	btn.text = text
+	btn.custom_minimum_size = Vector2(140, 36)
+	btn.focus_mode = Control.FOCUS_ALL
+	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	return btn
 
 
 # =============================================================================
