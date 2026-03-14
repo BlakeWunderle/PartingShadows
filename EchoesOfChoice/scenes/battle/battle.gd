@@ -50,6 +50,15 @@ var _stats_panel: StatsPanel
 var _scene_image: TextureRect
 var _scene_image_panel: PanelContainer
 
+# Portrait panel
+var _portrait_panel: VBoxContainer
+var _portrait_image: TextureRect
+var _portrait_image_old: TextureRect
+var _portrait_name_label: Label
+var _portrait_tween: Tween
+var _portrait_cache: Dictionary = {}
+var _current_portrait_type: String = ""
+
 # Layout containers
 var _top_panel: HBoxContainer
 var _party_vbox: VBoxContainer
@@ -119,6 +128,53 @@ func _build_ui() -> void:
 	_combat_log.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_combat_log.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	middle_panel.add_child(_combat_log)
+
+	# Portrait panel (between combat log and scene image)
+	_portrait_panel = VBoxContainer.new()
+	_portrait_panel.custom_minimum_size = Vector2(180, 0)
+	_portrait_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_portrait_panel.add_theme_constant_override("separation", 4)
+	_portrait_panel.alignment = BoxContainer.ALIGNMENT_CENTER
+	middle_panel.add_child(_portrait_panel)
+
+	_portrait_name_label = Label.new()
+	_portrait_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_portrait_name_label.add_theme_font_size_override("font_size", 14)
+	_portrait_name_label.clip_text = true
+	_portrait_name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	_portrait_name_label.custom_minimum_size = Vector2(180, 0)
+	_portrait_panel.add_child(_portrait_name_label)
+
+	var portrait_frame := PanelContainer.new()
+	portrait_frame.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	portrait_frame.custom_minimum_size = Vector2(180, 0)
+	_portrait_panel.add_child(portrait_frame)
+
+	var portrait_stack := Control.new()
+	portrait_stack.set_anchors_preset(Control.PRESET_FULL_RECT)
+	portrait_stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	portrait_stack.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	portrait_frame.add_child(portrait_stack)
+
+	_portrait_image_old = TextureRect.new()
+	_portrait_image_old.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	_portrait_image_old.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_portrait_image_old.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_portrait_image_old.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_portrait_image_old.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_portrait_image_old.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_portrait_image_old.modulate.a = 0.0
+	portrait_stack.add_child(_portrait_image_old)
+
+	_portrait_image = TextureRect.new()
+	_portrait_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	_portrait_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_portrait_image.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_portrait_image.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_portrait_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_portrait_image.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_portrait_image.modulate.a = 0.0
+	portrait_stack.add_child(_portrait_image)
 
 	_scene_image_panel = PanelContainer.new()
 	_scene_image_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -257,6 +313,7 @@ func _tick_loop() -> void:
 				continue
 
 			_current_actor = actor
+			_update_portrait(actor)
 			# Pop this actor from the display queue
 			if not _turn_queue.is_empty() and _turn_queue[0] == actor:
 				_turn_queue.pop_front()
@@ -597,6 +654,11 @@ func _check_boss_escape() -> bool:
 
 func _end_battle() -> void:
 	_phase = Phase.BATTLE_END
+	if _portrait_tween and _portrait_tween.is_valid():
+		_portrait_tween.kill()
+	var _fade := create_tween()
+	_fade.tween_property(_portrait_image, "modulate:a", 0.0, 0.3)
+	_current_portrait_type = ""
 	await _drain_messages()
 
 	_engine.finish_battle()
@@ -707,3 +769,58 @@ func _display_turn_order() -> void:
 	_turn_order_label.clear()
 	_turn_order_label.append_text(
 		"[color=gray]Turn Order:[/color]  " + "  >  ".join(parts))
+
+
+# =============================================================================
+# Portrait panel
+# =============================================================================
+
+func _get_portrait_texture(fighter: FighterData) -> Texture2D:
+	var key: String = fighter.character_type
+	if fighter.is_user_controlled:
+		key += "_" + fighter.portrait_variant
+	if _portrait_cache.has(key):
+		return _portrait_cache[key]
+
+	var slug: String = fighter.character_type.to_lower().replace(" ", "_")
+	var path: String
+	if fighter.is_user_controlled:
+		path = "res://assets/art/portraits/classes/%s_%s.png" % [slug, fighter.portrait_variant]
+	else:
+		path = "res://assets/art/portraits/enemies/%s.png" % slug
+
+	var tex: Texture2D = null
+	if ResourceLoader.exists(path):
+		tex = load(path) as Texture2D
+
+	_portrait_cache[key] = tex
+	return tex
+
+
+func _update_portrait(fighter: FighterData) -> void:
+	if fighter.character_type == _current_portrait_type:
+		return
+	_current_portrait_type = fighter.character_type
+
+	_portrait_name_label.text = "%s the %s" % [fighter.character_name, fighter.character_type]
+
+	if _portrait_tween and _portrait_tween.is_valid():
+		_portrait_tween.kill()
+
+	var tex: Texture2D = _get_portrait_texture(fighter)
+
+	if tex == null:
+		# No portrait available: fade out current
+		_portrait_tween = create_tween()
+		_portrait_tween.tween_property(_portrait_image, "modulate:a", 0.0, 0.2)
+		return
+
+	# Crossfade: old fades out, new fades in
+	_portrait_image_old.texture = _portrait_image.texture
+	_portrait_image_old.modulate.a = _portrait_image.modulate.a
+	_portrait_image.texture = tex
+	_portrait_image.modulate.a = 0.0
+
+	_portrait_tween = create_tween().set_parallel(true)
+	_portrait_tween.tween_property(_portrait_image_old, "modulate:a", 0.0, 0.3)
+	_portrait_tween.tween_property(_portrait_image, "modulate:a", 1.0, 0.3)

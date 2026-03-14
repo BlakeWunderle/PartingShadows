@@ -11,9 +11,9 @@ const FighterData := preload("res://scripts/data/fighter_data.gd")
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 
 enum State {
-	INTRO, NAME_1, CLASS_1, CONFIRM_1,
-	BRIDGE_1, NAME_2, CLASS_2, CONFIRM_2,
-	BRIDGE_2, NAME_3, CLASS_3, CONFIRM_3,
+	INTRO, NAME_1, CLASS_1, PORTRAIT_1, CONFIRM_1,
+	BRIDGE_1, NAME_2, CLASS_2, PORTRAIT_2, CONFIRM_2,
+	BRIDGE_2, NAME_3, CLASS_3, PORTRAIT_3, CONFIRM_3,
 	OUTRO, DONE,
 }
 
@@ -29,6 +29,7 @@ const BASE_CLASS_IDS: Array[String] = ["Squire", "Mage", "Entertainer", "Tinker"
 
 var _state: State = State.INTRO
 var _current_name: String = ""
+var _current_class_id: String = ""
 var _party: Array[FighterData] = []
 var _class_options: Array[Dictionary] = []
 var _class_ids: Array[String] = []
@@ -39,6 +40,9 @@ var _choice_menu: ChoiceMenu
 var _tip_overlay: TipOverlay
 var _scene_image: TextureRect
 var _vbox: VBoxContainer
+var _portrait_container: HBoxContainer
+var _portrait_preview_a: TextureRect
+var _portrait_preview_b: TextureRect
 
 
 func _is_s2() -> bool:
@@ -119,6 +123,36 @@ func _build_ui() -> void:
 	_choice_menu.visible = false
 	_vbox.add_child(_choice_menu)
 
+	# Portrait preview (shown during portrait selection)
+	_portrait_container = HBoxContainer.new()
+	_portrait_container.alignment = BoxContainer.ALIGNMENT_CENTER
+	_portrait_container.add_theme_constant_override("separation", 32)
+	_portrait_container.visible = false
+	_vbox.add_child(_portrait_container)
+
+	for i: int in 2:
+		var col := VBoxContainer.new()
+		col.add_theme_constant_override("separation", 4)
+		col.alignment = BoxContainer.ALIGNMENT_CENTER
+		_portrait_container.add_child(col)
+
+		var frame := PanelContainer.new()
+		frame.custom_minimum_size = Vector2(160, 213)
+		col.add_child(frame)
+
+		var tex_rect := TextureRect.new()
+		tex_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tex_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		tex_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		tex_rect.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		frame.add_child(tex_rect)
+
+		if i == 0:
+			_portrait_preview_a = tex_rect
+		else:
+			_portrait_preview_b = tex_rect
+
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
 
@@ -128,6 +162,7 @@ func _set_state(new_state: State) -> void:
 	_dialogue.visible = false
 	_name_input.visible = false
 	_choice_menu.visible = false
+	_portrait_container.visible = false
 
 	match _state:
 		State.INTRO:
@@ -160,6 +195,8 @@ func _set_state(new_state: State) -> void:
 				_show_dialogue(["'And what do you do for a living?' the innkeeper asks, refilling their cup."])
 			else:
 				_show_dialogue(["What is your calling?"])
+		State.PORTRAIT_1, State.PORTRAIT_2, State.PORTRAIT_3:
+			_show_portrait_selection()
 		State.CONFIRM_1, State.CONFIRM_2, State.CONFIRM_3:
 			var fighter: FighterData = _party.back()
 			_show_dialogue(["%s the %s joins the party!" % [
@@ -240,14 +277,49 @@ func _on_name_entered(player_name: String) -> void:
 
 func _on_class_selected(index: int) -> void:
 	_choice_menu.hide_menu()
-	var class_id: String = _class_ids[index]
-	var fighter: FighterData = FighterDB.create_player(class_id, _current_name)
+	_current_class_id = _class_ids[index]
+
+	match _state:
+		State.CLASS_1: _set_state(State.PORTRAIT_1)
+		State.CLASS_2: _set_state(State.PORTRAIT_2)
+		State.CLASS_3: _set_state(State.PORTRAIT_3)
+
+
+func _show_portrait_selection() -> void:
+	var slug: String = _current_class_id.to_lower().replace(" ", "_")
+	var path_a: String = "res://assets/art/portraits/classes/%s_m.png" % slug
+	var path_b: String = "res://assets/art/portraits/classes/%s_f.png" % slug
+
+	_portrait_preview_a.texture = null
+	_portrait_preview_b.texture = null
+	if ResourceLoader.exists(path_a):
+		_portrait_preview_a.texture = load(path_a) as Texture2D
+	if ResourceLoader.exists(path_b):
+		_portrait_preview_b.texture = load(path_b) as Texture2D
+
+	_portrait_container.visible = true
+	_choice_menu.choice_selected.disconnect(_on_class_selected)
+	_choice_menu.choice_selected.connect(_on_portrait_selected)
+	_choice_menu.show_choices([
+		{"label": "Portrait 1"},
+		{"label": "Portrait 2"},
+	])
+
+
+func _on_portrait_selected(index: int) -> void:
+	_choice_menu.hide_menu()
+	_portrait_container.visible = false
+	_choice_menu.choice_selected.disconnect(_on_portrait_selected)
+	_choice_menu.choice_selected.connect(_on_class_selected)
+
+	var variant: String = "m" if index == 0 else "f"
+	var fighter: FighterData = FighterDB.create_player(_current_class_id, _current_name, variant)
 	_party.append(fighter)
 
 	match _state:
-		State.CLASS_1: _set_state(State.CONFIRM_1)
-		State.CLASS_2: _set_state(State.CONFIRM_2)
-		State.CLASS_3: _set_state(State.CONFIRM_3)
+		State.PORTRAIT_1: _set_state(State.CONFIRM_1)
+		State.PORTRAIT_2: _set_state(State.CONFIRM_2)
+		State.PORTRAIT_3: _set_state(State.CONFIRM_3)
 
 
 func _finish() -> void:

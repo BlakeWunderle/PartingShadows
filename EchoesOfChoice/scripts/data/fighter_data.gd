@@ -8,6 +8,7 @@ const _FighterDB := preload("res://scripts/data/fighter_db.gd")
 var character_name: String
 var character_type: String  ## Class display name (e.g. "Squire", "Thug")
 var class_id: String        ## Internal class key for save/load and level-up routing
+var portrait_variant: String = "m"  ## Portrait style: "m" or "f"
 var is_user_controlled: bool
 
 var level: int = 1
@@ -36,6 +37,7 @@ func clone() -> FighterData:
 	c.character_name = character_name
 	c.character_type = character_type
 	c.class_id = class_id
+	c.portrait_variant = portrait_variant
 	c.is_user_controlled = is_user_controlled
 	c.level = level
 	c.health = health; c.max_health = max_health
@@ -117,6 +119,7 @@ func to_save_data() -> Dictionary:
 		"class_id": class_id,
 		"character_name": character_name,
 		"character_type": character_type,
+		"portrait_variant": portrait_variant,
 		"is_user_controlled": is_user_controlled,
 		"level": level,
 		"max_health": max_health,
@@ -137,6 +140,7 @@ func apply_save_data(data: Dictionary) -> void:
 	class_id = data.get("class_id", "")
 	character_name = data["character_name"]
 	character_type = data.get("character_type", "")
+	portrait_variant = data.get("portrait_variant", "m")
 	is_user_controlled = data["is_user_controlled"]
 	level = data["level"]
 	max_health = data["max_health"]

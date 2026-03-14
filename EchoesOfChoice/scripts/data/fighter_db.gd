@@ -256,17 +256,20 @@ static func _level_up_generic(f: FighterData) -> void:
 # Player class creation router
 # =============================================================================
 
-static func create_player(class_id: String, fighter_name: String) -> FighterData:
+static func create_player(class_id: String, fighter_name: String, portrait_variant: String = "m") -> FighterData:
+	var f: FighterData
 	match class_id:
-		"Squire": return create_squire(fighter_name)
-		"Mage": return create_mage(fighter_name)
-		"Entertainer": return create_entertainer(fighter_name)
-		"Tinker": return create_scholar(fighter_name)
-		"Wildling": return create_wildling(fighter_name)
-		"Wanderer": return create_wanderer(fighter_name)
+		"Squire": f = create_squire(fighter_name)
+		"Mage": f = create_mage(fighter_name)
+		"Entertainer": f = create_entertainer(fighter_name)
+		"Tinker": f = create_scholar(fighter_name)
+		"Wildling": f = create_wildling(fighter_name)
+		"Wanderer": f = create_wanderer(fighter_name)
 		_:
 			push_error("Unknown player class: %s" % class_id)
-			return create_squire(fighter_name)
+			f = create_squire(fighter_name)
+	f.portrait_variant = portrait_variant
+	return f
 
 
 # =============================================================================
