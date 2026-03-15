@@ -24,6 +24,9 @@ var _upgrade_index: int = 0  ## Which party member is choosing
 func _ready() -> void:
 	_build_ui()
 	_start_town()
+	if NetManager.is_multiplayer_active:
+		NetManager.player_left.connect(_on_player_left)
+		NetManager.session_ended.connect(_on_session_ended)
 
 
 func _build_ui() -> void:
@@ -264,6 +267,30 @@ func _go_to_next() -> void:
 	if NetManager.is_multiplayer_active and NetManager.is_host:
 		_rpc_change_scene.rpc(scene_path)
 	SceneManager.change_scene(scene_path)
+
+
+# =============================================================================
+# Multiplayer disconnect
+# =============================================================================
+
+func _on_player_left(_peer_id: int, player_name: String) -> void:
+	if not NetManager.is_host:
+		return
+	GameLog.info("TownStop: %s disconnected, ending session" % player_name)
+	SaveManager.auto_save()
+	NetManager.leave_session()
+	SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _on_session_ended(reason: String) -> void:
+	GameLog.info("TownStop: Session ended (%s)" % reason)
+	_waiting_overlay.hide_waiting()
+	_choice_menu.hide_menu()
+	_upgrade_label.visible = false
+	_dialogue.visible = true
+	_dialogue.show_text([reason])
+	await get_tree().create_timer(2.5).timeout
+	SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
 # =============================================================================

@@ -73,6 +73,9 @@ func _ready() -> void:
 			_class_options[i]["label"] = "???"
 	_build_ui()
 	_set_state(State.INTRO)
+	if NetManager.is_multiplayer_active:
+		NetManager.player_left.connect(_on_player_left)
+		NetManager.session_ended.connect(_on_session_ended)
 
 
 func _build_ui() -> void:
@@ -446,6 +449,31 @@ func _do_finish() -> void:
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		_:
 			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+
+
+# =============================================================================
+# Multiplayer disconnect
+# =============================================================================
+
+func _on_player_left(_peer_id: int, player_name: String) -> void:
+	if not NetManager.is_host:
+		return
+	GameLog.info("PartyCreation: %s disconnected, ending session" % player_name)
+	# No autosave -- party is incomplete during creation
+	NetManager.leave_session()
+	SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _on_session_ended(reason: String) -> void:
+	GameLog.info("PartyCreation: Session ended (%s)" % reason)
+	_name_input.visible = false
+	_choice_menu.hide_menu()
+	_portrait_container.visible = false
+	_waiting_overlay.hide_waiting()
+	_dialogue.visible = true
+	_dialogue.show_text([reason])
+	await get_tree().create_timer(2.5).timeout
+	SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
 # =============================================================================

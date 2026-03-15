@@ -16,6 +16,9 @@ var _scene_image: TextureRect
 func _ready() -> void:
 	_build_ui()
 	_show_narrative()
+	if NetManager.is_multiplayer_active:
+		NetManager.player_left.connect(_on_player_left)
+		NetManager.session_ended.connect(_on_session_ended)
 
 
 func _build_ui() -> void:
@@ -332,6 +335,28 @@ func _advance_after_battle() -> void:
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		_:
 			_show_narrative()
+
+
+# =============================================================================
+# Multiplayer disconnect
+# =============================================================================
+
+func _on_player_left(_peer_id: int, player_name: String) -> void:
+	if not NetManager.is_host:
+		return
+	GameLog.info("Narrative: %s disconnected, ending session" % player_name)
+	SaveManager.auto_save()
+	NetManager.leave_session()
+	SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _on_session_ended(reason: String) -> void:
+	GameLog.info("Narrative: Session ended (%s)" % reason)
+	_choice_menu.hide_menu()
+	_dialogue.visible = true
+	_dialogue.show_text([reason])
+	await get_tree().create_timer(2.5).timeout
+	SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
 # =============================================================================
