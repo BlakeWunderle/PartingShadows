@@ -9,9 +9,9 @@ func _ready() -> void:
 	var status: int = init_result.get("status", -1)
 	if status == 0:
 		is_steam_running = true
-		GameLog.info("SteamManager", "Steam initialized (user: %s)" % Steam.getPersonaName())
+		GameLog.info("SteamManager: Steam initialized (user: %s)" % Steam.getPersonaName())
 	else:
-		GameLog.info("SteamManager", "Steam not available (status %d), continuing offline" % status)
+		GameLog.info("SteamManager: Steam not available (status %d), continuing offline" % status)
 
 
 func _process(_delta: float) -> void:
