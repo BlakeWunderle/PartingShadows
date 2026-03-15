@@ -33,6 +33,7 @@ func start_new_game(story_id: String = "story_1") -> void:
 	game_won = false
 	battles_won = 0
 	play_seconds = 0.0
+	_update_presence()
 
 
 func _process(delta: float) -> void:
@@ -67,6 +68,7 @@ func advance_to_battle(battle_id: String) -> void:
 		game_phase = GamePhase.TOWN_STOP
 	else:
 		game_phase = GamePhase.NARRATIVE
+	_update_presence()
 
 
 func advance_to_post_battle() -> void:
@@ -79,6 +81,7 @@ func advance_to_post_battle() -> void:
 		SteamManager.set_achievement("FIFTY_VICTORIES")
 	narrative_mode = NarrativeMode.POST_BATTLE
 	game_phase = GamePhase.NARRATIVE
+	_update_presence()
 
 
 func level_up_party() -> void:
@@ -105,3 +108,31 @@ func go_to_ending(won: bool) -> void:
 	GameLog.info("Ending: %s" % ("victory" if won else "defeat"))
 	game_won = won
 	game_phase = GamePhase.ENDING
+	_update_presence()
+
+
+# =============================================================================
+# Steam rich presence
+# =============================================================================
+
+const _STORY_NAMES: Dictionary = {
+	"story_1": "The Stranger's Shadow",
+	"story_2": "Echoes in the Dark",
+	"story_3": "The Woven Night",
+}
+
+func _update_presence() -> void:
+	var story: String = _STORY_NAMES.get(current_story_id, current_story_id)
+	match game_phase:
+		GamePhase.TITLE:
+			SteamManager.set_presence("status", "Main Menu")
+		GamePhase.PARTY_CREATION:
+			SteamManager.set_presence("status", "Creating party - %s" % story)
+		GamePhase.BATTLE:
+			SteamManager.set_presence("status", "In battle - %s" % story)
+		GamePhase.NARRATIVE:
+			SteamManager.set_presence("status", "Exploring - %s" % story)
+		GamePhase.TOWN_STOP:
+			SteamManager.set_presence("status", "Town stop - %s" % story)
+		GamePhase.ENDING:
+			SteamManager.set_presence("status", "Story complete - %s" % story)

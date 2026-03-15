@@ -85,3 +85,19 @@ func cloud_delete(filename: String) -> void:
 		return
 	if Steam.fileExists(filename):
 		Steam.fileDelete(filename)
+
+
+# =============================================================================
+# Rich presence
+# =============================================================================
+
+func set_presence(key: String, value: String) -> void:
+	if not is_steam_running:
+		return
+	Steam.setRichPresence(key, value)
+
+
+func clear_presence() -> void:
+	if not is_steam_running:
+		return
+	Steam.clearRichPresence()
