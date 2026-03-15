@@ -157,12 +157,24 @@ func _build_ui() -> void:
 		btn.set_anchors_preset(Control.PRESET_FULL_RECT)
 		btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		btn.focus_mode = Control.FOCUS_ALL
-		# Make all button styles transparent so the portrait shows through
+		# Normal: fully transparent so the portrait shows through
 		var clear_style := StyleBoxEmpty.new()
 		btn.add_theme_stylebox_override("normal", clear_style)
-		btn.add_theme_stylebox_override("hover", clear_style)
-		btn.add_theme_stylebox_override("pressed", clear_style)
-		# Focus style: subtle teal border to indicate selection
+		# Hover: semi-transparent teal border for mouse feedback
+		var hover_style := StyleBoxFlat.new()
+		hover_style.bg_color = Color(0, 0, 0, 0)
+		hover_style.set_border_width_all(2)
+		hover_style.border_color = Color(0.2, 0.9, 0.8, 0.5)
+		hover_style.set_corner_radius_all(4)
+		btn.add_theme_stylebox_override("hover", hover_style)
+		# Pressed: brighter teal border
+		var pressed_style := StyleBoxFlat.new()
+		pressed_style.bg_color = Color(0, 0, 0, 0)
+		pressed_style.set_border_width_all(3)
+		pressed_style.border_color = Color(0.2, 0.9, 0.8, 0.8)
+		pressed_style.set_corner_radius_all(4)
+		btn.add_theme_stylebox_override("pressed", pressed_style)
+		# Focus: full teal border for keyboard/gamepad
 		var focus_style := StyleBoxFlat.new()
 		focus_style.bg_color = Color(0, 0, 0, 0)
 		focus_style.set_border_width_all(3)
