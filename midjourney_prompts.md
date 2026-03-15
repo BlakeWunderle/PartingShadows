@@ -844,7 +844,7 @@ ancient lich, skeletal undead sorcerer in decayed royal robes, glowing green sou
 
 **ghast.png**
 ```
-bloated ghast, massive undead abomination, distended rotting flesh, toxic green miasma, elongated jaw, grotesque swollen limbs, shambling horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+sickly green and gray bloated ghast, massive undead abomination, distended rotting flesh, toxic green miasma, elongated jaw, grotesque swollen limbs, shambling horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **demon.png**
@@ -864,42 +864,42 @@ hellion, small vicious imp-like demon, leathery red skin, oversized clawed hands
 
 **fiendling.png**
 ```
-fiendling, juvenile demon with dark purple skin, stubby horns, spiny ridge down back, tail ending in a stinger, crouched feral pose, fledgling evil, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark purple and black fiendling, juvenile demon with dark purple skin, stubby horns, spiny ridge down back, tail ending in a stinger, crouched feral pose, fledgling evil, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dragon.png**
 ```
-fearsome dragon, massive scaled beast with enormous wings spread wide, armored hide of deep emerald, blazing golden eyes, fire building in open jaws, legendary apex predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep emerald and gold fearsome dragon, massive scaled beast with enormous wings spread wide, armored hide of deep emerald, blazing golden eyes, fire building in open jaws, legendary apex predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **blighted_stag.png**
 ```
-blighted stag, corrupted deer with blackened antlers dripping dark ichor, glowing purple eyes, rotting patches on otherwise majestic body, thorny corruption growths, twisted nature, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+black and purple blighted stag, corrupted deer with blackened antlers dripping dark ichor, glowing purple eyes, rotting patches on otherwise majestic body, thorny corruption growths, twisted nature, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dark_knight.png**
 ```
-dark knight, imposing warrior in black full plate armor with crimson runes, visor concealing face, massive dark greatsword, corruption mist seeping from armor joints, fallen champion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+black and crimson dark knight, imposing warrior in black full plate armor with crimson runes, visor concealing face, massive dark greatsword, corruption mist seeping from armor joints, fallen champion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **fell_hound.png**
 ```
-fell hound, demonic war dog with obsidian-black hide, glowing red eyes, flames licking from maw, spiked bone collar, shadowy smoke trailing from body, hellish predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+obsidian black and fiery red fell hound, demonic war dog with obsidian-black hide, glowing red eyes, flames licking from maw, spiked bone collar, shadowy smoke trailing from body, hellish predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **sigil_wretch.png**
 ```
-sigil wretch, hunched corrupted humanoid covered in glowing arcane brands, emaciated body, wild pain-maddened eyes, dark magic leaking from carved runes on skin, wretched and dangerous, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ashen gray and glowing violet sigil wretch, hunched corrupted humanoid covered in glowing arcane brands, emaciated body, wild pain-maddened eyes, dark magic leaking from carved runes on skin, wretched and dangerous, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **tunnel_lurker.png**
 ```
-tunnel lurker, pale eyeless creature adapted to underground, elongated limbs, translucent skin showing dark veins, wide mouth full of needle teeth, clinging to tunnel wall, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale white and veiny blue tunnel lurker, pale eyeless creature adapted to underground, elongated limbs, translucent skin showing dark veins, wide mouth full of needle teeth, clinging to tunnel wall, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **stranger_final.png**
 ```
-the stranger revealed, powerful dark sorcerer in shattered mask showing half-corrupted face, billowing void-black robes, reality-warping dark energy erupting around body, final form unleashed, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+void black and purple the stranger revealed, powerful dark sorcerer in shattered mask showing half-corrupted face, billowing void-black robes, reality-warping dark energy erupting around body, final form unleashed, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ---
@@ -908,283 +908,283 @@ the stranger revealed, powerful dark sorcerer in shattered mask showing half-cor
 
 **glow_worm.png**
 ```
-giant glow worm, bioluminescent cave creature, segmented translucent body pulsing with blue-green light, tiny legs, mandibles, curled in defensive posture, underground dweller, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+blue-green and translucent giant glow worm, bioluminescent cave creature, segmented translucent body pulsing with blue-green light, tiny legs, mandibles, curled in defensive posture, underground dweller, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **crystal_spider.png**
 ```
-crystal spider, arachnid with legs and body made of jagged translucent crystal, refracting light prismatically, multiple gem-like eyes, web strands of crystalline thread, cave predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+prismatic and translucent crystal spider, arachnid with legs and body made of jagged translucent crystal, refracting light prismatically, multiple gem-like eyes, web strands of crystalline thread, cave predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **shade_crawler.png**
 ```
-shade crawler, dark amorphous creature clinging to cave ceiling, multiple shadowy tendrils, faint red eye spots, semi-transparent body of living darkness, dripping shadow substance, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark red and black shade crawler, dark amorphous creature clinging to cave ceiling, multiple shadowy tendrils, faint red eye spots, semi-transparent body of living darkness, dripping shadow substance, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **echo_wisp.png**
 ```
-echo wisp, floating spectral orb that mimics sounds, shimmering distortion field around a pale core, faint ghostly faces appearing and dissolving in its surface, cave spirit, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale silver and white echo wisp, floating spectral orb that mimics sounds, shimmering distortion field around a pale core, faint ghostly faces appearing and dissolving in its surface, cave spirit, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **spore_stalker.png**
 ```
-spore stalker, humanoid fungal creature, mushroom cap head releasing clouds of spores, body covered in pale fungal growths, mycelium tendrils for arms, shambling predatory stance, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+sickly green and beige spore stalker, humanoid fungal creature, mushroom cap head releasing clouds of spores, body covered in pale fungal growths, mycelium tendrils for arms, shambling predatory stance, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **fungal_hulk.png**
 ```
-fungal hulk, massive mushroom golem, thick trunk-like body of compacted fungal matter, enormous bracket fungus shoulders, tiny glowing spore eyes, crushing fists of hardened mycelium, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+brown and olive fungal hulk, massive mushroom golem, thick trunk-like body of compacted fungal matter, enormous bracket fungus shoulders, tiny glowing spore eyes, crushing fists of hardened mycelium, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cap_wisp.png**
 ```
-cap wisp, small floating mushroom spirit, bioluminescent cap glowing soft purple, trailing spore dust, tiny root-like tendrils dangling below, peaceful but toxic, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+soft purple and pink cap wisp, small floating mushroom spirit, bioluminescent cap glowing soft purple, trailing spore dust, tiny root-like tendrils dangling below, peaceful but toxic, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cave_eel.png**
 ```
-giant cave eel, long serpentine fish with blind pale skin, bioluminescent lure dangling from forehead, rows of needle teeth, slithering through underground water, ambush predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale blue and white giant cave eel, long serpentine fish with blind pale skin, bioluminescent lure dangling from forehead, rows of needle teeth, slithering through underground water, ambush predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **blind_angler.png**
 ```
-blind angler fish, grotesque deep-cave fish, eyeless with massive jaw, glowing lure appendage, translucent skin showing internal organs, adapted to total darkness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep gray and bioluminescent green blind angler fish, grotesque deep-cave fish, eyeless with massive jaw, glowing lure appendage, translucent skin showing internal organs, adapted to total darkness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **pale_crayfish.png**
 ```
-giant pale crayfish, albino crustacean with oversized pincers, armored segmented shell, long sensitive antennae, cave-dwelling bottom feeder grown enormous, aggressive defensive posture, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ghostly white and pale pink giant pale crayfish, albino crustacean with oversized pincers, armored segmented shell, long sensitive antennae, cave-dwelling bottom feeder grown enormous, aggressive defensive posture, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cave_dweller.png**
 ```
-cave dweller, pale humanoid adapted to underground life, large dark-adjusted eyes, lean muscular build, crude bone weapons and hide armor, tribal cave markings, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ashen gray and bone white cave dweller, pale humanoid adapted to underground life, large dark-adjusted eyes, lean muscular build, crude bone weapons and hide armor, tribal cave markings, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **tunnel_shaman.png**
 ```
-tunnel shaman, cave-dwelling mystic in bone-and-crystal headdress, glowing fungal staff, ritual paint on pale skin, summoning cave spirits, wise and dangerous elder, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+bone white and glowing teal tunnel shaman, cave-dwelling mystic in bone-and-crystal headdress, glowing fungal staff, ritual paint on pale skin, summoning cave spirits, wise and dangerous elder, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **burrow_scout.png**
 ```
-burrow scout, small quick cave humanoid, oversized ears for echolocation, lightweight leather wraps, dual bone daggers, crouched and ready to strike from shadows, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+sandy brown and dark gray burrow scout, small quick cave humanoid, oversized ears for echolocation, lightweight leather wraps, dual bone daggers, crouched and ready to strike from shadows, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cave_maw.png**
 ```
-cave maw, enormous mouth-like creature embedded in cave wall, ring of jagged stone teeth, luring tongue, sessile ambush predator disguised as a cave formation, gaping horrific maw, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+stone gray and fleshy red cave maw, enormous mouth-like creature embedded in cave wall, ring of jagged stone teeth, luring tongue, sessile ambush predator disguised as a cave formation, gaping horrific maw, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **vein_leech.png**
 ```
-vein leech, bloated parasitic worm with segmented body, circular mouth of hooked teeth, dark veins visible through translucent skin, blood-red coloring, grotesque cave parasite, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+blood red and translucent vein leech, bloated parasitic worm with segmented body, circular mouth of hooked teeth, dark veins visible through translucent skin, blood-red coloring, grotesque cave parasite, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **stone_moth.png**
 ```
-giant stone moth, moth with wings patterned like cave rock, compound eyes reflecting light, powdery stone-colored scales, camouflaged against cave walls, surprisingly large wingspan, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dusty brown and gray giant stone moth, moth with wings patterned like cave rock, compound eyes reflecting light, powdery stone-colored scales, camouflaged against cave walls, surprisingly large wingspan, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ## Story 2 -- Act II Enemies (Coast)
 
 **driftwood_bandit.png**
 ```
-driftwood bandit, coastal scavenger in salt-stained rags, makeshift driftwood shield and rusted blade, sun-weathered skin, desperate opportunist, shipwreck survivor turned raider, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+weathered tan and brown driftwood bandit, coastal scavenger in salt-stained rags, makeshift driftwood shield and rusted blade, sun-weathered skin, desperate opportunist, shipwreck survivor turned raider, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **saltrunner_smuggler.png**
 ```
-saltrunner smuggler, quick and wiry coastal smuggler in dark waterproof cloak, hidden daggers, belt of stolen vials, cunning eyes scanning for escape routes, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark navy and gray saltrunner smuggler, quick and wiry coastal smuggler in dark waterproof cloak, hidden daggers, belt of stolen vials, cunning eyes scanning for escape routes, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **tide_warden.png**
 ```
-tide warden, aquatic guardian in barnacle-encrusted armor, coral blade, kelp cape flowing like water, half-submerged warrior defending shoreline territory, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+sea green and barnacle gray tide warden, aquatic guardian in barnacle-encrusted armor, coral blade, kelp cape flowing like water, half-submerged warrior defending shoreline territory, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **blighted_gull.png**
 ```
-blighted gull, corrupted seabird grown enormous, oily black feathers, multiple eyes, razor beak dripping dark ichor, tattered wings still able to fly, coastal horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+oily black and sickly yellow blighted gull, corrupted seabird grown enormous, oily black feathers, multiple eyes, razor beak dripping dark ichor, tattered wings still able to fly, coastal horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **shore_crawler.png**
 ```
-shore crawler, crab-like creature with too many legs, chitinous armor, oversized crushing claws, barnacle-encrusted shell, scuttling along rocky tidepools, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+sandy orange and barnacle white shore crawler, crab-like creature with too many legs, chitinous armor, oversized crushing claws, barnacle-encrusted shell, scuttling along rocky tidepools, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **warped_hound.png**
 ```
-warped hound, coastal wolf mutated by dark magic, patchy fur over exposed muscle, extra set of eyes, elongated jaw, drooling acidic saliva, wrong proportions, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+mottled gray and raw red warped hound, coastal wolf mutated by dark magic, patchy fur over exposed muscle, extra set of eyes, elongated jaw, drooling acidic saliva, wrong proportions, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **blackwater_captain.png**
 ```
-blackwater captain, ghost pirate captain in waterlogged naval coat, barnacles growing on skin, ghostly pale complexion, glowing teal eyes, spectral cutlass, undead mariner, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ghostly teal and waterlogged gray blackwater captain, ghost pirate captain in waterlogged naval coat, barnacles growing on skin, ghostly pale complexion, glowing teal eyes, spectral cutlass, undead mariner, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **corsair_hexer.png**
 ```
-corsair hexer, sea witch pirate, octopus tentacle hair, jingling bone charms and sea glass talismans, casting hex with gnarled fingers, cackling sea crone, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep purple and sea green corsair hexer, sea witch pirate, octopus tentacle hair, jingling bone charms and sea glass talismans, casting hex with gnarled fingers, cackling sea crone, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **abyssal_lurker.png**
 ```
-abyssal lurker, deep sea horror risen to shallows, elongated body of dark slick skin, bioluminescent lure, massive hinged jaw, rows of transparent fangs, deep ocean nightmare, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ink black and bioluminescent blue abyssal lurker, deep sea horror risen to shallows, elongated body of dark slick skin, bioluminescent lure, massive hinged jaw, rows of transparent fangs, deep ocean nightmare, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **stormwrack_raptor.png**
 ```
-stormwrack raptor, storm-infused bird of prey, crackling lightning in feathers, sharp electric-blue talons, wings trailing thunder clouds, apex aerial predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+electric blue and stormy gray stormwrack raptor, storm-infused bird of prey, crackling lightning in feathers, sharp electric-blue talons, wings trailing thunder clouds, apex aerial predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **tidecaller_revenant.png**
 ```
-tidecaller revenant, drowned mage reanimated by ocean magic, waterlogged robes streaming seawater, coral growths on body, casting tidal spells, hollow glowing eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+waterlogged blue-gray and coral orange tidecaller revenant, drowned mage reanimated by ocean magic, waterlogged robes streaming seawater, coral growths on body, casting tidal spells, hollow glowing eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **salt_phantom.png**
 ```
-salt phantom, crystalline ghost made of salt formations, humanoid shape of white crystal clusters, hollow eye sockets, leaving trails of salt dust, coastal spirit, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+crystalline white and pale blue salt phantom, crystalline ghost made of salt formations, humanoid shape of white crystal clusters, hollow eye sockets, leaving trails of salt dust, coastal spirit, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **drowned_sailor.png**
 ```
-drowned sailor, waterlogged undead mariner, bloated blue-gray skin, seaweed tangled around limbs, rusted anchor chain weapon, vacant staring eyes, lurching zombie of the deep, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+bloated blue-gray and seaweed green drowned sailor, waterlogged undead mariner, bloated blue-gray skin, seaweed tangled around limbs, rusted anchor chain weapon, vacant staring eyes, lurching zombie of the deep, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **depth_horror.png**
 ```
-depth horror, enormous deep-sea entity, mass of writhing tentacles and eyes, bioluminescent patterns pulsing across dark rubbery flesh, primordial ocean terror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark purple and bioluminescent red depth horror, enormous deep-sea entity, mass of writhing tentacles and eyes, bioluminescent patterns pulsing across dark rubbery flesh, primordial ocean terror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ## Story 2 -- Act III Enemies (Memory/Mind)
 
 **memory_wisp.png**
 ```
-memory wisp, floating fragment of lost memory, translucent humanoid shape flickering between forms, warm golden glow, fading at the edges like an old photograph, wistful presence, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+warm gold and amber memory wisp, floating fragment of lost memory, translucent humanoid shape flickering between forms, warm golden glow, fading at the edges like an old photograph, wistful presence, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **echo_sentinel.png**
 ```
-echo sentinel, crystalline guardian construct, geometric faceted body reflecting distorted memories, rotating prismatic core, hovering sentinel pose, guardian of forgotten things, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+silver and prismatic echo sentinel, crystalline guardian construct, geometric faceted body reflecting distorted memories, rotating prismatic core, hovering sentinel pose, guardian of forgotten things, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **thought_eater.png**
 ```
-thought eater, parasitic psychic entity, amorphous dark mass with a single enormous eye, tendrils that phase through matter, consuming glowing thought fragments, mind predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark violet and black thought eater, parasitic psychic entity, amorphous dark mass with a single enormous eye, tendrils that phase through matter, consuming glowing thought fragments, mind predator, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **grief_shade.png**
 ```
-grief shade, sorrowful spectral figure perpetually weeping, dark tears streaming upward, tattered mourning clothes, reaching out with desperate hands, aura of profound sadness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+mournful blue and gray grief shade, sorrowful spectral figure perpetually weeping, dark tears streaming upward, tattered mourning clothes, reaching out with desperate hands, aura of profound sadness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **hollow_watcher.png**
 ```
-hollow watcher, empty suit of armor floating without a body inside, visor revealing only darkness, silently observing, arms folded, sentinel of empty halls, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark steel and void black hollow watcher, empty suit of armor floating without a body inside, visor revealing only darkness, silently observing, arms folded, sentinel of empty halls, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **mirror_self.png**
 ```
-mirror self, distorted doppelganger, almost-human reflection with features slightly wrong, reversed colors, uncanny valley smile, mimicking viewer's pose imperfectly, unsettling double, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+inverted colors and glassy mirror self, distorted doppelganger, almost-human reflection with features slightly wrong, reversed colors, uncanny valley smile, mimicking viewer's pose imperfectly, unsettling double, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **void_weaver.png**
 ```
-void weaver, entity of pure nothingness in humanoid shape, reality unraveling around its edges, starfield visible through its body, weaving threads of darkness between long fingers, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+starfield black and deep violet void weaver, entity of pure nothingness in humanoid shape, reality unraveling around its edges, starfield visible through its body, weaving threads of darkness between long fingers, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **mnemonic_golem.png**
 ```
-mnemonic golem, construct made of compacted memory fragments, body of swirling text and images frozen in crystal, heavy deliberate movements, guardian of mental archives, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+amber and crystal blue mnemonic golem, construct made of compacted memory fragments, body of swirling text and images frozen in crystal, heavy deliberate movements, guardian of mental archives, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **the_warden.png**
 ```
-the warden, imposing jailer of memories, towering figure in heavy dark robes with keys and chains, featureless mask, massive ring of ornate keys at belt, absolute authority, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+iron gray and dark bronze the warden, imposing jailer of memories, towering figure in heavy dark robes with keys and chains, featureless mask, massive ring of ornate keys at belt, absolute authority, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **fractured_protector.png**
 ```
-fractured protector, once-noble guardian now cracked and breaking apart, golden armor with spreading fissures, light leaking through cracks, struggling to hold together, tragic defender, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+cracked gold and white light fractured protector, once-noble guardian now cracked and breaking apart, golden armor with spreading fissures, light leaking through cracks, struggling to hold together, tragic defender, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **fading_wisp.png**
 ```
-fading wisp, dying light spirit barely visible, translucent form dissolving at edges, soft dim glow pulsing weakly, last ember of a forgotten memory, fragile and ethereal, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dim amber and translucent fading wisp, dying light spirit barely visible, translucent form dissolving at edges, soft dim glow pulsing weakly, last ember of a forgotten memory, fragile and ethereal, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dim_guardian.png**
 ```
-dim guardian, faded stone golem losing its enchantment, crumbling limestone body with dimming rune inscriptions, slow deliberate movements, ancient protector running down, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+crumbling gray and faint blue dim guardian, faded stone golem losing its enchantment, crumbling limestone body with dimming rune inscriptions, slow deliberate movements, ancient protector running down, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **ward_construct.png**
 ```
-ward construct, magical barrier given form, geometric shield-shaped body of interlocking arcane glyphs, hovering protectively, pulsing defensive energy field, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+glowing cyan and silver ward construct, magical barrier given form, geometric shield-shaped body of interlocking arcane glyphs, hovering protectively, pulsing defensive energy field, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **null_phantom.png**
 ```
-null phantom, anti-magic specter, humanoid void that absorbs color and light around it, outline visible only as absence, erasing reality where it touches, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+void black and colorless null phantom, anti-magic specter, humanoid void that absorbs color and light around it, outline visible only as absence, erasing reality where it touches, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **threshold_echo.png**
 ```
-threshold echo, spectral doorway guardian, figure composed of overlapping translucent afterimages, standing in multiple poses simultaneously, temporal distortion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ghostly blue and translucent threshold echo, spectral doorway guardian, figure composed of overlapping translucent afterimages, standing in multiple poses simultaneously, temporal distortion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **archive_keeper.png**
 ```
-archive keeper, scholarly specter in ancient librarian robes, floating open book projecting glowing text, spectral quill pen, stern all-knowing expression behind half-moon spectacles, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dusty brown and spectral green archive keeper, scholarly specter in ancient librarian robes, floating open book projecting glowing text, spectral quill pen, stern all-knowing expression behind half-moon spectacles, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **silent_archivist.png**
 ```
-silent archivist, mute guardian of forbidden knowledge, hooded figure with mouth sewn shut, carrying stack of chained and locked tomes, ink-stained fingers, watchful eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+ink black and parchment white silent archivist, mute guardian of forbidden knowledge, hooded figure with mouth sewn shut, carrying stack of chained and locked tomes, ink-stained fingers, watchful eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **lost_record.png**
 ```
-lost record, animate scroll creature, parchment body covered in fading text, constantly rewriting itself, paper wings, ink dripping like blood, knowledge given desperate life, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+yellowed parchment and ink red lost record, animate scroll creature, parchment body covered in fading text, constantly rewriting itself, paper wings, ink dripping like blood, knowledge given desperate life, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **faded_page.png**
 ```
-faded page, ghostly sheet of parchment hovering in air, barely legible ancient writing glowing faintly, edges crumbling into dust motes, the last remnant of erased history, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale cream and faint gold faded page, ghostly sheet of parchment hovering in air, barely legible ancient writing glowing faintly, edges crumbling into dust motes, the last remnant of erased history, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ## Story 2 -- Act IV Enemies (Depths/Final)
 
 **gaze_stalker.png**
 ```
-gaze stalker, floating cluster of mismatched eyes connected by dark sinew, each eye independent and searching, tentacle stalks, paralyzing stare, eldritch surveillance entity, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+bloodshot red and dark sinew gaze stalker, floating cluster of mismatched eyes connected by dark sinew, each eye independent and searching, tentacle stalks, paralyzing stare, eldritch surveillance entity, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **memory_harvester.png**
 ```
-memory harvester, tall gaunt entity with elongated arms ending in syringe-like fingers, jar-covered belt containing glowing stolen memories, clinical and predatory, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale gray and glowing violet memory harvester, tall gaunt entity with elongated arms ending in syringe-like fingers, jar-covered belt containing glowing stolen memories, clinical and predatory, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **oblivion_shade.png**
 ```
-oblivion shade, embodiment of forgetting, featureless humanoid of swirling gray void, objects and memories dissolving on contact, erasure given form, terrifying emptiness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+swirling gray void oblivion shade, embodiment of forgetting, featureless humanoid of swirling gray void, objects and memories dissolving on contact, erasure given form, terrifying emptiness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **thoughtform_knight.png**
 ```
-thoughtform knight, armored warrior formed from pure psychic energy, translucent crystalline armor, sword of concentrated thought, unwavering mental construct, perfect soldier without a soul, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+translucent crystal blue thoughtform knight, armored warrior formed from pure psychic energy, translucent crystalline armor, sword of concentrated thought, unwavering mental construct, perfect soldier without a soul, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **the_iris.png**
 ```
-the iris, enormous floating eye with fractal iris patterns, reality bending around its gaze, dark tendrils extending from optic nerve, seeing all secrets, penultimate horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep crimson and gold the iris, enormous floating eye with fractal iris patterns, reality bending around its gaze, dark tendrils extending from optic nerve, seeing all secrets, penultimate horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **the_lidless_eye.png**
 ```
-the lidless eye, cosmic all-seeing eye of oblivion, vast unblinking eye surrounded by rings of darkness and consumed memories, reality cracking around its pupil, final boss entity of pure malevolent awareness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+cosmic black and burning red the lidless eye, cosmic all-seeing eye of oblivion, vast unblinking eye surrounded by rings of darkness and consumed memories, reality cracking around its pupil, final boss entity of pure malevolent awareness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ---
@@ -1193,174 +1193,174 @@ the lidless eye, cosmic all-seeing eye of oblivion, vast unblinking eye surround
 
 **dream_wisp.png**
 ```
-dream wisp, floating mote of sleeping consciousness, soft pastel luminescence shifting between colors, trailing stardust, gentle but unpredictable, dreamscape inhabitant, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+soft pastel pink and blue dream wisp, floating mote of sleeping consciousness, soft pastel luminescence shifting between colors, trailing stardust, gentle but unpredictable, dreamscape inhabitant, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **phantasm.png**
 ```
-phantasm, shapeshifting dream entity, body constantly morphing between forms, half-solid half-transparent, unsettling beauty, faces and shapes flickering across its surface, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+iridescent and shifting phantasm, shapeshifting dream entity, body constantly morphing between forms, half-solid half-transparent, unsettling beauty, faces and shapes flickering across its surface, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **shade_moth.png**
 ```
-shade moth, enormous nocturnal moth made of shadow and moonlight, wings patterned with hypnotic eye spots, scattering sleep dust, silent predator of the dream realm, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark indigo and moonlit silver shade moth, enormous nocturnal moth made of shadow and moonlight, wings patterned with hypnotic eye spots, scattering sleep dust, silent predator of the dream realm, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **sleep_stalker.png**
 ```
-sleep stalker, gaunt predator that hunts through dreams, elongated limbs, moving on all fours, eyeless face with wide grin, phasing between solid and transparent, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale gray and translucent sleep stalker, gaunt predator that hunts through dreams, elongated limbs, moving on all fours, eyeless face with wide grin, phasing between solid and transparent, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **mirror_shade.png**
 ```
-mirror shade, dark reflection given life, inverted-color humanoid with glassy skin, mimicking movements in reverse, cracked mirror fragments orbiting its body, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+silver and inverted-color mirror shade, dark reflection given life, inverted-color humanoid with glassy skin, mimicking movements in reverse, cracked mirror fragments orbiting its body, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **slumber_beast.png**
 ```
-slumber beast, massive sleeping creature that fights while unconscious, lumbering bear-like form with closed eyes, snoring visible as energy waves, devastating sleep-walking attacks, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep brown and soft purple aura slumber beast, massive sleeping creature that fights while unconscious, lumbering bear-like form with closed eyes, snoring visible as energy waves, devastating sleep-walking attacks, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **fog_wraith.png**
 ```
-fog wraith, spectral figure condensed from dream mist, flowing formless robes of living fog, barely visible face in the haze, cold reaching hands, ethereal and disorienting, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+misty white and pale gray fog wraith, spectral figure condensed from dream mist, flowing formless robes of living fog, barely visible face in the haze, cold reaching hands, ethereal and disorienting, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **thorn_dreamer.png**
 ```
-thorn dreamer, plant creature from a nightmare garden, body of twisted thorny vines with blooming dark flowers, pollen that induces sleep, roses for eyes, beautiful and lethal, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep crimson and thorny green thorn dreamer, plant creature from a nightmare garden, body of twisted thorny vines with blooming dark flowers, pollen that induces sleep, roses for eyes, beautiful and lethal, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **nightmare_hound.png**
 ```
-nightmare hound, monstrous dream-wolf with fur of shifting darkness, multiple rows of teeth, smoke trailing from paws, eyes like burning coals, hunting through nightmares, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+shadow black and ember red nightmare hound, monstrous dream-wolf with fur of shifting darkness, multiple rows of teeth, smoke trailing from paws, eyes like burning coals, hunting through nightmares, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dream_weaver.png**
 ```
-dream weaver, ethereal spider-like entity spinning webs of dream silk, iridescent body, delicate legs plucking reality threads, creating and reshaping dreams, cosmic artisan, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+iridescent rainbow and silver dream weaver, ethereal spider-like entity spinning webs of dream silk, iridescent body, delicate legs plucking reality threads, creating and reshaping dreams, cosmic artisan, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **hollow_echo.png**
 ```
-hollow echo, empty humanoid shell, translucent body showing nothing inside, repeating words and gestures of the living, vacant expression, unsettling puppet of the dream world, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pale translucent and ghostly white hollow echo, empty humanoid shell, translucent body showing nothing inside, repeating words and gestures of the living, vacant expression, unsettling puppet of the dream world, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **somnolent_serpent.png**
 ```
-somnolent serpent, enormous dream snake with hypnotic spiral-patterned scales, hood spread showing mesmerizing mandala, inducing drowsiness, coiled and swaying, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep purple and hypnotic gold somnolent serpent, enormous dream snake with hypnotic spiral-patterned scales, hood spread showing mesmerizing mandala, inducing drowsiness, coiled and swaying, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **twilight_stalker.png**
 ```
-twilight stalker, predator of the boundary between sleep and waking, half-corporeal half-phantasmal, one side solid and one side dissolving, dual-natured hunter, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+half-solid amber and half-phantasmal blue twilight stalker, predator of the boundary between sleep and waking, half-corporeal half-phantasmal, one side solid and one side dissolving, dual-natured hunter, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **waking_terror.png**
 ```
-waking terror, nightmare made manifest in the waking world, towering shadow creature with too many limbs, children's fears given monstrous form, reality warping around it, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+shadow black and blood red waking terror, nightmare made manifest in the waking world, towering shadow creature with too many limbs, children's fears given monstrous form, reality warping around it, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dusk_sentinel.png**
 ```
-dusk sentinel, twilight guardian in armor of setting-sun colors, amber and violet plate, halberd wreathed in fading light, stoic watcher at the boundary of day and night, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+amber and violet dusk sentinel, twilight guardian in armor of setting-sun colors, amber and violet plate, halberd wreathed in fading light, stoic watcher at the boundary of day and night, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **clock_specter.png**
 ```
-clock specter, ghostly figure trapped in a broken clock, gear-and-spring body, clock hands for arms spinning erratically, face of a cracked clock dial, time distortion entity, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+bronze and tarnished copper clock specter, ghostly figure trapped in a broken clock, gear-and-spring body, clock hands for arms spinning erratically, face of a cracked clock dial, time distortion entity, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **the_nightmare.png**
 ```
-the nightmare, ultimate dream boss, colossal entity of pure fear, amalgamation of phobias taking shifting monstrous form, crown of screaming faces, darkness incarnate towering over the dreamer, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+void black and crimson the nightmare, ultimate dream boss, colossal entity of pure fear, amalgamation of phobias taking shifting monstrous form, crown of screaming faces, darkness incarnate towering over the dreamer, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ## Story 3 -- Act III Enemies (Cult)
 
 **lucid_phantom.png**
 ```
-lucid phantom, dream entity achieving self-awareness, crystalline humanoid form with cracks showing inner light, questioning expression, caught between dream and reality, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+crystalline white and inner gold lucid phantom, dream entity achieving self-awareness, crystalline humanoid form with cracks showing inner light, questioning expression, caught between dream and reality, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **thread_spinner.png**
 ```
-thread spinner, weaver of dream fabric, many-armed figure spinning luminous threads from fingertips, each thread a different dream strand, intricate tapestry forming around it, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+luminous silver and rainbow thread spinner, weaver of dream fabric, many-armed figure spinning luminous threads from fingertips, each thread a different dream strand, intricate tapestry forming around it, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **loom_sentinel.png**
 ```
-loom sentinel, mechanical guardian of the dream loom, body of interlocking wooden and metal loom parts, shuttle weapon, thread-wound armor, protecting the weave of dreams, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark wood and brass loom sentinel, mechanical guardian of the dream loom, body of interlocking wooden and metal loom parts, shuttle weapon, thread-wound armor, protecting the weave of dreams, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cult_shade.png**
 ```
-cult shade, hooded cultist assassin wreathed in shadow, dark ceremonial robes with silver thread patterns, twin ritual daggers, faceless beneath hood except for glowing eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark gray and silver thread cult shade, hooded cultist assassin wreathed in shadow, dark ceremonial robes with silver thread patterns, twin ritual daggers, faceless beneath hood except for glowing eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dream_warden.png**
 ```
-dream warden, powerful guardian of the dream threshold, ornate mask with closed eyes, flowing robes of shifting starfield fabric, staff topped with sleeping moon crystal, serene but formidable, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+midnight blue and starfield dream warden, powerful guardian of the dream threshold, ornate mask with closed eyes, flowing robes of shifting starfield fabric, staff topped with sleeping moon crystal, serene but formidable, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **thought_leech.png**
 ```
-thought leech, brain-like parasite with tentacle underbelly, pulsing cranial ridges, latching tendrils that drain consciousness, floating psychic vampire, grotesque intelligence, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pinkish gray and pulsing violet thought leech, brain-like parasite with tentacle underbelly, pulsing cranial ridges, latching tendrils that drain consciousness, floating psychic vampire, grotesque intelligence, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **void_spinner.png**
 ```
-void spinner, entity weaving threads of nothingness, skeletal fingers pulling darkness into tangible strands, body half-consumed by the void it creates, terrifying artisan of oblivion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+bone white and void black void spinner, entity weaving threads of nothingness, skeletal fingers pulling darkness into tangible strands, body half-consumed by the void it creates, terrifying artisan of oblivion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **sanctum_guardian.png**
 ```
-sanctum guardian, ancient protector of the cult's inner sanctum, towering stone golem with dream crystal embedded in chest, ritual markings carved into body, awakened by intruders, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark stone and glowing teal sanctum guardian, ancient protector of the cult's inner sanctum, towering stone golem with dream crystal embedded in chest, ritual markings carved into body, awakened by intruders, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ## Story 3 -- Acts IV-V Enemies (Cult Stronghold/Final)
 
 **cult_acolyte.png**
 ```
-cult acolyte, junior cultist in simple dark robes with silver thread emblem, wild devoted eyes, channeling weak dream magic from trembling hands, zealous but inexperienced, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark gray and silver cult acolyte, junior cultist in simple dark robes with silver thread emblem, wild devoted eyes, channeling weak dream magic from trembling hands, zealous but inexperienced, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cult_enforcer.png**
 ```
-cult enforcer, heavily built cult warrior in dark reinforced armor with thread motifs, massive dream-forged mace, scarred and battle-hardened, intimidating enforcer of the cult's will, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+black iron and dark purple cult enforcer, heavily built cult warrior in dark reinforced armor with thread motifs, massive dream-forged mace, scarred and battle-hardened, intimidating enforcer of the cult's will, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cult_hexer.png**
 ```
-cult hexer, dark magician of the dream cult, elaborate ritual mask covering upper face, hands wreathed in nightmare energy, casting hexes and curses, malevolent spellcaster, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark crimson and nightmare purple cult hexer, dark magician of the dream cult, elaborate ritual mask covering upper face, hands wreathed in nightmare energy, casting hexes and curses, malevolent spellcaster, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **thread_guard.png**
 ```
-thread guard, elite guardian woven from dream threads, body of luminous interlaced fibers in humanoid form, unraveling and re-forming during combat, beautiful and deadly construct, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+luminous gold and white thread guard, elite guardian woven from dream threads, body of luminous interlaced fibers in humanoid form, unraveling and re-forming during combat, beautiful and deadly construct, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **dream_hound.png**
 ```
-dream hound, hunting beast bred in the dream realm, sleek canine form of shifting dream-stuff, leaving afterimage trails, glowing constellation eyes, loyal predator of the cult, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+shifting blue and starlit dream hound, hunting beast bred in the dream realm, sleek canine form of shifting dream-stuff, leaving afterimage trails, glowing constellation eyes, loyal predator of the cult, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **cult_ritualist.png**
 ```
-cult ritualist, senior cult priest performing dark ceremonies, ornate layered robes covered in dream sigils, levitating ritual components orbiting around them, deep trance state, powerful cult magic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep violet and silver sigil cult ritualist, senior cult priest performing dark ceremonies, ornate layered robes covered in dream sigils, levitating ritual components orbiting around them, deep trance state, powerful cult magic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **high_weaver.png**
 ```
-high weaver, cult lieutenant commanding dream threads, regal bearing in midnight-blue and silver robes, hands controlling dozens of luminous dream threads like puppet strings, mask of woven silver, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+midnight blue and woven silver high weaver, cult lieutenant commanding dream threads, regal bearing in midnight-blue and silver robes, hands controlling dozens of luminous dream threads like puppet strings, mask of woven silver, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **shadow_fragment.png**
 ```
-shadow fragment, piece of a greater darkness given independent life, jagged shard of solid shadow, shifting geometric form, orbiting a dark core, fragment of the Threadmaster's power, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+jagged black and dark purple shadow fragment, piece of a greater darkness given independent life, jagged shard of solid shadow, shifting geometric form, orbiting a dark core, fragment of the Threadmaster's power, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **the_threadmaster.png**
 ```
-the threadmaster, supreme cult leader and final boss, towering figure in flowing robes woven from every dream thread, enormous loom-like apparatus on back, controlling all of reality's threads, cosmic weaver of the woven night, crown of interlaced dream and nightmare, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+cosmic purple and woven gold the threadmaster, supreme cult leader and final boss, towering figure in flowing robes woven from every dream thread, enormous loom-like apparatus on back, controlling all of reality's threads, cosmic weaver of the woven night, crown of interlaced dream and nightmare, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
