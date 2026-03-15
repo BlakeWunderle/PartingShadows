@@ -19,6 +19,8 @@ var _claim_btns: Array[Button] = []
 var _confirm_btn: Button
 var _cancel_btn: Button
 var _title_label: Label
+## When true, host assigns all slots locally (no RPCs to peers).
+var local_only: bool = false
 
 
 func _init() -> void:
@@ -149,12 +151,20 @@ func _update_labels() -> void:
 				Color(0.3, 0.9, 0.5) if owner_peer == my_id else Color(0.7, 0.8, 0.85))
 
 		if i < _claim_btns.size():
-			if owner_peer == my_id:
-				_claim_btns[i].text = "Release"
-				_claim_btns[i].disabled = owner_peer == 1 and NetManager.is_host
+			if NetManager.is_host:
+				if owner_peer == 1:
+					_claim_btns[i].text = "Assign"
+					_claim_btns[i].disabled = NetManager.peer_names.size() <= 1
+				else:
+					_claim_btns[i].text = "Release"
+					_claim_btns[i].disabled = false
 			else:
-				_claim_btns[i].text = "Claim"
-				_claim_btns[i].disabled = owner_peer != 1  # Can only claim from host
+				if owner_peer == my_id:
+					_claim_btns[i].text = "Release"
+					_claim_btns[i].disabled = true
+				else:
+					_claim_btns[i].text = "Claim"
+					_claim_btns[i].disabled = owner_peer != 1
 
 	# Confirm only enabled when all non-host peers have at least one slot
 	_confirm_btn.visible = NetManager.is_host
@@ -181,14 +191,26 @@ func _is_valid_assignment() -> bool:
 	return true
 
 
+func _cycle_owner(current: int) -> int:
+	var peers: Array[int] = [1]
+	for pid: int in NetManager.peer_names:
+		if pid != 1:
+			peers.append(pid)
+	if peers.size() <= 1:
+		return 1
+	var idx: int = peers.find(current)
+	if idx < 0:
+		return peers[1]
+	return peers[(idx + 1) % peers.size()]
+
+
 func _on_claim_pressed(slot_index: int) -> void:
 	if NetManager.is_host:
-		# Host toggles: release slot back to host, or do nothing
-		var owner: int = _slot_owners.get(slot_index, 1)
-		if owner != 1:
-			_slot_owners[slot_index] = 1
+		var current: int = _slot_owners.get(slot_index, 1)
+		_slot_owners[slot_index] = _cycle_owner(current)
+		if not local_only and NetManager.is_multiplayer_active:
 			_rpc_sync_assignments.rpc(_slot_owners)
-			_update_labels()
+		_update_labels()
 	else:
 		_rpc_request_claim.rpc_id(1, slot_index)
 

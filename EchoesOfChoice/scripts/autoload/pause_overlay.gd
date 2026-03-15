@@ -7,8 +7,9 @@ extends CanvasLayer
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
+const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
 
-enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS }
+enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, WAITING_MP, FIGHTER_PICK }
 
 var _mode: Mode = Mode.HIDDEN
 var _panel: Control
@@ -20,6 +21,8 @@ var _save_btn: Button
 var _title_btn: Button
 var _feedback_label: Label
 var _confirm_dialog: ConfirmDialog
+var _open_mp_btn: Button
+var _fighter_picker: FighterPicker
 var _pending_save_slot: int = -1
 
 
@@ -89,6 +92,10 @@ func _build_ui() -> void:
 	_save_btn.pressed.connect(_show_save_slots)
 	_main_vbox.add_child(_save_btn)
 
+	_open_mp_btn = _make_button("Open to Multiplayer")
+	_open_mp_btn.pressed.connect(_open_to_multiplayer)
+	_main_vbox.add_child(_open_mp_btn)
+
 	var settings_btn := _make_button("Settings")
 	settings_btn.pressed.connect(_show_settings)
 	_main_vbox.add_child(settings_btn)
@@ -156,6 +163,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				_back_to_main()
 			Mode.SETTINGS:
 				_back_to_main()
+			Mode.WAITING_MP:
+				_cancel_open_mp()
+			Mode.FIGHTER_PICK:
+				pass  # FighterPicker handles its own ESC
 		get_viewport().set_input_as_handled()
 
 
@@ -181,11 +192,17 @@ func _show_pause() -> void:
 	# In multiplayer: don't pause the tree (breaks networking), hide save, relabel quit
 	if NetManager.is_multiplayer_active:
 		_save_btn.visible = false
+		_open_mp_btn.visible = false
 		_title_btn.text = "Leave Session"
 	else:
 		_save_btn.visible = true
 		_title_btn.text = "Quit to Title"
 		get_tree().paused = true
+		# Show "Open to Multiplayer" only during narrative or town_stop with a party
+		var can_open_mp: bool = GameState.game_phase in [
+			GameState.GamePhase.NARRATIVE, GameState.GamePhase.TOWN_STOP] \
+			and not GameState.party.is_empty()
+		_open_mp_btn.visible = can_open_mp
 
 	_resume_btn.grab_focus()
 
@@ -241,6 +258,73 @@ func _on_quit_game_confirmed(accepted: bool) -> void:
 	if not accepted:
 		return
 	get_tree().quit()
+
+
+# =============================================================================
+# Open to Multiplayer
+# =============================================================================
+
+func _open_to_multiplayer() -> void:
+	get_tree().paused = false
+	for fighter: RefCounted in GameState.party:
+		fighter.owner_peer_id = 1
+	NetManager.target_player_count = 2
+	var err := NetManager.host_game()
+	if err != OK:
+		_feedback_label.text = "Failed to start server."
+		_feedback_label.visible = true
+		get_tree().paused = true
+		return
+	_mode = Mode.WAITING_MP
+	_main_vbox.visible = false
+	_feedback_label.text = "Waiting for a player to join..."
+	_feedback_label.visible = true
+	NetManager.player_joined.connect(_on_mp_player_joined)
+
+
+func _on_mp_player_joined(_peer_id: int, _player_name: String) -> void:
+	if NetManager.player_joined.is_connected(_on_mp_player_joined):
+		NetManager.player_joined.disconnect(_on_mp_player_joined)
+	NetManager.target_player_count = NetManager.get_connected_peer_count()
+	_show_fighter_picker_mp()
+
+
+func _show_fighter_picker_mp() -> void:
+	_mode = Mode.FIGHTER_PICK
+	_feedback_label.visible = false
+	_fighter_picker = FighterPicker.new()
+	_fighter_picker.local_only = true
+	_panel.add_child(_fighter_picker)
+	_fighter_picker.setup(GameState.party, NetManager.target_player_count)
+	_fighter_picker.assignment_confirmed.connect(_on_mp_fighter_confirmed)
+	_fighter_picker.assignment_cancelled.connect(_on_mp_fighter_cancelled)
+
+
+func _on_mp_fighter_confirmed(_slot_owners: Dictionary) -> void:
+	_fighter_picker.queue_free()
+	_fighter_picker = null
+	NetManager.broadcast_slot_assignments()
+	NetManager.broadcast_game_state()
+	_mode = Mode.HIDDEN
+	_panel.visible = false
+	NetManager.reload_current_scene_all_peers()
+
+
+func _on_mp_fighter_cancelled() -> void:
+	_fighter_picker.queue_free()
+	_fighter_picker = null
+	_cancel_open_mp()
+
+
+func _cancel_open_mp() -> void:
+	if NetManager.player_joined.is_connected(_on_mp_player_joined):
+		NetManager.player_joined.disconnect(_on_mp_player_joined)
+	NetManager.leave_session()
+	_mode = Mode.MAIN_MENU
+	_main_vbox.visible = true
+	_feedback_label.visible = false
+	get_tree().paused = true
+	_resume_btn.grab_focus()
 
 
 # =============================================================================

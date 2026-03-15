@@ -8,6 +8,9 @@ extends Node
 ##   - Steam (PC): SteamMultiplayerPeer GDExtension
 ##   - Switch / fallback: ENetMultiplayerPeer (built-in)
 
+const FighterData := preload("res://scripts/data/fighter_data.gd")
+const FighterDB := preload("res://scripts/data/fighter_db.gd")
+
 signal player_joined(peer_id: int, player_name: String)
 signal player_left(peer_id: int, player_name: String)
 signal lobby_ready  ## Enough players have joined to start
@@ -313,3 +316,56 @@ func stop_turn_timeout() -> void:
 ## Returns true if the turn timeout has elapsed.
 func is_turn_timed_out() -> bool:
 	return _turn_timeout_timer.is_stopped() and _turn_timeout_timer.time_left <= 0.0
+
+
+# =============================================================================
+# Game state broadcast (for Open to Multiplayer)
+# =============================================================================
+
+## Serialize and send the full game state to all remote peers.
+func broadcast_game_state() -> void:
+	if not is_host:
+		return
+	var party_data: Array[Dictionary] = []
+	for fighter: FighterData in GameState.party:
+		party_data.append(fighter.to_save_data())
+	_rpc_sync_game_state.rpc(party_data, GameState.current_battle_id,
+		GameState.current_story_id)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _rpc_sync_game_state(party_data: Array, battle_id: String, story_id: String) -> void:
+	GameState.party.clear()
+	for data: Dictionary in party_data:
+		var fighter := FighterData.new()
+		fighter.apply_save_data(data)
+		fighter.abilities = FighterDB.get_abilities_for_class(fighter.class_id)
+		GameState.party.append(fighter)
+	GameState.current_story_id = story_id
+	GameState.advance_to_battle(battle_id)
+
+
+## Reload the current scene on all peers (host + guests).
+func reload_current_scene_all_peers() -> void:
+	if not is_host:
+		return
+	var scene_path: String = _current_scene_path()
+	_rpc_change_scene_all.rpc(scene_path)
+	SceneManager.change_scene(scene_path)
+
+
+func _current_scene_path() -> String:
+	match GameState.game_phase:
+		GameState.GamePhase.TOWN_STOP:
+			return "res://scenes/town_stop/town_stop.tscn"
+		GameState.GamePhase.NARRATIVE:
+			return "res://scenes/narrative/narrative.tscn"
+		GameState.GamePhase.BATTLE:
+			return "res://scenes/battle/battle.tscn"
+		_:
+			return "res://scenes/narrative/narrative.tscn"
+
+
+@rpc("authority", "call_remote", "reliable")
+func _rpc_change_scene_all(scene_path: String) -> void:
+	SceneManager.change_scene(scene_path)
