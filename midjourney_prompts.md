@@ -1179,12 +1179,12 @@ translucent crystal blue thoughtform knight, armored warrior formed from pure ps
 
 **the_iris.png**
 ```
-deep crimson and gold the iris, enormous floating eye with fractal iris patterns, reality bending around its gaze, dark tendrils extending from optic nerve, seeing all secrets, penultimate horror, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep crimson and black the iris, enormous floating eye half-shrouded in dark membrane, fractal iris patterns glowing crimson through a translucent veil, dark tendrils coiling from the optic nerve, faint gold cracks in the membrane where it strains to open fully, ancient sealed horror beginning to awaken, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 **the_lidless_eye.png**
 ```
-cosmic black and burning red the lidless eye, cosmic all-seeing eye of oblivion, vast unblinking eye surrounded by rings of darkness and consumed memories, reality cracking around its pupil, final boss entity of pure malevolent awareness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep crimson and cosmic black the lidless eye, the same enormous eye now fully revealed and unblinking, membrane torn away exposing the complete fractal iris burning white-hot crimson, dark tendrils erupting violently outward from the optic nerve, rings of consumed memories orbiting the pupil, reality cracking and fragmenting around its gaze, final boss entity of pure malevolent awareness, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
 ```
 
 ---
@@ -1223,7 +1223,7 @@ deep brown and soft purple aura slumber beast, massive sleeping creature that fi
 
 **fog_wraith.png**
 ```
-misty white and pale gray fog wraith, spectral figure condensed from dream mist, flowing formless robes of living fog, barely visible face in the haze, cold reaching hands, ethereal and disorienting, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+misty white and pale gray fog wraith, spectral figure condensed from dream mist, flowing formless robes of living fog, barely visible face in the haze, cold reaching hands, ethereal and disorienting, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **thorn_dreamer.png**
@@ -1280,87 +1280,328 @@ void black and crimson the nightmare, ultimate dream boss, colossal entity of pu
 
 **lucid_phantom.png**
 ```
-crystalline white and inner gold lucid phantom, dream entity achieving self-awareness, crystalline humanoid form with cracks showing inner light, questioning expression, caught between dream and reality, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+crystalline white and inner gold lucid phantom, dream entity achieving self-awareness, crystalline humanoid form with cracks showing inner light, questioning expression, caught between dream and reality, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **thread_spinner.png**
 ```
-luminous silver and rainbow thread spinner, weaver of dream fabric, many-armed figure spinning luminous threads from fingertips, each thread a different dream strand, intricate tapestry forming around it, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+luminous silver and rainbow thread spinner, weaver of dream fabric, many-armed figure spinning luminous threads from fingertips, each thread a different dream strand, intricate tapestry forming around it, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **loom_sentinel.png**
 ```
-dark wood and brass loom sentinel, mechanical guardian of the dream loom, body of interlocking wooden and metal loom parts, shuttle weapon, thread-wound armor, protecting the weave of dreams, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark wood and brass loom sentinel, mechanical guardian of the dream loom, body of interlocking wooden and metal loom parts, shuttle weapon, thread-wound armor, protecting the weave of dreams, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **cult_shade.png**
 ```
-dark gray and silver thread cult shade, hooded cultist assassin wreathed in shadow, dark ceremonial robes with silver thread patterns, twin ritual daggers, faceless beneath hood except for glowing eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark gray and silver thread cult shade, hooded cultist assassin wreathed in shadow, dark ceremonial robes with silver thread patterns, twin ritual daggers, faceless beneath hood except for glowing eyes, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **dream_warden.png**
 ```
-midnight blue and starfield dream warden, powerful guardian of the dream threshold, ornate mask with closed eyes, flowing robes of shifting starfield fabric, staff topped with sleeping moon crystal, serene but formidable, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+midnight blue and starfield dream warden, powerful guardian of the dream threshold, ornate mask with closed eyes, flowing robes of shifting starfield fabric, staff topped with sleeping moon crystal, serene but formidable, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **thought_leech.png**
 ```
-pinkish gray and pulsing violet thought leech, brain-like parasite with tentacle underbelly, pulsing cranial ridges, latching tendrils that drain consciousness, floating psychic vampire, grotesque intelligence, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+pinkish gray and pulsing violet thought leech, brain-like parasite with tentacle underbelly, pulsing cranial ridges, latching tendrils that drain consciousness, floating psychic vampire, grotesque intelligence, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **void_spinner.png**
 ```
-bone white and void black void spinner, entity weaving threads of nothingness, skeletal fingers pulling darkness into tangible strands, body half-consumed by the void it creates, terrifying artisan of oblivion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+bone white and void black void spinner, entity weaving threads of nothingness, skeletal fingers pulling darkness into tangible strands, body half-consumed by the void it creates, terrifying artisan of oblivion, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **sanctum_guardian.png**
 ```
-dark stone and glowing teal sanctum guardian, ancient protector of the cult's inner sanctum, towering stone golem with dream crystal embedded in chest, ritual markings carved into body, awakened by intruders, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark stone and glowing teal sanctum guardian, ancient protector of the cult's inner sanctum, towering stone golem with dream crystal embedded in chest, ritual markings carved into body, awakened by intruders, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 ## Story 3 -- Acts IV-V Enemies (Cult Stronghold/Final)
 
 **cult_acolyte.png**
 ```
-dark gray and silver cult acolyte, junior cultist in simple dark robes with silver thread emblem, wild devoted eyes, channeling weak dream magic from trembling hands, zealous but inexperienced, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark gray and silver cult acolyte, junior cultist in simple dark robes with silver thread emblem, wild devoted eyes, channeling weak dream magic from trembling hands, zealous but inexperienced, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **cult_enforcer.png**
 ```
-black iron and dark purple cult enforcer, heavily built cult warrior in dark reinforced armor with thread motifs, massive dream-forged mace, scarred and battle-hardened, intimidating enforcer of the cult's will, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+black iron and dark purple cult enforcer, heavily built cult warrior in dark reinforced armor with thread motifs, massive dream-forged mace, scarred and battle-hardened, intimidating enforcer of the cult's will, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **cult_hexer.png**
 ```
-dark crimson and nightmare purple cult hexer, dark magician of the dream cult, elaborate ritual mask covering upper face, hands wreathed in nightmare energy, casting hexes and curses, malevolent spellcaster, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+dark crimson and nightmare purple cult hexer, dark magician of the dream cult, elaborate ritual mask covering upper face, hands wreathed in nightmare energy, casting hexes and curses, malevolent spellcaster, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **thread_guard.png**
 ```
-luminous gold and white thread guard, elite guardian woven from dream threads, body of luminous interlaced fibers in humanoid form, unraveling and re-forming during combat, beautiful and deadly construct, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+luminous gold and white thread guard, elite guardian woven from dream threads, body of luminous interlaced fibers in humanoid form, unraveling and re-forming during combat, beautiful and deadly construct, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **dream_hound.png**
 ```
-shifting blue and starlit dream hound, hunting beast bred in the dream realm, sleek canine form of shifting dream-stuff, leaving afterimage trails, glowing constellation eyes, loyal predator of the cult, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+shifting blue and starlit dream hound, hunting beast bred in the dream realm, sleek canine form of shifting dream-stuff, leaving afterimage trails, glowing constellation eyes, loyal predator of the cult, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **cult_ritualist.png**
 ```
-deep violet and silver sigil cult ritualist, senior cult priest performing dark ceremonies, ornate layered robes covered in dream sigils, levitating ritual components orbiting around them, deep trance state, powerful cult magic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+deep violet and silver sigil cult ritualist, senior cult priest performing dark ceremonies, ornate layered robes covered in dream sigils, levitating ritual components orbiting around them, deep trance state, powerful cult magic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **high_weaver.png**
 ```
-midnight blue and woven silver high weaver, cult lieutenant commanding dream threads, regal bearing in midnight-blue and silver robes, hands controlling dozens of luminous dream threads like puppet strings, mask of woven silver, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+midnight blue and woven silver high weaver, cult lieutenant commanding dream threads, regal bearing in midnight-blue and silver robes, hands controlling dozens of luminous dream threads like puppet strings, mask of woven silver, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **shadow_fragment.png**
 ```
-jagged black and dark purple shadow fragment, piece of a greater darkness given independent life, jagged shard of solid shadow, shifting geometric form, orbiting a dark core, fragment of the Threadmaster's power, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+jagged black and dark purple shadow fragment, piece of a greater darkness given independent life, jagged shard of solid shadow, shifting geometric form, orbiting a dark core, fragment of the Threadmaster's power, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
 ```
 
 **the_threadmaster.png**
 ```
-cosmic purple and woven gold the threadmaster, supreme cult leader and final boss, towering figure in flowing robes woven from every dream thread, enormous loom-like apparatus on back, controlling all of reality's threads, cosmic weaver of the woven night, crown of interlaced dream and nightmare, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png
+cosmic purple and woven gold the threadmaster, supreme cult leader and final boss, towering figure in flowing robes woven from every dream thread, enormous loom-like apparatus on back, controlling all of reality's threads, cosmic weaver of the woven night, crown of interlaced dream and nightmare, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png https://cdn.midjourney.com/11063cd4-920f-4224-a709-1eccd734714a/0_3.png https://cdn.midjourney.com/4c857bbb-d37b-42b1-a0b2-ea5cf24b0e55/0_3.png
+```
+
+---
+
+# Battle Scene Background Prompts -- Story 1 Style Updates
+
+These backgrounds need regeneration to match the `city_streets.png` target style: stylized digital illustration with visible line work, bold warm/cool color contrast, clean edges, dark moody fantasy atmosphere.
+
+Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
+
+Save images as `{filename}` into `EchoesOfChoice/assets/art/battles/`
+
+---
+
+## Definite Replacements
+
+**copper_mug.png** (Party creation + Act IV tavern)
+```
+medieval fantasy tavern interior at night, crowded common room, warm candlelight and hearth glow, wooden bar with tankards, patrons at tables, low ceiling with exposed beams, smoky atmosphere, cozy and slightly dangerous, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**mountain_pass.png** (Act II highlands battle)
+```
+narrow mountain pass with ancient stone bridge spanning a deep gorge, misty peaks in background, windswept grass and rocky terrain, overcast sky with dramatic clouds, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**wanderers_rest.png** (Act I town rest stop)
+```
+small rustic forest cottage at night, warm orange light spilling from windows, thatched roof, woodpile and lantern by the door, surrounded by dark trees, a welcoming waypoint for travelers, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**forest_waypoint.png** (Act I waypoint town)
+```
+medieval fantasy waypoint town at forest edge, timber-frame buildings with warm glowing windows, cobblestone path, hanging shop signs, torches and lanterns illuminating the street, dark forest looming behind, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dragons_lair.png** (Act II dragon's lair)
+```
+vast underground cavern lair with treasure hoard, molten lava rivers glowing orange, dragon skull bones and scorched stone columns, dark jagged rock ceiling, heat shimmer and embers floating, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**military_encampment.png** (Act II military camp)
+```
+medieval military war camp at dusk, rows of canvas tents with campfire light, banners and weapon racks, soldiers silhouetted against firelight, muddy ground, dramatic sunset sky with heavy clouds, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**cemetery.png** (Act II graveyard battle)
+```
+ancient overgrown cemetery at night, crooked tombstones and iron fences, eerie green fog rolling between graves, gnarled dead trees, faint moonlight through clouds, unsettling and haunted atmosphere, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**sealed_gate.png** (Act IV-V sealed gate)
+```
+massive ancient sealed stone gate underground, glowing blue arcane runes carved into the surface, heavy chains and locks, dust motes in shaft of pale light from above, imposing and forbidden, crumbling stone pillars flanking the gate, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+## Borderline Replacements
+
+**highlands.png** (Act II highland terrain)
+```
+windswept highland plateau with standing stones, dark stormy sky, rough grass and exposed rock, distant jagged mountain range, cairns dotting the landscape, wild and desolate atmosphere, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**rocky_shore.png** (Act II coastal battle)
+```
+dramatic rocky coastline at twilight, waves crashing against dark sea cliffs, tide pools reflecting stormy sky, distant lighthouse or rocky spire, salt spray and mist, cold and imposing seascape, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**stranger_tower.png** (Act III the stranger's tower)
+```
+dark wizard tower interior looking upward, spiraling staircase, purple arcane energy crackling between floating platforms, ancient books and artifacts, ominous glowing orb at the apex, corrupted magical architecture, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**tunnels.png** (Act IV-V underground tunnels)
+```
+dark underground stone tunnel with arched ceiling, cobwebs and crumbling walls, faint blue-white light from deeper within, puddles on the floor reflecting light, claustrophobic and foreboding, ancient construction reclaimed by darkness, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**city_outskirts.png** (Act III approaching the city)
+```
+medieval city gate at night viewed from outside, massive stone archway with iron portcullis, torchlight illuminating the entrance, smoke rising from the city beyond, dark road leading to the gates, rubble and debris scattered around, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**void_cavern.png** (Act IV-V final void)
+```
+vast otherworldly void cavern, swirling purple and dark blue energy vortex overhead, fractured floating rock platforms, eldritch corruption tendrils, no visible ground or sky, reality breaking apart at the edges, cosmic horror atmosphere, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+---
+
+# Battle Scene Background Prompts -- Story 2 Style Updates
+
+Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
+
+Save images as `{filename}` into `EchoesOfChoice/assets/art/battles/`
+
+---
+
+## Definite Replacements
+
+**smugglers_bluff.png** (Act II smuggler's cliff path)
+```
+narrow coastal cliff path with hidden smuggler crates, rocky overhang above crashing waves, rope bridges and wooden platforms clinging to the cliff face, sea spray and storm clouds, dangerous narrow trail, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**echo_gallery.png** (Act III memory gallery)
+```
+vast underground gallery hall with crystalline pillars, glowing teal memory fragments floating in glass cases, long corridor with arched ceiling, reflections of past events shimmering on the walls, ancient and mysterious archive, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**the_eye.png** (Act IV the Eye boss arena)
+```
+enormous underground chamber at the bottom of a deep chasm, crystalline formations jutting from walls and ceiling radiating faint purple and teal light, crumbling stone floor with ancient rune circles, oppressive darkness pressing inward, vast empty space in the center of the cavern, something terrible lives here, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**eye_of_oblivion.png** (Act IV final boss second phase)
+```
+reality-shattering void arena, fractured ground floating above an endless abyss, purple lightning and teal energy streams tearing through the darkness, world unraveling at the edges, cavern walls cracking open to reveal cosmic void beyond, apocalyptic final confrontation, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+## Borderline Replacements
+
+**cave_awakening.png** (Act I cave start)
+```
+dark underground cave with faint teal crystal glow, rough stone walls, narrow passage with steps carved into rock, mysterious light filtering from deeper within, waking up in an unknown place, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**cave_exit.png** (Act I cave exit to daylight)
+```
+cave mouth opening to bright daylight, massive rock arch framing green hills and blue sky beyond, transition from dark underground to sunlit world, vines and moss on the cave walls, hope and relief, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**coastal_descent.png** (Act II cliff descent to coast)
+```
+steep coastal hillside path descending toward the sea, windswept grass and rocky terrain, seabirds circling overhead, dramatic ocean view with distant islands, stormy sky clearing at horizon, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**blackwater_bay.png** (Act II dark bay at sunset)
+```
+dark tidal bay at dusk with still black water, jagged rock formations silhouetted against a red and purple sunset sky, distant lighthouse beam cutting through mist, eerie calm before a storm, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**shattered_sanctum.png** (Act III damaged sanctum)
+```
+ruined underground sanctum with cracked pillars and collapsed arches, teal crystal shards scattered across the floor, broken stained glass letting in pale light, once-grand architecture now in decay, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**sanctum_core.png** (Act III sanctum heart)
+```
+massive underground crystal formation at the heart of a sanctum, towering teal crystal cluster radiating light, circular stone platform surrounded by water, ancient runes glowing on the floor, awe-inspiring and sacred, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+---
+
+# Battle Scene Background Prompts -- Story 3 Style Updates
+
+Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
+
+Save images as `{filename}` into `EchoesOfChoice/assets/art/battles/`
+
+---
+
+## Definite Replacements
+
+**weary_traveler_inn.png** (Acts I+III inn interior)
+```
+cozy medieval fantasy inn common room, high vaulted ceiling with exposed timber beams, large stone fireplace with roaring fire, long wooden tables with candles and tankards, warm orange glow against cool stone walls, welcoming and rustic, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dream_mirror_hall.png** (Act I mirror hall dream)
+```
+surreal hall of mirrors in a dreamscape, tall ornate mirrors reflecting impossible scenes, distorted perspectives and shifting geometry, purple and silver moonlight filtering through, ethereal and unsettling, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dream_return.png** (Act II return to dream city)
+```
+surreal dream city with impossible architecture, grand stairways leading in multiple directions, warm golden lanterns against deep purple night sky with visible stars, ancient stone buildings with ornate arches, dreamlike and familiar yet wrong, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dream_lucid.png** (Act III lucid dream realm)
+```
+crystalline lucid dream palace, translucent walls and floating staircases, the dreamer in control of reality, golden light emanating from within the architecture, geometric patterns forming and dissolving, empowering and transcendent, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dream_temple.png** (Act III dream temple)
+```
+ancient dream temple interior with tall ornate columns, warm amber candlelight against dark blue stone, intricate carvings on the walls depicting sleeping figures, central altar with a glowing orb, sacred and mysterious, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dream_sanctum.png** (Act III dream sanctum)
+```
+innermost sanctum of the dream realm, swirling luminous threads converging at a central point, concentric rings of light floating in darkness, the boundary between waking and sleeping made visible, cosmic and intimate, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**cult_catacombs.png** (Act IV cult underground)
+```
+dark stone catacombs with arched passages, flickering torchlight casting long shadows, cult symbols carved into pillars, bones and offerings in wall niches, oppressive and forbidden, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**cult_ritual_chamber.png** (Act IV cult ritual room)
+```
+underground cult ritual chamber with a central stone platform, glowing dream threads descending from the ceiling like a loom, candles arranged in concentric circles, dark robed figures' empty seats around the edges, sinister and ceremonial, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**dream_nexus.png** (Act V final boss arena)
+```
+cosmic dream nexus where all threads of reality converge, massive loom-like structure at the center, radiant golden and silver threads stretching in every direction against void black sky, fractured dream fragments floating, final confrontation arena, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+## Borderline Replacements
+
+**dream_meadow.png** (Act I first dream)
+```
+surreal dream meadow at twilight, rolling lavender and silver grass swaying in impossible wind, soft pink and purple clouds, distant floating islands, peaceful yet uncanny, everything slightly too perfect, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**town_edge_dawn.png** (Act II town departure at dawn)
+```
+medieval town edge at dawn, dirt road leading away past stone cottages with red tile roofs, golden sunrise over rolling green hills, morning mist in the valleys, a journey beginning, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+---
+
+# Title Screen Background Prompts -- Style Updates
+
+Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
+
+Save images as `{filename}` into `EchoesOfChoice/assets/art/ui/`
+
+Note: Title backgrounds are wide format (16:9) to fill the screen.
+
+---
+
+**title_background_s2.png** (Story 2: Echoes in the Dark)
+```
+dark cave mouth opening onto a stormy coastline, glowing teal crystal amulet hanging from a rock in the foreground, ocean waves crashing against cliffs in the distance, mysterious and foreboding, amnesia and forgotten memories, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 16:9 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**title_background_s3.png** (Story 3: The Woven Night)
+```
+quaint medieval inn at night under a sky full of strange luminous dream threads, warm light from windows against deep blue darkness, cobblestone road leading to the door, something subtly wrong about the stars, cozy yet unsettling, shared dream mystery, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 16:9 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
 ```
