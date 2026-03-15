@@ -263,6 +263,8 @@ func _start_battle() -> void:
 	else:
 		MusicManager.play_context(MusicManager.MusicContext.BATTLE)
 	_engine.start_battle(GameState.party, battle.enemies)
+	for enemy: FighterData in battle.enemies:
+		CompendiumManager.record_enemy(enemy, GameState.current_story_id)
 	GameLog.info("Battle started: %s (%d enemies)" % [
 		GameState.current_battle_id, battle.enemies.size()])
 

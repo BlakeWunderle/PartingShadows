@@ -304,6 +304,7 @@ func _on_upgrade_selected(index: int) -> void:
 	var old_name: String = fighter.character_name
 	GameState.upgrade_party_member(fighter, item)
 	var new_class: String = fighter.character_type
+	CompendiumManager.record_class(fighter.class_id, new_class)
 	GameLog.info("Upgrade: %s -> %s" % [old_name, new_class])
 
 	# Broadcast upgrade result to all peers
@@ -483,6 +484,7 @@ func _rpc_upgrade_applied(party_index: int, item: String, old_name: String,
 		new_class: String) -> void:
 	var fighter: FighterData = GameState.party[party_index]
 	GameState.upgrade_party_member(fighter, item)
+	CompendiumManager.record_class(fighter.class_id, new_class)
 	GameLog.info("Upgrade (sync): %s -> %s" % [old_name, new_class])
 	_waiting_overlay.hide_waiting()
 	_choice_menu.hide_menu()

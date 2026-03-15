@@ -430,6 +430,7 @@ func _on_portrait_clicked(index: int) -> void:
 		fighter.owner_peer_id = LocalCoop.get_player_for_slot(char_idx) + 1
 
 	_party.append(fighter)
+	CompendiumManager.record_class(fighter.class_id, fighter.character_type)
 
 	# In multiplayer, broadcast the created character to all peers
 	if NetManager.is_multiplayer_active:

@@ -33,6 +33,7 @@ UnlockManager="*res://scripts/autoload/unlock_manager.gd"
 PauseOverlay="*res://scripts/autoload/pause_overlay.gd"
 SettingsManager="*res://scripts/autoload/settings_manager.gd"
 SFXManager="*res://scripts/autoload/sfx_manager.gd"
+CompendiumManager="*res://scripts/autoload/compendium_manager.gd"
 
 [display]
 

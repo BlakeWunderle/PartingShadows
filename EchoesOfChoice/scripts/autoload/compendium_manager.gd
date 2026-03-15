@@ -1,0 +1,82 @@
+extends Node
+
+## Cross-session compendium tracking. Records encountered enemies and player
+## classes to user://compendium.json so the player can review what they've seen.
+
+const COMPENDIUM_PATH := "user://compendium.json"
+
+var _seen_enemies: Dictionary = {}  # class_id -> {name, abilities, story_id}
+var _seen_classes: Dictionary = {}  # class_id -> {display_name, tier}
+
+
+func _ready() -> void:
+	_load()
+
+
+func record_enemy(fighter: RefCounted, story_id: String) -> void:
+	if _seen_enemies.has(fighter.class_id):
+		return
+	var ability_names: Array[String] = []
+	for a: RefCounted in fighter.abilities:
+		ability_names.append(a.ability_name)
+	_seen_enemies[fighter.class_id] = {
+		"name": fighter.character_type,
+		"abilities": ability_names,
+		"story_id": story_id,
+	}
+	_save()
+
+
+func record_class(class_id: String, display_name: String) -> void:
+	if _seen_classes.has(class_id):
+		return
+	_seen_classes[class_id] = {
+		"display_name": display_name,
+		"tier": _get_tier(class_id),
+	}
+	_save()
+
+
+func get_seen_enemies() -> Dictionary:
+	return _seen_enemies
+
+
+func get_seen_classes() -> Dictionary:
+	return _seen_classes
+
+
+func _get_tier(class_id: String) -> int:
+	match class_id:
+		"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer":
+			return 0
+		"Duelist", "Ranger", "MartialArtist", "Invoker", "Acolyte", \
+		"Bard", "Dervish", "Orator", "Artificer", "Cosmologist", "Arithmancer", \
+		"Herbalist", "Shaman", "Beastcaller", "Sentinel", "Pathfinder":
+			return 1
+	return 2
+
+
+func _load() -> void:
+	if not FileAccess.file_exists(COMPENDIUM_PATH):
+		return
+	var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.READ)
+	if not file:
+		return
+	var json := JSON.new()
+	if json.parse(file.get_as_text()) != OK:
+		return
+	file.close()
+	var data: Dictionary = json.data
+	_seen_enemies = data.get("enemies", {})
+	_seen_classes = data.get("classes", {})
+
+
+func _save() -> void:
+	var data := {
+		"enemies": _seen_enemies,
+		"classes": _seen_classes,
+	}
+	var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(data, "\t"))
+		file.close()
