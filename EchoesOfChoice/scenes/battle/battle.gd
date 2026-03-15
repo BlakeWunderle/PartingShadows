@@ -39,6 +39,7 @@ var _message_queue: Array[String] = []
 var _processing_messages: bool = false
 var _escape_hp_pct: float = 0.0  ## Boss escape threshold from BattleData
 var _boss_escaped: bool = false
+var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_taken, healing_done, kills}
 
 signal _player_turn_done
 signal _remote_action_received(action: Dictionary)
@@ -267,6 +268,10 @@ func _start_battle() -> void:
 		CompendiumManager.record_enemy(enemy, GameState.current_story_id)
 	GameLog.info("Battle started: %s (%d enemies)" % [
 		GameState.current_battle_id, battle.enemies.size()])
+
+	_battle_stats.clear()
+	for f: FighterData in _all_party:
+		_battle_stats[f] = {"damage_dealt": 0, "damage_taken": 0, "healing_done": 0, "kills": 0}
 
 	_build_portrait_cards()
 	_add_log("[color=gold]Battle begins![/color]")
@@ -706,6 +711,16 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 	var card: PortraitCard = _find_card_for_fighter(target)
 	if not card:
 		return
+	# Track battle stats for party members
+	if event_type in ["damage", "crit"]:
+		if _current_actor != null and _battle_stats.has(_current_actor):
+			_battle_stats[_current_actor]["damage_dealt"] += amount
+		if _battle_stats.has(target):
+			_battle_stats[target]["damage_taken"] += amount
+	elif event_type == "heal":
+		if _current_actor != null and _battle_stats.has(_current_actor):
+			_battle_stats[_current_actor]["healing_done"] += amount
+
 	match event_type:
 		"damage":
 			SFXManager.play(SFXManager.Category.STRIKE)
@@ -776,7 +791,8 @@ func _end_battle() -> void:
 		else:
 			_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		SFXManager.play(SFXManager.Category.UI_FANFARE)
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.0).timeout
+		await _show_battle_summary()
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
@@ -787,8 +803,66 @@ func _end_battle() -> void:
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 
-func _on_fighter_died(_fighter: FighterData) -> void:
-	pass  # Death messages handled by engine signals
+func _show_battle_summary() -> void:
+	var overlay := PanelContainer.new()
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.05, 0.08, 0.12, 0.92)
+	style.border_color = Color(0.9, 0.8, 0.5, 0.6)
+	style.set_border_width_all(2)
+	style.set_corner_radius_all(8)
+	style.set_content_margin_all(24)
+	overlay.add_theme_stylebox_override("panel", style)
+	overlay.set_anchors_preset(Control.PRESET_CENTER)
+	overlay.offset_left = -220.0
+	overlay.offset_top = -160.0
+	overlay.offset_right = 220.0
+	overlay.offset_bottom = 160.0
+	add_child(overlay)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 8)
+	overlay.add_child(vbox)
+
+	var title := Label.new()
+	title.text = "BATTLE SUMMARY"
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_size_override("font_size", 20)
+	title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	vbox.add_child(title)
+
+	var sep := HSeparator.new()
+	vbox.add_child(sep)
+
+	for f: FighterData in _all_party:
+		var stats: Dictionary = _battle_stats.get(f, {})
+		var dmg: int = stats.get("damage_dealt", 0)
+		var heal: int = stats.get("healing_done", 0)
+		var kills: int = stats.get("kills", 0)
+		var line := Label.new()
+		line.text = "%s the %s  -  DMG: %d, HEAL: %d, KOs: %d" % [
+			f.character_name, f.character_type, dmg, heal, kills]
+		line.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		vbox.add_child(line)
+
+	var hint := Label.new()
+	hint.text = "\nPress any key to continue..."
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.add_theme_font_size_override("font_size", 14)
+	hint.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+	vbox.add_child(hint)
+
+	# Wait for confirm input to dismiss
+	await get_tree().create_timer(0.5).timeout  # Brief delay to prevent accidental skip
+	while not Input.is_action_just_pressed("confirm"):
+		await get_tree().process_frame
+	overlay.queue_free()
+
+
+func _on_fighter_died(fighter: FighterData) -> void:
+	# Track kills for party members
+	if _current_actor != null and _battle_stats.has(_current_actor) \
+			and not _all_party.has(fighter):
+		_battle_stats[_current_actor]["kills"] += 1
 
 
 func _on_battle_won() -> void:
