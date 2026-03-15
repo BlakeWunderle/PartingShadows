@@ -1,11 +1,12 @@
 extends Control
 
 ## Battle scene. Connects BattleEngine to visual UI.
+## Visual-first layout: scene image background, portrait cards for all fighters,
+## minimal action text overlay instead of scrolling combat log.
 
 const BattleEngine := preload("res://scripts/battle/battle_engine.gd")
-const CombatLog := preload("res://scripts/ui/combat_log.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
-const FighterBar := preload("res://scripts/ui/fighter_bar.gd")
+const PortraitCard := preload("res://scripts/ui/portrait_card.gd")
 const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
@@ -40,33 +41,29 @@ var _boss_escaped: bool = false
 
 signal _player_turn_done
 
-# UI elements
-var _party_bars: Array[FighterBar] = []
-var _enemy_bars: Array[FighterBar] = []
-var _combat_log: CombatLog
+# UI elements -- portrait cards
+var _party_cards: Array[PortraitCard] = []
+var _enemy_cards: Array[PortraitCard] = []
+var _active_card: PortraitCard
+var _portrait_cache: Dictionary = {}
+
+# UI elements -- layout
+var _scene_image: TextureRect
+var _gradient_overlay: TextureRect
+var _action_text: RichTextLabel
 var _action_menu: ChoiceMenu
 var _turn_label: Label
 var _stats_panel: StatsPanel
-var _scene_image: TextureRect
-var _scene_image_panel: PanelContainer
-
-# Portrait panel
-var _portrait_panel: VBoxContainer
-var _portrait_image: TextureRect
-var _portrait_image_old: TextureRect
-var _portrait_name_label: Label
-var _portrait_tween: Tween
-var _portrait_cache: Dictionary = {}
-var _current_portrait_type: String = ""
-
-# Layout containers
-var _top_panel: HBoxContainer
-var _party_vbox: VBoxContainer
-var _enemy_vbox: VBoxContainer
+var _party_cards_box: HBoxContainer
+var _enemy_cards_box: HBoxContainer
 var _bottom_panel: VBoxContainer
 var _turn_order_label: RichTextLabel
 var _turn_queue: Array = []  ## Predicted turn order, depleted as actors act
 var _tip_overlay: TipOverlay
+
+# Track all fighters (including dead) for card display
+var _all_party: Array = []
+var _all_enemies: Array = []
 
 
 func _ready() -> void:
@@ -77,36 +74,46 @@ func _ready() -> void:
 
 
 func _build_ui() -> void:
-	var root := VBoxContainer.new()
-	root.set_anchors_preset(Control.PRESET_FULL_RECT)
-	root.add_theme_constant_override("separation", 4)
-	add_child(root)
+	# Scene image -- full screen background
+	_scene_image = TextureRect.new()
+	_scene_image.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_scene_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_scene_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_scene_image)
 
-	# Top: party + enemy status bars
-	_top_panel = HBoxContainer.new()
-	_top_panel.add_theme_constant_override("separation", 24)
-	_top_panel.custom_minimum_size = Vector2(0, 120)
-	root.add_child(_top_panel)
+	# Gradient overlay -- fades scene image into dark at bottom
+	_gradient_overlay = TextureRect.new()
+	_gradient_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_gradient_overlay.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_gradient_overlay.stretch_mode = TextureRect.STRETCH_SCALE
+	_gradient_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	_party_vbox = VBoxContainer.new()
-	_party_vbox.add_theme_constant_override("separation", 4)
-	_party_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_top_panel.add_child(_party_vbox)
+	var grad := GradientTexture2D.new()
+	grad.gradient = Gradient.new()
+	grad.gradient.set_color(0, Color(0.05, 0.05, 0.08, 0.0))
+	grad.gradient.set_color(1, Color(0.05, 0.05, 0.08, 1.0))
+	grad.gradient.set_offset(0, 0.3)
+	grad.gradient.set_offset(1, 0.7)
+	grad.fill_from = Vector2(0.5, 0.0)
+	grad.fill_to = Vector2(0.5, 1.0)
+	_gradient_overlay.texture = grad
+	add_child(_gradient_overlay)
 
-	var party_header := Label.new()
-	party_header.text = "  Party"
-	party_header.add_theme_font_size_override("font_size", 16)
-	_party_vbox.add_child(party_header)
+	# UI root -- layered on top of scene image
+	var ui_root := VBoxContainer.new()
+	ui_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ui_root.add_theme_constant_override("separation", 4)
+	ui_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(ui_root)
 
-	_enemy_vbox = VBoxContainer.new()
-	_enemy_vbox.add_theme_constant_override("separation", 4)
-	_enemy_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_top_panel.add_child(_enemy_vbox)
-
-	var enemy_header := Label.new()
-	enemy_header.text = "  Enemies"
-	enemy_header.add_theme_font_size_override("font_size", 16)
-	_enemy_vbox.add_child(enemy_header)
+	# Scene spacer -- pushes UI content to bottom half
+	var scene_spacer := Control.new()
+	scene_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scene_spacer.size_flags_stretch_ratio = 3.0
+	scene_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_root.add_child(scene_spacer)
 
 	# Turn order bar
 	_turn_order_label = RichTextLabel.new()
@@ -115,101 +122,74 @@ func _build_ui() -> void:
 	_turn_order_label.scroll_active = false
 	_turn_order_label.add_theme_font_size_override("normal_font_size", 13)
 	_turn_order_label.custom_minimum_size = Vector2(0, 20)
-	root.add_child(_turn_order_label)
+	_turn_order_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_root.add_child(_turn_order_label)
 
-	# Middle: combat log (left) + scene image (right)
-	var middle_panel := HBoxContainer.new()
-	middle_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	middle_panel.custom_minimum_size = Vector2(0, 200)
-	middle_panel.add_theme_constant_override("separation", 8)
-	root.add_child(middle_panel)
+	# Portraits row -- party left, enemies right
+	var portraits_row := HBoxContainer.new()
+	portraits_row.add_theme_constant_override("separation", 0)
+	portraits_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-	_combat_log = CombatLog.new()
-	_combat_log.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_combat_log.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	middle_panel.add_child(_combat_log)
+	# Add left margin
+	var left_margin := Control.new()
+	left_margin.custom_minimum_size = Vector2(16, 0)
+	left_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portraits_row.add_child(left_margin)
 
-	# Portrait panel (between combat log and scene image)
-	_portrait_panel = VBoxContainer.new()
-	_portrait_panel.custom_minimum_size = Vector2(180, 0)
-	_portrait_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_portrait_panel.add_theme_constant_override("separation", 4)
-	_portrait_panel.alignment = BoxContainer.ALIGNMENT_CENTER
-	middle_panel.add_child(_portrait_panel)
+	_party_cards_box = HBoxContainer.new()
+	_party_cards_box.add_theme_constant_override("separation", 8)
+	_party_cards_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portraits_row.add_child(_party_cards_box)
 
-	_portrait_name_label = Label.new()
-	_portrait_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_portrait_name_label.add_theme_font_size_override("font_size", 14)
-	_portrait_name_label.clip_text = true
-	_portrait_name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	_portrait_name_label.custom_minimum_size = Vector2(180, 0)
-	_portrait_panel.add_child(_portrait_name_label)
+	var card_spacer := Control.new()
+	card_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	card_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portraits_row.add_child(card_spacer)
 
-	var portrait_frame := PanelContainer.new()
-	portrait_frame.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	portrait_frame.custom_minimum_size = Vector2(180, 0)
-	_portrait_panel.add_child(portrait_frame)
+	_enemy_cards_box = HBoxContainer.new()
+	_enemy_cards_box.add_theme_constant_override("separation", 8)
+	_enemy_cards_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portraits_row.add_child(_enemy_cards_box)
 
-	var portrait_stack := Control.new()
-	portrait_stack.set_anchors_preset(Control.PRESET_FULL_RECT)
-	portrait_stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	portrait_stack.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	portrait_frame.add_child(portrait_stack)
+	# Add right margin
+	var right_margin := Control.new()
+	right_margin.custom_minimum_size = Vector2(16, 0)
+	right_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	portraits_row.add_child(right_margin)
 
-	_portrait_image_old = TextureRect.new()
-	_portrait_image_old.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	_portrait_image_old.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_portrait_image_old.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_portrait_image_old.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_portrait_image_old.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	_portrait_image_old.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_portrait_image_old.modulate.a = 0.0
-	portrait_stack.add_child(_portrait_image_old)
+	ui_root.add_child(portraits_row)
 
-	_portrait_image = TextureRect.new()
-	_portrait_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	_portrait_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_portrait_image.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_portrait_image.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_portrait_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	_portrait_image.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_portrait_image.modulate.a = 0.0
-	portrait_stack.add_child(_portrait_image)
+	# Action text -- replaces scrolling combat log, shows latest message
+	_action_text = RichTextLabel.new()
+	_action_text.bbcode_enabled = true
+	_action_text.fit_content = true
+	_action_text.scroll_active = false
+	_action_text.add_theme_font_size_override("normal_font_size", 15)
+	_action_text.custom_minimum_size = Vector2(0, 28)
+	_action_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_action_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_root.add_child(_action_text)
 
-	_scene_image_panel = PanelContainer.new()
-	_scene_image_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_scene_image_panel.custom_minimum_size = Vector2(360, 0)
-	middle_panel.add_child(_scene_image_panel)
-
-	_scene_image = TextureRect.new()
-	_scene_image.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_scene_image.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_scene_image.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	_scene_image_panel.add_child(_scene_image)
-
-
-
-	# Turn indicator
+	# Turn indicator (hidden unless it's the player's turn)
 	_turn_label = Label.new()
 	_turn_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_turn_label.add_theme_font_size_override("font_size", 18)
+	_turn_label.add_theme_font_size_override("font_size", 16)
 	_turn_label.visible = false
-	root.add_child(_turn_label)
+	_turn_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	ui_root.add_child(_turn_label)
 
 	# Bottom: action menu
 	_bottom_panel = VBoxContainer.new()
-	_bottom_panel.custom_minimum_size = Vector2(0, 160)
+	_bottom_panel.custom_minimum_size = Vector2(0, 120)
 	_bottom_panel.alignment = BoxContainer.ALIGNMENT_CENTER
-	root.add_child(_bottom_panel)
+	ui_root.add_child(_bottom_panel)
 
 	_action_menu = ChoiceMenu.new()
 	_action_menu.choice_selected.connect(_on_action_selected)
 	_action_menu.visible = false
 	_bottom_panel.add_child(_action_menu)
 
-	# Stats panel (overlay)
+	# Stats panel (overlay, on top of everything)
 	_stats_panel = StatsPanel.new()
 	_stats_panel.closed.connect(_on_stats_closed)
 	_stats_panel.visible = false
@@ -243,8 +223,8 @@ func _start_battle() -> void:
 	GameLog.info("Battle started: %s (%d enemies)" % [
 		GameState.current_battle_id, battle.enemies.size()])
 
-	_build_status_bars()
-	_combat_log.add_message("[color=gold]Battle begins![/color]")
+	_build_portrait_cards()
+	_set_action_text("[color=gold]Battle begins![/color]")
 	_compute_turn_order()
 	_display_turn_order()
 
@@ -261,40 +241,43 @@ func _start_battle() -> void:
 	_tick_loop()
 
 
-func _build_status_bars() -> void:
-	for bar: FighterBar in _party_bars:
-		bar.queue_free()
-	_party_bars.clear()
-	for bar: FighterBar in _enemy_bars:
-		bar.queue_free()
-	_enemy_bars.clear()
+func _build_portrait_cards() -> void:
+	for card: PortraitCard in _party_cards:
+		card.queue_free()
+	_party_cards.clear()
+	for card: PortraitCard in _enemy_cards:
+		card.queue_free()
+	_enemy_cards.clear()
 
-	for f: FighterData in _engine.units:
-		var bar := FighterBar.new()
-		_party_vbox.add_child(bar)
-		bar.setup(f, false)
-		_party_bars.append(bar)
+	# Snapshot all fighters so we can track dead ones
+	_all_party = _engine.units.duplicate()
+	_all_enemies = _engine.enemies.duplicate()
 
-	for f: FighterData in _engine.enemies:
-		var bar := FighterBar.new()
-		_enemy_vbox.add_child(bar)
-		bar.setup(f, true)
-		_enemy_bars.append(bar)
+	for f: FighterData in _all_party:
+		var card := PortraitCard.new()
+		_party_cards_box.add_child(card)
+		var tex: Texture2D = _get_portrait_texture(f)
+		card.setup(f, false, tex)
+		_party_cards.append(card)
+
+	for f: FighterData in _all_enemies:
+		var card := PortraitCard.new()
+		_enemy_cards_box.add_child(card)
+		var tex: Texture2D = _get_portrait_texture(f)
+		card.setup(f, true, tex)
+		_enemy_cards.append(card)
 
 
-func _refresh_bars() -> void:
-	for i: int in _party_bars.size():
-		if i < _engine.units.size():
-			_party_bars[i].update_display(_engine.units[i])
-			_party_bars[i].visible = true
-		else:
-			_party_bars[i].visible = false
-	for i: int in _enemy_bars.size():
-		if i < _engine.enemies.size():
-			_enemy_bars[i].update_display(_engine.enemies[i])
-			_enemy_bars[i].visible = true
-		else:
-			_enemy_bars[i].visible = false
+func _refresh_cards() -> void:
+	for card: PortraitCard in _party_cards:
+		card.update_display(card.get_fighter())
+	for card: PortraitCard in _enemy_cards:
+		card.update_display(card.get_fighter())
+
+
+func _set_action_text(text: String) -> void:
+	_action_text.clear()
+	_action_text.append_text("[center]%s[/center]" % text)
 
 
 # =============================================================================
@@ -313,7 +296,7 @@ func _tick_loop() -> void:
 				continue
 
 			_current_actor = actor
-			_update_portrait(actor)
+			_highlight_active_card(actor)
 			# Pop this actor from the display queue
 			if not _turn_queue.is_empty() and _turn_queue[0] == actor:
 				_turn_queue.pop_front()
@@ -333,8 +316,7 @@ func _tick_loop() -> void:
 				turn_text = "It is %s' turn." % actor.character_name
 			else:
 				turn_text = "It is %s's turn." % actor.character_name
-			_combat_log.add_separator()
-			_combat_log.add_message("[color=yellow]%s[/color]" % turn_text)
+			_set_action_text("[color=yellow]%s[/color]" % turn_text)
 
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
@@ -350,7 +332,7 @@ func _tick_loop() -> void:
 
 			# Post-action (same for player and AI)
 			await _drain_messages()
-			_refresh_bars()
+			_refresh_cards()
 
 			# Check boss escape before death, escape triggers at HP threshold
 			if _check_boss_escape():
@@ -358,7 +340,7 @@ func _tick_loop() -> void:
 				return
 
 			_engine.check_for_death()
-			_rebuild_bars_if_needed()
+			_rebuild_cards_if_needed()
 			await _drain_messages()
 
 			if _engine.is_battle_over():
@@ -485,7 +467,7 @@ func _on_target_selected(index: int) -> void:
 			var target: FighterData
 			if taunter:
 				target = taunter
-				_combat_log.add_message("%s has taunted your attention!" % taunter.character_name)
+				_set_action_text("%s has taunted your attention!" % taunter.character_name)
 			else:
 				target = _engine.enemies[index]
 			_engine.physical_attack(_current_actor, target)
@@ -494,7 +476,7 @@ func _on_target_selected(index: int) -> void:
 			var target: FighterData
 			if taunter:
 				target = taunter
-				_combat_log.add_message("%s has taunted your attention!" % taunter.character_name)
+				_set_action_text("%s has taunted your attention!" % taunter.character_name)
 			else:
 				target = _engine.enemies[index]
 			_current_actor.mana -= _selected_ability.mana_cost
@@ -554,13 +536,11 @@ func _on_ability_selected(index: int) -> void:
 		_current_actor.mana -= _selected_ability.mana_cost
 		_set_cooldown(_current_actor, _selected_ability)
 		if _selected_ability.use_on_enemy:
-			_combat_log.add_message("%s targets all enemies!" % _current_actor.character_name)
-			_combat_log.add_message(_selected_ability.flavor_text)
+			_set_action_text("%s targets all enemies!" % _current_actor.character_name)
 			for enemy: FighterData in _engine.enemies.duplicate():
 				_engine.use_ability_on_enemy(_current_actor, enemy, _selected_ability, true)
 		else:
-			_combat_log.add_message("%s targets all allies!" % _current_actor.character_name)
-			_combat_log.add_message(_selected_ability.flavor_text)
+			_set_action_text("%s targets all allies!" % _current_actor.character_name)
 			for ally: FighterData in _engine.units.duplicate():
 				_engine.use_ability_on_teammate(_current_actor, ally, _selected_ability, true)
 
@@ -631,9 +611,10 @@ func _on_combat_message(text: String) -> void:
 func _drain_messages() -> void:
 	while not _message_queue.is_empty():
 		var msg: String = _message_queue.pop_front()
-		_combat_log.add_message(msg)
+		_set_action_text(msg)
+		_refresh_cards()
 		await get_tree().create_timer(COMBAT_PAUSE).timeout
-	_refresh_bars()
+	_refresh_cards()
 
 
 # =============================================================================
@@ -646,37 +627,30 @@ func _check_boss_escape() -> bool:
 	for enemy: FighterData in _engine.enemies:
 		if enemy.health > 0 and float(enemy.health) / float(enemy.max_health) <= _escape_hp_pct:
 			_boss_escaped = true
-			_combat_log.add_message("")
-			_combat_log.add_message("[color=yellow]%s staggers back, then vanishes in a flash of dark energy![/color]" % enemy.character_name)
+			_set_action_text("[color=yellow]%s staggers back, then vanishes in a flash of dark energy![/color]" % enemy.character_name)
 			return true
 	return false
 
 
 func _end_battle() -> void:
 	_phase = Phase.BATTLE_END
-	if _portrait_tween and _portrait_tween.is_valid():
-		_portrait_tween.kill()
-	var _fade := create_tween()
-	_fade.tween_property(_portrait_image, "modulate:a", 0.0, 0.3)
-	_current_portrait_type = ""
+	_highlight_active_card(null)
 	await _drain_messages()
 
 	_engine.finish_battle()
 
 	if _boss_escaped or _engine.did_player_win():
 		GameLog.info("Battle won: %s" % GameState.current_battle_id)
-		_combat_log.add_message("")
 		if _boss_escaped:
-			_combat_log.add_message("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
+			_set_action_text("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
 		else:
-			_combat_log.add_message("[color=gold]Victory! The enemies have been vanquished.[/color]")
+			_set_action_text("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		await get_tree().create_timer(2.0).timeout
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
 		GameLog.info("Battle lost: %s" % GameState.current_battle_id)
-		_combat_log.add_message("")
-		_combat_log.add_message("[color=red]The party has been defeated...[/color]")
+		_set_action_text("[color=red]The party has been defeated...[/color]")
 		await get_tree().create_timer(2.0).timeout
 		GameState.go_to_ending(false)
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
@@ -694,16 +668,18 @@ func _on_battle_lost() -> void:
 	pass  # Handled in _end_battle
 
 
-func _rebuild_bars_if_needed() -> void:
-	# Hide bars for dead fighters
-	for i: int in _party_bars.size():
-		_party_bars[i].visible = i < _engine.units.size()
-		if i < _engine.units.size():
-			_party_bars[i].update_display(_engine.units[i])
-	for i: int in _enemy_bars.size():
-		_enemy_bars[i].visible = i < _engine.enemies.size()
-		if i < _engine.enemies.size():
-			_enemy_bars[i].update_display(_engine.enemies[i])
+func _rebuild_cards_if_needed() -> void:
+	# Mark dead fighters' cards as dead (desaturated) instead of hiding
+	for card: PortraitCard in _party_cards:
+		var fighter: FighterData = card.get_fighter()
+		var is_dead: bool = not _engine.units.has(fighter)
+		card.set_dead(is_dead)
+		card.update_display(fighter)
+	for card: PortraitCard in _enemy_cards:
+		var fighter: FighterData = card.get_fighter()
+		var is_dead: bool = not _engine.enemies.has(fighter)
+		card.set_dead(is_dead)
+		card.update_display(fighter)
 
 
 func _compute_turn_order() -> void:
@@ -772,7 +748,7 @@ func _display_turn_order() -> void:
 
 
 # =============================================================================
-# Portrait panel
+# Portrait cards
 # =============================================================================
 
 func _get_portrait_texture(fighter: FighterData) -> Texture2D:
@@ -797,30 +773,23 @@ func _get_portrait_texture(fighter: FighterData) -> Texture2D:
 	return tex
 
 
-func _update_portrait(fighter: FighterData) -> void:
-	if fighter.character_type == _current_portrait_type:
-		return
-	_current_portrait_type = fighter.character_type
+func _highlight_active_card(fighter: FighterData) -> void:
+	# Deactivate previous
+	if _active_card:
+		_active_card.set_active(false)
+		_active_card = null
 
-	_portrait_name_label.text = "%s the %s" % [fighter.character_name, fighter.character_type]
-
-	if _portrait_tween and _portrait_tween.is_valid():
-		_portrait_tween.kill()
-
-	var tex: Texture2D = _get_portrait_texture(fighter)
-
-	if tex == null:
-		# No portrait available: fade out current
-		_portrait_tween = create_tween()
-		_portrait_tween.tween_property(_portrait_image, "modulate:a", 0.0, 0.2)
+	if fighter == null:
 		return
 
-	# Crossfade: old fades out, new fades in
-	_portrait_image_old.texture = _portrait_image.texture
-	_portrait_image_old.modulate.a = _portrait_image.modulate.a
-	_portrait_image.texture = tex
-	_portrait_image.modulate.a = 0.0
-
-	_portrait_tween = create_tween().set_parallel(true)
-	_portrait_tween.tween_property(_portrait_image_old, "modulate:a", 0.0, 0.3)
-	_portrait_tween.tween_property(_portrait_image, "modulate:a", 1.0, 0.3)
+	# Find the card for this fighter
+	for card: PortraitCard in _party_cards:
+		if card.get_fighter() == fighter:
+			card.set_active(true)
+			_active_card = card
+			return
+	for card: PortraitCard in _enemy_cards:
+		if card.get_fighter() == fighter:
+			card.set_active(true)
+			_active_card = card
+			return
