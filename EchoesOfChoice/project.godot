@@ -22,6 +22,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 GameLog="*res://scripts/autoload/logger.gd"
 SteamManager="*res://scripts/autoload/steam_manager.gd"
+NetManager="*res://scripts/autoload/net_manager.gd"
 InputConfig="*res://scripts/autoload/input_config.gd"
 SceneManager="*res://scripts/autoload/scene_manager.gd"
 GameState="*res://scripts/autoload/game_state.gd"

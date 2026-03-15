@@ -10,6 +10,7 @@ var character_type: String  ## Class display name (e.g. "Squire", "Thug")
 var class_id: String        ## Internal class key for save/load and level-up routing
 var portrait_variant: String = "m"  ## Portrait style: "m" or "f"
 var is_user_controlled: bool
+var owner_peer_id: int = 1  ## Multiplayer peer ID that controls this fighter (1 = host/singleplayer)
 
 var level: int = 1
 var health: int
@@ -39,6 +40,7 @@ func clone() -> FighterData:
 	c.class_id = class_id
 	c.portrait_variant = portrait_variant
 	c.is_user_controlled = is_user_controlled
+	c.owner_peer_id = owner_peer_id
 	c.level = level
 	c.health = health; c.max_health = max_health
 	c.mana = mana; c.max_mana = max_mana
@@ -133,6 +135,7 @@ func to_save_data() -> Dictionary:
 		"crit_damage": crit_damage,
 		"dodge_chance": dodge_chance,
 		"upgrade_items": upgrade_items,
+		"owner_peer_id": owner_peer_id,
 	}
 
 
@@ -155,6 +158,7 @@ func apply_save_data(data: Dictionary) -> void:
 	crit_chance = data["crit_chance"]
 	crit_damage = data["crit_damage"]
 	dodge_chance = data["dodge_chance"]
+	owner_peer_id = data.get("owner_peer_id", 1)
 	var saved_items = data.get("upgrade_items", [])
 	upgrade_items.clear()
 	if saved_items.is_empty():

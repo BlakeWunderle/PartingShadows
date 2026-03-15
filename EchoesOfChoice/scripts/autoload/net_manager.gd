@@ -1,0 +1,304 @@
+extends Node
+
+## Multiplayer session manager. Handles lobby creation, peer tracking,
+## character slot assignment, and transport abstraction.
+##
+## All game code uses Godot's MultiplayerPeer API and @rpc annotations.
+## The transport layer is swapped per platform at connection time:
+##   - Steam (PC): SteamMultiplayerPeer GDExtension
+##   - Switch / fallback: ENetMultiplayerPeer (built-in)
+
+signal player_joined(peer_id: int, player_name: String)
+signal player_left(peer_id: int, player_name: String)
+signal lobby_ready  ## Enough players have joined to start
+signal session_ended(reason: String)
+
+## Whether a multiplayer session is active (host or guest)
+var is_multiplayer_active: bool = false
+## Whether this peer is the host (authority)
+var is_host: bool = false
+## Steam lobby ID (0 when not using Steam lobbies)
+var lobby_id: int = 0
+## Number of players in this session (1 = singleplayer, 2 or 3)
+var player_count: int = 1
+## Mapping of peer_id -> Array[int] of party slot indices
+var peer_slots: Dictionary = {}
+## Which party indices this local player controls
+var my_slots: Array[int] = []
+## Mapping of peer_id -> display name
+var peer_names: Dictionary = {}
+## Target player count for lobby (set by host before starting)
+var target_player_count: int = 2
+
+const DEFAULT_PORT: int = 7777
+const MAX_PLAYERS: int = 3
+
+var _turn_timeout_timer: Timer
+
+
+func _ready() -> void:
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	multiplayer.connection_failed.connect(_on_connection_failed)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+	_turn_timeout_timer = Timer.new()
+	_turn_timeout_timer.one_shot = true
+	_turn_timeout_timer.wait_time = 60.0
+	add_child(_turn_timeout_timer)
+
+
+# =============================================================================
+# Transport setup
+# =============================================================================
+
+func host_game(port: int = DEFAULT_PORT) -> Error:
+	var peer := ENetMultiplayerPeer.new()
+	var err := peer.create_server(port, MAX_PLAYERS - 1)
+	if err != OK:
+		GameLog.info("NetManager: Failed to create server on port %d (error %d)" % [port, err])
+		return err
+	multiplayer.multiplayer_peer = peer
+	is_host = true
+	is_multiplayer_active = true
+	player_count = 1
+
+	# Host is always peer 1
+	var host_name: String = _get_local_player_name()
+	peer_names[1] = host_name
+	_assign_host_slots()
+
+	GameLog.info("NetManager: Hosting on port %d as '%s'" % [port, host_name])
+	return OK
+
+
+func join_game(address: String, port: int = DEFAULT_PORT) -> Error:
+	var peer := ENetMultiplayerPeer.new()
+	var err := peer.create_client(address, port)
+	if err != OK:
+		GameLog.info("NetManager: Failed to connect to %s:%d (error %d)" % [address, port, err])
+		return err
+	multiplayer.multiplayer_peer = peer
+	is_host = false
+	is_multiplayer_active = true
+
+	GameLog.info("NetManager: Connecting to %s:%d" % [address, port])
+	return OK
+
+
+func leave_session() -> void:
+	if not is_multiplayer_active:
+		return
+	GameLog.info("NetManager: Leaving session")
+	multiplayer.multiplayer_peer = null
+	_reset_state()
+
+
+func _reset_state() -> void:
+	is_multiplayer_active = false
+	is_host = false
+	lobby_id = 0
+	player_count = 1
+	peer_slots.clear()
+	my_slots.clear()
+	peer_names.clear()
+
+
+# =============================================================================
+# Slot assignment
+# =============================================================================
+
+func _assign_host_slots() -> void:
+	if target_player_count == 2:
+		# Host gets slots 0 and 2
+		peer_slots[1] = [0, 2]
+		my_slots = [0, 2]
+	else:
+		# 3-player: host gets slot 0 only
+		peer_slots[1] = [0]
+		my_slots = [0]
+
+
+func _assign_guest_slot(peer_id: int) -> void:
+	if target_player_count == 2:
+		# Guest gets slot 1
+		peer_slots[peer_id] = [1]
+	elif target_player_count == 3:
+		# First guest gets slot 1, second guest gets slot 2
+		if not _slot_taken(1):
+			peer_slots[peer_id] = [1]
+		elif not _slot_taken(2):
+			peer_slots[peer_id] = [2]
+
+
+func _slot_taken(slot: int) -> bool:
+	for peer_id: int in peer_slots:
+		var slots: Array = peer_slots[peer_id]
+		if slot in slots:
+			return true
+	return false
+
+
+# =============================================================================
+# Ownership queries
+# =============================================================================
+
+func is_my_fighter(party_index: int) -> bool:
+	if not is_multiplayer_active:
+		return true
+	return party_index in my_slots
+
+
+func get_fighter_owner_peer(party_index: int) -> int:
+	for peer_id: int in peer_slots:
+		var slots: Array = peer_slots[peer_id]
+		if party_index in slots:
+			return peer_id
+	return 1  # Fallback to host
+
+
+func get_fighter_owner_name(party_index: int) -> String:
+	var peer_id: int = get_fighter_owner_peer(party_index)
+	return peer_names.get(peer_id, "Player")
+
+
+func get_connected_peer_count() -> int:
+	if not is_multiplayer_active:
+		return 1
+	return peer_names.size()
+
+
+func is_lobby_full() -> bool:
+	return get_connected_peer_count() >= target_player_count
+
+
+# =============================================================================
+# Connection callbacks
+# =============================================================================
+
+func _on_peer_connected(peer_id: int) -> void:
+	GameLog.info("NetManager: Peer %d connected" % peer_id)
+	if is_host:
+		player_count += 1
+		_assign_guest_slot(peer_id)
+		# Send host info to new peer
+		_rpc_receive_player_name.rpc_id(peer_id, 1, peer_names[1])
+		# Send existing peers' names to new peer
+		for existing_id: int in peer_names:
+			if existing_id != 1 and existing_id != peer_id:
+				_rpc_receive_player_name.rpc_id(peer_id, existing_id, peer_names[existing_id])
+		# Request the new peer's name
+		_rpc_request_name.rpc_id(peer_id)
+
+
+func _on_peer_disconnected(peer_id: int) -> void:
+	var name: String = peer_names.get(peer_id, "Unknown")
+	GameLog.info("NetManager: Peer %d ('%s') disconnected" % [peer_id, name])
+	if is_host:
+		player_count -= 1
+		# Keep their slot assignment for reconnection, but notify
+		player_left.emit(peer_id, name)
+
+
+func _on_connected_to_server() -> void:
+	GameLog.info("NetManager: Connected to server as peer %d" % multiplayer.get_unique_id())
+	# Send our name to host
+	var local_name: String = _get_local_player_name()
+	_rpc_submit_name.rpc_id(1, local_name)
+
+
+func _on_connection_failed() -> void:
+	GameLog.info("NetManager: Connection to server failed")
+	session_ended.emit("Connection failed")
+	_reset_state()
+
+
+func _on_server_disconnected() -> void:
+	GameLog.info("NetManager: Server disconnected")
+	session_ended.emit("Host disconnected")
+	_reset_state()
+
+
+# =============================================================================
+# Name exchange RPCs
+# =============================================================================
+
+@rpc("authority", "call_remote", "reliable")
+func _rpc_request_name() -> void:
+	# Host asked us for our name
+	var local_name: String = _get_local_player_name()
+	_rpc_submit_name.rpc_id(1, local_name)
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_submit_name(player_name: String) -> void:
+	if not is_host:
+		return
+	var sender: int = multiplayer.get_remote_sender_id()
+	peer_names[sender] = player_name
+	GameLog.info("NetManager: Peer %d is '%s'" % [sender, player_name])
+
+	# Broadcast name to all peers
+	_rpc_receive_player_name.rpc(sender, player_name)
+
+	player_joined.emit(sender, player_name)
+	if is_lobby_full():
+		lobby_ready.emit()
+
+
+@rpc("authority", "call_local", "reliable")
+func _rpc_receive_player_name(peer_id: int, player_name: String) -> void:
+	peer_names[peer_id] = player_name
+
+
+# =============================================================================
+# Slot assignment broadcast
+# =============================================================================
+
+func broadcast_slot_assignments() -> void:
+	if not is_host:
+		return
+	# Convert peer_slots to a format safe for RPC (Dictionary with int keys)
+	var data: Dictionary = {}
+	for peer_id: int in peer_slots:
+		data[peer_id] = peer_slots[peer_id]
+	_rpc_receive_slots.rpc(data, target_player_count)
+
+
+@rpc("authority", "call_local", "reliable")
+func _rpc_receive_slots(slot_data: Dictionary, p_count: int) -> void:
+	peer_slots = slot_data
+	target_player_count = p_count
+	player_count = p_count
+	var my_id: int = multiplayer.get_unique_id()
+	if my_id in peer_slots:
+		my_slots = peer_slots[my_id]
+	else:
+		my_slots = []
+	GameLog.info("NetManager: Received slots -- my_slots=%s" % [str(my_slots)])
+
+
+# =============================================================================
+# Utility
+# =============================================================================
+
+func _get_local_player_name() -> String:
+	if SteamManager.is_steam_running:
+		return Steam.getPersonaName()
+	return "Player"
+
+
+## Start the turn timeout timer. Call when waiting for a remote player's action.
+func start_turn_timeout() -> void:
+	_turn_timeout_timer.start()
+
+
+## Stop the turn timeout timer. Call when the player submits their action.
+func stop_turn_timeout() -> void:
+	_turn_timeout_timer.stop()
+
+
+## Returns true if the turn timeout has elapsed.
+func is_turn_timed_out() -> bool:
+	return _turn_timeout_timer.is_stopped() and _turn_timeout_timer.time_left <= 0.0

@@ -155,6 +155,7 @@ func _show_main_menu() -> void:
 	if _has_saves:
 		options.append({"label": "Continue"})
 	options.append({"label": "New Game"})
+	options.append({"label": "Multiplayer"})
 	if _has_saves:
 		options.append({"label": "Load Game"})
 	options.append({"label": "Settings"})
@@ -180,6 +181,7 @@ func _handle_main_choice(index: int) -> void:
 	if _has_saves:
 		labels.append("Continue")
 	labels.append("New Game")
+	labels.append("Multiplayer")
 	if _has_saves:
 		labels.append("Load Game")
 	labels.append("Settings")
@@ -202,6 +204,8 @@ func _handle_main_choice(index: int) -> void:
 			else:
 				GameState.start_new_game("story_1")
 				SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
+		"Multiplayer":
+			SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
 		"Load Game":
 			_show_load_slots()
 		"Settings":

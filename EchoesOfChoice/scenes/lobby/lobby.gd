@@ -1,0 +1,396 @@
+extends Control
+
+## Multiplayer lobby screen. Host creates a game, guests join via IP.
+## Shows player list, player count toggle (2P/3P), story select, and start.
+##
+## Flow: Title -> Lobby -> Party Creation (once host starts)
+
+const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const StoryDB := preload("res://scripts/data/story_db.gd")
+const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
+
+enum Mode { ROLE_SELECT, HOSTING, JOIN_INPUT, CONNECTING, IN_LOBBY }
+
+var _mode: Mode = Mode.ROLE_SELECT
+var _vbox: VBoxContainer
+var _header: Label
+var _menu: ChoiceMenu
+var _player_list: VBoxContainer
+var _player_labels: Array[Label] = []
+var _status_label: Label
+var _address_input: LineEdit
+var _confirm_dialog: ConfirmDialog
+
+# Host-only state
+var _story_index: int = 0
+var _stories: Array[Dictionary] = []
+
+
+func _ready() -> void:
+	MusicManager.play_music("res://assets/audio/music/menu/Land of Heroes Alt LOOP.wav")
+	NetManager.player_joined.connect(_on_player_joined)
+	NetManager.player_left.connect(_on_player_left)
+	NetManager.lobby_ready.connect(_on_lobby_ready)
+	NetManager.session_ended.connect(_on_session_ended)
+	_build_ui()
+	_show_role_select()
+
+
+func _build_ui() -> void:
+	# Background
+	var bg := TextureRect.new()
+	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	bg.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	var bg_path := "res://assets/art/ui/title_background.png"
+	if ResourceLoader.exists(bg_path):
+		bg.texture = load(bg_path)
+	add_child(bg)
+
+	# Center
+	var center := CenterContainer.new()
+	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	add_child(center)
+
+	_vbox = VBoxContainer.new()
+	_vbox.add_theme_constant_override("separation", 16)
+	_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	_vbox.custom_minimum_size.x = 500
+	center.add_child(_vbox)
+
+	# Header
+	_header = Label.new()
+	_header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_header.add_theme_font_size_override("font_size", 36)
+	_vbox.add_child(_header)
+
+	# Spacer
+	var spacer := Control.new()
+	spacer.custom_minimum_size = Vector2(0, 8)
+	_vbox.add_child(spacer)
+
+	# Status label (for messages)
+	_status_label = Label.new()
+	_status_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_status_label.add_theme_font_size_override("font_size", 18)
+	_status_label.add_theme_color_override("font_color", Color(0.7, 0.8, 0.85))
+	_status_label.visible = false
+	_vbox.add_child(_status_label)
+
+	# Player list container
+	_player_list = VBoxContainer.new()
+	_player_list.add_theme_constant_override("separation", 6)
+	_player_list.visible = false
+	_vbox.add_child(_player_list)
+
+	# Address input (for joining)
+	_address_input = LineEdit.new()
+	_address_input.placeholder_text = "Enter host IP address..."
+	_address_input.custom_minimum_size = Vector2(300, 40)
+	_address_input.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_address_input.max_length = 45
+	_address_input.visible = false
+	_address_input.text_submitted.connect(_on_address_submitted)
+	_vbox.add_child(_address_input)
+
+	# Menu
+	_menu = ChoiceMenu.new()
+	_menu.choice_selected.connect(_on_menu_choice)
+	_vbox.add_child(_menu)
+
+	# Confirm dialog
+	_confirm_dialog = ConfirmDialog.new()
+	add_child(_confirm_dialog)
+
+
+# =============================================================================
+# Role selection (Host / Join / Back)
+# =============================================================================
+
+func _show_role_select() -> void:
+	_mode = Mode.ROLE_SELECT
+	_header.text = "MULTIPLAYER"
+	_status_label.visible = false
+	_player_list.visible = false
+	_address_input.visible = false
+
+	_menu.show_choices([
+		{"label": "Host Game", "description": "Create a game and invite friends"},
+		{"label": "Join Game", "description": "Join a friend's game"},
+		{"label": "Back"},
+	])
+
+
+func _on_menu_choice(index: int) -> void:
+	match _mode:
+		Mode.ROLE_SELECT:
+			_handle_role_choice(index)
+		Mode.HOSTING:
+			_handle_host_menu_choice(index)
+		Mode.JOIN_INPUT:
+			_handle_join_input_choice(index)
+		Mode.IN_LOBBY:
+			_handle_lobby_choice(index)
+
+
+func _handle_role_choice(index: int) -> void:
+	match index:
+		0:  # Host Game
+			_start_hosting()
+		1:  # Join Game
+			_show_join_input()
+		2:  # Back
+			SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+# =============================================================================
+# Hosting
+# =============================================================================
+
+func _start_hosting() -> void:
+	NetManager.target_player_count = 2
+	var err := NetManager.host_game()
+	if err != OK:
+		_status_label.text = "Failed to start server. Try again."
+		_status_label.visible = true
+		return
+
+	_mode = Mode.HOSTING
+	_header.text = "HOST GAME"
+	_address_input.visible = false
+	_show_host_menu()
+	_refresh_player_list()
+
+
+func _show_host_menu() -> void:
+	var player_count_label: String = "%d Players" % NetManager.target_player_count
+	var options: Array[Dictionary] = [
+		{"label": player_count_label, "description": "Toggle between 2 and 3 players"},
+	]
+
+	# Story selection
+	_stories = StoryDB.get_all_stories()
+	var current_story: Dictionary = _stories[_story_index] if _story_index < _stories.size() else {}
+	var story_title: String = current_story.get("title", "Story 1")
+	options.append({"label": "Story: %s" % story_title, "description": "Change story"})
+
+	if NetManager.is_lobby_full():
+		options.append({"label": "Start Game"})
+	else:
+		options.append({"label": "Start Game", "disabled": true,
+			"description": "Waiting for %d more player(s)" % (NetManager.target_player_count - NetManager.get_connected_peer_count())})
+
+	options.append({"label": "Cancel"})
+	_menu.show_choices(options)
+
+
+func _handle_host_menu_choice(index: int) -> void:
+	match index:
+		0:  # Toggle player count
+			NetManager.target_player_count = 3 if NetManager.target_player_count == 2 else 2
+			NetManager._assign_host_slots()
+			_show_host_menu()
+		1:  # Toggle story
+			_story_index = (_story_index + 1) % _stories.size()
+			# Skip locked stories
+			var attempts: int = 0
+			while attempts < _stories.size():
+				var story: Dictionary = _stories[_story_index]
+				var req: String = story.get("unlock_requirement", "")
+				if req.is_empty() or UnlockManager.is_unlocked(req):
+					break
+				_story_index = (_story_index + 1) % _stories.size()
+				attempts += 1
+			_show_host_menu()
+		2:  # Start Game
+			if NetManager.is_lobby_full():
+				_start_multiplayer_game()
+		3:  # Cancel
+			_confirm_dialog.confirmed.connect(_on_cancel_confirmed, CONNECT_ONE_SHOT)
+			_confirm_dialog.show_confirm("Leave the lobby?")
+
+
+# =============================================================================
+# Joining
+# =============================================================================
+
+func _show_join_input() -> void:
+	_mode = Mode.JOIN_INPUT
+	_header.text = "JOIN GAME"
+	_status_label.visible = false
+	_player_list.visible = false
+	_address_input.visible = true
+	_address_input.text = ""
+	_address_input.grab_focus()
+
+	_menu.show_choices([
+		{"label": "Connect"},
+		{"label": "Back"},
+	])
+
+
+func _handle_join_input_choice(index: int) -> void:
+	match index:
+		0:  # Connect
+			_try_connect()
+		1:  # Back
+			_show_role_select()
+
+
+func _on_address_submitted(_text: String) -> void:
+	_try_connect()
+
+
+func _try_connect() -> void:
+	var address: String = _address_input.text.strip_edges()
+	if address.is_empty():
+		_status_label.text = "Please enter an IP address."
+		_status_label.visible = true
+		return
+
+	_mode = Mode.CONNECTING
+	_status_label.text = "Connecting to %s..." % address
+	_status_label.visible = true
+	_address_input.visible = false
+	_menu.hide_menu()
+
+	var err := NetManager.join_game(address)
+	if err != OK:
+		_status_label.text = "Failed to connect. Check the address and try again."
+		await get_tree().create_timer(2.0).timeout
+		_show_join_input()
+
+
+# =============================================================================
+# In Lobby (guest view)
+# =============================================================================
+
+func _show_guest_lobby() -> void:
+	_mode = Mode.IN_LOBBY
+	_header.text = "LOBBY"
+	_status_label.text = "Waiting for host to start the game..."
+	_status_label.visible = true
+	_address_input.visible = false
+	_refresh_player_list()
+
+	_menu.show_choices([
+		{"label": "Leave"},
+	])
+
+
+func _handle_lobby_choice(index: int) -> void:
+	match index:
+		0:  # Leave
+			_confirm_dialog.confirmed.connect(_on_cancel_confirmed, CONNECT_ONE_SHOT)
+			_confirm_dialog.show_confirm("Leave the lobby?")
+
+
+# =============================================================================
+# Player list
+# =============================================================================
+
+func _refresh_player_list() -> void:
+	# Clear existing labels
+	for lbl: Label in _player_labels:
+		lbl.queue_free()
+	_player_labels.clear()
+
+	_player_list.visible = true
+
+	# Header
+	var list_header := Label.new()
+	list_header.text = "Players:"
+	list_header.add_theme_font_size_override("font_size", 20)
+	list_header.add_theme_color_override("font_color", Color(0.6, 0.75, 0.8))
+	_player_list.add_child(list_header)
+	_player_labels.append(list_header)
+
+	# Player entries
+	for peer_id: int in NetManager.peer_names:
+		var name: String = NetManager.peer_names[peer_id]
+		var slots: Array = NetManager.peer_slots.get(peer_id, [])
+		var slot_str: String = ""
+		if not slots.is_empty():
+			var char_nums: Array[String] = []
+			for s: int in slots:
+				char_nums.append("Char %d" % (s + 1))
+			slot_str = " (%s)" % ", ".join(char_nums)
+
+		var lbl := Label.new()
+		lbl.text = "  %s%s%s" % [name, slot_str, " (Host)" if peer_id == 1 else ""]
+		lbl.add_theme_font_size_override("font_size", 18)
+		lbl.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
+		_player_list.add_child(lbl)
+		_player_labels.append(lbl)
+
+
+# =============================================================================
+# Starting the game
+# =============================================================================
+
+func _start_multiplayer_game() -> void:
+	var story: Dictionary = _stories[_story_index]
+	var story_id: String = story.get("story_id", "story_1")
+
+	# Broadcast slot assignments to all peers
+	NetManager.broadcast_slot_assignments()
+
+	# Start the game on all peers
+	_rpc_start_game.rpc(story_id)
+
+
+@rpc("authority", "call_local", "reliable")
+func _rpc_start_game(story_id: String) -> void:
+	GameState.start_new_game(story_id)
+	SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
+
+
+# =============================================================================
+# Callbacks
+# =============================================================================
+
+func _on_player_joined(peer_id: int, player_name: String) -> void:
+	GameLog.info("Lobby: %s (peer %d) joined" % [player_name, peer_id])
+	_refresh_player_list()
+	if _mode == Mode.HOSTING:
+		_show_host_menu()
+
+
+func _on_player_left(peer_id: int, player_name: String) -> void:
+	GameLog.info("Lobby: %s (peer %d) left" % [player_name, peer_id])
+	_refresh_player_list()
+	if _mode == Mode.HOSTING:
+		_show_host_menu()
+
+
+func _on_lobby_ready() -> void:
+	if _mode == Mode.HOSTING:
+		_show_host_menu()  # Refresh to enable Start button
+
+
+func _on_session_ended(reason: String) -> void:
+	_status_label.text = reason
+	_status_label.visible = true
+	_menu.hide_menu()
+	await get_tree().create_timer(2.5).timeout
+	SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _on_cancel_confirmed(accepted: bool) -> void:
+	if accepted:
+		NetManager.leave_session()
+		SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+# Called when guest successfully connects (via NetManager signal forwarding)
+func _on_connected_to_server() -> void:
+	_show_guest_lobby()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_READY:
+		# If we're a guest who just connected, the connected_to_server signal
+		# may fire after _ready. Also connect directly.
+		if NetManager.is_multiplayer_active and not NetManager.is_host:
+			_show_guest_lobby()
