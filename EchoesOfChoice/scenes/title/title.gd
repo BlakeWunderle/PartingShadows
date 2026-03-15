@@ -8,7 +8,7 @@ const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 
-enum Mode { MAIN_MENU, LOAD_SLOTS, SETTINGS }
+enum Mode { MAIN_MENU, PLAY_MODE, LOAD_SLOTS, SETTINGS }
 
 var _title_label: Label
 var _subtitle_label: Label
@@ -155,7 +155,6 @@ func _show_main_menu() -> void:
 	if _has_saves:
 		options.append({"label": "Continue"})
 	options.append({"label": "New Game"})
-	options.append({"label": "Multiplayer"})
 	if _has_saves:
 		options.append({"label": "Load Game"})
 	options.append({"label": "Settings"})
@@ -171,6 +170,8 @@ func _on_menu_choice(index: int) -> void:
 	match _mode:
 		Mode.MAIN_MENU:
 			_handle_main_choice(index)
+		Mode.PLAY_MODE:
+			_handle_play_mode_choice(index)
 		Mode.LOAD_SLOTS:
 			_handle_load_choice(index)
 
@@ -181,7 +182,6 @@ func _handle_main_choice(index: int) -> void:
 	if _has_saves:
 		labels.append("Continue")
 	labels.append("New Game")
-	labels.append("Multiplayer")
 	if _has_saves:
 		labels.append("Load Game")
 	labels.append("Settings")
@@ -199,13 +199,7 @@ func _handle_main_choice(index: int) -> void:
 			else:
 				_show_load_error()
 		"New Game":
-			if UnlockManager.is_unlocked("story_1_complete"):
-				SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
-			else:
-				GameState.start_new_game("story_1")
-				SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
-		"Multiplayer":
-			SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
+			_show_play_mode()
 		"Load Game":
 			_show_load_slots()
 		"Settings":
@@ -227,6 +221,42 @@ func _find_best_continue_slot() -> int:
 		if SaveManager.has_save(i):
 			return i
 	return -1
+
+
+# =============================================================================
+# Play mode submenu (New Game -> Single / Co-op / Online)
+# =============================================================================
+
+func _show_play_mode() -> void:
+	_mode = Mode.PLAY_MODE
+	var options: Array[Dictionary] = [
+		{"label": "Single Player"},
+		{"label": "Local Co-op (2 Players)"},
+		{"label": "Local Co-op (3 Players)"},
+		{"label": "Online Multiplayer"},
+		{"label": "Back"},
+	]
+	_menu.show_choices(options)
+
+
+func _handle_play_mode_choice(index: int) -> void:
+	match index:
+		0:  # Single Player
+			if UnlockManager.is_unlocked("story_1_complete"):
+				SceneManager.change_scene("res://scenes/story_select/story_select.tscn")
+			else:
+				GameState.start_new_game("story_1")
+				SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
+		1:  # Local Co-op (2 Players)
+			LocalCoop.start(2)
+			SceneManager.change_scene("res://scenes/controller_assign/controller_assign.tscn")
+		2:  # Local Co-op (3 Players)
+			LocalCoop.start(3)
+			SceneManager.change_scene("res://scenes/controller_assign/controller_assign.tscn")
+		3:  # Online Multiplayer
+			SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
+		4:  # Back
+			_show_main_menu()
 
 
 # =============================================================================
@@ -263,7 +293,11 @@ func _show_load_slots() -> void:
 		if summary.get("exists", false):
 			var story_title: String = StoryDB.get_story(
 				summary.get("story_id", "story_1")).get("title", "")
-			var mp_tag: String = " [Co-op]" if summary.get("is_multiplayer", false) else ""
+			var mp_tag: String = ""
+			if summary.get("is_local_coop", false):
+				mp_tag = " [Co-op]"
+			elif summary.get("is_multiplayer", false):
+				mp_tag = " [Online]"
 			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s" % [
 				i + 1,
 				summary.get("lead_name", "???"),
@@ -284,7 +318,11 @@ func _show_load_slots() -> void:
 	if auto_summary.get("exists", false):
 		var auto_story: String = StoryDB.get_story(
 			auto_summary.get("story_id", "story_1")).get("title", "")
-		var auto_mp_tag: String = " [Co-op]" if auto_summary.get("is_multiplayer", false) else ""
+		var auto_mp_tag: String = ""
+		if auto_summary.get("is_local_coop", false):
+			auto_mp_tag = " [Co-op]"
+		elif auto_summary.get("is_multiplayer", false):
+			auto_mp_tag = " [Online]"
 		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s" % [
 			auto_summary.get("lead_name", "???"),
 			auto_summary.get("lead_class", "???"),
