@@ -47,6 +47,7 @@ var _portrait_preview_a: TextureRect
 var _portrait_preview_b: TextureRect
 var _portrait_btn_a: Button
 var _portrait_btn_b: Button
+var _player_indicator: Label
 
 
 func _is_s2() -> bool:
@@ -72,6 +73,9 @@ func _ready() -> void:
 		for i: int in range(_class_options.size()):
 			_class_options[i]["label"] = "???"
 	_build_ui()
+	# Pre-assign co-op slots so device gating works during creation
+	if LocalCoop.is_active:
+		LocalCoop.assign_slots(3)
 	_set_state(State.INTRO)
 	if NetManager.is_multiplayer_active:
 		NetManager.player_left.connect(_on_player_left)
@@ -201,6 +205,19 @@ func _build_ui() -> void:
 	_waiting_overlay = WaitingOverlay.new()
 	add_child(_waiting_overlay)
 
+	# Local co-op player indicator (top center)
+	_player_indicator = Label.new()
+	_player_indicator.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_player_indicator.add_theme_font_size_override("font_size", 22)
+	_player_indicator.add_theme_color_override("font_color", Color(0.3, 0.9, 0.5))
+	_player_indicator.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	_player_indicator.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_player_indicator.offset_left = -200
+	_player_indicator.offset_right = 200
+	_player_indicator.offset_top = 16
+	_player_indicator.visible = false
+	add_child(_player_indicator)
+
 
 ## Returns the party index (0, 1, 2) for character creation states, or -1.
 func _state_to_char_index(s: State) -> int:
@@ -230,8 +247,20 @@ func _set_state(new_state: State) -> void:
 	_portrait_container.visible = false
 	_waiting_overlay.hide_waiting()
 
-	# In multiplayer, check if this is a remote player's character input state
 	var char_idx: int = _state_to_char_index(_state)
+
+	# Local co-op: gate input to the owning player for character states
+	if LocalCoop.is_active:
+		if char_idx >= 0:
+			var owner: int = LocalCoop.get_player_for_slot(char_idx)
+			LocalCoop.set_active_player(owner)
+			_player_indicator.text = "Player %d" % (owner + 1)
+			_player_indicator.visible = true
+		else:
+			LocalCoop.clear_active_player()
+			_player_indicator.visible = false
+
+	# In multiplayer, check if this is a remote player's character input state
 	var is_remote_input: bool = (
 		NetManager.is_multiplayer_active
 		and char_idx >= 0
@@ -394,9 +423,11 @@ func _on_portrait_clicked(index: int) -> void:
 	var char_idx: int = _state_to_char_index(_state)
 	var fighter: FighterData = FighterDB.create_player(_current_class_id, _current_name, variant)
 
-	# Set multiplayer ownership
+	# Set ownership
 	if NetManager.is_multiplayer_active:
 		fighter.owner_peer_id = NetManager.get_fighter_owner_peer(char_idx)
+	elif LocalCoop.is_active:
+		fighter.owner_peer_id = LocalCoop.get_player_for_slot(char_idx) + 1
 
 	_party.append(fighter)
 
