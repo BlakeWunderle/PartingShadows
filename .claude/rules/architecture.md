@@ -11,7 +11,7 @@ All paths below are relative to `EchoesOfChoice/`.
 - `ability_db.gd` -- Ability factory: static methods returning AbilityData for enemy abilities
 - `ability_db_player.gd` -- Player ability factory: static methods for all player class abilities
 - `battle_data.gd` -- Battle definition (enemies, narrative text, choices, music_track)
-- `battle_db.gd` -- Battle router: dispatches battle_id to story1/ and story2/ act modules
+- `battle_db.gd` -- Battle router: dispatches battle_id to story1/, story2/, and story3/ act modules
 - `enums.gd` -- Shared enums (ability types, targeting, etc.)
 - `fighter_data.gd` -- Fighter stat model (HP, MP, ATK, DEF, SPD, abilities, buffs/debuffs)
 - `fighter_db.gd` -- Player class factory: base classes (T0), display names, ability lookups
@@ -59,18 +59,21 @@ All paths below are relative to `EchoesOfChoice/`.
 - `game_state.gd` -- Game state: party, battle progression, story tracking, phase tracking
 - `save_manager.gd` -- Multi-slot save system (3 manual + autosave), JSON serialization with story_id, delete_save
 - `unlock_manager.gd` -- Persistent unlock tracking (story completion, reward classes) via user://unlocks.json
-- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, confirmation dialogs, ESC keybinding
+- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, confirmation dialogs, ESC keybinding; multiplayer-aware (no tree pause, hide save, leave session)
 - `settings_manager.gd` -- Global settings persistence (volume, text speed, fullscreen, color blind mode, etc.) via user://settings.json
+- `steam_manager.gd` -- Steam SDK initialization, persona name, overlay detection
+- `net_manager.gd` -- Multiplayer session manager: lobby create/join, peer tracking, slot assignment, transport abstraction (ENet/Steam), disconnect handling with AI takeover
 
 ### Scenes (`scenes/`)
 - `splash/splash.gd/.tscn` -- Wunderelf Studios splash screen, auto-advances to title
-- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Settings/Credits/Quit, version display, confirmation dialogs
+- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Multiplayer/Settings/Credits/Quit, version display, confirmation dialogs
 - `story_select/story_select.gd/.tscn` -- Story selection screen with lock state (New Game submenu)
-- `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops
+- `lobby/lobby.gd/.tscn` -- Multiplayer lobby: host/join, player list, player count toggle (2P/3P), story select, start
+- `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops; multiplayer-aware with per-player creation and waiting overlay
 - `credits/credits.gd/.tscn` -- Scrolling credits scene with music, any-key skip
-- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, defeat choices, story completion unlocks
-- `battle/battle.gd/.tscn` -- ATB battle scene with turn order, buff/debuff indicators
-- `town_stop/town_stop.gd/.tscn` -- Town rest stops between battles with class upgrades
+- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, defeat choices, story completion unlocks; multiplayer: host-only advancement and choices
+- `battle/battle.gd/.tscn` -- ATB battle scene with turn order, buff/debuff indicators; multiplayer: host/guest code paths, remote action RPCs, state sync, disconnect recovery
+- `town_stop/town_stop.gd/.tscn` -- Town rest stops between battles with class upgrades; multiplayer: per-player upgrades with waiting overlay, host-only branch choices
 
 ### Battle Engine (`scripts/battle/`)
 - `battle_engine.gd` -- ATB combat loop, turn resolution, ability execution
@@ -85,6 +88,8 @@ All paths below are relative to `EchoesOfChoice/`.
 - `settings_panel.gd` -- Reusable settings UI (volume sliders, speed/font/color blind dropdowns, toggles)
 - `confirm_dialog.gd` -- Modal Yes/No confirmation dialog with dark teal styling
 - `tip_overlay.gd` -- One-time contextual tutorial tips with JSON persistence (user://tips_seen.json)
+- `portrait_card.gd` -- Fighter portrait card with HP/MP bars, status indicators, active/dead states
+- `waiting_overlay.gd` -- Animated "Waiting for [Player]..." overlay for multiplayer turn waits
 - `virtual_keyboard.gd` -- On-screen keyboard for gamepad text input
 
 ### Tools (`scripts/tools/` and `tools/`)
@@ -96,5 +101,5 @@ All paths below are relative to `EchoesOfChoice/`.
 ### Assets (`assets/`)
 - `audio/music/` -- ~70 music tracks across contexts (menu, battle, battle_dark, battle_scifi, boss, town, cutscene, game_over, victory)
 - `art/ui/` -- Title background, Wunderelf Studios logo
-- `art/battles/` -- 51 battle scene background images
+- `art/battles/` -- 71 battle scene background images
 - `fonts/` -- Oswald-Bold.ttf for game theme
