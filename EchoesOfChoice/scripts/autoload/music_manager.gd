@@ -80,6 +80,7 @@ func play_music(path: String, fade_duration: float = 0.5) -> void:
 
 	_fade_out_player(fade_duration)
 	_player = AudioStreamPlayer.new()
+	_player.bus = &"Music"
 	add_child(_player)
 	_player.stream = stream
 	_player.volume_db = -40.0
