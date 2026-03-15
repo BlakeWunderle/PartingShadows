@@ -16,6 +16,8 @@ var _mp_label: Label
 var _status_label: RichTextLabel
 var _is_enemy: bool = false
 var _fighter_ref: FighterData
+var _hp_tween: Tween
+var _mp_tween: Tween
 
 # Active highlight stylebox
 var _active_style: StyleBoxFlat
@@ -146,6 +148,9 @@ func _build_ui() -> void:
 	_status_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_status_label)
 
+	# Center pivot for death scale animation
+	pivot_offset = Vector2(55, 90)  # Approximate center of card
+
 
 func setup(fighter: FighterData, is_enemy: bool, portrait_tex: Texture2D) -> void:
 	_fighter_ref = fighter
@@ -156,7 +161,7 @@ func setup(fighter: FighterData, is_enemy: bool, portrait_tex: Texture2D) -> voi
 		_portrait.texture = portrait_tex
 
 	_name_label.text = fighter.character_name
-	_update_bars(fighter)
+	_update_bars(fighter, true)
 
 
 func update_display(fighter: FighterData) -> void:
@@ -170,20 +175,36 @@ func set_active(active: bool) -> void:
 
 func set_dead(dead: bool) -> void:
 	if dead:
-		modulate = Color(0.4, 0.4, 0.4, 0.7)
+		if modulate == Color(1, 1, 1, 1) and is_inside_tree():
+			# First time dying -- animate
+			var tw := create_tween().set_parallel(true)
+			tw.tween_property(self, "modulate", Color(0.4, 0.4, 0.4, 0.7), 0.4)
+			tw.tween_property(self, "scale", Vector2(0.95, 0.95), 0.3).set_ease(Tween.EASE_IN)
+		else:
+			modulate = Color(0.4, 0.4, 0.4, 0.7)
 		_status_label.clear()
 	else:
 		modulate = Color(1, 1, 1, 1)
+		scale = Vector2(1, 1)
 
 
 func get_fighter() -> FighterData:
 	return _fighter_ref
 
 
-func _update_bars(fighter: FighterData) -> void:
+func _update_bars(fighter: FighterData, instant: bool = false) -> void:
 	_hp_bar.max_value = fighter.max_health
-	_hp_bar.value = maxi(0, fighter.health)
+	var target_hp: float = float(maxi(0, fighter.health))
 	_hp_label.text = "%d/%d" % [maxi(0, fighter.health), fighter.max_health]
+
+	# Tween HP bar smoothly (instant on first setup)
+	if instant or not is_inside_tree():
+		_hp_bar.value = target_hp
+	else:
+		if _hp_tween and _hp_tween.is_valid():
+			_hp_tween.kill()
+		_hp_tween = create_tween()
+		_hp_tween.tween_property(_hp_bar, "value", target_hp, 0.35).set_ease(Tween.EASE_OUT)
 
 	# Color HP fill based on percentage (color blind aware)
 	var palette: Dictionary = SettingsManager.get_palette()
@@ -197,8 +218,16 @@ func _update_bars(fighter: FighterData) -> void:
 
 	if not _is_enemy:
 		_mp_bar.max_value = fighter.max_mana
-		_mp_bar.value = maxi(0, fighter.mana)
+		var target_mp: float = float(maxi(0, fighter.mana))
 		_mp_label.text = "%d/%d" % [maxi(0, fighter.mana), fighter.max_mana]
+
+		if instant or not is_inside_tree():
+			_mp_bar.value = target_mp
+		else:
+			if _mp_tween and _mp_tween.is_valid():
+				_mp_tween.kill()
+			_mp_tween = create_tween()
+			_mp_tween.tween_property(_mp_bar, "value", target_mp, 0.25).set_ease(Tween.EASE_OUT)
 
 	_update_status(fighter)
 
