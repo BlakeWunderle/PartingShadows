@@ -54,7 +54,9 @@ func _build_save_data() -> Dictionary:
 		"story_id": GameState.current_story_id,
 		"party": party_data,
 		"is_multiplayer": NetManager.is_multiplayer_active,
-		"player_count": NetManager.target_player_count if NetManager.is_multiplayer_active else 1,
+		"is_local_coop": LocalCoop.is_active,
+		"player_count": LocalCoop.player_count if LocalCoop.is_active \
+			else (NetManager.target_player_count if NetManager.is_multiplayer_active else 1),
 	}
 
 
@@ -170,6 +172,7 @@ func get_save_summary(slot: int) -> Dictionary:
 		"battle_id": data.get("current_battle_id", ""),
 		"story_id": data.get("story_id", "story_1"),
 		"is_multiplayer": data.get("is_multiplayer", false),
+		"is_local_coop": data.get("is_local_coop", false),
 		"player_count": int(data.get("player_count", 1)),
 	}
 

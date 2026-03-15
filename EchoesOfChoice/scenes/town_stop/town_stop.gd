@@ -17,6 +17,7 @@ var _tip_overlay: TipOverlay
 var _waiting_overlay: WaitingOverlay
 var _upgrade_label: Label
 var _scene_image: TextureRect
+var _player_indicator: Label
 var _phase: TownPhase = TownPhase.INTRO_TEXT
 var _upgrade_index: int = 0  ## Which party member is choosing
 
@@ -80,6 +81,19 @@ func _build_ui() -> void:
 
 	_waiting_overlay = WaitingOverlay.new()
 	add_child(_waiting_overlay)
+
+	# Local co-op player indicator
+	_player_indicator = Label.new()
+	_player_indicator.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_player_indicator.add_theme_font_size_override("font_size", 22)
+	_player_indicator.add_theme_color_override("font_color", Color(0.3, 0.9, 0.5))
+	_player_indicator.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	_player_indicator.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_player_indicator.offset_left = -200
+	_player_indicator.offset_right = 200
+	_player_indicator.offset_top = 16
+	_player_indicator.visible = false
+	add_child(_player_indicator)
 
 
 func _start_town() -> void:
@@ -145,6 +159,13 @@ func _show_next_upgrade() -> void:
 	var fighter: FighterData = GameState.party[_upgrade_index]
 	_phase = TownPhase.UPGRADING
 
+	# Local co-op: gate input to the owning player
+	if LocalCoop.is_active:
+		var owner: int = LocalCoop.get_player_for_slot(_upgrade_index)
+		LocalCoop.set_active_player(owner)
+		_player_indicator.text = "Player %d" % (owner + 1)
+		_player_indicator.visible = true
+
 	# In multiplayer, check if this character belongs to a remote player
 	if NetManager.is_multiplayer_active and not NetManager.is_my_fighter(_upgrade_index):
 		var owner_name: String = NetManager.get_fighter_owner_name(_upgrade_index)
@@ -178,6 +199,10 @@ func _on_choice_selected(index: int) -> void:
 
 
 func _on_upgrade_selected(index: int) -> void:
+	if LocalCoop.is_active:
+		LocalCoop.clear_active_player()
+		_player_indicator.visible = false
+
 	var fighter: FighterData = GameState.party[_upgrade_index]
 	var item: String = fighter.upgrade_items[index]
 
