@@ -759,17 +759,20 @@ func _display_turn_order() -> void:
 # =============================================================================
 
 func _get_portrait_texture(fighter: FighterData) -> Texture2D:
-	var key: String = fighter.character_type
+	var key: String
 	if fighter.is_user_controlled:
-		key += "_" + fighter.portrait_variant
+		key = fighter.character_type + "_" + fighter.portrait_variant
+	else:
+		key = fighter.class_id if not fighter.class_id.is_empty() else fighter.character_type
 	if _portrait_cache.has(key):
 		return _portrait_cache[key]
 
-	var slug: String = fighter.character_type.to_lower().replace(" ", "_")
 	var path: String
 	if fighter.is_user_controlled:
+		var slug: String = fighter.character_type.to_lower().replace(" ", "_")
 		path = "res://assets/art/portraits/classes/%s_%s.png" % [slug, fighter.portrait_variant]
 	else:
+		var slug: String = key.to_snake_case()
 		path = "res://assets/art/portraits/enemies/%s.png" % slug
 
 	var tex: Texture2D = null
