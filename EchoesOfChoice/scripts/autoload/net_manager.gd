@@ -197,7 +197,18 @@ func _on_peer_disconnected(peer_id: int) -> void:
 	GameLog.info("NetManager: Peer %d ('%s') disconnected" % [peer_id, name])
 	if is_host:
 		player_count -= 1
-		# Keep their slot assignment for reconnection, but notify
+		# Reassign disconnected peer's slots to host (AI takeover)
+		var lost_slots: Array = peer_slots.get(peer_id, [])
+		if not lost_slots.is_empty():
+			peer_slots.erase(peer_id)
+			var host_slots: Array = peer_slots.get(1, [])
+			for s: int in lost_slots:
+				if s not in host_slots:
+					host_slots.append(s)
+			peer_slots[1] = host_slots
+			my_slots = host_slots
+			GameLog.info("NetManager: Reassigned slots %s to host" % str(lost_slots))
+		peer_names.erase(peer_id)
 		player_left.emit(peer_id, name)
 
 

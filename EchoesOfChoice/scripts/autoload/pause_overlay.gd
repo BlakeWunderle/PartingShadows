@@ -16,6 +16,8 @@ var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
 var _settings_panel: SettingsPanel
 var _resume_btn: Button
+var _save_btn: Button
+var _title_btn: Button
 var _feedback_label: Label
 var _confirm_dialog: ConfirmDialog
 var _pending_save_slot: int = -1
@@ -83,9 +85,9 @@ func _build_ui() -> void:
 	_resume_btn.pressed.connect(_resume)
 	_main_vbox.add_child(_resume_btn)
 
-	var save_btn := _make_button("Save")
-	save_btn.pressed.connect(_show_save_slots)
-	_main_vbox.add_child(save_btn)
+	_save_btn = _make_button("Save")
+	_save_btn.pressed.connect(_show_save_slots)
+	_main_vbox.add_child(_save_btn)
 
 	var settings_btn := _make_button("Settings")
 	settings_btn.pressed.connect(_show_settings)
@@ -95,9 +97,9 @@ func _build_ui() -> void:
 	logs_btn.pressed.connect(_copy_logs)
 	_main_vbox.add_child(logs_btn)
 
-	var title_btn := _make_button("Quit to Title")
-	title_btn.pressed.connect(_quit_to_title)
-	_main_vbox.add_child(title_btn)
+	_title_btn = _make_button("Quit to Title")
+	_title_btn.pressed.connect(_quit_to_title)
+	_main_vbox.add_child(_title_btn)
 
 	var quit_btn := _make_button("Quit Game")
 	quit_btn.pressed.connect(_quit_game)
@@ -175,19 +177,32 @@ func _show_pause() -> void:
 	_main_vbox.visible = true
 	_save_vbox.visible = false
 	_settings_panel.visible = false
-	get_tree().paused = true
+
+	# In multiplayer: don't pause the tree (breaks networking), hide save, relabel quit
+	if NetManager.is_multiplayer_active:
+		_save_btn.visible = false
+		_title_btn.text = "Leave Session"
+	else:
+		_save_btn.visible = true
+		_title_btn.text = "Quit to Title"
+		get_tree().paused = true
+
 	_resume_btn.grab_focus()
 
 
 func _resume() -> void:
 	_mode = Mode.HIDDEN
 	_panel.visible = false
-	get_tree().paused = false
+	if not NetManager.is_multiplayer_active:
+		get_tree().paused = false
 
 
 func _quit_to_title() -> void:
 	_confirm_dialog.confirmed.connect(_on_quit_to_title_confirmed, CONNECT_ONE_SHOT)
-	_confirm_dialog.show_confirm("Return to title? Unsaved progress will be lost.")
+	if NetManager.is_multiplayer_active:
+		_confirm_dialog.show_confirm("Leave the multiplayer session?")
+	else:
+		_confirm_dialog.show_confirm("Return to title? Unsaved progress will be lost.")
 
 
 func _on_quit_to_title_confirmed(accepted: bool) -> void:
@@ -195,7 +210,10 @@ func _on_quit_to_title_confirmed(accepted: bool) -> void:
 		return
 	_mode = Mode.HIDDEN
 	_panel.visible = false
-	get_tree().paused = false
+	if not NetManager.is_multiplayer_active:
+		get_tree().paused = false
+	else:
+		NetManager.leave_session()
 	GameState.game_phase = GameState.GamePhase.TITLE
 	SceneManager.change_scene("res://scenes/title/title.tscn")
 

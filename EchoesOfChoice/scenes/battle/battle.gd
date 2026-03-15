@@ -235,6 +235,9 @@ func _start_battle() -> void:
 	_engine.battle_won.connect(_on_battle_won)
 	_engine.battle_lost.connect(_on_battle_lost)
 
+	if NetManager.is_multiplayer_active and NetManager.is_host:
+		NetManager.player_left.connect(_on_peer_left_mid_battle)
+
 	var battle: BattleData = GameState.current_battle
 	_escape_hp_pct = battle.escape_hp_pct
 	_boss_escaped = false
@@ -1088,3 +1091,12 @@ func _rpc_battle_ended(won: bool) -> void:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_combat_log(text: String) -> void:
 	_add_log(text)
+
+
+## Handle peer disconnect during battle. If we're awaiting their action, emit
+## a fallback attack so the tick loop can continue.
+func _on_peer_left_mid_battle(_peer_id: int, player_name: String) -> void:
+	_add_log("[color=yellow]%s disconnected. AI will take over.[/color]" % player_name)
+	# If we're waiting for a remote action, unblock the tick loop
+	if _phase == Phase.PLAYER_ACTION and _waiting_overlay.visible:
+		_remote_action_received.emit({"type": "attack", "target_index": 0})
