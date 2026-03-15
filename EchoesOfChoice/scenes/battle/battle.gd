@@ -52,7 +52,6 @@ var _scene_image: TextureRect
 var _gradient_overlay: TextureRect
 var _action_text: RichTextLabel
 var _action_menu: ChoiceMenu
-var _turn_label: Label
 var _stats_panel: StatsPanel
 var _party_cards_box: HBoxContainer
 var _enemy_cards_box: HBoxContainer
@@ -101,12 +100,18 @@ func _build_ui() -> void:
 	_gradient_overlay.texture = grad
 	add_child(_gradient_overlay)
 
-	# UI root -- layered on top of scene image
+	# UI root -- layered on top of scene image with bottom padding
+	var ui_margin := MarginContainer.new()
+	ui_margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ui_margin.add_theme_constant_override("margin_bottom", 16)
+	ui_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(ui_margin)
+
 	var ui_root := VBoxContainer.new()
-	ui_root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	ui_root.add_theme_constant_override("separation", 4)
+	ui_root.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	ui_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(ui_root)
+	ui_margin.add_child(ui_root)
 
 	# Scene spacer -- pushes UI content to bottom half
 	var scene_spacer := Control.new()
@@ -173,13 +178,6 @@ func _build_ui() -> void:
 	log_panel.add_theme_constant_override("separation", 2)
 	bottom_row.add_child(log_panel)
 
-	# Turn indicator (above combat log)
-	_turn_label = Label.new()
-	_turn_label.add_theme_font_size_override("font_size", 14)
-	_turn_label.custom_minimum_size = Vector2(0, 20)
-	_turn_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	log_panel.add_child(_turn_label)
-
 	_action_text = RichTextLabel.new()
 	_action_text.bbcode_enabled = true
 	_action_text.fit_content = false
@@ -187,7 +185,7 @@ func _build_ui() -> void:
 	_action_text.scroll_following = true
 	_action_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_action_text.add_theme_font_size_override("normal_font_size", 14)
-	_action_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_action_text.mouse_filter = Control.MOUSE_FILTER_STOP
 	log_panel.add_child(_action_text)
 
 	# Right side: action menu (bottom-aligned so content sits at bottom edge)
@@ -343,8 +341,9 @@ func _tick_loop() -> void:
 				_show_action_menu(actor)
 				await _player_turn_done
 			else:
-				# AI turn
+				# AI turn -- brief pause so player can read the turn announcement
 				_phase = Phase.AI_ACTING
+				await get_tree().create_timer(COMBAT_PAUSE * 0.5).timeout
 				var is_party: bool = _engine.units.has(actor)
 				var targets: Array = _engine.enemies if is_party else _engine.units
 				var allies: Array = _engine.units if is_party else _engine.enemies
@@ -393,9 +392,6 @@ func _is_ability_available(fighter: FighterData, ability: AbilityData) -> bool:
 # =============================================================================
 
 func _show_action_menu(actor: FighterData) -> void:
-	_turn_label.text = "[%s the %s]" % [actor.character_name, actor.character_type]
-	_turn_label.visible = true
-
 	var has_available: bool = false
 	for a: AbilityData in actor.abilities:
 		if _is_ability_available(actor, a):
@@ -411,7 +407,6 @@ func _show_action_menu(actor: FighterData) -> void:
 
 func _on_action_selected(index: int) -> void:
 	_action_menu.hide_menu()
-	_turn_label.visible = false
 
 	# Map index accounting for possibly missing Ability option
 	var has_available: bool = false
@@ -479,7 +474,6 @@ func _on_target_selected(index: int) -> void:
 	_action_menu.choice_selected.disconnect(_on_target_selected)
 	_action_menu.choice_selected.connect(_on_action_selected)
 	_action_menu.hide_menu()
-	_turn_label.visible = false
 
 	match _phase:
 		Phase.PLAYER_TARGET_ATTACK:

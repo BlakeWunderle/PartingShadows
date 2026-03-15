@@ -6,7 +6,7 @@ class_name ChoiceMenu extends VBoxContainer
 signal choice_selected(index: int)
 
 const BUTTON_MIN_SIZE := Vector2(320, 48)
-const GRID_BUTTON_MIN_SIZE := Vector2(180, 44)
+const GRID_BUTTON_MIN_SIZE := Vector2(180, 64)
 
 var _buttons: Array[Button] = []
 var _grid: GridContainer
@@ -32,6 +32,8 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 		_grid.columns = 2
 		_grid.add_theme_constant_override("h_separation", 12)
 		_grid.add_theme_constant_override("v_separation", 8)
+		# Fixed height for 2 rows so grid never resizes between menus
+		_grid.custom_minimum_size.y = GRID_BUTTON_MIN_SIZE.y * 2 + 8
 		add_child(_grid)
 		btn_parent = _grid
 
