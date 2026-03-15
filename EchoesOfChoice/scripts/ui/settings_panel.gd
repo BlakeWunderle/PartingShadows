@@ -12,7 +12,9 @@ var _master_label: Label
 var _text_speed_btn: OptionButton
 var _battle_speed_btn: OptionButton
 var _font_size_btn: OptionButton
-var _fullscreen_btn: CheckButton
+var _display_mode_btn: OptionButton
+var _resolution_btn: OptionButton
+var _resolution_row: HBoxContainer
 var _color_blind_btn: OptionButton
 var _screen_reader_btn: CheckButton
 
@@ -22,6 +24,10 @@ const BATTLE_SPEEDS: Array[float] = [1.8, 1.2, 0.6]
 const BATTLE_SPEED_LABELS: Array[String] = ["Slow", "Normal", "Fast"]
 const FONT_SIZES: Array[int] = [14, 18, 22, 26]
 const FONT_SIZE_LABELS: Array[String] = ["Small", "Normal", "Large", "Extra Large"]
+const DISPLAY_MODES: Array[String] = ["fullscreen", "borderless", "windowed"]
+const DISPLAY_MODE_LABELS: Array[String] = ["Fullscreen", "Borderless Window", "Windowed"]
+const RESOLUTIONS: Array[String] = ["1280x720", "1366x768", "1600x900", "1920x1080", "2560x1440"]
+const RESOLUTION_LABELS: Array[String] = ["1280 x 720", "1366 x 768", "1600 x 900", "1920 x 1080", "2560 x 1440"]
 const COLOR_BLIND_MODES: Array[String] = ["normal", "deuteranopia", "protanopia", "tritanopia"]
 const COLOR_BLIND_LABELS: Array[String] = ["Normal", "Deuteranopia", "Protanopia", "Tritanopia"]
 
@@ -83,10 +89,15 @@ func _build_ui() -> void:
 	_add_dropdown_row(inner, "Font Size", _font_size_btn, FONT_SIZE_LABELS)
 	_font_size_btn.item_selected.connect(_on_font_size_selected)
 
-	# Fullscreen
-	_fullscreen_btn = CheckButton.new()
-	_add_toggle_row(inner, "Fullscreen", _fullscreen_btn)
-	_fullscreen_btn.toggled.connect(_on_fullscreen_toggled)
+	# Display Mode
+	_display_mode_btn = OptionButton.new()
+	_add_dropdown_row(inner, "Display Mode", _display_mode_btn, DISPLAY_MODE_LABELS)
+	_display_mode_btn.item_selected.connect(_on_display_mode_selected)
+
+	# Resolution (only visible in windowed mode)
+	_resolution_btn = OptionButton.new()
+	_resolution_row = _add_dropdown_row(inner, "Resolution", _resolution_btn, RESOLUTION_LABELS)
+	_resolution_btn.item_selected.connect(_on_resolution_selected)
 
 	# Color Blind Mode
 	_color_blind_btn = OptionButton.new()
@@ -135,7 +146,7 @@ func _add_slider_row(parent: VBoxContainer, label_text: String, slider: HSlider,
 	row.add_child(value_label)
 
 
-func _add_dropdown_row(parent: VBoxContainer, label_text: String, option_btn: OptionButton, items: Array) -> void:
+func _add_dropdown_row(parent: VBoxContainer, label_text: String, option_btn: OptionButton, items: Array) -> HBoxContainer:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 8)
 	parent.add_child(row)
@@ -149,6 +160,7 @@ func _add_dropdown_row(parent: VBoxContainer, label_text: String, option_btn: Op
 		option_btn.add_item(item)
 	option_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(option_btn)
+	return row
 
 
 func _add_toggle_row(parent: VBoxContainer, label_text: String, check_btn: CheckButton) -> void:
@@ -189,7 +201,9 @@ func _sync_from_settings() -> void:
 	_battle_speed_btn.select(_find_index(BATTLE_SPEEDS, SettingsManager.combat_pause, 1))
 	_font_size_btn.select(_find_index_int(FONT_SIZES, SettingsManager.font_size, 1))
 
-	_fullscreen_btn.set_pressed_no_signal(SettingsManager.fullscreen)
+	_display_mode_btn.select(_find_index_str(DISPLAY_MODES, SettingsManager.display_mode, 0))
+	_resolution_btn.select(_find_index_str(RESOLUTIONS, SettingsManager.resolution, 0))
+	_resolution_row.visible = SettingsManager.display_mode == "windowed"
 	_color_blind_btn.select(_find_index_str(COLOR_BLIND_MODES, SettingsManager.color_blind_mode, 0))
 	_screen_reader_btn.set_pressed_no_signal(SettingsManager.screen_reader)
 
@@ -241,8 +255,13 @@ func _on_font_size_selected(index: int) -> void:
 	SettingsManager.font_size = FONT_SIZES[index]
 
 
-func _on_fullscreen_toggled(pressed: bool) -> void:
-	SettingsManager.fullscreen = pressed
+func _on_display_mode_selected(index: int) -> void:
+	SettingsManager.display_mode = DISPLAY_MODES[index]
+	_resolution_row.visible = DISPLAY_MODES[index] == "windowed"
+
+
+func _on_resolution_selected(index: int) -> void:
+	SettingsManager.resolution = RESOLUTIONS[index]
 
 
 func _on_color_blind_selected(index: int) -> void:

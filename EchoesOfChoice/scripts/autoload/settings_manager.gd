@@ -10,7 +10,8 @@ const SETTINGS_PATH := "user://settings.json"
 signal music_volume_changed(linear: float)
 signal master_volume_changed(linear: float)
 signal text_speed_changed(delay: float)
-signal fullscreen_changed(enabled: bool)
+signal display_mode_changed(mode: String)
+signal resolution_changed(res: Vector2i)
 signal combat_pause_changed(seconds: float)
 signal font_size_changed(size: int)
 signal color_blind_mode_changed(mode: String)
@@ -21,7 +22,8 @@ signal screen_reader_changed(enabled: bool)
 const DEFAULT_MUSIC_VOLUME := 0.8
 const DEFAULT_MASTER_VOLUME := 1.0
 const DEFAULT_TEXT_SPEED := 0.02
-const DEFAULT_FULLSCREEN := true
+const DEFAULT_DISPLAY_MODE := "fullscreen"
+const DEFAULT_RESOLUTION := "1280x720"
 const DEFAULT_COMBAT_PAUSE := 1.2
 const DEFAULT_FONT_SIZE := 18
 const DEFAULT_COLOR_BLIND_MODE := "normal"
@@ -55,12 +57,22 @@ var text_speed: float = DEFAULT_TEXT_SPEED:
 		text_speed_changed.emit(v)
 		_save()
 
-var fullscreen: bool = DEFAULT_FULLSCREEN:
+var display_mode: String = DEFAULT_DISPLAY_MODE:
 	set(v):
-		if fullscreen == v:
+		if display_mode == v:
 			return
-		fullscreen = v
-		fullscreen_changed.emit(v)
+		display_mode = v
+		_apply_display()
+		display_mode_changed.emit(v)
+		_save()
+
+var resolution: String = DEFAULT_RESOLUTION:
+	set(v):
+		if resolution == v:
+			return
+		resolution = v
+		_apply_display()
+		resolution_changed.emit(parse_resolution(v))
 		_save()
 
 var combat_pause: float = DEFAULT_COMBAT_PAUSE:
@@ -149,7 +161,8 @@ func reset_defaults() -> void:
 	music_volume = DEFAULT_MUSIC_VOLUME
 	master_volume = DEFAULT_MASTER_VOLUME
 	text_speed = DEFAULT_TEXT_SPEED
-	fullscreen = DEFAULT_FULLSCREEN
+	display_mode = DEFAULT_DISPLAY_MODE
+	resolution = DEFAULT_RESOLUTION
 	combat_pause = DEFAULT_COMBAT_PAUSE
 	font_size = DEFAULT_FONT_SIZE
 	color_blind_mode = DEFAULT_COLOR_BLIND_MODE
@@ -172,7 +185,14 @@ func _load() -> void:
 	music_volume = data.get("music_volume", DEFAULT_MUSIC_VOLUME)
 	master_volume = data.get("master_volume", DEFAULT_MASTER_VOLUME)
 	text_speed = data.get("text_speed", DEFAULT_TEXT_SPEED)
-	fullscreen = data.get("fullscreen", DEFAULT_FULLSCREEN)
+	# Backward compat: old saves have "fullscreen" bool, new saves have "display_mode"
+	if data.has("display_mode"):
+		display_mode = data.get("display_mode", DEFAULT_DISPLAY_MODE)
+	elif data.get("fullscreen", true):
+		display_mode = "fullscreen"
+	else:
+		display_mode = "windowed"
+	resolution = data.get("resolution", DEFAULT_RESOLUTION)
 	combat_pause = data.get("combat_pause", DEFAULT_COMBAT_PAUSE)
 	font_size = int(data.get("font_size", DEFAULT_FONT_SIZE))
 	color_blind_mode = data.get("color_blind_mode", DEFAULT_COLOR_BLIND_MODE)
@@ -184,7 +204,8 @@ func _save() -> void:
 		"music_volume": music_volume,
 		"master_volume": master_volume,
 		"text_speed": text_speed,
-		"fullscreen": fullscreen,
+		"display_mode": display_mode,
+		"resolution": resolution,
 		"combat_pause": combat_pause,
 		"font_size": font_size,
 		"color_blind_mode": color_blind_mode,
@@ -201,9 +222,30 @@ func _apply_all() -> void:
 	AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, master_volume)))
 	# Apply music volume
 	music_volume_changed.emit(music_volume)
-	# Apply fullscreen
-	if fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		DisplayServer.window_set_size(Vector2i(1280, 720))
+	# Apply display
+	_apply_display()
+
+
+func _apply_display() -> void:
+	match display_mode:
+		"fullscreen":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		"borderless":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+		"windowed":
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+			DisplayServer.window_set_size(parse_resolution(resolution))
+			# Center window on screen
+			var screen_size: Vector2i = DisplayServer.screen_get_size()
+			var win_size: Vector2i = parse_resolution(resolution)
+			var pos: Vector2i = (screen_size - win_size) / 2
+			DisplayServer.window_set_position(pos)
+
+
+static func parse_resolution(res_str: String) -> Vector2i:
+	var parts: PackedStringArray = res_str.split("x")
+	if parts.size() == 2:
+		return Vector2i(int(parts[0]), int(parts[1]))
+	return Vector2i(1280, 720)

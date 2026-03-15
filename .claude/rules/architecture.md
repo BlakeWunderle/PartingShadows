@@ -59,24 +59,26 @@ All paths below are relative to `EchoesOfChoice/`.
 - `game_state.gd` -- Game state: party, battle progression, story tracking, phase tracking
 - `save_manager.gd` -- Multi-slot save system (3 manual + autosave), JSON serialization with story_id, delete_save
 - `unlock_manager.gd` -- Persistent unlock tracking (story completion, reward classes) via user://unlocks.json
-- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, confirmation dialogs, ESC keybinding; multiplayer-aware (no tree pause, hide save, leave session)
-- `settings_manager.gd` -- Global settings persistence (volume, text speed, fullscreen, color blind mode, etc.) via user://settings.json
+- `pause_overlay.gd` -- CanvasLayer pause menu with save, settings sub-menus, confirmation dialogs, ESC keybinding; multiplayer-aware (no tree pause, hide save, leave session); Open to Multiplayer with fighter picker
+- `settings_manager.gd` -- Global settings persistence (volume, text speed, display mode, resolution, color blind mode with HP/MP/buff/debuff palettes, etc.) via user://settings.json
 - `steam_manager.gd` -- Steam SDK initialization, persona name, overlay detection
-- `net_manager.gd` -- Multiplayer session manager: lobby create/join, peer tracking, slot assignment, transport abstraction (ENet/Steam), disconnect handling with AI takeover
+- `net_manager.gd` -- Multiplayer session manager: lobby create/join, peer tracking, slot assignment, transport abstraction (ENet/Steam), disconnect handling with AI takeover, game state broadcast for mid-game join
+- `local_coop.gd` -- Local co-op manager: device tracking, input gating via _input() filter, slot-to-player mapping, active player control
 
 ### Scenes (`scenes/`)
 - `splash/splash.gd/.tscn` -- Wunderelf Studios splash screen, auto-advances to title
-- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Multiplayer/Settings/Credits/Quit, version display, confirmation dialogs
+- `title/title.gd/.tscn` -- Title screen with Continue/Load Game/New Game/Settings/Credits/Quit; New Game opens play mode submenu (Single/Co-op 2P/Co-op 3P/Online)
 - `story_select/story_select.gd/.tscn` -- Story selection screen with lock state (New Game submenu)
-- `lobby/lobby.gd/.tscn` -- Multiplayer lobby: host/join, player list, player count toggle (2P/3P), story select, start
-- `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops; multiplayer-aware with per-player creation and waiting overlay
+- `controller_assign/controller_assign.gd/.tscn` -- Local co-op controller assignment: device registration, New Story/Load Save/Back menu
+- `lobby/lobby.gd/.tscn` -- Multiplayer lobby: host/join, player list, player count toggle (2P/3P), story select, load save, fighter picker, start
+- `party_creation/party_creation.gd/.tscn` -- Tavern intro + 3 character creation loops; multiplayer-aware with per-player creation and waiting overlay; local co-op device gating with player indicator
 - `credits/credits.gd/.tscn` -- Scrolling credits scene with music, any-key skip
-- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, defeat choices, story completion unlocks; multiplayer: host-only advancement and choices
-- `battle/battle.gd/.tscn` -- ATB battle scene with turn order, buff/debuff indicators; multiplayer: host/guest code paths, remote action RPCs, state sync, disconnect recovery
-- `town_stop/town_stop.gd/.tscn` -- Town rest stops between battles with class upgrades; multiplayer: per-player upgrades with waiting overlay, host-only branch choices
+- `narrative/narrative.gd/.tscn` -- Pre/post-battle narrative text, branch choices, endings, defeat choices, story completion unlocks; multiplayer ready gate, branch voting
+- `battle/battle.gd/.tscn` -- ATB battle scene with turn order, buff/debuff indicators; multiplayer: host/guest code paths, remote action RPCs, state sync, disconnect recovery; local co-op device-gated turns
+- `town_stop/town_stop.gd/.tscn` -- Town rest stops between battles with class upgrades; multiplayer ready gate, per-player upgrades, branch voting
 
 ### Battle Engine (`scripts/battle/`)
-- `battle_engine.gd` -- ATB combat loop, turn resolution, ability execution
+- `battle_engine.gd` -- ATB combat loop, turn resolution, ability execution, combat_event signal for floating damage numbers
 
 ### UI (`scripts/ui/`)
 - `dialogue_panel.gd` -- Typewriter text display with configurable speed, input guards
@@ -88,9 +90,12 @@ All paths below are relative to `EchoesOfChoice/`.
 - `settings_panel.gd` -- Reusable settings UI (volume sliders, speed/font/color blind dropdowns, toggles)
 - `confirm_dialog.gd` -- Modal Yes/No confirmation dialog with dark teal styling
 - `tip_overlay.gd` -- One-time contextual tutorial tips with JSON persistence (user://tips_seen.json)
-- `portrait_card.gd` -- Fighter portrait card with HP/MP bars, status indicators, active/dead states
+- `portrait_card.gd` -- Fighter portrait card with tweened HP/MP bars, floating damage numbers, death animation, status indicators, screen reader tooltips
 - `waiting_overlay.gd` -- Animated "Waiting for [Player]..." overlay for multiplayer turn waits
 - `virtual_keyboard.gd` -- On-screen keyboard for gamepad text input
+- `fighter_picker.gd` -- Multiplayer fighter slot assignment overlay with host cycling and RPC sync
+- `ready_gate.gd` -- Multi-player ready gate: blocks progression until all players confirm (local co-op + online)
+- `vote_panel.gd` -- Multi-player branch voting: sequential (local co-op) or simultaneous (online) with majority/random tie-break
 
 ### Tools (`scripts/tools/` and `tools/`)
 - `scripts/tools/battle_stage_db.gd` -- Battle stage definitions for balance simulator
