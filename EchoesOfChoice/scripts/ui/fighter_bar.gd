@@ -98,7 +98,7 @@ func update_display(fighter: FighterData) -> void:
 		_mp_bar.max_value = fighter.max_mana
 		_mp_bar.value = maxi(0, fighter.mana)
 		_mp_label.text = "%d/%d" % [maxi(0, fighter.mana), fighter.max_mana]
-		_mp_bar.modulate = Color(0.3, 0.5, 0.9)  # Blue
+		_mp_bar.modulate = palette["mp"]
 
 	_update_status(fighter)
 

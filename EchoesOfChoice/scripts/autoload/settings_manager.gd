@@ -97,12 +97,13 @@ var screen_reader: bool = DEFAULT_SCREEN_READER:
 
 # -- Color Blind Palettes ---------------------------------------------------
 
-# Each palette: { hp_high, hp_mid, hp_low, buff, debuff }
+# Each palette: { hp_high, hp_mid, hp_low, mp, buff, debuff }
 const COLOR_PALETTES: Dictionary = {
 	"normal": {
 		"hp_high": Color(0.2, 0.9, 0.2),
 		"hp_mid": Color(0.9, 0.9, 0.2),
 		"hp_low": Color(0.9, 0.2, 0.2),
+		"mp": Color(0.3, 0.5, 0.9),
 		"buff": Color(0.5, 1.0, 0.5),
 		"debuff": Color(1.0, 0.5, 0.5),
 	},
@@ -110,6 +111,7 @@ const COLOR_PALETTES: Dictionary = {
 		"hp_high": Color(0.3, 0.6, 1.0),
 		"hp_mid": Color(1.0, 0.8, 0.3),
 		"hp_low": Color(1.0, 0.4, 0.3),
+		"mp": Color(0.6, 0.4, 0.9),
 		"buff": Color(0.4, 0.7, 1.0),
 		"debuff": Color(1.0, 0.6, 0.3),
 	},
@@ -117,6 +119,7 @@ const COLOR_PALETTES: Dictionary = {
 		"hp_high": Color(0.3, 0.6, 1.0),
 		"hp_mid": Color(1.0, 0.85, 0.3),
 		"hp_low": Color(0.9, 0.4, 0.6),
+		"mp": Color(0.6, 0.4, 0.9),
 		"buff": Color(0.4, 0.7, 1.0),
 		"debuff": Color(0.9, 0.5, 0.6),
 	},
@@ -124,6 +127,7 @@ const COLOR_PALETTES: Dictionary = {
 		"hp_high": Color(0.3, 0.85, 0.85),
 		"hp_mid": Color(0.9, 0.5, 0.7),
 		"hp_low": Color(0.9, 0.2, 0.2),
+		"mp": Color(0.3, 0.5, 0.9),
 		"buff": Color(0.4, 0.9, 0.9),
 		"debuff": Color(0.9, 0.5, 0.6),
 	},

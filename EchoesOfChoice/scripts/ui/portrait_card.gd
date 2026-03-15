@@ -249,7 +249,32 @@ func _update_bars(fighter: FighterData, instant: bool = false) -> void:
 			_mp_tween = create_tween()
 			_mp_tween.tween_property(_mp_bar, "value", target_mp, 0.25).set_ease(Tween.EASE_OUT)
 
+		_mp_fill.bg_color = palette["mp"]
+
 	_update_status(fighter)
+	_update_tooltip(fighter)
+
+
+func _update_tooltip(fighter: FighterData) -> void:
+	if not SettingsManager.screen_reader:
+		tooltip_text = ""
+		return
+	var tip: String = "%s: HP %d/%d" % [fighter.character_name, maxi(0, fighter.health), fighter.max_health]
+	if not _is_enemy:
+		tip += ", MP %d/%d" % [maxi(0, fighter.mana), fighter.max_mana]
+	if not fighter.modified_stats.is_empty():
+		var status_parts: Array[String] = []
+		for mod: Dictionary in fighter.modified_stats:
+			var stat: Enums.StatType = mod["stat"]
+			var dpt: int = mod.get("damage_per_turn", 0)
+			if dpt > 0:
+				status_parts.append("DOT %d" % dpt)
+			elif stat == Enums.StatType.TAUNT:
+				status_parts.append("TAUNT")
+			else:
+				status_parts.append(_stat_abbrev(stat))
+		tip += ", Status: " + ", ".join(status_parts)
+	tooltip_text = tip
 
 
 func _update_status(fighter: FighterData) -> void:
