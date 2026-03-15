@@ -7,6 +7,7 @@ const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const NameInput := preload("res://scripts/ui/name_input.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
+const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 
@@ -38,6 +39,7 @@ var _dialogue: DialoguePanel
 var _name_input: NameInput
 var _choice_menu: ChoiceMenu
 var _tip_overlay: TipOverlay
+var _waiting_overlay: WaitingOverlay
 var _scene_image: TextureRect
 var _vbox: VBoxContainer
 var _portrait_container: HBoxContainer
@@ -181,6 +183,29 @@ func _build_ui() -> void:
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
 
+	_waiting_overlay = WaitingOverlay.new()
+	add_child(_waiting_overlay)
+
+
+## Returns the party index (0, 1, 2) for character creation states, or -1.
+func _state_to_char_index(s: State) -> int:
+	match s:
+		State.NAME_1, State.CLASS_1, State.PORTRAIT_1:
+			return 0
+		State.NAME_2, State.CLASS_2, State.PORTRAIT_2:
+			return 1
+		State.NAME_3, State.CLASS_3, State.PORTRAIT_3:
+			return 2
+	return -1
+
+
+## Returns true if the current state's character belongs to this local player.
+func _is_my_character_state() -> bool:
+	var idx: int = _state_to_char_index(_state)
+	if idx < 0:
+		return true  # Non-character states (dialogue, etc.) are always "mine"
+	return NetManager.is_my_fighter(idx)
+
 
 func _set_state(new_state: State) -> void:
 	_state = new_state
@@ -188,6 +213,21 @@ func _set_state(new_state: State) -> void:
 	_name_input.visible = false
 	_choice_menu.visible = false
 	_portrait_container.visible = false
+	_waiting_overlay.hide_waiting()
+
+	# In multiplayer, check if this is a remote player's character input state
+	var char_idx: int = _state_to_char_index(_state)
+	var is_remote_input: bool = (
+		NetManager.is_multiplayer_active
+		and char_idx >= 0
+		and not NetManager.is_my_fighter(char_idx)
+	)
+
+	if is_remote_input:
+		# Show waiting overlay instead of input UI
+		var owner_name: String = NetManager.get_fighter_owner_name(char_idx)
+		_waiting_overlay.show_waiting(owner_name)
+		return
 
 	match _state:
 		State.INTRO:
@@ -241,32 +281,38 @@ func _show_dialogue(lines: Array) -> void:
 
 
 func _on_text_finished() -> void:
+	# In multiplayer, only the host advances dialogue states
+	if NetManager.is_multiplayer_active and not NetManager.is_host:
+		return
+
 	match _state:
 		State.INTRO:
-			_set_state(State.NAME_1)
+			_mp_set_state(State.NAME_1)
 		State.CLASS_1, State.CLASS_2, State.CLASS_3:
 			_dialogue.visible = false
-			_choice_menu.show_choices(_class_options)
-			if _state == State.CLASS_1:
-				_tip_overlay.show_tip_once("party_classes",
-					"Each class has unique abilities and a different combat role. " +
-					"Squires are sturdy fighters, Mages deal elemental damage, " +
-					"Entertainers support allies, Tinkers use gadgets and knowledge, " +
-					"and Wildlings channel nature.\n\n" +
-					"Your party of three can be any combination. " +
-					"Variety helps, but any team can win!")
+			# If this is my character, show class choices locally
+			if _is_my_character_state():
+				_choice_menu.show_choices(_class_options)
+				if _state == State.CLASS_1:
+					_tip_overlay.show_tip_once("party_classes",
+						"Each class has unique abilities and a different combat role. " +
+						"Squires are sturdy fighters, Mages deal elemental damage, " +
+						"Entertainers support allies, Tinkers use gadgets and knowledge, " +
+						"and Wildlings channel nature.\n\n" +
+						"Your party of three can be any combination. " +
+						"Variety helps, but any team can win!")
 		State.CONFIRM_1:
-			_set_state(State.BRIDGE_1)
+			_mp_set_state(State.BRIDGE_1)
 		State.CONFIRM_2:
-			_set_state(State.BRIDGE_2)
+			_mp_set_state(State.BRIDGE_2)
 		State.CONFIRM_3:
-			_set_state(State.OUTRO)
+			_mp_set_state(State.OUTRO)
 		State.BRIDGE_1:
-			_set_state(State.NAME_2)
+			_mp_set_state(State.NAME_2)
 		State.BRIDGE_2:
-			_set_state(State.NAME_3)
+			_mp_set_state(State.NAME_3)
 		State.OUTRO:
-			_set_state(State.DONE)
+			_mp_set_state(State.DONE)
 
 
 func _on_name_entered(player_name: String) -> void:
@@ -330,9 +376,36 @@ func _on_portrait_clicked(index: int) -> void:
 	_portrait_container.visible = false
 
 	var variant: String = "m" if index == 0 else "f"
+	var char_idx: int = _state_to_char_index(_state)
 	var fighter: FighterData = FighterDB.create_player(_current_class_id, _current_name, variant)
+
+	# Set multiplayer ownership
+	if NetManager.is_multiplayer_active:
+		fighter.owner_peer_id = NetManager.get_fighter_owner_peer(char_idx)
+
 	_party.append(fighter)
 
+	# In multiplayer, broadcast the created character to all peers
+	if NetManager.is_multiplayer_active:
+		var char_data: Dictionary = {
+			"name": _current_name,
+			"class_id": _current_class_id,
+			"variant": variant,
+			"party_index": char_idx,
+		}
+		if NetManager.is_host:
+			# Host created: broadcast to guests and advance
+			_rpc_character_created.rpc(char_data)
+			match _state:
+				State.PORTRAIT_1: _mp_set_state(State.CONFIRM_1)
+				State.PORTRAIT_2: _mp_set_state(State.CONFIRM_2)
+				State.PORTRAIT_3: _mp_set_state(State.CONFIRM_3)
+		else:
+			# Guest created: send to host
+			_rpc_submit_character.rpc_id(1, char_data)
+		return
+
+	# Singleplayer path
 	match _state:
 		State.PORTRAIT_1: _set_state(State.CONFIRM_1)
 		State.PORTRAIT_2: _set_state(State.CONFIRM_2)
@@ -340,6 +413,18 @@ func _on_portrait_clicked(index: int) -> void:
 
 
 func _finish() -> void:
+	# In multiplayer, host broadcasts the final party to all peers
+	if NetManager.is_multiplayer_active and NetManager.is_host:
+		var party_data: Array[Dictionary] = []
+		for fighter: FighterData in _party:
+			party_data.append(fighter.to_save_data())
+		_rpc_party_finalized.rpc(party_data)
+		return
+
+	_do_finish()
+
+
+func _do_finish() -> void:
 	GameState.set_party(_party)
 	for fighter: RefCounted in _party:
 		GameLog.info("Party: %s the %s" % [fighter.character_name, fighter.character_type])
@@ -349,6 +434,79 @@ func _finish() -> void:
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		_:
 			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+
+
+# =============================================================================
+# Multiplayer RPCs
+# =============================================================================
+
+## Sets state locally and broadcasts to all peers (host only).
+func _mp_set_state(new_state: State) -> void:
+	if NetManager.is_multiplayer_active and NetManager.is_host:
+		_rpc_sync_state.rpc(new_state as int)
+	_set_state(new_state)
+
+
+## Host -> All: Sync the state machine to a new state.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_sync_state(state_value: int) -> void:
+	_set_state(state_value as State)
+
+
+## Guest -> Host: Submit a created character.
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_submit_character(char_data: Dictionary) -> void:
+	if not NetManager.is_host:
+		return
+	# Host creates the fighter from the submitted data
+	var fighter: FighterData = FighterDB.create_player(
+		char_data["class_id"], char_data["name"], char_data["variant"])
+	var char_idx: int = int(char_data["party_index"])
+	fighter.owner_peer_id = NetManager.get_fighter_owner_peer(char_idx)
+	_party.append(fighter)
+
+	# Broadcast to all peers (including the submitter)
+	_rpc_character_created.rpc(char_data)
+
+	# Advance state
+	match _state:
+		# We might be in the NAME or CLASS state waiting for the remote player
+		# but the state should correspond to the right portrait state
+		_:
+			# Determine which confirm state to go to based on party index
+			match char_idx:
+				0: _mp_set_state(State.CONFIRM_1)
+				1: _mp_set_state(State.CONFIRM_2)
+				2: _mp_set_state(State.CONFIRM_3)
+
+
+## Host -> All: A character has been created (broadcast to all peers).
+@rpc("authority", "call_local", "reliable")
+func _rpc_character_created(char_data: Dictionary) -> void:
+	# If we're the host, we already added the fighter in submit or portrait_clicked
+	if NetManager.is_host:
+		return
+	# Guest: create the fighter locally and add to party
+	var fighter: FighterData = FighterDB.create_player(
+		char_data["class_id"], char_data["name"], char_data["variant"])
+	var char_idx: int = int(char_data["party_index"])
+	fighter.owner_peer_id = NetManager.get_fighter_owner_peer(char_idx)
+	_party.append(fighter)
+
+
+## Host -> All: Full party finalized, start the game.
+@rpc("authority", "call_local", "reliable")
+func _rpc_party_finalized(party_data: Array) -> void:
+	# Rebuild party from serialized data on all peers
+	_party.clear()
+	for data: Dictionary in party_data:
+		var fighter := FighterData.new()
+		fighter.apply_save_data(data)
+		# Restore abilities from class DB since save_data doesn't include them
+		var abilities: Array = FighterDB.get_abilities_for_class(fighter.class_id)
+		fighter.abilities = abilities
+		_party.append(fighter)
+	_do_finish()
 
 
 # --- Story 1: Tavern narrative ---
