@@ -63,6 +63,12 @@ func _build_ui() -> void:
 	_no_btn.pressed.connect(func() -> void: _respond(false))
 	btn_row.add_child(_no_btn)
 
+	# Cross-link focus neighbors for horizontal keyboard/gamepad navigation
+	_yes_btn.focus_neighbor_left = _no_btn.get_path()
+	_yes_btn.focus_neighbor_right = _no_btn.get_path()
+	_no_btn.focus_neighbor_left = _yes_btn.get_path()
+	_no_btn.focus_neighbor_right = _yes_btn.get_path()
+
 
 func show_confirm(message: String) -> void:
 	_message_label.text = message
@@ -81,9 +87,6 @@ func _make_button(text: String) -> Button:
 	btn.custom_minimum_size = Vector2(120, 40)
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	# Wire focus neighbors for horizontal navigation
-	btn.focus_neighbor_left = btn.get_path()
-	btn.focus_neighbor_right = btn.get_path()
 	return btn
 
 

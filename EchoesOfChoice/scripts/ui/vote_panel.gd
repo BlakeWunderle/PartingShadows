@@ -161,6 +161,9 @@ func _check_all_voted() -> void:
 
 
 func _resolve_votes() -> void:
+	if _votes.is_empty():
+		return
+
 	# Tally votes
 	var tally: Dictionary = {}
 	for v: int in _votes:
