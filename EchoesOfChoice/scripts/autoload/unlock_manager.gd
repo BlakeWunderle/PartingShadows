@@ -26,6 +26,17 @@ func unlock(key: String) -> void:
 	_unlocks[key] = true
 	GameLog.info("Unlocked: %s" % key)
 	_save_unlocks()
+	# Steam achievements for story completion
+	match key:
+		"story_1_complete":
+			SteamManager.set_achievement("STORY_1_COMPLETE")
+		"story_2_complete":
+			SteamManager.set_achievement("STORY_2_COMPLETE")
+		"story_3_complete":
+			SteamManager.set_achievement("STORY_3_COMPLETE")
+	if is_unlocked("story_1_complete") and is_unlocked("story_2_complete") \
+			and is_unlocked("story_3_complete"):
+		SteamManager.set_achievement("ALL_STORIES_COMPLETE")
 
 
 func _save_unlocks() -> void:

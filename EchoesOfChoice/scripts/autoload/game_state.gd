@@ -71,6 +71,12 @@ func advance_to_battle(battle_id: String) -> void:
 
 func advance_to_post_battle() -> void:
 	battles_won += 1
+	if battles_won == 1:
+		SteamManager.set_achievement("FIRST_VICTORY")
+	elif battles_won == 10:
+		SteamManager.set_achievement("TEN_VICTORIES")
+	elif battles_won == 50:
+		SteamManager.set_achievement("FIFTY_VICTORIES")
 	narrative_mode = NarrativeMode.POST_BATTLE
 	game_phase = GamePhase.NARRATIVE
 

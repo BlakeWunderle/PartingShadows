@@ -17,3 +17,25 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_steam_running:
 		Steam.run_callbacks()
+
+
+# =============================================================================
+# Achievements
+# =============================================================================
+
+func set_achievement(api_name: String) -> void:
+	if not is_steam_running:
+		return
+	var result: Dictionary = Steam.getAchievement(api_name)
+	if result.get("achieved", false):
+		return
+	Steam.setAchievement(api_name)
+	Steam.storeStats()
+	GameLog.info("Steam achievement: %s" % api_name)
+
+
+func clear_achievement(api_name: String) -> void:
+	if not is_steam_running:
+		return
+	Steam.clearAchievement(api_name)
+	Steam.storeStats()

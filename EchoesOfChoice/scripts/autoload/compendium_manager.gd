@@ -25,16 +25,32 @@ func record_enemy(fighter: RefCounted, story_id: String) -> void:
 		"story_id": story_id,
 	}
 	_save()
+	if _seen_enemies.size() >= 50:
+		SteamManager.set_achievement("COMPENDIUM_50_ENEMIES")
 
 
 func record_class(class_id: String, display_name: String) -> void:
 	if _seen_classes.has(class_id):
 		return
+	var tier: int = _get_tier(class_id)
 	_seen_classes[class_id] = {
 		"display_name": display_name,
-		"tier": _get_tier(class_id),
+		"tier": tier,
 	}
 	_save()
+	# Steam achievements for class collection
+	if tier == 2:
+		SteamManager.set_achievement("CLASS_TIER_2")
+	var t0: Array[String] = ["Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer"]
+	var all_t0: bool = true
+	for c: String in t0:
+		if not _seen_classes.has(c):
+			all_t0 = false
+			break
+	if all_t0:
+		SteamManager.set_achievement("ALL_BASE_CLASSES")
+	if _seen_classes.size() >= 56:
+		SteamManager.set_achievement("ALL_CLASSES")
 
 
 func get_seen_enemies() -> Dictionary:
