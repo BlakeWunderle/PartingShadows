@@ -53,6 +53,8 @@ func _build_save_data() -> Dictionary:
 		"current_battle_id": GameState.current_battle_id,
 		"story_id": GameState.current_story_id,
 		"party": party_data,
+		"is_multiplayer": NetManager.is_multiplayer_active,
+		"player_count": NetManager.target_player_count if NetManager.is_multiplayer_active else 1,
 	}
 
 
@@ -84,6 +86,11 @@ func load_from_slot(slot: int) -> bool:
 			fighter.character_type = FighterDB.get_display_name(fighter.class_id)
 		fighter.abilities = FighterDB.get_abilities_for_class(fighter.class_id)
 		party.append(fighter)
+
+	# Reset ownership when loading in single-player mode
+	if not NetManager.is_multiplayer_active:
+		for fighter: FighterData in party:
+			fighter.owner_peer_id = 1
 
 	GameState.party = party
 	GameState.current_story_id = data.get("story_id", "story_1")
@@ -162,6 +169,8 @@ func get_save_summary(slot: int) -> Dictionary:
 		"party_size": party.size(),
 		"battle_id": data.get("current_battle_id", ""),
 		"story_id": data.get("story_id", "story_1"),
+		"is_multiplayer": data.get("is_multiplayer", false),
+		"player_count": int(data.get("player_count", 1)),
 	}
 
 

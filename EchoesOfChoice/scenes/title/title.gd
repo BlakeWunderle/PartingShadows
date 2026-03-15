@@ -263,12 +263,14 @@ func _show_load_slots() -> void:
 		if summary.get("exists", false):
 			var story_title: String = StoryDB.get_story(
 				summary.get("story_id", "story_1")).get("title", "")
-			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)" % [
+			var mp_tag: String = " [Co-op]" if summary.get("is_multiplayer", false) else ""
+			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s" % [
 				i + 1,
 				summary.get("lead_name", "???"),
 				summary.get("lead_class", "???"),
 				summary.get("level", 1),
 				story_title,
+				mp_tag,
 			]})
 			_load_slot_actions.append({"action": "load", "slot": i})
 			options.append({"label": "  Delete Slot %d" % [i + 1]})
@@ -282,11 +284,13 @@ func _show_load_slots() -> void:
 	if auto_summary.get("exists", false):
 		var auto_story: String = StoryDB.get_story(
 			auto_summary.get("story_id", "story_1")).get("title", "")
-		options.append({"label": "Autosave: %s the %s - Lv %d (%s)" % [
+		var auto_mp_tag: String = " [Co-op]" if auto_summary.get("is_multiplayer", false) else ""
+		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s" % [
 			auto_summary.get("lead_name", "???"),
 			auto_summary.get("lead_class", "???"),
 			auto_summary.get("level", 1),
 			auto_story,
+			auto_mp_tag,
 		]})
 		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
 		options.append({"label": "  Delete Autosave"})
