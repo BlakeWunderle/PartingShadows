@@ -4,6 +4,7 @@ var _fader: ColorRect
 var _spinner: Control
 var _preload_requests: Dictionary = {}
 var _transitioning: bool = false
+const _LOAD_TIMEOUT_MSEC: int = 30000
 
 
 func _ready() -> void:
@@ -90,12 +91,16 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 
 
 func _await_threaded_load(path: String) -> PackedScene:
+	var start_msec: int = Time.get_ticks_msec()
 	while true:
 		var status := ResourceLoader.load_threaded_get_status(path)
 		match status:
 			ResourceLoader.THREAD_LOAD_LOADED:
 				return ResourceLoader.load_threaded_get(path) as PackedScene
 			ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+				if Time.get_ticks_msec() - start_msec > _LOAD_TIMEOUT_MSEC:
+					GameLog.error("SceneManager: Threaded load timed out for '%s' after %ds, falling back to sync" % [path, _LOAD_TIMEOUT_MSEC / 1000])
+					return load(path) as PackedScene
 				await get_tree().process_frame
 			_:
 				GameLog.error("SceneManager: Threaded load failed for '%s', falling back to sync" % path)
