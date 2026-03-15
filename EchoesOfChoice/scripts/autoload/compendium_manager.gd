@@ -73,15 +73,19 @@ func _get_tier(class_id: String) -> int:
 
 
 func _load() -> void:
-	if not FileAccess.file_exists(COMPENDIUM_PATH):
-		return
-	var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.READ)
-	if not file:
+	var text: String = ""
+	if FileAccess.file_exists(COMPENDIUM_PATH):
+		var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.READ)
+		if file:
+			text = file.get_as_text()
+			file.close()
+	if text.is_empty():
+		text = SteamManager.cloud_read("compendium.json")
+	if text.is_empty():
 		return
 	var json := JSON.new()
-	if json.parse(file.get_as_text()) != OK:
+	if json.parse(text) != OK:
 		return
-	file.close()
 	var data: Dictionary = json.data
 	_seen_enemies = data.get("enemies", {})
 	_seen_classes = data.get("classes", {})
@@ -92,7 +96,9 @@ func _save() -> void:
 		"enemies": _seen_enemies,
 		"classes": _seen_classes,
 	}
+	var json_str: String = JSON.stringify(data, "\t")
 	var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(data, "\t"))
+		file.store_string(json_str)
 		file.close()
+	SteamManager.cloud_write("compendium.json", json_str)

@@ -26,15 +26,17 @@ func _save_path(slot: int) -> String:
 func save_to_slot(slot: int) -> void:
 	GameLog.info("Saved slot %d" % slot)
 	var save_data: Dictionary = _build_save_data()
+	var json_str: String = JSON.stringify(save_data, "\t")
 	var path: String = _save_path(slot)
 	var tmp_path: String = path + ".tmp"
 	var file := FileAccess.open(tmp_path, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(save_data, "\t"))
+		file.store_string(json_str)
 		file.close()
 		var err: int = DirAccess.rename_absolute(tmp_path, path)
 		if err != OK:
 			GameLog.error("Save rename failed for slot %d (error %d)" % [slot, err])
+	SteamManager.cloud_write("save_%d.json" % slot, json_str)
 	if slot != AUTOSAVE_SLOT:
 		_write_save_meta(slot)
 
@@ -109,7 +111,19 @@ func load_from_slot(slot: int) -> bool:
 func _read_save(slot: int) -> Dictionary:
 	var path: String = _save_path(slot)
 	if not FileAccess.file_exists(path):
-		return {}
+		# Try cloud fallback
+		var cloud_data: String = SteamManager.cloud_read("save_%d.json" % slot)
+		if cloud_data.is_empty():
+			return {}
+		var json_cloud := JSON.new()
+		if json_cloud.parse(cloud_data) != OK:
+			return {}
+		# Write cloud data locally for next time
+		var f := FileAccess.open(path, FileAccess.WRITE)
+		if f:
+			f.store_string(cloud_data)
+			f.close()
+		return json_cloud.data
 	var file := FileAccess.open(path, FileAccess.READ)
 	if not file:
 		return {}
@@ -125,7 +139,9 @@ func _read_save(slot: int) -> Dictionary:
 # =============================================================================
 
 func has_save(slot: int) -> bool:
-	return FileAccess.file_exists(_save_path(slot))
+	if FileAccess.file_exists(_save_path(slot)):
+		return true
+	return SteamManager.cloud_exists("save_%d.json" % slot)
 
 
 func has_any_save() -> bool:
@@ -189,6 +205,7 @@ func delete_save(slot: int) -> void:
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 		GameLog.info("Deleted save slot %d" % slot)
+	SteamManager.cloud_delete("save_%d.json" % slot)
 	# Clear last-used metadata if this was the last-used slot
 	if get_last_used_slot() == slot:
 		if FileAccess.file_exists(SAVE_META_PATH):

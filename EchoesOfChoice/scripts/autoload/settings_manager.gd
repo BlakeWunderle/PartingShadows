@@ -225,10 +225,12 @@ func _save() -> void:
 		"color_blind_mode": color_blind_mode,
 		"screen_reader": screen_reader,
 	}
+	var json_str: String = JSON.stringify(data, "\t")
 	var file := FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(data, "\t"))
+		file.store_string(json_str)
 		file.close()
+	SteamManager.cloud_write("settings.json", json_str)
 
 
 func _apply_all() -> void:

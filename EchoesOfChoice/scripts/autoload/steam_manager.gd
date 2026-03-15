@@ -39,3 +39,49 @@ func clear_achievement(api_name: String) -> void:
 		return
 	Steam.clearAchievement(api_name)
 	Steam.storeStats()
+
+
+# =============================================================================
+# Cloud storage
+# =============================================================================
+
+func is_cloud_available() -> bool:
+	if not is_steam_running:
+		return false
+	return Steam.isCloudEnabledForAccount() and Steam.isCloudEnabledForApp()
+
+
+func cloud_exists(filename: String) -> bool:
+	if not is_cloud_available():
+		return false
+	return Steam.fileExists(filename)
+
+
+func cloud_write(filename: String, content: String) -> bool:
+	if not is_cloud_available():
+		return false
+	var data: PackedByteArray = content.to_utf8_buffer()
+	var success: bool = Steam.fileWrite(filename, data)
+	if not success:
+		GameLog.warn("Steam cloud write failed: %s" % filename)
+	return success
+
+
+func cloud_read(filename: String) -> String:
+	if not is_cloud_available():
+		return ""
+	if not Steam.fileExists(filename):
+		return ""
+	var size: int = Steam.getFileSize(filename)
+	if size <= 0:
+		return ""
+	var data: Dictionary = Steam.fileRead(filename, size)
+	var buffer: PackedByteArray = data.get("buffer", PackedByteArray())
+	return buffer.get_string_from_utf8()
+
+
+func cloud_delete(filename: String) -> void:
+	if not is_cloud_available():
+		return
+	if Steam.fileExists(filename):
+		Steam.fileDelete(filename)

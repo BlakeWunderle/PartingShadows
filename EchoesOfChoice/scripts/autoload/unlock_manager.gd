@@ -40,19 +40,25 @@ func unlock(key: String) -> void:
 
 
 func _save_unlocks() -> void:
+	var json_str: String = JSON.stringify(_unlocks, "\t")
 	var file := FileAccess.open(UNLOCKS_PATH, FileAccess.WRITE)
 	if file:
-		file.store_string(JSON.stringify(_unlocks, "\t"))
+		file.store_string(json_str)
 		file.close()
+	SteamManager.cloud_write("unlocks.json", json_str)
 
 
 func _load_unlocks() -> void:
-	if not FileAccess.file_exists(UNLOCKS_PATH):
-		return
-	var file := FileAccess.open(UNLOCKS_PATH, FileAccess.READ)
-	if not file:
+	var text: String = ""
+	if FileAccess.file_exists(UNLOCKS_PATH):
+		var file := FileAccess.open(UNLOCKS_PATH, FileAccess.READ)
+		if file:
+			text = file.get_as_text()
+			file.close()
+	if text.is_empty():
+		text = SteamManager.cloud_read("unlocks.json")
+	if text.is_empty():
 		return
 	var json := JSON.new()
-	if json.parse(file.get_as_text()) == OK:
+	if json.parse(text) == OK:
 		_unlocks = json.data
-	file.close()
