@@ -9,6 +9,7 @@ const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const PortraitCard := preload("res://scripts/ui/portrait_card.gd")
 const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
+const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityData := preload("res://scripts/data/ability_data.gd")
 const BattleData := preload("res://scripts/data/battle_data.gd")
@@ -40,6 +41,11 @@ var _escape_hp_pct: float = 0.0  ## Boss escape threshold from BattleData
 var _boss_escaped: bool = false
 
 signal _player_turn_done
+signal _remote_action_received(action: Dictionary)
+
+# Multiplayer state
+var _waiting_overlay: WaitingOverlay
+var _pending_remote_action: Dictionary = {}
 
 # UI elements -- portrait cards
 var _party_cards: Array[PortraitCard] = []
@@ -214,6 +220,13 @@ func _build_ui() -> void:
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
 
+	_waiting_overlay = WaitingOverlay.new()
+	add_child(_waiting_overlay)
+
+
+func _is_mp_guest() -> bool:
+	return NetManager.is_multiplayer_active and not NetManager.is_host
+
 
 func _start_battle() -> void:
 	_engine = BattleEngine.new()
@@ -250,7 +263,9 @@ func _start_battle() -> void:
 		"Buffs and debuffs last several turns.")
 
 	_phase = Phase.TICKING_ATB
-	_tick_loop()
+	if not _is_mp_guest():
+		_tick_loop()
+	# Guests wait for RPCs from host to drive the battle
 
 
 func _build_portrait_cards() -> void:
@@ -338,8 +353,23 @@ func _tick_loop() -> void:
 
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
-				_show_action_menu(actor)
-				await _player_turn_done
+				var actor_party_idx: int = _all_party.find(actor)
+				if NetManager.is_multiplayer_active and not NetManager.is_my_fighter(actor_party_idx):
+					# Remote player's turn -- request their action via RPC
+					var owner_peer: int = NetManager.get_fighter_owner_peer(actor_party_idx)
+					var owner_name: String = NetManager.get_fighter_owner_name(actor_party_idx)
+					_waiting_overlay.show_waiting(owner_name)
+					_rpc_request_action.rpc_id(owner_peer, actor_party_idx)
+					NetManager.start_turn_timeout()
+					var action: Dictionary = await _remote_action_received
+					NetManager.stop_turn_timeout()
+					_waiting_overlay.hide_waiting()
+					_execute_remote_action(actor, action)
+				else:
+					_show_action_menu(actor)
+					await _player_turn_done
+					if NetManager.is_multiplayer_active:
+						_broadcast_state_sync()
 			else:
 				# AI turn -- brief pause so player can read the turn announcement
 				_phase = Phase.AI_ACTING
@@ -348,6 +378,8 @@ func _tick_loop() -> void:
 				var targets: Array = _engine.enemies if is_party else _engine.units
 				var allies: Array = _engine.units if is_party else _engine.enemies
 				_engine.execute_ai_turn(actor, targets, allies)
+				if NetManager.is_multiplayer_active:
+					_broadcast_state_sync()
 
 			# Post-action (same for player and AI)
 			await _drain_messages()
@@ -475,6 +507,20 @@ func _on_target_selected(index: int) -> void:
 	_action_menu.choice_selected.connect(_on_action_selected)
 	_action_menu.hide_menu()
 
+	if _is_mp_guest():
+		# Guest: send action to host instead of executing locally
+		var action: Dictionary = {}
+		match _phase:
+			Phase.PLAYER_TARGET_ATTACK:
+				action = {"type": "attack", "target_index": index}
+			Phase.PLAYER_ABILITY_TARGET_ENEMY:
+				action = {"type": "ability_enemy", "ability_name": _selected_ability.ability_name, "target_index": index}
+			Phase.PLAYER_ABILITY_TARGET_ALLY:
+				action = {"type": "ability_ally", "ability_name": _selected_ability.ability_name, "target_index": index}
+		_rpc_submit_action.rpc_id(1, action)
+		_player_turn_done.emit()
+		return
+
 	match _phase:
 		Phase.PLAYER_TARGET_ATTACK:
 			var taunter: FighterData = _engine.get_taunt_target(_engine.enemies)
@@ -546,6 +592,17 @@ func _on_ability_selected(index: int) -> void:
 	_selected_ability = available[index]
 
 	if _selected_ability.target_all:
+		if _is_mp_guest():
+			# Guest: send AoE action to host
+			var action_type: String = "ability_enemy" if _selected_ability.use_on_enemy else "ability_ally"
+			_rpc_submit_action.rpc_id(1, {
+				"type": action_type,
+				"ability_name": _selected_ability.ability_name,
+				"target_index": 0,
+			})
+			_player_turn_done.emit()
+			return
+
 		# AoE, no target selection needed
 		_current_actor.mana -= _selected_ability.mana_cost
 		_set_cooldown(_current_actor, _selected_ability)
@@ -646,7 +703,14 @@ func _end_battle() -> void:
 
 	_engine.finish_battle()
 
-	if _boss_escaped or _engine.did_player_win():
+	var won: bool = _boss_escaped or _engine.did_player_win()
+
+	# Broadcast battle end to guests
+	if NetManager.is_multiplayer_active and NetManager.is_host:
+		_broadcast_state_sync()
+		_rpc_battle_ended.rpc(won)
+
+	if won:
 		GameLog.info("Battle won: %s" % GameState.current_battle_id)
 		if _boss_escaped:
 			_add_log("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
@@ -803,3 +867,224 @@ func _highlight_active_card(fighter: FighterData) -> void:
 			card.set_active(true)
 			_active_card = card
 			return
+
+
+# =============================================================================
+# Multiplayer RPCs & helpers
+# =============================================================================
+
+## Host executes a remote player's action on the engine.
+func _execute_remote_action(actor: FighterData, action: Dictionary) -> void:
+	var action_type: String = action.get("type", "attack")
+	var target_index: int = action.get("target_index", 0)
+
+	match action_type:
+		"attack":
+			var taunter: FighterData = _engine.get_taunt_target(_engine.enemies)
+			var target: FighterData
+			if taunter:
+				target = taunter
+			elif target_index < _engine.enemies.size():
+				target = _engine.enemies[target_index]
+			else:
+				target = _engine.enemies[0]
+			_engine.physical_attack(actor, target)
+
+		"ability_enemy":
+			var ability: AbilityData = _find_ability(actor, action.get("ability_name", ""))
+			if ability == null:
+				_engine.physical_attack(actor, _engine.enemies[0])
+				return
+			actor.mana -= ability.mana_cost
+			_set_cooldown(actor, ability)
+			if ability.target_all:
+				for enemy: FighterData in _engine.enemies.duplicate():
+					_engine.use_ability_on_enemy(actor, enemy, ability, true)
+			else:
+				var taunter: FighterData = _engine.get_taunt_target(_engine.enemies)
+				var target: FighterData
+				if taunter:
+					target = taunter
+				elif target_index < _engine.enemies.size():
+					target = _engine.enemies[target_index]
+				else:
+					target = _engine.enemies[0]
+				_engine.use_ability_on_enemy(actor, target, ability)
+
+		"ability_ally":
+			var ability: AbilityData = _find_ability(actor, action.get("ability_name", ""))
+			if ability == null:
+				return
+			actor.mana -= ability.mana_cost
+			_set_cooldown(actor, ability)
+			if ability.target_all:
+				for ally: FighterData in _engine.units.duplicate():
+					_engine.use_ability_on_teammate(actor, ally, ability, true)
+			else:
+				if target_index < _engine.units.size():
+					_engine.use_ability_on_teammate(actor, _engine.units[target_index], ability)
+
+
+func _find_ability(actor: FighterData, ability_name: String) -> AbilityData:
+	for a: AbilityData in actor.abilities:
+		if a.ability_name == ability_name:
+			return a
+	return null
+
+
+## Host broadcasts full fighter state to all peers after each action.
+func _broadcast_state_sync() -> void:
+	if not NetManager.is_host:
+		return
+
+	# Serialize all fighters
+	var party_state: Array[Dictionary] = []
+	for f: FighterData in _all_party:
+		party_state.append(_serialize_fighter_combat(f))
+	var enemy_state: Array[Dictionary] = []
+	for f: FighterData in _all_enemies:
+		enemy_state.append(_serialize_fighter_combat(f))
+
+	# Alive indices
+	var alive_party: Array[int] = []
+	for f: FighterData in _engine.units:
+		var idx: int = _all_party.find(f)
+		if idx >= 0:
+			alive_party.append(idx)
+	var alive_enemies: Array[int] = []
+	for f: FighterData in _engine.enemies:
+		var idx: int = _all_enemies.find(f)
+		if idx >= 0:
+			alive_enemies.append(idx)
+
+	# Combat log messages accumulated since last sync
+	var log_lines: Array[String] = _message_queue.duplicate()
+
+	_rpc_state_sync.rpc(party_state, enemy_state, alive_party, alive_enemies, log_lines)
+
+
+func _serialize_fighter_combat(f: FighterData) -> Dictionary:
+	return {
+		"hp": f.health,
+		"max_hp": f.max_health,
+		"mp": f.mana,
+		"max_mp": f.max_mana,
+		"atb": f.turn_calculation,
+		"phys_atk": f.physical_attack,
+		"phys_def": f.physical_defense,
+		"mag_atk": f.magic_attack,
+		"mag_def": f.magic_defense,
+		"speed": f.speed,
+		"crit": f.crit_chance,
+		"dodge": f.dodge_chance,
+		"cooldowns": f.ability_cooldowns.duplicate(),
+	}
+
+
+func _apply_fighter_combat(f: FighterData, data: Dictionary) -> void:
+	f.health = data.get("hp", f.health)
+	f.max_health = data.get("max_hp", f.max_health)
+	f.mana = data.get("mp", f.mana)
+	f.max_mana = data.get("max_mp", f.max_mana)
+	f.turn_calculation = data.get("atb", f.turn_calculation)
+	f.physical_attack = data.get("phys_atk", f.physical_attack)
+	f.physical_defense = data.get("phys_def", f.physical_defense)
+	f.magic_attack = data.get("mag_atk", f.magic_attack)
+	f.magic_defense = data.get("mag_def", f.magic_defense)
+	f.speed = data.get("speed", f.speed)
+	f.crit_chance = data.get("crit", f.crit_chance)
+	f.dodge_chance = data.get("dodge", f.dodge_chance)
+	var cd = data.get("cooldowns", {})
+	f.ability_cooldowns = cd.duplicate() if cd is Dictionary else {}
+
+
+## Host -> All: Full state sync after each action.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_state_sync(
+	party_state: Array,
+	enemy_state: Array,
+	alive_party: Array,
+	alive_enemies: Array,
+	log_lines: Array,
+) -> void:
+	# Apply combat state to local fighter instances
+	for i: int in mini(party_state.size(), _all_party.size()):
+		_apply_fighter_combat(_all_party[i], party_state[i])
+	for i: int in mini(enemy_state.size(), _all_enemies.size()):
+		_apply_fighter_combat(_all_enemies[i], enemy_state[i])
+
+	# Update alive/dead status on engine arrays
+	_engine.units.clear()
+	for idx: int in alive_party:
+		if idx < _all_party.size():
+			_engine.units.append(_all_party[idx])
+	_engine.enemies.clear()
+	for idx: int in alive_enemies:
+		if idx < _all_enemies.size():
+			_engine.enemies.append(_all_enemies[idx])
+
+	# Display combat log messages
+	for line: String in log_lines:
+		_add_log(line)
+
+	# Refresh cards
+	_rebuild_cards_if_needed()
+	_refresh_cards()
+
+
+## Host -> Specific Peer: Request player action for their character.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_request_action(actor_party_idx: int) -> void:
+	# Guest receives: show action menu for this character
+	if actor_party_idx < 0 or actor_party_idx >= _all_party.size():
+		return
+	var actor: FighterData = _all_party[actor_party_idx]
+	_current_actor = actor
+	_highlight_active_card(actor)
+
+	# Turn announcement
+	var turn_text: String
+	if actor.character_name.ends_with("s"):
+		turn_text = "It is %s' turn." % actor.character_name
+	else:
+		turn_text = "It is %s's turn." % actor.character_name
+	_add_log_separator()
+	_add_log("[color=yellow]%s[/color]" % turn_text)
+
+	_phase = Phase.PLAYER_ACTION
+	_show_action_menu(actor)
+	await _player_turn_done
+	# Action completed -- send it to host
+	# (action dict was built by the modified _on_target_selected / _on_ability_selected)
+
+
+## Guest -> Host: Submit chosen action.
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_submit_action(action: Dictionary) -> void:
+	if not NetManager.is_host:
+		return
+	_remote_action_received.emit(action)
+
+
+## Host -> All: Battle ended.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_battle_ended(won: bool) -> void:
+	_phase = Phase.BATTLE_END
+	_highlight_active_card(null)
+	if won:
+		_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
+	else:
+		_add_log("[color=red]The party has been defeated...[/color]")
+	await get_tree().create_timer(2.0).timeout
+	if won:
+		GameState.advance_to_post_battle()
+		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
+	else:
+		GameState.go_to_ending(false)
+		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+
+
+## Host -> All: Combat log line (for real-time log display).
+@rpc("authority", "call_remote", "reliable")
+func _rpc_combat_log(text: String) -> void:
+	_add_log(text)
