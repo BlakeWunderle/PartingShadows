@@ -210,6 +210,10 @@ func _load() -> void:
 	font_size = int(data.get("font_size", DEFAULT_FONT_SIZE))
 	color_blind_mode = data.get("color_blind_mode", DEFAULT_COLOR_BLIND_MODE)
 	screen_reader = data.get("screen_reader", DEFAULT_SCREEN_READER)
+	# Load custom key bindings into InputConfig
+	var bindings: Dictionary = data.get("key_bindings", {})
+	if not bindings.is_empty():
+		InputConfig.load_bindings(bindings)
 
 
 func _save() -> void:
@@ -224,6 +228,7 @@ func _save() -> void:
 		"font_size": font_size,
 		"color_blind_mode": color_blind_mode,
 		"screen_reader": screen_reader,
+		"key_bindings": InputConfig.keyboard_bindings,
 	}
 	var json_str: String = JSON.stringify(data, "\t")
 	var file := FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
@@ -263,6 +268,11 @@ func _apply_display() -> void:
 			var win_size: Vector2i = parse_resolution(resolution)
 			var pos: Vector2i = (screen_size - win_size) / 2
 			DisplayServer.window_set_position(pos)
+
+
+func save_key_bindings(bindings: Dictionary) -> void:
+	## Called by InputConfig when bindings change.
+	_save()
 
 
 static func parse_resolution(res_str: String) -> Vector2i:

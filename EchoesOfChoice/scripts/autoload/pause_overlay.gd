@@ -9,8 +9,9 @@ const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
 const CompendiumPanel := preload("res://scripts/ui/compendium_panel.gd")
+const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
 
-enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, WAITING_MP, FIGHTER_PICK }
+enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS, WAITING_MP, FIGHTER_PICK }
 
 var _mode: Mode = Mode.HIDDEN
 var _panel: Control
@@ -18,6 +19,7 @@ var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
 var _settings_panel: SettingsPanel
 var _compendium_panel: CompendiumPanel
+var _remap_panel: InputRemapPanel
 var _resume_btn: Button
 var _save_btn: Button
 var _title_btn: Button
@@ -137,6 +139,7 @@ func _build_ui() -> void:
 	_settings_panel.visible = false
 	_settings_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_settings_panel.back_pressed.connect(_back_to_main)
+	_settings_panel.key_bindings_pressed.connect(_show_key_bindings)
 	root_vbox.add_child(_settings_panel)
 
 	# Compendium panel (hidden by default)
@@ -145,6 +148,13 @@ func _build_ui() -> void:
 	_compendium_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_compendium_panel.back_pressed.connect(_back_to_main)
 	root_vbox.add_child(_compendium_panel)
+
+	# Key bindings panel (hidden by default)
+	_remap_panel = InputRemapPanel.new()
+	_remap_panel.visible = false
+	_remap_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_remap_panel.back_pressed.connect(_back_to_main)
+	root_vbox.add_child(_remap_panel)
 
 	# Confirm dialog (overlays entire screen)
 	_confirm_dialog = ConfirmDialog.new()
@@ -177,6 +187,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			Mode.SETTINGS:
 				_back_to_main()
 			Mode.COMPENDIUM:
+				_back_to_main()
+			Mode.KEY_BINDINGS:
 				_back_to_main()
 			Mode.WAITING_MP:
 				_cancel_open_mp()
@@ -359,6 +371,13 @@ func _show_compendium() -> void:
 	_compendium_panel._refresh()
 
 
+func _show_key_bindings() -> void:
+	_mode = Mode.KEY_BINDINGS
+	_main_vbox.visible = false
+	_settings_panel.visible = false
+	_remap_panel.visible = true
+
+
 # =============================================================================
 # Save slot sub-menu
 # =============================================================================
@@ -463,6 +482,7 @@ func _back_to_main() -> void:
 	_save_vbox.visible = false
 	_settings_panel.visible = false
 	_compendium_panel.visible = false
+	_remap_panel.visible = false
 	_main_vbox.visible = true
 	_resume_btn.grab_focus()
 

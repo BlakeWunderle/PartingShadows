@@ -4,6 +4,7 @@ class_name SettingsPanel extends VBoxContainer
 ## All controls read from and write to SettingsManager.
 
 signal back_pressed
+signal key_bindings_pressed
 
 var _music_slider: HSlider
 var _music_label: Label
@@ -122,6 +123,10 @@ func _build_ui() -> void:
 	btn_row.add_theme_constant_override("separation", 12)
 	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	add_child(btn_row)
+
+	var keys_btn := _styled_button("Key Bindings")
+	keys_btn.pressed.connect(func() -> void: key_bindings_pressed.emit())
+	btn_row.add_child(keys_btn)
 
 	var defaults_btn := _styled_button("Reset Defaults")
 	defaults_btn.pressed.connect(_on_defaults_pressed)
