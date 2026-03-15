@@ -115,13 +115,13 @@ func _build_ui() -> void:
 	scene_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui_root.add_child(scene_spacer)
 
-	# Turn order bar
+	# Turn order bar (fixed height, no resizing)
 	_turn_order_label = RichTextLabel.new()
 	_turn_order_label.bbcode_enabled = true
-	_turn_order_label.fit_content = true
+	_turn_order_label.fit_content = false
 	_turn_order_label.scroll_active = false
 	_turn_order_label.add_theme_font_size_override("normal_font_size", 13)
-	_turn_order_label.custom_minimum_size = Vector2(0, 20)
+	_turn_order_label.custom_minimum_size = Vector2(0, 22)
 	_turn_order_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	ui_root.add_child(_turn_order_label)
 
@@ -159,30 +159,44 @@ func _build_ui() -> void:
 
 	ui_root.add_child(portraits_row)
 
-	# Action text -- replaces scrolling combat log, shows latest message
+	# Bottom area: combat log (left) + action menu (right)
+	var bottom_row := HBoxContainer.new()
+	bottom_row.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	bottom_row.size_flags_stretch_ratio = 1.2
+	bottom_row.add_theme_constant_override("separation", 16)
+	ui_root.add_child(bottom_row)
+
+	# Left side: persistent combat log
+	var log_panel := VBoxContainer.new()
+	log_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	log_panel.size_flags_stretch_ratio = 1.0
+	log_panel.add_theme_constant_override("separation", 2)
+	bottom_row.add_child(log_panel)
+
+	# Turn indicator (above combat log)
+	_turn_label = Label.new()
+	_turn_label.add_theme_font_size_override("font_size", 14)
+	_turn_label.custom_minimum_size = Vector2(0, 20)
+	_turn_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	log_panel.add_child(_turn_label)
+
 	_action_text = RichTextLabel.new()
 	_action_text.bbcode_enabled = true
-	_action_text.fit_content = true
-	_action_text.scroll_active = false
-	_action_text.add_theme_font_size_override("normal_font_size", 15)
-	_action_text.custom_minimum_size = Vector2(0, 28)
-	_action_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_action_text.fit_content = false
+	_action_text.scroll_active = true
+	_action_text.scroll_following = true
+	_action_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_action_text.add_theme_font_size_override("normal_font_size", 14)
 	_action_text.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui_root.add_child(_action_text)
+	log_panel.add_child(_action_text)
 
-	# Turn indicator (hidden unless it's the player's turn)
-	_turn_label = Label.new()
-	_turn_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_turn_label.add_theme_font_size_override("font_size", 16)
-	_turn_label.visible = false
-	_turn_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui_root.add_child(_turn_label)
-
-	# Bottom: action menu
+	# Right side: action menu (bottom-aligned so content sits at bottom edge)
 	_bottom_panel = VBoxContainer.new()
-	_bottom_panel.custom_minimum_size = Vector2(0, 120)
-	_bottom_panel.alignment = BoxContainer.ALIGNMENT_CENTER
-	ui_root.add_child(_bottom_panel)
+	_bottom_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_bottom_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_bottom_panel.size_flags_stretch_ratio = 1.0
+	_bottom_panel.alignment = BoxContainer.ALIGNMENT_END
+	bottom_row.add_child(_bottom_panel)
 
 	_action_menu = ChoiceMenu.new()
 	_action_menu.choice_selected.connect(_on_action_selected)
@@ -224,7 +238,7 @@ func _start_battle() -> void:
 		GameState.current_battle_id, battle.enemies.size()])
 
 	_build_portrait_cards()
-	_set_action_text("[color=gold]Battle begins![/color]")
+	_add_log("[color=gold]Battle begins![/color]")
 	_compute_turn_order()
 	_display_turn_order()
 
@@ -275,9 +289,14 @@ func _refresh_cards() -> void:
 		card.update_display(card.get_fighter())
 
 
-func _set_action_text(text: String) -> void:
-	_action_text.clear()
-	_action_text.append_text("[center]%s[/center]" % text)
+func _add_log(text: String) -> void:
+	if _action_text.get_total_character_count() > 0:
+		_action_text.append_text("\n")
+	_action_text.append_text(text)
+
+
+func _add_log_separator() -> void:
+	_action_text.append_text("\n[color=gray]───────────[/color]")
 
 
 # =============================================================================
@@ -316,7 +335,8 @@ func _tick_loop() -> void:
 				turn_text = "It is %s' turn." % actor.character_name
 			else:
 				turn_text = "It is %s's turn." % actor.character_name
-			_set_action_text("[color=yellow]%s[/color]" % turn_text)
+			_add_log_separator()
+			_add_log("[color=yellow]%s[/color]" % turn_text)
 
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
@@ -386,7 +406,7 @@ func _show_action_menu(actor: FighterData) -> void:
 	if has_available:
 		options.append({"label": "Ability"})
 	options.append({"label": "Stats"})
-	_action_menu.show_choices(options)
+	_action_menu.show_choices(options, true)
 
 
 func _on_action_selected(index: int) -> void:
@@ -426,7 +446,7 @@ func _show_target_menu(fighters: Array) -> void:
 		options.append({"label": "%s the %s (HP: %d/%d)" % [
 			f.character_name, f.character_type, f.health, f.max_health]})
 	options.append({"label": "Back"})
-	_action_menu.show_choices(options)
+	_action_menu.show_choices(options, true)
 	_action_menu.choice_selected.disconnect(_on_action_selected)
 	_action_menu.choice_selected.connect(_on_target_selected)
 
@@ -467,7 +487,7 @@ func _on_target_selected(index: int) -> void:
 			var target: FighterData
 			if taunter:
 				target = taunter
-				_set_action_text("%s has taunted your attention!" % taunter.character_name)
+				_add_log("%s has taunted your attention!" % taunter.character_name)
 			else:
 				target = _engine.enemies[index]
 			_engine.physical_attack(_current_actor, target)
@@ -476,7 +496,7 @@ func _on_target_selected(index: int) -> void:
 			var target: FighterData
 			if taunter:
 				target = taunter
-				_set_action_text("%s has taunted your attention!" % taunter.character_name)
+				_add_log("%s has taunted your attention!" % taunter.character_name)
 			else:
 				target = _engine.enemies[index]
 			_current_actor.mana -= _selected_ability.mana_cost
@@ -505,7 +525,7 @@ func _show_ability_menu() -> void:
 		options.append({"label": label, "description": a.get_description()})
 	options.append({"label": "Back"})
 
-	_action_menu.show_choices(options)
+	_action_menu.show_choices(options, true)
 	_action_menu.choice_selected.disconnect(_on_action_selected)
 	_action_menu.choice_selected.connect(_on_ability_selected)
 
@@ -536,11 +556,11 @@ func _on_ability_selected(index: int) -> void:
 		_current_actor.mana -= _selected_ability.mana_cost
 		_set_cooldown(_current_actor, _selected_ability)
 		if _selected_ability.use_on_enemy:
-			_set_action_text("%s targets all enemies!" % _current_actor.character_name)
+			_add_log("%s targets all enemies!" % _current_actor.character_name)
 			for enemy: FighterData in _engine.enemies.duplicate():
 				_engine.use_ability_on_enemy(_current_actor, enemy, _selected_ability, true)
 		else:
-			_set_action_text("%s targets all allies!" % _current_actor.character_name)
+			_add_log("%s targets all allies!" % _current_actor.character_name)
 			for ally: FighterData in _engine.units.duplicate():
 				_engine.use_ability_on_teammate(_current_actor, ally, _selected_ability, true)
 
@@ -561,11 +581,9 @@ func _show_stats_pick() -> void:
 	var options: Array[Dictionary] = []
 	for f: FighterData in _engine.units:
 		options.append({"label": "%s the %s" % [f.character_name, f.character_type]})
-	for f: FighterData in _engine.enemies:
-		options.append({"label": "%s the %s" % [f.character_name, f.character_type]})
 	options.append({"label": "Back"})
 
-	_action_menu.show_choices(options)
+	_action_menu.show_choices(options, true)
 	if _action_menu.choice_selected.is_connected(_on_action_selected):
 		_action_menu.choice_selected.disconnect(_on_action_selected)
 	if not _action_menu.choice_selected.is_connected(_on_stats_pick_selected):
@@ -573,8 +591,7 @@ func _show_stats_pick() -> void:
 
 
 func _on_stats_pick_selected(index: int) -> void:
-	var total: int = _engine.units.size() + _engine.enemies.size()
-	if index >= total:
+	if index >= _engine.units.size():
 		# Back
 		_action_menu.choice_selected.disconnect(_on_stats_pick_selected)
 		_action_menu.choice_selected.connect(_on_action_selected)
@@ -584,11 +601,7 @@ func _on_stats_pick_selected(index: int) -> void:
 		return
 
 	_action_menu.hide_menu()
-	var fighter: FighterData
-	if index < _engine.units.size():
-		fighter = _engine.units[index]
-	else:
-		fighter = _engine.enemies[index - _engine.units.size()]
+	var fighter: FighterData = _engine.units[index]
 
 	_phase = Phase.SHOWING_STATS
 	_stats_panel.show_fighter(fighter)
@@ -611,7 +624,7 @@ func _on_combat_message(text: String) -> void:
 func _drain_messages() -> void:
 	while not _message_queue.is_empty():
 		var msg: String = _message_queue.pop_front()
-		_set_action_text(msg)
+		_add_log(msg)
 		_refresh_cards()
 		await get_tree().create_timer(COMBAT_PAUSE).timeout
 	_refresh_cards()
@@ -627,7 +640,7 @@ func _check_boss_escape() -> bool:
 	for enemy: FighterData in _engine.enemies:
 		if enemy.health > 0 and float(enemy.health) / float(enemy.max_health) <= _escape_hp_pct:
 			_boss_escaped = true
-			_set_action_text("[color=yellow]%s staggers back, then vanishes in a flash of dark energy![/color]" % enemy.character_name)
+			_add_log("[color=yellow]%s staggers back, then vanishes in a flash of dark energy![/color]" % enemy.character_name)
 			return true
 	return false
 
@@ -642,15 +655,15 @@ func _end_battle() -> void:
 	if _boss_escaped or _engine.did_player_win():
 		GameLog.info("Battle won: %s" % GameState.current_battle_id)
 		if _boss_escaped:
-			_set_action_text("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
+			_add_log("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
 		else:
-			_set_action_text("[color=gold]Victory! The enemies have been vanquished.[/color]")
+			_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		await get_tree().create_timer(2.0).timeout
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
 		GameLog.info("Battle lost: %s" % GameState.current_battle_id)
-		_set_action_text("[color=red]The party has been defeated...[/color]")
+		_add_log("[color=red]The party has been defeated...[/color]")
 		await get_tree().create_timer(2.0).timeout
 		GameState.go_to_ending(false)
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
