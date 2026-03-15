@@ -3,7 +3,9 @@
 Each class has two portrait variants: `{class}_m.png` (male-presenting) and `{class}_f.png` (female-presenting).
 
 Style suffix used on all prompts:
-`fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250`
+`facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1`
+
+Tip: For style consistency across all classes, add `--sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1` to each prompt in Midjourney to use the Squire portrait as a style reference.
 
 Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/classes/`
 
@@ -15,106 +17,106 @@ Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/classes/`
 
 **squire_m.png**
 ```
-young male soldier in basic plate armor, sword and round shield, disciplined stance, determined expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+young male soldier in steel gray plate armor, sword and round shield, red tabard, disciplined stance, determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **squire_f.png**
 ```
-young woman soldier in basic plate armor, sword and round shield, disciplined stance, determined expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+young woman soldier in steel gray plate armor, sword and round shield, red tabard, disciplined stance, determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 1
 
 **duelist_m.png**
 ```
-elegant male precision swordsman in light armor, rapier blade, flowing cape, proud confident posture, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+elegant male precision swordsman in burgundy light armor, rapier blade, flowing crimson cape, proud confident posture, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **duelist_f.png**
 ```
-elegant female precision swordswoman in light armor, rapier blade, flowing cape, proud confident posture, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+elegant female precision swordswoman in burgundy light armor, rapier blade, flowing crimson cape, proud confident posture, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **ranger_m.png**
 ```
-male woodland archer with longbow and quiver, practical leather gear, keen watchful eyes, wilderness tracker, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male woodland archer with longbow and quiver, forest green leather gear, keen watchful eyes, wilderness tracker, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **ranger_f.png**
 ```
-female woodland archer with longbow and quiver, practical leather gear, keen watchful eyes, wilderness tracker, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female woodland archer with longbow and quiver, forest green leather gear, keen watchful eyes, wilderness tracker, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **martial_artist_m.png**
 ```
-disciplined male unarmed fighter with headband, minimal clothing showing toned physique, centered meditative pose, zen calm expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+disciplined male unarmed fighter with white headband, minimal orange and brown clothing showing toned physique, centered meditative pose, zen calm expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **martial_artist_f.png**
 ```
-disciplined female unarmed fighter with headband, minimal clothing showing toned physique, centered meditative pose, zen calm expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+disciplined female unarmed fighter with white headband, minimal orange and brown clothing showing toned physique, centered meditative pose, zen calm expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 2
 
 **cavalry_m.png**
 ```
-male mounted knight with lance and military regalia, noble bearing, swift elegant warrior on horseback, pennant flowing, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male knight with lance and white and gold military regalia, noble bearing, swift elegant warrior with blue pennant draped over shoulder, proud cavalry officer, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **cavalry_f.png**
 ```
-female mounted knight with lance and military regalia, noble bearing, swift elegant warrior on horseback, pennant flowing, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female knight with lance and white and gold military regalia, noble bearing, swift elegant warrior with blue pennant draped over shoulder, proud cavalry officer, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **dragoon_m.png**
 ```
-male armored warrior with draconic scaled armor, wyvern-themed helmet, powerful jumping pose, dragon knight aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male armored warrior with dark green draconic scaled armor, wyvern-themed helmet, powerful commanding stance, dragon knight aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **dragoon_f.png**
 ```
-female armored warrior with draconic scaled armor, wyvern-themed helmet, powerful jumping pose, dragon knight aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female armored warrior with dark green draconic scaled armor, wyvern-themed helmet, powerful commanding stance, dragon knight aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **mercenary_m.png**
 ```
-rugged male gunslinger with twin flintlock pistols, tactical leather armor, weathered confident expression, bandolier of ammunition, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+weathered male gunslinger with twin flintlock pistols, dark brown tactical leather armor, confident expression, brass-buckled bandolier of ammunition, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **mercenary_f.png**
 ```
-rugged female gunslinger with twin flintlock pistols, tactical leather armor, weathered confident expression, bandolier of ammunition, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+weathered female gunslinger with twin flintlock pistols, dark brown tactical leather armor, confident expression, brass-buckled bandolier of ammunition, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **hunter_m.png**
 ```
-male wilderness hunter with composite bow and exotic arrows, trapping equipment on belt, animal pelts, keen predatory gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male wilderness hunter with composite bow and exotic arrows, trapping equipment on belt, tawny animal pelts and furs, keen predatory gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **hunter_f.png**
 ```
-female wilderness hunter with composite bow and exotic arrows, trapping equipment on belt, animal pelts, keen predatory gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female wilderness hunter with composite bow and exotic arrows, trapping equipment on belt, tawny animal pelts and furs, keen predatory gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **ninja_m.png**
 ```
-male shadow assassin in dark stealth outfit, masked face with only eyes visible, throwing stars and hidden daggers, wreathed in shadow, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male shadow assassin in jet black stealth outfit, masked face with only eyes visible, throwing stars and hidden daggers, wreathed in dark violet shadow, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **ninja_f.png**
 ```
-female shadow assassin in dark stealth outfit, masked face with only eyes visible, throwing stars and hidden daggers, wreathed in shadow, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female shadow assassin in jet black stealth outfit, masked face with only eyes visible, throwing stars and hidden daggers, wreathed in dark violet shadow, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **monk_m.png**
 ```
-serene male spiritual fighter in simple monk robes, prayer beads around neck, glowing inner energy emanating from hands, balanced and wise, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+serene male spiritual fighter in saffron and white monk robes, prayer beads around neck, golden inner energy emanating from hands, shaved head, balanced and wise, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **monk_f.png**
 ```
-serene female spiritual fighter in simple monk robes, prayer beads around neck, glowing inner energy emanating from hands, balanced and wise, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+serene female spiritual fighter in saffron and white monk robes, prayer beads around neck, golden inner energy emanating from hands, shaved head, balanced and wise, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ---
@@ -125,96 +127,96 @@ serene female spiritual fighter in simple monk robes, prayer beads around neck, 
 
 **mage_m.png**
 ```
-male arcane apprentice in flowing robes with wooden staff, glowing runes floating nearby, bookish curious expression, mysterious aura, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male arcane apprentice in deep purple flowing robes with wooden staff, glowing violet runes floating nearby, bookish curious expression, mysterious aura, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **mage_f.png**
 ```
-female arcane apprentice in flowing robes with wooden staff, glowing runes floating nearby, bookish curious expression, mysterious aura, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female arcane apprentice in deep purple flowing robes with wooden staff, glowing violet runes floating nearby, bookish curious expression, mysterious aura, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 1
 
 **invoker_m.png**
 ```
-male elemental mage channeling raw swirling energy between hands, wild windswept hair, volatile crackling aura, intense focused expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male elemental mage channeling raw amber and orange swirling energy between hands, windswept hair, volatile crackling aura, intense focused expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **invoker_f.png**
 ```
-female elemental mage channeling raw swirling energy between hands, wild windswept hair, volatile crackling aura, intense focused expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female elemental mage channeling raw amber and orange swirling energy between hands, windswept hair, volatile crackling aura, intense focused expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **acolyte_m.png**
 ```
-male holy apprentice in white and silver robes, sacred symbol pendant, soft blessed light aura, serene compassionate expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male holy apprentice in white and silver robes, sacred symbol pendant, soft blessed light aura, serene compassionate expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **acolyte_f.png**
 ```
-female holy apprentice in white and silver robes, sacred symbol pendant, soft blessed light aura, serene compassionate expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female holy apprentice in white and silver robes, sacred symbol pendant, soft blessed light aura, serene compassionate expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 2
 
 **infernalist_m.png**
 ```
-male fire sorcerer wreathed in flames, burning robes with ember edges, red and orange aura, destructive intense gaze, fire swirling around hands, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male fire sorcerer wreathed in flames, burning robes with ember edges, red and orange aura, destructive intense gaze, fire swirling around hands, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **infernalist_f.png**
 ```
-female fire sorceress wreathed in flames, burning robes with ember edges, red and orange aura, destructive intense gaze, fire swirling around hands, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female fire sorceress wreathed in flames, burning robes with ember edges, red and orange aura, destructive intense gaze, fire swirling around hands, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **tidecaller_m.png**
 ```
-male water mage in flowing aquatic robes, swirling water currents around body, blue and teal color scheme, calm powerful oceanic presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male water mage in flowing aquatic robes, swirling water currents around body, blue and teal color scheme, calm powerful oceanic presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **tidecaller_f.png**
 ```
-female water mage in flowing aquatic robes, swirling water currents around body, blue and teal color scheme, calm powerful oceanic presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female water mage in flowing aquatic robes, swirling water currents around body, blue and teal color scheme, calm powerful oceanic presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **tempest_m.png**
 ```
-male storm mage crackling with lightning, windswept wild hair, electric arcs between fingers, storm clouds gathering behind, intense charged aura, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male storm mage crackling with yellow lightning, windswept hair, electric arcs between fingers, storm clouds gathering behind, white and gold charged aura, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **tempest_f.png**
 ```
-female storm mage crackling with lightning, windswept wild hair, electric arcs between fingers, storm clouds gathering behind, intense charged aura, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female storm mage crackling with yellow lightning, windswept hair, electric arcs between fingers, storm clouds gathering behind, white and gold charged aura, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **paladin_m.png**
 ```
-male holy knight in gleaming plate armor with sacred symbols, blessed warhammer, golden divine aura, righteous determined expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male holy knight in gleaming silver and gold plate armor with sacred symbols, blessed warhammer, warm golden divine aura, righteous determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **paladin_f.png**
 ```
-female holy knight in gleaming plate armor with sacred symbols, blessed warhammer, golden divine aura, righteous determined expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female holy knight in gleaming silver and gold plate armor with sacred symbols, blessed warhammer, warm golden divine aura, righteous determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **priest_m.png**
 ```
-male divine healer in elegant white and gold robes, holding holy tome, radiant healing light from hands, compassionate gentle expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male divine healer in elegant ivory and pale gold robes, holding holy tome, soft white healing light from hands, compassionate gentle expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **priest_f.png**
 ```
-female divine healer in elegant white and gold robes, holding holy tome, radiant healing light from hands, compassionate gentle expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female divine healer in elegant ivory and pale gold robes, holding holy tome, soft white healing light from hands, compassionate gentle expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **warlock_m.png**
 ```
-male dark pact mage in tattered robes with eldritch symbols, shadow tendrils rising around body, glowing purple eyes, sinister controlled power, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male dark pact mage in tattered black and deep purple robes with eldritch symbols, shadow tendrils rising around body, glowing purple eyes, sinister controlled power, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **warlock_f.png**
 ```
-female dark pact mage in tattered robes with eldritch symbols, shadow tendrils rising around body, glowing purple eyes, sinister controlled power, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female dark pact mage in tattered black and deep purple robes with eldritch symbols, shadow tendrils rising around body, glowing purple eyes, sinister controlled power, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ---
@@ -225,106 +227,106 @@ female dark pact mage in tattered robes with eldritch symbols, shadow tendrils r
 
 **entertainer_m.png**
 ```
-male theatrical performer in colorful outfit with lyre, dramatic gesturing pose, charming confident smile, stage-ready presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male theatrical performer in warm burgundy and gold outfit with lyre, dramatic gesturing pose, charming confident smile, stage-ready presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **entertainer_f.png**
 ```
-female theatrical performer in colorful outfit with lyre, dramatic gesturing pose, charming confident smile, stage-ready presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female theatrical performer in warm burgundy and gold outfit with lyre, dramatic gesturing pose, charming confident smile, stage-ready presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 1
 
 **bard_m.png**
 ```
-charismatic male musician with ornate war horn and lute on back, flamboyant outfit with feathered hat, performance-ready expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+charismatic male musician with ornate war horn and lute on back, emerald and violet flamboyant outfit with feathered hat, performance-ready expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **bard_f.png**
 ```
-charismatic female musician with ornate war horn and lute on back, flamboyant outfit with feathered hat, performance-ready expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+charismatic female musician with ornate war horn and lute on back, emerald and violet flamboyant outfit with feathered hat, performance-ready expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **dervish_m.png**
 ```
-male whirling dancer in flowing silks mid-spin, ornamental bells and jewelry, graceful hypnotic movement, silk trails in motion, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male whirling dancer draped in crimson and amber flowing silks, ornamental gold bells and jewelry, windswept fabric swirling around shoulders, hypnotic movement energy, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **dervish_f.png**
 ```
-female whirling dancer in flowing silks mid-spin, ornamental bells and jewelry, graceful hypnotic movement, silk trails in motion, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female whirling dancer draped in crimson and amber flowing silks, ornamental gold bells and jewelry, windswept fabric swirling around shoulders, hypnotic movement energy, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **orator_m.png**
 ```
-eloquent male speaker in formal attire with medals and insignia, commanding presence, scroll in one hand, rhetorical gesture with other, authoritative gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+distinguished male speaker in navy and silver formal attire with medals and insignia, commanding presence, scroll in one hand, rhetorical gesture with other, authoritative gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **orator_f.png**
 ```
-eloquent female speaker in formal attire with medals and insignia, commanding presence, scroll in one hand, rhetorical gesture with other, authoritative gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+distinguished female speaker in navy and silver formal attire with medals and insignia, commanding presence, scroll in one hand, rhetorical gesture with other, authoritative gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 2
 
 **warcrier_m.png**
 ```
-battle-scarred male warrior blowing a massive war horn, combat scars across face, aggressive fierce stance, hybrid warrior-performer with heavy armor, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+rugged battle-scarred male warrior blowing a massive war horn, combat scars across face, fierce fierce stance, hybrid warrior-performer with rust-red and iron heavy armor, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **warcrier_f.png**
 ```
-battle-scarred female warrior blowing a massive war horn, combat scars across face, aggressive fierce stance, hybrid warrior-performer with heavy armor, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+rugged battle-scarred female warrior blowing a massive war horn, combat scars across face, fierce fierce stance, hybrid warrior-performer with rust-red and iron heavy armor, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **minstrel_m.png**
 ```
-refined male musician playing elegant harp, beautiful flowing outfit, soothing golden aura of healing melody, serene gentle expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+graceful male musician playing elegant harp, beautiful silver and pale blue flowing outfit, soothing warm aura of healing melody, serene gentle expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **minstrel_f.png**
 ```
-refined female musician playing elegant harp, beautiful flowing outfit, soothing golden aura of healing melody, serene gentle expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+graceful female musician playing elegant harp, beautiful silver and pale blue flowing outfit, soothing warm aura of healing melody, serene gentle expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **illusionist_m.png**
 ```
-enigmatic male figure surrounded by shimmering illusion fragments, reality-warping aura, prismatic light refracting around body, hard to focus on, mysterious smile, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+enigmatic male figure surrounded by shimmering illusion fragments, reality-warping aura, prismatic light refracting around body, hard to focus on, mysterious smile, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **illusionist_f.png**
 ```
-enigmatic female figure surrounded by shimmering illusion fragments, reality-warping aura, prismatic light refracting around body, hard to focus on, mysterious smile, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+enigmatic female figure surrounded by shimmering illusion fragments, reality-warping aura, prismatic light refracting around body, hard to focus on, mysterious smile, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **mime_m.png**
 ```
-male theatrical mime with white face paint and black outfit, hands pressing against invisible walls, surreal pantomime gestures, uncanny silent presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male theatrical mime with white face paint and black outfit, gloved hands raised near face in pantomime gesture, surreal expression, uncanny silent presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **mime_f.png**
 ```
-female theatrical mime with white face paint and black outfit, hands pressing against invisible walls, surreal pantomime gestures, uncanny silent presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female theatrical mime with white face paint and black outfit, gloved hands raised near face in pantomime gesture, surreal expression, uncanny silent presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **laureate_m.png**
 ```
-regal male orator with golden laurel wreath crown, noble formal robes, commanding aura of inspiration, poetic gestures, wise noble bearing, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+regal male orator with golden laurel wreath crown, noble formal robes, commanding aura of inspiration, poetic gestures, wise noble bearing, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **laureate_f.png**
 ```
-regal female orator with golden laurel wreath crown, noble formal robes, commanding aura of inspiration, poetic gestures, wise noble bearing, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+regal female orator with golden laurel wreath crown, noble formal robes, commanding aura of inspiration, poetic gestures, wise noble bearing, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **elegist_m.png**
 ```
-mournful male poet in dark flowing robes, melancholic shadowy aura, sorrowful beautiful expression, wilted roses motif, bittersweet haunting presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+mournful male poet in dark flowing robes, melancholic shadowy aura, sorrowful beautiful expression, wilted roses motif, bittersweet haunting presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **elegist_f.png**
 ```
-mournful female poet in dark flowing robes, melancholic shadowy aura, sorrowful beautiful expression, wilted roses motif, bittersweet haunting presence, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+mournful female poet in dark flowing robes, melancholic shadowy aura, sorrowful beautiful expression, wilted roses motif, bittersweet haunting presence, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ---
@@ -335,106 +337,106 @@ mournful female poet in dark flowing robes, melancholic shadowy aura, sorrowful 
 
 **tinker_m.png**
 ```
-male inventor with brass goggles on forehead, leather work apron, pockets full of tools and gadgets, curious excited expression, workshop-worn appearance, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male inventor with brass goggles on forehead, copper-brown leather work apron, pockets full of tools and gadgets, curious excited expression, warm-toned workshop aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **tinker_f.png**
 ```
-female inventor with brass goggles on forehead, leather work apron, pockets full of tools and gadgets, curious excited expression, workshop-worn appearance, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female inventor with brass goggles on forehead, copper-brown leather work apron, pockets full of tools and gadgets, curious excited expression, warm-toned workshop aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 1
 
 **artificer_m.png**
 ```
-skilled male craftsman with enchanted tools, mechanical devices on belt, potion bottles in bandolier, precise clever hands, arcane workshop aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+skilled male craftsman with enchanted tools, mechanical devices on belt, potion bottles in bandolier, precise clever hands, teal and brass arcane workshop aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **artificer_f.png**
 ```
-skilled female craftswoman with enchanted tools, mechanical devices on belt, potion bottles in bandolier, precise clever hands, arcane workshop aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+skilled female craftswoman with enchanted tools, mechanical devices on belt, potion bottles in bandolier, precise clever hands, teal and brass arcane workshop aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **philosopher_m.png**
 ```
-male cosmic scholar in robes with celestial star motifs, holding astrolabe, contemplative faraway gaze, cosmic nebula aura, deep thinker, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male cosmic scholar in deep violet robes with celestial star motifs, holding astrolabe, contemplative faraway gaze, swirling purple nebula aura, deep thinker, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **philosopher_f.png**
 ```
-female cosmic scholar in robes with celestial star motifs, holding astrolabe, contemplative faraway gaze, cosmic nebula aura, deep thinker, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female cosmic scholar in deep violet robes with celestial star motifs, holding astrolabe, contemplative faraway gaze, swirling purple nebula aura, deep thinker, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **arithmancer_m.png**
 ```
-male mathematical mage in robes covered with glowing equations and geometric glyphs, holding abacus-like device, calculating intense expression, numbers floating in air, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male mathematical mage in white and silver robes covered with glowing golden equations and geometric glyphs, holding abacus-like device, calculating intense expression, numbers floating in air, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **arithmancer_f.png**
 ```
-female mathematical mage in robes covered with glowing equations and geometric glyphs, holding abacus-like device, calculating intense expression, numbers floating in air, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female mathematical mage in white and silver robes covered with glowing golden equations and geometric glyphs, holding abacus-like device, calculating intense expression, numbers floating in air, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 2
 
 **alchemist_m.png**
 ```
-male master alchemist with bubbling vials and flasks, transmutation circle glowing behind, mystical scientific apparatus, green and gold vapors rising, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male master alchemist with bubbling vials and flasks, transmutation circle glowing behind, mystical scientific apparatus, green and gold vapors rising, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **alchemist_f.png**
 ```
-female master alchemist with bubbling vials and flasks, transmutation circle glowing behind, mystical scientific apparatus, green and gold vapors rising, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female master alchemist with bubbling vials and flasks, transmutation circle glowing behind, mystical scientific apparatus, green and gold vapors rising, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **bombardier_m.png**
 ```
-male explosive expert with bomb belt and fuse cord, mechanical grenades, singed eyebrows and soot marks, manic grin, detonation spark aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male explosive expert with bomb belt and fuse cord, mechanical grenades, singed eyebrows and soot marks, manic grin, orange and charcoal detonation spark aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **bombardier_f.png**
 ```
-female explosive expert with bomb belt and fuse cord, mechanical grenades, singed eyebrows and soot marks, manic grin, detonation spark aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female explosive expert with bomb belt and fuse cord, mechanical grenades, singed eyebrows and soot marks, manic grin, orange and charcoal detonation spark aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **chronomancer_m.png**
 ```
-male time manipulator with clockwork gears floating around body, temporal vortex swirling behind, hourglass staff, ageless otherworldly appearance, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male time manipulator with amber and bronze clockwork gears floating around body, temporal vortex swirling behind, hourglass staff, silver-haired ageless otherworldly appearance, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **chronomancer_f.png**
 ```
-female time manipulator with clockwork gears floating around body, temporal vortex swirling behind, hourglass staff, ageless otherworldly appearance, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female time manipulator with amber and bronze clockwork gears floating around body, temporal vortex swirling behind, hourglass staff, silver-haired ageless otherworldly appearance, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **astronomer_m.png**
 ```
-male celestial mage in star-marked deep blue robes, constellations glowing on fabric, telescope at side, cosmic starlight radiating from hands, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male celestial mage in star-marked deep blue robes, constellations glowing on fabric, telescope at side, cosmic starlight radiating from hands, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **astronomer_f.png**
 ```
-female celestial mage in star-marked deep blue robes, constellations glowing on fabric, telescope at side, cosmic starlight radiating from hands, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female celestial mage in star-marked deep blue robes, constellations glowing on fabric, telescope at side, cosmic starlight radiating from hands, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **automaton_m.png**
 ```
-living mechanical construct with visible clockwork gears, metal plating over masculine humanoid form, glowing core in chest, precise robotic aesthetic, sentient machine, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+living mechanical construct with visible clockwork gears, steel and copper metal plating over masculine humanoid form, glowing amber core in chest, precise robotic aesthetic, sentient machine, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **automaton_f.png**
 ```
-living mechanical construct with visible clockwork gears, metal plating over feminine humanoid form, glowing core in chest, precise robotic aesthetic, sentient machine, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+living mechanical construct with visible clockwork gears, steel and copper metal plating over feminine humanoid form, glowing amber core in chest, precise robotic aesthetic, sentient machine, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **technomancer_m.png**
 ```
-male tech-magic hybrid caster with glowing circuit runes on skin, fusion of arcane symbols and technology, futuristic mystical robes, electric blue energy, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male tech-magic hybrid caster with glowing circuit runes on skin, fusion of arcane symbols and technology, dark futuristic mystical robes, neon green energy, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **technomancer_f.png**
 ```
-female tech-magic hybrid caster with glowing circuit runes on skin, fusion of arcane symbols and technology, futuristic mystical robes, electric blue energy, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female tech-magic hybrid caster with glowing circuit runes on skin, fusion of arcane symbols and technology, dark futuristic mystical robes, neon green energy, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ---
@@ -445,106 +447,106 @@ female tech-magic hybrid caster with glowing circuit runes on skin, fusion of ar
 
 **wildling_m.png**
 ```
-male primal nature warrior with tribal markings, vine and thorn motifs on leather armor, wild untamed hair, fierce connection to nature, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male primal nature warrior with tribal markings, vine and thorn motifs on earthy brown and olive leather armor, wild untamed hair, fierce connection to nature, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **wildling_f.png**
 ```
-female primal nature warrior with tribal markings, vine and thorn motifs on leather armor, wild untamed hair, fierce connection to nature, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female primal nature warrior with tribal markings, vine and thorn motifs on earthy brown and olive leather armor, wild untamed hair, fierce connection to nature, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 1
 
 **herbalist_m.png**
 ```
-male plant healer in green earth-toned attire, herbs and seedlings woven into clothing, mortar and pestle, nurturing gentle expression, natural healing aura, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male plant healer in sage green and cream earth-toned attire, herbs and seedlings woven into clothing, mortar and pestle, nurturing gentle expression, soft green healing aura, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **herbalist_f.png**
 ```
-female plant healer in green earth-toned attire, herbs and seedlings woven into clothing, mortar and pestle, nurturing gentle expression, natural healing aura, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female plant healer in sage green and cream earth-toned attire, herbs and seedlings woven into clothing, mortar and pestle, nurturing gentle expression, soft green healing aura, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **shaman_m.png**
 ```
-male tribal spirit guide with ceremonial totems and bone necklace, face painted with spiritual markings, mystical smoke wisps, otherworldly piercing gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male tribal spirit guide with ceremonial totems and bone necklace, ochre and bone-white face paint with spiritual markings, mystical smoke wisps, otherworldly piercing gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **shaman_f.png**
 ```
-female tribal spirit guide with ceremonial totems and bone necklace, face painted with spiritual markings, mystical smoke wisps, otherworldly piercing gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female tribal spirit guide with ceremonial totems and bone necklace, ochre and bone-white face paint with spiritual markings, mystical smoke wisps, otherworldly piercing gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **beastcaller_m.png**
 ```
-male wild beast-bonded warrior with feathers and animal pelts woven into outfit, feral untamed hair, claw marks, primal connection to animals, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male wild beast-bonded warrior with feathers and russet animal pelts woven into tawny outfit, feral untamed hair, claw marks, primal connection to animals, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **beastcaller_f.png**
 ```
-female wild beast-bonded warrior with feathers and animal pelts woven into outfit, feral untamed hair, claw marks, primal connection to animals, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female wild beast-bonded warrior with feathers and russet animal pelts woven into tawny outfit, feral untamed hair, claw marks, primal connection to animals, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 2
 
 **blighter_m.png**
 ```
-male corruption specialist with withering decay aura, poisonous vines with thorns, sickly green and purple color scheme, rotting plant matter aesthetic, dark menacing nature mage, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male corruption specialist with withering decay aura, poisonous vines with thorns, sickly green and purple color scheme, rotting plant matter aesthetic, dark menacing nature mage, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **blighter_f.png**
 ```
-female corruption specialist with withering decay aura, poisonous vines with thorns, sickly green and purple color scheme, rotting plant matter aesthetic, dark menacing nature mage, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female corruption specialist with withering decay aura, poisonous vines with thorns, sickly green and purple color scheme, rotting plant matter aesthetic, dark menacing nature mage, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **grove_keeper_m.png**
 ```
-male nature guardian with living wooden bark armor, flowering vines growing from shoulders, fertile green aura, ancient tree spirit protector, roots emerging from ground, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male nature guardian with living dark wooden bark armor, flowering vines growing from shoulders, deep emerald and gold aura, ancient tree spirit protector, moss and lichen across chest plate, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **grove_keeper_f.png**
 ```
-female nature guardian with living wooden bark armor, flowering vines growing from shoulders, fertile green aura, ancient tree spirit protector, roots emerging from ground, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female nature guardian with living dark wooden bark armor, flowering vines growing from shoulders, deep emerald and gold aura, ancient tree spirit protector, moss and lichen across chest plate, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **witch_doctor_m.png**
 ```
-male voodoo curse specialist with shrunken totems on staff, tribal ceremonial outfit, dark spiritual aura, glowing curse sigils, unsettling knowing smile, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male voodoo curse specialist with shrunken totems on staff, deep indigo and blood red tribal ceremonial outfit, dark spiritual aura, glowing crimson curse sigils, unsettling knowing smile, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **witch_doctor_f.png**
 ```
-female voodoo curse specialist with shrunken totems on staff, tribal ceremonial outfit, dark spiritual aura, glowing curse sigils, unsettling knowing smile, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female voodoo curse specialist with shrunken totems on staff, deep indigo and blood red tribal ceremonial outfit, dark spiritual aura, glowing crimson curse sigils, unsettling knowing smile, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **spiritwalker_m.png**
 ```
-male ethereal spirit guide with translucent ghostly robes, ancestral spirits visible as faint wisps around body, bridge between worlds, serene otherworldly gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male ethereal spirit guide with translucent pale silver ghostly robes, white-haired, ancestral spirits visible as faint wisps around body, bridge between worlds, serene otherworldly gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **spiritwalker_f.png**
 ```
-female ethereal spirit guide with translucent ghostly robes, ancestral spirits visible as faint wisps around body, bridge between worlds, serene otherworldly gaze, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female ethereal spirit guide with translucent pale silver ghostly robes, white-haired, ancestral spirits visible as faint wisps around body, bridge between worlds, serene otherworldly gaze, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **falconer_m.png**
 ```
-male raptor master with fierce falcon perched on armored gauntlet, feathered cloak, keen sharp-eyed hunter gaze, aerial combat aesthetic, windswept hair, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male raptor master with fierce falcon perched on armored gauntlet, steel gray and white feathered cloak, keen sharp-eyed hunter gaze, aerial combat aesthetic, windswept hair, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **falconer_f.png**
 ```
-female raptor master with fierce falcon perched on armored gauntlet, feathered cloak, keen sharp-eyed hunter gaze, aerial combat aesthetic, windswept hair, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female raptor master with fierce falcon perched on armored gauntlet, steel gray and white feathered cloak, keen sharp-eyed hunter gaze, aerial combat aesthetic, windswept hair, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **shapeshifter_m.png**
 ```
-male beast transformer mid-transformation with half-human half-beast features, feral glowing eyes, primal raw power, fur and claws emerging from skin, wild untamed energy, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male beast transformer with half-human half-beast face, one eye human and one feral glowing amber, primal raw power, dark brown and crimson bestial fur mantle over shoulders, wild untamed energy, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **shapeshifter_f.png**
 ```
-female beast transformer mid-transformation with half-human half-beast features, feral glowing eyes, primal raw power, fur and claws emerging from skin, wild untamed energy, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female beast transformer with half-human half-beast face, one eye human and one feral glowing amber, primal raw power, dark brown and crimson bestial fur mantle over shoulders, wild untamed energy, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ---
@@ -555,74 +557,74 @@ female beast transformer mid-transformation with half-human half-beast features,
 
 **wanderer_m.png**
 ```
-male weathered traveler in hooded cloak with mixed armor pieces, mystical ward symbols glowing faintly, road-worn but resilient, adaptive experienced fighter, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male weathered traveler in dusty gray-brown hooded cloak with mixed armor pieces, mystical ward symbols glowing faintly, road-worn but resilient, adaptive experienced fighter, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **wanderer_f.png**
 ```
-female weathered traveler in hooded cloak with mixed armor pieces, mystical ward symbols glowing faintly, road-worn but resilient, adaptive experienced fighter, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female weathered traveler in dusty gray-brown hooded cloak with mixed armor pieces, mystical ward symbols glowing faintly, road-worn but resilient, adaptive experienced fighter, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 1
 
 **sentinel_m.png**
 ```
-male stoic shield guardian in heavy armor, massive tower shield with ward runes, protective magical aura, fortress-like unyielding stance, stalwart expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male stoic shield guardian in steel blue heavy armor, massive tower shield with glowing ward runes, protective magical aura, fortress-like unyielding stance, stalwart expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **sentinel_f.png**
 ```
-female stoic shield guardian in heavy armor, massive tower shield with ward runes, protective magical aura, fortress-like unyielding stance, stalwart expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female stoic shield guardian in steel blue heavy armor, massive tower shield with glowing ward runes, protective magical aura, fortress-like unyielding stance, stalwart expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **pathfinder_m.png**
 ```
-male wilderness explorer with compass and torch, weathered adaptive gear with many pouches, experienced far-seeing gaze, versatile traveler, trail markings on armor, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male wilderness explorer with compass and torch, forest green and tan weathered gear with many pouches, experienced far-seeing gaze, versatile traveler, trail markings on armor, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **pathfinder_f.png**
 ```
-female wilderness explorer with compass and torch, weathered adaptive gear with many pouches, experienced far-seeing gaze, versatile traveler, trail markings on armor, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female wilderness explorer with compass and torch, forest green and tan weathered gear with many pouches, experienced far-seeing gaze, versatile traveler, trail markings on armor, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 ### Tier 2
 
 **bulwark_m.png**
 ```
-imposing male fortress warrior in massive layered armor, enormous shield centerpiece, immovable defensive stance, scarred veteran, ultimate tank aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+towering male fortress warrior in dark iron and gunmetal massive layered armor, enormous battle-worn shield centerpiece, immovable defensive stance, scarred veteran, ultimate tank aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **bulwark_f.png**
 ```
-imposing female fortress warrior in massive layered armor, enormous shield centerpiece, immovable defensive stance, scarred veteran, ultimate tank aesthetic, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+towering female fortress warrior in dark iron and gunmetal massive layered armor, enormous battle-worn shield centerpiece, immovable defensive stance, scarred veteran, ultimate tank aesthetic, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **aegis_m.png**
 ```
-male radiant protection specialist with shimmering magical barrier shields floating around body, guardian aura protecting allies, crystalline armor, selfless defender, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male radiant protection specialist with shimmering magical barrier shields floating around body, white and gold guardian aura protecting allies, pale crystalline armor, selfless defender, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **aegis_f.png**
 ```
-female radiant protection specialist with shimmering magical barrier shields floating around body, guardian aura protecting allies, crystalline armor, selfless defender, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female radiant protection specialist with shimmering magical barrier shields floating around body, white and gold guardian aura protecting allies, pale crystalline armor, selfless defender, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **trailblazer_m.png**
 ```
-aggressive male explorer with blazing torch and dual weapons, burning trail effect behind, speed lines, fierce determined expression, offensive pathfinder, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+fierce male explorer with blazing torch and dual weapons, orange and red burning trail effect behind, speed lines, fierce determined expression, offensive pathfinder, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **trailblazer_f.png**
 ```
-aggressive female explorer with blazing torch and dual weapons, burning trail effect behind, speed lines, fierce determined expression, offensive pathfinder, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+fierce female explorer with blazing torch and dual weapons, orange and red burning trail effect behind, speed lines, fierce determined expression, offensive pathfinder, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **survivalist_m.png**
 ```
-male weathered endurance fighter in patched worn gear, self-sufficient resourceful appearance, bandaged but unbroken, adapts to any environment, resilient determined expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+male weathered endurance fighter in sun-bleached tan patched worn gear, self-sufficient resourceful appearance, bandaged but unbroken, adapts to any environment, resilient determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
 
 **survivalist_f.png**
 ```
-female weathered endurance fighter in patched worn gear, self-sufficient resourceful appearance, bandaged but unbroken, adapts to any environment, resilient determined expression, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250
+female weathered endurance fighter in sun-bleached tan patched worn gear, self-sufficient resourceful appearance, bandaged but unbroken, adapts to any environment, resilient determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
