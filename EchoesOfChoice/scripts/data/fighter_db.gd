@@ -377,6 +377,36 @@ static func upgrade_class(fighter: FighterData, item: String) -> bool:
 
 
 # =============================================================================
+# Upgrade preview (non-destructive)
+# =============================================================================
+
+static func preview_upgrade(fighter: FighterData, item: String) -> Dictionary:
+	var c: FighterData = fighter.clone()
+	var old_stats: Dictionary = _snapshot_stats(c)
+	if not upgrade_class(c, item):
+		return {}
+	var new_stats: Dictionary = _snapshot_stats(c)
+	var deltas: Dictionary = {}
+	for key: String in old_stats:
+		var diff: int = new_stats[key] - old_stats[key]
+		if diff != 0:
+			deltas[key] = diff
+	var ability_names: Array[String] = []
+	for a: RefCounted in c.abilities:
+		ability_names.append(a.ability_name)
+	return {"new_class": c.character_type, "deltas": deltas, "abilities": ability_names}
+
+
+static func _snapshot_stats(f: FighterData) -> Dictionary:
+	return {
+		"HP": f.max_health, "MP": f.max_mana,
+		"P.ATK": f.physical_attack, "P.DEF": f.physical_defense,
+		"M.ATK": f.magic_attack, "M.DEF": f.magic_defense,
+		"SPD": f.speed, "CRIT": f.crit_chance, "DODGE": f.dodge_chance,
+	}
+
+
+# =============================================================================
 # Save/load helpers
 # =============================================================================
 

@@ -10,6 +10,7 @@ const VotePanel := preload("res://scripts/ui/vote_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
+const FighterDB := preload("res://scripts/data/fighter_db.gd")
 
 enum TownPhase { INTRO_TEXT, UPGRADING, UPGRADE_REVEAL, OUTRO_TEXT, BRANCH_CHOICE }
 
@@ -251,10 +252,29 @@ func _show_next_upgrade() -> void:
 		fighter.character_name, fighter.character_type]
 	_upgrade_label.visible = true
 
+	var options: Array[Dictionary] = _format_upgrade_options(fighter)
+	_choice_menu.show_choices(options)
+
+
+func _format_upgrade_options(fighter: FighterData) -> Array[Dictionary]:
 	var options: Array[Dictionary] = []
 	for item: String in fighter.upgrade_items:
-		options.append({"label": item})
-	_choice_menu.show_choices(options)
+		var preview: Dictionary = FighterDB.preview_upgrade(fighter, item)
+		if preview.is_empty():
+			options.append({"label": item})
+			continue
+		var parts: Array[String] = []
+		for key: String in preview["deltas"]:
+			var diff: int = preview["deltas"][key]
+			parts.append("%s%d %s" % ["+" if diff > 0 else "", diff, key])
+		var desc: String = preview["new_class"]
+		if not parts.is_empty():
+			desc += "  |  " + ", ".join(parts)
+		var ability_names: Array[String] = preview.get("abilities", [])
+		if not ability_names.is_empty():
+			desc += "\nAbilities: " + ", ".join(ability_names)
+		options.append({"label": item, "description": desc})
+	return options
 
 
 func _on_choice_selected(index: int) -> void:
@@ -430,9 +450,8 @@ func _rpc_request_upgrade(party_index: int, char_name: String, char_class: Strin
 	_waiting_overlay.hide_waiting()
 	_upgrade_label.text = "%s the %s. Choose an upgrade:" % [char_name, char_class]
 	_upgrade_label.visible = true
-	var options: Array[Dictionary] = []
-	for item: String in items:
-		options.append({"label": item})
+	var fighter: FighterData = GameState.party[party_index]
+	var options: Array[Dictionary] = _format_upgrade_options(fighter)
 	_choice_menu.show_choices(options)
 
 
