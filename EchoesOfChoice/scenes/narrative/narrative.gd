@@ -61,8 +61,13 @@ func _build_ui() -> void:
 
 func _show_narrative() -> void:
 	var battle = GameState.current_battle
-	if battle and not battle.scene_image.is_empty() and ResourceLoader.exists(battle.scene_image):
-		_scene_image.texture = load(battle.scene_image)
+	var img_path: String = ""
+	if GameState.narrative_mode == GameState.NarrativeMode.POST_BATTLE and not battle.post_scene_image.is_empty():
+		img_path = battle.post_scene_image
+	elif not battle.scene_image.is_empty():
+		img_path = battle.scene_image
+	if not img_path.is_empty() and ResourceLoader.exists(img_path):
+		_scene_image.texture = load(img_path)
 	else:
 		_scene_image.texture = null
 	match GameState.game_phase:
@@ -198,6 +203,10 @@ func _unlock_notification_lines() -> Array[String]:
 
 
 func _on_text_finished() -> void:
+	# In multiplayer, only the host advances narrative
+	if NetManager.is_multiplayer_active and not NetManager.is_host:
+		return
+
 	match GameState.game_phase:
 		GameState.GamePhase.NARRATIVE:
 			if GameState.narrative_mode == GameState.NarrativeMode.PRE_BATTLE:
@@ -208,6 +217,8 @@ func _on_text_finished() -> void:
 				else:
 					# Go to battle (keep music playing across transition)
 					GameState.game_phase = GameState.GamePhase.BATTLE
+					if NetManager.is_multiplayer_active:
+						_rpc_change_scene.rpc("res://scenes/battle/battle.tscn")
 					SceneManager.change_scene("res://scenes/battle/battle.tscn", 0.4, true)
 			else:
 				# Post-battle: level up first
@@ -221,8 +232,12 @@ func _on_text_finished() -> void:
 			if _is_defeat:
 				_show_defeat_choices()
 			else:
+				if NetManager.is_multiplayer_active:
+					_rpc_change_scene.rpc("res://scenes/title/title.tscn")
 				SceneManager.change_scene("res://scenes/title/title.tscn")
 		_:
+			if NetManager.is_multiplayer_active:
+				_rpc_change_scene.rpc("res://scenes/title/title.tscn")
 			SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
@@ -259,6 +274,9 @@ func _on_defeat_choice(index: int) -> void:
 
 
 func _show_branch_choices() -> void:
+	# In multiplayer, only host sees branch choices; guests wait
+	if NetManager.is_multiplayer_active and not NetManager.is_host:
+		return
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	for choice: Dictionary in GameState.current_battle.choices:
@@ -269,9 +287,20 @@ func _show_branch_choices() -> void:
 func _on_branch_selected(index: int) -> void:
 	_choice_menu.hide_menu()
 	var battle_id: String = GameState.current_battle.choices[index]["battle_id"]
+
+	# Broadcast choice to all peers
+	if NetManager.is_multiplayer_active:
+		_rpc_branch_chosen.rpc(battle_id)
+
 	GameState.advance_with_choice(battle_id)
+	_navigate_after_advance()
+
+
+func _navigate_after_advance() -> void:
 	match GameState.game_phase:
 		GameState.GamePhase.TOWN_STOP:
+			if NetManager.is_multiplayer_active and NetManager.is_host:
+				_rpc_change_scene.rpc("res://scenes/town_stop/town_stop.tscn")
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		GameState.GamePhase.ENDING:
 			GameState.game_won = true
@@ -283,13 +312,47 @@ func _on_branch_selected(index: int) -> void:
 
 
 func _advance_after_battle() -> void:
-	SaveManager.auto_save()
+	if NetManager.is_multiplayer_active and NetManager.is_host:
+		SaveManager.auto_save()
+	elif not NetManager.is_multiplayer_active:
+		SaveManager.auto_save()
 	GameState.advance_to_next_battle()
+
+	if NetManager.is_multiplayer_active and NetManager.is_host:
+		# Broadcast the next battle to all peers
+		_rpc_advance_to_battle.rpc(GameState.current_battle_id)
+
 	match GameState.game_phase:
 		GameState.GamePhase.ENDING:
 			GameState.game_won = true
 			_show_ending()
 		GameState.GamePhase.TOWN_STOP:
+			if NetManager.is_multiplayer_active and NetManager.is_host:
+				_rpc_change_scene.rpc("res://scenes/town_stop/town_stop.tscn")
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		_:
 			_show_narrative()
+
+
+# =============================================================================
+# Multiplayer RPCs
+# =============================================================================
+
+## Host -> All: Change scene on all peers.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_change_scene(scene_path: String) -> void:
+	SceneManager.change_scene(scene_path, 0.4, true)
+
+
+## Host -> All: Branch choice made by host.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_branch_chosen(battle_id: String) -> void:
+	GameState.advance_with_choice(battle_id)
+	_navigate_after_advance()
+
+
+## Host -> All: Advance to next battle.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_advance_to_battle(battle_id: String) -> void:
+	if not battle_id.is_empty():
+		GameState.advance_to_battle(battle_id)
