@@ -8,8 +8,11 @@ extends Control
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
+const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
+const FighterData := preload("res://scripts/data/fighter_data.gd")
+const FighterDB := preload("res://scripts/data/fighter_db.gd")
 
-enum Mode { ROLE_SELECT, HOSTING, JOIN_INPUT, CONNECTING, IN_LOBBY }
+enum Mode { ROLE_SELECT, HOSTING, JOIN_INPUT, CONNECTING, IN_LOBBY, LOAD_SAVE, FIGHTER_PICK }
 
 var _mode: Mode = Mode.ROLE_SELECT
 var _vbox: VBoxContainer
@@ -24,6 +27,8 @@ var _confirm_dialog: ConfirmDialog
 # Host-only state
 var _story_index: int = 0
 var _stories: Array[Dictionary] = []
+var _load_slot_actions: Array[Dictionary] = []
+var _fighter_picker: FighterPicker
 
 
 func _ready() -> void:
@@ -132,6 +137,8 @@ func _on_menu_choice(index: int) -> void:
 			_handle_join_input_choice(index)
 		Mode.IN_LOBBY:
 			_handle_lobby_choice(index)
+		Mode.LOAD_SAVE:
+			_handle_load_save_choice(index)
 
 
 func _handle_role_choice(index: int) -> void:
@@ -163,37 +170,52 @@ func _start_hosting() -> void:
 	_refresh_player_list()
 
 
+var _host_menu_actions: Array[String] = []
+
 func _show_host_menu() -> void:
+	_host_menu_actions.clear()
+	var options: Array[Dictionary] = []
+
+	# Player count toggle
 	var player_count_label: String = "%d Players" % NetManager.target_player_count
-	var options: Array[Dictionary] = [
-		{"label": player_count_label, "description": "Toggle between 2 and 3 players"},
-	]
+	options.append({"label": player_count_label, "description": "Toggle between 2 and 3 players"})
+	_host_menu_actions.append("toggle_players")
 
 	# Story selection
 	_stories = StoryDB.get_all_stories()
 	var current_story: Dictionary = _stories[_story_index] if _story_index < _stories.size() else {}
 	var story_title: String = current_story.get("title", "Story 1")
 	options.append({"label": "Story: %s" % story_title, "description": "Change story"})
+	_host_menu_actions.append("toggle_story")
 
+	# Load Save (only if saves exist)
+	if SaveManager.has_any_save():
+		options.append({"label": "Load Save", "description": "Continue from a saved game"})
+		_host_menu_actions.append("load_save")
+
+	# Start Game
 	if NetManager.is_lobby_full():
 		options.append({"label": "Start Game"})
 	else:
 		options.append({"label": "Start Game", "disabled": true,
 			"description": "Waiting for %d more player(s)" % (NetManager.target_player_count - NetManager.get_connected_peer_count())})
+	_host_menu_actions.append("start_game")
 
 	options.append({"label": "Cancel"})
+	_host_menu_actions.append("cancel")
 	_menu.show_choices(options)
 
 
 func _handle_host_menu_choice(index: int) -> void:
-	match index:
-		0:  # Toggle player count
+	if index < 0 or index >= _host_menu_actions.size():
+		return
+	match _host_menu_actions[index]:
+		"toggle_players":
 			NetManager.target_player_count = 3 if NetManager.target_player_count == 2 else 2
 			NetManager._assign_host_slots()
 			_show_host_menu()
-		1:  # Toggle story
+		"toggle_story":
 			_story_index = (_story_index + 1) % _stories.size()
-			# Skip locked stories
 			var attempts: int = 0
 			while attempts < _stories.size():
 				var story: Dictionary = _stories[_story_index]
@@ -203,10 +225,12 @@ func _handle_host_menu_choice(index: int) -> void:
 				_story_index = (_story_index + 1) % _stories.size()
 				attempts += 1
 			_show_host_menu()
-		2:  # Start Game
+		"load_save":
+			_show_load_save_slots()
+		"start_game":
 			if NetManager.is_lobby_full():
 				_start_multiplayer_game()
-		3:  # Cancel
+		"cancel":
 			_confirm_dialog.confirmed.connect(_on_cancel_confirmed, CONNECT_ONE_SHOT)
 			_confirm_dialog.show_confirm("Leave the lobby?")
 
@@ -344,6 +368,109 @@ func _start_multiplayer_game() -> void:
 func _rpc_start_game(story_id: String) -> void:
 	GameState.start_new_game(story_id)
 	SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
+
+
+# =============================================================================
+# Load Save
+# =============================================================================
+
+func _show_load_save_slots() -> void:
+	_mode = Mode.LOAD_SAVE
+	_load_slot_actions.clear()
+	var options: Array[Dictionary] = []
+
+	for i: int in SaveManager.MAX_SAVE_SLOTS:
+		var summary: Dictionary = SaveManager.get_save_summary(i)
+		if summary.get("exists", false):
+			var story_title: String = StoryDB.get_story(
+				summary.get("story_id", "story_1")).get("title", "")
+			var mp_tag: String = " [Co-op]" if summary.get("is_multiplayer", false) else ""
+			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s" % [
+				i + 1, summary.get("lead_name", "???"), summary.get("lead_class", "???"),
+				summary.get("level", 1), story_title, mp_tag]})
+			_load_slot_actions.append({"action": "load", "slot": i})
+		else:
+			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
+			_load_slot_actions.append({"action": "empty"})
+
+	var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
+	if auto_summary.get("exists", false):
+		var auto_story: String = StoryDB.get_story(
+			auto_summary.get("story_id", "story_1")).get("title", "")
+		var mp_tag: String = " [Co-op]" if auto_summary.get("is_multiplayer", false) else ""
+		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s" % [
+			auto_summary.get("lead_name", "???"), auto_summary.get("lead_class", "???"),
+			auto_summary.get("level", 1), auto_story, mp_tag]})
+		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
+	else:
+		options.append({"label": "Autosave: Empty", "disabled": true})
+		_load_slot_actions.append({"action": "empty"})
+
+	options.append({"label": "Back"})
+	_load_slot_actions.append({"action": "back"})
+	_menu.show_choices(options)
+
+
+func _handle_load_save_choice(index: int) -> void:
+	if index < 0 or index >= _load_slot_actions.size():
+		return
+	var entry: Dictionary = _load_slot_actions[index]
+	match entry.get("action", ""):
+		"back":
+			_mode = Mode.HOSTING
+			_show_host_menu()
+		"load":
+			var slot: int = int(entry["slot"])
+			if SaveManager.load_from_slot(slot):
+				_show_fighter_picker()
+			else:
+				_status_label.text = "Failed to load save."
+				_status_label.visible = true
+
+
+func _show_fighter_picker() -> void:
+	_mode = Mode.FIGHTER_PICK
+	_menu.hide_menu()
+	_status_label.visible = false
+	_fighter_picker = FighterPicker.new()
+	add_child(_fighter_picker)
+	_fighter_picker.setup(GameState.party, NetManager.target_player_count)
+	_fighter_picker.assignment_confirmed.connect(_on_fighter_pick_confirmed)
+	_fighter_picker.assignment_cancelled.connect(_on_fighter_pick_cancelled)
+
+
+func _on_fighter_pick_confirmed(_slot_owners: Dictionary) -> void:
+	_fighter_picker.queue_free()
+	_fighter_picker = null
+	NetManager.broadcast_slot_assignments()
+	# Serialize party and send to all peers
+	var party_data: Array[Dictionary] = []
+	for fighter: FighterData in GameState.party:
+		party_data.append(fighter.to_save_data())
+	_rpc_load_party_and_start.rpc(party_data, GameState.current_battle_id,
+		GameState.current_story_id)
+
+
+func _on_fighter_pick_cancelled() -> void:
+	_fighter_picker.queue_free()
+	_fighter_picker = null
+	_mode = Mode.HOSTING
+	_show_host_menu()
+
+
+@rpc("authority", "call_local", "reliable")
+func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: String) -> void:
+	if not NetManager.is_host:
+		# Guest: reconstruct party from host data
+		GameState.party.clear()
+		for data: Dictionary in party_data:
+			var fighter := FighterData.new()
+			fighter.apply_save_data(data)
+			fighter.abilities = FighterDB.get_abilities_for_class(fighter.class_id)
+			GameState.party.append(fighter)
+		GameState.current_story_id = story_id
+		GameState.advance_to_battle(battle_id)
+	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 
 # =============================================================================
