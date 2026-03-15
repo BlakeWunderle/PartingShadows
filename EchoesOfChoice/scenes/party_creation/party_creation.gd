@@ -155,6 +155,18 @@ func _build_ui() -> void:
 		btn.set_anchors_preset(Control.PRESET_FULL_RECT)
 		btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		btn.focus_mode = Control.FOCUS_ALL
+		# Make all button styles transparent so the portrait shows through
+		var clear_style := StyleBoxEmpty.new()
+		btn.add_theme_stylebox_override("normal", clear_style)
+		btn.add_theme_stylebox_override("hover", clear_style)
+		btn.add_theme_stylebox_override("pressed", clear_style)
+		# Focus style: subtle teal border to indicate selection
+		var focus_style := StyleBoxFlat.new()
+		focus_style.bg_color = Color(0, 0, 0, 0)
+		focus_style.set_border_width_all(3)
+		focus_style.border_color = Color(0.2, 0.9, 0.8, 1.0)
+		focus_style.set_corner_radius_all(4)
+		btn.add_theme_stylebox_override("focus", focus_style)
 		frame.add_child(btn)
 
 		if i == 0:
