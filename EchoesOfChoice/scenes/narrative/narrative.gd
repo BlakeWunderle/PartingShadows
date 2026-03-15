@@ -7,11 +7,13 @@ extends Control
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
+const VotePanel := preload("res://scripts/ui/vote_panel.gd")
 const _StoryDB := preload("res://scripts/data/story_db.gd")
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
 var _ready_gate: ReadyGate
+var _vote_panel: VotePanel
 var _scene_image: TextureRect
 var _pending_advance: Callable  ## What to do after all players ready up
 
@@ -68,6 +70,11 @@ func _build_ui() -> void:
 	_ready_gate.visible = false
 	_ready_gate.all_ready.connect(_on_all_ready)
 	vbox.add_child(_ready_gate)
+
+	_vote_panel = VotePanel.new()
+	_vote_panel.visible = false
+	_vote_panel.vote_resolved.connect(_on_vote_resolved)
+	vbox.add_child(_vote_panel)
 
 
 func _show_narrative() -> void:
@@ -327,18 +334,36 @@ func _on_defeat_choice(index: int) -> void:
 
 
 func _show_branch_choices() -> void:
-	# In multiplayer, only host sees branch choices; guests wait
-	if NetManager.is_multiplayer_active and not NetManager.is_host:
-		return
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	for choice: Dictionary in GameState.current_battle.choices:
 		options.append({"label": choice["label"]})
+
+	# Multi-player: use voting panel
+	if LocalCoop.is_active:
+		_vote_panel.start_local(options, LocalCoop.player_count)
+		return
+	if NetManager.is_multiplayer_active:
+		if NetManager.is_host:
+			_vote_panel.start_online(options)
+		else:
+			_vote_panel.start_online(options)
+		return
+
+	# Single player: direct choice
 	_choice_menu.show_choices(options)
 
 
 func _on_branch_selected(index: int) -> void:
 	_choice_menu.hide_menu()
+	_apply_branch_choice(index)
+
+
+func _on_vote_resolved(winning_index: int) -> void:
+	_apply_branch_choice(winning_index)
+
+
+func _apply_branch_choice(index: int) -> void:
 	var battle_id: String = GameState.current_battle.choices[index]["battle_id"]
 
 	# Broadcast choice to all peers
@@ -446,3 +471,17 @@ func _rpc_narrative_ready(player_index: int) -> void:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_narrative_ready_broadcast(player_index: int) -> void:
 	_ready_gate.mark_ready(player_index)
+
+
+## Any -> Host: Cast a vote for a branch choice.
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_cast_vote(player_index: int, choice_index: int) -> void:
+	_vote_panel.receive_vote(player_index, choice_index)
+	if NetManager.is_host:
+		_rpc_vote_broadcast.rpc(player_index, choice_index)
+
+
+## Host -> All: Broadcast a vote.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_vote_broadcast(player_index: int, choice_index: int) -> void:
+	_vote_panel.receive_vote(player_index, choice_index)

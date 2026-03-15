@@ -6,6 +6,7 @@ extends Control
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
+const VotePanel := preload("res://scripts/ui/vote_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
@@ -15,6 +16,7 @@ enum TownPhase { INTRO_TEXT, UPGRADING, UPGRADE_REVEAL, OUTRO_TEXT, BRANCH_CHOIC
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
 var _ready_gate: ReadyGate
+var _vote_panel: VotePanel
 var _pending_advance: Callable
 var _tip_overlay: TipOverlay
 var _waiting_overlay: WaitingOverlay
@@ -83,6 +85,11 @@ func _build_ui() -> void:
 	_ready_gate.visible = false
 	_ready_gate.all_ready.connect(_on_all_ready)
 	vbox.add_child(_ready_gate)
+
+	_vote_panel = VotePanel.new()
+	_vote_panel.visible = false
+	_vote_panel.vote_resolved.connect(_on_vote_resolved)
+	vbox.add_child(_vote_panel)
 
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
@@ -310,16 +317,26 @@ func _finish_upgrades() -> void:
 func _check_branch_or_advance() -> void:
 	var battle = GameState.current_battle
 	if not battle.choices.is_empty():
-		# In multiplayer, only host sees branch choices; guests wait
-		if NetManager.is_multiplayer_active and not NetManager.is_host:
-			return
 		_phase = TownPhase.BRANCH_CHOICE
 		_dialogue.visible = false
-		_upgrade_label.text = "Choose your path:"
-		_upgrade_label.visible = true
 		var options: Array[Dictionary] = []
 		for choice: Dictionary in battle.choices:
 			options.append({"label": choice["label"]})
+
+		# Multi-player: use voting panel
+		if LocalCoop.is_active:
+			_vote_panel.start_local(options, LocalCoop.player_count)
+			return
+		if NetManager.is_multiplayer_active:
+			if NetManager.is_host:
+				_vote_panel.start_online(options)
+			else:
+				_vote_panel.start_online(options)
+			return
+
+		# Single player: direct choice
+		_upgrade_label.text = "Choose your path:"
+		_upgrade_label.visible = true
 		_choice_menu.show_choices(options)
 	else:
 		_advance()
@@ -328,6 +345,14 @@ func _check_branch_or_advance() -> void:
 func _on_branch_selected(index: int) -> void:
 	_choice_menu.hide_menu()
 	_upgrade_label.visible = false
+	_apply_branch_choice(index)
+
+
+func _on_vote_resolved(winning_index: int) -> void:
+	_apply_branch_choice(winning_index)
+
+
+func _apply_branch_choice(index: int) -> void:
 	var battle_id: String = GameState.current_battle.choices[index]["battle_id"]
 	if NetManager.is_multiplayer_active:
 		_rpc_branch_chosen.rpc(battle_id)
@@ -483,3 +508,17 @@ func _rpc_town_ready(player_index: int) -> void:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_town_ready_broadcast(player_index: int) -> void:
 	_ready_gate.mark_ready(player_index)
+
+
+## Any -> Host: Cast a vote for a branch choice.
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_cast_vote(player_index: int, choice_index: int) -> void:
+	_vote_panel.receive_vote(player_index, choice_index)
+	if NetManager.is_host:
+		_rpc_vote_broadcast.rpc(player_index, choice_index)
+
+
+## Host -> All: Broadcast a vote.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_vote_broadcast(player_index: int, choice_index: int) -> void:
+	_vote_panel.receive_vote(player_index, choice_index)
