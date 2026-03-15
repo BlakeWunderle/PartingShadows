@@ -2,9 +2,27 @@ extends CanvasLayer
 
 var _fader: ColorRect
 var _spinner: Control
+var _tip_label: Label
 var _preload_requests: Dictionary = {}
 var _transitioning: bool = false
 const _LOAD_TIMEOUT_MSEC: int = 30000
+
+const TIPS: Array[String] = [
+	"Each class has unique abilities. Experiment with different party compositions!",
+	"Use buffs before big fights to gain an edge.",
+	"Healing abilities target allies with the lowest health first.",
+	"Debuffs can turn the tide against tough bosses.",
+	"Town stops let you upgrade your class. Check the stat preview before choosing!",
+	"Your compendium tracks every enemy and class you encounter.",
+	"Speed determines turn order. Faster fighters act first.",
+	"AoE abilities hit all targets but are often weaker per hit.",
+	"Save often! You have three save slots plus autosave.",
+	"Critical hits deal bonus damage based on your crit stat.",
+	"Dodge chance lets you completely avoid physical attacks.",
+	"Tier 2 classes have powerful specialized abilities.",
+	"Check the battle summary after each victory to see your party performance.",
+	"Different stories offer different enemies and challenges.",
+]
 
 
 func _ready() -> void:
@@ -24,6 +42,19 @@ func _ready() -> void:
 	_spinner.offset_bottom = 20
 	_spinner.visible = false
 	add_child(_spinner)
+
+	_tip_label = Label.new()
+	_tip_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_tip_label.set_anchors_preset(Control.PRESET_CENTER)
+	_tip_label.offset_left = -250
+	_tip_label.offset_right = 250
+	_tip_label.offset_top = 50
+	_tip_label.offset_bottom = 120
+	_tip_label.add_theme_font_size_override("font_size", 16)
+	_tip_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7, 0.9))
+	_tip_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_tip_label.visible = false
+	add_child(_tip_label)
 
 
 func is_transitioning() -> bool:
@@ -56,14 +87,17 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 	tween.tween_property(_fader, "modulate:a", 1.0, fade_duration)
 	await tween.finished
 
-	# Show spinner while loading
+	# Show spinner + loading tip
 	_spinner.visible = true
+	_tip_label.text = TIPS[randi() % TIPS.size()]
+	_tip_label.visible = true
 
 	# Wait for threaded load to complete (likely already finished during fade)
 	var scene: PackedScene = await _await_threaded_load(path)
 	_preload_requests.erase(path)
 
 	_spinner.visible = false
+	_tip_label.visible = false
 
 	if scene == null:
 		GameLog.error("SceneManager: Failed to load scene '%s', aborting transition" % path)
