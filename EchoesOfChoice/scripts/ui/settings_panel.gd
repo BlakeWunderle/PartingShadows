@@ -7,6 +7,8 @@ signal back_pressed
 
 var _music_slider: HSlider
 var _music_label: Label
+var _sfx_slider: HSlider
+var _sfx_label: Label
 var _master_slider: HSlider
 var _master_label: Label
 var _text_speed_btn: OptionButton
@@ -67,6 +69,12 @@ func _build_ui() -> void:
 	_music_label = Label.new()
 	_add_slider_row(inner, "Music Volume", _music_slider, _music_label)
 	_music_slider.value_changed.connect(_on_music_volume_changed)
+
+	# SFX Volume
+	_sfx_slider = HSlider.new()
+	_sfx_label = Label.new()
+	_add_slider_row(inner, "SFX Volume", _sfx_slider, _sfx_label)
+	_sfx_slider.value_changed.connect(_on_sfx_volume_changed)
 
 	# Master Volume
 	_master_slider = HSlider.new()
@@ -194,6 +202,9 @@ func _sync_from_settings() -> void:
 	_music_slider.set_value_no_signal(SettingsManager.music_volume * 100.0)
 	_music_label.text = "%d%%" % int(SettingsManager.music_volume * 100.0)
 
+	_sfx_slider.set_value_no_signal(SettingsManager.sfx_volume * 100.0)
+	_sfx_label.text = "%d%%" % int(SettingsManager.sfx_volume * 100.0)
+
 	_master_slider.set_value_no_signal(SettingsManager.master_volume * 100.0)
 	_master_label.text = "%d%%" % int(SettingsManager.master_volume * 100.0)
 
@@ -236,6 +247,11 @@ func _find_index_str(arr: Array[String], val: String, fallback: int) -> int:
 func _on_music_volume_changed(value: float) -> void:
 	SettingsManager.music_volume = value / 100.0
 	_music_label.text = "%d%%" % int(value)
+
+
+func _on_sfx_volume_changed(value: float) -> void:
+	SettingsManager.sfx_volume = value / 100.0
+	_sfx_label.text = "%d%%" % int(value)
 
 
 func _on_master_volume_changed(value: float) -> void:

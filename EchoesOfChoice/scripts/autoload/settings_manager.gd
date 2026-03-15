@@ -8,6 +8,7 @@ const SETTINGS_PATH := "user://settings.json"
 # -- Signals -----------------------------------------------------------------
 
 signal music_volume_changed(linear: float)
+signal sfx_volume_changed(linear: float)
 signal master_volume_changed(linear: float)
 signal text_speed_changed(delay: float)
 signal display_mode_changed(mode: String)
@@ -20,6 +21,7 @@ signal screen_reader_changed(enabled: bool)
 # -- Defaults ----------------------------------------------------------------
 
 const DEFAULT_MUSIC_VOLUME := 0.8
+const DEFAULT_SFX_VOLUME := 0.8
 const DEFAULT_MASTER_VOLUME := 1.0
 const DEFAULT_TEXT_SPEED := 0.02
 const DEFAULT_DISPLAY_MODE := "fullscreen"
@@ -38,6 +40,15 @@ var music_volume: float = DEFAULT_MUSIC_VOLUME:
 			return
 		music_volume = v
 		music_volume_changed.emit(v)
+		_save()
+
+var sfx_volume: float = DEFAULT_SFX_VOLUME:
+	set(v):
+		v = clampf(v, 0.0, 1.0)
+		if sfx_volume == v:
+			return
+		sfx_volume = v
+		sfx_volume_changed.emit(v)
 		_save()
 
 var master_volume: float = DEFAULT_MASTER_VOLUME:
@@ -159,6 +170,7 @@ func _ready() -> void:
 
 func reset_defaults() -> void:
 	music_volume = DEFAULT_MUSIC_VOLUME
+	sfx_volume = DEFAULT_SFX_VOLUME
 	master_volume = DEFAULT_MASTER_VOLUME
 	text_speed = DEFAULT_TEXT_SPEED
 	display_mode = DEFAULT_DISPLAY_MODE
@@ -183,6 +195,7 @@ func _load() -> void:
 	file.close()
 	var data: Dictionary = json.data
 	music_volume = data.get("music_volume", DEFAULT_MUSIC_VOLUME)
+	sfx_volume = data.get("sfx_volume", DEFAULT_SFX_VOLUME)
 	master_volume = data.get("master_volume", DEFAULT_MASTER_VOLUME)
 	text_speed = data.get("text_speed", DEFAULT_TEXT_SPEED)
 	# Backward compat: old saves have "fullscreen" bool, new saves have "display_mode"
@@ -202,6 +215,7 @@ func _load() -> void:
 func _save() -> void:
 	var data := {
 		"music_volume": music_volume,
+		"sfx_volume": sfx_volume,
 		"master_volume": master_volume,
 		"text_speed": text_speed,
 		"display_mode": display_mode,
@@ -222,6 +236,11 @@ func _apply_all() -> void:
 	AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, master_volume)))
 	# Apply music volume
 	music_volume_changed.emit(music_volume)
+	# Apply SFX volume
+	var sfx_bus: int = AudioServer.get_bus_index(&"SFX")
+	if sfx_bus >= 0:
+		AudioServer.set_bus_volume_db(sfx_bus, linear_to_db(maxf(0.0001, sfx_volume)))
+	sfx_volume_changed.emit(sfx_volume)
 	# Apply display
 	_apply_display()
 
