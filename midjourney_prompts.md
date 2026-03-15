@@ -628,3 +628,30 @@ male weathered endurance fighter in sun-bleached tan patched worn gear, self-suf
 ```
 female weathered endurance fighter in sun-bleached tan patched worn gear, self-sufficient resourceful appearance, bandaged but unbroken, adapts to any environment, resilient determined expression, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
 ```
+
+---
+
+# Enemy Portraits
+
+Enemy portraits use the same style suffix and `--sref` for visual consistency with player portraits. One portrait per enemy type (no M/F variants).
+
+Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/enemies/`
+
+---
+
+## Story 1 -- Act II Enemies
+
+**witch.png**
+```
+sinister forest witch in dark ragged robes, gnarled wooden staff crackling with green magic, wild tangled hair, glowing eyes, hunched menacing posture, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
+```
+
+**wisp.png**
+```
+floating ethereal wisp, glowing orb of pale blue-white light, trailing wisps of luminous energy, no solid body, ghostly translucent presence, mysterious and otherworldly, facing viewer, full body character portrait, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
+```
+
+**sprite.png**
+```
+mischievous forest sprite, small agile creature with leaf-like wings, thorny vine armor, sharp grin, pointed ears, clutching a thorn dagger, playful but dangerous, facing viewer, full body character portrait, natural hair color, fantasy character concept art, digital illustration, stylized, bold colors, clean lines, dark background, no text --ar 3:4 --s 250 --sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1
+```

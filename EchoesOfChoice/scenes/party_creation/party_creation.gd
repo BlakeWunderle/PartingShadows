@@ -43,6 +43,8 @@ var _vbox: VBoxContainer
 var _portrait_container: HBoxContainer
 var _portrait_preview_a: TextureRect
 var _portrait_preview_b: TextureRect
+var _portrait_btn_a: Button
+var _portrait_btn_b: Button
 
 
 func _is_s2() -> bool:
@@ -137,7 +139,7 @@ func _build_ui() -> void:
 		_portrait_container.add_child(col)
 
 		var frame := PanelContainer.new()
-		frame.custom_minimum_size = Vector2(160, 213)
+		frame.custom_minimum_size = Vector2(180, 240)
 		col.add_child(frame)
 
 		var tex_rect := TextureRect.new()
@@ -148,10 +150,21 @@ func _build_ui() -> void:
 		tex_rect.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 		frame.add_child(tex_rect)
 
+		var btn := Button.new()
+		btn.flat = true
+		btn.set_anchors_preset(Control.PRESET_FULL_RECT)
+		btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		btn.focus_mode = Control.FOCUS_ALL
+		frame.add_child(btn)
+
 		if i == 0:
 			_portrait_preview_a = tex_rect
+			_portrait_btn_a = btn
+			btn.pressed.connect(_on_portrait_clicked.bind(0))
 		else:
 			_portrait_preview_b = tex_rect
+			_portrait_btn_b = btn
+			btn.pressed.connect(_on_portrait_clicked.bind(1))
 
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
@@ -298,19 +311,11 @@ func _show_portrait_selection() -> void:
 		_portrait_preview_b.texture = load(path_b) as Texture2D
 
 	_portrait_container.visible = true
-	_choice_menu.choice_selected.disconnect(_on_class_selected)
-	_choice_menu.choice_selected.connect(_on_portrait_selected)
-	_choice_menu.show_choices([
-		{"label": "Portrait 1"},
-		{"label": "Portrait 2"},
-	])
+	_portrait_btn_a.grab_focus()
 
 
-func _on_portrait_selected(index: int) -> void:
-	_choice_menu.hide_menu()
+func _on_portrait_clicked(index: int) -> void:
 	_portrait_container.visible = false
-	_choice_menu.choice_selected.disconnect(_on_portrait_selected)
-	_choice_menu.choice_selected.connect(_on_class_selected)
 
 	var variant: String = "m" if index == 0 else "f"
 	var fighter: FighterData = FighterDB.create_player(_current_class_id, _current_name, variant)
