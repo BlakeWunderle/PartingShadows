@@ -8,14 +8,16 @@ const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
+const CompendiumPanel := preload("res://scripts/ui/compendium_panel.gd")
 
-enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, WAITING_MP, FIGHTER_PICK }
+enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, WAITING_MP, FIGHTER_PICK }
 
 var _mode: Mode = Mode.HIDDEN
 var _panel: Control
 var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
 var _settings_panel: SettingsPanel
+var _compendium_panel: CompendiumPanel
 var _resume_btn: Button
 var _save_btn: Button
 var _title_btn: Button
@@ -100,6 +102,10 @@ func _build_ui() -> void:
 	settings_btn.pressed.connect(_show_settings)
 	_main_vbox.add_child(settings_btn)
 
+	var compendium_btn := _make_button("Compendium")
+	compendium_btn.pressed.connect(_show_compendium)
+	_main_vbox.add_child(compendium_btn)
+
 	var logs_btn := _make_button("Copy Logs")
 	logs_btn.pressed.connect(_copy_logs)
 	_main_vbox.add_child(logs_btn)
@@ -133,6 +139,13 @@ func _build_ui() -> void:
 	_settings_panel.back_pressed.connect(_back_to_main)
 	root_vbox.add_child(_settings_panel)
 
+	# Compendium panel (hidden by default)
+	_compendium_panel = CompendiumPanel.new()
+	_compendium_panel.visible = false
+	_compendium_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_compendium_panel.back_pressed.connect(_back_to_main)
+	root_vbox.add_child(_compendium_panel)
+
 	# Confirm dialog (overlays entire screen)
 	_confirm_dialog = ConfirmDialog.new()
 	_panel.add_child(_confirm_dialog)
@@ -162,6 +175,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			Mode.SAVE_SLOTS:
 				_back_to_main()
 			Mode.SETTINGS:
+				_back_to_main()
+			Mode.COMPENDIUM:
 				_back_to_main()
 			Mode.WAITING_MP:
 				_cancel_open_mp()
@@ -337,6 +352,13 @@ func _show_settings() -> void:
 	_settings_panel.visible = true
 
 
+func _show_compendium() -> void:
+	_mode = Mode.COMPENDIUM
+	_main_vbox.visible = false
+	_compendium_panel.visible = true
+	_compendium_panel._refresh()
+
+
 # =============================================================================
 # Save slot sub-menu
 # =============================================================================
@@ -440,6 +462,7 @@ func _back_to_main() -> void:
 	_mode = Mode.MAIN_MENU
 	_save_vbox.visible = false
 	_settings_panel.visible = false
+	_compendium_panel.visible = false
 	_main_vbox.visible = true
 	_resume_btn.grab_focus()
 
