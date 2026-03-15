@@ -10,7 +10,9 @@ var _frame: PanelContainer
 var _portrait: TextureRect
 var _name_label: Label
 var _hp_bar: ProgressBar
+var _hp_label: Label
 var _mp_bar: ProgressBar
+var _mp_label: Label
 var _status_label: RichTextLabel
 var _is_enemy: bool = false
 var _fighter_ref: FighterData
@@ -71,8 +73,13 @@ func _build_ui() -> void:
 	add_child(_name_label)
 
 	# HP bar -- uses stylebox for distinct color
+	var hp_container := Control.new()
+	hp_container.custom_minimum_size = Vector2(0, 12)
+	add_child(hp_container)
+
 	_hp_bar = ProgressBar.new()
-	_hp_bar.custom_minimum_size = Vector2(0, 10)
+	_hp_bar.custom_minimum_size = Vector2(0, 12)
+	_hp_bar.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_hp_bar.show_percentage = false
 
 	_hp_bg = StyleBoxFlat.new()
@@ -85,11 +92,26 @@ func _build_ui() -> void:
 	_hp_fill.set_corner_radius_all(2)
 	_hp_bar.add_theme_stylebox_override("fill", _hp_fill)
 
-	add_child(_hp_bar)
+	hp_container.add_child(_hp_bar)
+
+	_hp_label = Label.new()
+	_hp_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_hp_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_hp_label.add_theme_font_size_override("font_size", 9)
+	_hp_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+	_hp_label.add_theme_constant_override("outline_size", 2)
+	_hp_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
+	hp_container.add_child(_hp_label)
 
 	# MP bar -- blue, hidden for enemies
+	var mp_container := Control.new()
+	mp_container.custom_minimum_size = Vector2(0, 10)
+	add_child(mp_container)
+
 	_mp_bar = ProgressBar.new()
-	_mp_bar.custom_minimum_size = Vector2(0, 7)
+	_mp_bar.custom_minimum_size = Vector2(0, 10)
+	_mp_bar.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_mp_bar.show_percentage = false
 
 	_mp_bg = StyleBoxFlat.new()
@@ -102,7 +124,17 @@ func _build_ui() -> void:
 	_mp_fill.set_corner_radius_all(2)
 	_mp_bar.add_theme_stylebox_override("fill", _mp_fill)
 
-	add_child(_mp_bar)
+	mp_container.add_child(_mp_bar)
+
+	_mp_label = Label.new()
+	_mp_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_mp_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_mp_label.add_theme_font_size_override("font_size", 8)
+	_mp_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
+	_mp_label.add_theme_constant_override("outline_size", 2)
+	_mp_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
+	mp_container.add_child(_mp_label)
 
 	# Status effects label (compact, fixed height to prevent bouncing)
 	_status_label = RichTextLabel.new()
@@ -118,7 +150,7 @@ func _build_ui() -> void:
 func setup(fighter: FighterData, is_enemy: bool, portrait_tex: Texture2D) -> void:
 	_fighter_ref = fighter
 	_is_enemy = is_enemy
-	_mp_bar.visible = not is_enemy
+	_mp_bar.get_parent().visible = not is_enemy
 
 	if portrait_tex:
 		_portrait.texture = portrait_tex
@@ -139,6 +171,7 @@ func set_active(active: bool) -> void:
 func set_dead(dead: bool) -> void:
 	if dead:
 		modulate = Color(0.4, 0.4, 0.4, 0.7)
+		_status_label.clear()
 	else:
 		modulate = Color(1, 1, 1, 1)
 
@@ -150,6 +183,7 @@ func get_fighter() -> FighterData:
 func _update_bars(fighter: FighterData) -> void:
 	_hp_bar.max_value = fighter.max_health
 	_hp_bar.value = maxi(0, fighter.health)
+	_hp_label.text = "%d/%d" % [maxi(0, fighter.health), fighter.max_health]
 
 	# Color HP fill based on percentage (color blind aware)
 	var palette: Dictionary = SettingsManager.get_palette()
@@ -164,6 +198,7 @@ func _update_bars(fighter: FighterData) -> void:
 	if not _is_enemy:
 		_mp_bar.max_value = fighter.max_mana
 		_mp_bar.value = maxi(0, fighter.mana)
+		_mp_label.text = "%d/%d" % [maxi(0, fighter.mana), fighter.max_mana]
 
 	_update_status(fighter)
 

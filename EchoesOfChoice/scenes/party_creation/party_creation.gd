@@ -143,8 +143,8 @@ func _build_ui() -> void:
 		col.add_child(frame)
 
 		var tex_rect := TextureRect.new()
-		tex_rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 		tex_rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		tex_rect.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		tex_rect.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
