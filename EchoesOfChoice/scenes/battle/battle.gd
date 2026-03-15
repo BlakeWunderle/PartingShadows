@@ -40,6 +40,9 @@ var _processing_messages: bool = false
 var _escape_hp_pct: float = 0.0  ## Boss escape threshold from BattleData
 var _boss_escaped: bool = false
 var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_taken, healing_done, kills}
+var _auto_battle: bool = false
+var _auto_battle_unlocked: bool = false
+var _auto_label: Label
 
 signal _player_turn_done
 signal _remote_action_received(action: Dictionary)
@@ -238,6 +241,19 @@ func _build_ui() -> void:
 	_player_indicator.visible = false
 	add_child(_player_indicator)
 
+	# Auto-battle indicator
+	_auto_label = Label.new()
+	_auto_label.text = "AUTO"
+	_auto_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_auto_label.add_theme_font_size_override("font_size", 18)
+	_auto_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_auto_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	_auto_label.offset_left = -100
+	_auto_label.offset_right = -12
+	_auto_label.offset_top = 12
+	_auto_label.visible = false
+	add_child(_auto_label)
+
 
 func _is_mp_guest() -> bool:
 	return NetManager.is_multiplayer_active and not NetManager.is_host
@@ -268,6 +284,11 @@ func _start_battle() -> void:
 		CompendiumManager.record_enemy(enemy, GameState.current_story_id)
 	GameLog.info("Battle started: %s (%d enemies)" % [
 		GameState.current_battle_id, battle.enemies.size()])
+
+	_auto_battle = false
+	_auto_label.visible = false
+	var unlock_key: String = GameState.current_story_id + "_complete"
+	_auto_battle_unlocked = UnlockManager.is_unlocked(unlock_key)
 
 	_battle_stats.clear()
 	for f: FighterData in _all_party:
@@ -379,7 +400,13 @@ func _tick_loop() -> void:
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
 				var actor_party_idx: int = _all_party.find(actor)
-				if LocalCoop.is_active:
+				if _auto_battle and not _is_mp_guest():
+					# Auto-battle: use AI logic for player fighter
+					_execute_auto_turn()
+					await _player_turn_done
+					if NetManager.is_multiplayer_active:
+						_broadcast_state_sync()
+				elif LocalCoop.is_active:
 					# Local co-op: gate input to the owning player
 					var owner: int = LocalCoop.get_player_for_slot(actor_party_idx)
 					LocalCoop.set_active_player(owner)
@@ -455,6 +482,25 @@ func _is_ability_available(fighter: FighterData, ability: AbilityData) -> bool:
 
 
 # =============================================================================
+# Auto-battle
+# =============================================================================
+
+func _execute_auto_turn() -> void:
+	# Reuse engine AI logic for player fighter
+	var targets: Array = _engine.enemies
+	var allies: Array = _engine.units
+	_engine.execute_ai_turn(_current_actor, targets, allies)
+	_player_turn_done.emit()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _auto_battle and event.is_action_pressed("cancel"):
+		_auto_battle = false
+		_auto_label.visible = false
+		get_viewport().set_input_as_handled()
+
+
+# =============================================================================
 # Player action handling
 # =============================================================================
 
@@ -468,6 +514,8 @@ func _show_action_menu(actor: FighterData) -> void:
 	var options: Array[Dictionary] = [{"label": "Attack"}]
 	if has_available:
 		options.append({"label": "Ability"})
+	if _auto_battle_unlocked:
+		options.append({"label": "Auto"})
 	options.append({"label": "Stats"})
 	_action_menu.show_choices(options, true)
 
@@ -475,29 +523,35 @@ func _show_action_menu(actor: FighterData) -> void:
 func _on_action_selected(index: int) -> void:
 	_action_menu.hide_menu()
 
-	# Map index accounting for possibly missing Ability option
+	# Map index accounting for possibly missing Ability/Auto options
 	var has_available: bool = false
 	for a: AbilityData in _current_actor.abilities:
 		if _is_ability_available(_current_actor, a):
 			has_available = true
 			break
 
-	var action: String
-	if index == 0:
-		action = "attack"
-	elif has_available and index == 1:
-		action = "ability"
-	else:
-		action = "stats"
+	# Rebuild the same label list used in _show_action_menu to find action by index
+	var labels: Array[String] = ["Attack"]
+	if has_available:
+		labels.append("Ability")
+	if _auto_battle_unlocked:
+		labels.append("Auto")
+	labels.append("Stats")
+
+	var action: String = labels[index] if index < labels.size() else "Stats"
 
 	match action:
-		"attack":
+		"Attack":
 			_phase = Phase.PLAYER_TARGET_ATTACK
 			_show_target_menu(_engine.enemies)
-		"ability":
+		"Ability":
 			_phase = Phase.PLAYER_ABILITY_SELECT
 			_show_ability_menu()
-		"stats":
+		"Auto":
+			_auto_battle = true
+			_auto_label.visible = true
+			_execute_auto_turn()
+		"Stats":
 			_phase = Phase.STATS_PICK
 			_show_stats_pick()
 
@@ -747,11 +801,12 @@ func _find_card_for_fighter(fighter: FighterData) -> PortraitCard:
 
 
 func _drain_messages() -> void:
+	var pause: float = COMBAT_PAUSE * 0.3 if _auto_battle else COMBAT_PAUSE
 	while not _message_queue.is_empty():
 		var msg: String = _message_queue.pop_front()
 		_add_log(msg)
 		_refresh_cards()
-		await get_tree().create_timer(COMBAT_PAUSE).timeout
+		await get_tree().create_timer(pause).timeout
 	_refresh_cards()
 
 
