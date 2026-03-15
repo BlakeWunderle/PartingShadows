@@ -706,12 +706,16 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 		return
 	match event_type:
 		"damage":
+			SFXManager.play(SFXManager.Category.STRIKE)
 			card.show_floating_text("-%d" % amount, Color(1.0, 0.3, 0.3))
 		"crit":
+			SFXManager.play(SFXManager.Category.IMPACT)
 			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
 		"heal":
+			SFXManager.play(SFXManager.Category.SHIMMER)
 			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
 		"miss":
+			SFXManager.play(SFXManager.Category.WHOOSH, 0.7)
 			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))
 
 
@@ -769,6 +773,7 @@ func _end_battle() -> void:
 			_add_log("[color=gold]The enemy has fled! Victory is yours... for now.[/color]")
 		else:
 			_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
+		SFXManager.play(SFXManager.Category.UI_FANFARE)
 		await get_tree().create_timer(2.0).timeout
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
