@@ -8,6 +8,7 @@ const AbilityData := preload("res://scripts/data/ability_data.gd")
 const Enums := preload("res://scripts/data/enums.gd")
 
 signal combat_message(text: String)
+signal combat_event(target: FighterData, amount: int, event_type: String)
 signal fighter_died(fighter: FighterData)
 signal battle_won
 signal battle_lost
@@ -80,16 +81,19 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 	var mag_damage: int = maxi((attacker.magic_attack - defender.magic_defense) / 2, 0)
 	var damage: int = maxi(phys_damage, mag_damage)
 
-	if _check_for_critical(attacker):
+	var is_crit: bool = _check_for_critical(attacker)
+	if is_crit:
 		damage += attacker.crit_damage
 
 	if _check_for_dodge(defender):
 		combat_message.emit("The attack from %s missed" % attacker.character_name)
+		combat_event.emit(defender, 0, "miss")
 		return
 
 	defender.health -= damage
 	combat_message.emit("%s did %d points of damage to %s." % [
 		attacker.character_name, damage, defender.character_name])
+	combat_event.emit(defender, damage, "crit" if is_crit else "damage")
 
 
 func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
@@ -97,6 +101,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 	if _check_for_ability_dodge(defender):
 		combat_message.emit("%s dodged %s's ability!" % [
 			defender.character_name, attacker.character_name])
+		combat_event.emit(defender, 0, "miss")
 		return
 
 	if ability.impacted_turns == 0:
@@ -104,7 +109,8 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		var damage: int = _calc_ability_damage(attacker, defender, ability)
 		if damage < 0:
 			damage = 0
-		if _check_for_critical(attacker):
+		var is_crit: bool = _check_for_critical(attacker)
+		if is_crit:
 			damage += attacker.crit_damage
 
 		defender.health -= damage
@@ -112,12 +118,14 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s did %d points of damage to %s." % [
 			attacker.character_name, damage, defender.character_name])
+		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
 
 		if ability.life_steal_percent > 0.0 and damage > 0:
 			var heal_amount: int = int(damage * ability.life_steal_percent)
 			attacker.health = mini(attacker.health + heal_amount, attacker.max_health)
 			combat_message.emit("%s absorbed %d health." % [
 				attacker.character_name, heal_amount])
+			combat_event.emit(attacker, heal_amount, "heal")
 	else:
 		# Over-time effect
 		if ability.damage_per_turn > 0:
@@ -168,6 +176,7 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s healed %d points of damage." % [
 			target.character_name, heal_amount])
+		combat_event.emit(target, heal_amount, "heal")
 	else:
 		# Buff
 		target.modified_stats.append({
@@ -217,6 +226,7 @@ func reset_modified_stat(fighter: FighterData) -> void:
 			fighter.health -= mod["damage_per_turn"]
 			combat_message.emit("%s takes %d damage from a lingering effect." % [
 				fighter.character_name, mod["damage_per_turn"]])
+			combat_event.emit(fighter, mod["damage_per_turn"], "damage")
 
 		if mod["turns"] == 0:
 			if mod.get("damage_per_turn", 0) == 0:

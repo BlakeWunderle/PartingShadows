@@ -245,6 +245,7 @@ func _is_mp_guest() -> bool:
 func _start_battle() -> void:
 	_engine = BattleEngine.new()
 	_engine.combat_message.connect(_on_combat_message)
+	_engine.combat_event.connect(_on_combat_event)
 	_engine.fighter_died.connect(_on_fighter_died)
 	_engine.battle_won.connect(_on_battle_won)
 	_engine.battle_lost.connect(_on_battle_lost)
@@ -697,6 +698,31 @@ func _on_stats_closed() -> void:
 
 func _on_combat_message(text: String) -> void:
 	_message_queue.append(text)
+
+
+func _on_combat_event(target: FighterData, amount: int, event_type: String) -> void:
+	var card: PortraitCard = _find_card_for_fighter(target)
+	if not card:
+		return
+	match event_type:
+		"damage":
+			card.show_floating_text("-%d" % amount, Color(1.0, 0.3, 0.3))
+		"crit":
+			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
+		"heal":
+			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
+		"miss":
+			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))
+
+
+func _find_card_for_fighter(fighter: FighterData) -> PortraitCard:
+	for card: PortraitCard in _party_cards:
+		if card.get_fighter() == fighter:
+			return card
+	for card: PortraitCard in _enemy_cards:
+		if card.get_fighter() == fighter:
+			return card
+	return null
 
 
 func _drain_messages() -> void:

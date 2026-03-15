@@ -192,6 +192,26 @@ func get_fighter() -> FighterData:
 	return _fighter_ref
 
 
+## Spawn a floating number above the card that drifts up and fades out.
+func show_floating_text(text: String, color: Color) -> void:
+	if not is_inside_tree():
+		return
+	var label := Label.new()
+	label.text = text
+	label.add_theme_font_size_override("font_size", 16)
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_constant_override("outline_size", 3)
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.position = Vector2(size.x * 0.5 - 20, -10)
+	add_child(label)
+
+	var tw := create_tween().set_parallel(true)
+	tw.tween_property(label, "position:y", -40.0, 0.8).set_ease(Tween.EASE_OUT)
+	tw.tween_property(label, "modulate:a", 0.0, 0.8).set_ease(Tween.EASE_IN).set_delay(0.3)
+	tw.chain().tween_callback(label.queue_free)
+
+
 func _update_bars(fighter: FighterData, instant: bool = false) -> void:
 	_hp_bar.max_value = fighter.max_health
 	var target_hp: float = float(maxi(0, fighter.health))
