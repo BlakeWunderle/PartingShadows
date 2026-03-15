@@ -5,6 +5,7 @@ extends Control
 
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
@@ -13,6 +14,8 @@ enum TownPhase { INTRO_TEXT, UPGRADING, UPGRADE_REVEAL, OUTRO_TEXT, BRANCH_CHOIC
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
+var _ready_gate: ReadyGate
+var _pending_advance: Callable
 var _tip_overlay: TipOverlay
 var _waiting_overlay: WaitingOverlay
 var _upgrade_label: Label
@@ -76,6 +79,11 @@ func _build_ui() -> void:
 	_choice_menu.choice_selected.connect(_on_choice_selected)
 	vbox.add_child(_choice_menu)
 
+	_ready_gate = ReadyGate.new()
+	_ready_gate.visible = false
+	_ready_gate.all_ready.connect(_on_all_ready)
+	vbox.add_child(_ready_gate)
+
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
 
@@ -112,23 +120,75 @@ func _start_town() -> void:
 
 
 func _on_text_finished() -> void:
-	# In multiplayer, only host advances dialogue
-	if NetManager.is_multiplayer_active and not NetManager.is_host:
+	# Multi-player: show ready gate so all players confirm
+	if LocalCoop.is_active or NetManager.is_multiplayer_active:
+		match _phase:
+			TownPhase.INTRO_TEXT:
+				_show_ready_gate(_do_intro_advance)
+			TownPhase.UPGRADE_REVEAL:
+				_show_ready_gate(_do_reveal_advance)
+			TownPhase.OUTRO_TEXT:
+				_show_ready_gate(_do_outro_advance)
 		return
 
+	_do_text_advance()
+
+
+func _do_text_advance() -> void:
 	match _phase:
 		TownPhase.INTRO_TEXT:
-			if NetManager.is_multiplayer_active:
-				_rpc_begin_upgrades.rpc()
-			_begin_upgrades()
+			_do_intro_advance()
 		TownPhase.UPGRADE_REVEAL:
-			_dialogue.visible = false
-			_upgrade_index += 1
-			if NetManager.is_multiplayer_active:
-				_rpc_advance_upgrade.rpc(_upgrade_index)
-			_show_next_upgrade()
+			_do_reveal_advance()
 		TownPhase.OUTRO_TEXT:
-			_check_branch_or_advance()
+			_do_outro_advance()
+
+
+func _do_intro_advance() -> void:
+	if NetManager.is_multiplayer_active:
+		_rpc_begin_upgrades.rpc()
+	_begin_upgrades()
+
+
+func _do_reveal_advance() -> void:
+	_dialogue.visible = false
+	_upgrade_index += 1
+	if NetManager.is_multiplayer_active:
+		_rpc_advance_upgrade.rpc(_upgrade_index)
+	_show_next_upgrade()
+
+
+func _do_outro_advance() -> void:
+	_check_branch_or_advance()
+
+
+func _show_ready_gate(callback: Callable) -> void:
+	_pending_advance = callback
+	if LocalCoop.is_active:
+		_ready_gate.start_local(LocalCoop.player_count)
+	elif NetManager.is_multiplayer_active:
+		_ready_gate.start_online(NetManager.get_connected_peer_count())
+		if NetManager.is_host:
+			_ready_gate.mark_ready(0)
+			_rpc_town_ready.rpc(0)
+		else:
+			var my_idx: int = _get_peer_index(multiplayer.get_unique_id())
+			_ready_gate.mark_ready(my_idx)
+			_rpc_town_ready.rpc_id(1, my_idx)
+
+
+func _on_all_ready() -> void:
+	if _pending_advance.is_valid():
+		_pending_advance.call()
+		_pending_advance = Callable()
+
+
+func _get_peer_index(peer_id: int) -> int:
+	var peers: Array[int] = []
+	for pid: int in NetManager.peer_names:
+		peers.append(pid)
+	peers.sort()
+	return peers.find(peer_id)
 
 
 func _begin_upgrades() -> void:
@@ -409,3 +469,17 @@ func _rpc_advance_next(battle_id: String) -> void:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_change_scene(scene_path: String) -> void:
 	SceneManager.change_scene(scene_path)
+
+
+## Any -> Host: Player is ready to advance.
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_town_ready(player_index: int) -> void:
+	_ready_gate.mark_ready(player_index)
+	if NetManager.is_host:
+		_rpc_town_ready_broadcast.rpc(player_index)
+
+
+## Host -> All: Broadcast ready state.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_town_ready_broadcast(player_index: int) -> void:
+	_ready_gate.mark_ready(player_index)

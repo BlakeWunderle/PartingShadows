@@ -6,11 +6,14 @@ extends Control
 
 const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
+const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
 const _StoryDB := preload("res://scripts/data/story_db.gd")
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
+var _ready_gate: ReadyGate
 var _scene_image: TextureRect
+var _pending_advance: Callable  ## What to do after all players ready up
 
 
 func _ready() -> void:
@@ -60,6 +63,11 @@ func _build_ui() -> void:
 	_choice_menu.visible = false
 	_choice_menu.choice_selected.connect(_on_branch_selected)
 	vbox.add_child(_choice_menu)
+
+	_ready_gate = ReadyGate.new()
+	_ready_gate.visible = false
+	_ready_gate.all_ready.connect(_on_all_ready)
+	vbox.add_child(_ready_gate)
 
 
 func _show_narrative() -> void:
@@ -206,10 +214,21 @@ func _unlock_notification_lines() -> Array[String]:
 
 
 func _on_text_finished() -> void:
-	# In multiplayer, only the host advances narrative
+	# In online multiplayer, only the host advances narrative (unless ready gate is active)
 	if NetManager.is_multiplayer_active and not NetManager.is_host:
+		# Show ready gate for online guests
+		_show_ready_gate(_do_advance_text)
 		return
 
+	# Local co-op: show ready gate so all local players confirm
+	if LocalCoop.is_active:
+		_show_ready_gate(_do_advance_text)
+		return
+
+	_do_advance_text()
+
+
+func _do_advance_text() -> void:
 	match GameState.game_phase:
 		GameState.GamePhase.NARRATIVE:
 			if GameState.narrative_mode == GameState.NarrativeMode.PRE_BATTLE:
@@ -242,6 +261,37 @@ func _on_text_finished() -> void:
 			if NetManager.is_multiplayer_active:
 				_rpc_change_scene.rpc("res://scenes/title/title.tscn")
 			SceneManager.change_scene("res://scenes/title/title.tscn")
+
+
+func _show_ready_gate(callback: Callable) -> void:
+	_pending_advance = callback
+	if LocalCoop.is_active:
+		_ready_gate.start_local(LocalCoop.player_count)
+	elif NetManager.is_multiplayer_active:
+		_ready_gate.start_online(NetManager.get_connected_peer_count())
+		# For online: local player is immediately ready
+		if NetManager.is_host:
+			_ready_gate.mark_ready(0)
+			_rpc_narrative_ready.rpc(0)
+		else:
+			# Find our index among connected peers
+			var my_idx: int = _get_peer_index(multiplayer.get_unique_id())
+			_ready_gate.mark_ready(my_idx)
+			_rpc_narrative_ready.rpc_id(1, my_idx)
+
+
+func _on_all_ready() -> void:
+	if _pending_advance.is_valid():
+		_pending_advance.call()
+		_pending_advance = Callable()
+
+
+func _get_peer_index(peer_id: int) -> int:
+	var peers: Array[int] = []
+	for pid: int in NetManager.peer_names:
+		peers.append(pid)
+	peers.sort()
+	return peers.find(peer_id)
 
 
 func _show_defeat_choices() -> void:
@@ -381,3 +431,18 @@ func _rpc_branch_chosen(battle_id: String) -> void:
 func _rpc_advance_to_battle(battle_id: String) -> void:
 	if not battle_id.is_empty():
 		GameState.advance_to_battle(battle_id)
+
+
+## Any -> Host (or Host -> All): Player is ready to advance narrative.
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_narrative_ready(player_index: int) -> void:
+	_ready_gate.mark_ready(player_index)
+	# Host rebroadcasts to all peers so everyone sees the ready state
+	if NetManager.is_host:
+		_rpc_narrative_ready_broadcast.rpc(player_index)
+
+
+## Host -> All: Broadcast a player's ready state.
+@rpc("authority", "call_remote", "reliable")
+func _rpc_narrative_ready_broadcast(player_index: int) -> void:
+	_ready_gate.mark_ready(player_index)
