@@ -164,7 +164,7 @@ static func s2_shattered_sanctum() -> BattleData:
 static func s2_guardians_threshold() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_GuardiansThreshold"
-	b.scene_image = "res://assets/art/battles/shattered_sanctum.png"
+	b.scene_image = "res://assets/art/battles/guardians_threshold.png"
 	b.enemies = [
 		EnemyDBS2Act3.create_ward_construct("Remembrance"),
 		EnemyDBS2Act3.create_null_phantom("Erasure"),

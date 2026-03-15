@@ -21,7 +21,7 @@ static func create_battle(battle_id: String) -> BattleData:
 static func s3_town_realization() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_TownRealization"
-	b.scene_image = "res://assets/art/battles/weary_traveler_inn.png"
+	b.scene_image = "res://assets/art/battles/weary_traveler_night.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
 		"The innkeeper smiles when they come downstairs. 'Sleep well?' she asks, as if she already knows the answer.",

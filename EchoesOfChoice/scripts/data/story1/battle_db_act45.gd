@@ -201,6 +201,7 @@ static func stranger_final_battle() -> BattleData:
 		"The stranger is gone. The shadow is gone. The world will heal, slowly, with scars, but it will heal.",
 		"Whatever comes next, they'll face it together.",
 	]
+	b.post_scene_image = "res://assets/art/battles/city_streets.png"
 	b.music_track = "res://assets/audio/music/boss/The Battle of Ages_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#1 Alt 2.wav"
 	return b

@@ -14,3 +14,4 @@ var escape_hp_pct: float = 0.0  ## >0 means boss escapes at this HP%, counts as 
 var music_track: String = ""  ## Explicit music path for this battle
 var cutscene_track: String = ""  ## Explicit music for pre/post narrative scenes
 var scene_image: String = ""  ## res://assets/art/battles/... scene-setting image
+var post_scene_image: String = ""  ## Optional override for post-battle background

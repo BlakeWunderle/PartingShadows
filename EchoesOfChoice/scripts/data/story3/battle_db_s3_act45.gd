@@ -141,6 +141,7 @@ static func s3_dream_nexus() -> BattleData:
 		"Lira walks them to the edge of town. 'I spent my whole life dreaming of escape,' she says. 'Now I think I will stay. Someone needs to make sure the threads stay quiet.'",
 		"They leave the town by midmorning, rested for the first time since they arrived.",
 	]
+	b.post_scene_image = "res://assets/art/battles/town_edge_dawn.png"
 	b.music_track = "res://assets/audio/music/boss/The Battle of Ages_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 12.wav"
 	return b

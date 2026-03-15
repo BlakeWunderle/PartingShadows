@@ -1515,6 +1515,16 @@ ruined underground sanctum with cracked pillars and collapsed arches, teal cryst
 massive underground crystal formation at the heart of a sanctum, towering teal crystal cluster radiating light, circular stone platform surrounded by water, ancient runes glowing on the floor, awe-inspiring and sacred, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
 ```
 
+**guardians_threshold.png** (Act III inner ward before sanctum core)
+```
+underground antechamber with massive crystalline sentinel statues flanking a doorway, teal and purple crystal constructs towering over the viewer, desperate handwriting scratched across every wall surface in chalk and ink, cracked stone floor with ward circles, ominous threshold between broken sanctum and sacred core, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
+**weary_traveler_night.png** (Story 3 Act III sinister return to inn)
+```
+the same medieval fantasy inn common room but at night, low dying firelight casting long shadows, empty tankards and overturned chairs, something wrong about the familiar space, dark corners hiding secrets, warm wood and stone turned cold and suspicious, fantasy environment concept art, digital illustration, stylized, bold colors, clean lines, visible line work, dark moody atmosphere, no text --ar 1:1 --s 250 --sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png
+```
+
 ---
 
 # Battle Scene Background Prompts -- Story 3 Style Updates
