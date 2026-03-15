@@ -26,10 +26,15 @@ func _save_path(slot: int) -> String:
 func save_to_slot(slot: int) -> void:
 	GameLog.info("Saved slot %d" % slot)
 	var save_data: Dictionary = _build_save_data()
-	var file := FileAccess.open(_save_path(slot), FileAccess.WRITE)
+	var path: String = _save_path(slot)
+	var tmp_path: String = path + ".tmp"
+	var file := FileAccess.open(tmp_path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(save_data, "\t"))
 		file.close()
+		var err: int = DirAccess.rename_absolute(tmp_path, path)
+		if err != OK:
+			GameLog.error("Save rename failed for slot %d (error %d)" % [slot, err])
 	if slot != AUTOSAVE_SLOT:
 		_write_save_meta(slot)
 
@@ -60,6 +65,13 @@ func load_from_slot(slot: int) -> bool:
 	var data: Dictionary = _read_save(slot)
 	if data.is_empty():
 		GameLog.warn("Load failed: slot %d empty or corrupt" % slot)
+		return false
+
+	# Validate story unlock
+	var story_id: String = data.get("story_id", "story_1")
+	var story: Dictionary = StoryDB.get_story(story_id)
+	if not UnlockManager.is_unlocked(story.get("unlock_requirement", "")):
+		GameLog.warn("Load failed: story '%s' is locked" % story_id)
 		return false
 
 	# Reconstruct party
@@ -173,7 +185,11 @@ func delete_save(slot: int) -> void:
 # =============================================================================
 
 func _write_save_meta(slot: int) -> void:
-	var file := FileAccess.open(SAVE_META_PATH, FileAccess.WRITE)
+	var tmp_path: String = SAVE_META_PATH + ".tmp"
+	var file := FileAccess.open(tmp_path, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify({"last_slot": slot}))
 		file.close()
+		var err: int = DirAccess.rename_absolute(tmp_path, SAVE_META_PATH)
+		if err != OK:
+			GameLog.error("Save meta rename failed (error %d)" % err)
