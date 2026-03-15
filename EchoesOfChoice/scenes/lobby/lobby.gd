@@ -385,9 +385,12 @@ func _show_load_save_slots() -> void:
 			var story_title: String = StoryDB.get_story(
 				summary.get("story_id", "story_1")).get("title", "")
 			var mp_tag: String = " [Co-op]" if summary.get("is_multiplayer", false) else ""
-			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s" % [
+			var secs: float = summary.get("play_seconds", 0.0)
+			var h: int = int(secs) / 3600
+			var m: int = (int(secs) % 3600) / 60
+			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
 				i + 1, summary.get("lead_name", "???"), summary.get("lead_class", "???"),
-				summary.get("level", 1), story_title, mp_tag]})
+				summary.get("level", 1), story_title, mp_tag, h, m]})
 			_load_slot_actions.append({"action": "load", "slot": i})
 		else:
 			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
@@ -398,9 +401,12 @@ func _show_load_save_slots() -> void:
 		var auto_story: String = StoryDB.get_story(
 			auto_summary.get("story_id", "story_1")).get("title", "")
 		var mp_tag: String = " [Co-op]" if auto_summary.get("is_multiplayer", false) else ""
-		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s" % [
+		var auto_secs: float = auto_summary.get("play_seconds", 0.0)
+		var auto_h: int = int(auto_secs) / 3600
+		var auto_m: int = (int(auto_secs) % 3600) / 60
+		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
 			auto_summary.get("lead_name", "???"), auto_summary.get("lead_class", "???"),
-			auto_summary.get("level", 1), auto_story, mp_tag]})
+			auto_summary.get("level", 1), auto_story, mp_tag, auto_h, auto_m]})
 		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
 	else:
 		options.append({"label": "Autosave: Empty", "disabled": true})

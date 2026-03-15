@@ -356,12 +356,16 @@ func _show_save_slots() -> void:
 		if summary.get("exists", false):
 			var story_title: String = StoryDB.get_story(
 				summary.get("story_id", "story_1")).get("title", "")
-			label = "Slot %d: %s the %s - Lv %d (%s)" % [
+			var secs: float = summary.get("play_seconds", 0.0)
+			var h: int = int(secs) / 3600
+			var m: int = (int(secs) % 3600) / 60
+			label = "Slot %d: %s the %s - Lv %d (%s) [%dh %dm]" % [
 				i + 1,
 				summary.get("lead_name", "???"),
 				summary.get("lead_class", "???"),
 				summary.get("level", 1),
 				story_title,
+				h, m,
 			]
 		else:
 			label = "Slot %d: Empty" % [i + 1]

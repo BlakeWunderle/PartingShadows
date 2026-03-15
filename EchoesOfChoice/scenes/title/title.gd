@@ -298,13 +298,17 @@ func _show_load_slots() -> void:
 				mp_tag = " [Co-op]"
 			elif summary.get("is_multiplayer", false):
 				mp_tag = " [Online]"
-			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s" % [
+				var secs: float = summary.get("play_seconds", 0.0)
+			var h: int = int(secs) / 3600
+			var m: int = (int(secs) % 3600) / 60
+			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
 				i + 1,
 				summary.get("lead_name", "???"),
 				summary.get("lead_class", "???"),
 				summary.get("level", 1),
 				story_title,
 				mp_tag,
+				h, m,
 			]})
 			_load_slot_actions.append({"action": "load", "slot": i})
 			options.append({"label": "  Delete Slot %d" % [i + 1]})
@@ -323,12 +327,16 @@ func _show_load_slots() -> void:
 			auto_mp_tag = " [Co-op]"
 		elif auto_summary.get("is_multiplayer", false):
 			auto_mp_tag = " [Online]"
-		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s" % [
+			var auto_secs: float = auto_summary.get("play_seconds", 0.0)
+		var auto_h: int = int(auto_secs) / 3600
+		var auto_m: int = (int(auto_secs) % 3600) / 60
+		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
 			auto_summary.get("lead_name", "???"),
 			auto_summary.get("lead_class", "???"),
 			auto_summary.get("level", 1),
 			auto_story,
 			auto_mp_tag,
+			auto_h, auto_m,
 		]})
 		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
 		options.append({"label": "  Delete Autosave"})
