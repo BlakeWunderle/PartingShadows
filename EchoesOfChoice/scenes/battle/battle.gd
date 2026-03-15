@@ -65,6 +65,7 @@ var _bottom_panel: VBoxContainer
 var _turn_order_label: RichTextLabel
 var _turn_queue: Array = []  ## Predicted turn order, depleted as actors act
 var _tip_overlay: TipOverlay
+var _player_indicator: Label
 
 # Track all fighters (including dead) for card display
 var _all_party: Array = []
@@ -223,6 +224,19 @@ func _build_ui() -> void:
 	_waiting_overlay = WaitingOverlay.new()
 	add_child(_waiting_overlay)
 
+	# Local co-op player indicator
+	_player_indicator = Label.new()
+	_player_indicator.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_player_indicator.add_theme_font_size_override("font_size", 20)
+	_player_indicator.add_theme_color_override("font_color", Color(0.3, 0.9, 0.5))
+	_player_indicator.set_anchors_preset(Control.PRESET_CENTER_TOP)
+	_player_indicator.grow_horizontal = Control.GROW_DIRECTION_BOTH
+	_player_indicator.offset_left = -200
+	_player_indicator.offset_right = 200
+	_player_indicator.offset_top = 12
+	_player_indicator.visible = false
+	add_child(_player_indicator)
+
 
 func _is_mp_guest() -> bool:
 	return NetManager.is_multiplayer_active and not NetManager.is_host
@@ -357,7 +371,17 @@ func _tick_loop() -> void:
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
 				var actor_party_idx: int = _all_party.find(actor)
-				if NetManager.is_multiplayer_active and not NetManager.is_my_fighter(actor_party_idx):
+				if LocalCoop.is_active:
+					# Local co-op: gate input to the owning player
+					var owner: int = LocalCoop.get_player_for_slot(actor_party_idx)
+					LocalCoop.set_active_player(owner)
+					_player_indicator.text = "%s's turn" % LocalCoop.get_player_name(owner)
+					_player_indicator.visible = true
+					_show_action_menu(actor)
+					await _player_turn_done
+					LocalCoop.clear_active_player()
+					_player_indicator.visible = false
+				elif NetManager.is_multiplayer_active and not NetManager.is_my_fighter(actor_party_idx):
 					# Remote player's turn -- request their action via RPC
 					var owner_peer: int = NetManager.get_fighter_owner_peer(actor_party_idx)
 					var owner_name: String = NetManager.get_fighter_owner_name(actor_party_idx)
