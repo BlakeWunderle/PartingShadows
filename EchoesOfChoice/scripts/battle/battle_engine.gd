@@ -118,7 +118,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s did %d points of damage to %s." % [
 			attacker.character_name, damage, defender.character_name])
-		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
+		combat_event.emit(defender, damage, "spell_crit" if is_crit else "spell_damage")
 
 		if ability.life_steal_percent > 0.0 and damage > 0:
 			var heal_amount: int = int(damage * ability.life_steal_percent)
@@ -140,6 +140,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				combat_message.emit(ability.flavor_text)
 			combat_message.emit("%s will take %d damage per turn for %d turns." % [
 				defender.character_name, ability.damage_per_turn, ability.impacted_turns])
+			combat_event.emit(defender, ability.damage_per_turn, "debuff")
 
 		if ability.modifier > 0 and (ability.damage_per_turn == 0 \
 				or ability.modified_stat != Enums.StatType.HEALTH):
@@ -155,6 +156,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
 				combat_message.emit("%s was hit with this ability." % defender.character_name)
+				combat_event.emit(defender, ability.modifier, "debuff")
 
 
 func use_ability_on_teammate(caster: FighterData, target: FighterData,
@@ -190,6 +192,7 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		if not skip_flavor:
 			combat_message.emit(ability.flavor_text)
 		combat_message.emit("%s was impacted by the ability." % target.character_name)
+		combat_event.emit(target, ability.modifier, "buff")
 
 
 func _calc_ability_damage(attacker: FighterData, defender: FighterData,

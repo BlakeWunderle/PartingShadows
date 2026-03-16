@@ -782,9 +782,21 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 		"crit":
 			SFXManager.play(SFXManager.Category.IMPACT)
 			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
+		"spell_damage":
+			SFXManager.play(SFXManager.Category.SPELL)
+			card.show_floating_text("-%d" % amount, Color(0.6, 0.4, 1.0))
+		"spell_crit":
+			SFXManager.play(SFXManager.Category.IMPACT)
+			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
 		"heal":
 			SFXManager.play(SFXManager.Category.SHIMMER)
 			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
+		"buff":
+			SFXManager.play(SFXManager.Category.BUFF)
+			card.show_floating_text("BUFF", Color(0.4, 0.8, 1.0))
+		"debuff":
+			SFXManager.play(SFXManager.Category.DEBUFF)
+			card.show_floating_text("DEBUFF", Color(0.8, 0.3, 0.8))
 		"miss":
 			SFXManager.play(SFXManager.Category.WHOOSH, 0.7)
 			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))
