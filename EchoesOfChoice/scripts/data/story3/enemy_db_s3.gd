@@ -82,7 +82,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = _es(8, 11, 0, 1, lvl, 2)
 	f.speed = _es(26, 32, 1, 3, lvl, 2)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	return f
 
@@ -96,7 +96,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(14, 18, 1, 2, lvl, 2)
 	f.magic_defense = _es(10, 13, 1, 2, lvl, 2)
 	f.speed = _es(24, 30, 1, 2, lvl, 2)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 9
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 9
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
 	return f
 
@@ -104,7 +104,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 # Prog 1 FogGarden enemies (+4% stats, reduced crit/dodge)
 static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Slumber Beast", lvl)
-	f.health = _es(54, 65, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(53, 64, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(6, 10, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.physical_defense = _es(11, 15, 1, 2, lvl, 2)
@@ -118,7 +118,7 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 
 static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Fog Wraith", lvl)
-	f.health = _es(38, 46, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(37, 45, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(12, 17, 1, 3, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(8, 11, 0, 2, lvl, 2)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 2)
@@ -132,7 +132,7 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 
 static func create_thorn_dreamer(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Thorn Dreamer", lvl)
-	f.health = _es(48, 56, 3, 5, lvl, 2); f.max_health = f.health
+	f.health = _es(47, 55, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = _es(10, 15, 1, 3, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(15, 18, 1, 2, lvl, 2)
 	f.physical_defense = _es(8, 11, 1, 2, lvl, 2)
@@ -194,7 +194,7 @@ static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 # Prog 4 Labyrinth enemies (+6%)
 static func create_somnolent_serpent(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Somnolent Serpent", lvl)
-	f.health = _es(101, 116, 4, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(105, 121, 4, 6, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(22, 25, 1, 3, lvl, 5)
 	f.physical_defense = _es(15, 18, 1, 2, lvl, 5)
@@ -208,28 +208,28 @@ static func create_somnolent_serpent(n: String, lvl: int = 5) -> FighterData:
 
 static func create_twilight_stalker(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Twilight Stalker", lvl)
-	f.health = _es(96, 111, 3, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(98, 113, 3, 6, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(25, 30, 1, 3, lvl, 5)
 	f.physical_defense = _es(13, 16, 1, 2, lvl, 5)
 	f.magic_attack = _es(11, 14, 0, 2, lvl, 5)
 	f.magic_defense = _es(12, 15, 1, 2, lvl, 5)
 	f.speed = _es(30, 35, 1, 3, lvl, 5)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 13
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.dusk_blade(), EAB.vanish_strike()]
 	return f
 
 
 static func create_waking_terror(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Waking Terror", lvl)
-	f.health = _es(105, 121, 4, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(107, 123, 4, 6, lvl, 5); f.max_health = f.health
 	f.mana = _es(14, 18, 2, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(13, 16, 0, 2, lvl, 5)
 	f.physical_defense = _es(14, 17, 1, 2, lvl, 5)
 	f.magic_attack = _es(23, 28, 1, 3, lvl, 5)
 	f.magic_defense = _es(16, 19, 1, 2, lvl, 5)
 	f.speed = _es(25, 31, 1, 2, lvl, 5)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.scream_blast(), EAB.terror_wave()]
 	return f
 

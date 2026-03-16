@@ -33,14 +33,14 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # Prog 9 (+41%)
 static func create_cult_acolyte(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Cult Acolyte", lvl)
-	f.health = _es(282, 324, 7, 11, lvl, 10); f.max_health = f.health
+	f.health = _es(296, 340, 7, 11, lvl, 10); f.max_health = f.health
 	f.mana = _es(16, 21, 1, 3, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = _es(25, 31, 1, 3, lvl, 10)
 	f.physical_defense = _es(31, 37, 1, 3, lvl, 10)
 	f.magic_attack = _es(45, 51, 3, 4, lvl, 10)
 	f.magic_defense = _es(31, 37, 1, 3, lvl, 10)
 	f.speed = _es(42, 49, 1, 3, lvl, 10)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.dark_bolt(), EAB.minor_ward()]
 	return f
 
@@ -48,14 +48,14 @@ static func create_cult_acolyte(n: String, lvl: int = 10) -> FighterData:
 # Prog 9 (+41%)
 static func create_cult_enforcer(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Cult Enforcer", lvl)
-	f.health = _es(338, 381, 9, 14, lvl, 10); f.max_health = f.health
+	f.health = _es(355, 400, 9, 14, lvl, 10); f.max_health = f.health
 	f.mana = _es(10, 15, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = _es(48, 54, 3, 4, lvl, 10)
 	f.physical_defense = _es(39, 45, 3, 4, lvl, 10)
 	f.magic_attack = _es(17, 23, 0, 3, lvl, 10)
 	f.magic_defense = _es(34, 39, 1, 3, lvl, 10)
 	f.speed = _es(39, 47, 1, 3, lvl, 10)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 7
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.heavy_strike(), EAB.brace()]
 	return f
 
@@ -63,14 +63,14 @@ static func create_cult_enforcer(n: String, lvl: int = 10) -> FighterData:
 # Prog 9 (+41%)
 static func create_cult_hexer(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Cult Hexer", lvl)
-	f.health = _es(275, 317, 6, 10, lvl, 10); f.max_health = f.health
+	f.health = _es(288, 332, 6, 10, lvl, 10); f.max_health = f.health
 	f.mana = _es(21, 26, 2, 4, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = _es(23, 28, 1, 3, lvl, 10)
 	f.physical_defense = _es(28, 34, 1, 3, lvl, 10)
 	f.magic_attack = _es(48, 54, 3, 4, lvl, 10)
 	f.magic_defense = _es(34, 39, 1, 4, lvl, 10)
 	f.speed = _es(42, 49, 1, 3, lvl, 10)
-	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 14
+	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 14
 	f.abilities = [EAB.hex_bolt(), EAB.curse()]
 	return f
 
@@ -78,7 +78,7 @@ static func create_cult_hexer(n: String, lvl: int = 10) -> FighterData:
 # Shared Prog 10 & 11 (+38%, unchanged)
 static func create_thread_guard(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Thread Guard", lvl)
-	f.health = _es(345, 393, 8, 14, lvl, 11); f.max_health = f.health
+	f.health = _es(340, 387, 8, 14, lvl, 11); f.max_health = f.health
 	f.mana = _es(15, 20, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = _es(50, 55, 3, 4, lvl, 11)
 	f.physical_defense = _es(39, 44, 3, 4, lvl, 11)
@@ -93,14 +93,14 @@ static func create_thread_guard(n: String, lvl: int = 11) -> FighterData:
 # Prog 10 (+40%)
 static func create_dream_hound(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Dream Hound", lvl)
-	f.health = _es(310, 352, 7, 11, lvl, 11); f.max_health = f.health
+	f.health = _es(300, 341, 7, 11, lvl, 11); f.max_health = f.health
 	f.mana = _es(12, 17, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = _es(50, 54, 3, 4, lvl, 11)
 	f.physical_defense = _es(31, 36, 1, 3, lvl, 11)
 	f.magic_attack = _es(20, 25, 1, 3, lvl, 11)
 	f.magic_defense = _es(28, 34, 1, 3, lvl, 11)
 	f.speed = _es(48, 55, 3, 4, lvl, 11)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 16
+	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
 	return f
 
@@ -138,14 +138,14 @@ static func create_high_weaver(n: String, lvl: int = 12) -> FighterData:
 # Prog 12 boss minion (+45%)
 static func create_shadow_fragment(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Shadow Fragment", lvl)
-	f.health = _es(290, 334, 8, 12, lvl, 13); f.max_health = f.health
+	f.health = _es(305, 351, 8, 12, lvl, 13); f.max_health = f.health
 	f.mana = _es(17, 22, 1, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(29, 35, 1, 4, lvl, 13)
 	f.physical_defense = _es(32, 38, 1, 5, lvl, 13)
 	f.magic_attack = _es(49, 55, 3, 5, lvl, 13)
 	f.magic_defense = _es(35, 41, 1, 4, lvl, 13)
 	f.speed = _es(49, 57, 3, 5, lvl, 13)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
 	return f
 
@@ -153,13 +153,13 @@ static func create_shadow_fragment(n: String, lvl: int = 13) -> FighterData:
 # Prog 12 boss (+47%)
 static func create_the_threadmaster(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "The Threadmaster", lvl)
-	f.health = _es(515, 588, 15, 22, lvl, 13); f.max_health = f.health
+	f.health = _es(541, 617, 15, 22, lvl, 13); f.max_health = f.health
 	f.mana = _es(35, 40, 4, 6, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(59, 66, 3, 6, lvl, 13)
 	f.physical_defense = _es(44, 50, 3, 5, lvl, 13)
 	f.magic_attack = _es(65, 71, 4, 6, lvl, 13)
 	f.magic_defense = _es(44, 50, 3, 5, lvl, 13)
 	f.speed = _es(53, 60, 3, 5, lvl, 13)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion()]
 	return f

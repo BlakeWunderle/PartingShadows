@@ -74,7 +74,7 @@ static func create_guard_archer(n: String, lvl: int = 12) -> FighterData:
 
 static func create_stranger(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Stranger", lvl)
-	f.health = _es(569, 631, 16, 22, lvl, 16); f.max_health = f.health
+	f.health = _es(577, 641, 16, 22, lvl, 16); f.max_health = f.health
 	f.mana = _es(50, 58, 3, 5, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(59, 68, 4, 6, lvl, 16)
 	f.physical_defense = _es(34, 40, 2, 4, lvl, 16)
@@ -188,27 +188,27 @@ static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
 
 static func create_dark_knight(n: String, lvl: int = 18) -> FighterData:
 	var f := _base(n, "Dark Knight", lvl)
-	f.health = _es(358, 396, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = _es(346, 383, 8, 12, lvl, 18); f.max_health = f.health
 	f.mana = _es(30, 38, 3, 5, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = _es(64, 71, 4, 6, lvl, 18)
 	f.physical_defense = _es(37, 45, 3, 5, lvl, 18)
 	f.magic_attack = _es(35, 43, 2, 4, lvl, 18)
 	f.magic_defense = _es(36, 43, 2, 4, lvl, 18)
 	f.speed = _es(37, 43, 2, 4, lvl, 18)
-	f.crit_chance = 28; f.crit_damage = 5; f.dodge_chance = 19
+	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 18
 	f.abilities = [EAB.dark_blade(), EAB.shadow_guard(), EAB.cleave()]
 	return f
 
 static func create_fell_hound(n: String, lvl: int = 18) -> FighterData:
 	var f := _base(n, "Fell Hound", lvl)
-	f.health = _es(299, 335, 7, 10, lvl, 18); f.max_health = f.health
+	f.health = _es(289, 324, 7, 10, lvl, 18); f.max_health = f.health
 	f.mana = _es(30, 38, 3, 5, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = _es(23, 28, 1, 3, lvl, 18)
 	f.physical_defense = _es(26, 31, 2, 3, lvl, 18)
 	f.magic_attack = _es(56, 63, 3, 5, lvl, 18)
 	f.magic_defense = _es(34, 39, 2, 4, lvl, 18)
 	f.speed = _es(43, 49, 3, 5, lvl, 18)
-	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 22
+	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EAB.shadow_bite(), EAB.howl_of_dread(), EAB.enemy_blight()]
 	return f
 

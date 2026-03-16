@@ -134,12 +134,12 @@ static func create_wanderer(fighter_name: String) -> FighterData:
 	f.level = 1
 	f.health = randi_range(41, 49); f.max_health = f.health
 	f.mana = randi_range(6, 10); f.max_mana = f.mana
-	f.physical_attack = randi_range(10, 14)
+	f.physical_attack = randi_range(12, 16)
 	f.physical_defense = randi_range(8, 11)
 	f.magic_attack = randi_range(9, 12)
 	f.magic_defense = randi_range(14, 18)
 	f.speed = randi_range(21, 25)
-	f.crit_chance = 8
+	f.crit_chance = 10
 	f.crit_damage = 1
 	f.dodge_chance = 8
 	f.abilities = [AbilityDB.wild_strike(), AbilityDB.natures_ward()]
