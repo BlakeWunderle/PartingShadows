@@ -13,19 +13,17 @@ const PAB := preload("res://scripts/data/ability_db_player.gd")
 
 static func upgrade_to_cavalry(f: FighterData) -> void:
 	f.class_id = "Cavalry"; f.character_type = "Cavalry"
-	f.health += 4; f.max_health += 4; f.physical_attack += 3; f.speed += 3
-	f.crit_chance += 8   # VERY HIGH tier (mounted lancer, lance charges)
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 3  # MEDIUM tier
+	f.health += 4; f.max_health += 4
+	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.speed += 3; f.crit_chance += 8; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB.lance(), PAB.trample(), AbilityDB.rally()]
 	f.upgrade_items = []
 
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
-	f.health += 8; f.max_health += 8; f.physical_attack += 5; f.magic_attack += 3
-	f.crit_chance += 5   # HIGH tier (jumping dragoon)
-	f.crit_damage += 2   # HIGH tier (jump attacks)
-	f.dodge_chance += 2  # MEDIUM tier
+	f.health += 8; f.max_health += 8
+	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 2
+	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_ward()]
 	f.upgrade_items = []
 
@@ -56,20 +54,17 @@ static func _lu_dragoon(f: FighterData) -> void:
 
 static func upgrade_to_mercenary(f: FighterData) -> void:
 	f.class_id = "Mercenary"; f.character_type = "Mercenary"
-	f.physical_attack += 7; f.speed += 5
 	f.health += 5; f.max_health += 5
-	f.crit_chance += 10  # VERY HIGH tier (gun specialist, extreme precision)
-	f.crit_damage += 4   # VERY HIGH tier (called shot fantasy)
-	f.dodge_chance += 1  # LOW tier
+	f.physical_attack += 7; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.speed += 5; f.crit_chance += 8; f.crit_damage += 4; f.dodge_chance += 2
 	f.abilities = [PAB.gun_shot(), PAB.called_shot(), PAB.quick_draw()]
 	f.upgrade_items = []
 
 static func upgrade_to_hunter(f: FighterData) -> void:
 	f.class_id = "Hunter"; f.character_type = "Hunter"
-	f.health += 3; f.max_health += 3; f.physical_attack += 2; f.speed += 4
-	f.crit_chance += 3   # MEDIUM tier (trap specialist)
-	f.crit_damage += 2   # HIGH tier
-	f.dodge_chance += 4  # HIGH tier (ranged + traps)
+	f.health += 3; f.max_health += 3
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.speed += 4; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 4
 	f.abilities = [PAB.triple_arrow(), PAB.snare(), PAB.hunters_mark()]
 	f.upgrade_items = []
 
@@ -99,19 +94,16 @@ static func _lu_hunter(f: FighterData) -> void:
 
 static func upgrade_to_ninja(f: FighterData) -> void:
 	f.class_id = "Ninja"; f.character_type = "Ninja"
-	f.physical_attack += 5; f.speed += 7
-	f.crit_chance += 3   # MEDIUM tier
-	f.crit_damage += 3   # VERY HIGH tier (assassin burst damage)
-	f.dodge_chance += 8  # VERY HIGH tier (stealth evasion)
+	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.speed += 7; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 7
 	f.abilities = [PAB.sweeping_slash(), PAB.dash(), PAB.smoke_bomb()]
 	f.upgrade_items = []
 
 static func upgrade_to_monk(f: FighterData) -> void:
 	f.class_id = "Monk"; f.character_type = "Monk"
-	f.health += 5; f.max_health += 5; f.physical_attack += 3; f.magic_attack += 5
-	f.crit_chance += 2   # MEDIUM tier
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 5  # HIGH tier (spiritual, monk fantasy)
+	f.health += 5; f.max_health += 5
+	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 2
+	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.spirit_attack(), PAB.precise_strike(), PAB.meditate()]
 	f.upgrade_items = []
 
@@ -142,28 +134,23 @@ static func _lu_monk(f: FighterData) -> void:
 
 static func upgrade_to_infernalist(f: FighterData) -> void:
 	f.class_id = "Infernalist"; f.character_type = "Infernalist"
-	f.magic_attack += 5; f.speed += 4
-	f.crit_chance += 2   # MEDIUM tier (fire glass cannon)
-	f.crit_damage += 2   # HIGH tier (risky burst)
-	f.dodge_chance += 0  # VERY LOW tier (no evasion)
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 2
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]
 	f.upgrade_items = []
 
 static func upgrade_to_tidecaller(f: FighterData) -> void:
 	f.class_id = "Tidecaller"; f.character_type = "Tidecaller"
-	f.health += 3; f.max_health += 3; f.magic_attack += 4; f.magic_defense += 4
-	f.crit_chance += 0   # VERY LOW tier (water support, pure support)
-	f.crit_damage += 0   # VERY LOW tier
-	f.dodge_chance += 2  # MEDIUM tier
+	f.health += 3; f.max_health += 3
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 4; f.magic_defense += 4
+	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.purify(), PAB.tsunami(), PAB.undertow()]
 	f.upgrade_items = []
 
 static func upgrade_to_tempest(f: FighterData) -> void:
 	f.class_id = "Tempest"; f.character_type = "Tempest"
-	f.magic_attack += 5; f.magic_defense += 3; f.speed += 7
-	f.crit_chance += 3   # MEDIUM tier (lightning DPS)
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 1  # LOW tier (storm agility)
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 3
+	f.speed += 7; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.hurricane(), PAB.tornado(), PAB.eye_of_the_storm()]
 	f.upgrade_items = []
 
@@ -204,30 +191,24 @@ static func _lu_tempest(f: FighterData) -> void:
 static func upgrade_to_paladin(f: FighterData) -> void:
 	f.class_id = "Paladin"; f.character_type = "Paladin"
 	f.health += 10; f.max_health += 10
-	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 3
-	f.crit_chance += 2   # MEDIUM tier (holy knight, balanced hybrid)
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 2  # MEDIUM tier
+	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 2
+	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.cure(), AbilityDB.smash(), PAB.smite()]
 	f.upgrade_items = []
 
 static func upgrade_to_priest(f: FighterData) -> void:
 	f.class_id = "Priest"; f.character_type = "Priest"
 	f.health += 5; f.max_health += 5; f.mana += 8; f.max_mana += 8
-	f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 3
-	f.crit_chance += 0   # VERY LOW tier (holy caster, pure healer)
-	f.crit_damage += 0   # VERY LOW tier
-	f.dodge_chance += 1  # LOW tier
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 3
+	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]
 	f.upgrade_items = []
 
 static func upgrade_to_warlock(f: FighterData) -> void:
 	f.class_id = "Warlock"; f.character_type = "Warlock"
-	f.magic_attack += 8; f.magic_defense += 4; f.speed += 4
 	f.health += 5; f.max_health += 5
-	f.crit_chance += 2   # MEDIUM tier (dark debuffer)
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 2  # MEDIUM tier
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 4
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.shadow_bolt(), PAB.curse(), PAB.drain_life()]
 	f.upgrade_items = []
 
@@ -269,22 +250,16 @@ static func _lu_warlock(f: FighterData) -> void:
 static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.class_id = "Bulwark"; f.character_type = "Bulwark"
 	f.health += 6; f.max_health += 6
-	f.physical_attack += 4; f.magic_attack += 3  # Balanced attacker
-	f.physical_defense += 3; f.magic_defense += 3  # Solid defense
-	f.crit_chance += 2   # MEDIUM tier
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 5  # HIGH tier (ultimate tank, defense focus)
+	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 3
+	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
 	f.upgrade_items = []
 
 static func upgrade_to_aegis(f: FighterData) -> void:
 	f.class_id = "Aegis"; f.character_type = "Aegis"
-	f.health += 4; f.max_health += 4
-	f.physical_defense += 2; f.magic_defense += 2  # Moderate defense
-	f.mana += 4; f.max_mana += 4  # More mana for support abilities
-	f.crit_chance += 2   # MEDIUM tier (counter-magic warrior)
-	f.crit_damage += 1   # MEDIUM tier
-	f.dodge_chance += 3  # MEDIUM tier
+	f.health += 4; f.max_health += 4; f.mana += 4; f.max_mana += 4
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB.guardians_blessing(), PAB.protective_ward(), PAB.aegis_barrier()]
 	f.upgrade_items = []
 
