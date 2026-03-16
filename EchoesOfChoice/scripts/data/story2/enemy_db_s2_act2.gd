@@ -31,7 +31,7 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Driftwood Bandit", lvl)
-	f.health = _es(123, 143, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(127, 147, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(35, 40, 2, 3, lvl, 5)
 	f.physical_defense = _es(17, 21, 1, 2, lvl, 5)
@@ -45,7 +45,7 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 
 static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Saltrunner Smuggler", lvl)
-	f.health = _es(100, 115, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(107, 123, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(29, 35, 2, 3, lvl, 5)
 	f.physical_defense = _es(12, 15, 1, 2, lvl, 5)
@@ -119,7 +119,7 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 
 static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Blackwater Captain", lvl)
-	f.health = _es(256, 292, 6, 9, lvl, 8); f.max_health = f.health
+	f.health = _es(246, 280, 6, 9, lvl, 8); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = _es(52, 60, 3, 5, lvl, 8)
 	f.physical_defense = _es(33, 39, 2, 3, lvl, 8)
@@ -133,7 +133,7 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 
 static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Corsair Hexer", lvl)
-	f.health = _es(193, 219, 5, 7, lvl, 8); f.max_health = f.health
+	f.health = _es(185, 210, 5, 7, lvl, 8); f.max_health = f.health
 	f.mana = _es(18, 22, 2, 4, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = _es(8, 11, 0, 2, lvl, 8)
 	f.physical_defense = _es(14, 18, 1, 2, lvl, 8)
