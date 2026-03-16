@@ -61,9 +61,9 @@ static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 # Prog 1 MirrorHall enemies (+10%)
 static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Shade Moth", lvl)
-	f.health = _es(28, 35, 2, 3, lvl, 1); f.max_health = f.health
+	f.health = _es(34, 42, 2, 4, lvl, 1); f.max_health = f.health
 	f.mana = _es(7, 11, 1, 2, lvl, 1); f.max_mana = f.mana
-	f.physical_attack = _es(11, 14, 1, 2, lvl, 1)
+	f.physical_attack = _es(13, 16, 1, 2, lvl, 1)
 	f.physical_defense = _es(4, 8, 0, 1, lvl, 1)
 	f.magic_attack = _es(9, 12, 0, 2, lvl, 1)
 	f.magic_defense = _es(7, 10, 0, 1, lvl, 1)
@@ -75,9 +75,9 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 
 static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Sleep Stalker", lvl)
-	f.health = _es(45, 53, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(54, 64, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(7, 11, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = _es(20, 24, 1, 3, lvl, 2)
+	f.physical_attack = _es(22, 26, 1, 3, lvl, 2)
 	f.physical_defense = _es(8, 11, 1, 2, lvl, 2)
 	f.magic_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = _es(8, 11, 0, 1, lvl, 2)
@@ -89,11 +89,11 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 
 static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Mirror Shade", lvl)
-	f.health = _es(42, 50, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(50, 60, 2, 5, lvl, 2); f.max_health = f.health
 	f.mana = _es(9, 13, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = _es(14, 18, 1, 2, lvl, 2)
+	f.physical_attack = _es(16, 20, 1, 2, lvl, 2)
 	f.physical_defense = _es(10, 13, 1, 2, lvl, 2)
-	f.magic_attack = _es(14, 18, 1, 2, lvl, 2)
+	f.magic_attack = _es(16, 20, 1, 2, lvl, 2)
 	f.magic_defense = _es(10, 13, 1, 2, lvl, 2)
 	f.speed = _es(24, 30, 1, 2, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 9
@@ -104,7 +104,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 # Prog 1 FogGarden enemies (+4% stats, reduced crit/dodge)
 static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Slumber Beast", lvl)
-	f.health = _es(53, 64, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(57, 68, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(6, 10, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.physical_defense = _es(11, 15, 1, 2, lvl, 2)
@@ -118,7 +118,7 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 
 static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Fog Wraith", lvl)
-	f.health = _es(37, 45, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(40, 48, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(12, 17, 1, 3, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(8, 11, 0, 2, lvl, 2)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 2)
@@ -132,7 +132,7 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 
 static func create_thorn_dreamer(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Thorn Dreamer", lvl)
-	f.health = _es(47, 55, 3, 5, lvl, 2); f.max_health = f.health
+	f.health = _es(50, 59, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = _es(10, 15, 1, 3, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(15, 18, 1, 2, lvl, 2)
 	f.physical_defense = _es(8, 11, 1, 2, lvl, 2)
@@ -151,7 +151,7 @@ static func create_thorn_dreamer(n: String, lvl: int = 2) -> FighterData:
 # Prog 3 enemies (+2% stats, reduced crit/dodge), also used at Prog 5 as support
 static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Nightmare Hound", lvl)
-	f.health = _es(87, 102, 4, 7, lvl, 4); f.max_health = f.health
+	f.health = _es(93, 109, 4, 7, lvl, 4); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 2, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(22, 27, 1, 3, lvl, 4)
 	f.physical_defense = _es(13, 16, 1, 2, lvl, 4)
@@ -165,7 +165,7 @@ static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 
 static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Dream Weaver", lvl)
-	f.health = _es(78, 92, 3, 6, lvl, 4); f.max_health = f.health
+	f.health = _es(84, 99, 3, 6, lvl, 4); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(10, 13, 0, 2, lvl, 4)
 	f.physical_defense = _es(12, 15, 1, 2, lvl, 4)
@@ -179,7 +179,7 @@ static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 
 static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Hollow Echo", lvl)
-	f.health = _es(83, 97, 3, 5, lvl, 4); f.max_health = f.health
+	f.health = _es(89, 104, 3, 6, lvl, 4); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(10, 13, 0, 2, lvl, 4)
 	f.physical_defense = _es(11, 14, 1, 2, lvl, 4)
@@ -194,7 +194,7 @@ static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 # Prog 4 Labyrinth enemies (+6%)
 static func create_somnolent_serpent(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Somnolent Serpent", lvl)
-	f.health = _es(105, 121, 4, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(113, 130, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(22, 25, 1, 3, lvl, 5)
 	f.physical_defense = _es(15, 18, 1, 2, lvl, 5)
@@ -208,7 +208,7 @@ static func create_somnolent_serpent(n: String, lvl: int = 5) -> FighterData:
 
 static func create_twilight_stalker(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Twilight Stalker", lvl)
-	f.health = _es(98, 113, 3, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(106, 122, 3, 6, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(25, 30, 1, 3, lvl, 5)
 	f.physical_defense = _es(13, 16, 1, 2, lvl, 5)
@@ -222,7 +222,7 @@ static func create_twilight_stalker(n: String, lvl: int = 5) -> FighterData:
 
 static func create_waking_terror(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Waking Terror", lvl)
-	f.health = _es(107, 123, 4, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(115, 132, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(14, 18, 2, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(13, 16, 0, 2, lvl, 5)
 	f.physical_defense = _es(14, 17, 1, 2, lvl, 5)
@@ -237,7 +237,7 @@ static func create_waking_terror(n: String, lvl: int = 5) -> FighterData:
 # Prog 4 ClockTower enemies (+12%)
 static func create_dusk_sentinel(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Dusk Sentinel", lvl)
-	f.health = _es(127, 149, 6, 9, lvl, 5); f.max_health = f.health
+	f.health = _es(140, 164, 6, 10, lvl, 5); f.max_health = f.health
 	f.mana = _es(9, 13, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(23, 27, 1, 3, lvl, 5)
 	f.physical_defense = _es(20, 25, 1, 3, lvl, 5)
@@ -251,7 +251,7 @@ static func create_dusk_sentinel(n: String, lvl: int = 5) -> FighterData:
 
 static func create_clock_specter(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Clock Specter", lvl)
-	f.health = _es(102, 118, 3, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(112, 130, 4, 8, lvl, 5); f.max_health = f.health
 	f.mana = _es(11, 16, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(18, 23, 1, 2, lvl, 5)
 	f.physical_defense = _es(14, 17, 1, 2, lvl, 5)
@@ -266,7 +266,7 @@ static func create_clock_specter(n: String, lvl: int = 5) -> FighterData:
 # Prog 5 boss (+2%), support enemies are nightmare_hound + hollow_echo from Prog 3
 static func create_the_nightmare(n: String, lvl: int = 6) -> FighterData:
 	var f := _base(n, "The Nightmare", lvl)
-	f.health = _es(175, 203, 6, 10, lvl, 6); f.max_health = f.health
+	f.health = _es(184, 213, 6, 10, lvl, 6); f.max_health = f.health
 	f.mana = _es(18, 22, 2, 4, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = _es(29, 33, 2, 3, lvl, 6)
 	f.physical_defense = _es(18, 22, 1, 3, lvl, 6)
