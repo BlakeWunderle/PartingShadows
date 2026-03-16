@@ -193,6 +193,7 @@ func get_fighter() -> FighterData:
 
 
 ## Spawn a floating number above the card that drifts up and fades out.
+## Added to the scene root (not this VBoxContainer) to prevent layout bounce.
 func show_floating_text(text: String, color: Color) -> void:
 	if not is_inside_tree():
 		return
@@ -203,11 +204,15 @@ func show_floating_text(text: String, color: Color) -> void:
 	label.add_theme_constant_override("outline_size", 3)
 	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.position = Vector2(size.x * 0.5 - 20, -10)
-	add_child(label)
+
+	# Add to scene root so the label doesn't affect VBoxContainer layout
+	var scene_root: Node = get_tree().current_scene
+	scene_root.add_child(label)
+	var card_pos: Vector2 = global_position
+	label.global_position = Vector2(card_pos.x + size.x * 0.5 - 20, card_pos.y - 10)
 
 	var tw := create_tween().set_parallel(true)
-	tw.tween_property(label, "position:y", -40.0, 0.8).set_ease(Tween.EASE_OUT)
+	tw.tween_property(label, "global_position:y", card_pos.y - 40.0, 0.8).set_ease(Tween.EASE_OUT)
 	tw.tween_property(label, "modulate:a", 0.0, 0.8).set_ease(Tween.EASE_IN).set_delay(0.3)
 	tw.chain().tween_callback(label.queue_free)
 

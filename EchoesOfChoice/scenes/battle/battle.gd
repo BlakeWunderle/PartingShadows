@@ -766,7 +766,7 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 	if not card:
 		return
 	# Track battle stats for party members
-	if event_type in ["damage", "crit"]:
+	if event_type in ["damage", "crit", "spell_damage", "spell_crit"]:
 		if _current_actor != null and _battle_stats.has(_current_actor):
 			_battle_stats[_current_actor]["damage_dealt"] += amount
 		if _battle_stats.has(target):

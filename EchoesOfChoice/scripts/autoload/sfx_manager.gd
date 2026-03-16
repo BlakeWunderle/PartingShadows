@@ -25,7 +25,7 @@ const _SFX_ROOT: String = "res://assets/audio/sfx/"
 const CATEGORY_PATHS: Dictionary = {
 	Category.STRIKE: "combat/Clean_Strike_Sword_Katana_Dagger/Clean_Strike_Sword_Katana_Dagger_12.wav",
 	Category.IMPACT: "combat/Bright_Crisp_Strike_Impact/Bright_Crisp_Strike_Impact_7.wav",
-	Category.SPELL: "combat/Spell_Burst_Saber_Clash/Spell_Burst_Saber_Clash_1.wav",
+	Category.SPELL: "combat/Spell_Burst_Saber_Clash/Spell_Burst_Saber_Clash-01.wav",
 	Category.SHIMMER: "combat/Sparkly_Shimmer_Charged_Particles/Sparkly_Shimmer_Charged_Particles_1.wav",
 	Category.BUFF: "combat/Sparkly_Shimmer_Charged_Particles/Sparkly_Shimmer_Charged_Particles_9.wav",
 	Category.DEBUFF: "combat/debuff.wav",
