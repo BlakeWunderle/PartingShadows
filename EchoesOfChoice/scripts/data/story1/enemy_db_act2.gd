@@ -61,7 +61,7 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 
 static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Troll", lvl)
-	f.health = _es(151, 171, 6, 10, lvl, 5); f.max_health = f.health
+	f.health = _es(156, 176, 6, 10, lvl, 5); f.max_health = f.health
 	f.mana = _es(13, 17, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(26, 31, 2, 4, lvl, 5)
 	f.physical_defense = _es(18, 22, 1, 3, lvl, 5)
@@ -126,7 +126,7 @@ static func create_sprite(n: String, lvl: int = 4) -> FighterData:
 
 static func create_siren(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Siren", lvl)
-	f.health = _es(78, 95, 5, 10, lvl, 4); f.max_health = f.health
+	f.health = _es(83, 100, 5, 10, lvl, 4); f.max_health = f.health
 	f.mana = _es(20, 35, 2, 5, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(15, 22, 1, 3, lvl, 4)
 	f.physical_defense = _es(11, 18, 1, 3, lvl, 4)
@@ -139,7 +139,7 @@ static func create_siren(n: String, lvl: int = 4) -> FighterData:
 
 static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Merfolk", lvl)
-	f.health = _es(80, 96, 4, 7, lvl, 4); f.max_health = f.health
+	f.health = _es(83, 99, 4, 7, lvl, 4); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(23, 27, 2, 3, lvl, 4)
 	f.physical_defense = _es(11, 16, 1, 2, lvl, 4)
@@ -152,7 +152,7 @@ static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 
 static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Captain", lvl)
-	f.health = _es(107, 134, 5, 11, lvl, 5); f.max_health = f.health
+	f.health = _es(113, 140, 5, 11, lvl, 5); f.max_health = f.health
 	f.mana = _es(24, 50, 2, 7, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(27, 34, 2, 5, lvl, 5)
 	f.physical_defense = _es(19, 27, 2, 5, lvl, 5)
@@ -235,7 +235,7 @@ static func create_chanteuse(n: String) -> FighterData:
 
 static func create_android(n: String) -> FighterData:
 	var f := _base(n, "Android", 6)
-	f.health = _fixed(103, 114); f.max_health = f.health
+	f.health = _fixed(108, 119); f.max_health = f.health
 	f.mana = _fixed(29, 34); f.max_mana = f.mana
 	f.physical_attack = _fixed(23, 27); f.physical_defense = _fixed(21, 25)
 	f.magic_attack = _fixed(24, 28); f.magic_defense = _fixed(23, 27)
@@ -246,7 +246,7 @@ static func create_android(n: String) -> FighterData:
 
 static func create_machinist(n: String) -> FighterData:
 	var f := _base(n, "Machinist", 6)
-	f.health = _fixed(103, 114); f.max_health = f.health
+	f.health = _fixed(107, 118); f.max_health = f.health
 	f.mana = _fixed(22, 27); f.max_mana = f.mana
 	f.physical_attack = _fixed(24, 28); f.physical_defense = _fixed(25, 30)
 	f.magic_attack = _fixed(22, 26); f.magic_defense = _fixed(23, 27)
@@ -268,18 +268,18 @@ static func create_ironclad(n: String) -> FighterData:
 
 static func create_commander(n: String) -> FighterData:
 	var f := _base(n, "Commander", 6)
-	f.health = _fixed(109, 120); f.max_health = f.health
+	f.health = _fixed(117, 128); f.max_health = f.health
 	f.mana = _fixed(23, 27); f.max_mana = f.mana
 	f.physical_attack = _fixed(26, 31); f.physical_defense = _fixed(25, 29)
 	f.magic_attack = _fixed(12, 16); f.magic_defense = _fixed(24, 29)
 	f.speed = _fixed(28, 33)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.shield_wall(), EAB.rally_strike(), EAB.war_ward()]
 	return f
 
 static func create_draconian(n: String) -> FighterData:
 	var f := _base(n, "Draconian", 6)
-	f.health = _fixed(86, 95); f.max_health = f.health
+	f.health = _fixed(93, 102); f.max_health = f.health
 	f.mana = _fixed(26, 30); f.max_mana = f.mana
 	f.physical_attack = _fixed(28, 32); f.physical_defense = _fixed(19, 23)
 	f.magic_attack = _fixed(30, 34); f.magic_defense = _fixed(22, 27)
@@ -290,7 +290,7 @@ static func create_draconian(n: String) -> FighterData:
 
 static func create_chaplain(n: String) -> FighterData:
 	var f := _base(n, "Chaplain", 6)
-	f.health = _fixed(88, 97); f.max_health = f.health
+	f.health = _fixed(95, 104); f.max_health = f.health
 	f.mana = _fixed(33, 37); f.max_mana = f.mana
 	f.physical_attack = _fixed(17, 21); f.physical_defense = _fixed(24, 28)
 	f.magic_attack = _fixed(27, 31); f.magic_defense = _fixed(26, 30)
