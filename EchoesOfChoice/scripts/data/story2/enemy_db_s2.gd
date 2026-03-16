@@ -31,9 +31,9 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Glow Worm", lvl)
-	f.health = _es(30, 38, 2, 4, lvl, 1); f.max_health = f.health
+	f.health = _es(28, 36, 2, 4, lvl, 1); f.max_health = f.health
 	f.mana = _es(9, 13, 1, 3, lvl, 1); f.max_mana = f.mana
-	f.physical_attack = _es(9, 12, 0, 2, lvl, 1)
+	f.physical_attack = _es(7, 10, 0, 2, lvl, 1)
 	f.physical_defense = _es(5, 8, 0, 1, lvl, 1)
 	f.magic_attack = _es(15, 18, 1, 3, lvl, 1)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 1)
@@ -45,9 +45,9 @@ static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 
 static func create_crystal_spider(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Crystal Spider", lvl)
-	f.health = _es(48, 56, 3, 6, lvl, 1); f.max_health = f.health
+	f.health = _es(45, 53, 3, 6, lvl, 1); f.max_health = f.health
 	f.mana = _es(5, 9, 1, 2, lvl, 1); f.max_mana = f.mana
-	f.physical_attack = _es(17, 20, 1, 3, lvl, 1)
+	f.physical_attack = _es(15, 18, 1, 3, lvl, 1)
 	f.physical_defense = _es(10, 13, 1, 2, lvl, 1)
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 1)
 	f.magic_defense = _es(8, 11, 1, 2, lvl, 1)
