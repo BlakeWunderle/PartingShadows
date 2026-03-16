@@ -298,7 +298,7 @@ func _show_load_slots() -> void:
 				mp_tag = " [Co-op]"
 			elif summary.get("is_multiplayer", false):
 				mp_tag = " [Online]"
-				var secs: float = summary.get("play_seconds", 0.0)
+			var secs: float = summary.get("play_seconds", 0.0)
 			var h: int = int(secs) / 3600
 			var m: int = (int(secs) % 3600) / 60
 			options.append({"label": "Slot %d: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
@@ -327,7 +327,7 @@ func _show_load_slots() -> void:
 			auto_mp_tag = " [Co-op]"
 		elif auto_summary.get("is_multiplayer", false):
 			auto_mp_tag = " [Online]"
-			var auto_secs: float = auto_summary.get("play_seconds", 0.0)
+		var auto_secs: float = auto_summary.get("play_seconds", 0.0)
 		var auto_h: int = int(auto_secs) / 3600
 		var auto_m: int = (int(auto_secs) % 3600) / 60
 		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [

@@ -30,10 +30,10 @@ GameState="*res://scripts/autoload/game_state.gd"
 MusicManager="*res://scripts/autoload/music_manager.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 UnlockManager="*res://scripts/autoload/unlock_manager.gd"
-PauseOverlay="*res://scripts/autoload/pause_overlay.gd"
 SettingsManager="*res://scripts/autoload/settings_manager.gd"
 SFXManager="*res://scripts/autoload/sfx_manager.gd"
 CompendiumManager="*res://scripts/autoload/compendium_manager.gd"
+PauseOverlay="*res://scripts/autoload/pause_overlay.gd"
 
 [display]
 

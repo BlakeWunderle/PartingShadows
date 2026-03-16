@@ -93,6 +93,15 @@ func _build_ui() -> void:
 	btn_row.add_child(_cancel_btn)
 
 
+func _make_button(text: String) -> Button:
+	var btn := Button.new()
+	btn.text = text
+	btn.custom_minimum_size = Vector2(140, 36)
+	btn.focus_mode = Control.FOCUS_ALL
+	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	return btn
+
+
 func _refresh_display() -> void:
 	# Clear old cards
 	for child: Node in _cards_hbox.get_children():
