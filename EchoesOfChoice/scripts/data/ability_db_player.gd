@@ -22,6 +22,10 @@ static func feint() -> AbilityData:
 	return _make("Feint", "A deceptive strike that lowers defenses.",
 		Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0, 2)
 
+static func riposte() -> AbilityData:
+	return _make("Riposte", "Counter with a precise thrust.",
+		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
 # Ranger
 static func pierce() -> AbilityData:
 	return _make("Pierce", "A precise arrow that finds the gap.",
@@ -31,6 +35,10 @@ static func double_arrow() -> AbilityData:
 	return _make("Double Arrow", "Two arrows fly in rapid succession.",
 		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
 
+static func mark_prey() -> AbilityData:
+	return _make("Mark Prey", "Study weak points to lower defenses.",
+		Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0, 2)
+
 # Martial Artist
 static func punch() -> AbilityData:
 	return _make("Punch", "A powerful unarmed strike.",
@@ -39,6 +47,10 @@ static func punch() -> AbilityData:
 static func topple() -> AbilityData:
 	return _make("Topple", "Sweep the enemy off their feet.",
 		Enums.StatType.SPEED, 3, 2, true, 2, false, 0, 0.0, 2)
+
+static func inner_focus() -> AbilityData:
+	return _make("Inner Focus", "Center energy for greater strength.",
+		Enums.StatType.ATTACK, 3, 2, false, 2, false, 0, 0.0, 2)
 
 # =============================================================================
 # Squire tree:T2
@@ -127,6 +139,10 @@ static func meditate() -> AbilityData:
 static func elemental_surge() -> AbilityData:
 	return _make("Elemental Surge", "Raw elemental power unleashed.",
 		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+static func arcane_ward() -> AbilityData:
+	return _make("Arcane Ward", "Shield an ally against hostile magic.",
+		Enums.StatType.MAGIC_DEFENSE, 3, 2, false, 2, false, 0, 0.0, 2)
 
 # Acolyte
 static func cure() -> AbilityData:
@@ -238,10 +254,18 @@ static func dance() -> AbilityData:
 	return _make("Dance", "A whirling strike of blades and grace.",
 		Enums.StatType.MIXED_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
+static func whirling_step() -> AbilityData:
+	return _make("Whirling Step", "Spin through the enemy ranks.",
+		Enums.StatType.MAGIC_ATTACK, 3, 0, true, 3, true, 0, 0.0, 2)
+
 # Orator
 static func oration() -> AbilityData:
 	return _make("Oration", "Words sharp enough to wound.",
 		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+static func rebuke() -> AbilityData:
+	return _make("Rebuke", "Harsh words that slow the mind.",
+		Enums.StatType.SPEED, 3, 2, true, 2, false, 0, 0.0, 2)
 
 # =============================================================================
 # Entertainer tree:T2
@@ -327,6 +351,10 @@ static func magical_tinkering() -> AbilityData:
 	return _make("Magical Tinkering", "Enhance an ally's magical potency.",
 		Enums.StatType.MAGIC_ATTACK, 5, 2, false, 2, false, 0, 0.0, 2)
 
+static func flash_powder() -> AbilityData:
+	return _make("Flash Powder", "A blinding flash that lowers guard.",
+		Enums.StatType.DEFENSE, 2, 2, true, 3, true, 0, 0.0, 2)
+
 # Cosmologist (Philosopher)
 static func time_warp() -> AbilityData:
 	return _make("Time Warp", "Bend time to hasten an ally.",
@@ -344,6 +372,10 @@ static func gravity() -> AbilityData:
 static func calculate() -> AbilityData:
 	return _make("Calculate", "Exploit mathematical weakness.",
 		Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0, 2)
+
+static func probability() -> AbilityData:
+	return _make("Probability", "Shift the odds in an ally's favor.",
+		Enums.StatType.SPEED, 3, 2, false, 2, false, 0, 0.0, 2)
 
 # =============================================================================
 # Tinker tree:T2
@@ -443,6 +475,10 @@ static func sapping_vine() -> AbilityData:
 	return _make("Sapping Vine", "Drain life through thorny vines.",
 		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.5, 2)
 
+static func thorn_spray() -> AbilityData:
+	return _make("Thorn Spray", "A burst of razor-sharp thorns.",
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
+
 # Shaman
 static func spectral_lance() -> AbilityData:
 	return _make("Spectral Lance", "A ghostly spear of spirit energy.",
@@ -452,6 +488,10 @@ static func player_hex() -> AbilityData:
 	return _make("Hex", "A curse that saps the enemy's power.",
 		Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0, 2)
 
+static func spirit_ward() -> AbilityData:
+	return _make("Spirit Ward", "Ancestral spirits bolster defenses.",
+		Enums.StatType.DEFENSE, 3, 2, false, 2, false, 0, 0.0, 2)
+
 # Beastcaller
 static func feral_strike() -> AbilityData:
 	return _make("Feral Strike", "Call a beast to strike the enemy.",
@@ -460,6 +500,10 @@ static func feral_strike() -> AbilityData:
 static func pack_howl() -> AbilityData:
 	return _make("Pack Howl", "Rally the pack for greater power.",
 		Enums.StatType.ATTACK, 3, 2, false, 3, true, 0, 0.0, 2)
+
+static func wild_charge() -> AbilityData:
+	return _make("Wild Charge", "A beast slams into the enemy.",
+		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
 # =============================================================================
 # Wildling tree:T2
@@ -573,6 +617,10 @@ static func keen_strike() -> AbilityData:
 static func exploit_weakness() -> AbilityData:
 	return _make("Exploit Weakness", "Study the enemy to find their flaw.",
 		Enums.StatType.DEFENSE, 3, 2, true, 2)
+
+static func wayfinders_sense() -> AbilityData:
+	return _make("Wayfinder's Sense", "Read the terrain for tactical advantage.",
+		Enums.StatType.SPEED, 3, 2, false, 2, false, 0, 0.0, 2)
 
 # =============================================================================
 # Wanderer tree:T2
