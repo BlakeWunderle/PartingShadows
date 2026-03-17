@@ -33,7 +33,7 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # Prog 14 (+21%)
 static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Cult Acolyte", lvl)
-	f.health = _es(316, 362, 7, 11, lvl, 15); f.max_health = f.health
+	f.health = _es(514, 589, 7, 11, lvl, 15); f.max_health = f.health
 	f.mana = _es(16, 21, 1, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = _es(25, 31, 1, 3, lvl, 15)
 	f.physical_defense = _es(31, 37, 1, 3, lvl, 15)
@@ -48,7 +48,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 # Prog 14 (+21%)
 static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Cult Enforcer", lvl)
-	f.health = _es(378, 426, 9, 14, lvl, 15); f.max_health = f.health
+	f.health = _es(615, 693, 9, 14, lvl, 15); f.max_health = f.health
 	f.mana = _es(10, 15, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = _es(49, 55, 3, 4, lvl, 15)
 	f.physical_defense = _es(39, 45, 3, 4, lvl, 15)
@@ -63,7 +63,7 @@ static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 # Prog 14 (+21%)
 static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Cult Hexer", lvl)
-	f.health = _es(307, 354, 6, 10, lvl, 15); f.max_health = f.health
+	f.health = _es(499, 576, 6, 10, lvl, 15); f.max_health = f.health
 	f.mana = _es(21, 26, 2, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = _es(23, 28, 1, 3, lvl, 15)
 	f.physical_defense = _es(28, 34, 1, 3, lvl, 15)
@@ -78,7 +78,7 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 # Shared Prog 15 & 16 (+31%)
 static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Thread Guard", lvl)
-	f.health = _es(501, 570, 8, 14, lvl, 16); f.max_health = f.health
+	f.health = _es(701, 798, 8, 14, lvl, 16); f.max_health = f.health
 	f.mana = _es(15, 20, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(51, 56, 3, 4, lvl, 16)
 	f.physical_defense = _es(39, 44, 3, 4, lvl, 16)
@@ -93,7 +93,7 @@ static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 # Prog 15 (+2%)
 static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Dream Hound", lvl)
-	f.health = _es(300, 341, 7, 11, lvl, 16); f.max_health = f.health
+	f.health = _es(480, 546, 7, 11, lvl, 16); f.max_health = f.health
 	f.mana = _es(12, 17, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(53, 57, 3, 4, lvl, 16)
 	f.physical_defense = _es(31, 36, 1, 3, lvl, 16)
@@ -108,7 +108,7 @@ static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 # Prog 16 (+63%)
 static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	var f := _base(n, "Cult Ritualist", lvl)
-	f.health = _es(618, 707, 8, 13, lvl, 17); f.max_health = f.health
+	f.health = _es(927, 1061, 8, 13, lvl, 17); f.max_health = f.health
 	f.mana = _es(26, 31, 3, 4, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = _es(29, 36, 1, 3, lvl, 17)
 	f.physical_defense = _es(42, 49, 1, 5, lvl, 17)
@@ -123,7 +123,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 # Prog 16 (+63%)
 static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	var f := _base(n, "High Weaver", lvl)
-	f.health = _es(657, 746, 8, 15, lvl, 17); f.max_health = f.health
+	f.health = _es(986, 1119, 8, 15, lvl, 17); f.max_health = f.health
 	f.mana = _es(28, 33, 3, 5, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = _es(26, 33, 1, 3, lvl, 17)
 	f.physical_defense = _es(39, 46, 1, 5, lvl, 17)
@@ -138,7 +138,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 # Prog 17 boss minion (+29%)
 static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	var f := _base(n, "Shadow Fragment", lvl)
-	f.health = _es(358, 411, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = _es(573, 658, 8, 12, lvl, 18); f.max_health = f.health
 	f.mana = _es(17, 22, 1, 4, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = _es(29, 35, 1, 4, lvl, 18)
 	f.physical_defense = _es(32, 38, 1, 5, lvl, 18)
@@ -153,7 +153,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 # Prog 17 boss (+31%)
 static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := _base(n, "The Threadmaster", lvl)
-	f.health = _es(635, 723, 15, 22, lvl, 18); f.max_health = f.health
+	f.health = _es(1016, 1157, 15, 22, lvl, 18); f.max_health = f.health
 	f.mana = _es(35, 40, 4, 6, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = _es(59, 66, 3, 6, lvl, 18)
 	f.physical_defense = _es(44, 50, 3, 5, lvl, 18)

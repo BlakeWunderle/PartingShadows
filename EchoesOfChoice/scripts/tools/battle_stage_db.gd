@@ -14,6 +14,8 @@ const EnemyDBS3 := preload("res://scripts/data/story3/enemy_db_s3.gd")
 const EnemyDBS3Act2 := preload("res://scripts/data/story3/enemy_db_s3_act2.gd")
 const EnemyDBS3Act3 := preload("res://scripts/data/story3/enemy_db_s3_act3.gd")
 const EnemyDBS3Act45 := preload("res://scripts/data/story3/enemy_db_s3_act45.gd")
+const EnemyDBS3PathB := preload("res://scripts/data/story3/enemy_db_s3_pathb.gd")
+const EnemyDBS3PathC := preload("res://scripts/data/story3/enemy_db_s3_pathc.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
 
@@ -143,6 +145,30 @@ static func get_all_stages() -> Array:
 		_s("S3_CultRitualChamber", 17, "tier2", 0.44, 16, 3),
 		# Prog 17: Tier 2, 18 level ups (final boss)
 		_s("S3_DreamNexus", 18, "tier2", 0.42, 17, 3),
+		# --- Story 3 Path B: Suspicion route (branches at prog 11) ---
+		# Prog 11: Tier 2, 12 level ups (inn cellar search)
+		_s("S3_B_InnSearch", 12, "tier2", 0.54, 11, 3),
+		# Prog 12: Tier 2, 13 level ups (cult confrontation)
+		_s("S3_B_CultConfrontation", 13, "tier2", 0.52, 12, 3),
+		# Prog 13: Tier 2, 14 level ups (tunnel breach)
+		_s("S3_B_TunnelBreach", 14, "tier2", 0.50, 13, 3),
+		# Prog 14: Tier 2, 15 level ups (Thorne's ward)
+		_s("S3_B_ThornesWard", 15, "tier2", 0.48, 14, 3),
+		# Prog 15: Tier 2, 16 level ups (physical loom)
+		_s("S3_B_LoomHeart", 16, "tier2", 0.46, 15, 3),
+		# Prog 16: Tier 2, 17 level ups (dream cathedral)
+		_s("S3_B_DreamInvasion", 17, "tier2", 0.44, 16, 3),
+		# Prog 17: Tier 2, 18 level ups (Path B final boss - Lira)
+		_s("S3_B_DreamNexus", 18, "tier2", 0.42, 17, 3),
+		# --- Story 3 Path C: Lira's confession route (branches at prog 14) ---
+		# Prog 14: Tier 2, 15 level ups (deep dream descent)
+		_s("S3_C_DreamDescent", 15, "tier2", 0.48, 14, 3),
+		# Prog 15: Tier 2, 16 level ups (cult interception)
+		_s("S3_C_CultInterception", 16, "tier2", 0.46, 15, 3),
+		# Prog 16: Tier 2, 17 level ups (Threadmaster lair)
+		_s("S3_C_ThreadmasterLair", 17, "tier2", 0.44, 16, 3),
+		# Prog 17: Tier 2, 18 level ups (Path C final boss - Ancient Threadmaster)
+		_s("S3_C_DreamNexus", 18, "tier2", 0.42, 17, 3),
 	]
 
 
@@ -434,6 +460,51 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 			return [EnemyDBS3Act45.create_the_threadmaster("The Threadmaster"),
 				EnemyDBS3Act45.create_shadow_fragment("Tattered Shadow"),
 				EnemyDBS3Act45.create_shadow_fragment("Fraying Darkness")]
+		# Story 3 Path B
+		"S3_B_InnSearch":
+			return [EnemyDBS3PathB.create_cellar_sentinel("Bound Sentinel"),
+				EnemyDBS3PathB.create_bound_stalker("Chain Stalker"),
+				EnemyDBS3PathB.create_bound_stalker("Ink Stalker")]
+		"S3_B_CultConfrontation":
+			return [EnemyDBS3PathB.create_thread_disciple("Disciple Venn"),
+				EnemyDBS3PathB.create_thread_warden("Warden Thorne")]
+		"S3_B_TunnelBreach":
+			return [EnemyDBS3PathB.create_tunnel_sentinel("Tunnel Guard"),
+				EnemyDBS3PathB.create_thread_sniper("Thread Sniper"),
+				EnemyDBS3PathB.create_pale_devotee("Pale Acolyte")]
+		"S3_B_ThornesWard":
+			return [EnemyDBS3PathB.create_thread_ritualist("Ward Ritualist"),
+				EnemyDBS3PathB.create_passage_guardian("Passage Ward"),
+				EnemyDBS3PathB.create_warding_shadow("Dark Ward")]
+		"S3_B_LoomHeart":
+			return [EnemyDBS3PathB.create_shadow_innkeeper("Shadow Aldric"),
+				EnemyDBS3PathB.create_astral_weaver("Loom Weaver"),
+				EnemyDBS3PathB.create_loom_tendril("Tendril")]
+		"S3_B_DreamInvasion":
+			return [EnemyDBS3PathB.create_cathedral_warden("Cathedral Guard"),
+				EnemyDBS3PathB.create_dream_binder("Dream Binder"),
+				EnemyDBS3PathB.create_thread_anchor("Thread Anchor")]
+		"S3_B_DreamNexus":
+			return [EnemyDBS3PathB.create_lira_threadmaster("Lira, the Threadmaster"),
+				EnemyDBS3PathB.create_tattered_deception("Tattered Deception"),
+				EnemyDBS3PathB.create_dream_bastion("Dream Bastion")]
+		# Story 3 Path C
+		"S3_C_DreamDescent":
+			return [EnemyDBS3PathC.create_abyssal_dreamer("Abyssal Dreamer"),
+				EnemyDBS3PathC.create_thread_devourer("Thread Devourer"),
+				EnemyDBS3PathC.create_slumbering_colossus("Slumbering Colossus")]
+		"S3_C_CultInterception":
+			return [EnemyDBS3PathC.create_dream_priest("Dream Priest"),
+				EnemyDBS3PathC.create_astral_enforcer("Astral Enforcer"),
+				EnemyDBS3PathC.create_oneiric_hexer("Oneiric Hexer")]
+		"S3_C_ThreadmasterLair":
+			return [EnemyDBS3PathC.create_nightmare_sentinel("Nightmare Sentinel"),
+				EnemyDBS3PathC.create_memory_eater("Memory Eater"),
+				EnemyDBS3PathC.create_anchor_chain("Anchor Chain")]
+		"S3_C_DreamNexus":
+			return [EnemyDBS3PathC.create_ancient_threadmaster("The Ancient Threadmaster"),
+				EnemyDBS3PathC.create_dream_shackle("Dream Shackle"),
+				EnemyDBS3PathC.create_loom_heart("Loom Heart")]
 		_:
 			push_error("Unknown stage: %s" % stage_name)
 			return []
