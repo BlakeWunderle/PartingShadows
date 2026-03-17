@@ -72,7 +72,7 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 
 
 func _on_button_pressed(index: int) -> void:
-	SFXManager.play(SFXManager.Category.UI_CONFIRM)
+	SFXManager.play(SFXManager.Category.UI_CONFIRM, 0.3)
 	choice_selected.emit(index)
 
 

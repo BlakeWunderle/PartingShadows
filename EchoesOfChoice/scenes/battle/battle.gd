@@ -770,10 +770,7 @@ func _on_combat_message(text: String) -> void:
 
 
 func _on_combat_event(target: FighterData, amount: int, event_type: String) -> void:
-	var card: PortraitCard = _find_card_for_fighter(target)
-	if not card:
-		return
-	# Track battle stats for party members
+	# Track battle stats for party members (independent of card visuals)
 	if event_type in ["damage", "crit", "spell_damage", "spell_crit"]:
 		if _current_actor != null and _battle_stats.has(_current_actor):
 			_battle_stats[_current_actor]["damage_dealt"] += amount
@@ -783,6 +780,9 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 		if _current_actor != null and _battle_stats.has(_current_actor):
 			_battle_stats[_current_actor]["healing_done"] += amount
 
+	var card: PortraitCard = _find_card_for_fighter(target)
+	if not card:
+		return
 	match event_type:
 		"damage":
 			SFXManager.play(SFXManager.Category.STRIKE)

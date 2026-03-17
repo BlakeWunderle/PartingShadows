@@ -148,4 +148,4 @@ func _on_node_added(node: Node) -> void:
 
 
 func _on_button_pressed() -> void:
-	play(Category.UI_SELECT, 0.6)
+	play(Category.UI_SELECT, 0.3)
