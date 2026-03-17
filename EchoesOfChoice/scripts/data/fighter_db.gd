@@ -32,7 +32,7 @@ static func create_squire(fighter_name: String) -> FighterData:
 	f.crit_chance = 10
 	f.crit_damage = 1
 	f.dodge_chance = 5
-	f.abilities = [AbilityDB.slash(), AbilityDB.guard()]
+	f.abilities = [AbilityDB.slash(), AbilityDB.guard(), AbilityDB.rush()]
 	f.upgrade_items = ["Sword", "Bow", "Headband"]
 	return f
 
@@ -54,7 +54,7 @@ static func create_mage(fighter_name: String) -> FighterData:
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
-	f.abilities = [AbilityDB.arcane_bolt()]
+	f.abilities = [AbilityDB.arcane_bolt(), AbilityDB.arcane_shield(), AbilityDB.fire_dart()]
 	f.upgrade_items = ["RedStone", "WhiteStone"]
 	return f
 
@@ -76,7 +76,7 @@ static func create_entertainer(fighter_name: String) -> FighterData:
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
-	f.abilities = [AbilityDB.mockery(), AbilityDB.demoralize()]
+	f.abilities = [AbilityDB.mockery(), AbilityDB.demoralize(), AbilityDB.inspire()]
 	f.upgrade_items = ["Lyre", "Slippers", "Scroll"]
 	return f
 
@@ -98,7 +98,7 @@ static func create_scholar(fighter_name: String) -> FighterData:
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
-	f.abilities = [AbilityDB.proof(), AbilityDB.energy_blast()]
+	f.abilities = [AbilityDB.proof(), AbilityDB.energy_blast(), AbilityDB.spark_shot()]
 	f.upgrade_items = ["Crystal", "Textbook", "Abacus"]
 	return f
 
@@ -120,7 +120,7 @@ static func create_wildling(fighter_name: String) -> FighterData:
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
-	f.abilities = [AbilityDB.thorn_whip(), AbilityDB.bark_skin()]
+	f.abilities = [AbilityDB.thorn_whip(), AbilityDB.bark_skin(), AbilityDB.primal_swipe()]
 	f.upgrade_items = ["Herbs", "Totem", "BeastClaw"]
 	return f
 
@@ -142,7 +142,7 @@ static func create_wanderer(fighter_name: String) -> FighterData:
 	f.crit_chance = 10
 	f.crit_damage = 1
 	f.dodge_chance = 8
-	f.abilities = [AbilityDB.wild_strike(), AbilityDB.natures_ward()]
+	f.abilities = [AbilityDB.wild_strike(), AbilityDB.natures_ward(), AbilityDB.scout_slash()]
 	f.upgrade_items = ["Shield", "Compass"]
 	return f
 

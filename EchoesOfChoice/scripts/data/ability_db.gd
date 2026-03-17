@@ -36,10 +36,22 @@ static func guard() -> AbilityData:
 	return _make("Guard", "Brace for impact. Increases defenses.",
 		Enums.StatType.DEFENSE, 2, 2, false, 1)
 
+static func rush() -> AbilityData:
+	return _make("Rush", "Charge forward with a burst of speed.",
+		Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
+
 
 static func arcane_bolt() -> AbilityData:
 	return _make("Arcane Bolt", "A bolt of pure arcane energy.",
 		Enums.StatType.MAGIC_ATTACK, 2, 0, true, 2, false, 0, 0.0, 2)
+
+static func arcane_shield() -> AbilityData:
+	return _make("Arcane Shield", "Conjure a shimmering barrier of magic.",
+		Enums.StatType.MAGIC_DEFENSE, 2, 2, false, 1)
+
+static func fire_dart() -> AbilityData:
+	return _make("Fire Dart", "A small bolt of flame launched from the fingertips.",
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
 
 
 static func sing() -> AbilityData:
@@ -59,6 +71,10 @@ static func demoralize() -> AbilityData:
 		"A mocking performance that saps the enemy's fighting spirit. Reduces attacks.",
 		Enums.StatType.ATTACK, 3, 2, true, 3, true, 0, 0.0, 2)
 
+static func inspire() -> AbilityData:
+	return _make("Inspire", "A quick word of encouragement quickens an ally.",
+		Enums.StatType.SPEED, 3, 2, false, 1)
+
 
 static func proof() -> AbilityData:
 	return _make("Proof",
@@ -69,6 +85,10 @@ static func proof() -> AbilityData:
 static func energy_blast() -> AbilityData:
 	return _make("Energy Blast", "Use a scientific explosion to hit an enemy.",
 		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, false, 0, 0.0, 2)
+
+static func spark_shot() -> AbilityData:
+	return _make("Spark Shot", "A quick jolt from a jury-rigged device.",
+		Enums.StatType.MAGIC_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
 
 
 static func thorn_whip() -> AbilityData:
@@ -81,6 +101,10 @@ static func bark_skin() -> AbilityData:
 	return _make("Bark Skin", "Harden your skin with a layer of living bark.",
 		Enums.StatType.DEFENSE, 2, 2, false, 1)
 
+static func primal_swipe() -> AbilityData:
+	return _make("Primal Swipe", "A savage claw strike guided by instinct.",
+		Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
+
 
 static func wild_strike() -> AbilityData:
 	return _make("Wild Strike", "A practiced blow honed through survival.",
@@ -90,6 +114,10 @@ static func wild_strike() -> AbilityData:
 static func natures_ward() -> AbilityData:
 	return _make("Nature's Ward", "Channel the land's resilience against magic.",
 		Enums.StatType.MAGIC_DEFENSE, 3, 2, false, 1)
+
+static func scout_slash() -> AbilityData:
+	return _make("Scout Slash", "A quick blade stroke honed by years on the road.",
+		Enums.StatType.PHYSICAL_ATTACK, 2, 0, true, 1, false, 0, 0.0, 2)
 
 
 # --- Shared abilities (used by both player classes and enemies) ---

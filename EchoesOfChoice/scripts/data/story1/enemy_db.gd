@@ -35,7 +35,7 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_thug(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Thug", lvl)
-	f.health = _es(50, 58, 3, 6, lvl, 1); f.max_health = f.health
+	f.health = _es(53, 61, 3, 6, lvl, 1); f.max_health = f.health
 	f.mana = _es(4, 8, 1, 3, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(15, 18, 1, 3, lvl, 1)
 	f.physical_defense = _es(8, 11, 1, 2, lvl, 1)
@@ -48,7 +48,7 @@ static func create_thug(n: String, lvl: int = 1) -> FighterData:
 
 static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Ruffian", lvl)
-	f.health = _es(46, 55, 3, 5, lvl, 1); f.max_health = f.health
+	f.health = _es(49, 58, 3, 5, lvl, 1); f.max_health = f.health
 	f.mana = _es(4, 8, 1, 3, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(16, 20, 1, 3, lvl, 1)
 	f.physical_defense = _es(7, 10, 1, 2, lvl, 1)
@@ -61,7 +61,7 @@ static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 
 static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Pickpocket", lvl)
-	f.health = _es(35, 43, 2, 4, lvl, 1); f.max_health = f.health
+	f.health = _es(37, 45, 2, 4, lvl, 1); f.max_health = f.health
 	f.mana = _es(5, 9, 1, 3, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(13, 16, 1, 3, lvl, 1)
 	f.physical_defense = _es(5, 7, 0, 2, lvl, 1)

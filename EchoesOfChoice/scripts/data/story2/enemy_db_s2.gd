@@ -233,7 +233,7 @@ static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 
 static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Cave Maw", lvl)
-	f.health = _es(88, 102, 5, 8, lvl, 3); f.max_health = f.health
+	f.health = _es(99, 114, 5, 8, lvl, 3); f.max_health = f.health
 	f.mana = _es(9, 13, 1, 3, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(24, 28, 2, 3, lvl, 3)
 	f.physical_defense = _es(15, 19, 1, 3, lvl, 3)
@@ -247,7 +247,7 @@ static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 
 static func create_vein_leech(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Vein Leech", lvl)
-	f.health = _es(61, 71, 3, 5, lvl, 3); f.max_health = f.health
+	f.health = _es(68, 80, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = _es(7, 11, 1, 3, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(23, 27, 2, 3, lvl, 3)
 	f.physical_defense = _es(9, 12, 1, 2, lvl, 3)
@@ -261,7 +261,7 @@ static func create_vein_leech(n: String, lvl: int = 5) -> FighterData:
 
 static func create_stone_moth(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Stone Moth", lvl)
-	f.health = _es(47, 54, 2, 4, lvl, 3); f.max_health = f.health
+	f.health = _es(53, 60, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = _es(11, 15, 1, 3, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(9, 12, 0, 2, lvl, 3)
 	f.physical_defense = _es(7, 10, 0, 1, lvl, 3)
