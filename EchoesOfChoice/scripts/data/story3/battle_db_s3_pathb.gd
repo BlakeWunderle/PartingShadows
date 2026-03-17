@@ -6,8 +6,6 @@ class_name BattleDBS3PathB
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
 const EnemyDB := preload("res://scripts/data/story3/enemy_db_s3_pathb.gd")
-const EnemyDBAct3 := preload("res://scripts/data/story3/enemy_db_s3_act3.gd")
-const EnemyDBAct45 := preload("res://scripts/data/story3/enemy_db_s3_act45.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:
@@ -33,9 +31,9 @@ static func s3_b_inn_search() -> BattleData:
 	b.battle_id = "S3_B_InnSearch"
 	b.scene_image = "res://assets/art/battles/weary_traveler_night.png"
 	b.enemies = [
-		EnemyDB.create_bound_thread_guard("Bound Sentinel"),
-		EnemyDB.create_bound_dream_hound("Sleeping Fang"),
-		EnemyDB.create_bound_dream_hound("Night Prowler"),
+		EnemyDB.create_cellar_sentinel("Bound Sentinel"),
+		EnemyDB.create_bound_stalker("Sleeping Fang"),
+		EnemyDB.create_bound_stalker("Night Prowler"),
 	]
 	b.pre_battle_text = [
 		"They wait until the inn is silent. Lira retired to her room an hour ago, and the common room is dark.",
@@ -62,8 +60,8 @@ static func s3_b_cult_confrontation() -> BattleData:
 	b.battle_id = "S3_B_CultConfrontation"
 	b.scene_image = "res://assets/art/battles/cult_alleys.png"
 	b.enemies = [
-		EnemyDB.create_early_cult_acolyte("Brother Voss"),
-		EnemyDB.create_early_cult_enforcer("Sister Maren"),
+		EnemyDB.create_thread_disciple("Brother Voss"),
+		EnemyDB.create_thread_warden("Sister Maren"),
 	]
 	b.pre_battle_text = [
 		"They slip out the back of the inn into the gray light before dawn. The alleys are narrow and the shadows are long.",
@@ -124,9 +122,9 @@ static func s3_b_thornes_ward() -> BattleData:
 	b.battle_id = "S3_B_ThornesWard"
 	b.scene_image = "res://assets/art/battles/cult_catacombs.png"
 	b.enemies = [
-		EnemyDB.create_early_cult_ritualist("High Ritualist Thorne"),
-		EnemyDB.create_bound_thread_guard("Loom Champion"),
-		EnemyDBAct3.create_cult_shade("Warding Shadow"),
+		EnemyDB.create_thread_ritualist("High Ritualist Thorne"),
+		EnemyDB.create_passage_guardian("Loom Champion"),
+		EnemyDB.create_warding_shadow("Warding Shadow"),
 	]
 	b.pre_battle_text = [
 		"The passages beneath the inn stretch deeper than any cellar should. The walls are carved with the Thread's symbols, and physical threads hum between the pillars like plucked strings.",
@@ -152,8 +150,8 @@ static func s3_b_loom_heart() -> BattleData:
 	b.scene_image = "res://assets/art/battles/cult_ritual_chamber.png"
 	b.enemies = [
 		EnemyDB.create_shadow_innkeeper("The Innkeeper"),
-		EnemyDB.create_weaver_projection("Weaver Aldric"),
-		EnemyDBAct3.create_cult_shade("Loom Tendril"),
+		EnemyDB.create_astral_weaver("Weaver Aldric"),
+		EnemyDB.create_loom_tendril("Loom Tendril"),
 	]
 	b.pre_battle_text = [
 		"The ritual chamber is enormous. The physical Loom stands at its center, threads of light spinning into patterns that hurt to look at directly.",
@@ -187,9 +185,9 @@ static func s3_b_dream_invasion() -> BattleData:
 	b.battle_id = "S3_B_DreamInvasion"
 	b.scene_image = "res://assets/art/battles/dream_sanctum.png"
 	b.enemies = [
-		EnemyDBAct3.create_sanctum_guardian("Loom Warden", 11),
-		EnemyDBAct3.create_lucid_phantom("Thread Binder", 10),
-		EnemyDBAct3.create_thread_spinner("Dream Anchor", 10),
+		EnemyDB.create_cathedral_warden("Loom Warden"),
+		EnemyDB.create_dream_binder("Thread Binder"),
+		EnemyDB.create_thread_anchor("Dream Anchor"),
 	]
 	b.pre_battle_text = [
 		"The dream is different from what they remember. The broken architecture, the impossible geometry. All of it is gone.",
@@ -217,8 +215,8 @@ static func s3_b_dream_nexus() -> BattleData:
 	b.is_final_battle = true
 	b.enemies = [
 		EnemyDB.create_lira_threadmaster("Lira, the Threadmaster"),
-		EnemyDBAct45.create_shadow_fragment("Tattered Shadow"),
-		EnemyDB.create_final_loom_sentinel("Dream's Last Defense"),
+		EnemyDB.create_tattered_deception("Tattered Shadow"),
+		EnemyDB.create_dream_bastion("Dream's Last Defense"),
 	]
 	b.pre_battle_text = [
 		"The Dream Nexus. Every thread converges here, every stolen dream, every drained night of rest.",
