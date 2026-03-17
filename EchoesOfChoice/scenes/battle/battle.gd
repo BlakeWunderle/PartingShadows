@@ -42,6 +42,7 @@ var _boss_escaped: bool = false
 var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_taken, healing_done, kills}
 var _auto_battle: bool = false
 var _auto_battle_unlocked: bool = false
+var _summary_waiting: bool = false
 var _auto_label: Label
 
 signal _player_turn_done
@@ -493,6 +494,13 @@ func _execute_auto_turn() -> void:
 	_player_turn_done.emit()
 
 
+func _input(event: InputEvent) -> void:
+	if _summary_waiting:
+		if event.is_action_pressed("confirm") or (event is InputEventMouseButton and event.pressed):
+			_summary_waiting = false
+			get_viewport().set_input_as_handled()
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if _auto_battle and event.is_action_pressed("cancel"):
 		_auto_battle = false
@@ -918,9 +926,10 @@ func _show_battle_summary() -> void:
 	hint.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 	vbox.add_child(hint)
 
-	# Wait for confirm input to dismiss
+	# Wait for confirm input or mouse click to dismiss
 	await get_tree().create_timer(0.5).timeout  # Brief delay to prevent accidental skip
-	while not Input.is_action_just_pressed("confirm"):
+	_summary_waiting = true
+	while _summary_waiting:
 		await get_tree().process_frame
 	overlay.queue_free()
 
