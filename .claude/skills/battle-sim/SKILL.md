@@ -70,14 +70,32 @@ f.health = _es(98, 113, 4, 7, 4, 1)
 - Growth is applied **once at construction time**, not per-turn
 - `_es()` produces a random int within the computed range
 
-### Tuning Levers (in order of impact)
+### Tuning Levers (thematic first, then raw stats)
 
-1. **Base stat ranges** (1st and 2nd params of `_es()`) -- direct control over the stat floor/ceiling
-2. **Growth rates** (3rd and 4th params of `_es()`) -- amplified by level; changing growth by +1 at level 4 adds +3 to the stat range
-3. **Level parameter** -- increasing from 4 to 5 adds one more growth roll to every stat
-4. **Enemy count** -- adding/removing enemies from the battle config (see 3-Enemy Rule below)
-5. **Abilities** -- changing which abilities the enemy has or their Modifiers
-6. **CritChance / DodgeChance** -- percentage-based, small changes have noticeable effects
+**Prefer thematic levers first.** They preserve enemy identity and create interesting matchup variance. Only fall back to raw HP changes when thematic levers are exhausted or the gap is too large (>5% off target).
+
+#### Tier 1: Thematic (try these first)
+
+1. **CritChance / DodgeChance** -- percentage-based, small changes (2-4%) have noticeable effects. Thematically expressive: a lumbering golem shouldn't crit, a nimble assassin should dodge. Safe to adjust without cascading effects.
+2. **Abilities** -- changing which abilities the enemy has or their Modifiers. Swap a heal for a buff, add AoE to a crowd controller, reduce a damage ability's modifier. Changes the enemy's tactical role, not just their numbers.
+3. **Speed** -- affects turn order and action economy. Slower enemies let players act first; faster enemies create pressure. A few points of speed shift can swing 2-3% WR.
+4. **Enemy count** -- adding/removing enemies from the battle config (see 3-Enemy Rule below). Adding a weaker thematic minion is better than buffing HP on existing enemies.
+
+#### Tier 2: Raw stats (fallback)
+
+5. **HP base stat ranges** (1st and 2nd params of `_es()`) -- direct control over the stat floor/ceiling. Effective but generic. Use when thematic levers can't close the gap.
+6. **Growth rates** (3rd and 4th params of `_es()`) -- amplified by level; changing growth by +1 at level 4 adds +3 to the stat range
+7. **Level parameter** -- increasing from 4 to 5 adds one more growth roll to every stat
+
+#### Thematic Tuning Examples
+
+| Enemy | Identity | Thematic Levers | Avoid |
+|-------|----------|-----------------|-------|
+| Stranger (dark sorcerer) | High magic, cunning | Ability modifiers, speed | High crit (sorcerers don't precision-strike) |
+| Troll (brute) | Tanky, slow, hits hard | HP, low speed, low dodge | High crit, high dodge |
+| Harpy (agile flier) | Fast, evasive, fragile | High dodge, high speed, low HP | High HP (defeats the fantasy) |
+| Android (defensive kit) | Resilient, methodical | HP, abilities, low crit | High dodge (machines don't dodge) |
+| Zombie (undead horde) | Slow, numerous, relentless | HP, low speed, enemy count | High crit, high dodge |
 
 ### 3-Enemy Rule
 
@@ -141,10 +159,20 @@ For Progressions 8-13 (Tier 2 classes, ~8436 combos), use `--sample 100` for fas
 ### Check each battle's STATUS line
 
 - **PASS** -> move to Step 2
-- **TOO HARD** -> weaken enemies (lower `_es()` ranges in `scripts/data/enemy_db.gd`, reduce ability Modifiers in `scripts/data/enemy_ability_db.gd`, lower CritChance/DodgeChance, remove an enemy from the battle config)
-- **TOO EASY** -> strengthen enemies (raise `_es()` ranges, increase ability Modifiers, raise CritChance/DodgeChance, add an enemy to the battle config -- see 3-Enemy Rule)
+- **TOO HARD** -> weaken enemies using thematic levers first, then raw stats:
+  1. Lower CritChance/DodgeChance (does this enemy's fantasy support precision/evasion?)
+  2. Reduce ability Modifiers or swap to weaker abilities
+  3. Lower Speed (fewer enemy turns = less pressure)
+  4. Remove an enemy from the battle config (if >3 enemies)
+  5. *Fallback:* lower HP `_es()` ranges if thematic changes aren't enough
+- **TOO EASY** -> strengthen enemies using thematic levers first, then raw stats:
+  1. Add CritChance/DodgeChance where thematically appropriate (assassins, agile creatures)
+  2. Increase ability Modifiers or swap to stronger abilities
+  3. Raise Speed (more enemy turns = more pressure)
+  4. Add a thematic enemy to the battle config (see 3-Enemy Rule)
+  5. *Fallback:* raise HP `_es()` ranges if thematic changes aren't enough
 
-All enemy stats are set in `scripts/data/enemy_db.gd` factory functions. Battle compositions are defined in `scripts/data/battle_db.gd` (and `battle_db_act2.gd`, `battle_db_act3.gd`, `battle_db_act45.gd`). Tune the `_es()` base ranges and growth params directly. Avoid touching player classes in this step.
+All enemy stats are set in enemy factory functions (see Key Files). Battle compositions are in the battle_db files. **Consider each enemy's thematic identity before adjusting.** A sorcerer boss with high crit is thematically wrong and should be retuned through ability/dodge instead. Avoid touching player classes in this step.
 
 ### Re-sim after each change until all battles at this stage show PASS
 
@@ -287,7 +315,7 @@ After all progressions are locked at `--sims 50`, run a full validation pass:
 
 This takes 2-5 minutes. Use a 600000ms timeout.
 
-If any stage flips to TOO HARD / TOO EASY at full sample size, make small adjustments and re-validate **from that stage forward**.
+If any stage flips to TOO HARD / TOO EASY at full sample size, prefer small thematic adjustments (crit/dodge/speed/abilities) before touching HP. Re-validate **from that stage forward**.
 
 ---
 
@@ -590,7 +618,7 @@ RESULT: [ ] ALL LOCKED -> balanced  |  [ ] Stage broke -> restart from that prog
 
 | File | Purpose |
 |------|---------|
-| `EchoesOfChoice/scripts/data/enemy_db.gd` | Primary tuning lever for Step 1 -- all enemy stat factories live here |
+| `EchoesOfChoice/scripts/data/enemy_db.gd` | Enemy stat factories (HP, ATK, DEF, SPD, crit, dodge) -- thematic levers + HP fallback |
 | `EchoesOfChoice/scripts/data/enemy_ability_db.gd` | Enemy-specific abilities and their Modifiers |
 | `EchoesOfChoice/scripts/data/battle_db.gd` | Story 1 enemy composition (which enemies appear in each battle) |
 | `EchoesOfChoice/scripts/data/battle_db_act2.gd` | Story 1 Act 2 battle compositions |
