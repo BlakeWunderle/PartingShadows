@@ -92,7 +92,7 @@ static func create_stranger(n: String, lvl: int = 16) -> FighterData:
 
 static func create_lich(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Lich", lvl)
-	f.health = _es(264, 297, 8, 12, lvl, 16); f.max_health = f.health
+	f.health = _es(278, 313, 8, 12, lvl, 16); f.max_health = f.health
 	f.mana = _es(44, 52, 3, 5, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(14, 18, 0, 2, lvl, 16)
 	f.physical_defense = _es(23, 29, 2, 3, lvl, 16)
@@ -105,7 +105,7 @@ static func create_lich(n: String, lvl: int = 16) -> FighterData:
 
 static func create_ghast(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Ghast", lvl)
-	f.health = _es(231, 262, 7, 10, lvl, 16); f.max_health = f.health
+	f.health = _es(243, 276, 7, 10, lvl, 16); f.max_health = f.health
 	f.mana = _es(22, 28, 2, 4, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(51, 58, 3, 5, lvl, 16)
 	f.physical_defense = _es(32, 37, 2, 4, lvl, 16)
@@ -118,7 +118,7 @@ static func create_ghast(n: String, lvl: int = 16) -> FighterData:
 
 static func create_demon(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Demon", lvl)
-	f.health = _es(309, 344, 8, 12, lvl, 16); f.max_health = f.health
+	f.health = _es(319, 355, 8, 12, lvl, 16); f.max_health = f.health
 	f.mana = _es(48, 56, 3, 5, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(24, 30, 1, 3, lvl, 16)
 	f.physical_defense = _es(30, 36, 2, 4, lvl, 16)
@@ -131,7 +131,7 @@ static func create_demon(n: String, lvl: int = 16) -> FighterData:
 
 static func create_corrupted_treant(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Corrupted Treant", lvl)
-	f.health = _es(290, 324, 8, 12, lvl, 16); f.max_health = f.health
+	f.health = _es(299, 334, 8, 12, lvl, 16); f.max_health = f.health
 	f.mana = _es(24, 30, 2, 4, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = _es(48, 55, 3, 5, lvl, 16)
 	f.physical_defense = _es(39, 45, 3, 5, lvl, 16)

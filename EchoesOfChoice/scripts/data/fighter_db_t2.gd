@@ -13,7 +13,7 @@ const PAB := preload("res://scripts/data/ability_db_player.gd")
 
 static func upgrade_to_cavalry(f: FighterData) -> void:
 	f.class_id = "Cavalry"; f.character_type = "Cavalry"
-	f.health += 4; f.max_health += 4
+	f.health += 4; f.max_health += 4; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 3; f.crit_chance += 8; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB.lance(), PAB.trample(), AbilityDB.rally()]
@@ -21,7 +21,7 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
-	f.health += 8; f.max_health += 8
+	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_ward()]
@@ -54,7 +54,7 @@ static func _lu_dragoon(f: FighterData) -> void:
 
 static func upgrade_to_mercenary(f: FighterData) -> void:
 	f.class_id = "Mercenary"; f.character_type = "Mercenary"
-	f.health += 5; f.max_health += 5
+	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 7; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 5; f.crit_chance += 8; f.crit_damage += 4; f.dodge_chance += 2
 	f.abilities = [PAB.gun_shot(), PAB.called_shot(), PAB.quick_draw()]
@@ -62,7 +62,7 @@ static func upgrade_to_mercenary(f: FighterData) -> void:
 
 static func upgrade_to_hunter(f: FighterData) -> void:
 	f.class_id = "Hunter"; f.character_type = "Hunter"
-	f.health += 3; f.max_health += 3
+	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 4; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 4
 	f.abilities = [PAB.triple_arrow(), PAB.snare(), PAB.hunters_mark()]
@@ -94,6 +94,7 @@ static func _lu_hunter(f: FighterData) -> void:
 
 static func upgrade_to_ninja(f: FighterData) -> void:
 	f.class_id = "Ninja"; f.character_type = "Ninja"
+	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 7; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 7
 	f.abilities = [PAB.sweeping_slash(), PAB.dash(), PAB.smoke_bomb()]
@@ -101,7 +102,7 @@ static func upgrade_to_ninja(f: FighterData) -> void:
 
 static func upgrade_to_monk(f: FighterData) -> void:
 	f.class_id = "Monk"; f.character_type = "Monk"
-	f.health += 5; f.max_health += 5
+	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.spirit_attack(), PAB.precise_strike(), PAB.meditate()]
@@ -134,6 +135,7 @@ static func _lu_monk(f: FighterData) -> void:
 
 static func upgrade_to_infernalist(f: FighterData) -> void:
 	f.class_id = "Infernalist"; f.character_type = "Infernalist"
+	f.health += 3; f.max_health += 3; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 2
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]
@@ -141,7 +143,7 @@ static func upgrade_to_infernalist(f: FighterData) -> void:
 
 static func upgrade_to_tidecaller(f: FighterData) -> void:
 	f.class_id = "Tidecaller"; f.character_type = "Tidecaller"
-	f.health += 3; f.max_health += 3
+	f.health += 3; f.max_health += 3; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 4; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.purify(), PAB.tsunami(), PAB.undertow()]
@@ -149,6 +151,7 @@ static func upgrade_to_tidecaller(f: FighterData) -> void:
 
 static func upgrade_to_tempest(f: FighterData) -> void:
 	f.class_id = "Tempest"; f.character_type = "Tempest"
+	f.health += 3; f.max_health += 3; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 3
 	f.speed += 7; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.hurricane(), PAB.tornado(), PAB.eye_of_the_storm()]
@@ -190,7 +193,7 @@ static func _lu_tempest(f: FighterData) -> void:
 
 static func upgrade_to_paladin(f: FighterData) -> void:
 	f.class_id = "Paladin"; f.character_type = "Paladin"
-	f.health += 10; f.max_health += 10
+	f.health += 10; f.max_health += 10; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.cure(), AbilityDB.smash(), PAB.smite()]
@@ -206,7 +209,7 @@ static func upgrade_to_priest(f: FighterData) -> void:
 
 static func upgrade_to_warlock(f: FighterData) -> void:
 	f.class_id = "Warlock"; f.character_type = "Warlock"
-	f.health += 5; f.max_health += 5
+	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 4
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.shadow_bolt(), PAB.curse(), PAB.drain_life()]
@@ -249,7 +252,7 @@ static func _lu_warlock(f: FighterData) -> void:
 
 static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.class_id = "Bulwark"; f.character_type = "Bulwark"
-	f.health += 6; f.max_health += 6
+	f.health += 6; f.max_health += 6; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
