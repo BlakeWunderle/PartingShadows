@@ -269,7 +269,7 @@ static func create_ironclad(n: String) -> FighterData:
 
 static func create_commander(n: String) -> FighterData:
 	var f := _base(n, "Commander", 6)
-	f.health = _fixed(144, 159); f.max_health = f.health
+	f.health = _fixed(150, 166); f.max_health = f.health
 	f.mana = _fixed(23, 27); f.max_mana = f.mana
 	f.physical_attack = _fixed(26, 31); f.physical_defense = _fixed(25, 29)
 	f.magic_attack = _fixed(12, 16); f.magic_defense = _fixed(24, 29)
@@ -280,7 +280,7 @@ static func create_commander(n: String) -> FighterData:
 
 static func create_draconian(n: String) -> FighterData:
 	var f := _base(n, "Draconian", 6)
-	f.health = _fixed(114, 125); f.max_health = f.health
+	f.health = _fixed(120, 132); f.max_health = f.health
 	f.mana = _fixed(26, 30); f.max_mana = f.mana
 	f.physical_attack = _fixed(28, 32); f.physical_defense = _fixed(19, 23)
 	f.magic_attack = _fixed(30, 34); f.magic_defense = _fixed(22, 27)
@@ -291,7 +291,7 @@ static func create_draconian(n: String) -> FighterData:
 
 static func create_chaplain(n: String) -> FighterData:
 	var f := _base(n, "Chaplain", 6)
-	f.health = _fixed(116, 129); f.max_health = f.health
+	f.health = _fixed(122, 136); f.max_health = f.health
 	f.mana = _fixed(33, 37); f.max_mana = f.mana
 	f.physical_attack = _fixed(17, 21); f.physical_defense = _fixed(24, 28)
 	f.magic_attack = _fixed(27, 31); f.magic_defense = _fixed(26, 30)
