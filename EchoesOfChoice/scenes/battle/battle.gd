@@ -558,6 +558,11 @@ func _on_action_selected(index: int) -> void:
 		"Auto":
 			_auto_battle = true
 			_auto_label.visible = true
+			_tip_overlay.show_tip_once("auto_battle",
+				"Auto-battle lets the AI choose actions for your party. " +
+				"Press Cancel at any time to take back control.\n\n" +
+				"Auto-battle speeds up combat but may not always make " +
+				"the best strategic choices.")
 			_execute_auto_turn()
 		"Stats":
 			_phase = Phase.STATS_PICK
@@ -808,9 +813,19 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 		"buff":
 			SFXManager.play(SFXManager.Category.BUFF)
 			card.show_floating_text("BUFF", Color(0.4, 0.8, 1.0))
+			_tip_overlay.show_tip_once("status_effects",
+				"Buffs and debuffs modify a fighter's stats for several " +
+				"turns. Watch for status icons on the fighter portraits.\n\n" +
+				"Select Stats during your turn to see exact effects on " +
+				"each party member.")
 		"debuff":
 			SFXManager.play(SFXManager.Category.DEBUFF)
 			card.show_floating_text("DEBUFF", Color(0.8, 0.3, 0.8))
+			_tip_overlay.show_tip_once("status_effects",
+				"Buffs and debuffs modify a fighter's stats for several " +
+				"turns. Watch for status icons on the fighter portraits.\n\n" +
+				"Select Stats during your turn to see exact effects on " +
+				"each party member.")
 		"miss":
 			SFXManager.play(SFXManager.Category.WHOOSH, 0.7)
 			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))

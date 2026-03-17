@@ -10,6 +10,7 @@ const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
 const CompendiumPanel := preload("res://scripts/ui/compendium_panel.gd")
 const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 
 enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS, WAITING_MP, FIGHTER_PICK }
 
@@ -27,6 +28,7 @@ var _feedback_label: Label
 var _confirm_dialog: ConfirmDialog
 var _open_mp_btn: Button
 var _fighter_picker: FighterPicker
+var _tip_overlay: TipOverlay
 var _pending_save_slot: int = -1
 
 
@@ -159,6 +161,9 @@ func _build_ui() -> void:
 	# Confirm dialog (overlays entire screen)
 	_confirm_dialog = ConfirmDialog.new()
 	_panel.add_child(_confirm_dialog)
+
+	_tip_overlay = TipOverlay.new()
+	_panel.add_child(_tip_overlay)
 
 
 func _make_button(text: String) -> Button:
@@ -369,6 +374,10 @@ func _show_compendium() -> void:
 	_main_vbox.visible = false
 	_compendium_panel.visible = true
 	_compendium_panel._refresh()
+	_tip_overlay.show_tip_once("compendium",
+		"The compendium tracks every enemy and class you have " +
+		"encountered across all playthroughs.\n\n" +
+		"Check enemy abilities here to plan your strategy!")
 
 
 func _show_key_bindings() -> void:

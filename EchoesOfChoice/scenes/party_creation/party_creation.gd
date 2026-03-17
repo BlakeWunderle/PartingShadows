@@ -80,6 +80,16 @@ func _ready() -> void:
 	if NetManager.is_multiplayer_active:
 		NetManager.player_left.connect(_on_player_left)
 		NetManager.session_ended.connect(_on_session_ended)
+		_tip_overlay.show_tip_once("multiplayer_intro",
+			"In multiplayer, each player controls their own party " +
+			"members. Everyone must confirm Ready before the game " +
+			"advances.\n\n" +
+			"Branch choices are decided by vote!")
+	if LocalCoop.is_active:
+		_tip_overlay.show_tip_once("multiplayer_intro",
+			"In co-op, each player controls their own party members. " +
+			"Everyone must confirm Ready before the game advances.\n\n" +
+			"Branch choices are decided by vote!")
 
 
 func _build_ui() -> void:

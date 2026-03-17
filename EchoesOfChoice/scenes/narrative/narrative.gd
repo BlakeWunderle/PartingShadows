@@ -8,12 +8,14 @@ const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
 const VotePanel := preload("res://scripts/ui/vote_panel.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const _StoryDB := preload("res://scripts/data/story_db.gd")
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
 var _ready_gate: ReadyGate
 var _vote_panel: VotePanel
+var _tip_overlay: TipOverlay
 var _scene_image: TextureRect
 var _pending_advance: Callable  ## What to do after all players ready up
 
@@ -76,6 +78,9 @@ func _build_ui() -> void:
 	_vote_panel.vote_resolved.connect(_on_vote_resolved)
 	vbox.add_child(_vote_panel)
 
+	_tip_overlay = TipOverlay.new()
+	add_child(_tip_overlay)
+
 
 func _show_narrative() -> void:
 	var battle = GameState.current_battle
@@ -133,6 +138,11 @@ func _show_ending() -> void:
 		lines.append("Battles won: %d" % GameState.battles_won)
 	if is_first_completion:
 		lines.append_array(_unlock_notification_lines())
+		_tip_overlay.show_tip_once("story_unlock",
+			"Each story features different enemies, environments, and " +
+			"challenges. Completing stories also unlocks new base classes " +
+			"for your party.\n\n" +
+			"Try the new content from the title screen!")
 	_dialogue.show_text(lines)
 
 
@@ -302,6 +312,11 @@ func _get_peer_index(peer_id: int) -> int:
 
 
 func _show_defeat_choices() -> void:
+	_tip_overlay.show_tip_once("first_defeat",
+		"The game autosaves after every battle. You can load your " +
+		"last save and try again with a different strategy.\n\n" +
+		"Consider adjusting your party composition or class upgrades " +
+		"at the next town stop.")
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	if SaveManager.has_any_save():
@@ -334,6 +349,10 @@ func _on_defeat_choice(index: int) -> void:
 
 
 func _show_branch_choices() -> void:
+	_tip_overlay.show_tip_once("first_branch",
+		"Your choices shape the story. Different paths lead to " +
+		"different battles, enemies, and endings.\n\n" +
+		"Choose carefully. There is no going back!")
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	for choice: Dictionary in GameState.current_battle.choices:
