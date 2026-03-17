@@ -129,16 +129,17 @@ static func s3_dream_nexus() -> BattleData:
 		"The Threadmaster's form brightens, threads pulling taut. 'Then let us settle this the way dreams always end. With one side waking, and the other forgotten.'",
 	]
 	b.post_battle_text = [
-		"The Threadmaster screams as the last thread snaps. The Loom collapses inward, threads unraveling in cascading waves. The nexus tears itself apart.",
+		"The Threadmaster unravels as the last thread snaps, coming apart like a puppet with its strings cut. The Loom collapses inward, threads unraveling in cascading waves. The nexus tears itself apart.",
 		"The shadow shrieks, a sound like tearing cloth, and dissolves into wisps of dark thread that scatter and fade. The thing that hunted Lira's dreams for years is gone in an instant.",
-		"Lira falls free from the web, gasping. One of the travelers catches her before she hits the ground.",
+		"Lira falls free from the web. She does not gasp or cry out. She simply opens her eyes, steady and clear, as if waking from a nap rather than a cage of living darkness. One of the travelers catches her, but she is already standing on her own.",
 		"For one moment, the travelers see every dream the Loom ever stole: a child's nightmare, a mother's hope, an old man's memory of a face he loved. Thousands of stolen fragments, set free.",
 		"Then they are standing in the cellar. The physical loom is dark, its threads disintegrated. The walls are just walls. The hum is gone.",
-		"Lira stands in the silence, shaken but whole. The power that the Loom stole from her as a child flows back through her. She looks different now. Steadier. Freer. The luminous dancer and the quiet serving girl finally the same person.",
+		"Lira stands in the silence, whole and unshaken. She looks different now. Steadier. The luminous dancer and the quiet serving girl finally the same person. She stretches her fingers, and for just a moment, faint threads of light flicker at her fingertips before fading.",
 		"Dawn light streams through the cellar door. Behind the bar upstairs, an apron hangs on a hook. A cup sits half-filled. But the woman who poured it never existed. She was thread and shadow, given a face and a smile.",
 		"The town wakes up. For the first time in years, every person in it slept through the night without dreaming. Without losing anything. The cult members stir from a fog they did not know they were in, blinking at the sigils on their hands as if seeing them for the first time.",
 		"The sign above the inn door has faded. 'The Weary Traveler.' It makes a different kind of sense now.",
 		"Lira walks them to the edge of town. 'I spent my whole life dreaming of escape,' she says. 'Now I think I will stay. Someone needs to make sure the threads stay quiet.'",
+		"She smiles. It is a practiced smile, warm and familiar, and for a moment it looks exactly like the innkeeper's.",
 		"They leave the town by midmorning, rested for the first time since they arrived.",
 	]
 	b.post_scene_image = "res://assets/art/battles/town_edge_dawn.png"

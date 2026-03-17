@@ -186,23 +186,49 @@ func _ending_text_story_2() -> Array[String]:
 
 
 func _ending_text_story_3() -> Array[String]:
+	var is_path_b: bool = GameState.current_battle_id == "S3_B_DreamNexus"
 	if GameState.game_won:
-		return [
-			"The Loom is broken. The threads dissolve into the morning light, carrying with them every stolen dream, every pilfered night of rest.",
-			"Across the town, people wake feeling something they cannot name. A lightness. A clarity. As if a weight they never knew they carried has been lifted.",
-			"Where the innkeeper stood, there is nothing. No body, no trace. She was never real. Just another thread in the Loom, a familiar face woven from stolen dreams to lure the weary inside.",
-			"The travelers stand in the street as the sun rises. For the first time in days, they are not tired. The weariness is gone, truly gone, and the road ahead feels possible again.",
-			"'The Weary Traveler,' one of them reads aloud from the sign, shaking their head. 'She named the inn after what she was doing to people.'",
-			"They leave the town behind. Their dreams that night are their own.",
-			"",
-			"Thank you for playing Echoes of Choice.",
-		]
+		if is_path_b:
+			return _ending_text_story_3_path_b()
+		return _ending_text_story_3_path_a()
 	else:
+		if is_path_b:
+			return [
+				"The threads hold. The girl smiles. She was always going to smile.",
+				"Somewhere in a quiet town, a serving girl pours ale for the next weary traveler. She has done this for centuries. She will do it for centuries more.",
+				"This journey may be over, but every great story deserves another telling.",
+			]
 		return [
 			"The Loom holds. The threads tighten. The dream does not end.",
 			"Somewhere in a quiet town, a kind face smiles and pours ale for the next weary traveler. She was never real, but no one will ever know.",
 			"This journey may be over, but every great story deserves another telling.",
 		]
+
+
+func _ending_text_story_3_path_a() -> Array[String]:
+	return [
+		"The Loom is broken. The threads dissolve into the morning light, carrying with them every stolen dream, every pilfered night of rest.",
+		"Across the town, people wake feeling something they cannot name. A lightness. A clarity. As if a weight they never knew they carried has been lifted.",
+		"Where the innkeeper stood, there is nothing. No body, no trace. She was never real. Just another thread in the Loom, a familiar face woven from stolen dreams to lure the weary inside.",
+		"The travelers stand in the street as the sun rises. For the first time in days, they are not tired. The weariness is gone, truly gone, and the road ahead feels possible again.",
+		"'The Weary Traveler,' one of them reads aloud from the sign, shaking their head. 'She named the inn after what she was doing to people.'",
+		"Lira watches from the doorway as they leave. Her hand rests on the doorframe, fingers tracing a pattern they cannot see.",
+		"They leave the town behind. Their dreams that night are their own.",
+		"",
+		"Thank you for playing Echoes of Choice.",
+	]
+
+
+func _ending_text_story_3_path_b() -> Array[String]:
+	return [
+		"The Loom is broken. Not by trust. By suspicion. By the courage to look at a kind face and ask what it was hiding.",
+		"Across the town, people wake differently. Not gently. Sharply, like cold water. The fog lifts and what remains is a town that must learn what it is without the lie that sustained it.",
+		"There is no serving girl to pour the morning ale. No innkeeper to smile and ask if they slept well. The woman behind every face this town has ever known is gone, unraveled with the threads she wove.",
+		"Brother Callum stands in the town square as the sun rises. He does not look away from the questions.",
+		"The travelers leave by midmorning. Their dreams that night are quiet, and empty, and entirely their own.",
+		"",
+		"Thank you for playing Echoes of Choice.",
+	]
 
 
 func _unlock_notification_lines() -> Array[String]:

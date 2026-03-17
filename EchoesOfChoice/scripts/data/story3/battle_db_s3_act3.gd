@@ -39,11 +39,15 @@ static func s3_town_realization() -> BattleData:
 		"She spends the day training them, teaching them how to hold their awareness in the dream, how to recognize the Thread's traps, how to fight while sleeping. Her years of navigating the dream world have taught her things about mind and body that no academy could. Old limitations fall away under her guidance.",
 	]
 	b.post_battle_text = [
-		"Night falls. They fight the pull of sleep for as long as they can, talking in one room with the candles burning. Lira sits with them, steady and calm.",
-		"But the exhaustion is not natural. It settles like a weight, and one by one their eyes close.",
-		"The dream is waiting. And this time, they step into it together.",
+		"Night falls. The candles burn low. Lira sits with them, steady and calm, waiting.",
+		"But something nags at the edge of thought. The guest book entries in the same hand. The shadow that always chased her but never caught her. A serving girl who survived decades in a town run by a cult, and no one thought to ask how.",
+		"Lira watches them with patient eyes. 'Shall we sleep?' she asks. 'The dream is waiting.'",
+		"The travelers exchange a glance. They have a choice to make.",
 	]
-	b.next_battle_id = "S3_LucidDream"
+	b.choices = [
+		{"label": "Trust Lira. Step into the dream together, guided by her knowledge of the Loom.", "battle_id": "S3_LucidDream"},
+		{"label": "Something does not add up. Pretend to sleep, then search the inn.", "battle_id": "S3_B_InnSearch"},
+	]
 	b.music_track = "res://assets/audio/music/town/Medieval Tavern 03.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#14.wav"
 	return b
