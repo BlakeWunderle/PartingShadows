@@ -24,6 +24,9 @@ __pycache__/
 .vscode/
 *.sln.docstates
 
+# Temp files
+*~RF*.TMP
+
 # OS
 Thumbs.db
 Desktop.ini
