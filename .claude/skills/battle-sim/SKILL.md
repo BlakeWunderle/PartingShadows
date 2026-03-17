@@ -7,6 +7,8 @@ description: Full balance feedback loop for Echoes of Choice. Iterates enemy tun
 
 All paths are relative to the workspace root. The Godot project lives at `EchoesOfChoice/`.
 
+**Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
+
 Iterative balancing process for progression stages. Each cycle has three phases that must all pass before a story is considered balanced. Use `--story 1` or `--story 2` to target a specific story.
 
 ## The Loop
