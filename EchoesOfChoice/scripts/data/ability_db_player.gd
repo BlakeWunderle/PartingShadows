@@ -637,7 +637,7 @@ static func iron_fist() -> AbilityData:
 
 static func bulwarks_stand() -> AbilityData:
 	return _make("Bulwark's Stand", "Plant yourself firmly and bolster all allies' defenses.",
-		Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0, 3)
+		Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0, 2)
 
 # Aegis - support tank with party buffs and healing
 static func guardians_blessing() -> AbilityData:
