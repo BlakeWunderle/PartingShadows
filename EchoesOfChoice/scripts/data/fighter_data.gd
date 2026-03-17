@@ -3,7 +3,6 @@ class_name FighterData extends RefCounted
 ## Mirrors C# BaseFighter. A live fighter instance with mutable combat state.
 
 const Enums := preload("res://scripts/data/enums.gd")
-const _FighterDB := preload("res://scripts/data/fighter_db.gd")
 
 var character_name: String
 var character_type: String  ## Class display name (e.g. "Squire", "Thug")
@@ -162,7 +161,7 @@ func apply_save_data(data: Dictionary) -> void:
 	var saved_items = data.get("upgrade_items", [])
 	upgrade_items.clear()
 	if saved_items.is_empty():
-		upgrade_items = _FighterDB.get_default_upgrade_items(class_id)
+		upgrade_items = load("res://scripts/data/fighter_db.gd").get_default_upgrade_items(class_id)
 	else:
 		for item in saved_items:
 			upgrade_items.append(item)
