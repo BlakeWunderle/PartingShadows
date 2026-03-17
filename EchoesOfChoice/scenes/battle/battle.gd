@@ -290,11 +290,11 @@ func _start_battle() -> void:
 	var unlock_key: String = GameState.current_story_id + "_complete"
 	_auto_battle_unlocked = UnlockManager.is_unlocked(unlock_key)
 
+	_build_portrait_cards()
+
 	_battle_stats.clear()
 	for f: FighterData in _all_party:
 		_battle_stats[f] = {"damage_dealt": 0, "damage_taken": 0, "healing_done": 0, "kills": 0}
-
-	_build_portrait_cards()
 	_add_log("[color=gold]Battle begins![/color]")
 	_compute_turn_order()
 	_display_turn_order()
