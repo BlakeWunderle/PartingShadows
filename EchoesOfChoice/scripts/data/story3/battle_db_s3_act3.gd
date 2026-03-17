@@ -157,9 +157,16 @@ static func s3_dream_sanctum() -> BattleData:
 		"In the last moment before waking, the travelers see it clearly: the cellar beneath the inn. Robed figures around a circle of woven thread. The innkeeper, standing at the center, eyes closed, hands raised.",
 		"They wake up. It is still dark. And now they know exactly what they are dealing with.",
 		"'The Thread,' one says, reading a symbol sketched from memory. 'That is what they call themselves. And they have been doing this for years.'",
-		"Dawn is hours away. They have until then to prepare. Because tonight, they are not going to sleep. Tonight, they are going underneath the inn.",
+		"Dawn is hours away. They have until then to prepare.",
+		"One traveler paces. Another stares at the ceiling. Lira sits cross-legged on her bed, eyes closed, hands still.",
+		"'The cult first,' one says. 'Go underneath the inn before they realize we know.'",
+		"But another hesitates. 'In the dream, when the Threadmaster spoke through the guardian, its voice had the same cadence as yours, Lira. Not the same words. The same rhythm. As if it learned to speak by listening to you.'",
+		"Lira opens her eyes. For a moment, something crosses her face. Not guilt. Not fear. Something older and deeper than either.",
 	]
-	b.next_battle_id = "S3_CultUnderbelly"
+	b.choices = [
+		{"label": "The cult first. Go underneath the inn before they realize we know.", "battle_id": "S3_CultUnderbelly"},
+		{"label": "Lira, wait. In the dream, the Threadmaster's voice sounded like yours. Talk to us.", "battle_id": "S3_C_LirasConfession"},
+	]
 	b.music_track = "res://assets/audio/music/boss/Awakening of the Juggernaut_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 09.wav"
 	return b

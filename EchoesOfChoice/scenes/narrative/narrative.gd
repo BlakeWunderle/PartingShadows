@@ -187,11 +187,20 @@ func _ending_text_story_2() -> Array[String]:
 
 func _ending_text_story_3() -> Array[String]:
 	var is_path_b: bool = GameState.current_battle_id == "S3_B_DreamNexus"
+	var is_path_c: bool = GameState.current_battle_id == "S3_C_DreamNexus"
 	if GameState.game_won:
+		if is_path_c:
+			return _ending_text_story_3_path_c()
 		if is_path_b:
 			return _ending_text_story_3_path_b()
 		return _ending_text_story_3_path_a()
 	else:
+		if is_path_c:
+			return [
+				"The Threadmaster pulls Lira back into the threads. Her scream fades into the hum of the Loom. The dream tightens, and the travelers forget they ever heard her voice.",
+				"Somewhere in a quiet town, a serving girl pours ale with trembling hands. The chains beneath her skin pulse, and she cannot remember why she is crying.",
+				"This journey may be over, but every great story deserves another telling.",
+			]
 		if is_path_b:
 			return [
 				"The threads hold. The girl smiles. She was always going to smile.",
@@ -226,6 +235,20 @@ func _ending_text_story_3_path_b() -> Array[String]:
 		"There is no serving girl to pour the morning ale. No innkeeper to smile and ask if they slept well. The woman behind every face this town has ever known is gone, unraveled with the threads she wove.",
 		"Brother Callum stands in the town square as the sun rises. He does not look away from the questions.",
 		"The travelers leave by midmorning. Their dreams that night are quiet, and empty, and entirely their own.",
+		"",
+		"Thank you for playing Echoes of Choice.",
+	]
+
+
+func _ending_text_story_3_path_c() -> Array[String]:
+	return [
+		"The Loom is broken. Not by force. Not by suspicion. By the simplest thing in the world: one person asking another to tell the truth.",
+		"Across the town, people wake lighter than they have in years. The fog lifts. The cult members stir and look at their hands as if seeing them for the first time.",
+		"Lira stands in the doorway of the inn. She is not the innkeeper. She never was. But she pours the morning ale for those who want it, and this time, the smile is her own.",
+		"She looks different in the daylight. The centuries of the Loom's weight have lifted, and what remains is a woman who has been fighting alone for a very long time and has finally, at last, stopped running.",
+		"'I do not know what I am now,' she says. 'I have been the Threadmaster's prisoner for so long that I forgot what it felt like to just be a person.'",
+		"One of the travelers sets a cup of ale in front of her. 'Start with breakfast,' they say. 'Figure the rest out later.'",
+		"They leave the town by midmorning, truly rested. Their dreams that night are kind.",
 		"",
 		"Thank you for playing Echoes of Choice.",
 	]
