@@ -14,6 +14,7 @@ const S2Act4 := preload("res://scripts/data/story2/battle_db_s2_act4.gd")
 const S3 := preload("res://scripts/data/story3/battle_db_s3.gd")
 const S3Act3 := preload("res://scripts/data/story3/battle_db_s3_act3.gd")
 const S3Act45 := preload("res://scripts/data/story3/battle_db_s3_act45.gd")
+const S3PathB := preload("res://scripts/data/story3/battle_db_s3_pathb.gd")
 
 
 static func create_battle(battle_id: String) -> BattleData:
@@ -80,6 +81,11 @@ static func create_battle(battle_id: String) -> BattleData:
 		"S3_CultUnderbelly", "S3_CultCatacombs", \
 		"S3_CultRitualChamber", "S3_DreamNexus":
 			return S3Act45.create_battle(battle_id)
+		# Story 3 - Path B (investigation path)
+		"S3_B_InnSearch", "S3_B_CultConfrontation", "S3_B_CallumsTruth", \
+		"S3_B_ThornesWard", "S3_B_LoomHeart", "S3_B_DreamInvasion", \
+		"S3_B_DreamNexus":
+			return S3PathB.create_battle(battle_id)
 		_:
 			push_error("Unknown battle: %s" % battle_id)
 			return Act1.city_street_battle()
