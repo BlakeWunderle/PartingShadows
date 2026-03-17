@@ -138,29 +138,27 @@ static func print_stage_result(result: Dictionary) -> void:
 	print("\n  STATUS: %s" % get_status(result))
 
 
-static func print_combo_extremes(result: Dictionary, count: int = 5) -> void:
+static func get_combo_extremes(result: Dictionary, count: int = 5) -> Dictionary:
 	var sorted: Array = result.combo_results
 	if sorted.is_empty():
-		return
-
+		return {"worst": [], "best": []}
 	var worst := sorted.slice(0, mini(count, sorted.size()))
 	var best := sorted.slice(maxi(0, sorted.size() - count), sorted.size())
+	return {"worst": worst, "best": best}
 
-	var full_spread: float = best[-1].win_rate - worst[0].win_rate
+
+static func get_spread(result: Dictionary) -> Dictionary:
+	var sorted: Array = result.combo_results
+	if sorted.is_empty():
+		return {"full_spread": 0.0, "core_spread": 0.0, "p10": 0.0, "p90": 0.0, "verdict": "N/A"}
+	var worst_wr: float = sorted[0].win_rate
+	var best_wr: float = sorted[-1].win_rate
+	var full_spread: float = best_wr - worst_wr
 	var p10_idx := mini(int(sorted.size() * 0.10), sorted.size() - 1)
 	var p90_idx := mini(int(sorted.size() * 0.90), sorted.size() - 1)
 	var p10: float = sorted[p10_idx].win_rate
 	var p90: float = sorted[p90_idx].win_rate
 	var core_spread: float = p90 - p10
-
-	print("\n  WEAKEST COMBOS:")
-	for c: Dictionary in worst:
-		print("    %.1f%%  %s" % [c.win_rate * 100, c.description])
-
-	print("\n  STRONGEST COMBOS:")
-	for c: Dictionary in best:
-		print("    %.1f%%  %s" % [c.win_rate * 100, c.description])
-
 	var verdict: String
 	if core_spread < 0.15:
 		verdict = "EXCELLENT"
@@ -170,13 +168,10 @@ static func print_combo_extremes(result: Dictionary, count: int = 5) -> void:
 		verdict = "CONCERNING"
 	else:
 		verdict = "CRITICAL"
-
-	print("\n  FULL SPREAD (min-max): %.1f%%" % [full_spread * 100])
-	print("  CORE SPREAD (p10-p90): %.1f%% (%s)  [p10=%.1f%%, p90=%.1f%%]" % [
-		core_spread * 100, verdict, p10 * 100, p90 * 100])
+	return {"full_spread": full_spread, "core_spread": core_spread, "p10": p10, "p90": p90, "verdict": verdict}
 
 
-static func print_class_breakdown(result: Dictionary) -> void:
+static func get_class_breakdown(result: Dictionary) -> Dictionary:
 	var class_stats := {}
 	for combo: Dictionary in result.combo_results:
 		for cname: String in combo.description.split(" / "):
@@ -185,14 +180,45 @@ static func print_class_breakdown(result: Dictionary) -> void:
 			class_stats[cname].wins += combo.wins
 			class_stats[cname].total += combo.total
 			class_stats[cname].count += 1
-
-	var entries := []
+	var breakdown := {}
 	for cname: String in class_stats:
 		var s: Dictionary = class_stats[cname]
+		breakdown[cname] = {
+			"wins": s.wins,
+			"total": s.total,
+			"win_rate": float(s.wins) / s.total if s.total > 0 else 0.0,
+			"combo_count": s.count,
+		}
+	return breakdown
+
+
+static func print_combo_extremes(result: Dictionary, count: int = 5) -> void:
+	var extremes := get_combo_extremes(result, count)
+	if extremes.worst.is_empty():
+		return
+	var spread := get_spread(result)
+
+	print("\n  WEAKEST COMBOS:")
+	for c: Dictionary in extremes.worst:
+		print("    %.1f%%  %s" % [c.win_rate * 100, c.description])
+
+	print("\n  STRONGEST COMBOS:")
+	for c: Dictionary in extremes.best:
+		print("    %.1f%%  %s" % [c.win_rate * 100, c.description])
+
+	print("\n  FULL SPREAD (min-max): %.1f%%" % [spread.full_spread * 100])
+	print("  CORE SPREAD (p10-p90): %.1f%% (%s)  [p10=%.1f%%, p90=%.1f%%]" % [
+		spread.core_spread * 100, spread.verdict, spread.p10 * 100, spread.p90 * 100])
+
+
+static func print_class_breakdown(result: Dictionary) -> void:
+	var breakdown := get_class_breakdown(result)
+	var entries := []
+	for cname: String in breakdown:
 		entries.append({
 			"class": cname,
-			"win_rate": float(s.wins) / s.total if s.total > 0 else 0.0,
-			"count": s.count,
+			"win_rate": breakdown[cname].win_rate,
+			"count": breakdown[cname].combo_count,
 		})
 	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return a.win_rate > b.win_rate)

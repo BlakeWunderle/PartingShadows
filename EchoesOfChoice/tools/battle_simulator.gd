@@ -7,6 +7,10 @@ const SR := preload("res://scripts/tools/simulation_runner.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const PC := preload("res://scripts/tools/party_composer.gd")
 
+var _json_path := ""
+var _all_results: Array = []
+var _all_stages: Array = []
+
 
 func _init() -> void:
 	var stages := BSDB.get_all_stages()
@@ -46,6 +50,10 @@ func _init() -> void:
 			"--story":
 				if i + 1 < args.size():
 					story_filter = int(args[i + 1])
+					i += 1
+			"--json":
+				if i + 1 < args.size():
+					_json_path = args[i + 1]
 					i += 1
 			"--list":
 				show_list = true
@@ -99,6 +107,9 @@ func _init() -> void:
 	else:
 		_print_help()
 
+	if _json_path != "" and not _all_results.is_empty():
+		_write_json_report()
+
 	quit()
 
 
@@ -115,6 +126,9 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 	var sw := Time.get_ticks_msec()
 	var result := SR.simulate_stage(stage, sims_per_combo, sample_size)
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
+
+	_all_results.append(result)
+	_all_stages.append(stage)
 
 	SR.print_summary([result])
 	SR.print_combo_extremes(result)
@@ -152,6 +166,8 @@ func _run_stages(stages: Array, sims_per_combo: int,
 
 		var result := SR.simulate_stage(stage, sims, sample_size)
 		results.append(result)
+		_all_results.append(result)
+		_all_stages.append(stage)
 		SR.print_stage_result(result)
 
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
@@ -163,6 +179,46 @@ func _run_stages(stages: Array, sims_per_combo: int,
 		SR.print_class_breakdown(r)
 
 	print("\n  Total time: %.1fs" % elapsed)
+
+
+func _write_json_report() -> void:
+	var report := []
+	for idx in _all_results.size():
+		var result: Dictionary = _all_results[idx]
+		var stage: Dictionary = _all_stages[idx]
+		var breakdown := SR.get_class_breakdown(result)
+		var spread := SR.get_spread(result)
+		var extremes := SR.get_combo_extremes(result)
+		var worst_entries := []
+		for c: Dictionary in extremes.worst:
+			worst_entries.append({"description": c.description, "win_rate": c.win_rate})
+		var best_entries := []
+		for c: Dictionary in extremes.best:
+			best_entries.append({"description": c.description, "win_rate": c.win_rate})
+		report.append({
+			"stage_name": result.stage_name,
+			"story": stage.get("story", 1),
+			"progression_stage": result.progression_stage,
+			"tier": stage.get("tier", "base"),
+			"target_win_rate": result.target_win_rate,
+			"overall_win_rate": result.overall_win_rate,
+			"combo_count": result.combo_results.size(),
+			"elapsed_ms": result.elapsed_ms,
+			"status": SR.get_status(result),
+			"class_breakdown": breakdown,
+			"spread": spread,
+			"best_combos": best_entries,
+			"worst_combos": worst_entries,
+		})
+
+	var json_str := JSON.stringify({"stages": report}, "\t")
+	var file := FileAccess.open(_json_path, FileAccess.WRITE)
+	if file:
+		file.store_string(json_str)
+		file.close()
+		print("\n  JSON report written to: %s" % _json_path)
+	else:
+		print("\n  ERROR: Could not write JSON report to: %s" % _json_path)
 
 
 func _print_stage_list(stages: Array) -> void:
@@ -184,6 +240,7 @@ func _print_help() -> void:
 	print("  --progression <n>    Run all battles in a progression stage")
 	print("  --story <n>          Filter to story 1, 2, or 3")
 	print("  --all                Run all battles")
+	print("  --json <path>        Write structured JSON report to file")
 	print("  --list               List available battle stages")
 	print("  --help               Show this help\n")
 	print("Auto mode sims by tier:")
