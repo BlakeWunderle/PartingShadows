@@ -345,3 +345,63 @@ static func firewall() -> AbilityData:
 	var cost: int = randi_range(3, 6)
 	return _make("Firewall", "A digital barrier. Results vary.", Enums.StatType.DEFENSE, mod, 2, false, cost, false, 0, 0.0, 2)
 
+
+# =============================================================================
+# Creature-themed variants (stat-identical clones with unique flavor)
+# =============================================================================
+
+# --- Frost Wyrmling (replaces riptide) ---
+
+static func frost_chains() -> AbilityData:
+	return _make("Frost Chains", "Ice crystallizes around the enemy's limbs.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0, 2)
+
+# --- Sigil Wretch (replaces spark, ember, enemy_hex) ---
+
+static func sigil_flare() -> AbilityData:
+	return _make("Sigil Flare", "A carved rune detonates in blinding light.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+
+static func glyph_burn() -> AbilityData:
+	return _make("Glyph Burn", "Ancient glyphs sear the target's flesh.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+
+static func ward_break() -> AbilityData:
+	return _make("Ward Break", "A counter-sigil shatters magical protections.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0, 2)
+
+# --- Hellion (replaces infernal_strike, shadow_strike, enemy_hex) ---
+
+static func frenzy_slash() -> AbilityData:
+	return _make("Frenzy Slash", "Wild, reckless claws tear in every direction.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+
+static func chaos_rend() -> AbilityData:
+	return _make("Chaos Rend", "Unhinged fury rips through armor and spirit.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+
+static func manic_howl() -> AbilityData:
+	return _make("Manic Howl", "A deranged scream rattles defenses.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0, 2)
+
+# --- Fiendling (replaces brimstone, dread, enemy_hex) ---
+
+static func hellspark() -> AbilityData:
+	return _make("Hellspark", "A crackling ember from the pit.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+
+static func imp_curse() -> AbilityData:
+	return _make("Imp Curse", "A spiteful hex saps magical power.", Enums.StatType.MAGIC_ATTACK, 7, 2, true, 3, false, 0, 0.0, 2)
+
+static func fiend_mark() -> AbilityData:
+	return _make("Fiend Mark", "A burning brand weakens the target's guard.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0, 2)
+
+# --- Blight variants (replaces enemy_blight per creature) ---
+
+static func putrid_touch() -> AbilityData:
+	return _make("Putrid Touch", "Rotting hands leave festering wounds.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+
+static func shadow_rot() -> AbilityData:
+	return _make("Shadow Rot", "Darkness seeps in and corrodes from within.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+
+static func death_wither() -> AbilityData:
+	return _make("Death Wither", "Life withers at the wraith's touch.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+
+static func corruption_fang() -> AbilityData:
+	return _make("Corruption Fang", "Tainted fangs spread dark corruption.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+
+static func blighted_breath() -> AbilityData:
+	return _make("Blighted Breath", "A miasma of disease exhales from the stag.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+

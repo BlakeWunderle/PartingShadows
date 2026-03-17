@@ -151,7 +151,7 @@ static func create_hellion(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _fixed(34, 39); f.magic_defense = _fixed(19, 23)
 	f.speed = _fixed(37, 43)
 	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 18
-	f.abilities = [EAB.infernal_strike(), EAB.shadow_strike(), EAB.enemy_hex()]
+	f.abilities = [EAB.frenzy_slash(), EAB.chaos_rend(), EAB.manic_howl()]
 	return f
 
 static func create_fiendling(n: String, lvl: int = 17) -> FighterData:
@@ -162,7 +162,7 @@ static func create_fiendling(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _fixed(43, 50); f.magic_defense = _fixed(22, 26)
 	f.speed = _fixed(39, 45)
 	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 18
-	f.abilities = [EAB.brimstone(), EAB.dread(), EAB.enemy_hex()]
+	f.abilities = [EAB.hellspark(), EAB.imp_curse(), EAB.fiend_mark()]
 	return f
 
 static func create_dragon(n: String, lvl: int = 17) -> FighterData:
@@ -184,7 +184,7 @@ static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _fixed(18, 22); f.magic_defense = _fixed(16, 21)
 	f.speed = _fixed(39, 45)
 	f.crit_chance = 21; f.crit_damage = 4; f.dodge_chance = 17
-	f.abilities = [EAB.antler_charge(), EAB.rot_aura(), EAB.enemy_blight()]
+	f.abilities = [EAB.antler_charge(), EAB.rot_aura(), EAB.blighted_breath()]
 	return f
 
 static func create_dark_knight(n: String, lvl: int = 18) -> FighterData:
@@ -210,7 +210,7 @@ static func create_fell_hound(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = _es(34, 39, 2, 4, lvl, 18)
 	f.speed = _es(43, 49, 3, 5, lvl, 18)
 	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 21
-	f.abilities = [EAB.shadow_bite(), EAB.howl_of_dread(), EAB.enemy_blight()]
+	f.abilities = [EAB.shadow_bite(), EAB.howl_of_dread(), EAB.corruption_fang()]
 	return f
 
 static func create_sigil_wretch(n: String, lvl: int = 18) -> FighterData:
@@ -223,7 +223,7 @@ static func create_sigil_wretch(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = _es(36, 42, 2, 4, lvl, 18)
 	f.speed = _es(42, 48, 3, 5, lvl, 18)
 	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 23
-	f.abilities = [EAB.spark(), AbilityDB.ember(), EAB.enemy_hex()]
+	f.abilities = [EAB.sigil_flare(), EAB.glyph_burn(), EAB.ward_break()]
 	return f
 
 static func create_tunnel_lurker(n: String, lvl: int = 18) -> FighterData:

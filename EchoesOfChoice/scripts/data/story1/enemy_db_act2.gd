@@ -198,7 +198,7 @@ static func create_frost_wyrmling(n: String) -> FighterData:
 	f.magic_attack = _fixed(15, 19); f.magic_defense = _fixed(16, 20)
 	f.speed = _fixed(29, 34)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 8
-	f.abilities = [EAB.claw(), EAB.tail_strike(), EAB.riptide()]
+	f.abilities = [EAB.claw(), EAB.tail_strike(), EAB.frost_chains()]
 	return f
 
 static func create_ringmaster(n: String) -> FighterData:
@@ -310,7 +310,7 @@ static func create_zombie(n: String, lvl: int = 6) -> FighterData:
 	f.magic_defense = _es(22, 32, 2, 4, lvl, 6)
 	f.speed = _es(24, 34, 1, 2, lvl, 6)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 8
-	f.abilities = [EAB.rend(), EAB.enemy_blight(), EAB.devour()]
+	f.abilities = [EAB.rend(), EAB.putrid_touch(), EAB.devour()]
 	return f
 
 static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
@@ -336,7 +336,7 @@ static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	f.magic_defense = _es(16, 22, 2, 4, lvl, 7)
 	f.speed = _es(32, 38, 2, 4, lvl, 7)
 	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 25
-	f.abilities = [AbilityDB.shadow_attack(), EAB.enemy_blight(), AbilityDB.frustrate()]
+	f.abilities = [AbilityDB.shadow_attack(), EAB.shadow_rot(), AbilityDB.frustrate()]
 	return f
 
 static func create_wraith(n: String, lvl: int = 7) -> FighterData:
@@ -349,5 +349,5 @@ static func create_wraith(n: String, lvl: int = 7) -> FighterData:
 	f.magic_defense = _es(16, 22, 2, 3, lvl, 7)
 	f.speed = _es(30, 36, 2, 4, lvl, 7)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 20
-	f.abilities = [EAB.soul_drain(), EAB.enemy_blight(), EAB.terrify()]
+	f.abilities = [EAB.soul_drain(), EAB.death_wither(), EAB.terrify()]
 	return f
