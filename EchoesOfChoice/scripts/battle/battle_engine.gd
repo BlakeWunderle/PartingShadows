@@ -389,7 +389,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 				if wounded == null or ally.health < wounded.health:
 					wounded = ally
 		if wounded != null:
-			var heal: AbilityData = heal_abilities[randi_range(0, heal_abilities.size() - 1)]
+			var heal: AbilityData = _weighted_pick(heal_abilities)
 			unit.mana -= heal.mana_cost
 			_set_cooldown(unit, heal)
 			if heal.target_all:
@@ -418,7 +418,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var buff_roll: int = randi_range(0, 4)
 		var try_buff: bool = buff_roll == 0 or (buff_roll <= 1 and has_aoe_buff)
 		if try_buff:
-			var buff: AbilityData = buff_abilities[randi_range(0, buff_abilities.size() - 1)]
+			var buff: AbilityData = _weighted_pick(buff_abilities)
 			if buff.target_all:
 				var any_unbuffed: bool = false
 				for ally: FighterData in allies:
@@ -507,6 +507,19 @@ func _find_max_health(targets: Array) -> FighterData:
 	return best
 
 
+func _weighted_pick(abilities: Array[AbilityData]) -> AbilityData:
+	## Pick an ability weighted by cooldown (higher CD = stronger = preferred).
+	var total: float = 0.0
+	for a: AbilityData in abilities:
+		total += 1.0 + a.cooldown
+	var roll: float = randf() * total
+	for a: AbilityData in abilities:
+		roll -= 1.0 + a.cooldown
+		if roll <= 0.0:
+			return a
+	return abilities[abilities.size() - 1]
+
+
 func _choose_offensive_ability(unit: FighterData,
 		offensive_abilities: Array[AbilityData], magic_ratio: float) -> AbilityData:
 	var preferred: Enums.StatType = Enums.StatType.MAGIC_ATTACK \
@@ -518,5 +531,5 @@ func _choose_offensive_ability(unit: FighterData,
 			preferred_list.append(a)
 
 	if not preferred_list.is_empty():
-		return preferred_list[randi_range(0, preferred_list.size() - 1)]
-	return offensive_abilities[randi_range(0, offensive_abilities.size() - 1)]
+		return _weighted_pick(preferred_list)
+	return _weighted_pick(offensive_abilities)
