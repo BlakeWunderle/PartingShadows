@@ -663,6 +663,12 @@ func _show_ability_menu() -> void:
 	options.append({"label": "Back"})
 
 	_action_menu.show_choices(options, true)
+	_tip_overlay.show_tip_once("ability_cooldowns",
+		"Abilities have cooldowns shown as [CD X] next to their name. " +
+		"After using an ability, you must wait that many turns before " +
+		"you can use it again.\n\n" +
+		"Plan your turns carefully and rotate between different " +
+		"abilities while powerful ones recharge.")
 	_action_menu.choice_selected.disconnect(_on_action_selected)
 	_action_menu.choice_selected.connect(_on_ability_selected)
 
