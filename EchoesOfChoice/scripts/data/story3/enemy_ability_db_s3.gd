@@ -312,3 +312,27 @@ static func loom_collapse() -> AbilityData:
 
 static func thread_of_oblivion() -> AbilityData:
 	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 6, true, 0, 0.0, 3)
+
+
+# =============================================================================
+# Path B: Shadow Innkeeper and Lira Threadmaster abilities
+# =============================================================================
+
+# --- Shadow Innkeeper ---
+
+static func borrowed_face() -> AbilityData:
+	return _make("Borrowed Face", "The friendly smile cracks and something wrong looks through.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+
+static func thread_drain() -> AbilityData:
+	return _make("Thread Drain", "She feeds on the connection between waking and dreaming.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3, 2)
+
+# --- Lira, the Threadmaster ---
+
+static func thread_puppetry() -> AbilityData:
+	return _make("Thread Puppetry", "Lira pulls threads you cannot see.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
+
+static func dreamers_harvest() -> AbilityData:
+	return _make("Dreamer's Harvest", "Every trust you gave her feeds her now.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, true, 0, 0.25, 3)
+
+static func liras_loom() -> AbilityData:
+	return _make("Lira's Loom", "The dream itself strikes at her command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)
