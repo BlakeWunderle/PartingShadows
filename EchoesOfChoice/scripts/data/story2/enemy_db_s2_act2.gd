@@ -31,11 +31,11 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Driftwood Bandit", lvl)
-	f.health = _es(123, 143, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(154, 179, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(35, 40, 2, 3, lvl, 5)
+	f.physical_attack = _es(38, 43, 2, 3, lvl, 5)
 	f.physical_defense = _es(17, 21, 1, 2, lvl, 5)
-	f.magic_attack = _es(4, 7, 0, 1, lvl, 5)
+	f.magic_attack = _es(4, 8, 0, 1, lvl, 5)
 	f.magic_defense = _es(12, 16, 1, 2, lvl, 5)
 	f.speed = _es(24, 30, 1, 3, lvl, 5)
 	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 6
@@ -45,11 +45,11 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 
 static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Saltrunner Smuggler", lvl)
-	f.health = _es(100, 115, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(125, 144, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(29, 35, 2, 3, lvl, 5)
+	f.physical_attack = _es(31, 38, 2, 3, lvl, 5)
 	f.physical_defense = _es(12, 15, 1, 2, lvl, 5)
-	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
+	f.magic_attack = _es(6, 10, 0, 1, lvl, 5)
 	f.magic_defense = _es(12, 15, 1, 2, lvl, 5)
 	f.speed = _es(30, 36, 2, 3, lvl, 5)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 16
@@ -59,11 +59,11 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 
 static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Tide Warden", lvl)
-	f.health = _es(155, 176, 5, 8, lvl, 5); f.max_health = f.health
+	f.health = _es(194, 220, 5, 8, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(31, 36, 2, 3, lvl, 5)
+	f.physical_attack = _es(33, 39, 2, 3, lvl, 5)
 	f.physical_defense = _es(25, 30, 1, 3, lvl, 5)
-	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
+	f.magic_attack = _es(6, 10, 0, 1, lvl, 5)
 	f.magic_defense = _es(17, 21, 1, 2, lvl, 5)
 	f.speed = _es(20, 26, 1, 2, lvl, 5)
 	f.crit_chance = 5; f.crit_damage = 2; f.dodge_chance = 3
@@ -73,11 +73,11 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 
 static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Blighted Gull", lvl)
-	f.health = _es(73, 86, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(91, 108, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(8, 11, 0, 2, lvl, 5)
+	f.physical_attack = _es(9, 12, 0, 2, lvl, 5)
 	f.physical_defense = _es(9, 12, 0, 1, lvl, 5)
-	f.magic_attack = _es(21, 26, 1, 3, lvl, 5)
+	f.magic_attack = _es(23, 28, 1, 3, lvl, 5)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 5)
 	f.speed = _es(32, 38, 2, 3, lvl, 5)
 	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 17
@@ -87,11 +87,11 @@ static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 
 static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Shore Crawler", lvl)
-	f.health = _es(116, 134, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(145, 168, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(34, 39, 2, 4, lvl, 5)
+	f.physical_attack = _es(37, 42, 2, 4, lvl, 5)
 	f.physical_defense = _es(21, 26, 1, 3, lvl, 5)
-	f.magic_attack = _es(4, 7, 0, 1, lvl, 5)
+	f.magic_attack = _es(4, 8, 0, 1, lvl, 5)
 	f.magic_defense = _es(14, 18, 1, 2, lvl, 5)
 	f.speed = _es(18, 24, 1, 2, lvl, 5)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 3
@@ -101,11 +101,11 @@ static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 
 static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Warped Hound", lvl)
-	f.health = _es(95, 111, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(119, 139, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(32, 37, 2, 4, lvl, 5)
+	f.physical_attack = _es(35, 40, 2, 4, lvl, 5)
 	f.physical_defense = _es(14, 18, 1, 2, lvl, 5)
-	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
+	f.magic_attack = _es(6, 10, 0, 1, lvl, 5)
 	f.magic_defense = _es(9, 12, 0, 1, lvl, 5)
 	f.speed = _es(30, 36, 2, 3, lvl, 5)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
@@ -119,11 +119,11 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 
 static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Blackwater Captain", lvl)
-	f.health = _es(256, 292, 6, 9, lvl, 8); f.max_health = f.health
+	f.health = _es(320, 365, 6, 9, lvl, 8); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(52, 60, 3, 5, lvl, 8)
+	f.physical_attack = _es(56, 65, 3, 5, lvl, 8)
 	f.physical_defense = _es(33, 39, 2, 3, lvl, 8)
-	f.magic_attack = _es(6, 9, 0, 1, lvl, 8)
+	f.magic_attack = _es(6, 10, 0, 1, lvl, 8)
 	f.magic_defense = _es(22, 27, 1, 2, lvl, 8)
 	f.speed = _es(26, 32, 1, 3, lvl, 8)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 8
@@ -133,11 +133,11 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 
 static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Corsair Hexer", lvl)
-	f.health = _es(193, 219, 5, 7, lvl, 8); f.max_health = f.health
+	f.health = _es(241, 274, 5, 7, lvl, 8); f.max_health = f.health
 	f.mana = _es(18, 22, 2, 4, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(8, 11, 0, 2, lvl, 8)
+	f.physical_attack = _es(9, 12, 0, 2, lvl, 8)
 	f.physical_defense = _es(14, 18, 1, 2, lvl, 8)
-	f.magic_attack = _es(49, 56, 3, 5, lvl, 8)
+	f.magic_attack = _es(53, 60, 3, 5, lvl, 8)
 	f.magic_defense = _es(32, 38, 2, 3, lvl, 8)
 	f.speed = _es(28, 34, 2, 3, lvl, 8)
 	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 12
@@ -147,11 +147,11 @@ static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 
 static func create_abyssal_lurker(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Abyssal Lurker", lvl)
-	f.health = _es(222, 253, 6, 9, lvl, 9); f.max_health = f.health
+	f.health = _es(278, 316, 6, 9, lvl, 9); f.max_health = f.health
 	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 9)
+	f.physical_attack = _es(11, 15, 0, 2, lvl, 9)
 	f.physical_defense = _es(29, 35, 2, 3, lvl, 9)
-	f.magic_attack = _es(51, 58, 3, 5, lvl, 9)
+	f.magic_attack = _es(55, 63, 3, 5, lvl, 9)
 	f.magic_defense = _es(27, 33, 2, 3, lvl, 9)
 	f.speed = _es(24, 30, 1, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
@@ -161,11 +161,11 @@ static func create_abyssal_lurker(n: String, lvl: int = 9) -> FighterData:
 
 static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Stormwrack Raptor", lvl)
-	f.health = _es(198, 226, 5, 8, lvl, 8); f.max_health = f.health
+	f.health = _es(248, 283, 5, 8, lvl, 8); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(47, 54, 3, 5, lvl, 8)
+	f.physical_attack = _es(51, 58, 3, 5, lvl, 8)
 	f.physical_defense = _es(19, 24, 1, 2, lvl, 8)
-	f.magic_attack = _es(34, 40, 2, 4, lvl, 8)
+	f.magic_attack = _es(37, 43, 2, 4, lvl, 8)
 	f.magic_defense = _es(19, 24, 1, 2, lvl, 8)
 	f.speed = _es(36, 42, 2, 4, lvl, 8)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 20
@@ -175,11 +175,11 @@ static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 
 static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 	var f := _base(n, "Tidecaller Revenant", lvl)
-	f.health = _es(334, 375, 8, 11, lvl, 10); f.max_health = f.health
+	f.health = _es(418, 469, 8, 11, lvl, 10); f.max_health = f.health
 	f.mana = _es(24, 28, 2, 4, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 10)
+	f.physical_attack = _es(11, 15, 0, 2, lvl, 10)
 	f.physical_defense = _es(30, 36, 2, 4, lvl, 10)
-	f.magic_attack = _es(69, 78, 4, 6, lvl, 10)
+	f.magic_attack = _es(75, 84, 4, 6, lvl, 10)
 	f.magic_defense = _es(43, 50, 3, 5, lvl, 10)
 	f.speed = _es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 10
@@ -189,11 +189,11 @@ static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 
 static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Salt Phantom", lvl)
-	f.health = _es(212, 242, 5, 8, lvl, 9); f.max_health = f.health
+	f.health = _es(265, 303, 5, 8, lvl, 9); f.max_health = f.health
 	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(8, 11, 0, 2, lvl, 9)
+	f.physical_attack = _es(9, 12, 0, 2, lvl, 9)
 	f.physical_defense = _es(17, 22, 1, 2, lvl, 9)
-	f.magic_attack = _es(56, 64, 3, 5, lvl, 9)
+	f.magic_attack = _es(60, 69, 3, 5, lvl, 9)
 	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
 	f.speed = _es(32, 38, 2, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
@@ -208,11 +208,11 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 
 static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Drowned Sailor", lvl)
-	f.health = _es(206, 235, 5, 8, lvl, 9); f.max_health = f.health
+	f.health = _es(258, 294, 5, 8, lvl, 9); f.max_health = f.health
 	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(8, 11, 0, 2, lvl, 9)
+	f.physical_attack = _es(9, 12, 0, 2, lvl, 9)
 	f.physical_defense = _es(17, 22, 1, 2, lvl, 9)
-	f.magic_attack = _es(56, 64, 3, 5, lvl, 9)
+	f.magic_attack = _es(60, 69, 3, 5, lvl, 9)
 	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
 	f.speed = _es(32, 38, 2, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
@@ -222,11 +222,11 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 
 static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Depth Horror", lvl)
-	f.health = _es(218, 249, 6, 9, lvl, 9); f.max_health = f.health
+	f.health = _es(273, 311, 6, 9, lvl, 9); f.max_health = f.health
 	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 9)
+	f.physical_attack = _es(11, 15, 0, 2, lvl, 9)
 	f.physical_defense = _es(29, 35, 2, 3, lvl, 9)
-	f.magic_attack = _es(51, 58, 3, 5, lvl, 9)
+	f.magic_attack = _es(55, 63, 3, 5, lvl, 9)
 	f.magic_defense = _es(27, 33, 2, 3, lvl, 9)
 	f.speed = _es(24, 30, 1, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
