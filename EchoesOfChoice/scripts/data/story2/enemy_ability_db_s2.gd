@@ -55,7 +55,7 @@ static func gnash() -> AbilityData:
 	return _make("Gnash", "Rows of stone teeth grind together.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
 
 static func swallow() -> AbilityData:
-	return _make("Swallow", "The maw tries to consume its prey.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Swallow", "The maw tries to consume its prey.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 3)
 
 static func tremor() -> AbilityData:
 	return _make("Tremor", "The cave shakes violently.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0, 3)
@@ -188,7 +188,7 @@ static func dive_screech() -> AbilityData:
 # --- Shore Crawler ---
 
 static func crushing_claw() -> AbilityData:
-	return _make("Crushing Claw", "Armored pincers close with terrible force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Crushing Claw", "Armored pincers close with terrible force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 3)
 
 static func chitin_shell() -> AbilityData:
 	return _make("Chitin Shell", "The creature withdraws into hardened shell.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
@@ -204,7 +204,7 @@ static func brackish_howl() -> AbilityData:
 # --- Blackwater Captain ---
 
 static func boarding_axe() -> AbilityData:
-	return _make("Boarding Axe", "A heavy axe blow from a seasoned fighter.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Boarding Axe", "A heavy axe blow from a seasoned fighter.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0, 3)
 
 static func captains_orders() -> AbilityData:
 	return _make("Captain's Orders", "The captain rallies the crew.", Enums.StatType.ATTACK, 5, 2, false, 4, true, 0, 0.0, 3)
@@ -300,7 +300,7 @@ static func sense_intent() -> AbilityData:
 # --- Mirror Self ---
 
 static func mirrored_slash() -> AbilityData:
-	return _make("Mirrored Slash", "Your own fighting style turned against you.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Mirrored Slash", "Your own fighting style turned against you.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0, 3)
 
 static func reflected_spell() -> AbilityData:
 	return _make("Reflected Spell", "A stolen incantation cast with hollow precision.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
@@ -316,7 +316,7 @@ static func unravel() -> AbilityData:
 # --- Mnemonic Golem ---
 
 static func memory_slam() -> AbilityData:
-	return _make("Memory Slam", "A fist of crystallized memories crashes down.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Memory Slam", "A fist of crystallized memories crashes down.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0, 3)
 
 static func crystallize() -> AbilityData:
 	return _make("Crystallize", "Memories harden into impenetrable armor.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0, 2)
@@ -335,7 +335,7 @@ static func purge_thought() -> AbilityData:
 # --- Fractured Protector (boss) ---
 
 static func desperate_strike() -> AbilityData:
-	return _make("Desperate Strike", "A blow struck not in anger but in fear.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Desperate Strike", "A blow struck not in anger but in fear.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0, 3)
 
 static func memory_seal() -> AbilityData:
 	return _make("Memory Seal", "A pulse that clouds the mind and slows all thought.", Enums.StatType.SPEED, 5, 2, true, 5, true, 0, 0.0, 3)
@@ -375,7 +375,7 @@ static func nihil_bolt() -> AbilityData:
 # --- Thoughtform Knight ---
 
 static func memory_blade() -> AbilityData:
-	return _make("Memory Blade", "A sword forged from ten thousand stolen recollections.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Memory Blade", "A sword forged from ten thousand stolen recollections.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0, 3)
 
 static func ironclad_will() -> AbilityData:
 	return _make("Ironclad Will", "Thought hardens into unbreakable armor.", Enums.StatType.DEFENSE, 6, 2, false, 3, false, 0, 0.0, 2)

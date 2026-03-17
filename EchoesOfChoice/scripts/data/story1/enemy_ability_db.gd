@@ -24,7 +24,7 @@ static func gore() -> AbilityData:
 	return _make("Gore", "A vicious thrust of tusks.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
 static func charge() -> AbilityData:
-	return _make("Charge", "A headlong rush.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Charge", "A headlong rush.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0, 3)
 
 static func stab() -> AbilityData:
 	return _make("Stab", "A quick jab.", Enums.StatType.PHYSICAL_ATTACK, 2, 0, true, 1, false, 0, 0.0, 2)
@@ -45,7 +45,7 @@ static func tidal_splash() -> AbilityData:
 	return _make("Tidal Splash", "A wave crashes over all enemies.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0, 3)
 
 static func crush() -> AbilityData:
-	return _make("Crush", "Overwhelming brute force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Crush", "Overwhelming brute force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 3)
 
 static func bramble() -> AbilityData:
 	return _make("Bramble", "Thorny vines lash out.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
@@ -63,7 +63,7 @@ static func stomp() -> AbilityData:
 	return _make("Stomp", "The ground shakes.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 4, true, 0, 0.0, 3)
 
 static func talon_rake() -> AbilityData:
-	return _make("Talon Rake", "Razor talons rake the target.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Talon Rake", "Razor talons rake the target.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 3)
 
 static func flintlock() -> AbilityData:
 	return _make("Flintlock", "A blast from a sea-worn pistol.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
@@ -126,7 +126,7 @@ static func soul_drain() -> AbilityData:
 	return _make("Soul Drain", "Rip the life force away.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.5, 2)
 
 static func sword_strike() -> AbilityData:
-	return _make("Sword Strike", "A disciplined sword blow.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Sword Strike", "A disciplined sword blow.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 3)
 
 static func decisive_blow() -> AbilityData:
 	return _make("Decisive Blow", "A devastating finishing strike.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)
@@ -168,7 +168,7 @@ static func brimstone() -> AbilityData:
 	return _make("Brimstone", "Sulfurous fire from below.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
 
 static func vine_whip() -> AbilityData:
-	return _make("Vine Whip", "A thorny tendril lashes out.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Vine Whip", "A thorny tendril lashes out.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0, 3)
 
 static func root_slam() -> AbilityData:
 	return _make("Root Slam", "Massive roots erupt from the earth.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 5, true, 0, 0.0, 3)
@@ -180,7 +180,7 @@ static func shadow_bite() -> AbilityData:
 	return _make("Shadow Bite", "Jaws of darkness snap shut.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
 
 static func slam() -> AbilityData:
-	return _make("Slam", "A bone-crushing body slam.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Slam", "A bone-crushing body slam.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0, 3)
 
 static func antler_charge() -> AbilityData:
 	return _make("Antler Charge", "Massive blighted antlers gore the target.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)

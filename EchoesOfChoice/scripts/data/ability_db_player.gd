@@ -59,11 +59,11 @@ static func inner_focus() -> AbilityData:
 # Cavalry
 static func lance() -> AbilityData:
 	return _make("Lance", "A devastating mounted charge.",
-		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0, 3)
 
 static func trample() -> AbilityData:
 	return _make("Trample", "Charge through the enemy lines.",
-		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0, 3)
 
 # Dragoon
 static func jump() -> AbilityData:
@@ -72,7 +72,7 @@ static func jump() -> AbilityData:
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power.",
-		Enums.StatType.MIXED_ATTACK, 7, 0, true, 5, false, 0, 0.0, 2)
+		Enums.StatType.MIXED_ATTACK, 7, 0, true, 5, false, 0, 0.0, 3)
 
 static func dragon_ward() -> AbilityData:
 	return _make("Dragon Ward", "Draconic scales shield an ally.",
@@ -120,7 +120,7 @@ static func smoke_bomb() -> AbilityData:
 # Monk
 static func spirit_attack() -> AbilityData:
 	return _make("Spirit Attack", "Channel inner energy into a focused strike.",
-		Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, false, 0, 0.0, 3)
 
 static func precise_strike() -> AbilityData:
 	return _make("Precise Strike", "Find the exact point of weakness.",
@@ -568,7 +568,7 @@ static func spirit_mend() -> AbilityData:
 # Falconer
 static func falcon_strike() -> AbilityData:
 	return _make("Falcon Strike", "A raptor dives from above.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0, 3)
 
 static func talon_rend() -> AbilityData:
 	return _make("Talon Rend", "The falcon shreds the enemy's armor with razor talons.",
@@ -581,7 +581,7 @@ static func raptor_mend() -> AbilityData:
 # Shapeshifter
 static func savage_maul() -> AbilityData:
 	return _make("Savage Maul", "Transform and maul the enemy.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 3)
 
 static func frenzy() -> AbilityData:
 	return _make("Frenzy", "Enter a bestial rage.",
@@ -629,7 +629,7 @@ static func wayfinders_sense() -> AbilityData:
 # Bulwark - balanced attacker/defender
 static func fortress_strike() -> AbilityData:
 	return _make("Fortress Strike", "Strike with the weight of an immovable fortress.",
-		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0, 3)
 
 static func iron_fist() -> AbilityData:
 	return _make("Iron Fist", "A devastating blow that shatters defenses.",
@@ -655,7 +655,7 @@ static func aegis_barrier() -> AbilityData:
 # Trailblazer
 static func blaze_trail() -> AbilityData:
 	return _make("Blaze Trail", "Charge forward with reckless, blazing speed.",
-		Enums.StatType.MIXED_ATTACK, 8, 0, true, 5, false, 0, 0.3, 2)
+		Enums.StatType.MIXED_ATTACK, 8, 0, true, 5, false, 0, 0.3, 3)
 
 static func ambush() -> AbilityData:
 	return _make("Ambush", "Strike from an unexpected angle, hitting all foes.",
