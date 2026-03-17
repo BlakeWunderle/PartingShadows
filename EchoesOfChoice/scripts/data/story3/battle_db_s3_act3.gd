@@ -24,18 +24,11 @@ static func s3_town_realization() -> BattleData:
 	b.scene_image = "res://assets/art/battles/weary_traveler_night.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
-		"The innkeeper smiles when they come downstairs. 'Sleep well?' she asks, as if she already knows the answer.",
-		"The travelers exchange glances but say nothing to her. Over breakfast, they plan quietly.",
-		"'Tonight, we go in together,' one says. 'On purpose. If we are sharing dreams, we need to understand why.'",
-		"'And we need to stay awake as long as we can. Watch who watches us.'",
-		"They spend the day preparing. Sharpening weapons. Studying the town. They notice things they missed before: a symbol carved into a doorframe, a shopkeeper who watches them too carefully, a cellar door that has three locks.",
-		"One of them pulls the guest book from behind the bar and spreads it open. The entries go back decades. Name after name. But the later pages are wrong. The handwriting grows unsteady. Some names are half-formed, as if the writers fell asleep mid-stroke. A few entries are just meaningless scrawls. And on every page, faint lines of thread-thin ink connect the names like a web.",
-		"'Every name in this book,' one traveler says quietly. 'Every person who ever slept here. They were all feeding it.'",
-		"A knock at the door. The serving girl, Lira, stands in the hallway, pale and trembling.",
-		"'I know what you are planning,' she says. 'Because I have been there too. Every night. I am the one who has been dancing.'",
-		"She steps inside and closes the door. 'I have lived in this town my whole life. The dreams started when I was a child. I learned to move through them, to resist what the Loom does. But I could never fight it alone.'",
+		"Lira closes the door behind her and sits on the edge of a chair, hands clasped tight.",
+		"'I have lived in this town my whole life,' she says. 'The dreams started when I was a child. I learned to move through them, to resist what the Loom does. But I could never fight it alone.'",
+		"'The guest book you found in the cellar. The one that goes back centuries. Every name in it is someone who fed the Loom. I have watched it happen my whole life and I could not stop it.'",
 		"'I can help you. I know the dream better than anyone. And I know things about this town that will make your blood run cold.'",
-		"'There is something else you should know,' Lira says. 'The Loom knows I resist it. It sends something after me every night. A shadow. It cannot kill me, but it can drive me out, keep me running. That is why I could never stay long enough to fight back.'",
+		"'The Loom sends something after me every night. A shadow. You have seen it. It cannot kill me, but it can drive me out, keep me running. That is why I could never stay long enough to fight back.'",
 		"She spends the day training them, teaching them how to hold their awareness in the dream, how to recognize the Thread's traps, how to fight while sleeping. Her years of navigating the dream world have taught her things about mind and body that no academy could. Old limitations fall away under her guidance.",
 	]
 	b.post_battle_text = [

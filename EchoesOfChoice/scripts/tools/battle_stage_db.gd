@@ -11,6 +11,7 @@ const EnemyDBS2Act2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
 const EnemyDBS2Act3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
 const EnemyDBS2Act4 := preload("res://scripts/data/story2/enemy_db_s2_act4.gd")
 const EnemyDBS3 := preload("res://scripts/data/story3/enemy_db_s3.gd")
+const EnemyDBS3Act2 := preload("res://scripts/data/story3/enemy_db_s3_act2.gd")
 const EnemyDBS3Act3 := preload("res://scripts/data/story3/enemy_db_s3_act3.gd")
 const EnemyDBS3Act45 := preload("res://scripts/data/story3/enemy_db_s3_act45.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
@@ -106,28 +107,42 @@ static func get_all_stages() -> Array:
 		# Prog 1: Base classes, 1 level up (branch pair)
 		_s("S3_DreamMirrorHall", 1, "base", 0.73, 1, 3),
 		_s("S3_DreamFogGarden", 1, "base", 0.73, 1, 3),
-		# Prog 3: Tier 1, 3 level ups (second dream, post-upgrade)
+		# --- TownMorning: T0 → T1 upgrade ---
+		# Prog 3: Tier 1, 3 level ups (second dream start)
 		_s("S3_DreamReturn", 3, "tier1", 0.70, 3, 3),
-		# Prog 4: Tier 1, 4 level ups (branch pair)
-		_s("S3_DreamLabyrinth", 4, "tier1", 0.68, 4, 3),
-		_s("S3_DreamClockTower", 4, "tier1", 0.68, 4, 3),
-		# Prog 5: Tier 1, 5 level ups (Act II boss)
-		_s("S3_DreamNightmare", 5, "tier1", 0.65, 5, 3),
-		# Prog 6: Tier 2, 7 level ups (lucid dream, post-upgrade)
-		_s("S3_LucidDream", 7, "tier2", 0.62, 6, 3),
-		# Prog 7: Tier 2, 8 level ups (branch pair)
-		_s("S3_DreamTemple", 8, "tier2", 0.60, 7, 3),
-		_s("S3_DreamVoid", 8, "tier2", 0.60, 7, 3),
-		# Prog 8: Tier 2, 9 level ups (Act III boss)
-		_s("S3_DreamSanctum", 9, "tier2", 0.58, 8, 3),
-		# Prog 9: Tier 2, 10 level ups (cult investigation)
-		_s("S3_CultUnderbelly", 10, "tier2", 0.56, 9, 3),
-		# Prog 10: Tier 2, 11 level ups
-		_s("S3_CultCatacombs", 11, "tier2", 0.54, 10, 3),
-		# Prog 11: Tier 2, 12 level ups
-		_s("S3_CultRitualChamber", 12, "tier2", 0.52, 11, 3),
-		# Prog 12: Tier 2, 13 level ups (final boss)
-		_s("S3_DreamNexus", 13, "tier2", 0.50, 12, 3),
+		# Prog 4: Tier 1, 4 level ups (threads visible)
+		_s("S3_DreamThreads", 4, "tier1", 0.68, 4, 3),
+		# Prog 5: Tier 1, 5 level ups (branch pair)
+		_s("S3_DreamDrownedCorridor", 5, "tier1", 0.66, 5, 3),
+		_s("S3_DreamShatteredGallery", 5, "tier1", 0.66, 5, 3),
+		# Prog 6: Tier 1, 6 level ups (shadow chase convergence)
+		_s("S3_DreamShadowChase", 6, "tier1", 0.64, 6, 3),
+		# Prog 7: Tier 1, 7 level ups (branch pair)
+		_s("S3_DreamLabyrinth", 7, "tier1", 0.62, 7, 3),
+		_s("S3_DreamClockTower", 7, "tier1", 0.62, 7, 3),
+		# Prog 8: Tier 1, 8 level ups (Act II boss)
+		_s("S3_DreamNightmare", 8, "tier1", 0.60, 8, 3),
+		# --- TownInvestigation: T1 → T2 upgrade ---
+		# Prog 9: Tier 2, 10 level ups (waking market fight)
+		_s("S3_MarketConfrontation", 10, "tier2", 0.58, 9, 3),
+		# Prog 10: Tier 2, 11 level ups (cellar discovery)
+		_s("S3_CellarDiscovery", 11, "tier2", 0.56, 10, 3),
+		# --- TownRealization: Lira reveal, rest only ---
+		# Prog 11: Tier 2, 12 level ups (lucid dream)
+		_s("S3_LucidDream", 12, "tier2", 0.54, 11, 3),
+		# Prog 12: Tier 2, 13 level ups (branch pair)
+		_s("S3_DreamTemple", 13, "tier2", 0.52, 12, 3),
+		_s("S3_DreamVoid", 13, "tier2", 0.52, 12, 3),
+		# Prog 13: Tier 2, 14 level ups (Act III boss)
+		_s("S3_DreamSanctum", 14, "tier2", 0.50, 13, 3),
+		# Prog 14: Tier 2, 15 level ups (cult investigation)
+		_s("S3_CultUnderbelly", 15, "tier2", 0.48, 14, 3),
+		# Prog 15: Tier 2, 16 level ups
+		_s("S3_CultCatacombs", 16, "tier2", 0.46, 15, 3),
+		# Prog 16: Tier 2, 17 level ups
+		_s("S3_CultRitualChamber", 17, "tier2", 0.44, 16, 3),
+		# Prog 17: Tier 2, 18 level ups (final boss)
+		_s("S3_DreamNexus", 18, "tier2", 0.42, 17, 3),
 	]
 
 
@@ -350,6 +365,31 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 			return [EnemyDBS3.create_nightmare_hound("Gnasher"),
 				EnemyDBS3.create_dream_weaver("Silken One"),
 				EnemyDBS3.create_hollow_echo("Fading Voice")]
+		# Story 3 Act II expansion
+		"S3_DreamThreads":
+			return [EnemyDBS3Act2.create_thread_lurker("Ceiling Crawler"),
+				EnemyDBS3Act2.create_dream_sentinel("Still Guard"),
+				EnemyDBS3Act2.create_gloom_spinner("Dark Weaver")]
+		"S3_DreamDrownedCorridor":
+			return [EnemyDBS3Act2.create_drowned_reverie("Lost Dreamer"),
+				EnemyDBS3Act2.create_riptide_beast("Current Fang"),
+				EnemyDBS3Act2.create_depth_crawler("Thread Dredger")]
+		"S3_DreamShatteredGallery":
+			return [EnemyDBS3Act2.create_fragment_golem("Dream Husk"),
+				EnemyDBS3Act2.create_memory_wisp("Stolen Moment"),
+				EnemyDBS3Act2.create_gallery_shade("Frame Shadow")]
+		"S3_DreamShadowChase":
+			return [EnemyDBS3Act2.create_shadow_pursuer("The Hunter"),
+				EnemyDBS3Act2.create_dread_tendril("Dark Arm"),
+				EnemyDBS3Act2.create_faded_voice("Whisper")]
+		"S3_MarketConfrontation":
+			return [EnemyDBS3Act2.create_market_watcher("Shopkeeper Voss"),
+				EnemyDBS3Act2.create_thread_smith("Smith Hagen"),
+				EnemyDBS3Act2.create_hex_herbalist("Herbalist Wren")]
+		"S3_CellarDiscovery":
+			return [EnemyDBS3Act2.create_cellar_watcher("Bound Sentinel"),
+				EnemyDBS3Act2.create_thread_construct("Woven Golem"),
+				EnemyDBS3Act2.create_ink_shade("Cellar Shadow")]
 		"S3_DreamLabyrinth":
 			return [EnemyDBS3.create_twilight_stalker("Duskfang"),
 				EnemyDBS3.create_waking_terror("Screamer"),

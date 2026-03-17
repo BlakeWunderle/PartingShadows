@@ -14,6 +14,7 @@ const S2Act4 := preload("res://scripts/data/story2/battle_db_s2_act4.gd")
 const S3 := preload("res://scripts/data/story3/battle_db_s3.gd")
 const S3Act3 := preload("res://scripts/data/story3/battle_db_s3_act3.gd")
 const S3Act45 := preload("res://scripts/data/story3/battle_db_s3_act45.gd")
+const S3Act2 := preload("res://scripts/data/story3/battle_db_s3_act2.gd")
 const S3PathB := preload("res://scripts/data/story3/battle_db_s3_pathb.gd")
 const S3PathC := preload("res://scripts/data/story3/battle_db_s3_pathc.gd")
 
@@ -74,6 +75,12 @@ static func create_battle(battle_id: String) -> BattleData:
 		"S3_DreamFogGarden", "S3_TownMorning", "S3_DreamReturn", \
 		"S3_DreamLabyrinth", "S3_DreamClockTower", "S3_DreamNightmare":
 			return S3.create_battle(battle_id)
+		# Story 3 - Act II expansion (extended dream + waking investigation)
+		"S3_DreamThreads", "S3_DreamDrownedCorridor", \
+		"S3_DreamShatteredGallery", "S3_DreamShadowChase", \
+		"S3_TownInvestigation", "S3_MarketConfrontation", \
+		"S3_CellarDiscovery":
+			return S3Act2.create_battle(battle_id)
 		# Story 3 - Act III
 		"S3_TownRealization", "S3_LucidDream", "S3_DreamTemple", \
 		"S3_DreamVoid", "S3_DreamSanctum":

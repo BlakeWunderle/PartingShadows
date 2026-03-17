@@ -42,13 +42,21 @@ All paths below are relative to `EchoesOfChoice/`.
 - `enemy_ability_db_s2.gd` -- Story 2 enemy ability definitions
 
 ### Core Data -- Story 3 (`scripts/data/story3/`)
-- `battle_db_s3.gd` -- Acts I-II battles (dream onset through cult discovery)
-- `battle_db_s3_act3.gd` -- Act III battles (cult confrontation)
-- `battle_db_s3_act45.gd` -- Acts IV-V battles (Loom approach through Woven Night)
+- `battle_db_s3.gd` -- Acts I-II battles (dream onset through second dream)
+- `battle_db_s3_act2.gd` -- Act II expansion battles (extended dream + waking investigation)
+- `battle_db_s3_act3.gd` -- Act III battles (lucid dream and cult dream sanctum)
+- `battle_db_s3_act45.gd` -- Acts IV-V battles (cult lair through Threadmaster)
+- `battle_db_s3_pathb.gd` -- Path B battles (suspicion route: inn search through betrayal)
+- `battle_db_s3_pathc.gd` -- Path C battles (Lira's confession route)
 - `enemy_db_s3.gd` -- Acts I-II enemies
+- `enemy_db_s3_act2.gd` -- Act II expansion enemies (dream + waking investigation)
 - `enemy_db_s3_act3.gd` -- Act III enemies
 - `enemy_db_s3_act45.gd` -- Acts IV-V enemies
+- `enemy_db_s3_pathb.gd` -- Path B enemies
+- `enemy_db_s3_pathc.gd` -- Path C enemies
 - `enemy_ability_db_s3.gd` -- Story 3 enemy ability definitions
+- `enemy_ability_db_s3_act2.gd` -- Act II expansion enemy abilities
+- `enemy_ability_db_s3_pathc.gd` -- Path C enemy abilities
 
 ### Autoload (`scripts/autoload/`)
 - `logger.gd` -- GameLog autoload: info/warn logging, clipboard export
