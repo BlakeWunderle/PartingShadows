@@ -90,7 +90,53 @@ static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 
 
 # =============================================================================
-# Prog 13: Thorne's ward in the passages (S3_B_ThornesWard)
+# Prog 13: Tunnel breach outer guard (S3_B_TunnelBreach)
+# =============================================================================
+
+static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
+	var f := _base(n, "Tunnel Sentinel", lvl)
+	f.health = _es(295, 340, 7, 12, lvl, 14); f.max_health = f.health
+	f.mana = _es(9, 13, 1, 2, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(40, 46, 2, 4, lvl, 14)
+	f.physical_defense = _es(34, 39, 2, 4, lvl, 14)
+	f.magic_attack = _es(14, 20, 0, 2, lvl, 14)
+	f.magic_defense = _es(26, 31, 1, 3, lvl, 14)
+	f.speed = _es(32, 38, 1, 3, lvl, 14)
+	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 5
+	f.abilities = [EAB.heavy_strike(), EAB.woven_shield()]
+	return f
+
+
+static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
+	var f := _base(n, "Thread Sniper", lvl)
+	f.health = _es(240, 280, 5, 9, lvl, 14); f.max_health = f.health
+	f.mana = _es(20, 25, 2, 3, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(16, 22, 1, 2, lvl, 14)
+	f.physical_defense = _es(22, 27, 1, 3, lvl, 14)
+	f.magic_attack = _es(44, 50, 3, 4, lvl, 14)
+	f.magic_defense = _es(30, 35, 1, 4, lvl, 14)
+	f.speed = _es(40, 46, 1, 4, lvl, 14)
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
+	f.abilities = [EAB.hex_bolt(), EAB.unravel_mind()]
+	return f
+
+
+static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
+	var f := _base(n, "Pale Devotee", lvl)
+	f.health = _es(260, 300, 6, 10, lvl, 14); f.max_health = f.health
+	f.mana = _es(18, 22, 2, 3, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = _es(18, 24, 1, 2, lvl, 14)
+	f.physical_defense = _es(28, 33, 1, 3, lvl, 14)
+	f.magic_attack = _es(40, 46, 2, 4, lvl, 14)
+	f.magic_defense = _es(32, 37, 2, 4, lvl, 14)
+	f.speed = _es(36, 42, 1, 3, lvl, 14)
+	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 8
+	f.abilities = [EAB.dark_bolt(), EAB.ritual_chant()]
+	return f
+
+
+# =============================================================================
+# Prog 14: Thorne's ward in the passages (S3_B_ThornesWard)
 # =============================================================================
 
 static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:

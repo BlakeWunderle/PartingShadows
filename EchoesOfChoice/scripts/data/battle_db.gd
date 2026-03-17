@@ -91,8 +91,8 @@ static func create_battle(battle_id: String) -> BattleData:
 			return S3Act45.create_battle(battle_id)
 		# Story 3 - Path B (investigation path)
 		"S3_B_InnSearch", "S3_B_CultConfrontation", "S3_B_CallumsTruth", \
-		"S3_B_ThornesWard", "S3_B_LoomHeart", "S3_B_DreamInvasion", \
-		"S3_B_DreamNexus":
+		"S3_B_TunnelBreach", "S3_B_ThornesWard", "S3_B_LoomHeart", \
+		"S3_B_DreamInvasion", "S3_B_DreamNexus":
 			return S3PathB.create_battle(battle_id)
 		# Story 3 - Path C (true ally path)
 		"S3_C_LirasConfession", "S3_C_DreamDescent", \

@@ -13,6 +13,7 @@ static func create_battle(battle_id: String) -> BattleData:
 		"S3_B_InnSearch": return s3_b_inn_search()
 		"S3_B_CultConfrontation": return s3_b_cult_confrontation()
 		"S3_B_CallumsTruth": return s3_b_callums_truth()
+		"S3_B_TunnelBreach": return s3_b_tunnel_breach()
 		"S3_B_ThornesWard": return s3_b_thornes_ward()
 		"S3_B_LoomHeart": return s3_b_loom_heart()
 		"S3_B_DreamInvasion": return s3_b_dream_invasion()
@@ -107,9 +108,33 @@ static func s3_b_callums_truth() -> BattleData:
 		"'Beyond him is the heart of the Loom. The physical anchor. Destroy it, and she loses her hold on the waking world. Then you will have to face her in the dream, where she is strongest.'",
 		"He stands. 'I cannot go with you. She would sense me. But I will make sure the path behind you stays clear.'",
 	]
-	b.next_battle_id = "S3_B_ThornesWard"
+	b.next_battle_id = "S3_B_TunnelBreach"
 	b.music_track = "res://assets/audio/music/town/Town Village 02(L).wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 10.wav"
+	return b
+
+
+static func s3_b_tunnel_breach() -> BattleData:
+	var b := BattleData.new()
+	b.battle_id = "S3_B_TunnelBreach"
+	b.scene_image = "res://assets/art/battles/cult_catacombs.png"
+	b.enemies = [
+		EnemyDB.create_tunnel_sentinel("Gate Guard"),
+		EnemyDB.create_thread_sniper("Bolt Caster"),
+		EnemyDB.create_pale_devotee("Brother Hale"),
+	]
+	b.pre_battle_text = [
+		"The entrance to the passages is not where Callum described. The cult has sealed the old way and opened a new one, freshly carved, behind the blacksmith's forge.",
+		"They find it by following the hum. The threads are louder now, vibrating at a pitch that sets the teeth on edge. Something has changed since the morning. The cult is preparing.",
+		"A heavy door stands at the top of a stairway. Three guards wait on the landing beyond. The sentinel at the center holds a blade wrapped in glowing thread. Beside him, a hooded figure crouches with hands raised, fingers trailing light. A third stands behind them, chanting softly, the words rising and falling like a hymn.",
+		"'The Threadmaster will not be disturbed,' the sentinel says. He does not draw the blade. It is already drawn.",
+	]
+	b.post_battle_text = [
+		"The guards fall. The chanting stops. The passage ahead descends steeply, the walls narrowing until only one person can walk abreast.",
+		"The hum deepens. The sigils on the walls pulse faster. Whatever is at the bottom knows they are coming.",
+	]
+	b.next_battle_id = "S3_B_ThornesWard"
+	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - Altar of the Forgotten.ogg"
 	return b
 
 
