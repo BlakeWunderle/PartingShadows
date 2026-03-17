@@ -599,15 +599,15 @@ static func primal_roar() -> AbilityData:
 # Sentinel
 static func shield_bash() -> AbilityData:
 	return _make("Shield Bash", "Drive your shield into the foe with crushing force.",
-		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 1)
+		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
 static func barrier() -> AbilityData:
 	return _make("Barrier", "Raise a shimmering ward to protect an ally from magic.",
-		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 2)
+		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 2, false, 0, 0.0, 2)
 
 static func fortify() -> AbilityData:
 	return _make("Fortify", "Strengthen the whole team's resolve against harm.",
-		Enums.StatType.DEFENSE, 2, 2, false, 4, true)
+		Enums.StatType.DEFENSE, 2, 2, false, 4, true, 0, 0.0, 3)
 
 # Pathfinder
 static func keen_strike() -> AbilityData:
@@ -616,7 +616,7 @@ static func keen_strike() -> AbilityData:
 
 static func exploit_weakness() -> AbilityData:
 	return _make("Exploit Weakness", "Study the enemy to find their flaw.",
-		Enums.StatType.DEFENSE, 3, 2, true, 2)
+		Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0, 2)
 
 static func wayfinders_sense() -> AbilityData:
 	return _make("Wayfinder's Sense", "Read the terrain for tactical advantage.",
@@ -637,7 +637,7 @@ static func iron_fist() -> AbilityData:
 
 static func bulwarks_stand() -> AbilityData:
 	return _make("Bulwark's Stand", "Plant yourself firmly and bolster all allies' defenses.",
-		Enums.StatType.DEFENSE, 5, 2, false, 4, true)
+		Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0, 3)
 
 # Aegis - support tank with party buffs and healing
 static func guardians_blessing() -> AbilityData:
@@ -646,11 +646,11 @@ static func guardians_blessing() -> AbilityData:
 
 static func protective_ward() -> AbilityData:
 	return _make("Protective Ward", "Extend a shield of protection to all nearby allies.",
-		Enums.StatType.DEFENSE, 3, 2, false, 5, true)
+		Enums.StatType.DEFENSE, 3, 2, false, 5, true, 0, 0.0, 3)
 
 static func aegis_barrier() -> AbilityData:
 	return _make("Aegis Barrier", "Raise a barrier of pure defensive magic.",
-		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 4)
+		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 4, false, 0, 0.0, 2)
 
 # Trailblazer
 static func blaze_trail() -> AbilityData:
@@ -659,11 +659,11 @@ static func blaze_trail() -> AbilityData:
 
 static func ambush() -> AbilityData:
 	return _make("Ambush", "Strike from an unexpected angle, hitting all foes.",
-		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 5, true)
+		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 5, true, 0, 0.0, 3)
 
 static func expose() -> AbilityData:
 	return _make("Expose", "Reveal the enemy's vulnerabilities for all to exploit.",
-		Enums.StatType.DEFENSE, 4, 2, true, 3)
+		Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0, 2)
 
 # Survivalist
 static func endure() -> AbilityData:
@@ -673,7 +673,7 @@ static func endure() -> AbilityData:
 static func resourceful_strike() -> AbilityData:
 	return _make("Resourceful Strike",
 		"Strike with practiced efficiency, draining the foe's vitality.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.3, 1)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.3, 3)
 
 static func adapt() -> AbilityData:
 	return _make("Adapt", "Heighten your senses and reflexes to the battlefield.",

@@ -20,7 +20,7 @@ static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int
 # --- Glow Worm ---
 
 static func luminous_pulse() -> AbilityData:
-	return _make("Luminous Pulse", "A blinding pulse of bioluminescence.", Enums.StatType.MAGIC_ATTACK, 3, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Luminous Pulse", "A blinding pulse of bioluminescence.", Enums.StatType.MAGIC_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
 
 static func glare() -> AbilityData:
 	return _make("Glare", "Intense light sears the eyes.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
@@ -28,7 +28,7 @@ static func glare() -> AbilityData:
 # --- Crystal Spider ---
 
 static func crystal_fang() -> AbilityData:
-	return _make("Crystal Fang", "Crystalline mandibles pierce deep.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Crystal Fang", "Crystalline mandibles pierce deep.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
 
 static func refract() -> AbilityData:
 	return _make("Refract", "Light bends around the crystal body.", Enums.StatType.DEFENSE, 3, 2, false, 2, false, 0, 0.0, 2)
@@ -36,7 +36,7 @@ static func refract() -> AbilityData:
 # --- Shade Crawler ---
 
 static func shadow_lash() -> AbilityData:
-	return _make("Shadow Lash", "A tendril of darkness whips forward.", Enums.StatType.MIXED_ATTACK, 4, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Shadow Lash", "A tendril of darkness whips forward.", Enums.StatType.MIXED_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
 
 static func dissolve() -> AbilityData:
 	return _make("Dissolve", "The crawler's form blurs and shifts.", Enums.StatType.DODGE_CHANCE, 10, 2, false, 2, false, 0, 0.0, 2)
@@ -63,7 +63,7 @@ static func tremor() -> AbilityData:
 # --- Vein Leech ---
 
 static func latch() -> AbilityData:
-	return _make("Latch", "Barbed tendrils dig into flesh and drain.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.3, 1)
+	return _make("Latch", "Barbed tendrils dig into flesh and drain.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.3, 2)
 
 static func siphon_glow() -> AbilityData:
 	return _make("Siphon Glow", "Stolen light weakens the target's defenses.", Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0, 2)
@@ -79,7 +79,7 @@ static func petrify_pulse() -> AbilityData:
 # --- Spore Stalker ---
 
 static func toxic_dart() -> AbilityData:
-	return _make("Toxic Dart", "A barb dripping with fungal venom.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Toxic Dart", "A barb dripping with fungal venom.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
 
 static func spore_burst() -> AbilityData:
 	return _make("Spore Burst", "A cloud of toxic spores settles over the target.", Enums.StatType.MAGIC_ATTACK, 3, 3, true, 3, false, 3, 0.0, 2)
@@ -103,7 +103,7 @@ static func befuddle() -> AbilityData:
 # --- Cave Eel ---
 
 static func jolt() -> AbilityData:
-	return _make("Jolt", "An electric snap from the darkness.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Jolt", "An electric snap from the darkness.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
 static func arc_flash() -> AbilityData:
 	return _make("Arc Flash", "Electricity arcs through the water.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, true, 0, 0.0, 3)
@@ -127,7 +127,7 @@ static func shell_up() -> AbilityData:
 # --- Cave Dweller ---
 
 static func crude_axe() -> AbilityData:
-	return _make("Crude Axe", "A rough-hewn axe swings with brute force.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Crude Axe", "A rough-hewn axe swings with brute force.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 2)
 
 static func rock_toss() -> AbilityData:
 	return _make("Rock Toss", "Stones rain down from the darkness.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 3, true, 0, 0.0, 3)
@@ -143,7 +143,7 @@ static func ward_bones() -> AbilityData:
 # --- Burrow Scout ---
 
 static func dart_strike() -> AbilityData:
-	return _make("Dart Strike", "A quick jab from the shadows.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Dart Strike", "A quick jab from the shadows.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
 
 static func smoke_bomb() -> AbilityData:
 	return _make("Smoke Bomb", "Acrid smoke obscures the scout's movements.", Enums.StatType.DODGE_CHANCE, 12, 2, false, 2, false, 0, 0.0, 2)
@@ -156,7 +156,7 @@ static func smoke_bomb() -> AbilityData:
 # --- Driftwood Bandit ---
 
 static func cutlass_slash() -> AbilityData:
-	return _make("Cutlass Slash", "A rusted blade bites deep.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Cutlass Slash", "A rusted blade bites deep.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 2)
 
 static func pillage_strike() -> AbilityData:
 	return _make("Pillage Strike", "Take what you can, give nothing back.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.3, 2)
@@ -164,7 +164,7 @@ static func pillage_strike() -> AbilityData:
 # --- Saltrunner Smuggler ---
 
 static func throwing_knife() -> AbilityData:
-	return _make("Throwing Knife", "A glint of steel from the shadows.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Throwing Knife", "A glint of steel from the shadows.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
 
 static func salt_blind() -> AbilityData:
 	return _make("Salt Blind", "Coarse salt thrown in the eyes.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0, 2)
@@ -180,7 +180,7 @@ static func brace_formation() -> AbilityData:
 # --- Blighted Gull ---
 
 static func peck_frenzy() -> AbilityData:
-	return _make("Peck Frenzy", "A flurry of razor-sharp pecks.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Peck Frenzy", "A flurry of razor-sharp pecks.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
 
 static func dive_screech() -> AbilityData:
 	return _make("Dive Screech", "Black wings blot out the sky.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, true, 0, 0.0, 3)
@@ -196,7 +196,7 @@ static func chitin_shell() -> AbilityData:
 # --- Warped Hound ---
 
 static func feral_lunge() -> AbilityData:
-	return _make("Feral Lunge", "A wild leap ends in tearing teeth.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 1)
+	return _make("Feral Lunge", "A wild leap ends in tearing teeth.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0, 2)
 
 static func brackish_howl() -> AbilityData:
 	return _make("Brackish Howl", "A howl that echoes wrong, sapping courage.", Enums.StatType.ATTACK, 4, 2, true, 4, true, 0, 0.0, 3)
@@ -260,7 +260,7 @@ static func memory_fog() -> AbilityData:
 # --- Memory Wisp ---
 
 static func recall_bolt() -> AbilityData:
-	return _make("Recall Bolt", "A shard of stolen memory strikes like lightning.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Recall Bolt", "A shard of stolen memory strikes like lightning.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
 
 static func memory_drain() -> AbilityData:
 	return _make("Memory Drain", "The wisp pulls at the edges of thought.", Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 3, false, 0, 0.0, 2)
@@ -268,7 +268,7 @@ static func memory_drain() -> AbilityData:
 # --- Echo Sentinel ---
 
 static func crystal_strike() -> AbilityData:
-	return _make("Crystal Strike", "A crystalline fist crashes down with resonant force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Crystal Strike", "A crystalline fist crashes down with resonant force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
 
 static func ward_of_echoes() -> AbilityData:
 	return _make("Ward of Echoes", "Layered reverberations harden into a shield.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
@@ -284,7 +284,7 @@ static func psychic_leech() -> AbilityData:
 # --- Grief Shade ---
 
 static func sorrows_touch() -> AbilityData:
-	return _make("Sorrow's Touch", "A caress of pure sadness numbs the body.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Sorrow's Touch", "A caress of pure sadness numbs the body.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
 
 static func wail_of_loss() -> AbilityData:
 	return _make("Wail of Loss", "A cry that drains the will to fight from all who hear it.", Enums.StatType.ATTACK, 4, 2, true, 4, true, 0, 0.0, 3)
@@ -292,7 +292,7 @@ static func wail_of_loss() -> AbilityData:
 # --- Hollow Watcher ---
 
 static func blind_strike() -> AbilityData:
-	return _make("Blind Strike", "Eyeless, it strikes with unerring precision.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Blind Strike", "Eyeless, it strikes with unerring precision.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
 
 static func sense_intent() -> AbilityData:
 	return _make("Sense Intent", "It reads your movements before you make them.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0, 2)
@@ -351,7 +351,7 @@ static func forgetting_touch() -> AbilityData:
 # --- Gaze Stalker ---
 
 static func piercing_gaze_strike() -> AbilityData:
-	return _make("Piercing Gaze", "Eyes that cut deeper than any blade.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 1)
+	return _make("Piercing Gaze", "Eyes that cut deeper than any blade.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func focus_break() -> AbilityData:
 	return _make("Focus Break", "A psychic jab that shatters concentration.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0, 2)
