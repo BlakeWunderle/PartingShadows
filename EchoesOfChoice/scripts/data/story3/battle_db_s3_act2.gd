@@ -29,7 +29,7 @@ static func create_battle(battle_id: String) -> BattleData:
 static func s3_dream_threads() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamThreads"
-	b.scene_image = "res://assets/art/battles/dream_return.png"
+	b.scene_image = "res://assets/art/battles/dream_threads.png"
 	b.enemies = [
 		EnemyDB.create_thread_lurker("Ceiling Crawler"),
 		EnemyDB.create_dream_sentinel("Still Guard"),
@@ -56,7 +56,7 @@ static func s3_dream_threads() -> BattleData:
 static func s3_dream_drowned_corridor() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamDrownedCorridor"
-	b.scene_image = "res://assets/art/battles/dream_void.png"
+	b.scene_image = "res://assets/art/battles/dream_drowned_corridor.png"
 	b.enemies = [
 		EnemyDB.create_drowned_reverie("Lost Dreamer"),
 		EnemyDB.create_riptide_beast("Current Fang"),
@@ -81,7 +81,7 @@ static func s3_dream_drowned_corridor() -> BattleData:
 static func s3_dream_shattered_gallery() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamShatteredGallery"
-	b.scene_image = "res://assets/art/battles/dream_mirror_hall.png"
+	b.scene_image = "res://assets/art/battles/dream_shattered_gallery.png"
 	b.enemies = [
 		EnemyDB.create_fragment_golem("Dream Husk"),
 		EnemyDB.create_memory_wisp("Stolen Moment"),
@@ -107,7 +107,7 @@ static func s3_dream_shattered_gallery() -> BattleData:
 static func s3_dream_shadow_chase() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamShadowChase"
-	b.scene_image = "res://assets/art/battles/dream_nightmare.png"
+	b.scene_image = "res://assets/art/battles/dream_shadow_chase.png"
 	b.enemies = [
 		EnemyDB.create_shadow_pursuer("The Hunter"),
 		EnemyDB.create_dread_tendril("Dark Arm"),
@@ -167,7 +167,7 @@ static func s3_town_investigation() -> BattleData:
 static func s3_market_confrontation() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_MarketConfrontation"
-	b.scene_image = "res://assets/art/battles/town_square_day.png"
+	b.scene_image = "res://assets/art/battles/town_market_tense.png"
 	b.enemies = [
 		EnemyDB.create_market_watcher("Shopkeeper Voss"),
 		EnemyDB.create_thread_smith("Smith Hagen"),
@@ -194,7 +194,7 @@ static func s3_market_confrontation() -> BattleData:
 static func s3_cellar_discovery() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_CellarDiscovery"
-	b.scene_image = "res://assets/art/battles/cult_catacombs.png"
+	b.scene_image = "res://assets/art/battles/inn_cellar.png"
 	b.enemies = [
 		EnemyDB.create_cellar_watcher("Bound Sentinel"),
 		EnemyDB.create_thread_construct("Woven Golem"),
