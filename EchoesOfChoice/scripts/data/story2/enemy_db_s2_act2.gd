@@ -203,20 +203,20 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 
 # =============================================================================
 # P7: Blackwater Bay (unique enemies)
-# All stats match base SP/AL exactly, HP -3% only
+# Mixed ghost-fighters with DoT and AoE defense shred
 # =============================================================================
 
 static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Drowned Sailor", lvl)
 	f.health = _es(247, 282, 5, 8, lvl, 9); f.max_health = f.health
 	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(8, 11, 0, 2, lvl, 9)
+	f.physical_attack = _es(38, 44, 2, 3, lvl, 9)
 	f.physical_defense = _es(17, 22, 1, 2, lvl, 9)
-	f.magic_attack = _es(56, 64, 3, 5, lvl, 9)
+	f.magic_attack = _es(42, 48, 2, 3, lvl, 9)
 	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
 	f.speed = _es(32, 38, 2, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
-	f.abilities = [EAB.spectral_chill(), EAB.memory_fog()]
+	f.abilities = [EAB.spectral_cutlass(), EAB.waterlogged_grasp()]
 	return f
 
 
@@ -224,11 +224,11 @@ static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	var f := _base(n, "Depth Horror", lvl)
 	f.health = _es(262, 300, 6, 9, lvl, 9); f.max_health = f.health
 	f.mana = _es(16, 20, 2, 4, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = _es(10, 14, 0, 2, lvl, 9)
+	f.physical_attack = _es(28, 34, 1, 3, lvl, 9)
 	f.physical_defense = _es(29, 35, 2, 3, lvl, 9)
 	f.magic_attack = _es(51, 58, 3, 5, lvl, 9)
 	f.magic_defense = _es(27, 33, 2, 3, lvl, 9)
-	f.speed = _es(24, 30, 1, 3, lvl, 9)
+	f.speed = _es(27, 33, 1, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
-	f.abilities = [EAB.depth_pulse(), EAB.tidal_drain()]
+	f.abilities = [EAB.tentacle_crush(), EAB.abyssal_terror()]
 	return f

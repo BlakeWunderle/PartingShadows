@@ -39,7 +39,7 @@ static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 1)
 	f.speed = _es(22, 28, 1, 3, lvl, 1)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 10
-	f.abilities = [EAB.luminous_pulse(), EAB.glare()]
+	f.abilities = [EAB.luminous_pulse(), EAB.dazzle()]
 	return f
 
 
@@ -131,7 +131,7 @@ static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 2)
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 14
-	f.abilities = [EAB.hallucinate(), EAB.befuddle()]
+	f.abilities = [EAB.hallucinate(), EAB.phantasmal_haze()]
 	return f
 
 
