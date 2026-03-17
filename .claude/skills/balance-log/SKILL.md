@@ -98,7 +98,8 @@ Update the "Last updated" date.
 If ALL progressions for the active story are LOCKED:
 
 1. Print a completion message with final stats
-2. Replace the log body with:
+2. Suggest running `/class-report` for a comprehensive per-class performance snapshot
+3. Replace the log body with:
 
 ```markdown
 # Balance Tuning Log
@@ -122,9 +123,9 @@ BALANCE LOG UPDATED
 
 When creating a new log, use the battle-sim skill's difficulty gradient table (from the active story) to populate the status table. Reference:
 
-- Story 1: 14 progressions (Prog 0-13), targets from 85% down to 65%
-- Story 2: 18 progressions (Prog 0-17), targets from 85% down to 42%
-- Story 3: 13 progressions (Prog 0-12), targets from 80% down to 50%
+- Story 1: 14 progressions (Prog 0-13), targets from 85% down to 65%, T1 bump at Prog 3 (+5%), T2 bump at Prog 8 (+5%)
+- Story 2: 18 progressions (Prog 0-17), targets from 80% down to 55%, T1 bump at Prog 3 (+4%), T2 bump at Prog 6 (+4%)
+- Story 3: 13 progressions (Prog 0-12), targets from 75% down to 50%, no tier bumps (hardest story)
 
 ```markdown
 # Balance Tuning Log
@@ -143,6 +144,14 @@ Story: N | Started: YYYY-MM-DD | Last updated: YYYY-MM-DD
 
 [progression sections appended here as tuning proceeds]
 ```
+
+## Related Skills
+
+| Skill | When to Use |
+|-------|-------------|
+| `/battle-sim` | The main balance loop. This log tracks its progress. |
+| `/class-report` | Run after all progs locked for a per-class performance snapshot. |
+| `/update-ability-catalog` | After changing any abilities during tuning. |
 
 ## Key References
 

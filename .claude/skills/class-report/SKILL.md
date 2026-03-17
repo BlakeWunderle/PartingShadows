@@ -151,6 +151,14 @@ CLASS BALANCE REPORT GENERATED
   Outliers: N classes outside target +/- 15% band
 ```
 
+## Related Skills
+
+| Skill | When to Use |
+|-------|-------------|
+| `/battle-sim` | The main balance loop. Run this report after all progs are locked. |
+| `/balance-log` | Tracks tuning progress during a balance pass. Suggests running this report on completion. |
+| `/update-ability-catalog` | After changing any abilities during tuning. |
+
 ## Key Files
 
 | File | Purpose |

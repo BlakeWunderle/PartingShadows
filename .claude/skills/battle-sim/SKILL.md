@@ -9,7 +9,30 @@ All paths are relative to the workspace root. The Godot project lives at `Echoes
 
 **Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
 
-Iterative balancing process for progression stages. Each cycle has three phases that must all pass before a story is considered balanced. Use `--story 1` or `--story 2` to target a specific story.
+**After all progressions locked:** Run `/class-report` to generate a comprehensive per-class performance snapshot.
+
+### Quick Reference
+
+```bash
+GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
+NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
+
+# Quick iteration (any tier)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> 2>&1 | grep -v "$NOISE"
+
+# Final validation (use 600000ms timeout)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
+```
+
+### Resuming a Previous Session
+
+1. Read the balance log. If it has an active pass, find the first non-LOCKED progression.
+2. Start from that progression (do not re-validate already LOCKED progs unless a cascade occurred).
+3. If the log shows a cascade note (e.g., "player change, restart from Prog 3"), start from the noted progression.
+
+---
+
+Iterative balancing process for progression stages. Each cycle has three phases that must all pass before a story is considered balanced. Use `--story 1`, `--story 2`, or `--story 3` to target a specific story.
 
 ## The Loop
 
@@ -184,9 +207,9 @@ Use `--sample 100 --sims 50` for quick iteration. Drop `--sample` for Steps 2-3 
 
 | Prog | Target | Range | Tier | Battles |
 |------|--------|-------|------|---------|
-| 0 | 90% | 87-93% | Base | CityStreetBattle |
-| 1 | 88% | 85-91% | Base | WolfForestBattle |
-| 2 | 85% | 82-88% | Base | WaypointDefenseBattle |
+| 0 | 85% | 82-88% | Base | CityStreetBattle |
+| 1 | 83% | 80-86% | Base | WolfForestBattle |
+| 2 | 78% | 75-81% | Base | WaypointDefenseBattle |
 | 3 | 83% | 80-86% | T1 | HighlandBattle, DeepForestBattle, ShoreBattle |
 | 4 | 81% | 78-84% | T1 | MountainPassBattle, CaveBattle, BeachBattle |
 | 5 | 79% | 76-82% | T1 | CircusBattle, LabBattle, ArmyBattle, CemeteryBattle |
@@ -260,9 +283,9 @@ The band tracks the stage target, not a fixed range:
 
 | Prog | Target | Class Floor | Class Ceiling |
 |------|--------|-------------|---------------|
-| 0 | 90% | 75% | 100% |
-| 1 | 88% | 73% | 100% |
-| 2 | 85% | 70% | 100% |
+| 0 | 85% | 70% | 100% |
+| 1 | 83% | 68% | 98% |
+| 2 | 78% | 63% | 93% |
 | 3 | 83% | 68% | 98% |
 | 4 | 81% | 66% | 96% |
 | 5 | 79% | 64% | 94% |
@@ -357,19 +380,19 @@ Enemy factories are in `scripts/data/enemy_db.gd`. Battle compositions are in `s
 Copy and track progress. Each progression is locked only after all three steps pass.
 
 ```
-PROGRESSION 0 (CityStreetBattle, target 87-93%):
+PROGRESSION 0 (CityStreetBattle, target 82-88%):
 - [ ] Step 1: Enemy tuning PASS
 - [ ] Step 2: Squire/Wanderer lead class breakdown
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
-PROGRESSION 1 (WolfForestBattle, target 85-91%):
+PROGRESSION 1 (WolfForestBattle, target 80-86%):
 - [ ] Step 1: Enemy tuning PASS
 - [ ] Step 2: Squire/Wanderer lead class breakdown
 - [ ] Step 3: All classes within target +/- 15%
 - [ ] LOCKED
 
-PROGRESSION 2 (WaypointDefenseBattle, target 82-88%):
+PROGRESSION 2 (WaypointDefenseBattle, target 75-81%):
 - [ ] Step 1: Enemy tuning PASS
 - [ ] Step 2: Squire/Wanderer lead (transitioning)
 - [ ] Step 3: All classes within target +/- 15%
@@ -512,60 +535,53 @@ Wanderer's magic-defense focus means it should perform especially well against m
 
 ## Story 2 Difficulty Gradient
 
-Story 2 is harder than Story 1. Starts at 85% (vs 90%) and drops to 60% (vs 65%). Same tier transitions and T2 bump structure.
+Story 2 is harder than Story 1: 80% down to 55% across 18 progressions. T1 transition at Prog 3, T2 at Prog 6. Both tier transitions include a +4% bump (reward for upgrading), mirroring Story 1's +5% bumps.
 
 | Prog | Target | Range | Tier | Battles |
 |------|--------|-------|------|---------|
-| 0 | 85% | 82-88% | Base | S2_CaveAwakening |
-| 1 | 83% | 80-86% | Base | S2_DeepCavern |
-| 2 | 80% | 77-83% | Base | S2_CaveExit |
-| 3 | 78% | 75-81% | T1 | [TBD] |
-| 4 | 76% | 73-79% | T1 | [TBD] |
-| 5 | 73% | 70-76% | T1 | [TBD] |
-| 6 | 71% | 68-74% | T1 | [TBD] |
-| 7 | 68% | 65-71% | T1 | [TBD] |
-| 8 | 73% | 70-76% | T2 | [TBD] |
-| 9 | 71% | 68-74% | T2 | [TBD] |
-| 10 | 68% | 65-71% | T2 | [TBD] |
-| 11 | 66% | 63-69% | T2 | [TBD] |
-| 12 | 63% | 60-66% | T2 | [TBD] |
-| 13 | 60% | 57-63% | T2 | [TBD] |
+| 0 | 80% | 77-83% | Base | S2_CaveAwakening |
+| 1 | 78% | 75-81% | Base | S2_DeepCavern, S2_FungalHollow |
+| 2 | 75% | 72-78% | Base | S2_TranquilPool, S2_TorchChamber |
+| 3 | 79% | 76-82% | T1 | S2_CaveExit *(T1 bump: 75→79)* |
+| 4 | 76% | 73-79% | T1 | S2_CoastalDescent |
+| 5 | 73% | 70-76% | T1 | S2_FishingVillage, S2_SmugglersBluff |
+| 6 | 77% | 74-80% | T2 | S2_WreckersCove, S2_CoastalRuins *(T2 bump: 73→77)* |
+| 7 | 75% | 72-78% | T2 | S2_BlackwaterBay |
+| 8 | 73% | 70-76% | T2 | S2_LighthouseStorm |
+| 9 | 71% | 68-74% | T2 | S2_BeneathTheLighthouse |
+| 10 | 69% | 66-72% | T2 | S2_MemoryVault, S2_EchoGallery |
+| 11 | 67% | 64-70% | T2 | S2_ShatteredSanctum |
+| 12 | 65% | 62-68% | T2 | S2_GuardiansThreshold, S2_ForgottenArchive |
+| 13 | 63% | 60-66% | T2 | S2_TheReveal |
+| 14 | 61% | 58-64% | T2 | S2_DepthsOfRemembrance |
+| 15 | 59% | 56-62% | T2 | S2_MawOfTheEye |
+| 16 | 57% | 54-60% | T2 | S2_EyeAwakening |
+| 17 | 55% | 52-58% | T2 | S2_EyeOfOblivion |
 
 ### Story 2 Class Band Formula
 
-Same `target +/- 15%` rule, but the lower targets mean tighter absolute bands at late game:
+Same `target +/- 15%` rule:
 
 | Prog | Target | Class Floor | Class Ceiling |
 |------|--------|-------------|---------------|
-| 0 | 85% | 70% | 100% |
-| 1 | 83% | 68% | 98% |
-| 2 | 80% | 65% | 95% |
-| 3 | 78% | 63% | 93% |
+| 0 | 80% | 65% | 95% |
+| 1 | 78% | 63% | 93% |
+| 2 | 75% | 60% | 90% |
+| 3 | 79% | 64% | 94% |
 | 4 | 76% | 61% | 91% |
 | 5 | 73% | 58% | 88% |
-| 6 | 71% | 56% | 86% |
-| 7 | 68% | 53% | 83% |
+| 6 | 77% | 62% | 92% |
+| 7 | 75% | 60% | 90% |
 | 8 | 73% | 58% | 88% |
 | 9 | 71% | 56% | 86% |
-| 10 | 68% | 53% | 83% |
-| 11 | 66% | 51% | 81% |
-| 12 | 63% | 48% | 78% |
-| 13 | 60% | 45% | 75% |
-
----
-
-## Story 2 Sim Commands
-
-```bash
-# All Story 2 stages
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 2 --auto --all 2>&1 | grep -v "$NOISE"
-
-# Single Story 2 progression
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 2 --sims 50 --progression <N> 2>&1 | grep -v "$NOISE"
-
-# Validate Story 1 unchanged after Wanderer tweak
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --auto --all 2>&1 | grep -v "$NOISE"
-```
+| 10 | 69% | 54% | 84% |
+| 11 | 67% | 52% | 82% |
+| 12 | 65% | 50% | 80% |
+| 13 | 63% | 48% | 78% |
+| 14 | 61% | 46% | 76% |
+| 15 | 59% | 44% | 74% |
+| 16 | 57% | 42% | 72% |
+| 17 | 55% | 40% | 70% |
 
 ---
 
@@ -575,65 +591,151 @@ Same `target +/- 15%` rule, but the lower targets mean tighter absolute bands at
 |--------|------|---------|--------|
 | S2_CaveAwakening | 0 | 2x GlowWorm, CrystalSpider | 3v3 |
 | S2_DeepCavern | 1 | 2x ShadeCrawler, EchoWisp | 3v3 |
-| S2_CaveExit | 2 | CaveMaw, VeinLeech, StoneMoth | 3v3 |
+| S2_FungalHollow | 1 | SporeStalker, FungalHulk, CapWisp | 3v3 |
+| S2_TranquilPool | 2 | CaveEel, BlindAngler, PaleCrayfish | 3v3 |
+| S2_TorchChamber | 2 | CaveDweller, TunnelShaman, BurrowScout | 3v3 |
+| S2_CaveExit | 3 | CaveMaw, VeinLeech, StoneMoth | 3v3 |
+| S2_CoastalDescent | 4 | BlightedGull, ShoreCrawler, WarpedHound | 3v3 |
+| S2_FishingVillage | 5 | 2x DriftwoodBandit, SaltrunnerSmuggler | 3v3 |
+| S2_SmugglersBluff | 5 | SaltrunnerSmuggler, TideWarden, DriftwoodBandit | 3v3 |
+| S2_WreckersCove | 6 | BlackwaterCaptain, CorsairHexer, DriftwoodBandit | 3v3 |
+| S2_CoastalRuins | 6 | AbyssalLurker, StormwrackRaptor, BlightedGull | 3v3 |
+| S2_BlackwaterBay | 7 | 2x DrownedSailor, DepthHorror | 3v3 |
+| S2_LighthouseStorm | 8 | TidecallerRevenant, SaltPhantom | 3v2 (boss) |
+| S2_BeneathTheLighthouse | 9 | 2x FadingWisp, DimGuardian | 3v3 |
+| S2_MemoryVault | 10 | ThoughtEater, MemoryWisp, EchoSentinel | 3v3 |
+| S2_EchoGallery | 10 | HollowWatcher, GriefShade, MemoryWisp | 3v3 |
+| S2_ShatteredSanctum | 11 | MirrorSelf, VoidWeaver, GriefShade | 3v3 |
+| S2_GuardiansThreshold | 12 | WardConstruct, NullPhantom, ThresholdEcho | 3v3 |
+| S2_ForgottenArchive | 12 | ArchiveKeeper, SilentArchivist, LostRecord, FadedPage | 3v4 |
+| S2_TheReveal | 13 | TheWarden, FracturedProtector (Sera) | 3v2 (boss) |
+| S2_DepthsOfRemembrance | 14 | 2x GazeStalker, MemoryHarvester | 3v3 |
+| S2_MawOfTheEye | 15 | ThoughtformKnight, OblivionShade, MemoryHarvester | 3v3 |
+| S2_EyeAwakening | 16 | TheIris, OblivionShade | 3v2 (boss) |
+| S2_EyeOfOblivion | 17 | TheLidlessEye | 3v1 (final boss) |
 
-Story 2 enemy factories are in `scripts/data/enemy_db_s2.gd`. Battle compositions are in `scripts/data/battle_db_s2.gd`. Stage definitions are in `scripts/tools/battle_stage_db.gd` (with `story = 2`).
+Enemy factories: `scripts/data/story2/enemy_db_s2.gd` (Act I), `enemy_db_s2_act2.gd` (Act II), `enemy_db_s2_act3.gd` (Act III), `enemy_db_s2_act4.gd` (Act IV). Enemy abilities: `scripts/data/story2/enemy_ability_db_s2.gd`. Stage definitions: `scripts/tools/battle_stage_db.gd` (story = 2).
+
+---
+---
+
+# Story 3 Balance
+
+Story 3 ("The Woven Night") is the hardest story: 75% down to 50% across 13 progressions. No tier bumps (part of the difficulty). T1 transition at Prog 3, T2 at Prog 6. Note: Prog 2 is skipped (no battle at that progression).
+
+## Story 3 Constraint Rule
+
+**Stories 1 and 2 balance are LOCKED.** When balancing Story 3, ONLY modify:
+
+- **Story 3 enemies**: stats/abilities in `enemy_db_s3*.gd` / `enemy_ability_db_s3.gd`
+- **No player class changes** -- all 6 class trees are shared and locked.
+
+### Story 3 Cascade Scope
+
+| Change Type | Affects | Restart From |
+|-------------|---------|-------------|
+| S3 enemy stat ranges | The S3 battle using that enemy | Re-sim that battle |
+| S3 enemy ability Modifier | All S3 battles with enemies using that ability | Earliest S3 battle using it |
+
+No cross-story validation needed since no player classes can change.
 
 ---
 
-## Story 2 Iteration Checklist
+## Story 3 Difficulty Gradient
 
-Same structure as Story 1 -- each progression locked after all 3 steps pass.
+| Prog | Target | Range | Tier | Battles |
+|------|--------|-------|------|---------|
+| 0 | 75% | 72-78% | Base | S3_DreamMeadow |
+| 1 | 73% | 70-76% | Base | S3_DreamMirrorHall, S3_DreamFogGarden |
+| 3 | 70% | 67-73% | T1 | S3_DreamReturn |
+| 4 | 68% | 65-71% | T1 | S3_DreamLabyrinth, S3_DreamClockTower |
+| 5 | 65% | 62-68% | T1 | S3_DreamNightmare |
+| 6 | 62% | 59-65% | T2 | S3_LucidDream |
+| 7 | 60% | 57-63% | T2 | S3_DreamTemple, S3_DreamVoid |
+| 8 | 58% | 55-61% | T2 | S3_DreamSanctum |
+| 9 | 56% | 53-59% | T2 | S3_CultUnderbelly |
+| 10 | 54% | 51-57% | T2 | S3_CultCatacombs |
+| 11 | 52% | 49-55% | T2 | S3_CultRitualChamber |
+| 12 | 50% | 47-53% | T2 | S3_DreamNexus |
 
-```
-PROGRESSION 0 (S2_CaveAwakening, target 82-88%):
-- [ ] Step 1: Enemy tuning PASS
-- [ ] Step 2: Squire/Wanderer lead class breakdown
-- [ ] Step 3: All classes within target +/- 15%
-- [ ] LOCKED
+### Story 3 Class Band Formula
 
-PROGRESSION 1 (S2_DeepCavern, target 80-86%):
-- [ ] Step 1: Enemy tuning PASS
-- [ ] Step 2: Squire/Wanderer lead class breakdown
-- [ ] Step 3: All classes within target +/- 15%
-- [ ] LOCKED
-
-PROGRESSION 2 (S2_CaveExit, target 77-83%):
-- [ ] Step 1: Enemy tuning PASS
-- [ ] Step 2: Squire/Wanderer lead (transitioning)
-- [ ] Step 3: All classes within target +/- 15%
-- [ ] LOCKED
-
-[Prog 3-13 TBD -- populate when remaining Story 2 battles are defined]
-
-FINAL VALIDATION (Story 2):
-- [ ] All S2 progressions validated with --story 2 --auto --all
-- [ ] Story 1 re-validated with --story 1 --auto --all (no regressions)
-
-RESULT: [ ] ALL LOCKED -> balanced  |  [ ] Stage broke -> restart from that prog
-```
+| Prog | Target | Class Floor | Class Ceiling |
+|------|--------|-------------|---------------|
+| 0 | 75% | 60% | 90% |
+| 1 | 73% | 58% | 88% |
+| 3 | 70% | 55% | 85% |
+| 4 | 68% | 53% | 83% |
+| 5 | 65% | 50% | 80% |
+| 6 | 62% | 47% | 77% |
+| 7 | 60% | 45% | 75% |
+| 8 | 58% | 43% | 73% |
+| 9 | 56% | 41% | 71% |
+| 10 | 54% | 39% | 69% |
+| 11 | 52% | 37% | 67% |
+| 12 | 50% | 35% | 65% |
 
 ---
+
+## Story 3 Battle -> Enemy Mapping
+
+| Battle | Prog | Enemies | Format |
+|--------|------|---------|--------|
+| S3_DreamMeadow | 0 | 2x DreamWisp, Phantasm | 3v3 |
+| S3_DreamMirrorHall | 1 | MirrorShade, SleepStalker, ShadeMoth | 3v3 |
+| S3_DreamFogGarden | 1 | FogWraith, ThornDreamer, SlumberBeast | 3v3 |
+| S3_DreamReturn | 3 | NightmareHound, DreamWeaver, HollowEcho | 3v3 |
+| S3_DreamLabyrinth | 4 | TwilightStalker, WakingTerror, SomnolentSerpent | 3v3 |
+| S3_DreamClockTower | 4 | 2x ClockSpecter, DuskSentinel | 3v3 |
+| S3_DreamNightmare | 5 | TheNightmare, NightmareHound, HollowEcho | 3v3 (boss) |
+| S3_LucidDream | 6 | LucidPhantom, ThreadSpinner, CultShade | 3v3 |
+| S3_DreamTemple | 7 | DreamWarden, ThoughtLeech, LoomSentinel | 3v3 |
+| S3_DreamVoid | 7 | VoidSpinner, LucidPhantom, ThreadSpinner | 3v3 |
+| S3_DreamSanctum | 8 | SanctumGuardian, CultShade, DreamWarden | 3v3 (boss) |
+| S3_CultUnderbelly | 9 | CultAcolyte, CultEnforcer, CultHexer | 3v3 |
+| S3_CultCatacombs | 10 | ThreadGuard, 2x DreamHound | 3v3 |
+| S3_CultRitualChamber | 11 | CultRitualist, HighWeaver, ThreadGuard | 3v3 |
+| S3_DreamNexus | 12 | TheThreadmaster, 2x ShadowFragment | 3v3 (final boss) |
+
+Enemy factories: `scripts/data/story3/enemy_db_s3.gd` (Acts I-II), `enemy_db_s3_act3.gd` (Act III), `enemy_db_s3_act45.gd` (Acts IV-V). Enemy abilities: `scripts/data/story3/enemy_ability_db_s3.gd`. Stage definitions: `scripts/tools/battle_stage_db.gd` (story = 3).
+
+---
+---
+
+# Related Skills
+
+| Skill | When to Use |
+|-------|-------------|
+| `/balance-log` | After each sim run to record results and changes. Read at session start. |
+| `/class-report` | After all progressions locked. Generates comprehensive per-class report. |
+| `/update-ability-catalog` | After changing any abilities during tuning. |
+
 ---
 
 # Key Files
 
 | File | Purpose |
 |------|---------|
-| `EchoesOfChoice/scripts/data/enemy_db.gd` | Enemy stat factories (HP, ATK, DEF, SPD, crit, dodge) -- thematic levers + HP fallback |
-| `EchoesOfChoice/scripts/data/enemy_ability_db.gd` | Enemy-specific abilities and their Modifiers |
-| `EchoesOfChoice/scripts/data/battle_db.gd` | Story 1 enemy composition (which enemies appear in each battle) |
-| `EchoesOfChoice/scripts/data/battle_db_act2.gd` | Story 1 Act 2 battle compositions |
-| `EchoesOfChoice/scripts/data/battle_db_act3.gd` | Story 1 Act 3 battle compositions |
-| `EchoesOfChoice/scripts/data/battle_db_act45.gd` | Story 1 Act 4-5 battle compositions |
-| `EchoesOfChoice/scripts/data/battle_db_s2.gd` | Story 2 battle compositions |
-| `EchoesOfChoice/scripts/data/fighter_db.gd` | Base (T0) player class factories and stats |
-| `EchoesOfChoice/scripts/data/fighter_db_t1.gd` | Tier 1 player class factories and growth |
-| `EchoesOfChoice/scripts/data/fighter_db_t2.gd` | Tier 2 player class factories and growth (part 1) |
-| `EchoesOfChoice/scripts/data/fighter_db_t2b.gd` | Tier 2 player class factories and growth (part 2) |
-| `EchoesOfChoice/scripts/data/ability_db.gd` | Base player ability definitions (T0 + shared) |
-| `EchoesOfChoice/scripts/data/ability_db_player.gd` | T1/T2 player ability definitions |
-| `EchoesOfChoice/scripts/tools/simulation_runner.gd` | CLASS BREAKDOWN output, WEAK flags |
-| `EchoesOfChoice/scripts/tools/battle_stage_db.gd` | Target win rates per stage (story-aware) |
-| `EchoesOfChoice/scripts/tools/party_composer.gd` | All valid party compositions |
-| `EchoesOfChoice/tools/battle_simulator.gd` | CLI entry point for the simulator (supports --story flag) |
+| `scripts/data/story1/enemy_db.gd` | Story 1 Act I enemy stat factories |
+| `scripts/data/story1/enemy_db_act2.gd` | Story 1 Act II enemy stat factories |
+| `scripts/data/story1/enemy_db_act345.gd` | Story 1 Acts III-V enemy stat factories |
+| `scripts/data/story1/enemy_ability_db.gd` | Story 1 enemy abilities |
+| `scripts/data/story2/enemy_db_s2.gd` | Story 2 Act I enemy stat factories |
+| `scripts/data/story2/enemy_db_s2_act2.gd` | Story 2 Act II enemy stat factories |
+| `scripts/data/story2/enemy_db_s2_act3.gd` | Story 2 Act III enemy stat factories |
+| `scripts/data/story2/enemy_db_s2_act4.gd` | Story 2 Act IV enemy stat factories |
+| `scripts/data/story2/enemy_ability_db_s2.gd` | Story 2 enemy abilities |
+| `scripts/data/story3/enemy_db_s3.gd` | Story 3 Acts I-II enemy stat factories |
+| `scripts/data/story3/enemy_db_s3_act3.gd` | Story 3 Act III enemy stat factories |
+| `scripts/data/story3/enemy_db_s3_act45.gd` | Story 3 Acts IV-V enemy stat factories |
+| `scripts/data/story3/enemy_ability_db_s3.gd` | Story 3 enemy abilities |
+| `scripts/data/fighter_db.gd` | Base (T0) player class factories and stats |
+| `scripts/data/fighter_db_t1.gd` | Tier 1 player class factories and growth |
+| `scripts/data/fighter_db_t2.gd` | Tier 2 player class factories and growth (part 1) |
+| `scripts/data/fighter_db_t2b.gd` | Tier 2 player class factories and growth (part 2) |
+| `scripts/data/ability_db.gd` | Base player ability definitions (T0 + shared) |
+| `scripts/data/ability_db_player.gd` | T1/T2 player ability definitions |
+| `scripts/tools/simulation_runner.gd` | CLASS BREAKDOWN output, WEAK flags |
+| `scripts/tools/battle_stage_db.gd` | Target win rates per stage (story-aware) |
+| `scripts/tools/party_composer.gd` | All valid party compositions |
+| `tools/battle_simulator.gd` | CLI entry point (--story, --json flags) |
