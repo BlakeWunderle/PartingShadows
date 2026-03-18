@@ -102,7 +102,7 @@ static func drake_strike() -> AbilityData:
 	return _make("Drake Strike", "Draconic fury.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
 
 static func mace_strike() -> AbilityData:
-	return _make("Mace Strike", "A heavy mace blow.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Mace Strike", "A heavy mace blow blessed with divine force.", Enums.StatType.MIXED_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
 static func prop_drop() -> AbilityData:
 	return _make("Prop Drop", "Something heavy falls from above.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
@@ -197,10 +197,10 @@ static func venomous_bite() -> AbilityData:
 	return _make("Venomous Bite", "Fangs drip with poison.", Enums.StatType.PHYSICAL_ATTACK, 8, 3, true, 4, false, 4, 0.0, 2)
 
 static func poison_cloud() -> AbilityData:
-	return _make("Poison Cloud", "A toxic mist engulfs all enemies.", Enums.StatType.MAGIC_ATTACK, 4, 3, true, 5, true, 5, 0.0, 3)
+	return _make("Poison Cloud", "A toxic mist engulfs all enemies.", Enums.StatType.MIXED_ATTACK, 4, 3, true, 5, true, 5, 0.0, 3)
 
 static func rot_aura() -> AbilityData:
-	return _make("Rot Aura", "A wave of decay washes over all enemies.", Enums.StatType.MAGIC_ATTACK, 3, 3, true, 5, true, 4, 0.0, 3)
+	return _make("Rot Aura", "A wave of decay washes over all enemies.", Enums.StatType.MIXED_ATTACK, 3, 3, true, 5, true, 4, 0.0, 3)
 
 
 # =============================================================================
@@ -403,7 +403,7 @@ static func corruption_fang() -> AbilityData:
 	return _make("Corruption Fang", "Tainted fangs spread dark corruption.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
 
 static func blighted_breath() -> AbilityData:
-	return _make("Blighted Breath", "A miasma of disease exhales from the stag.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Blighted Breath", "A miasma of disease exhales from the stag.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
 
 # --- Ruffian (replaces haymaker) ---
 
