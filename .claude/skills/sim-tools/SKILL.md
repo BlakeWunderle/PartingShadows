@@ -120,6 +120,47 @@ These are aggregated by class name across all battles in a stage.
 
 ---
 
+## Compact Output (`--compact`)
+
+Reduces stdout to 1 line per PASS stage and 3-5 lines per FAIL stage, writing full verbose output (combo extremes, class breakdowns, spread metrics, diagnostics) to `user://sim_report.txt`. Dramatically reduces context window consumption during iterative balance sessions.
+
+### Usage
+
+```bash
+# Compact single progression
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --compact --story 1 --sims 50 --progression 0 2>&1 | grep -v "$NOISE"
+
+# Compact full validation
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --compact --story 1 --auto --all 2>&1 | grep -v "$NOISE"
+
+# Compact parallel
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --compact --story 1 --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
+```
+
+### Output
+
+PASS stages (1 line):
+```
+  CityStreetBattle: 84.7% (target 85%) PASS
+```
+
+FAIL stages (3-5 lines):
+```
+  WolfForestBattle: 71.2% (target 83%) TOO HARD
+    Weak: Tinker 58.3%, Wildling 62.1%
+    Core spread: 28.4% (CONCERNING)
+```
+
+Summary:
+```
+  Results: 20 PASS, 2 FAIL
+  Full report: C:/Users/blake/AppData/.../sim_report.txt
+```
+
+The text report at `user://sim_report.txt` contains the same verbose output that would normally go to stdout, including auto-diagnostics for FAIL stages.
+
+---
+
 ## Balance Snapshot Caching
 
 Simulation results are automatically cached based on MD5 hashes of all dependency files. When you re-run a stage without changing any code, the cached result is returned instantly.
