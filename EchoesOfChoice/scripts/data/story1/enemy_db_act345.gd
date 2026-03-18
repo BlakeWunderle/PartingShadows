@@ -44,7 +44,7 @@ static func create_royal_guard(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = _es(29, 35, 2, 3, lvl, 12)
 	f.speed = _es(28, 34, 2, 3, lvl, 12)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 15
-	f.abilities = [AbilityDB.shield_slam(), EAB.sword_strike(), EAB.defensive_formation()]
+	f.abilities = [EAB.bulwark_slam(), EAB.sword_strike(), EAB.defensive_formation()]
 	return f
 
 static func create_guard_sergeant(n: String, lvl: int = 12) -> FighterData:
@@ -57,7 +57,7 @@ static func create_guard_sergeant(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = _es(25, 29, 1, 2, lvl, 12)
 	f.speed = _es(30, 36, 2, 3, lvl, 12)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 12
-	f.abilities = [EAB.sword_strike(), AbilityDB.rally(), EAB.decisive_blow()]
+	f.abilities = [EAB.sword_strike(), EAB.battle_command(), EAB.decisive_blow()]
 	return f
 
 static func create_guard_archer(n: String, lvl: int = 12) -> FighterData:
@@ -173,7 +173,7 @@ static func create_dragon(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _fixed(40, 44); f.magic_defense = _fixed(22, 26)
 	f.speed = _fixed(35, 41)
 	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 16
-	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), AbilityDB.roar()]
+	f.abilities = [EAB.cataclysm_breath(), EAB.rending_talons(), EAB.draconic_terror()]
 	return f
 
 static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
@@ -250,5 +250,5 @@ static func create_stranger_final(n: String, lvl: int = 20) -> FighterData:
 	f.magic_defense = _es(54, 60, 3, 5, lvl, 20)
 	f.speed = _es(54, 61, 3, 5, lvl, 20)
 	f.crit_chance = 31; f.crit_damage = 5; f.dodge_chance = 19
-	f.abilities = [EAB.shadow_blast(), EAB.siphon(), EAB.dark_veil(), EAB.unmake(), AbilityDB.corruption()]
+	f.abilities = [EAB.shadow_blast(), EAB.siphon(), EAB.dark_veil(), EAB.unmake(), EAB.entropy()]
 	return f

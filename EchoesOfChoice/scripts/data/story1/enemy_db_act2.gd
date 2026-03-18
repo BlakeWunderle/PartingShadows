@@ -70,7 +70,7 @@ static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	f.magic_defense = _es(15, 19, 1, 2, lvl, 5)
 	f.speed = _es(17, 23, 1, 2, lvl, 5)
 	f.crit_chance = 8; f.crit_damage = 3; f.dodge_chance = 3
-	f.abilities = [AbilityDB.smash(), EAB.regenerate(), EAB.stomp()]
+	f.abilities = [EAB.boulder_fist(), EAB.regenerate(), EAB.stomp()]
 	return f
 
 static func create_harpy(n: String, lvl: int = 5) -> FighterData:
@@ -135,7 +135,7 @@ static func create_siren(n: String, lvl: int = 4) -> FighterData:
 	f.magic_defense = _es(16, 25, 2, 4, lvl, 4)
 	f.speed = _es(23, 31, 1, 2, lvl, 3)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 16
-	f.abilities = [EAB.siren_song(), AbilityDB.torrent()]
+	f.abilities = [EAB.siren_song(), EAB.drowning_wave()]
 	return f
 
 static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
@@ -187,7 +187,7 @@ static func create_fire_wyrmling(n: String) -> FighterData:
 	f.magic_attack = _fixed(27, 31); f.magic_defense = _fixed(20, 24)
 	f.speed = _fixed(29, 34)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 8
-	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), AbilityDB.roar()]
+	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), EAB.searing_hiss()]
 	return f
 
 static func create_frost_wyrmling(n: String) -> FighterData:
@@ -336,7 +336,7 @@ static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	f.magic_defense = _es(16, 22, 2, 4, lvl, 7)
 	f.speed = _es(32, 38, 2, 4, lvl, 7)
 	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 25
-	f.abilities = [AbilityDB.shadow_attack(), EAB.shadow_rot(), AbilityDB.frustrate()]
+	f.abilities = [EAB.umbral_lash(), EAB.shadow_rot(), EAB.dread_whisper()]
 	return f
 
 static func create_wraith(n: String, lvl: int = 7) -> FighterData:

@@ -56,7 +56,7 @@ static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 	f.magic_defense = _es(7, 10, 1, 2, lvl, 1)
 	f.speed = _es(16, 22, 1, 2, lvl, 1)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 3
-	f.abilities = [AbilityDB.haymaker(), AbilityDB.intimidate()]
+	f.abilities = [EAB.headbutt(), AbilityDB.intimidate()]
 	return f
 
 static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
@@ -126,7 +126,7 @@ static func create_hound(n: String, lvl: int = 2) -> FighterData:
 	f.magic_defense = _es(6, 9, 0, 2, lvl, 2)
 	f.speed = _es(26, 32, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
-	f.abilities = [EAB.bite(), EAB.tackle()]
+	f.abilities = [EAB.snap(), EAB.tackle()]
 	return f
 
 static func create_bandit(n: String, lvl: int = 3) -> FighterData:
@@ -139,5 +139,5 @@ static func create_bandit(n: String, lvl: int = 3) -> FighterData:
 	f.magic_defense = _es(9, 13, 1, 2, lvl, 3)
 	f.speed = _es(22, 28, 1, 3, lvl, 3)
 	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 8
-	f.abilities = [AbilityDB.slash(), EAB.ambush()]
+	f.abilities = [EAB.bushwhack(), EAB.ambush()]
 	return f

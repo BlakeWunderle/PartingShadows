@@ -405,3 +405,67 @@ static func corruption_fang() -> AbilityData:
 static func blighted_breath() -> AbilityData:
 	return _make("Blighted Breath", "A miasma of disease exhales from the stag.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0, 2)
 
+# --- Ruffian (replaces haymaker) ---
+
+static func headbutt() -> AbilityData:
+	return _make("Headbutt", "A brutal crack of skull against skull.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
+
+# --- Hound (replaces shared bite) ---
+
+static func snap() -> AbilityData:
+	return _make("Snap", "Jaws clamp shut with trained precision.", Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
+
+# --- Bandit (replaces slash) ---
+
+static func bushwhack() -> AbilityData:
+	return _make("Bushwhack", "A crude swing from the treeline.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
+
+# --- Troll (replaces smash) ---
+
+static func boulder_fist() -> AbilityData:
+	return _make("Boulder Fist", "A stone-hard fist crashes down.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
+
+# --- Siren (replaces torrent) ---
+
+static func drowning_wave() -> AbilityData:
+	return _make("Drowning Wave", "The sea rises at her command.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.0, 2)
+
+# --- Shade (replaces shadow_attack, frustrate) ---
+
+static func umbral_lash() -> AbilityData:
+	return _make("Umbral Lash", "A tendril of living shadow strikes.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 5, false, 0, 0.0, 3)
+
+static func dread_whisper() -> AbilityData:
+	return _make("Dread Whisper", "A voice from the void saps the will to fight.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0, 2)
+
+# --- Royal Guard (replaces shield_slam) ---
+
+static func bulwark_slam() -> AbilityData:
+	return _make("Bulwark Slam", "A heavy royal shield crashes forward.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
+
+# --- Guard Sergeant (replaces rally) ---
+
+static func battle_command() -> AbilityData:
+	return _make("Battle Command", "A barked order quickens allied movements.", Enums.StatType.SPEED, 5, 2, false, 3, true, 0, 0.0, 2)
+
+# --- Fire Wyrmling (replaces roar) ---
+
+static func searing_hiss() -> AbilityData:
+	return _make("Searing Hiss", "Superheated breath scorches the air and rattles nerves.", Enums.StatType.ATTACK, 3, 2, true, 2, false, 0, 0.0, 2)
+
+# --- Dragon (full kit, upgraded for late-game) ---
+
+static func cataclysm_breath() -> AbilityData:
+	return _make("Cataclysm Breath", "An ancient inferno engulfs everything in its path.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 5, false, 0, 0.0, 2)
+
+static func rending_talons() -> AbilityData:
+	return _make("Rending Talons", "Massive claws tear through armor like parchment.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
+
+static func draconic_terror() -> AbilityData:
+	return _make("Draconic Terror", "The dragon's presence alone crushes the will to fight.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0, 2)
+
+# --- Stranger Final (replaces corruption) ---
+
+static func entropy() -> AbilityData:
+	return _make("Entropy", "Reality frays at the Stranger's touch.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, false, 0, 0.0, 2)
+
