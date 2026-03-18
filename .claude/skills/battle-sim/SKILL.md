@@ -20,8 +20,11 @@ NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string
 # Quick iteration (any tier)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> 2>&1 | grep -v "$NOISE"
 
-# Final validation (use 600000ms timeout; --auto caps at 500 sims/combo)
+# Final validation -- sequential (use 600000ms timeout; --auto caps at 500 sims/combo)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
+
+# Final validation -- parallel (much faster, use --jobs to set worker count)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
 
 # Filter by tier (base, tier1, tier2)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --tier base --auto --all 2>&1 | grep -v "$NOISE"
@@ -156,6 +159,52 @@ Use `--story <n>` to target a specific story's stages:
 # All stories (default)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --all 2>&1 | grep -v "$NOISE"
 ```
+
+---
+
+## Parallel Simulator
+
+For full-story or all-story validation runs, use the parallel coordinator at `tools/battle_sim_parallel.gd`. It spawns multiple headless Godot worker processes, each handling a round-robin slice of stages, then merges results into a unified summary.
+
+**This machine has 24 physical cores / 32 logical threads.** Recommended `--jobs` values:
+
+| Scenario | Workers | Notes |
+|----------|---------|-------|
+| Quick parallel check | `--jobs 4` | ~3x speedup, low system load |
+| Standard validation | `--jobs 10` | Recommended default, good speed vs resources |
+| Fast full validation | `--jobs 16` | ~12x speedup, moderate load |
+| Maximum throughput | `--jobs 24` | Uses all physical cores |
+
+Using more workers than physical cores (e.g., 32) gives diminishing returns due to CPU contention. Stay at or below 24 for best performance.
+
+### Parallel Usage
+
+```bash
+# All stories, 8 workers (recommended default)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
+
+# Single story, parallel
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story 2 --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
+
+# Filter by tier, parallel
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --tier tier2 --auto --all --jobs 12 2>&1 | grep -v "$NOISE"
+
+# With JSON output
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --auto --all --jobs 10 --json sim_results.json 2>&1 | grep -v "$NOISE"
+```
+
+### Parallel Options
+
+| Flag | Description |
+|------|-------------|
+| `--jobs <n>` | Number of worker processes (default: CPU count, max 32) |
+| `--json <path>` | Write merged JSON report to file |
+| All other flags | Forwarded to workers: `--story`, `--tier`, `--sims`, `--sample`, `--auto`, `--all`, `--progression` |
+
+### When to Use Sequential vs Parallel
+
+- **Sequential** (`battle_simulator.gd`): Quick iteration on a single progression (`--progression <N>`), single battle by name, or when you need per-combo class breakdowns in the output.
+- **Parallel** (`battle_sim_parallel.gd`): Full-story validation (`--all`), multi-story runs, or any run touching 4+ stages. The parallel coordinator prints a unified summary table but not per-stage class breakdowns.
 
 ---
 
@@ -338,10 +387,14 @@ If all classes are within band -> **LOCK this progression** and move to the next
 After all progressions are locked at `--sims 50`, run a full validation pass:
 
 ```bash
+# Sequential (slower, includes per-stage class breakdowns)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story 1 --auto --all 2>&1 | grep -v "$NOISE"
+
+# Parallel (faster, summary table only)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story 1 --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
 ```
 
-This takes 2-5 minutes. Use a 600000ms timeout.
+Sequential takes 2-5 minutes; parallel with 8 workers takes under 1 minute. Use a 600000ms timeout.
 
 If any stage flips to TOO HARD / TOO EASY at full sample size, prefer small thematic adjustments (crit/dodge/speed/abilities) before touching HP. Re-validate **from that stage forward**.
 
@@ -741,4 +794,5 @@ Enemy factories: `scripts/data/story3/enemy_db_s3.gd` (Acts I-II), `enemy_db_s3_
 | `scripts/tools/simulation_runner.gd` | CLASS BREAKDOWN output, WEAK flags |
 | `scripts/tools/battle_stage_db.gd` | Target win rates per stage (story-aware) |
 | `scripts/tools/party_composer.gd` | All valid party compositions |
-| `tools/battle_simulator.gd` | CLI entry point (--story, --json flags) |
+| `tools/battle_simulator.gd` | CLI entry point (--story, --json, --worker flags) |
+| `tools/battle_sim_parallel.gd` | Parallel coordinator (--jobs, spawns workers) |

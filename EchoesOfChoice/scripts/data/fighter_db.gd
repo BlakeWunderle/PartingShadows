@@ -51,7 +51,7 @@ static func create_mage(fighter_name: String) -> FighterData:
 	f.magic_attack = randi_range(15, 19)
 	f.magic_defense = randi_range(14, 18)
 	f.speed = randi_range(17, 21)
-	f.crit_chance = 5
+	f.crit_chance = 8
 	f.crit_damage = 1
 	f.dodge_chance = 5
 	f.abilities = [AbilityDB.arcane_bolt(), AbilityDB.arcane_shield(), AbilityDB.fire_dart()]
@@ -119,7 +119,7 @@ static func create_wildling(fighter_name: String) -> FighterData:
 	f.speed = randi_range(22, 26)
 	f.crit_chance = 5
 	f.crit_damage = 1
-	f.dodge_chance = 5
+	f.dodge_chance = 8
 	f.abilities = [AbilityDB.thorn_whip(), AbilityDB.bark_skin(), AbilityDB.primal_swipe()]
 	f.upgrade_items = ["Herbs", "Totem", "BeastClaw"]
 	return f
