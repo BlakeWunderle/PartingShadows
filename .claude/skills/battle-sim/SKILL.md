@@ -27,6 +27,8 @@ NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
 ```
 
+**IMPORTANT: Never run two sim processes at the same time.** Each `battle_sim_parallel.gd` invocation spawns multiple Godot worker processes. Running two parallel sims simultaneously causes severe CPU contention (10x+ slower, unreliable results). Always wait for one sim to complete before launching the next. Use `run_in_background` only for a single sim at a time.
+
 ### Resuming a Previous Session
 
 1. Read the balance log. If it has an active pass, find the first non-LOCKED progression.
