@@ -151,7 +151,7 @@ static func create_thorn_dreamer(n: String, lvl: int = 2) -> FighterData:
 # Prog 3 enemies (shared DreamReturn+DreamNightmare)
 static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Nightmare Hound", lvl)
-	f.health = _es(113, 133, 4, 7, lvl, 4); f.max_health = f.health
+	f.health = _es(109, 129, 4, 7, lvl, 4); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 2, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(22, 27, 1, 3, lvl, 4)
 	f.physical_defense = _es(13, 16, 1, 2, lvl, 4)
@@ -165,11 +165,11 @@ static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 
 static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Dream Weaver", lvl)
-	f.health = _es(135, 160, 3, 6, lvl, 4); f.max_health = f.health
+	f.health = _es(130, 155, 3, 6, lvl, 4); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(10, 13, 0, 2, lvl, 4)
 	f.physical_defense = _es(12, 15, 1, 2, lvl, 4)
-	f.magic_attack = _es(21, 26, 1, 3, lvl, 4)
+	f.magic_attack = _es(20, 25, 1, 3, lvl, 4)
 	f.magic_defense = _es(14, 17, 1, 2, lvl, 4)
 	f.speed = _es(26, 31, 1, 2, lvl, 4)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
@@ -179,7 +179,7 @@ static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 
 static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Hollow Echo", lvl)
-	f.health = _es(108, 126, 3, 5, lvl, 4); f.max_health = f.health
+	f.health = _es(103, 121, 3, 5, lvl, 4); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(10, 13, 0, 2, lvl, 4)
 	f.physical_defense = _es(11, 14, 1, 2, lvl, 4)

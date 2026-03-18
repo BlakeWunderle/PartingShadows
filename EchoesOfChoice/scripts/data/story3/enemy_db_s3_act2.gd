@@ -85,7 +85,7 @@ static func create_drowned_reverie(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = _es(26, 30, 1, 3, lvl, 6)
 	f.magic_defense = _es(15, 18, 1, 2, lvl, 6)
 	f.speed = _es(27, 32, 1, 2, lvl, 6)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 8
+	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.memory_surge(), EAB.deep_pulse()]
 	return f
 
@@ -99,7 +99,7 @@ static func create_riptide_beast(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = _es(10, 13, 0, 2, lvl, 6)
 	f.magic_defense = _es(12, 15, 1, 2, lvl, 6)
 	f.speed = _es(32, 37, 1, 3, lvl, 6)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.riptide_slash(), EAB.swift_current()]
 	return f
 

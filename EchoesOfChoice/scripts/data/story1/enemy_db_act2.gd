@@ -82,7 +82,7 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = _es(9, 13, 0, 2, lvl, 5)
 	f.magic_defense = _es(14, 18, 1, 2, lvl, 5)
 	f.speed = _es(29, 35, 2, 3, lvl, 5)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.talon_rake(), EAB.shriek()]
 	return f
 
@@ -92,7 +92,7 @@ static func create_witch(n: String, lvl: int = 4) -> FighterData:
 	f.mana = _es(31, 47, 3, 6, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(16, 21, 1, 2, lvl, 4)
 	f.physical_defense = _es(10, 14, 1, 2, lvl, 4)
-	f.magic_attack = _es(30, 41, 3, 6, lvl, 4)
+	f.magic_attack = _es(28, 39, 3, 6, lvl, 4)
 	f.magic_defense = _es(16, 24, 2, 4, lvl, 4)
 	f.speed = _es(21, 29, 1, 2, lvl, 4)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 8
@@ -108,7 +108,7 @@ static func create_wisp(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = _es(25, 34, 3, 5, lvl, 4)
 	f.magic_defense = _es(12, 18, 1, 3, lvl, 4)
 	f.speed = _es(29, 39, 2, 3, lvl, 4)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 19
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.lure(), EAB.bewitch()]
 	return f
 
@@ -121,7 +121,7 @@ static func create_sprite(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = _es(13, 19, 1, 2, lvl, 4)
 	f.magic_defense = _es(12, 18, 1, 2, lvl, 4)
 	f.speed = _es(25, 36, 1, 3, lvl, 4)
-	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 19
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.thorn(), EAB.pollen()]
 	return f
 
@@ -131,10 +131,10 @@ static func create_siren(n: String, lvl: int = 4) -> FighterData:
 	f.mana = _es(20, 35, 2, 5, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(15, 22, 1, 3, lvl, 4)
 	f.physical_defense = _es(11, 18, 1, 3, lvl, 4)
-	f.magic_attack = _es(27, 37, 3, 6, lvl, 4)
+	f.magic_attack = _es(26, 36, 3, 6, lvl, 4)
 	f.magic_defense = _es(16, 25, 2, 4, lvl, 4)
 	f.speed = _es(23, 31, 1, 2, lvl, 3)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 16
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.siren_song(), EAB.drowning_wave()]
 	return f
 
@@ -147,7 +147,7 @@ static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = _es(17, 22, 1, 3, lvl, 4)
 	f.magic_defense = _es(13, 17, 1, 2, lvl, 4)
 	f.speed = _es(22, 28, 1, 3, lvl, 4)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 13
+	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.trident_thrust(), EAB.tidal_splash()]
 	return f
 
@@ -181,23 +181,23 @@ static func create_pirate(n: String, lvl: int = 4) -> FighterData:
 
 static func create_fire_wyrmling(n: String) -> FighterData:
 	var f := _base(n, "Fire Wyrmling", 6)
-	f.health = _fixed(144, 159); f.max_health = f.health
+	f.health = _fixed(132, 147); f.max_health = f.health
 	f.mana = _fixed(26, 30); f.max_mana = f.mana
 	f.physical_attack = _fixed(15, 19); f.physical_defense = _fixed(15, 19)
 	f.magic_attack = _fixed(27, 31); f.magic_defense = _fixed(20, 24)
 	f.speed = _fixed(29, 34)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), EAB.searing_hiss()]
 	return f
 
 static func create_frost_wyrmling(n: String) -> FighterData:
 	var f := _base(n, "Frost Wyrmling", 6)
-	f.health = _fixed(144, 159); f.max_health = f.health
+	f.health = _fixed(132, 147); f.max_health = f.health
 	f.mana = _fixed(21, 25); f.max_mana = f.mana
 	f.physical_attack = _fixed(25, 29); f.physical_defense = _fixed(19, 23)
 	f.magic_attack = _fixed(15, 19); f.magic_defense = _fixed(16, 20)
 	f.speed = _fixed(29, 34)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.claw(), EAB.tail_strike(), EAB.frost_chains()]
 	return f
 
@@ -208,7 +208,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = _fixed(23, 27); f.physical_defense = _fixed(21, 25)
 	f.magic_attack = _fixed(24, 28); f.magic_defense = _fixed(21, 25)
 	f.speed = _fixed(32, 37)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 13
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	return f
 
@@ -217,9 +217,9 @@ static func create_harlequin(n: String) -> FighterData:
 	f.health = _fixed(141, 157); f.max_health = f.health
 	f.mana = _fixed(34, 38); f.max_mana = f.mana
 	f.physical_attack = _fixed(22, 26); f.physical_defense = _fixed(19, 23)
-	f.magic_attack = _fixed(34, 38); f.magic_defense = _fixed(22, 26)
+	f.magic_attack = _fixed(32, 36); f.magic_defense = _fixed(22, 26)
 	f.speed = _fixed(31, 36)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	return f
 
@@ -228,9 +228,9 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.health = _fixed(103, 115); f.max_health = f.health
 	f.mana = _fixed(35, 39); f.max_mana = f.mana
 	f.physical_attack = _fixed(22, 27); f.physical_defense = _fixed(21, 25)
-	f.magic_attack = _fixed(33, 37); f.magic_defense = _fixed(19, 23)
+	f.magic_attack = _fixed(31, 35); f.magic_defense = _fixed(19, 23)
 	f.speed = _fixed(36, 41)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
 	return f
 
@@ -241,7 +241,7 @@ static func create_android(n: String) -> FighterData:
 	f.physical_attack = _fixed(23, 27); f.physical_defense = _fixed(21, 25)
 	f.magic_attack = _fixed(24, 28); f.magic_defense = _fixed(23, 27)
 	f.speed = _fixed(32, 37)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.circuit_burst(), EAB.firewall(), EAB.overdrive()]
 	return f
 
@@ -309,7 +309,7 @@ static func create_zombie(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = _es(24, 31, 3, 5, lvl, 6)
 	f.magic_defense = _es(22, 32, 2, 4, lvl, 6)
 	f.speed = _es(24, 34, 1, 2, lvl, 6)
-	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 8
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.rend(), EAB.putrid_touch(), EAB.devour()]
 	return f
 
@@ -322,7 +322,7 @@ static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = _es(12, 17, 1, 2, lvl, 6)
 	f.magic_defense = _es(15, 19, 1, 2, lvl, 6)
 	f.speed = _es(26, 32, 2, 3, lvl, 6)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 13
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.claw(), EAB.paralyze(), EAB.devour()]
 	return f
 
@@ -332,10 +332,10 @@ static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	f.mana = _es(23, 32, 2, 5, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(21, 27, 1, 3, lvl, 7)
 	f.physical_defense = _es(14, 18, 1, 2, lvl, 7)
-	f.magic_attack = _es(33, 40, 3, 5, lvl, 7)
+	f.magic_attack = _es(31, 38, 3, 5, lvl, 7)
 	f.magic_defense = _es(16, 22, 2, 4, lvl, 7)
 	f.speed = _es(32, 38, 2, 4, lvl, 7)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 25
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.umbral_lash(), EAB.shadow_rot(), EAB.dread_whisper()]
 	return f
 
@@ -345,9 +345,9 @@ static func create_wraith(n: String, lvl: int = 7) -> FighterData:
 	f.mana = _es(18, 22, 2, 4, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(21, 26, 0, 2, lvl, 7)
 	f.physical_defense = _es(11, 15, 1, 2, lvl, 7)
-	f.magic_attack = _es(32, 41, 3, 5, lvl, 7)
+	f.magic_attack = _es(30, 39, 3, 5, lvl, 7)
 	f.magic_defense = _es(16, 22, 2, 3, lvl, 7)
 	f.speed = _es(30, 36, 2, 4, lvl, 7)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.soul_drain(), EAB.death_wither(), EAB.terrify()]
 	return f

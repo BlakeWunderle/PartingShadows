@@ -31,7 +31,7 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Driftwood Bandit", lvl)
-	f.health = _es(145, 169, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(150, 175, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(35, 40, 2, 3, lvl, 5)
 	f.physical_defense = _es(17, 21, 1, 2, lvl, 5)
@@ -59,14 +59,14 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 
 static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Tide Warden", lvl)
-	f.health = _es(183, 208, 5, 8, lvl, 5); f.max_health = f.health
+	f.health = _es(190, 215, 5, 8, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(31, 36, 2, 3, lvl, 5)
 	f.physical_defense = _es(25, 30, 1, 3, lvl, 5)
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = _es(17, 21, 1, 2, lvl, 5)
 	f.speed = _es(20, 26, 1, 2, lvl, 5)
-	f.crit_chance = 5; f.crit_damage = 2; f.dodge_chance = 3
+	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 4
 	f.abilities = [EAB.harpoon_thrust(), EAB.brace_formation()]
 	return f
 
