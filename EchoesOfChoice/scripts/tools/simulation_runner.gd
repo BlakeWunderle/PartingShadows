@@ -302,3 +302,97 @@ static func print_summary(results: Array) -> void:
 	print("\n  Passed: %d/%d" % [pass_count, results.size()])
 	print("  Average win rate: %.1f%%" % [total_wr / results.size() * 100])
 	print("  Tolerance: +/- %d%%" % int(TOLERANCE * 100))
+
+
+# =============================================================================
+# Compact output (minimal context footprint)
+# =============================================================================
+
+## Print a single stage result in compact form: 1 line for PASS, 3-5 for FAIL.
+static func print_stage_compact(result: Dictionary) -> void:
+	var status := get_status(result)
+	var line := "  %s: %.1f%% (target %d%%) %s" % [
+		result.stage_name, result.overall_win_rate * 100,
+		int(result.target_win_rate * 100), status]
+	print(line)
+	if status == "PASS":
+		return
+	# Show weak classes (below band floor = target - 15%).
+	var breakdown := get_class_breakdown(result)
+	var band_floor: float = result.target_win_rate - 0.15
+	var weak: PackedStringArray = []
+	for cname: String in breakdown:
+		if breakdown[cname].win_rate < band_floor:
+			weak.append("%s %.1f%%" % [cname, breakdown[cname].win_rate * 100])
+	if not weak.is_empty():
+		print("    Weak: %s" % ", ".join(weak))
+	var spread := get_spread(result)
+	if spread.verdict != "EXCELLENT" and spread.verdict != "ACCEPTABLE":
+		print("    Core spread: %.1f%% (%s)" % [
+			spread.core_spread * 100, spread.verdict])
+
+
+## Print a summary of all results in compact form.
+static func print_summary_compact(results: Array) -> void:
+	var pass_count := 0
+	var fail_count := 0
+	for r: Dictionary in results:
+		if get_status(r) == "PASS":
+			pass_count += 1
+		else:
+			fail_count += 1
+	print("\n  Results: %d PASS, %d FAIL" % [pass_count, fail_count])
+
+
+## Build verbose text lines for a single stage result (for file-based report).
+static func format_stage_verbose(result: Dictionary) -> PackedStringArray:
+	var lines := PackedStringArray()
+	var combos: Array = result.combo_results
+	lines.append("  Combos tested: %d" % combos.size())
+	lines.append("  Time: %dms" % result.elapsed_ms)
+	lines.append("  Overall win rate: %.1f%%" % [result.overall_win_rate * 100])
+	lines.append("  Target: %d%% (+/- %d%%)" % [
+		int(result.target_win_rate * 100), int(TOLERANCE * 100)])
+
+	# Combo extremes.
+	var extremes := get_combo_extremes(result)
+	if not extremes.worst.is_empty():
+		var spread := get_spread(result)
+		lines.append("")
+		lines.append("  WEAKEST COMBOS:")
+		for c: Dictionary in extremes.worst:
+			lines.append("    %.1f%%  %s" % [c.win_rate * 100, c.description])
+		lines.append("")
+		lines.append("  STRONGEST COMBOS:")
+		for c: Dictionary in extremes.best:
+			lines.append("    %.1f%%  %s" % [c.win_rate * 100, c.description])
+		lines.append("")
+		lines.append("  FULL SPREAD (min-max): %.1f%%" % [spread.full_spread * 100])
+		lines.append("  CORE SPREAD (p10-p90): %.1f%% (%s)  [p10=%.1f%%, p90=%.1f%%]" % [
+			spread.core_spread * 100, spread.verdict,
+			spread.p10 * 100, spread.p90 * 100])
+
+	# Class breakdown.
+	var breakdown := get_class_breakdown(result)
+	var entries := []
+	for cname: String in breakdown:
+		entries.append({
+			"class": cname,
+			"win_rate": breakdown[cname].win_rate,
+			"count": breakdown[cname].combo_count,
+		})
+	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return a.win_rate > b.win_rate)
+	lines.append("")
+	lines.append("  CLASS BREAKDOWN:")
+	lines.append("    %-22s %10s %8s  %s" % ["Class", "Win Rate", "Combos", "Note"])
+	lines.append("    " + "-".repeat(54))
+	var warn_threshold: float = result.target_win_rate * 0.60
+	for e: Dictionary in entries:
+		var note: String = "** WEAK **" if e.win_rate < warn_threshold else ""
+		lines.append("    %-22s %9.1f%% %8d  %s" % [
+			e["class"], e.win_rate * 100, e.count, note])
+
+	lines.append("")
+	lines.append("  STATUS: %s" % get_status(result))
+	return lines

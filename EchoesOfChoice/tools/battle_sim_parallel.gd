@@ -17,6 +17,7 @@ const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 var _json_path := ""
 var _progressive := false
 var _from_prog := 0
+var _compact := false
 
 
 func _init() -> void:
@@ -38,6 +39,9 @@ func _init() -> void:
 					i += 1
 			"--progressive":
 				_progressive = true
+			"--compact":
+				_compact = true
+				passthrough.append("--compact")
 			"--from":
 				if i + 1 < args.size():
 					_from_prog = int(args[i + 1])
@@ -83,35 +87,49 @@ func _init() -> void:
 
 	print("  Workers finished in %.1fs\n" % elapsed)
 
-	# Print unified summary.
-	print("=" .repeat(80))
-	print("  PARALLEL SIMULATION SUMMARY (%d workers, %d stages)" % [
-		jobs, all_stages.size()])
-	print("=" .repeat(80))
-	print("  %-25s %10s %10s %14s %12s" % [
-		"Battle", "Win Rate", "Target", "Range", "Status"])
-	print("  " + "-".repeat(71))
-
-	var total_wr := 0.0
 	var pass_count := 0
-	var total_ms := 0
+	var fail_count := 0
 	for s: Dictionary in all_stages:
-		var low: float = s.target_win_rate - 0.03
-		var high: float = s.target_win_rate + 0.03
-		var range_str := "%d%% - %d%%" % [int(low * 100), int(high * 100)]
-		print("  %-25s %9.1f%% %9d%% %14s %12s" % [
-			s.stage_name, s.overall_win_rate * 100,
-			int(s.target_win_rate * 100), range_str, s.status])
-		total_wr += s.overall_win_rate
 		if s.status == "PASS":
 			pass_count += 1
-		total_ms += int(s.get("elapsed_ms", 0))
+		else:
+			fail_count += 1
 
-	print("\n  Passed: %d/%d" % [pass_count, all_stages.size()])
-	print("  Average win rate: %.1f%%" % [total_wr / all_stages.size() * 100])
-	print("  Worker sim time: %.1fs (sum of all workers)" % [total_ms / 1000.0])
-	print("  Wall clock time: %.1fs" % elapsed)
-	print("  Speedup: %.1fx" % [total_ms / 1000.0 / maxf(elapsed, 0.001)])
+	if _compact:
+		# Compact: one line per stage, only FAIL stages get detail.
+		for s: Dictionary in all_stages:
+			var line := "  %s: %.1f%% (target %d%%) %s" % [
+				s.stage_name, s.overall_win_rate * 100,
+				int(s.target_win_rate * 100), s.status]
+			print(line)
+		print("\n  Results: %d PASS, %d FAIL" % [pass_count, fail_count])
+	else:
+		# Verbose summary table.
+		print("=" .repeat(80))
+		print("  PARALLEL SIMULATION SUMMARY (%d workers, %d stages)" % [
+			jobs, all_stages.size()])
+		print("=" .repeat(80))
+		print("  %-25s %10s %10s %14s %12s" % [
+			"Battle", "Win Rate", "Target", "Range", "Status"])
+		print("  " + "-".repeat(71))
+
+		var total_wr := 0.0
+		var total_ms := 0
+		for s: Dictionary in all_stages:
+			var low: float = s.target_win_rate - 0.03
+			var high: float = s.target_win_rate + 0.03
+			var range_str := "%d%% - %d%%" % [int(low * 100), int(high * 100)]
+			print("  %-25s %9.1f%% %9d%% %14s %12s" % [
+				s.stage_name, s.overall_win_rate * 100,
+				int(s.target_win_rate * 100), range_str, s.status])
+			total_wr += s.overall_win_rate
+			total_ms += int(s.get("elapsed_ms", 0))
+
+		print("\n  Passed: %d/%d" % [pass_count, all_stages.size()])
+		print("  Average win rate: %.1f%%" % [total_wr / all_stages.size() * 100])
+		print("  Worker sim time: %.1fs (sum of all workers)" % [total_ms / 1000.0])
+		print("  Wall clock time: %.1fs" % elapsed)
+		print("  Speedup: %.1fx" % [total_ms / 1000.0 / maxf(elapsed, 0.001)])
 
 	_write_json(all_stages)
 	quit()

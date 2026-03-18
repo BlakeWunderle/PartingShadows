@@ -14,6 +14,7 @@ const SD := preload("res://scripts/tools/sim_diagnostics.gd")
 var _json_path := ""
 var _use_cache := true
 var _diagnostics := false
+var _compact := false
 var _all_results: Array = []
 var _all_stages: Array = []
 
@@ -85,6 +86,8 @@ func _init() -> void:
 					i += 1
 			"--diagnostics":
 				_diagnostics = true
+			"--compact":
+				_compact = true
 			"--no-cache":
 				_use_cache = false
 			"--clear-cache":
@@ -205,18 +208,24 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 			sims_per_combo, sample_size, result, stage)
 
 	if not quiet:
-		SR.print_summary([result])
-		SR.print_combo_extremes(result)
-		SR.print_class_breakdown(result)
-		if _diagnostics:
-			var diags := SD.analyze(result, stage)
-			SD.print_diagnostics(diags, stage.name)
-		print("\n  Time: %.1fs" % elapsed)
+		if _compact:
+			SR.print_stage_compact(result)
+			SR.print_summary_compact([result])
+			SRep.write_text_report("user://sim_report.txt",
+				[result], [stage])
+		else:
+			SR.print_summary([result])
+			SR.print_combo_extremes(result)
+			SR.print_class_breakdown(result)
+			if _diagnostics:
+				var diags := SD.analyze(result, stage)
+				SD.print_diagnostics(diags, stage.name)
+			print("\n  Time: %.1fs" % elapsed)
 
 
 func _run_stages(stages: Array, sims_per_combo: int,
 		auto_sims: bool, sample_size: int, quiet: bool = false) -> void:
-	if not quiet:
+	if not quiet and not _compact:
 		for stage: Dictionary in stages:
 			var parties := SR._get_parties(stage)
 			var count: int = mini(sample_size, parties.size()) if sample_size > 0 else parties.size()
@@ -231,7 +240,7 @@ func _run_stages(stages: Array, sims_per_combo: int,
 	var sw := Time.get_ticks_msec()
 
 	for stage: Dictionary in stages:
-		if not quiet:
+		if not quiet and not _compact:
 			print("\n" + "=".repeat(60))
 			print("  SIMULATING: %s" % stage.name)
 			print("=".repeat(60))
@@ -249,7 +258,7 @@ func _run_stages(stages: Array, sims_per_combo: int,
 		var result: Dictionary
 		if not cached.is_empty():
 			result = cached
-			if not quiet:
+			if not quiet and not _compact:
 				print("  (cached: %.1f%%, %s)" % [
 					result.overall_win_rate * 100, SR.get_status(result)])
 		else:
@@ -257,26 +266,31 @@ func _run_stages(stages: Array, sims_per_combo: int,
 			if _use_cache:
 				SC.store(stage.name, stage.get("story", 1),
 					sims, sample_size, result, stage)
-			if not quiet:
+			if not quiet and not _compact:
 				SR.print_stage_result(result)
+		if not quiet and _compact:
+			SR.print_stage_compact(result)
 		results.append(result)
 		_all_results.append(result)
 		_all_stages.append(stage)
 
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
 	if not quiet:
-		SR.print_summary(results)
-
-		for idx in results.size():
-			var r: Dictionary = results[idx]
-			print("\n  --- %s ---" % r.stage_name)
-			SR.print_combo_extremes(r)
-			SR.print_class_breakdown(r)
-			if _diagnostics:
-				var diags := SD.analyze(r, stages[idx])
-				SD.print_diagnostics(diags, r.stage_name)
-
-		print("\n  Total time: %.1fs" % elapsed)
+		if _compact:
+			SR.print_summary_compact(results)
+			SRep.write_text_report("user://sim_report.txt",
+				results, stages)
+		else:
+			SR.print_summary(results)
+			for idx in results.size():
+				var r: Dictionary = results[idx]
+				print("\n  --- %s ---" % r.stage_name)
+				SR.print_combo_extremes(r)
+				SR.print_class_breakdown(r)
+				if _diagnostics:
+					var diags := SD.analyze(r, stages[idx])
+					SD.print_diagnostics(diags, r.stage_name)
+			print("\n  Total time: %.1fs" % elapsed)
 
 
 func _write_json_report() -> void:
@@ -310,6 +324,7 @@ func _print_help() -> void:
 	print("  --all                Run all battles")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
+	print("  --compact            Minimal output (1 line/PASS, details to file)")
 	print("  --diagnostics        Show detailed analysis of WEAK classes")
 	print("  --no-cache           Skip cache lookups, force re-simulation")
 	print("  --clear-cache        Delete cached results and exit")
