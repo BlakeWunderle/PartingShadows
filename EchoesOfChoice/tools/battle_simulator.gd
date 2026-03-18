@@ -26,6 +26,7 @@ func _init() -> void:
 	var sample_size := 0
 	var stage_name := ""
 	var story_filter := 0
+	var tier_filter := ""
 
 	var i := 0
 	while i < args.size():
@@ -51,6 +52,10 @@ func _init() -> void:
 				if i + 1 < args.size():
 					story_filter = int(args[i + 1])
 					i += 1
+			"--tier":
+				if i + 1 < args.size():
+					tier_filter = args[i + 1]
+					i += 1
 			"--json":
 				if i + 1 < args.size():
 					_json_path = args[i + 1]
@@ -67,6 +72,10 @@ func _init() -> void:
 	if story_filter > 0:
 		stages = stages.filter(
 			func(s: Dictionary) -> bool: return s.story == story_filter)
+
+	if tier_filter != "":
+		stages = stages.filter(
+			func(s: Dictionary) -> bool: return s.tier == tier_filter)
 
 	if show_list:
 		_print_stage_list(stages)
@@ -239,14 +248,15 @@ func _print_help() -> void:
 	print("  --sample <n>         Use stratified sample of n party combos")
 	print("  --progression <n>    Run all battles in a progression stage")
 	print("  --story <n>          Filter to story 1, 2, or 3")
+	print("  --tier <t>           Filter to tier (base, tier1, tier2)")
 	print("  --all                Run all battles")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --list               List available battle stages")
 	print("  --help               Show this help\n")
-	print("Auto mode sims by tier:")
-	print("  Base (56 combos)      -> 3,572 sims/combo = 200k battles")
+	print("Auto mode sims by tier (capped at 500/combo):")
+	print("  Base (56 combos)      ->   500 sims/combo =  28k battles")
 	print("  Tier 1 (~816 combos)  ->   246 sims/combo = 200k battles")
-	print("  Tier 2 (~8436 combos) ->    24 sims/combo = 202k battles\n")
+	print("  Tier 2 (~8436 combos) ->    40 sims/combo = 337k battles\n")
 	print("Examples:")
 	print("  ... -- CityStreetBattle")
 	print("  ... -- --sims 500 WolfForestBattle")

@@ -56,6 +56,7 @@ All paths below are relative to `EchoesOfChoice/`.
 - `enemy_db_s3_pathc.gd` -- Path C enemies
 - `enemy_ability_db_s3.gd` -- Story 3 enemy ability definitions
 - `enemy_ability_db_s3_act2.gd` -- Act II expansion enemy abilities
+- `enemy_ability_db_s3_pathb.gd` -- Path B enemy abilities
 - `enemy_ability_db_s3_pathc.gd` -- Path C enemy abilities
 
 ### Autoload (`scripts/autoload/`)

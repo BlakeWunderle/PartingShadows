@@ -255,7 +255,7 @@ static func memory_fog() -> AbilityData:
 # --- Drowned Sailor ---
 
 static func spectral_cutlass() -> AbilityData:
-	return _make("Spectral Cutlass", "A ghostly blade, still sharp despite centuries beneath the waves.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Spectral Cutlass", "A ghostly blade, still sharp despite centuries beneath the waves.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func waterlogged_grasp() -> AbilityData:
 	return _make("Waterlogged Grasp", "Cold, dead hands clamp down. Water fills the lungs where there should be air.", Enums.StatType.HEALTH, 5, 3, true, 4, false, 3, 0.0, 3)
@@ -263,7 +263,7 @@ static func waterlogged_grasp() -> AbilityData:
 # --- Depth Horror ---
 
 static func tentacle_crush() -> AbilityData:
-	return _make("Tentacle Crush", "Barbed appendages coil around flesh and squeeze until bones creak.", Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.2, 2)
+	return _make("Tentacle Crush", "Barbed appendages coil around flesh and squeeze until bones creak.", Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.2, 2)
 
 static func abyssal_terror() -> AbilityData:
 	return _make("Abyssal Terror", "The full horror of the deep reveals itself. All courage drains away.", Enums.StatType.DEFENSE, 5, 2, true, 5, true, 0, 0.0, 3)
@@ -362,15 +362,15 @@ static func forgetting_touch() -> AbilityData:
 # --- Fading Wisp (P9 variant) ---
 
 static func flicker_bolt() -> AbilityData:
-	return _make("Flicker Bolt", "A stuttering lance of dying light strikes with erratic force.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Flicker Bolt", "A stuttering lance of dying light strikes with erratic force.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func dim_aura() -> AbilityData:
-	return _make("Dim Aura", "The fading light seeps into magical wards and unravels them from within.", Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 4, true, 0, 0.0, 3)
+	return _make("Dim Aura", "The fading light seeps into magical wards and unravels them from within.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0, 3)
 
 # --- Dim Guardian (P9 variant) ---
 
 static func fading_blow() -> AbilityData:
-	return _make("Fading Blow", "A heavy fist strikes with diminished but still dangerous force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Fading Blow", "A heavy fist strikes with diminished but still dangerous force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func waning_ward() -> AbilityData:
 	return _make("Waning Ward", "A protective barrier flickers to life, weaker than it once was but still standing.", Enums.StatType.DEFENSE, 4, 2, false, 4, true, 0, 0.0, 3)
@@ -378,7 +378,7 @@ static func waning_ward() -> AbilityData:
 # --- Ward Construct (P12 GT variant) ---
 
 static func reinforced_strike() -> AbilityData:
-	return _make("Reinforced Strike", "Stone fists reinforced with crystallized wards crash down.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Reinforced Strike", "Stone fists reinforced with crystallized wards crash down.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0, 2)
 
 static func warding_presence() -> AbilityData:
 	return _make("Warding Presence", "The construct projects an immovable aura. All hostility redirects toward its bulk.", Enums.StatType.TAUNT, 1, 2, false, 3, false, 0, 0.0, 3)
@@ -386,23 +386,23 @@ static func warding_presence() -> AbilityData:
 # --- Null Phantom (P12 GT variant) ---
 
 static func null_lance() -> AbilityData:
-	return _make("Null Lance", "A beam of absolute nothing punches through matter and memory alike.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Null Lance", "A beam of absolute nothing punches through matter and memory alike.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
 
 static func nullification() -> AbilityData:
-	return _make("Nullification", "Everything the target knows about fighting simply ceases to exist.", Enums.StatType.ATTACK, 5, 2, true, 4, false, 0, 0.0, 2)
+	return _make("Nullification", "Everything the target knows about fighting simply ceases to exist.", Enums.StatType.ATTACK, 6, 2, true, 4, false, 0, 0.0, 2)
 
 # --- Threshold Echo (P12 GT variant) ---
 
 static func liminal_strike() -> AbilityData:
-	return _make("Liminal Strike", "The blow lands in two worlds at once, physical and ethereal.", Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Liminal Strike", "The blow lands in two worlds at once, physical and ethereal.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0, 2)
 
 static func threshold_bind() -> AbilityData:
-	return _make("Threshold Bind", "Crossing the boundary leaves the body sluggish, caught between here and there.", Enums.StatType.SPEED, 5, 2, true, 4, false, 0, 0.0, 2)
+	return _make("Threshold Bind", "Crossing the boundary leaves the body sluggish, caught between here and there.", Enums.StatType.SPEED, 6, 2, true, 4, false, 0, 0.0, 2)
 
 # --- Archive Keeper (P12 FA variant) ---
 
 static func archive_slam() -> AbilityData:
-	return _make("Archive Slam", "Stone shelves topple forward, driven by the keeper's immense weight.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Archive Slam", "Stone shelves topple forward, driven by the keeper's immense weight.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0, 2)
 
 static func guardian_oath() -> AbilityData:
 	return _make("Guardian Oath", "The keeper steps forward, its bulk filling the passage. Nothing gets past.", Enums.StatType.TAUNT, 1, 2, false, 3, false, 0, 0.0, 3)
@@ -410,26 +410,26 @@ static func guardian_oath() -> AbilityData:
 # --- Silent Archivist (P12 FA variant) ---
 
 static func archived_spell() -> AbilityData:
-	return _make("Archived Spell", "Pages riffle open and words of power leap from the text in cold, precise order.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0, 2)
+	return _make("Archived Spell", "Pages riffle open and words of power leap from the text in cold, precise order.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
 
 static func silence() -> AbilityData:
-	return _make("Silence", "A finger to stone lips. The target's strength drains into quiet obedience.", Enums.StatType.ATTACK, 5, 2, true, 4, false, 0, 0.0, 2)
+	return _make("Silence", "A finger to stone lips. The target's strength drains into quiet obedience.", Enums.StatType.ATTACK, 6, 2, true, 4, false, 0, 0.0, 2)
 
 # --- Lost Record (P12 FA variant) ---
 
 static func fragmented_blast() -> AbilityData:
-	return _make("Fragmented Blast", "Broken words and half-formed spells hurl outward in a jagged spray.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Fragmented Blast", "Broken words and half-formed spells hurl outward in a jagged spray.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0, 2)
 
 static func corrupted_text() -> AbilityData:
-	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 6, 3, true, 4, false, 3, 0.0, 3)
+	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 8, 3, true, 4, false, 4, 0.0, 3)
 
 # --- Faded Page (P12 FA variant) ---
 
 static func binding_press() -> AbilityData:
-	return _make("Binding Press", "Pages snap shut with crushing force, edges sharp enough to draw blood.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Binding Press", "Pages snap shut with crushing force, edges sharp enough to draw blood.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0, 2)
 
 static func eroding_script() -> AbilityData:
-	return _make("Eroding Script", "Faded words crawl across the target's skin, dissolving wards and armor alike.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0, 2)
+	return _make("Eroding Script", "Faded words crawl across the target's skin, dissolving wards and armor alike.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0, 2)
 
 
 # =============================================================================

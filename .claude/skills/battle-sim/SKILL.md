@@ -20,8 +20,11 @@ NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string
 # Quick iteration (any tier)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> 2>&1 | grep -v "$NOISE"
 
-# Final validation (use 600000ms timeout)
+# Final validation (use 600000ms timeout; --auto caps at 500 sims/combo)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
+
+# Filter by tier (base, tier1, tier2)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --tier base --auto --all 2>&1 | grep -v "$NOISE"
 ```
 
 ### Resuming a Previous Session

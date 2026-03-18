@@ -22,12 +22,12 @@ static func create_squire(fighter_name: String) -> FighterData:
 	f.class_id = "Squire"
 	f.is_user_controlled = true
 	f.level = 1
-	f.health = randi_range(41, 49); f.max_health = f.health
+	f.health = randi_range(44, 50); f.max_health = f.health
 	f.mana = randi_range(4, 8); f.max_mana = f.mana
-	f.physical_attack = randi_range(13, 17)
-	f.physical_defense = randi_range(10, 13)
-	f.magic_attack = randi_range(7, 9)
-	f.magic_defense = randi_range(10, 14)
+	f.physical_attack = randi_range(14, 18)
+	f.physical_defense = randi_range(12, 15)
+	f.magic_attack = randi_range(6, 9)
+	f.magic_defense = randi_range(8, 12)
 	f.speed = randi_range(20, 24)
 	f.crit_chance = 10
 	f.crit_damage = 1
@@ -44,13 +44,13 @@ static func create_mage(fighter_name: String) -> FighterData:
 	f.class_id = "Mage"
 	f.is_user_controlled = true
 	f.level = 1
-	f.health = randi_range(45, 51); f.max_health = f.health
-	f.mana = randi_range(8, 12); f.max_mana = f.mana
-	f.physical_attack = randi_range(10, 16)
-	f.physical_defense = randi_range(10, 14)
-	f.magic_attack = randi_range(10, 13)
-	f.magic_defense = randi_range(15, 19)
-	f.speed = randi_range(18, 22)
+	f.health = randi_range(38, 44); f.max_health = f.health
+	f.mana = randi_range(10, 14); f.max_mana = f.mana
+	f.physical_attack = randi_range(7, 10)
+	f.physical_defense = randi_range(7, 10)
+	f.magic_attack = randi_range(15, 19)
+	f.magic_defense = randi_range(14, 18)
+	f.speed = randi_range(17, 21)
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
@@ -66,13 +66,13 @@ static func create_entertainer(fighter_name: String) -> FighterData:
 	f.class_id = "Entertainer"
 	f.is_user_controlled = true
 	f.level = 1
-	f.health = randi_range(45, 51); f.max_health = f.health
-	f.mana = randi_range(8, 12); f.max_mana = f.mana
-	f.physical_attack = randi_range(10, 16)
-	f.physical_defense = randi_range(10, 14)
-	f.magic_attack = randi_range(12, 19)
-	f.magic_defense = randi_range(15, 19)
-	f.speed = randi_range(16, 20)
+	f.health = randi_range(44, 50); f.max_health = f.health
+	f.mana = randi_range(7, 11); f.max_mana = f.mana
+	f.physical_attack = randi_range(11, 14)
+	f.physical_defense = randi_range(10, 13)
+	f.magic_attack = randi_range(11, 14)
+	f.magic_defense = randi_range(11, 14)
+	f.speed = randi_range(18, 22)
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
@@ -91,9 +91,9 @@ static func create_scholar(fighter_name: String) -> FighterData:
 	f.health = randi_range(40, 46); f.max_health = f.health
 	f.mana = randi_range(8, 12); f.max_mana = f.mana
 	f.physical_attack = randi_range(9, 12)
-	f.physical_defense = randi_range(10, 12)
-	f.magic_attack = randi_range(15, 19)
-	f.magic_defense = randi_range(15, 19)
+	f.physical_defense = randi_range(10, 13)
+	f.magic_attack = randi_range(13, 17)
+	f.magic_defense = randi_range(13, 17)
 	f.speed = randi_range(17, 21)
 	f.crit_chance = 5
 	f.crit_damage = 1
@@ -110,12 +110,12 @@ static func create_wildling(fighter_name: String) -> FighterData:
 	f.class_id = "Wildling"
 	f.is_user_controlled = true
 	f.level = 1
-	f.health = randi_range(41, 49); f.max_health = f.health
-	f.mana = randi_range(6, 9); f.max_mana = f.mana
-	f.physical_attack = randi_range(10, 13)
+	f.health = randi_range(42, 48); f.max_health = f.health
+	f.mana = randi_range(6, 10); f.max_mana = f.mana
+	f.physical_attack = randi_range(11, 15)
 	f.physical_defense = randi_range(10, 13)
-	f.magic_attack = randi_range(12, 15)
-	f.magic_defense = randi_range(12, 15)
+	f.magic_attack = randi_range(11, 15)
+	f.magic_defense = randi_range(10, 13)
 	f.speed = randi_range(22, 26)
 	f.crit_chance = 5
 	f.crit_damage = 1

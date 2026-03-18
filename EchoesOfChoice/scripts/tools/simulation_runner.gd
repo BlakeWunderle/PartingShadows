@@ -10,6 +10,7 @@ const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 
 const MIN_TOTAL_BATTLES := 200_000
 const MIN_SIMS_PER_COMBO := 40
+const MAX_SIMS_PER_COMBO := 500
 const TOLERANCE := 0.03
 const MAX_TICKS := 500
 
@@ -26,7 +27,8 @@ static func _get_sim_engine() -> BattleEngine:
 static func calculate_sims_for_party_count(party_count: int) -> int:
 	if party_count <= 0:
 		return MIN_SIMS_PER_COMBO
-	return maxi(MIN_SIMS_PER_COMBO, ceili(float(MIN_TOTAL_BATTLES) / party_count))
+	var sims := ceili(float(MIN_TOTAL_BATTLES) / party_count)
+	return clampi(sims, MIN_SIMS_PER_COMBO, MAX_SIMS_PER_COMBO)
 
 
 # =============================================================================
