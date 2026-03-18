@@ -42,7 +42,7 @@ static func create_thug(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = _es(3, 6, 0, 2, lvl, 1)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 1)
 	f.speed = _es(18, 24, 1, 2, lvl, 1)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [AbilityDB.haymaker()]
 	return f
 
@@ -68,7 +68,7 @@ static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = _es(2, 4, 0, 1, lvl, 1)
 	f.magic_defense = _es(6, 9, 0, 2, lvl, 1)
 	f.speed = _es(22, 28, 2, 3, lvl, 1)
-	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 10
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [AbilityDB.quick_stab(), AbilityDB.pilfer()]
 	return f
 
