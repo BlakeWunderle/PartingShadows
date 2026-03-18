@@ -4,6 +4,7 @@ class_name SimReport
 ## Extracted from battle_simulator.gd to keep the CLI entry point lean.
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
+const SD := preload("res://scripts/tools/sim_diagnostics.gd")
 
 
 ## Build a JSON-ready report entry for one stage result.
@@ -31,6 +32,7 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 		"spread": spread,
 		"best_combos": best_entries,
 		"worst_combos": worst_entries,
+		"diagnostics": SD.to_json(SD.analyze(result, stage)),
 	}
 
 

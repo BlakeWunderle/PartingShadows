@@ -9,9 +9,11 @@ const PC := preload("res://scripts/tools/party_composer.gd")
 const SRep := preload("res://scripts/tools/sim_report.gd")
 const SC := preload("res://scripts/tools/sim_cache.gd")
 const SP := preload("res://scripts/tools/sim_progressive.gd")
+const SD := preload("res://scripts/tools/sim_diagnostics.gd")
 
 var _json_path := ""
 var _use_cache := true
+var _diagnostics := false
 var _all_results: Array = []
 var _all_stages: Array = []
 
@@ -81,6 +83,8 @@ func _init() -> void:
 						worker_index = int(parts[0])
 						worker_count = int(parts[1])
 					i += 1
+			"--diagnostics":
+				_diagnostics = true
 			"--no-cache":
 				_use_cache = false
 			"--clear-cache":
@@ -204,6 +208,9 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 		SR.print_summary([result])
 		SR.print_combo_extremes(result)
 		SR.print_class_breakdown(result)
+		if _diagnostics:
+			var diags := SD.analyze(result, stage)
+			SD.print_diagnostics(diags, stage.name)
 		print("\n  Time: %.1fs" % elapsed)
 
 
@@ -260,10 +267,14 @@ func _run_stages(stages: Array, sims_per_combo: int,
 	if not quiet:
 		SR.print_summary(results)
 
-		for r: Dictionary in results:
+		for idx in results.size():
+			var r: Dictionary = results[idx]
 			print("\n  --- %s ---" % r.stage_name)
 			SR.print_combo_extremes(r)
 			SR.print_class_breakdown(r)
+			if _diagnostics:
+				var diags := SD.analyze(r, stages[idx])
+				SD.print_diagnostics(diags, r.stage_name)
 
 		print("\n  Total time: %.1fs" % elapsed)
 
@@ -299,6 +310,7 @@ func _print_help() -> void:
 	print("  --all                Run all battles")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
+	print("  --diagnostics        Show detailed analysis of WEAK classes")
 	print("  --no-cache           Skip cache lookups, force re-simulation")
 	print("  --clear-cache        Delete cached results and exit")
 	print("  --list               List available battle stages")

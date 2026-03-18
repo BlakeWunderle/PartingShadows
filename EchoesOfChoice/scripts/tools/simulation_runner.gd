@@ -89,6 +89,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		parties = PC.sample_parties(parties, sample_size)
 
 	var combo_results := []
+	var class_diag := {}
 	var start_ms := Time.get_ticks_msec()
 	var is_mirror: bool = stage.name == "MirrorBattle"
 	var engine := _get_sim_engine()
@@ -110,6 +111,18 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				enemies = _clone_fighters(enemy_template)
 			if run_single_battle(party_fighters, enemies, engine):
 				wins += 1
+			# Accumulate per-class combat diagnostics.
+			for f: FighterData in party_fighters:
+				var ct: String = f.character_type
+				if not class_diag.has(ct):
+					class_diag[ct] = {dmg_dealt = 0, dmg_taken = 0,
+						heals = 0, deaths = 0, battles = 0}
+				var ss: Dictionary = engine.sim_stats.get(f, {})
+				class_diag[ct].dmg_dealt += ss.get("dmg_dealt", 0)
+				class_diag[ct].dmg_taken += ss.get("dmg_taken", 0)
+				class_diag[ct].heals += ss.get("heals", 0)
+				class_diag[ct].deaths += 1 if ss.get("died", false) else 0
+				class_diag[ct].battles += 1
 
 		combo_results.append({
 			"description": PC.get_party_description(party_def),
@@ -137,6 +150,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		"combo_results": combo_results,
 		"overall_win_rate": overall_wr,
 		"elapsed_ms": Time.get_ticks_msec() - start_ms,
+		"class_diag": class_diag,
 	}
 
 
