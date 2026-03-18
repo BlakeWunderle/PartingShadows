@@ -196,7 +196,7 @@ static func upgrade_to_paladin(f: FighterData) -> void:
 	f.health += 10; f.max_health += 10; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.cure(), AbilityDB.smash(), PAB.smite()]
+	f.abilities = [PAB.cure(), PAB.holy_strike(), PAB.smite()]
 	f.upgrade_items = []
 
 static func upgrade_to_priest(f: FighterData) -> void:

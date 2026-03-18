@@ -24,7 +24,7 @@ static func upgrade_to_minstrel(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 5; f.max_mana += 5
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.ballad(), AbilityDB.frustrate(), PAB.serenade()]
+	f.abilities = [PAB.ballad(), PAB.dissonance(), PAB.serenade()]
 	f.upgrade_items = []
 
 static func _lu_warcrier(f: FighterData) -> void:
@@ -57,7 +57,7 @@ static func upgrade_to_illusionist(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 2
 	f.speed += 7; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 6
-	f.abilities = [AbilityDB.shadow_attack(), PAB.mirage(), PAB.bewilderment()]
+	f.abilities = [PAB.phantom_strike(), PAB.mirage(), PAB.bewilderment()]
 	f.upgrade_items = []
 
 static func upgrade_to_mime(f: FighterData) -> void:
@@ -106,7 +106,7 @@ static func upgrade_to_elegist(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 3
 	f.speed += 6; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.nightfall(), PAB.inspire(), PAB.dirge()]
+	f.abilities = [PAB.requiem(), PAB.elegy_of_valor(), PAB.dirge()]
 	f.upgrade_items = []
 
 static func _lu_laureate(f: FighterData) -> void:
@@ -229,7 +229,7 @@ static func upgrade_to_technomancer(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 5; f.max_mana += 5
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.circuit_blast(), PAB.arcane_shield(), PAB.emp_pulse()]
+	f.abilities = [PAB.circuit_blast(), PAB.circuit_shield(), PAB.emp_pulse()]
 	f.upgrade_items = []
 
 static func _lu_automaton(f: FighterData) -> void:
@@ -341,7 +341,7 @@ static func upgrade_to_falconer(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 7; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 5; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptor_mend()]
+	f.abilities = [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptors_gift()]
 	f.upgrade_items = []
 
 static func upgrade_to_shapeshifter(f: FighterData) -> void:

@@ -38,7 +38,7 @@ static func guard() -> AbilityData:
 
 static func rush() -> AbilityData:
 	return _make("Rush", "Charge forward with a burst of speed.",
-		Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
+		Enums.StatType.SPEED, 2, 2, false, 1)
 
 
 static func arcane_bolt() -> AbilityData:
@@ -102,8 +102,8 @@ static func bark_skin() -> AbilityData:
 		Enums.StatType.DEFENSE, 2, 2, false, 1)
 
 static func primal_swipe() -> AbilityData:
-	return _make("Primal Swipe", "A savage claw strike guided by instinct.",
-		Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0, 2)
+	return _make("Primal Swipe", "A savage strike that catches the enemy off-balance.",
+		Enums.StatType.SPEED, 2, 2, true, 2, false, 0, 0.0, 2)
 
 
 static func wild_strike() -> AbilityData:

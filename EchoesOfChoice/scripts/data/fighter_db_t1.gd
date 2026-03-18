@@ -126,7 +126,7 @@ static func upgrade_to_dervish(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 1; f.magic_defense += 2
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 5
-	f.abilities = [PAB.seduce(), PAB.dance(), PAB.whirling_step()]
+	f.abilities = [PAB.mesmerize(), PAB.dance(), PAB.whirling_step()]
 	f.upgrade_items = ["Light", "Paint"]
 
 static func upgrade_to_orator(f: FighterData) -> void:
@@ -193,7 +193,7 @@ static func upgrade_to_arithmancer(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
-	f.abilities = [PAB.recite(), PAB.calculate(), PAB.probability()]
+	f.abilities = [PAB.theorem(), PAB.calculate(), PAB.probability()]
 	f.upgrade_items = ["ClockworkCore", "Computer"]
 
 static func _lu_artificer(f: FighterData) -> void:
@@ -252,7 +252,7 @@ static func upgrade_to_beastcaller(f: FighterData) -> void:
 	f.health += 4; f.max_health += 4; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 3; f.physical_defense += 1; f.magic_attack += 1; f.magic_defense += 1
 	f.speed += 3; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 2
-	f.abilities = [PAB.feral_strike(), PAB.pack_howl(), PAB.wild_charge()]
+	f.abilities = [PAB.feral_strike(), PAB.pack_howl(), PAB.stampede()]
 	f.upgrade_items = ["Feather", "Pelt"]
 
 static func _lu_herbalist(f: FighterData) -> void:
