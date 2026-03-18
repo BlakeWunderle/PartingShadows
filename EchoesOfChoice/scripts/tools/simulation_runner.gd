@@ -39,12 +39,14 @@ static func run_single_battle(party: Array, enemies: Array,
 		engine: BattleEngine = null) -> bool:
 	if engine == null:
 		engine = BattleEngine.new()
-	engine.start_battle(party, enemies)
+	if engine.sim_mode:
+		engine.start_battle_sim(party, enemies)
+	else:
+		engine.start_battle(party, enemies)
 	var ticks := 0
 	while not engine.is_battle_over() and ticks < MAX_TICKS:
 		ticks += 1
-		if not engine.tick_atb():
-			continue
+		engine.tick_atb_fast()
 		for actor: FighterData in engine.get_acting_units():
 			if engine.is_battle_over():
 				break
@@ -73,6 +75,13 @@ static func _get_parties(stage: Dictionary) -> Array:
 		_: return PC.get_base_parties()
 
 
+static func _clone_fighters(template: Array) -> Array:
+	var result := []
+	for f: FighterData in template:
+		result.append(f.clone())
+	return result
+
+
 static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		sample_size: int = 0) -> Dictionary:
 	var parties := _get_parties(stage)
@@ -87,13 +96,18 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 	for pi in parties.size():
 		var party_def: Dictionary = parties[pi]
 		var wins := 0
+		# Create enemy template once per combo; clone per sim to avoid
+		# the full factory dispatch on every iteration.
+		var enemy_template: Array = []
+		if not is_mirror:
+			enemy_template = BSDB.create_enemies(stage.name)
 		for si in sims_per_combo:
 			var party_fighters := PC.create_party(party_def, stage.level_ups)
 			var enemies: Array
 			if is_mirror:
 				enemies = BSDB.create_enemies(stage.name, party_fighters)
 			else:
-				enemies = BSDB.create_enemies(stage.name)
+				enemies = _clone_fighters(enemy_template)
 			if run_single_battle(party_fighters, enemies, engine):
 				wins += 1
 

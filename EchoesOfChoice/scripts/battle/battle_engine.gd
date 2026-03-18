@@ -31,6 +31,18 @@ func start_battle(party: Array, enemy_list: Array) -> void:
 		f.reset_for_battle()
 
 
+## Start battle without array duplication. Sim mode only: callers must
+## pass freshly-created or cloned arrays that will not be reused.
+func start_battle_sim(party: Array, enemy_list: Array) -> void:
+	units = party
+	enemies = enemy_list
+	dead_units.clear()
+	for f: FighterData in units:
+		f.reset_for_battle()
+	for f: FighterData in enemies:
+		f.reset_for_battle()
+
+
 ## Advance ATB timers by one tick. Returns true if any units can act.
 func tick_atb() -> bool:
 	for f: FighterData in units:
@@ -38,6 +50,35 @@ func tick_atb() -> bool:
 	for f: FighterData in enemies:
 		f.turn_calculation += f.speed
 	return _has_acting_units()
+
+
+## Fast-forward ATB to the exact point where the next actor(s) reach 100.
+## Always produces at least one ready actor. Used by the simulation runner
+## to skip the many no-op ticks where nobody is ready.
+func tick_atb_fast() -> void:
+	var min_ticks := 999999
+	for f: FighterData in units:
+		var remaining := 100 - f.turn_calculation
+		if remaining <= 0:
+			min_ticks = 0
+			break
+		var needed := ceili(float(remaining) / float(f.speed))
+		if needed < min_ticks:
+			min_ticks = needed
+	if min_ticks > 0:
+		for f: FighterData in enemies:
+			var remaining := 100 - f.turn_calculation
+			if remaining <= 0:
+				min_ticks = 0
+				break
+			var needed := ceili(float(remaining) / float(f.speed))
+			if needed < min_ticks:
+				min_ticks = needed
+	if min_ticks > 0:
+		for f: FighterData in units:
+			f.turn_calculation += f.speed * min_ticks
+		for f: FighterData in enemies:
+			f.turn_calculation += f.speed * min_ticks
 
 
 ## Get all units ready to act, sorted by highest ATB first.
