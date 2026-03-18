@@ -8,6 +8,7 @@ const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const PC := preload("res://scripts/tools/party_composer.gd")
 const SRep := preload("res://scripts/tools/sim_report.gd")
 const SC := preload("res://scripts/tools/sim_cache.gd")
+const SP := preload("res://scripts/tools/sim_progressive.gd")
 
 var _json_path := ""
 var _use_cache := true
@@ -23,9 +24,11 @@ func _init() -> void:
 	var auto_sims := false
 	var sims_explicit := false
 	var run_all := false
+	var run_progressive := false
 	var show_list := false
 	var show_help := false
 	var progression_filter := -1
+	var from_progression := 0
 	var sample_size := 0
 	var stage_name := ""
 	var story_filter := 0
@@ -45,6 +48,12 @@ func _init() -> void:
 				auto_sims = true
 			"--all":
 				run_all = true
+			"--progressive":
+				run_progressive = true
+			"--from":
+				if i + 1 < args.size():
+					from_progression = int(args[i + 1])
+					i += 1
 			"--progression":
 				if i + 1 < args.size():
 					progression_filter = int(args[i + 1])
@@ -121,7 +130,10 @@ func _init() -> void:
 	if not _worker_mode:
 		print("=== Echoes of Choice Battle Simulator ===\n")
 
-	if run_all:
+	if run_progressive:
+		SP.run(stages, sims_per_combo, auto_sims, sample_size,
+			from_progression, _use_cache, _worker_mode, _all_results, _all_stages)
+	elif run_all:
 		_run_stages(stages, sims_per_combo, auto_sims, sample_size, _worker_mode)
 	elif progression_filter >= 0:
 		var prog_stages := stages.filter(
@@ -282,6 +294,8 @@ func _print_help() -> void:
 	print("  --progression <n>    Run all battles in a progression stage")
 	print("  --story <n>          Filter to story 1, 2, or 3")
 	print("  --tier <t>           Filter to tier (base, tier1, tier2)")
+	print("  --progressive        Run all battles progression-by-progression, stop on failure")
+	print("  --from <n>           Start progressive run from progression n (default: 0)")
 	print("  --all                Run all battles")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
@@ -301,3 +315,5 @@ func _print_help() -> void:
 	print("  ... -- --story 1 --auto --all")
 	print("  ... -- --story 2 --sims 50 --progression 0")
 	print("  ... -- --sample 500 --sims 50 --progression 4")
+	print("  ... -- --progressive --story 1 --auto --sample 100")
+	print("  ... -- --progressive --from 3 --story 2 --sims 50")
