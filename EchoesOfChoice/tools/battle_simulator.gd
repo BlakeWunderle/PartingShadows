@@ -6,6 +6,7 @@ extends SceneTree
 const SR := preload("res://scripts/tools/simulation_runner.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const PC := preload("res://scripts/tools/party_composer.gd")
+const SRep := preload("res://scripts/tools/sim_report.gd")
 
 var _json_path := ""
 var _all_results: Array = []
@@ -222,41 +223,8 @@ func _run_stages(stages: Array, sims_per_combo: int,
 func _write_json_report() -> void:
 	var report := []
 	for idx in _all_results.size():
-		var result: Dictionary = _all_results[idx]
-		var stage: Dictionary = _all_stages[idx]
-		var breakdown := SR.get_class_breakdown(result)
-		var spread := SR.get_spread(result)
-		var extremes := SR.get_combo_extremes(result)
-		var worst_entries := []
-		for c: Dictionary in extremes.worst:
-			worst_entries.append({"description": c.description, "win_rate": c.win_rate})
-		var best_entries := []
-		for c: Dictionary in extremes.best:
-			best_entries.append({"description": c.description, "win_rate": c.win_rate})
-		report.append({
-			"stage_name": result.stage_name,
-			"story": stage.get("story", 1),
-			"progression_stage": result.progression_stage,
-			"tier": stage.get("tier", "base"),
-			"target_win_rate": result.target_win_rate,
-			"overall_win_rate": result.overall_win_rate,
-			"combo_count": result.combo_results.size(),
-			"elapsed_ms": result.elapsed_ms,
-			"status": SR.get_status(result),
-			"class_breakdown": breakdown,
-			"spread": spread,
-			"best_combos": best_entries,
-			"worst_combos": worst_entries,
-		})
-
-	var json_str := JSON.stringify({"stages": report}, "\t")
-	var file := FileAccess.open(_json_path, FileAccess.WRITE)
-	if file:
-		file.store_string(json_str)
-		file.close()
-		print("\n  JSON report written to: %s" % _json_path)
-	else:
-		print("\n  ERROR: Could not write JSON report to: %s" % _json_path)
+		report.append(SRep.build_entry(_all_results[idx], _all_stages[idx]))
+	SRep.write_json(_json_path, report)
 
 
 func _print_stage_list(stages: Array) -> void:
