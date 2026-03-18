@@ -3,7 +3,7 @@ class_name EnemyDBS3PathB
 ## Story 3 Path B enemy factory. All unique types for the investigation path.
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
-const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3.gd")
+const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3_pathb.gd")
 
 
 static func _es(base_min: int, base_max: int, gmin: int, gmax: int, level: int, base_level: int = 1) -> int:
@@ -39,7 +39,7 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = _es(23, 28, 1, 3, lvl, 12)
 	f.speed = _es(32, 38, 1, 3, lvl, 12)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 8
-	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
+	f.abilities = [EAB.petrified_slam(), EAB.stagnant_chill()]
 	return f
 
 
@@ -53,7 +53,7 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = _es(18, 23, 1, 2, lvl, 12)
 	f.speed = _es(38, 44, 2, 3, lvl, 12)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
-	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
+	f.abilities = [EAB.tethered_lunge(), EAB.fraying_bite()]
 	return f
 
 
@@ -71,7 +71,7 @@ static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = _es(24, 29, 1, 3, lvl, 13)
 	f.speed = _es(34, 40, 1, 3, lvl, 13)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 9
-	f.abilities = [EAB.dark_bolt(), EAB.minor_ward()]
+	f.abilities = [EAB.unstable_channeling(), EAB.siphon_faith()]
 	return f
 
 
@@ -85,7 +85,7 @@ static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = _es(26, 31, 1, 3, lvl, 13)
 	f.speed = _es(31, 37, 1, 2, lvl, 13)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 5
-	f.abilities = [EAB.heavy_strike(), EAB.brace()]
+	f.abilities = [EAB.shielding_blow(), EAB.guardians_oath()]
 	return f
 
 
@@ -103,7 +103,7 @@ static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = _es(26, 31, 1, 3, lvl, 14)
 	f.speed = _es(32, 38, 1, 3, lvl, 14)
 	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 5
-	f.abilities = [EAB.heavy_strike(), EAB.woven_shield()]
+	f.abilities = [EAB.chokepoint_crush(), EAB.passage_block()]
 	return f
 
 
@@ -117,7 +117,7 @@ static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = _es(30, 35, 1, 4, lvl, 14)
 	f.speed = _es(40, 46, 1, 4, lvl, 14)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
-	f.abilities = [EAB.hex_bolt(), EAB.unravel_mind()]
+	f.abilities = [EAB.piercing_thread(), EAB.expose_weakness()]
 	return f
 
 
@@ -131,7 +131,7 @@ static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = _es(32, 37, 2, 4, lvl, 14)
 	f.speed = _es(36, 42, 1, 3, lvl, 14)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 8
-	f.abilities = [EAB.dark_bolt(), EAB.ritual_chant()]
+	f.abilities = [EAB.burning_devotion(), EAB.martyrs_gift()]
 	return f
 
 
@@ -149,7 +149,7 @@ static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = _es(36, 41, 2, 4, lvl, 14)
 	f.speed = _es(39, 46, 1, 3, lvl, 14)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 10
-	f.abilities = [EAB.thread_lash(), EAB.ritual_chant()]
+	f.abilities = [EAB.binding_rite(), EAB.enervation_chant()]
 	return f
 
 
@@ -163,7 +163,7 @@ static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = _es(28, 33, 1, 3, lvl, 14)
 	f.speed = _es(34, 40, 1, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 6
-	f.abilities = [EAB.threaded_blade(), EAB.woven_armor()]
+	f.abilities = [EAB.champions_cleave(), EAB.loom_aegis()]
 	return f
 
 
@@ -177,7 +177,7 @@ static func create_warding_shadow(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = _es(28, 33, 1, 3, lvl, 14)
 	f.speed = _es(38, 44, 1, 4, lvl, 14)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 12
-	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
+	f.abilities = [EAB.flickering_grasp(), EAB.shadow_veil()]
 	return f
 
 
@@ -209,7 +209,7 @@ static func create_astral_weaver(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = _es(36, 42, 2, 4, lvl, 15)
 	f.speed = _es(42, 49, 1, 3, lvl, 15)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
-	f.abilities = [EAB.loom_blast(), EAB.unweave()]
+	f.abilities = [EAB.astral_barrage(), EAB.cosmic_unraveling()]
 	return f
 
 
@@ -223,7 +223,7 @@ static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = _es(28, 34, 1, 3, lvl, 15)
 	f.speed = _es(40, 46, 1, 3, lvl, 15)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 10
-	f.abilities = [EAB.dark_thread(), EAB.consume_light()]
+	f.abilities = [EAB.siphon_pulse(), EAB.constricting_weave()]
 	return f
 
 
@@ -241,7 +241,7 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 	f.magic_defense = _es(36, 42, 3, 4, lvl, 16)
 	f.speed = _es(40, 47, 1, 3, lvl, 16)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 8
-	f.abilities = [EAB.loom_slam(), EAB.guardians_veil()]
+	f.abilities = [EAB.consecrated_strike(), EAB.cathedrals_blessing()]
 	return f
 
 
@@ -255,7 +255,7 @@ static func create_dream_binder(n: String, lvl: int = 16) -> FighterData:
 	f.magic_defense = _es(32, 38, 1, 4, lvl, 16)
 	f.speed = _es(44, 51, 1, 4, lvl, 16)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 14
-	f.abilities = [EAB.mind_spike(), EAB.thread_snare()]
+	f.abilities = [EAB.binding_chains(), EAB.dreamlock()]
 	return f
 
 
@@ -269,7 +269,7 @@ static func create_thread_anchor(n: String, lvl: int = 16) -> FighterData:
 	f.magic_defense = _es(34, 40, 2, 4, lvl, 16)
 	f.speed = _es(36, 42, 1, 3, lvl, 16)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 6
-	f.abilities = [EAB.woven_mend(), EAB.binding_light()]
+	f.abilities = [EAB.anchor_pulse(), EAB.fortifying_thread()]
 	return f
 
 
@@ -301,7 +301,7 @@ static func create_tattered_deception(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = _es(34, 40, 1, 4, lvl, 18)
 	f.speed = _es(50, 58, 3, 5, lvl, 18)
 	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 18
-	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
+	f.abilities = [EAB.mirrored_assault(), EAB.unraveling_touch()]
 	return f
 
 
@@ -315,5 +315,5 @@ static func create_dream_bastion(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = _es(38, 44, 2, 4, lvl, 18)
 	f.speed = _es(42, 49, 2, 4, lvl, 18)
 	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 6
-	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
+	f.abilities = [EAB.bastion_slam(), EAB.nexus_shield()]
 	return f

@@ -41,7 +41,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = _es(31, 37, 1, 3, lvl, 15)
 	f.speed = _es(42, 49, 1, 3, lvl, 15)
 	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 11
-	f.abilities = [EAB.dark_bolt(), EAB.minor_ward()]
+	f.abilities = [EAB.thread_sear(), EAB.zealots_fervor()]
 	return f
 
 
@@ -56,7 +56,7 @@ static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = _es(34, 39, 1, 3, lvl, 15)
 	f.speed = _es(39, 47, 1, 3, lvl, 15)
 	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 7
-	f.abilities = [EAB.heavy_strike(), EAB.brace()]
+	f.abilities = [EAB.thread_laced_fist(), EAB.threaded_sinew()]
 	return f
 
 

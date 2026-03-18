@@ -238,21 +238,21 @@ static func guardians_veil() -> AbilityData:
 # Acts IV-V: Cult member and final boss abilities
 # =============================================================================
 
-# --- Cult Acolyte ---
+# --- Cult Acolyte (zealous apprentice, raw unfocused energy) ---
 
-static func dark_bolt() -> AbilityData:
-	return _make("Dark Bolt", "A bolt of shadow flung with practiced ease.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
+static func thread_sear() -> AbilityData:
+	return _make("Thread Sear", "Raw Loom energy burns through body and spirit alike.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
 
-static func minor_ward() -> AbilityData:
-	return _make("Minor Ward", "A basic protective incantation.", Enums.StatType.DEFENSE, 3, 2, false, 2, false, 0, 0.0, 2)
+static func zealots_fervor() -> AbilityData:
+	return _make("Zealot's Fervor", "Fanatical devotion fuels a surge of reckless power.", Enums.StatType.ATTACK, 4, 2, false, 3, false, 0, 0.0, 2)
 
-# --- Cult Enforcer ---
+# --- Cult Enforcer (thread-augmented warrior, muscles laced with filament) ---
 
-static func heavy_strike() -> AbilityData:
-	return _make("Heavy Strike", "A deliberate blow backed by trained muscle.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
+static func thread_laced_fist() -> AbilityData:
+	return _make("Thread-Laced Fist", "Threads woven through the knuckles keep cutting after impact.", Enums.StatType.PHYSICAL_ATTACK, 7, 3, true, 3, false, 2, 0.0, 2)
 
-static func brace() -> AbilityData:
-	return _make("Brace", "The enforcer sets their stance and hardens.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
+static func threaded_sinew() -> AbilityData:
+	return _make("Threaded Sinew", "The enforcer's war-rhythm strengthens every ally nearby.", Enums.StatType.ATTACK, 4, 2, false, 4, true, 0, 0.0, 3)
 
 # --- Cult Hexer ---
 
@@ -313,26 +313,3 @@ static func loom_collapse() -> AbilityData:
 static func thread_of_oblivion() -> AbilityData:
 	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 6, true, 0, 0.0, 3)
 
-
-# =============================================================================
-# Path B: Shadow Innkeeper and Lira Threadmaster abilities
-# =============================================================================
-
-# --- Shadow Innkeeper ---
-
-static func borrowed_face() -> AbilityData:
-	return _make("Borrowed Face", "The friendly smile cracks and something wrong looks through.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
-
-static func thread_drain() -> AbilityData:
-	return _make("Thread Drain", "She feeds on the connection between waking and dreaming.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3, 2)
-
-# --- Lira, the Threadmaster ---
-
-static func thread_puppetry() -> AbilityData:
-	return _make("Thread Puppetry", "Lira pulls threads you cannot see.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
-
-static func dreamers_harvest() -> AbilityData:
-	return _make("Dreamer's Harvest", "Every trust you gave her feeds her now.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, true, 0, 0.25, 3)
-
-static func liras_loom() -> AbilityData:
-	return _make("Lira's Loom", "The dream itself strikes at her command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)
