@@ -20,6 +20,15 @@ NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string
 # Quick iteration (any tier)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> 2>&1 | grep -v "$NOISE"
 
+# Progressive validation (stops at first failing progression -- saves time)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --progressive --story <N> --auto --sample 100 2>&1 | grep -v "$NOISE"
+
+# Progressive validation -- parallel (recommended for full balance passes)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --progressive --story <N> --auto --jobs 10 2>&1 | grep -v "$NOISE"
+
+# WEAK class investigation (shows why classes underperform)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 <StageName> 2>&1 | grep -v "$NOISE"
+
 # Final validation -- sequential (use 600000ms timeout; --auto caps at 500 sims/combo)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
 
@@ -762,6 +771,7 @@ Enemy factories: `scripts/data/story3/enemy_db_s3.gd` (Acts I-II), `enemy_db_s3_
 
 | Skill | When to Use |
 |-------|-------------|
+| `/sim-tools` | Progressive validation (`--progressive`), WEAK class investigation (`--diagnostics`), cache management (`--clear-cache`) |
 | `/balance-log` | After each sim run to record results and changes. Read at session start. |
 | `/class-report` | After all progressions locked. Generates comprehensive per-class report. |
 | `/update-ability-catalog` | After changing any abilities during tuning. |
@@ -791,8 +801,12 @@ Enemy factories: `scripts/data/story3/enemy_db_s3.gd` (Acts I-II), `enemy_db_s3_
 | `scripts/data/fighter_db_t2b.gd` | Tier 2 player class factories and growth (part 2) |
 | `scripts/data/ability_db.gd` | Base player ability definitions (T0 + shared) |
 | `scripts/data/ability_db_player.gd` | T1/T2 player ability definitions |
-| `scripts/tools/simulation_runner.gd` | CLASS BREAKDOWN output, WEAK flags |
+| `scripts/tools/simulation_runner.gd` | CLASS BREAKDOWN output, WEAK flags, class_diag accumulation |
 | `scripts/tools/battle_stage_db.gd` | Target win rates per stage (story-aware) |
 | `scripts/tools/party_composer.gd` | All valid party compositions |
+| `scripts/tools/sim_progressive.gd` | Progressive runner logic (--progressive, --from) |
+| `scripts/tools/sim_diagnostics.gd` | WEAK class analysis and reporting (--diagnostics) |
+| `scripts/tools/sim_cache.gd` | Balance snapshot caching (--no-cache, --clear-cache) |
+| `scripts/tools/sim_report.gd` | JSON report building with diagnostics |
 | `tools/battle_simulator.gd` | CLI entry point (--story, --json, --worker flags) |
-| `tools/battle_sim_parallel.gd` | Parallel coordinator (--jobs, spawns workers) |
+| `tools/battle_sim_parallel.gd` | Parallel coordinator (--jobs, --progressive, spawns workers) |
