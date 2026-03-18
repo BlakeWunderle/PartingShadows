@@ -11,6 +11,8 @@ extends SceneTree
 ##   All other options are forwarded to battle_simulator.gd workers.
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
+const SC := preload("res://scripts/tools/sim_cache.gd")
+const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 
 var _json_path := ""
 

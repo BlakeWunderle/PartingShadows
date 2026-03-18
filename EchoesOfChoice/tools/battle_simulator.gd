@@ -7,8 +7,10 @@ const SR := preload("res://scripts/tools/simulation_runner.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const PC := preload("res://scripts/tools/party_composer.gd")
 const SRep := preload("res://scripts/tools/sim_report.gd")
+const SC := preload("res://scripts/tools/sim_cache.gd")
 
 var _json_path := ""
+var _use_cache := true
 var _all_results: Array = []
 var _all_stages: Array = []
 
@@ -70,6 +72,13 @@ func _init() -> void:
 						worker_index = int(parts[0])
 						worker_count = int(parts[1])
 					i += 1
+			"--no-cache":
+				_use_cache = false
+			"--clear-cache":
+				SC.clear()
+				print("Sim cache cleared.")
+				quit()
+				return
 			"--list":
 				show_list = true
 			"--help":
@@ -142,6 +151,7 @@ func _init() -> void:
 	if _json_path != "" and not _all_results.is_empty():
 		_write_json_report()
 
+	SC.save()
 	quit()
 
 
@@ -155,6 +165,17 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 			print("  Auto: %d party combos -> %d sims/combo (%d total battles)" % [
 				count, sims_per_combo, count * sims_per_combo])
 
+	var cached := SC.get_cached(stage.name, stage.get("story", 1),
+		sims_per_combo, sample_size) if _use_cache else {}
+
+	if not cached.is_empty():
+		if not quiet:
+			print("\n  %s: cached (%.1f%%, %s)" % [stage.name,
+				cached.overall_win_rate * 100, SR.get_status(cached)])
+		_all_results.append(cached)
+		_all_stages.append(stage)
+		return
+
 	if not quiet:
 		print("\nRunning %d sims/combo for %s..." % [sims_per_combo, stage.name])
 	var sw := Time.get_ticks_msec()
@@ -163,6 +184,9 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 
 	_all_results.append(result)
 	_all_stages.append(stage)
+	if _use_cache:
+		SC.store(stage.name, stage.get("story", 1),
+			sims_per_combo, sample_size, result, stage)
 
 	if not quiet:
 		SR.print_summary([result])
@@ -201,12 +225,24 @@ func _run_stages(stages: Array, sims_per_combo: int,
 		else:
 			sims = sims_per_combo
 
-		var result := SR.simulate_stage(stage, sims, sample_size)
+		var cached := SC.get_cached(stage.name, stage.get("story", 1),
+			sims, sample_size) if _use_cache else {}
+		var result: Dictionary
+		if not cached.is_empty():
+			result = cached
+			if not quiet:
+				print("  (cached: %.1f%%, %s)" % [
+					result.overall_win_rate * 100, SR.get_status(result)])
+		else:
+			result = SR.simulate_stage(stage, sims, sample_size)
+			if _use_cache:
+				SC.store(stage.name, stage.get("story", 1),
+					sims, sample_size, result, stage)
+			if not quiet:
+				SR.print_stage_result(result)
 		results.append(result)
 		_all_results.append(result)
 		_all_stages.append(stage)
-		if not quiet:
-			SR.print_stage_result(result)
 
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
 	if not quiet:
@@ -249,6 +285,8 @@ func _print_help() -> void:
 	print("  --all                Run all battles")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
+	print("  --no-cache           Skip cache lookups, force re-simulation")
+	print("  --clear-cache        Delete cached results and exit")
 	print("  --list               List available battle stages")
 	print("  --help               Show this help\n")
 	print("Auto mode sims by tier (capped at 500/combo):")
