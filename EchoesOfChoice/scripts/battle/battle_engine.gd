@@ -17,6 +17,7 @@ var units: Array = []      ## Player party (alive)
 var enemies: Array = []    ## Enemy team (alive)
 var dead_units: Array = [] ## Dead party members (revived at end)
 
+var sim_mode: bool = false  ## Skip signal emissions for headless simulation
 var _acting_units: Array = []
 
 
@@ -86,22 +87,25 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 		damage += attacker.crit_damage
 
 	if _check_for_dodge(defender):
-		combat_message.emit("The attack from %s missed" % attacker.character_name)
-		combat_event.emit(defender, 0, "miss")
+		if not sim_mode:
+			combat_message.emit("The attack from %s missed" % attacker.character_name)
+			combat_event.emit(defender, 0, "miss")
 		return
 
 	defender.health -= damage
-	combat_message.emit("%s did %d points of damage to %s." % [
-		attacker.character_name, damage, defender.character_name])
-	combat_event.emit(defender, damage, "crit" if is_crit else "damage")
+	if not sim_mode:
+		combat_message.emit("%s did %d points of damage to %s." % [
+			attacker.character_name, damage, defender.character_name])
+		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
 
 
 func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		ability: AbilityData, skip_flavor: bool = false) -> void:
 	if _check_for_ability_dodge(defender):
-		combat_message.emit("%s dodged %s's ability!" % [
-			defender.character_name, attacker.character_name])
-		combat_event.emit(defender, 0, "miss")
+		if not sim_mode:
+			combat_message.emit("%s dodged %s's ability!" % [
+				defender.character_name, attacker.character_name])
+			combat_event.emit(defender, 0, "miss")
 		return
 
 	if ability.impacted_turns == 0:
@@ -114,18 +118,20 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			damage += attacker.crit_damage
 
 		defender.health -= damage
-		if not skip_flavor:
-			combat_message.emit(ability.flavor_text)
-		combat_message.emit("%s did %d points of damage to %s." % [
-			attacker.character_name, damage, defender.character_name])
-		combat_event.emit(defender, damage, "spell_crit" if is_crit else "spell_damage")
+		if not sim_mode:
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
+			combat_message.emit("%s did %d points of damage to %s." % [
+				attacker.character_name, damage, defender.character_name])
+			combat_event.emit(defender, damage, "spell_crit" if is_crit else "spell_damage")
 
 		if ability.life_steal_percent > 0.0 and damage > 0:
 			var heal_amount: int = int(damage * ability.life_steal_percent)
 			attacker.health = mini(attacker.health + heal_amount, attacker.max_health)
-			combat_message.emit("%s absorbed %d health." % [
-				attacker.character_name, heal_amount])
-			combat_event.emit(attacker, heal_amount, "heal")
+			if not sim_mode:
+				combat_message.emit("%s absorbed %d health." % [
+					attacker.character_name, heal_amount])
+				combat_event.emit(attacker, heal_amount, "heal")
 	else:
 		# Over-time effect
 		if ability.damage_per_turn > 0:
@@ -136,11 +142,12 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"is_negative": true,
 				"damage_per_turn": ability.damage_per_turn,
 			})
-			if not skip_flavor:
-				combat_message.emit(ability.flavor_text)
-			combat_message.emit("%s will take %d damage per turn for %d turns." % [
-				defender.character_name, ability.damage_per_turn, ability.impacted_turns])
-			combat_event.emit(defender, ability.damage_per_turn, "debuff")
+			if not sim_mode:
+				if not skip_flavor:
+					combat_message.emit(ability.flavor_text)
+				combat_message.emit("%s will take %d damage per turn for %d turns." % [
+					defender.character_name, ability.damage_per_turn, ability.impacted_turns])
+				combat_event.emit(defender, ability.damage_per_turn, "debuff")
 
 		if ability.modifier > 0 and (ability.damage_per_turn == 0 \
 				or ability.modified_stat != Enums.StatType.HEALTH):
@@ -152,7 +159,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"damage_per_turn": 0,
 			})
 			_modify_stats(defender, ability.modified_stat, ability.modifier, true)
-			if ability.damage_per_turn == 0:
+			if not sim_mode and ability.damage_per_turn == 0:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
 				combat_message.emit("%s was hit with this ability." % defender.character_name)
@@ -174,11 +181,12 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		if target.health > target.max_health:
 			target.health = target.max_health
 
-		if not skip_flavor:
-			combat_message.emit(ability.flavor_text)
-		combat_message.emit("%s healed %d points of damage." % [
-			target.character_name, heal_amount])
-		combat_event.emit(target, heal_amount, "heal")
+		if not sim_mode:
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
+			combat_message.emit("%s healed %d points of damage." % [
+				target.character_name, heal_amount])
+			combat_event.emit(target, heal_amount, "heal")
 	else:
 		# Buff
 		target.modified_stats.append({
@@ -189,10 +197,11 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			"damage_per_turn": 0,
 		})
 		_modify_stats(target, ability.modified_stat, ability.modifier, false)
-		if not skip_flavor:
-			combat_message.emit(ability.flavor_text)
-		combat_message.emit("%s was impacted by the ability." % target.character_name)
-		combat_event.emit(target, ability.modifier, "buff")
+		if not sim_mode:
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
+			combat_message.emit("%s was impacted by the ability." % target.character_name)
+			combat_event.emit(target, ability.modifier, "buff")
 
 
 func _calc_ability_damage(attacker: FighterData, defender: FighterData,
@@ -227,9 +236,10 @@ func reset_modified_stat(fighter: FighterData) -> void:
 
 		if mod.get("damage_per_turn", 0) > 0:
 			fighter.health -= mod["damage_per_turn"]
-			combat_message.emit("%s takes %d damage from a lingering effect." % [
-				fighter.character_name, mod["damage_per_turn"]])
-			combat_event.emit(fighter, mod["damage_per_turn"], "damage")
+			if not sim_mode:
+				combat_message.emit("%s takes %d damage from a lingering effect." % [
+					fighter.character_name, mod["damage_per_turn"]])
+				combat_event.emit(fighter, mod["damage_per_turn"], "damage")
 
 		if mod["turns"] == 0:
 			if mod.get("damage_per_turn", 0) == 0:
@@ -252,16 +262,18 @@ func check_for_death() -> void:
 
 	for i: int in units.size():
 		if units[i].health <= 0:
-			combat_message.emit("%s the %s has been knocked out." % [
-				units[i].character_name, units[i].character_type])
-			fighter_died.emit(units[i])
+			if not sim_mode:
+				combat_message.emit("%s the %s has been knocked out." % [
+					units[i].character_name, units[i].character_type])
+				fighter_died.emit(units[i])
 			unit_deaths.append(i)
 
 	for i: int in enemies.size():
 		if enemies[i].health <= 0:
-			combat_message.emit("%s the %s has been knocked out." % [
-				enemies[i].character_name, enemies[i].character_type])
-			fighter_died.emit(enemies[i])
+			if not sim_mode:
+				combat_message.emit("%s the %s has been knocked out." % [
+					enemies[i].character_name, enemies[i].character_type])
+				fighter_died.emit(enemies[i])
 			enemy_deaths.append(i)
 
 	for offset: int in unit_deaths.size():
@@ -286,9 +298,11 @@ func finish_battle() -> void:
 	if did_player_win():
 		units.append_array(dead_units)
 		dead_units.clear()
-		battle_won.emit()
+		if not sim_mode:
+			battle_won.emit()
 	else:
-		battle_lost.emit()
+		if not sim_mode:
+			battle_lost.emit()
 
 
 # =============================================================================
@@ -393,7 +407,8 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 			unit.mana -= heal.mana_cost
 			_set_cooldown(unit, heal)
 			if heal.target_all:
-				combat_message.emit(heal.flavor_text)
+				if not sim_mode:
+					combat_message.emit(heal.flavor_text)
 				for ally: FighterData in allies:
 					if ally.health > 0:
 						use_ability_on_teammate(unit, ally, heal, true)
@@ -428,7 +443,8 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 				if any_unbuffed:
 					unit.mana -= buff.mana_cost
 					_set_cooldown(unit, buff)
-					combat_message.emit(buff.flavor_text)
+					if not sim_mode:
+						combat_message.emit(buff.flavor_text)
 					for ally: FighterData in allies:
 						if ally.health > 0:
 							use_ability_on_teammate(unit, ally, buff, true)
@@ -465,8 +481,9 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		unit.mana -= ability.mana_cost
 		_set_cooldown(unit, ability)
 		if ability.target_all:
-			combat_message.emit(ability.flavor_text)
-			for target: FighterData in targets.duplicate():
+			if not sim_mode:
+				combat_message.emit(ability.flavor_text)
+			for target: FighterData in targets:
 				use_ability_on_enemy(unit, target, ability, true)
 		else:
 			var target: FighterData = _choose_target(unit, targets, magic_ratio)

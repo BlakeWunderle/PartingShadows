@@ -13,6 +13,15 @@ const MIN_SIMS_PER_COMBO := 40
 const TOLERANCE := 0.03
 const MAX_TICKS := 500
 
+static var _sim_engine: BattleEngine = null
+
+
+static func _get_sim_engine() -> BattleEngine:
+	if _sim_engine == null:
+		_sim_engine = BattleEngine.new()
+		_sim_engine.sim_mode = true
+	return _sim_engine
+
 
 static func calculate_sims_for_party_count(party_count: int) -> int:
 	if party_count <= 0:
@@ -24,8 +33,10 @@ static func calculate_sims_for_party_count(party_count: int) -> int:
 # Core battle loop
 # =============================================================================
 
-static func run_single_battle(party: Array, enemies: Array) -> bool:
-	var engine := BattleEngine.new()
+static func run_single_battle(party: Array, enemies: Array,
+		engine: BattleEngine = null) -> bool:
+	if engine == null:
+		engine = BattleEngine.new()
 	engine.start_battle(party, enemies)
 	var ticks := 0
 	while not engine.is_battle_over() and ticks < MAX_TICKS:
@@ -69,6 +80,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 	var combo_results := []
 	var start_ms := Time.get_ticks_msec()
 	var is_mirror: bool = stage.name == "MirrorBattle"
+	var engine := _get_sim_engine()
 
 	for pi in parties.size():
 		var party_def: Dictionary = parties[pi]
@@ -80,7 +92,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				enemies = BSDB.create_enemies(stage.name, party_fighters)
 			else:
 				enemies = BSDB.create_enemies(stage.name)
-			if run_single_battle(party_fighters, enemies):
+			if run_single_battle(party_fighters, enemies, engine):
 				wins += 1
 
 		combo_results.append({
