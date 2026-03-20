@@ -79,6 +79,8 @@ func advance_to_post_battle() -> void:
 		SteamManager.set_achievement("TEN_VICTORIES")
 	elif battles_won == 50:
 		SteamManager.set_achievement("FIFTY_VICTORIES")
+	elif battles_won == 100:
+		SteamManager.set_achievement("HUNDRED_VICTORIES")
 	# Track battle completion in compendium
 	if current_battle:
 		CompendiumManager.mark_battle_complete(current_battle.battle_id)

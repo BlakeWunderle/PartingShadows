@@ -122,6 +122,15 @@ func _show_ending() -> void:
 		if not completion_key.is_empty():
 			is_first_completion = not UnlockManager.is_unlocked(completion_key)
 			UnlockManager.unlock(completion_key)
+		# Track Story 3 path completion for Path C gating
+		if GameState.current_story_id == "story_3":
+			match GameState.current_battle_id:
+				"S3_DreamNexus":
+					UnlockManager.unlock("story_3_path_a")
+				"S3_B_DreamNexus":
+					UnlockManager.unlock("story_3_path_b")
+				"S3_C_DreamNexus":
+					UnlockManager.unlock("story_3_path_c")
 		MusicManager.play_music("res://assets/audio/music/victory/SHORT Action #5 LOOP.wav")
 	else:
 		MusicManager.play_music("res://assets/audio/music/game_over/Sad Despair 03.wav")

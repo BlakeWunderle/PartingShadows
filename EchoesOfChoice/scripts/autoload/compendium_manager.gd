@@ -4,6 +4,41 @@ extends Node
 ## classes to user://compendium.json so the player can review what they've seen.
 
 const COMPENDIUM_PATH := "user://compendium.json"
+const TOTAL_ENEMIES := 189
+
+const STORY_1_BATTLES: Array[String] = [
+	"CityStreetBattle", "WolfForestBattle", "WaypointDefenseBattle", "ForestWaypoint",
+	"HighlandBattle", "DeepForestBattle", "ShoreBattle", "MountainPassBattle",
+	"CaveBattle", "BeachBattle", "WildernessOutpost", "CircusBattle",
+	"LabBattle", "ArmyBattle", "CemeteryBattle", "OutpostDefenseBattle",
+	"MirrorBattle", "CityOutskirtsStop", "ReturnToCityStreetBattle",
+	"StrangerTowerBattle", "CopperMugStop", "CorruptedCityBattle",
+	"CorruptedWildsBattle", "DepthsBattle", "GateBattle", "StrangerFinalBattle",
+]
+const STORY_2_BATTLES: Array[String] = [
+	"S2_CaveAwakening", "S2_DeepCavern", "S2_FungalHollow", "S2_TranquilPool",
+	"S2_TorchChamber", "S2_CaveMerchant", "S2_CaveExit", "S2_CoastalDescent",
+	"S2_FishingVillage", "S2_SmugglersBluff", "S2_HarborTown", "S2_WreckersCove",
+	"S2_CoastalRuins", "S2_BlackwaterBay", "S2_LighthouseStorm",
+	"S2_BeneathTheLighthouse", "S2_MemoryVault", "S2_EchoGallery",
+	"S2_ShatteredSanctum", "S2_GuardiansThreshold", "S2_ForgottenArchive",
+	"S2_TheReveal", "S2_DepthsOfRemembrance", "S2_MawOfTheEye",
+	"S2_EyeAwakening", "S2_EyeOfOblivion",
+]
+const STORY_3_BATTLES: Array[String] = [
+	"S3_WearyTraveler", "S3_DreamMeadow", "S3_DreamMirrorHall", "S3_DreamFogGarden",
+	"S3_TownMorning", "S3_DreamReturn", "S3_DreamLabyrinth", "S3_DreamClockTower",
+	"S3_DreamNightmare", "S3_DreamThreads", "S3_DreamDrownedCorridor",
+	"S3_DreamShatteredGallery", "S3_DreamShadowChase", "S3_TownInvestigation",
+	"S3_MarketConfrontation", "S3_CellarDiscovery", "S3_TownRealization",
+	"S3_LucidDream", "S3_DreamTemple", "S3_DreamVoid", "S3_DreamSanctum",
+	"S3_CultUnderbelly", "S3_CultCatacombs", "S3_CultRitualChamber", "S3_DreamNexus",
+	"S3_B_InnSearch", "S3_B_CultConfrontation", "S3_B_CallumsTruth",
+	"S3_B_TunnelBreach", "S3_B_ThornesWard", "S3_B_LoomHeart",
+	"S3_B_DreamInvasion", "S3_B_DreamNexus",
+	"S3_C_LirasConfession", "S3_C_DreamDescent", "S3_C_CultInterception",
+	"S3_C_ThreadmasterLair", "S3_C_DreamNexus",
+]
 
 var _seen_enemies: Dictionary = {}  # class_id -> {name, abilities, story_id, timestamp}
 var _seen_classes: Dictionary = {}  # class_id -> {display_name, tier, timestamp}
@@ -29,6 +64,8 @@ func record_enemy(fighter: RefCounted, story_id: String) -> void:
 	_save()
 	if _seen_enemies.size() >= 50:
 		SteamManager.set_achievement("COMPENDIUM_50_ENEMIES")
+	if _seen_enemies.size() >= TOTAL_ENEMIES:
+		SteamManager.set_achievement("ALL_ENEMIES")
 
 
 func record_class(class_id: String, display_name: String) -> void:
@@ -61,6 +98,23 @@ func mark_battle_complete(battle_id: String) -> void:
 		return
 	_battles_completed[battle_id] = Time.get_unix_time_from_system()
 	_save()
+	_check_battle_achievements()
+
+
+func _check_battle_achievements() -> void:
+	if _has_all_battles(STORY_1_BATTLES):
+		SteamManager.set_achievement("ALL_BATTLES_S1")
+	if _has_all_battles(STORY_2_BATTLES):
+		SteamManager.set_achievement("ALL_BATTLES_S2")
+	if _has_all_battles(STORY_3_BATTLES):
+		SteamManager.set_achievement("ALL_BATTLES_S3")
+
+
+func _has_all_battles(battle_list: Array[String]) -> bool:
+	for bid: String in battle_list:
+		if not _battles_completed.has(bid):
+			return false
+	return true
 
 
 func get_seen_enemies() -> Dictionary:

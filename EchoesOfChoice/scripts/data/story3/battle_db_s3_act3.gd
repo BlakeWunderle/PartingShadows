@@ -158,8 +158,9 @@ static func s3_dream_sanctum() -> BattleData:
 	]
 	b.choices = [
 		{"label": "The cult first. Go underneath the inn before they realize we know.", "battle_id": "S3_CultUnderbelly"},
-		{"label": "Lira, wait. In the dream, the Threadmaster's voice sounded like yours. Talk to us.", "battle_id": "S3_C_LirasConfession"},
 	]
+	if UnlockManager.is_unlocked("story_3_path_a") and UnlockManager.is_unlocked("story_3_path_b"):
+		b.choices.append({"label": "Lira, wait. In the dream, the Threadmaster's voice sounded like yours. Talk to us.", "battle_id": "S3_C_LirasConfession"})
 	b.music_track = "res://assets/audio/music/boss/Awakening of the Juggernaut_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 09.wav"
 	return b
