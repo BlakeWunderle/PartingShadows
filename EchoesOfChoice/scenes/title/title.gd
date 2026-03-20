@@ -152,6 +152,8 @@ func _show_main_menu() -> void:
 	_has_saves = SaveManager.has_any_save()
 	_settings_panel.visible = false
 	_compendium_panel.visible = false
+	_title_label.visible = true
+	_subtitle_label.visible = true
 	_menu.visible = true
 
 	var options: Array[Dictionary] = []
@@ -279,6 +281,8 @@ func _show_settings() -> void:
 func _show_compendium() -> void:
 	_mode = Mode.COMPENDIUM
 	_menu.hide_menu()
+	_title_label.visible = false
+	_subtitle_label.visible = false
 	_compendium_panel.visible = true
 	_compendium_panel.refresh_data()
 

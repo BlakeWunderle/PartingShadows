@@ -43,7 +43,7 @@ func build_content(container: VBoxContainer) -> void:
 	# Battle name/ID
 	var name_label := Label.new()
 	var battle_id: String = battle_data.get("battle_id", "Unknown Battle")
-	name_label.text = _format_battle_name(battle_id)
+	name_label.text = CompendiumManager.format_battle_name(battle_id)
 	name_label.add_theme_font_size_override("font_size", 20)
 	name_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
 	name_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -107,9 +107,3 @@ func build_content(container: VBoxContainer) -> void:
 			info_panel.add_child(enemy_label)
 
 
-func _format_battle_name(battle_id: String) -> String:
-	# Convert battle_id to readable name (e.g., "s1_city_streets" -> "City Streets")
-	var name := battle_id.replace("_", " ").capitalize()
-	# Remove story prefix (s1_, s2_, s3_)
-	name = name.replace("S1 ", "").replace("S2 ", "").replace("S3 ", "")
-	return name

@@ -34,7 +34,7 @@ func record_enemy(fighter: RefCounted, story_id: String) -> void:
 func record_class(class_id: String, display_name: String) -> void:
 	if _seen_classes.has(class_id):
 		return
-	var tier: int = _get_tier(class_id)
+	var tier: int = get_tier(class_id)
 	_seen_classes[class_id] = {
 		"display_name": display_name,
 		"tier": tier,
@@ -97,7 +97,14 @@ func get_save_discoveries(save_slot: int) -> Dictionary:
 	}
 
 
-func _get_tier(class_id: String) -> int:
+## Convert battle_id to readable name (e.g., "s1_city_streets" -> "City Streets")
+func format_battle_name(battle_id: String) -> String:
+	var display_name := battle_id.replace("_", " ").capitalize()
+	display_name = display_name.replace("S1 ", "").replace("S2 ", "").replace("S3 ", "")
+	return display_name
+
+
+func get_tier(class_id: String) -> int:
 	match class_id:
 		"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer":
 			return 0
@@ -121,6 +128,7 @@ func _load() -> void:
 		return
 	var json := JSON.new()
 	if json.parse(text) != OK:
+		GameLog.warn("CompendiumManager: failed to parse compendium.json: " + json.get_error_message())
 		return
 	var data: Dictionary = json.data
 	_seen_enemies = data.get("enemies", {})
@@ -139,4 +147,6 @@ func _save() -> void:
 	if file:
 		file.store_string(json_str)
 		file.close()
+	else:
+		GameLog.warn("CompendiumManager: failed to write compendium.json")
 	SteamManager.cloud_write("compendium.json", json_str)

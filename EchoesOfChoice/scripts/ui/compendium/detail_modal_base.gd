@@ -11,6 +11,9 @@ var _content_container: VBoxContainer
 
 
 func _ready() -> void:
+	# Allow modal to work while tree is paused (pause menu compendium)
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	# Cover entire viewport
 	anchor_right = 1.0
 	anchor_bottom = 1.0
@@ -38,26 +41,32 @@ func _ready() -> void:
 	_modal_panel.offset_bottom = 300
 	add_child(_modal_panel)
 
-	# Scroll container for content
-	var scroll := ScrollContainer.new()
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_modal_panel.add_child(scroll)
+	# Outer vbox to hold close button above scroll
+	var outer_vbox := VBoxContainer.new()
+	outer_vbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	outer_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_modal_panel.add_child(outer_vbox)
 
-	# Content vbox
-	_content_container = VBoxContainer.new()
-	_content_container.add_theme_constant_override("separation", 10)
-	_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(_content_container)
-
-	# Close button (top-right)
+	# Close button (top-right, fixed above scroll)
 	var close_btn := Button.new()
 	close_btn.text = "X"
 	close_btn.custom_minimum_size = Vector2(32, 32)
 	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_END
 	close_btn.add_theme_font_size_override("font_size", 18)
 	close_btn.pressed.connect(_on_close)
-	_content_container.add_child(close_btn)
+	outer_vbox.add_child(close_btn)
+
+	# Scroll container for content
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	outer_vbox.add_child(scroll)
+
+	# Content vbox
+	_content_container = VBoxContainer.new()
+	_content_container.add_theme_constant_override("separation", 10)
+	_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(_content_container)
 
 	# Subclasses build content here
 	build_content(_content_container)

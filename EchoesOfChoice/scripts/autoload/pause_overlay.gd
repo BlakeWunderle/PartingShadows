@@ -29,6 +29,10 @@ var _confirm_dialog: ConfirmDialog
 var _open_mp_btn: Button
 var _fighter_picker: FighterPicker
 var _tip_overlay: TipOverlay
+var _center_panel: PanelContainer
+var _pause_title: Label
+var _pause_sep: HSeparator
+var _panel_expanded: bool = false
 var _pending_save_slot: int = -1
 
 
@@ -55,35 +59,35 @@ func _build_ui() -> void:
 	_panel.add_child(bg)
 
 	# Center panel container
-	var center := PanelContainer.new()
-	center.set_anchors_preset(Control.PRESET_CENTER)
-	center.offset_left = -200.0
-	center.offset_top = -280.0
-	center.offset_right = 200.0
-	center.offset_bottom = 280.0
-	_panel.add_child(center)
+	_center_panel = PanelContainer.new()
+	_center_panel.set_anchors_preset(Control.PRESET_CENTER)
+	_center_panel.offset_left = -200.0
+	_center_panel.offset_top = -280.0
+	_center_panel.offset_right = 200.0
+	_center_panel.offset_bottom = 280.0
+	_panel.add_child(_center_panel)
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 20)
 	margin.add_theme_constant_override("margin_top", 16)
 	margin.add_theme_constant_override("margin_right", 20)
 	margin.add_theme_constant_override("margin_bottom", 16)
-	center.add_child(margin)
+	_center_panel.add_child(margin)
 
 	var root_vbox := VBoxContainer.new()
 	root_vbox.add_theme_constant_override("separation", 10)
 	margin.add_child(root_vbox)
 
 	# Title
-	var title := Label.new()
-	title.text = "PAUSED"
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 26)
-	title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
-	root_vbox.add_child(title)
+	_pause_title = Label.new()
+	_pause_title.text = "PAUSED"
+	_pause_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_pause_title.add_theme_font_size_override("font_size", 26)
+	_pause_title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	root_vbox.add_child(_pause_title)
 
-	var sep := HSeparator.new()
-	root_vbox.add_child(sep)
+	_pause_sep = HSeparator.new()
+	root_vbox.add_child(_pause_sep)
 
 	# Main menu buttons
 	_main_vbox = VBoxContainer.new()
@@ -148,6 +152,8 @@ func _build_ui() -> void:
 	_compendium_panel = CompendiumPanelNew.new()
 	_compendium_panel.visible = false
 	_compendium_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_compendium_panel.grid_columns = 5
+	_compendium_panel.items_per_page = 10
 	_compendium_panel.set_context(CompendiumPanelNew.Context.SAVE_SPECIFIC, -1)
 	_compendium_panel.close_requested.connect(_back_to_main)
 	root_vbox.add_child(_compendium_panel)
@@ -373,6 +379,15 @@ func _show_settings() -> void:
 func _show_compendium() -> void:
 	_mode = Mode.COMPENDIUM
 	_main_vbox.visible = false
+	_pause_title.visible = false
+	_pause_sep.visible = false
+	# Use most of the screen for compendium (narrower for 5-col grid)
+	_panel_expanded = true
+	_center_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_center_panel.offset_left = 180.0
+	_center_panel.offset_top = 30.0
+	_center_panel.offset_right = -180.0
+	_center_panel.offset_bottom = -30.0
 	_compendium_panel.visible = true
 	_compendium_panel.refresh_data()
 	_tip_overlay.show_tip_once("compendium",
@@ -493,6 +508,16 @@ func _back_to_main() -> void:
 	_settings_panel.visible = false
 	_compendium_panel.visible = false
 	_remap_panel.visible = false
+	_pause_title.visible = true
+	_pause_sep.visible = true
+	# Restore default center panel size only if it was expanded
+	if _panel_expanded:
+		_panel_expanded = false
+		_center_panel.set_anchors_preset(Control.PRESET_CENTER)
+		_center_panel.offset_left = -200.0
+		_center_panel.offset_top = -280.0
+		_center_panel.offset_right = 200.0
+		_center_panel.offset_bottom = 280.0
 	_main_vbox.visible = true
 	_resume_btn.grab_focus()
 

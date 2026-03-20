@@ -18,11 +18,14 @@ const BattleDetailModal := preload("res://scripts/ui/compendium/battle_detail_mo
 var current_tab: Tab = Tab.CLASSES
 var context_mode: Context = Context.GLOBAL
 var save_slot: int = -1  ## -1 = global, 0-2 = specific save
+var grid_columns: int = 5  ## Columns for card grid
+var items_per_page: int = 10  ## Cards per page (2 rows × 5 columns)
 
 var _classes_btn: Button
 var _enemies_btn: Button
 var _battles_btn: Button
 var _list_view: CompendiumListView
+var _active_modal: DetailModalBase
 var _FighterDB := preload("res://scripts/data/fighter_db.gd")
 var _BattleDB := preload("res://scripts/data/battle_db.gd")
 
@@ -137,7 +140,7 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 			"data": {
 				"class_id": class_id,
 				"name": _FighterDB.get_display_name(class_id) if is_discovered else "???",
-				"tier": _get_tier(class_id),
+				"tier": CompendiumManager.get_tier(class_id),
 				"portrait_path": _get_class_portrait_path(class_id) if is_discovered else "",
 				"flavor_text": "",  ## Will be populated from FighterDB in later phase
 				"abilities": [],  ## Will be populated from FighterDB in later phase
@@ -146,7 +149,7 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 		}
 		items.append(item_dict)
 
-	_list_view.set_items(items, 12)  ## 12 per page (3×4 grid)
+	_list_view.set_items(items, items_per_page, grid_columns)
 
 
 func _build_enemies_tab(discoveries: Dictionary) -> void:
@@ -177,7 +180,7 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 		return a["data"].get("name", "") < b["data"].get("name", "")
 	)
 
-	_list_view.set_items(items, 12)  ## 12 per page
+	_list_view.set_items(items, items_per_page, grid_columns)
 
 
 func _build_battles_tab(discoveries: Dictionary) -> void:
@@ -189,7 +192,7 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 			"is_discovered": true,
 			"data": {
 				"battle_id": battle_id,
-				"name": _format_battle_name(battle_id),
+				"name": CompendiumManager.format_battle_name(battle_id),
 				"portrait_path": "",  ## Battles use background images, not portraits
 				"scene_image": "",  ## Will be populated from BattleDB in later phase
 				"flavor_text": "",  ## Will be populated from BattleDB in later phase
@@ -199,14 +202,19 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 		}
 		items.append(item_dict)
 
-	_list_view.set_items(items, 6)  ## 6 per page (2×3 grid for battles)
+	_list_view.set_items(items, items_per_page, grid_columns)
 
 
 func _on_card_clicked(item_data: Dictionary, is_discovered: bool) -> void:
 	if not is_discovered:
-		# Show tooltip: "Unlock by..."
-		# For now, just ignore clicks on undiscovered items
 		return
+
+	# Close any existing modal first
+	if _active_modal and is_instance_valid(_active_modal):
+		var layer: Node = _active_modal.get_parent()
+		if layer:
+			layer.queue_free()
+		_active_modal = null
 
 	# Open appropriate detail modal
 	var modal: DetailModalBase
@@ -217,18 +225,30 @@ func _on_card_clicked(item_data: Dictionary, is_discovered: bool) -> void:
 				discoveries = CompendiumManager.get_global_discoveries()
 			else:
 				discoveries = CompendiumManager.get_save_discoveries(save_slot)
-			modal = ClassDetailModal.new(item_data, discoveries.get("classes", {}))
+			modal = ClassDetailModal.new(item_data, discoveries.get("classes", {}), context_mode == Context.GLOBAL)
 		Tab.ENEMIES:
 			modal = EnemyDetailModal.new(item_data)
 		Tab.BATTLES:
 			modal = BattleDetailModal.new(item_data)
 
 	if modal:
-		modal.close_requested.connect(func() -> void:
-			# Modal already queues itself for deletion
-			pass
-		)
-		add_child(modal)
+		_active_modal = modal
+		modal.close_requested.connect(_on_modal_closed)
+		# Add modal on a CanvasLayer above everything (including pause overlay at 99)
+		var layer := CanvasLayer.new()
+		layer.layer = 110
+		layer.name = "CompendiumModalLayer"
+		get_tree().root.add_child(layer)
+		layer.add_child(modal)
+
+
+func _on_modal_closed() -> void:
+	# Clean up the CanvasLayer when modal closes
+	if _active_modal and is_instance_valid(_active_modal):
+		var layer: Node = _active_modal.get_parent()
+		if layer:
+			layer.queue_free()
+	_active_modal = null
 
 
 ## Get all class IDs (T0, T1, T2) for the compendium
@@ -253,17 +273,6 @@ func _get_all_class_ids() -> Array:
 	]
 
 
-func _get_tier(class_id: String) -> int:
-	match class_id:
-		"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer":
-			return 0
-		"Duelist", "Ranger", "MartialArtist", "Invoker", "Acolyte", \
-		"Bard", "Dervish", "Orator", "Artificer", "Cosmologist", "Arithmancer", \
-		"Herbalist", "Shaman", "Beastcaller", "Sentinel", "Pathfinder":
-			return 1
-	return 2
-
-
 func _get_class_portrait_path(class_id: String) -> String:
 	# Default to male variant for compendium
 	return "res://assets/art/portraits/classes/%s_m.png" % class_id.to_lower()
@@ -271,12 +280,6 @@ func _get_class_portrait_path(class_id: String) -> String:
 
 func _get_enemy_portrait_path(class_id: String) -> String:
 	return "res://assets/art/portraits/enemies/%s.png" % class_id.to_lower()
-
-
-func _format_battle_name(battle_id: String) -> String:
-	var name := battle_id.replace("_", " ").capitalize()
-	name = name.replace("S1 ", "").replace("S2 ", "").replace("S3 ", "")
-	return name
 
 
 func _guess_story_from_battle_id(battle_id: String) -> String:

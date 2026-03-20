@@ -4,15 +4,16 @@ class_name ClassDetailModal extends DetailModalBase
 
 var class_data: Dictionary = {}
 var discovered_classes: Dictionary = {}  ## class_id -> discovered status
+var is_global: bool = false  ## True when viewed from title screen (no "YOU ARE HERE")
 var _FighterDB := preload("res://scripts/data/fighter_db.gd")
 var _FighterDBT1 := preload("res://scripts/data/fighter_db_t1.gd")
 var _FighterDBT2 := preload("res://scripts/data/fighter_db_t2.gd")
-var _FighterDBT2B := preload("res://scripts/data/fighter_db_t2b.gd")
 
 
-func _init(data: Dictionary, discovered: Dictionary) -> void:
+func _init(data: Dictionary, discovered: Dictionary, global: bool = false) -> void:
 	class_data = data
 	discovered_classes = discovered
+	is_global = global
 
 
 func build_content(container: VBoxContainer) -> void:
@@ -64,7 +65,8 @@ func build_content(container: VBoxContainer) -> void:
 	# Name and tier
 	var name_label := Label.new()
 	var tier: int = class_data.get("tier", 0)
-	var tier_text: String = ["Base Class", "Tier 1", "Tier 2"][tier]
+	var tier_names: Array[String] = ["Base Class", "Tier 1", "Tier 2"]
+	var tier_text: String = tier_names[clampi(tier, 0, tier_names.size() - 1)]
 	name_label.text = class_data.get("display_name", "Unknown") + " (" + tier_text + ")"
 	name_label.add_theme_font_size_override("font_size", 20)
 	name_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
@@ -170,7 +172,7 @@ func _add_tree_node(container: VBoxContainer, node_class_id: String, indent: int
 	if not is_discovered:
 		node_label.text = indent_str + "??? (Undiscovered)"
 		node_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
-	elif is_current:
+	elif is_current and not is_global:
 		node_label.text = indent_str + "► " + display_name + " (YOU ARE HERE)"
 		node_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
 	else:

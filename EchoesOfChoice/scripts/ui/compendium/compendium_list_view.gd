@@ -12,6 +12,7 @@ var items: Array = []  ## Array of {item data, is_discovered} dictionaries
 var items_per_page: int = 12  ## Default: 3 rows × 4 columns
 
 var _grid: GridContainer
+var _scroll: ScrollContainer
 var _pagination: PaginationControls
 var _current_page: int = 1
 
@@ -20,17 +21,18 @@ func _ready() -> void:
 	add_theme_constant_override("separation", 12)
 
 	# Scroll container for grid
-	var scroll := ScrollContainer.new()
-	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	add_child(scroll)
+	_scroll = ScrollContainer.new()
+	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_scroll.custom_minimum_size = Vector2(800, 420)
+	add_child(_scroll)
 
 	# Grid container
 	_grid = GridContainer.new()
 	_grid.columns = 4
 	_grid.add_theme_constant_override("h_separation", 10)
 	_grid.add_theme_constant_override("v_separation", 10)
-	scroll.add_child(_grid)
+	_scroll.add_child(_grid)
 
 	# Pagination controls
 	_pagination = PaginationControls.new()
@@ -41,11 +43,12 @@ func _ready() -> void:
 
 
 ## Set items and refresh display
-func set_items(new_items: Array, per_page: int = 12) -> void:
+func set_items(new_items: Array, per_page: int = 12, columns: int = 4) -> void:
 	items = new_items
 	items_per_page = per_page
 	_current_page = 1
 	if is_node_ready():
+		_grid.columns = columns
 		_refresh_page()
 
 
@@ -67,6 +70,9 @@ func _get_page_items() -> Array:
 func _refresh_page() -> void:
 	if not is_node_ready():
 		return
+
+	# Reset scroll position
+	_scroll.scroll_vertical = 0
 
 	# Clear grid
 	for child in _grid.get_children():

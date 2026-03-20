@@ -10,6 +10,7 @@ var is_discovered: bool = true
 var _portrait: TextureRect
 var _name_label: Label
 var _is_hovered: bool = false
+var _hover_style: StyleBoxFlat
 
 
 func _ready() -> void:
@@ -76,20 +77,17 @@ func _update_display() -> void:
 
 func _update_style() -> void:
 	if _is_hovered:
-		add_theme_stylebox_override("panel", _create_hover_style())
+		if not _hover_style:
+			_hover_style = StyleBoxFlat.new()
+			_hover_style.bg_color = Color(0.3, 0.3, 0.4, 0.8)
+			_hover_style.border_color = Color(0.9, 0.8, 0.5)
+			_hover_style.border_width_left = 2
+			_hover_style.border_width_right = 2
+			_hover_style.border_width_top = 2
+			_hover_style.border_width_bottom = 2
+		add_theme_stylebox_override("panel", _hover_style)
 	else:
 		remove_theme_stylebox_override("panel")
-
-
-func _create_hover_style() -> StyleBoxFlat:
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.3, 0.3, 0.4, 0.8)
-	style.border_color = Color(0.9, 0.8, 0.5)
-	style.border_width_left = 2
-	style.border_width_right = 2
-	style.border_width_top = 2
-	style.border_width_bottom = 2
-	return style
 
 
 func _gui_input(event: InputEvent) -> void:
