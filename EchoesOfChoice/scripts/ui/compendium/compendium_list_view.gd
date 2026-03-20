@@ -15,6 +15,7 @@ var _grid: GridContainer
 var _scroll: ScrollContainer
 var _pagination: PaginationControls
 var _current_page: int = 1
+var _cards: Array[CompendiumCard] = []  ## Current page's cards (avoids stale queue_free'd nodes)
 
 
 func _ready() -> void:
@@ -80,6 +81,7 @@ func _refresh_page() -> void:
 
 	# Add cards for current page
 	var page_items := _get_page_items()
+	var cards: Array[CompendiumCard] = []
 	for item_dict: Dictionary in page_items:
 		var card := CompendiumCard.new()
 		card.set_item(item_dict.get("data", {}), item_dict.get("is_discovered", false))
@@ -87,8 +89,82 @@ func _refresh_page() -> void:
 			card_clicked.emit(data, item_dict.get("is_discovered", false))
 		)
 		_grid.add_child(card)
+		cards.append(card)
+
+	_cards = cards
+	_wire_card_focus(cards)
+	if not cards.is_empty():
+		cards[0].grab_focus()
+
+
+## Set focus_neighbor_bottom on pagination buttons to an external node (e.g. back button).
+func set_bottom_neighbor(node: Control) -> void:
+	_pagination.set_bottom_neighbor(node)
+
+
+## Set focus_neighbor_top on top-row cards to an external node (e.g. tab buttons).
+func set_top_neighbor(node: Control) -> void:
+	var cols: int = _grid.columns
+	for i: int in mini(cols, _cards.size()):
+		_cards[i].focus_neighbor_top = node.get_path()
+
+
+## Return the pagination's focus target for external wiring.
+func get_pagination_target() -> Button:
+	return _pagination.get_focus_target()
+
+
+## Return the NodePath to the first card, or empty if no cards exist.
+func get_first_card_path() -> NodePath:
+	if not _cards.is_empty():
+		return _cards[0].get_path()
+	return NodePath()
+
+
+## Restore focus to the first card on the current page.
+func grab_card_focus() -> void:
+	if not _cards.is_empty():
+		_cards[0].grab_focus()
 
 
 func _on_page_changed(new_page: int) -> void:
 	_current_page = new_page
 	_refresh_page()
+
+
+## Wire focus neighbors for grid navigation (left/right/up/down).
+## Bottom row links down to pagination, pagination links up to top row.
+func _wire_card_focus(cards: Array[CompendiumCard]) -> void:
+	if cards.is_empty():
+		return
+	var cols: int = _grid.columns
+	var pagination_target: Button = _pagination.get_focus_target()
+	for i: int in cards.size():
+		var card: CompendiumCard = cards[i]
+		var col: int = i % cols
+
+		# Left/right within row (stop at edges)
+		if col > 0:
+			card.focus_neighbor_left = cards[i - 1].get_path()
+		else:
+			card.focus_neighbor_left = cards[i].get_path()
+		if col < cols - 1 and i + 1 < cards.size():
+			card.focus_neighbor_right = cards[i + 1].get_path()
+		else:
+			card.focus_neighbor_right = cards[i].get_path()
+
+		# Up/down between rows
+		var up_idx: int = i - cols
+		if up_idx >= 0:
+			card.focus_neighbor_top = cards[up_idx].get_path()
+		else:
+			card.focus_neighbor_top = cards[i].get_path()
+		var down_idx: int = i + cols
+		if down_idx < cards.size():
+			card.focus_neighbor_bottom = cards[down_idx].get_path()
+		else:
+			# Bottom row → pagination
+			card.focus_neighbor_bottom = pagination_target.get_path()
+
+	# Pagination → first card in top row
+	_pagination.set_top_neighbor(cards[0])

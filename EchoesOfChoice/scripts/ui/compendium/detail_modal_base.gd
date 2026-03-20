@@ -53,6 +53,7 @@ func _ready() -> void:
 	close_btn.custom_minimum_size = Vector2(32, 32)
 	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_END
 	close_btn.add_theme_font_size_override("font_size", 18)
+	close_btn.focus_mode = Control.FOCUS_ALL
 	close_btn.pressed.connect(_on_close)
 	outer_vbox.add_child(close_btn)
 
@@ -71,6 +72,9 @@ func _ready() -> void:
 	# Subclasses build content here
 	build_content(_content_container)
 
+	# Focus the first focusable element in content, fallback to close button
+	_grab_first_focusable(_content_container, close_btn)
+
 	# Fade in animation
 	modulate = Color(1, 1, 1, 0)
 	var tween := create_tween()
@@ -80,6 +84,24 @@ func _ready() -> void:
 ## Override in subclasses to build modal content
 func build_content(container: VBoxContainer) -> void:
 	pass
+
+
+func _grab_first_focusable(node: Node, fallback: Control) -> void:
+	var target: Control = _find_first_focusable(node)
+	if target:
+		target.grab_focus()
+	elif fallback:
+		fallback.grab_focus()
+
+
+func _find_first_focusable(node: Node) -> Control:
+	for child: Node in node.get_children():
+		if child is Control and (child as Control).focus_mode == Control.FOCUS_ALL:
+			return child as Control
+		var found: Control = _find_first_focusable(child)
+		if found:
+			return found
+	return null
 
 
 func _on_close() -> void:

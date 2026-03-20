@@ -8,12 +8,25 @@ var is_global: bool = false  ## True when viewed from title screen (no "YOU ARE 
 var _FighterDB := preload("res://scripts/data/fighter_db.gd")
 var _FighterDBT1 := preload("res://scripts/data/fighter_db_t1.gd")
 var _FighterDBT2 := preload("res://scripts/data/fighter_db_t2.gd")
+var _focusable_rows: Array[Dictionary] = []  ## [{row: HBoxContainer, class_id: String}]
 
 
 func _init(data: Dictionary, discovered: Dictionary, global: bool = false) -> void:
 	class_data = data
 	discovered_classes = discovered
 	is_global = global
+
+
+func _input(event: InputEvent) -> void:
+	if not is_inside_tree():
+		return
+	if event.is_action_pressed("ui_accept") or event.is_action_pressed("confirm"):
+		for entry: Dictionary in _focusable_rows:
+			var row: HBoxContainer = entry["row"]
+			if is_instance_valid(row) and row.has_focus():
+				_navigate_to_class(entry["class_id"])
+				return
+	super._input(event)
 
 
 func build_content(container: VBoxContainer) -> void:
@@ -171,8 +184,8 @@ func _add_tree_row(container: VBoxContainer, node_class_id: String, indent: int,
 		node_label.text = "???"
 		node_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 	else:
-		node_label.text = "► " + display_name
-		node_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+		node_label.text = display_name
+		node_label.add_theme_color_override("font_color", Color.WHITE)
 	node_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	node_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	row.add_child(node_label)
@@ -204,9 +217,26 @@ func _add_clickable_tree_row(container: VBoxContainer, node_class_id: String, in
 	node_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	row.add_child(node_label)
 
-	# Make discovered rows clickable to navigate
+	# Make discovered rows clickable/focusable to navigate
 	if is_discovered:
 		row.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		row.focus_mode = Control.FOCUS_ALL
+		_focusable_rows.append({"row": row, "class_id": node_class_id})
+		# Focus highlight
+		var highlight := ColorRect.new()
+		highlight.color = Color(0.3, 0.5, 0.8, 0.2)
+		highlight.visible = false
+		highlight.set_anchors_preset(Control.PRESET_FULL_RECT)
+		highlight.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.add_child(highlight)
+		row.focus_entered.connect(func() -> void:
+			highlight.visible = true
+			node_label.add_theme_color_override("font_color", Color(0.5, 0.75, 1.0))
+		)
+		row.focus_exited.connect(func() -> void:
+			highlight.visible = false
+			node_label.add_theme_color_override("font_color", Color.WHITE)
+		)
 		row.gui_input.connect(func(event: InputEvent) -> void:
 			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 				_navigate_to_class(node_class_id)

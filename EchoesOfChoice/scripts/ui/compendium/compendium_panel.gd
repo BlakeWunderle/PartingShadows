@@ -24,6 +24,7 @@ var items_per_page: int = 10  ## Cards per page (2 rows × 5 columns)
 var _classes_btn: Button
 var _enemies_btn: Button
 var _battles_btn: Button
+var _back_btn: Button
 var _list_view: CompendiumListView
 var _active_modal: DetailModalBase
 var _FighterDB := preload("res://scripts/data/fighter_db.gd")
@@ -74,6 +75,12 @@ func _build_ui() -> void:
 	_battles_btn.pressed.connect(func() -> void: _switch_tab(Tab.BATTLES))
 	tab_row.add_child(_battles_btn)
 
+	# Wire tab focus neighbors (left/right between tabs)
+	_classes_btn.focus_neighbor_right = _enemies_btn.get_path()
+	_enemies_btn.focus_neighbor_left = _classes_btn.get_path()
+	_enemies_btn.focus_neighbor_right = _battles_btn.get_path()
+	_battles_btn.focus_neighbor_left = _enemies_btn.get_path()
+
 	# List view
 	_list_view = CompendiumListView.new()
 	_list_view.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -81,13 +88,24 @@ func _build_ui() -> void:
 	add_child(_list_view)
 
 	# Back button
-	var back_btn := Button.new()
-	back_btn.text = "Back"
-	back_btn.custom_minimum_size = Vector2(140, 36)
-	back_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	back_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	back_btn.pressed.connect(func() -> void: close_requested.emit())
-	add_child(back_btn)
+	_back_btn = Button.new()
+	_back_btn.text = "Back"
+	_back_btn.custom_minimum_size = Vector2(140, 36)
+	_back_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_back_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_back_btn.pressed.connect(func() -> void: close_requested.emit())
+	_apply_focus_style(_back_btn)
+	add_child(_back_btn)
+
+	# Wire pagination → back button
+	_list_view.set_bottom_neighbor(_back_btn)
+	_back_btn.focus_neighbor_top = _list_view.get_pagination_target().get_path()
+
+	# Wire tabs ↔ card grid (d-pad up from top row → tabs, d-pad down from tabs → cards)
+	_list_view.set_top_neighbor(_enemies_btn)
+	_classes_btn.focus_neighbor_bottom = _list_view.get_first_card_path()
+	_enemies_btn.focus_neighbor_bottom = _list_view.get_first_card_path()
+	_battles_btn.focus_neighbor_bottom = _list_view.get_first_card_path()
 
 
 func _create_tab_button(label: String) -> Button:
@@ -95,7 +113,31 @@ func _create_tab_button(label: String) -> Button:
 	btn.text = label
 	btn.custom_minimum_size = Vector2(120, 32)
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style(btn)
 	return btn
+
+
+## Apply a gold-border focus style to a button so controller users can see focus.
+static func _apply_focus_style(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
+
+
+func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+	if event is InputEventJoypadButton and event.pressed:
+		if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
+			_switch_tab(wrapi(current_tab - 1, 0, 3) as Tab)
+			get_viewport().set_input_as_handled()
+		elif event.button_index == JOY_BUTTON_RIGHT_SHOULDER:
+			_switch_tab(wrapi(current_tab + 1, 0, 3) as Tab)
+			get_viewport().set_input_as_handled()
 
 
 func _switch_tab(tab: Tab) -> void:
@@ -127,6 +169,9 @@ func refresh_data() -> void:
 			_build_enemies_tab(discoveries)
 		Tab.BATTLES:
 			_build_battles_tab(discoveries)
+
+	# Re-wire cross-component focus after cards are rebuilt
+	_rewire_focus()
 
 
 func _build_classes_tab(discoveries: Dictionary) -> void:
@@ -256,6 +301,17 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 	_list_view.set_items(items, items_per_page, grid_columns)
 
 
+func _rewire_focus() -> void:
+	var card_path: NodePath = _list_view.get_first_card_path()
+	if not card_path.is_empty():
+		_classes_btn.focus_neighbor_bottom = card_path
+		_enemies_btn.focus_neighbor_bottom = card_path
+		_battles_btn.focus_neighbor_bottom = card_path
+		_list_view.set_top_neighbor(_enemies_btn)
+	_list_view.set_bottom_neighbor(_back_btn)
+	_back_btn.focus_neighbor_top = _list_view.get_pagination_target().get_path()
+
+
 func _on_card_clicked(item_data: Dictionary, is_discovered: bool) -> void:
 	if not is_discovered:
 		return
@@ -300,6 +356,8 @@ func _on_modal_closed() -> void:
 		if layer:
 			layer.queue_free()
 	_active_modal = null
+	# Restore focus to the card grid after modal is freed
+	_list_view.grab_card_focus()
 
 
 ## Get all class IDs (T0, T1, T2) for the compendium

@@ -31,6 +31,7 @@ func _ready() -> void:
 	_prev_btn.custom_minimum_size = Vector2(100, 32)
 	_prev_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	_prev_btn.pressed.connect(_on_prev)
+	_apply_focus_style(_prev_btn)
 	add_child(_prev_btn)
 
 	# Page label
@@ -47,9 +48,35 @@ func _ready() -> void:
 	_next_btn.custom_minimum_size = Vector2(100, 32)
 	_next_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	_next_btn.pressed.connect(_on_next)
+	_apply_focus_style(_next_btn)
 	add_child(_next_btn)
 
+	# Wire focus neighbors
+	_prev_btn.focus_neighbor_right = _next_btn.get_path()
+	_next_btn.focus_neighbor_left = _prev_btn.get_path()
+
 	_update_ui()
+
+
+## Return the first enabled pagination button for external focus wiring.
+func get_focus_target() -> Button:
+	if not _prev_btn.disabled:
+		return _prev_btn
+	return _next_btn
+
+
+## Set focus_neighbor_top on both buttons to the given node.
+func set_top_neighbor(node: Control) -> void:
+	var path: NodePath = node.get_path()
+	_prev_btn.focus_neighbor_top = path
+	_next_btn.focus_neighbor_top = path
+
+
+## Set focus_neighbor_bottom on both buttons to the given node.
+func set_bottom_neighbor(node: Control) -> void:
+	var path: NodePath = node.get_path()
+	_prev_btn.focus_neighbor_bottom = path
+	_next_btn.focus_neighbor_bottom = path
 
 
 func _on_prev() -> void:
@@ -62,6 +89,16 @@ func _on_next() -> void:
 	if current_page < total_pages:
 		current_page += 1
 		page_changed.emit(current_page)
+
+
+static func _apply_focus_style(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
 
 
 func _update_ui() -> void:
