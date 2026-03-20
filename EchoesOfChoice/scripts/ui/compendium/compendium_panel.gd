@@ -243,10 +243,13 @@ func _get_all_class_ids() -> Array:
 		"Artificer", "Cosmologist", "Arithmancer",
 		"Herbalist", "Shaman", "Beastcaller",
 		"Sentinel", "Pathfinder",
-		# T2 (simplified - would need full list)
+		# T2 (complete list)
 		"Cavalry", "Dragoon", "Mercenary", "Hunter", "Ninja", "Monk",
 		"Infernalist", "Tidecaller", "Tempest", "Paladin", "Priest", "Warlock",
-		# ... (add remaining T2 classes)
+		"Warcrier", "Minstrel", "Illusionist", "Mime", "Laureate", "Elegist",
+		"Alchemist", "Bombardier", "Chronomancer", "Astronomer", "Automaton", "Technomancer",
+		"Blighter", "GroveKeeper", "WitchDoctor", "Spiritwalker", "Falconer", "Shapeshifter",
+		"Bulwark", "Aegis", "Trailblazer", "Survivalist",
 	]
 
 

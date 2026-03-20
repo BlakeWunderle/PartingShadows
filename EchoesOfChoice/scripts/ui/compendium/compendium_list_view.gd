@@ -19,13 +19,18 @@ var _current_page: int = 1
 func _ready() -> void:
 	add_theme_constant_override("separation", 12)
 
+	# Scroll container for grid
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(scroll)
+
 	# Grid container
 	_grid = GridContainer.new()
 	_grid.columns = 4
 	_grid.add_theme_constant_override("h_separation", 10)
 	_grid.add_theme_constant_override("v_separation", 10)
-	_grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	add_child(_grid)
+	scroll.add_child(_grid)
 
 	# Pagination controls
 	_pagination = PaginationControls.new()

@@ -25,23 +25,30 @@ func _ready() -> void:
 	_overlay.gui_input.connect(_on_overlay_clicked)
 	add_child(_overlay)
 
-	# Modal panel (centered)
+	# Modal panel (centered, larger size)
 	_modal_panel = PanelContainer.new()
-	_modal_panel.custom_minimum_size = Vector2(600, 400)
+	_modal_panel.custom_minimum_size = Vector2(800, 600)
 	_modal_panel.anchor_left = 0.5
 	_modal_panel.anchor_top = 0.5
 	_modal_panel.anchor_right = 0.5
 	_modal_panel.anchor_bottom = 0.5
-	_modal_panel.offset_left = -300
-	_modal_panel.offset_top = -200
-	_modal_panel.offset_right = 300
-	_modal_panel.offset_bottom = 200
+	_modal_panel.offset_left = -400
+	_modal_panel.offset_top = -300
+	_modal_panel.offset_right = 400
+	_modal_panel.offset_bottom = 300
 	add_child(_modal_panel)
+
+	# Scroll container for content
+	var scroll := ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_modal_panel.add_child(scroll)
 
 	# Content vbox
 	_content_container = VBoxContainer.new()
 	_content_container.add_theme_constant_override("separation", 10)
-	_modal_panel.add_child(_content_container)
+	_content_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	scroll.add_child(_content_container)
 
 	# Close button (top-right)
 	var close_btn := Button.new()
