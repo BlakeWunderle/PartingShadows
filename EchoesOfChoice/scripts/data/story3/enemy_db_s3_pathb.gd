@@ -68,14 +68,14 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 
 static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thread Disciple", lvl)
-	f.health = _es(510, 586, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(550, 632, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = _es(34, 41, 2, 3, lvl, 13)
-	f.magic_attack = _es(86, 100, 3, 5, lvl, 13)
-	f.magic_defense = _es(40, 48, 2, 4, lvl, 13)
-	f.speed = _es(33, 39, 2, 3, lvl, 13)
-	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 13
+	f.physical_defense = _es(38, 45, 2, 4, lvl, 13)
+	f.magic_attack = _es(94, 108, 3, 5, lvl, 13)
+	f.magic_defense = _es(44, 52, 2, 4, lvl, 13)
+	f.speed = _es(36, 42, 2, 3, lvl, 13)
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.unstable_channeling(), EAB.siphon_faith()]
 	f.flavor_text = "A young cultist whose devotion outpaces their skill. Their channeling is unstable and volatile, but their faith in the Thread grants them power beyond their training."
 	return f
@@ -83,14 +83,14 @@ static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 
 static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thread Warden", lvl)
-	f.health = _es(600, 688, 6, 9, lvl, 13); f.max_health = f.health
+	f.health = _es(650, 744, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = _es(90, 104, 3, 5, lvl, 13)
-	f.physical_defense = _es(48, 56, 2, 4, lvl, 13)
+	f.physical_attack = _es(100, 116, 3, 5, lvl, 13)
+	f.physical_defense = _es(52, 60, 2, 4, lvl, 13)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 13)
-	f.magic_defense = _es(38, 46, 2, 3, lvl, 13)
-	f.speed = _es(26, 32, 2, 3, lvl, 13)
-	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 7
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 13)
+	f.speed = _es(28, 34, 2, 3, lvl, 13)
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 11
 	f.abilities = [EAB.shielding_blow(), EAB.guardians_oath()]
 	f.flavor_text = "A seasoned warrior sworn to protect the Thread cult's sanctum. Bound by an oath woven into their very being, they fight with unwavering purpose and crushing strength."
 	return f
