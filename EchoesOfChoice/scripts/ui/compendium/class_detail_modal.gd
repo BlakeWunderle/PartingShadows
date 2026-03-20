@@ -64,7 +64,7 @@ func build_content(container: VBoxContainer) -> void:
 	# Name and tier
 	var name_label := Label.new()
 	var tier: int = class_data.get("tier", 0)
-	var tier_text := ["Base Class", "Tier 1", "Tier 2"][tier]
+	var tier_text: String = ["Base Class", "Tier 1", "Tier 2"][tier]
 	name_label.text = class_data.get("display_name", "Unknown") + " (" + tier_text + ")"
 	name_label.add_theme_font_size_override("font_size", 20)
 	name_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
@@ -131,8 +131,28 @@ func _get_t0_root(class_id: String, tier: int) -> String:
 	if tier == 1:
 		return t1_to_t0.get(class_id, "")
 
+	# T2 -> T1 mapping
+	var t2_to_t1 := {
+		"Cavalry": "Duelist", "Dragoon": "Duelist",
+		"Mercenary": "Ranger", "Hunter": "Ranger",
+		"Ninja": "MartialArtist", "Monk": "MartialArtist",
+		"Infernalist": "Invoker", "Tidecaller": "Invoker", "Tempest": "Invoker",
+		"Paladin": "Acolyte", "Priest": "Acolyte", "Warlock": "Acolyte",
+		"Warcrier": "Bard", "Minstrel": "Bard",
+		"Illusionist": "Dervish", "Mime": "Dervish",
+		"Laureate": "Orator", "Elegist": "Orator",
+		"Alchemist": "Artificer", "Bombardier": "Artificer",
+		"Chronomancer": "Cosmologist", "Astronomer": "Cosmologist",
+		"Automaton": "Arithmancer", "Technomancer": "Arithmancer",
+		"Blighter": "Herbalist", "GroveKeeper": "Herbalist",
+		"WitchDoctor": "Shaman", "Spiritwalker": "Shaman",
+		"Falconer": "Beastcaller", "Shapeshifter": "Beastcaller",
+		"Bulwark": "Sentinel", "Aegis": "Sentinel",
+		"Trailblazer": "Pathfinder", "Survivalist": "Pathfinder",
+	}
+
 	# T2 - find parent T1 first, then T0
-	var t1_parent: String = _FighterDB.get_parent_class(class_id)
+	var t1_parent: String = t2_to_t1.get(class_id, "")
 	if not t1_parent.is_empty():
 		return t1_to_t0.get(t1_parent, "")
 
