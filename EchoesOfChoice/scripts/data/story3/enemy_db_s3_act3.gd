@@ -153,17 +153,17 @@ static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 
 
 # Prog 13 boss -- balanced boss (Sanctum Guardian)
-# Buffed slightly: DreamSanctum 53.8% too easy, target 50%
+# Interpolated between 53.8% baseline and 36.6% overbuff, target 50%
 static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Sanctum Guardian", lvl)
-	f.health = _es(630, 712, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = _es(615, 695, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(78, 90, 3, 5, lvl, 14)
-	f.physical_defense = _es(43, 51, 2, 3, lvl, 14)
-	f.magic_attack = _es(78, 90, 3, 5, lvl, 14)
-	f.magic_defense = _es(43, 51, 2, 3, lvl, 14)
-	f.speed = _es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 10
+	f.physical_attack = _es(76, 87, 3, 5, lvl, 14)
+	f.physical_defense = _es(42, 50, 2, 3, lvl, 14)
+	f.magic_attack = _es(76, 87, 3, 5, lvl, 14)
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 14)
+	f.speed = _es(31, 37, 2, 3, lvl, 14)
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.loom_slam(), EAB.thread_storm(), EAB.guardians_veil()]
 	f.flavor_text = "The final ward of the dream sanctum, a colossal being of interwoven threads and crystallized will. It fights with the combined resolve of every cultist who has prayed at the loom."
 	return f
