@@ -44,7 +44,7 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = _es(76, 88, 3, 5, lvl, 12)
 	f.magic_defense = _es(38, 45, 2, 3, lvl, 12)
 	f.speed = _es(33, 39, 2, 3, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
 	f.flavor_text = "A phantom born from a dreamer who achieved lucidity but lost themselves in it. It wields focused thought like a weapon, phasing through attacks with terrifying ease."
 	return f
@@ -95,7 +95,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = _es(79, 91, 3, 5, lvl, 12)
 	f.magic_defense = _es(36, 43, 2, 3, lvl, 12)
 	f.speed = _es(33, 39, 2, 3, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	f.flavor_text = "A hooded cultist who channels forbidden thread-magic through rituals of devotion. It unravels the minds of its enemies, leaving them confused and vulnerable."
 	return f
