@@ -285,6 +285,7 @@ func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_menu.hide_menu()
 	_settings_panel.visible = true
+	_settings_panel.grab_focus()
 
 
 func _show_compendium() -> void:

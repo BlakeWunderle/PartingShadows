@@ -41,6 +41,11 @@ func _ready() -> void:
 	_sync_from_settings()
 
 
+func grab_focus() -> void:
+	if _music_slider:
+		_music_slider.grab_focus()
+
+
 func _build_ui() -> void:
 	# Title
 	var title := Label.new()
@@ -152,6 +157,7 @@ func _add_slider_row(parent: VBoxContainer, label_text: String, slider: HSlider,
 	slider.step = 1.0
 	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	slider.custom_minimum_size = Vector2(140, 0)
+	_apply_focus_style_slider(slider)
 	row.add_child(slider)
 
 	value_label.custom_minimum_size = Vector2(48, 0)
@@ -172,6 +178,7 @@ func _add_dropdown_row(parent: VBoxContainer, label_text: String, option_btn: Op
 	for item: String in items:
 		option_btn.add_item(item)
 	option_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_focus_style_option(option_btn)
 	row.add_child(option_btn)
 	return row
 
@@ -187,6 +194,7 @@ func _add_toggle_row(parent: VBoxContainer, label_text: String, check_btn: Check
 	row.add_child(lbl)
 
 	check_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_focus_style_check(check_btn)
 	row.add_child(check_btn)
 
 
@@ -196,7 +204,48 @@ func _styled_button(text: String) -> Button:
 	btn.custom_minimum_size = Vector2(140, 36)
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style_button(btn)
 	return btn
+
+
+static func _apply_focus_style_button(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
+
+
+static func _apply_focus_style_slider(slider: HSlider) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	slider.add_theme_stylebox_override("focus", focus_sb)
+
+
+static func _apply_focus_style_option(btn: OptionButton) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
+
+
+static func _apply_focus_style_check(btn: CheckButton) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
 
 
 # =============================================================================

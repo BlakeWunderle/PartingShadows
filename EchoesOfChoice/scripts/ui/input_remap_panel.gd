@@ -54,6 +54,7 @@ func _build_ui() -> void:
 		btn.text = InputConfig.get_key_name(action)
 		btn.custom_minimum_size = Vector2(160, 32)
 		btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		_apply_focus_style(btn)
 		var bound_action: String = action
 		btn.pressed.connect(func() -> void: _start_listening(bound_action))
 		row.add_child(btn)
@@ -69,6 +70,7 @@ func _build_ui() -> void:
 	reset_btn.text = "Reset Defaults"
 	reset_btn.custom_minimum_size = Vector2(160, 36)
 	reset_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style(reset_btn)
 	reset_btn.pressed.connect(_on_reset)
 	btn_row.add_child(reset_btn)
 
@@ -76,6 +78,7 @@ func _build_ui() -> void:
 	back_btn.text = "Back"
 	back_btn.custom_minimum_size = Vector2(140, 36)
 	back_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style(back_btn)
 	back_btn.pressed.connect(func() -> void: back_pressed.emit())
 	btn_row.add_child(back_btn)
 
@@ -109,3 +112,13 @@ func _on_reset() -> void:
 func _refresh_buttons() -> void:
 	for action: String in _buttons:
 		_buttons[action].text = InputConfig.get_key_name(action)
+
+
+static func _apply_focus_style(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
