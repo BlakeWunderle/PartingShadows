@@ -120,9 +120,18 @@ func _build_ui() -> void:
 	add_child(_confirm_dialog)
 
 
+static var _cached_bg: String = ""
+
 func _pick_title_background() -> String:
-	# Always use the default title background
-	return "res://assets/art/ui/title_background.png"
+	if not _cached_bg.is_empty():
+		return _cached_bg
+	var options: Array[String] = ["res://assets/art/ui/title_background.png"]
+	if UnlockManager.is_unlocked("story_1_complete"):
+		options.append("res://assets/art/ui/title_background_s2.png")
+	if UnlockManager.is_unlocked("story_2_complete"):
+		options.append("res://assets/art/ui/title_background_s3.png")
+	_cached_bg = options[randi() % options.size()]
+	return _cached_bg
 
 
 func _play_reveal() -> void:
