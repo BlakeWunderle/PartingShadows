@@ -8,7 +8,7 @@ const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
-const CompendiumPanel := preload("res://scripts/ui/compendium_panel.gd")
+const CompendiumPanelNew := preload("res://scripts/ui/compendium/compendium_panel.gd")
 const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 
@@ -19,7 +19,7 @@ var _panel: Control
 var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
 var _settings_panel: SettingsPanel
-var _compendium_panel: CompendiumPanel
+var _compendium_panel: CompendiumPanelNew
 var _remap_panel: InputRemapPanel
 var _resume_btn: Button
 var _save_btn: Button
@@ -144,11 +144,12 @@ func _build_ui() -> void:
 	_settings_panel.key_bindings_pressed.connect(_show_key_bindings)
 	root_vbox.add_child(_settings_panel)
 
-	# Compendium panel (hidden by default)
-	_compendium_panel = CompendiumPanel.new()
+	# Compendium panel (hidden by default, save-specific context)
+	_compendium_panel = CompendiumPanelNew.new()
 	_compendium_panel.visible = false
 	_compendium_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_compendium_panel.back_pressed.connect(_back_to_main)
+	_compendium_panel.set_context(CompendiumPanelNew.Context.SAVE_SPECIFIC, -1)
+	_compendium_panel.close_requested.connect(_back_to_main)
 	root_vbox.add_child(_compendium_panel)
 
 	# Key bindings panel (hidden by default)
@@ -373,11 +374,11 @@ func _show_compendium() -> void:
 	_mode = Mode.COMPENDIUM
 	_main_vbox.visible = false
 	_compendium_panel.visible = true
-	_compendium_panel._refresh()
+	_compendium_panel.refresh_data()
 	_tip_overlay.show_tip_once("compendium",
-		"The compendium tracks every enemy and class you have " +
-		"encountered across all playthroughs.\n\n" +
-		"Check enemy abilities here to plan your strategy!")
+		"The compendium tracks enemies, classes, and battles you've " +
+		"encountered in this playthrough.\n\n" +
+		"Click cards for detailed information and stats!")
 
 
 func _show_key_bindings() -> void:
