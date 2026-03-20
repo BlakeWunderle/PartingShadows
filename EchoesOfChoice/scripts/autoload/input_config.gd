@@ -47,11 +47,16 @@ const _GAMEPAD_BINDINGS: Dictionary = {
 }
 
 var keyboard_bindings: Dictionary = {}
+## True when a Nintendo controller is detected (A/B face buttons are swapped vs Xbox)
+var _nintendo_layout: bool = false
 
 
 func _ready() -> void:
 	keyboard_bindings = DEFAULT_KEYBOARD_BINDINGS.duplicate(true)
+	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	_detect_nintendo_layout()
 	apply_bindings()
+	_log_connected_joypads()
 
 
 func apply_bindings() -> void:
@@ -66,18 +71,57 @@ func apply_bindings() -> void:
 			var ev := InputEventKey.new()
 			ev.keycode = int(keycode) as Key
 			InputMap.action_add_event(action, ev)
-		# Gamepad bindings (hardcoded)
+		# Gamepad bindings (hardcoded, with Nintendo A/B swap if needed)
 		var pads: Array = _GAMEPAD_BINDINGS.get(action, [])
 		for pad: Dictionary in pads:
 			if pad["type"] == "button":
+				var btn_index: JoyButton = int(pad["index"]) as JoyButton
+				if _nintendo_layout:
+					if btn_index == JOY_BUTTON_A:
+						btn_index = JOY_BUTTON_B
+					elif btn_index == JOY_BUTTON_B:
+						btn_index = JOY_BUTTON_A
 				var ev := InputEventJoypadButton.new()
-				ev.button_index = int(pad["index"]) as JoyButton
+				ev.button_index = btn_index
 				InputMap.action_add_event(action, ev)
 			elif pad["type"] == "axis":
 				var ev := InputEventJoypadMotion.new()
 				ev.axis = int(pad["axis"]) as JoyAxis
 				ev.axis_value = pad["value"]
 				InputMap.action_add_event(action, ev)
+	# Add gamepad buttons to built-in UI actions so Godot controls respond to gamepads
+	_add_joypad_to_ui_action("ui_accept", _get_confirm_button())
+	_add_joypad_to_ui_action("ui_cancel", _get_cancel_button())
+
+
+func _detect_nintendo_layout() -> void:
+	_nintendo_layout = false
+	for device: int in Input.get_connected_joypads():
+		var pad_name: String = Input.get_joy_name(device).to_lower()
+		if "nintendo" in pad_name or "pro controller" in pad_name or "joy-con" in pad_name:
+			_nintendo_layout = true
+			GameLog.info("Nintendo controller detected — swapping A/B buttons")
+			return
+
+
+func _get_confirm_button() -> JoyButton:
+	return JOY_BUTTON_B if _nintendo_layout else JOY_BUTTON_A
+
+
+func _get_cancel_button() -> JoyButton:
+	return JOY_BUTTON_A if _nintendo_layout else JOY_BUTTON_B
+
+
+func _add_joypad_to_ui_action(action_name: String, button: JoyButton) -> void:
+	if not InputMap.has_action(action_name):
+		return
+	# Check if already mapped to avoid duplicates
+	for existing: InputEvent in InputMap.action_get_events(action_name):
+		if existing is InputEventJoypadButton and existing.button_index == button:
+			return
+	var ev := InputEventJoypadButton.new()
+	ev.button_index = button
+	InputMap.action_add_event(action_name, ev)
 
 
 func rebind_action(action_name: String, keycode: Key) -> void:
@@ -97,6 +141,29 @@ func get_key_name(action_name: String) -> String:
 	if keys.is_empty():
 		return "None"
 	return OS.get_keycode_string(int(keys[0]))
+
+
+func _log_connected_joypads() -> void:
+	var pads: Array[int] = Input.get_connected_joypads()
+	if pads.is_empty():
+		GameLog.info("No controllers detected")
+		return
+	for device: int in pads:
+		var pad_name: String = Input.get_joy_name(device)
+		var guid: String = Input.get_joy_guid(device)
+		GameLog.info("Controller %d: %s (GUID: %s)" % [device, pad_name, guid])
+
+
+func _on_joy_connection_changed(device: int, connected: bool) -> void:
+	if connected:
+		var pad_name: String = Input.get_joy_name(device)
+		var guid: String = Input.get_joy_guid(device)
+		GameLog.info("Controller %d connected: %s (GUID: %s)" % [device, pad_name, guid])
+	else:
+		GameLog.info("Controller %d disconnected" % device)
+	# Re-detect layout and rebind in case controller type changed
+	_detect_nintendo_layout()
+	apply_bindings()
 
 
 func load_bindings(data: Dictionary) -> void:
