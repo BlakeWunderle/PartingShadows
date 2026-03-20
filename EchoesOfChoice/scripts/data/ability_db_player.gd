@@ -147,7 +147,7 @@ static func arcane_ward() -> AbilityData:
 # Acolyte
 static func cure() -> AbilityData:
 	return _make("Cure", "Mend wounds with holy light.",
-		Enums.StatType.HEALTH, 3, 0, false, 8, false, 0, 0.0, 3)
+		Enums.StatType.HEALTH, 12, 0, false, 5, false, 0, 0.0, 3)
 
 static func protect() -> AbilityData:
 	return _make("Protect", "A ward of light shields an ally.",
@@ -203,7 +203,7 @@ static func eye_of_the_storm() -> AbilityData:
 # Paladin
 static func holy_strike() -> AbilityData:
 	return _make("Holy Strike", "A blow charged with divine wrath.",
-		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 2, false, 0, 0.0, 2)
 
 static func smite() -> AbilityData:
 	return _make("Smite", "Holy wrath made manifest.",
@@ -321,11 +321,11 @@ static func bewilderment() -> AbilityData:
 # Mime
 static func invisible_wall() -> AbilityData:
 	return _make("Invisible Wall", "Nothing can get through.",
-		Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
+		Enums.StatType.DEFENSE, 5, 2, false, 3, true, 0, 0.0, 2)
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0, 2)
+		Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.0, 2)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",
@@ -342,7 +342,7 @@ static func recite() -> AbilityData:
 
 static func eulogy() -> AbilityData:
 	return _make("Eulogy", "Speak their end into being.",
-		Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 3, false, 0, 0.0, 2)
+		Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 3, true, 0, 0.0, 2)
 
 # Elegist
 static func requiem() -> AbilityData:
@@ -456,13 +456,11 @@ static func eclipse() -> AbilityData:
 # Automaton
 static func servo_strike() -> AbilityData:
 	return _make("Servo Strike", "A pneumatic piston blow from mechanical limbs.",
-		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func program_defense() -> AbilityData:
-	var mod: int = randi_range(0, 9)
-	var cost: int = randi_range(3, 6)
-	return _make("Program Defense", "Run a defensive subroutine. Results vary.",
-		Enums.StatType.DEFENSE, mod, 2, false, cost, false, 0, 0.0, 2)
+	return _make("Program Defense", "Activate a magical dampening field.",
+		Enums.StatType.MAGIC_DEFENSE, 5, 2, false, 4, false, 0, 0.0, 2)
 
 static func overclock() -> AbilityData:
 	return _make("Overclock", "Push systems beyond safe limits.",
@@ -471,15 +469,15 @@ static func overclock() -> AbilityData:
 # Technomancer
 static func circuit_blast() -> AbilityData:
 	return _make("Circuit Blast", "Channel magic through overcharged circuits.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 6, false, 0, 0.0, 3)
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.0, 3)
 
 static func circuit_shield() -> AbilityData:
 	return _make("Circuit Shield", "A humming barrier of overcharged circuitry.",
 		Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0, 2)
 
 static func emp_pulse() -> AbilityData:
-	return _make("EMP Pulse", "An electromagnetic burst disrupts the target's reactions.",
-		Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0, 2)
+	return _make("EMP Pulse", "An electromagnetic burst disrupts all enemies' reactions.",
+		Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0, 2)
 
 
 # =============================================================================
