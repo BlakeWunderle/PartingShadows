@@ -192,7 +192,7 @@ static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = _es(67, 76, 4, 6, lvl, 10)
 	f.magic_defense = _es(42, 49, 3, 5, lvl, 10)
 	f.speed = _es(30, 36, 2, 3, lvl, 10)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 9
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.storm_surge(), EAB.drowning_grasp(), EAB.mist_veil()]
 	f.flavor_text = "The restless spirit of a drowned tidecaller, still commanding the waves in death. Storm and sea answer its hollow voice."
 	return f
@@ -207,7 +207,7 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = _es(56, 64, 3, 5, lvl, 9)
 	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
 	f.speed = _es(32, 38, 2, 3, lvl, 9)
-	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.spectral_chill(), EAB.memory_fog()]
 	f.flavor_text = "A translucent specter formed from crystallized sea salt and lost grief. It drifts through fog, erasing the memories of those it touches."
 	return f
@@ -227,7 +227,7 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = _es(45, 52, 2, 4, lvl, 9)
 	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
 	f.speed = _es(33, 39, 2, 3, lvl, 9)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.spectral_cutlass(), EAB.waterlogged_grasp()]
 	f.flavor_text = "The waterlogged ghost of a sailor claimed by the bay. It fights with the remembered motions of a life spent at sea."
 	return f
@@ -242,7 +242,7 @@ static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = _es(55, 63, 3, 5, lvl, 9)
 	f.magic_defense = _es(28, 34, 2, 3, lvl, 9)
 	f.speed = _es(28, 34, 2, 3, lvl, 9)
-	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 5
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.tentacle_crush(), EAB.abyssal_terror()]
 	f.flavor_text = "An ancient thing from the ocean floor, drawn to the surface by the Eye's growing influence. Its mere presence fills the mind with dread."
 	return f
