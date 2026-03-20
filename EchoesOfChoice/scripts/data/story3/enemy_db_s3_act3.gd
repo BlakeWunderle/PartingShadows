@@ -34,15 +34,15 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # =============================================================================
 
 # Shared Prog 11 & 12 -- mage phantom (fast magic DPS)
-# Interpolated (65.2%->5.8%, target 54%, f=0.811)
+# Reverted to exact 76ae97b baseline for reproducibility check
 static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Lucid Phantom", lvl)
-	f.health = _es(408, 469, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = _es(405, 465, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = _es(28, 35, 2, 3, lvl, 12)
-	f.magic_attack = _es(76, 88, 3, 5, lvl, 12)
-	f.magic_defense = _es(38, 45, 2, 3, lvl, 12)
+	f.magic_attack = _es(74, 86, 3, 5, lvl, 12)
+	f.magic_defense = _es(37, 44, 2, 3, lvl, 12)
 	f.speed = _es(33, 39, 2, 3, lvl, 12)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
@@ -51,17 +51,17 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 
 
 # Shared Prog 11 & 12 -- support healer (mage support)
-# Interpolated (65.2%->5.8%, target 54%, f=0.811)
+# Reverted to exact 76ae97b baseline
 static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Thread Spinner", lvl)
-	f.health = _es(454, 522, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = _es(450, 518, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = _es(34, 41, 2, 3, lvl, 12)
-	f.magic_attack = _es(67, 78, 2, 4, lvl, 12)
-	f.magic_defense = _es(42, 49, 2, 3, lvl, 12)
+	f.magic_attack = _es(66, 77, 2, 4, lvl, 12)
+	f.magic_defense = _es(41, 48, 2, 3, lvl, 12)
 	f.speed = _es(30, 36, 2, 3, lvl, 12)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EAB.woven_mend(), EAB.thread_snare()]
 	f.flavor_text = "A cult artisan who repairs the dream's fabric even as intruders tear through it. Its threads can mend allies or bind foes with equal skill."
 	return f
@@ -85,15 +85,15 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 
 
 # Shared Prog 11 & 13 -- magic DPS (glass cannon caster)
-# Interpolated (65.2%->5.8%, target 54%, f=0.811)
+# Reverted to exact 76ae97b baseline
 static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Cult Shade", lvl)
-	f.health = _es(378, 437, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = _es(375, 434, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(24, 31, 1, 3, lvl, 12)
-	f.magic_attack = _es(79, 91, 3, 5, lvl, 12)
-	f.magic_defense = _es(36, 43, 2, 3, lvl, 12)
+	f.physical_defense = _es(24, 30, 1, 3, lvl, 12)
+	f.magic_attack = _es(78, 90, 3, 5, lvl, 12)
+	f.magic_defense = _es(35, 42, 2, 3, lvl, 12)
 	f.speed = _es(33, 39, 2, 3, lvl, 12)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
