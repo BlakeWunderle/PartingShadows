@@ -34,34 +34,34 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # =============================================================================
 
 # Shared Prog 11 & 12 -- mage phantom (fast magic DPS)
-# Buffed to harden LucidDream (65.2%->54%): higher MATK, dodge, crit
+# Interpolated (65.2%->5.8%, target 54%, f=0.811)
 static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Lucid Phantom", lvl)
-	f.health = _es(420, 484, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = _es(408, 469, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(30, 37, 2, 3, lvl, 12)
-	f.magic_attack = _es(82, 95, 3, 5, lvl, 12)
-	f.magic_defense = _es(40, 47, 2, 3, lvl, 12)
-	f.speed = _es(35, 41, 2, 3, lvl, 12)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 17
+	f.physical_defense = _es(28, 35, 2, 3, lvl, 12)
+	f.magic_attack = _es(76, 88, 3, 5, lvl, 12)
+	f.magic_defense = _es(38, 45, 2, 3, lvl, 12)
+	f.speed = _es(33, 39, 2, 3, lvl, 12)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
 	f.flavor_text = "A phantom born from a dreamer who achieved lucidity but lost themselves in it. It wields focused thought like a weapon, phasing through attacks with terrifying ease."
 	return f
 
 
 # Shared Prog 11 & 12 -- support healer (mage support)
-# Buffed to harden LucidDream (65.2%->54%): higher MATK, dodge, crit
+# Interpolated (65.2%->5.8%, target 54%, f=0.811)
 static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Thread Spinner", lvl)
-	f.health = _es(470, 540, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = _es(454, 522, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(36, 43, 2, 3, lvl, 12)
-	f.magic_attack = _es(72, 84, 2, 4, lvl, 12)
-	f.magic_defense = _es(44, 52, 2, 3, lvl, 12)
-	f.speed = _es(32, 38, 2, 3, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
+	f.physical_defense = _es(34, 41, 2, 3, lvl, 12)
+	f.magic_attack = _es(67, 78, 2, 4, lvl, 12)
+	f.magic_defense = _es(42, 49, 2, 3, lvl, 12)
+	f.speed = _es(30, 36, 2, 3, lvl, 12)
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.woven_mend(), EAB.thread_snare()]
 	f.flavor_text = "A cult artisan who repairs the dream's fabric even as intruders tear through it. Its threads can mend allies or bind foes with equal skill."
 	return f
@@ -85,17 +85,17 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 
 
 # Shared Prog 11 & 13 -- magic DPS (glass cannon caster)
-# Buffed to harden LucidDream (65.2%->54%): higher MATK, dodge
+# Interpolated (65.2%->5.8%, target 54%, f=0.811)
 static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Cult Shade", lvl)
-	f.health = _es(390, 450, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = _es(378, 437, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(26, 33, 1, 3, lvl, 12)
-	f.magic_attack = _es(84, 97, 3, 5, lvl, 12)
-	f.magic_defense = _es(38, 45, 2, 3, lvl, 12)
-	f.speed = _es(35, 41, 2, 3, lvl, 12)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 17
+	f.physical_defense = _es(24, 31, 1, 3, lvl, 12)
+	f.magic_attack = _es(79, 91, 3, 5, lvl, 12)
+	f.magic_defense = _es(36, 43, 2, 3, lvl, 12)
+	f.speed = _es(33, 39, 2, 3, lvl, 12)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	f.flavor_text = "A hooded cultist who channels forbidden thread-magic through rituals of devotion. It unravels the minds of its enemies, leaving them confused and vulnerable."
 	return f
