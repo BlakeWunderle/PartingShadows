@@ -130,20 +130,139 @@ func _build_tier_tree(container: VBoxContainer) -> void:
 	var class_id: String = class_data.get("class_id", "")
 	var tier: int = class_data.get("tier", 0)
 
-	# Find the T0 root for this class
-	var t0_class: String = _get_t0_root(class_id, tier)
-
-	# Build tree from T0
-	if not t0_class.is_empty():
-		_add_tree_node(container, t0_class, 0, class_id)
-
-
-func _get_t0_root(class_id: String, tier: int) -> String:
 	if tier == 0:
-		return class_id
+		# T0: show this class → clickable T1 children only
+		_add_tree_row(container, class_id, 0, class_id)
+		for t1_id: String in _get_t1_children(class_id):
+			_add_clickable_tree_row(container, t1_id, 1, class_id)
+	elif tier == 1:
+		# T1: show T0 parent → this T1 → T2 children
+		var t0: String = _t1_to_t0().get(class_id, "")
+		_add_clickable_tree_row(container, t0, 0, class_id)
+		_add_tree_row(container, class_id, 1, class_id)
+		for t2_id: String in _get_t2_children(class_id):
+			_add_clickable_tree_row(container, t2_id, 2, class_id)
+	else:
+		# T2: show T0 → parent T1 → this T2
+		var t1: String = _t2_to_t1().get(class_id, "")
+		var t0: String = _t1_to_t0().get(t1, "")
+		_add_clickable_tree_row(container, t0, 0, class_id)
+		_add_clickable_tree_row(container, t1, 1, class_id)
+		_add_tree_row(container, class_id, 2, class_id)
 
-	# Map T1/T2 to their T0 root
-	var t1_to_t0 := {
+
+## Add a tree row with portrait (non-clickable, for the current class).
+func _add_tree_row(container: VBoxContainer, node_class_id: String, indent: int, current_class_id: String) -> void:
+	var is_discovered := discovered_classes.has(node_class_id)
+	var display_name: String = _FighterDB.get_display_name(node_class_id) if is_discovered else "???"
+
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 6)
+	if indent > 0:
+		var spacer := Control.new()
+		spacer.custom_minimum_size = Vector2(20 * indent, 0)
+		row.add_child(spacer)
+	container.add_child(row)
+
+	_add_portrait_thumb(row, node_class_id, is_discovered, display_name)
+
+	var node_label := Label.new()
+	if not is_discovered:
+		node_label.text = "???"
+		node_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+	else:
+		node_label.text = "► " + display_name
+		node_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	node_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	node_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(node_label)
+
+
+## Add a clickable tree row that navigates to that class's modal on click.
+func _add_clickable_tree_row(container: VBoxContainer, node_class_id: String, indent: int, current_class_id: String) -> void:
+	var is_discovered := discovered_classes.has(node_class_id)
+	var display_name: String = _FighterDB.get_display_name(node_class_id) if is_discovered else "???"
+
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 6)
+	if indent > 0:
+		var spacer := Control.new()
+		spacer.custom_minimum_size = Vector2(20 * indent, 0)
+		row.add_child(spacer)
+	container.add_child(row)
+
+	_add_portrait_thumb(row, node_class_id, is_discovered, display_name)
+
+	var node_label := Label.new()
+	if not is_discovered:
+		node_label.text = "???"
+		node_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
+	else:
+		node_label.text = display_name
+		node_label.add_theme_color_override("font_color", Color.WHITE)
+	node_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	node_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(node_label)
+
+	# Make discovered rows clickable to navigate
+	if is_discovered:
+		row.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		row.gui_input.connect(func(event: InputEvent) -> void:
+			if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+				_navigate_to_class(node_class_id)
+				row.accept_event()
+		)
+
+
+## Navigate to another class modal by replacing this one.
+func _navigate_to_class(target_class_id: String) -> void:
+	var tier: int = CompendiumManager.get_tier(target_class_id)
+	var abilities: Array = []
+	for a: RefCounted in _FighterDB.get_abilities_for_class(target_class_id):
+		abilities.append({
+			"name": a.ability_name,
+			"description": a.get_compendium_description(),
+			"mana_cost": a.mana_cost,
+			"cooldown": a.cooldown,
+		})
+	var target_data := {
+		"class_id": target_class_id,
+		"display_name": _FighterDB.get_display_name(target_class_id),
+		"name": _FighterDB.get_display_name(target_class_id),
+		"tier": tier,
+		"portrait_path": "res://assets/art/portraits/classes/%s_m.png" % CompendiumPanelNew._to_portrait_key(_FighterDB.get_display_name(target_class_id)),
+		"flavor_text": _FighterDB.get_flavor_text(target_class_id),
+		"abilities": abilities,
+	}
+
+	# Get the CanvasLayer parent, spawn new modal, close this one
+	var layer: Node = get_parent()
+	var new_modal := ClassDetailModal.new(target_data, discovered_classes, is_global)
+	new_modal.close_requested.connect(func() -> void:
+		if layer:
+			layer.queue_free()
+	)
+	# Remove self and add new modal to same layer
+	layer.remove_child(self)
+	layer.add_child(new_modal)
+	queue_free()
+
+
+func _add_portrait_thumb(row: HBoxContainer, class_id: String, is_discovered: bool, display_name: String) -> void:
+	var thumb := TextureRect.new()
+	thumb.custom_minimum_size = Vector2(48, 48)
+	thumb.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	thumb.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	if is_discovered:
+		var portrait_key: String = CompendiumPanelNew._to_portrait_key(display_name)
+		var path: String = "res://assets/art/portraits/classes/%s_m.png" % portrait_key
+		if ResourceLoader.exists(path):
+			thumb.texture = load(path)
+	row.add_child(thumb)
+
+
+static func _t1_to_t0() -> Dictionary:
+	return {
 		"Duelist": "Squire", "Ranger": "Squire", "MartialArtist": "Squire",
 		"Invoker": "Mage", "Acolyte": "Mage",
 		"Bard": "Entertainer", "Dervish": "Entertainer", "Orator": "Entertainer",
@@ -152,11 +271,9 @@ func _get_t0_root(class_id: String, tier: int) -> String:
 		"Sentinel": "Wanderer", "Pathfinder": "Wanderer",
 	}
 
-	if tier == 1:
-		return t1_to_t0.get(class_id, "")
 
-	# T2 -> T1 mapping
-	var t2_to_t1 := {
+static func _t2_to_t1() -> Dictionary:
+	return {
 		"Cavalry": "Duelist", "Dragoon": "Duelist",
 		"Mercenary": "Ranger", "Hunter": "Ranger",
 		"Ninja": "MartialArtist", "Monk": "MartialArtist",
@@ -175,49 +292,20 @@ func _get_t0_root(class_id: String, tier: int) -> String:
 		"Trailblazer": "Pathfinder", "Survivalist": "Pathfinder",
 	}
 
-	# T2 - find parent T1 first, then T0
-	var t1_parent: String = t2_to_t1.get(class_id, "")
-	if not t1_parent.is_empty():
-		return t1_to_t0.get(t1_parent, "")
 
-	return ""
-
-
-func _add_tree_node(container: VBoxContainer, node_class_id: String, indent: int, current_class_id: String) -> void:
-	var is_current := (node_class_id == current_class_id)
-	var is_discovered := discovered_classes.has(node_class_id)
-	var display_name: String = node_class_id if not is_discovered else _FighterDB.get_display_name(node_class_id)
-
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 6)
-	if indent > 0:
-		var spacer := Control.new()
-		spacer.custom_minimum_size = Vector2(20 * indent, 0)
-		row.add_child(spacer)
-	container.add_child(row)
-
-	var node_label := Label.new()
-	if not is_discovered:
-		node_label.text = "??? (Undiscovered)"
-		node_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
-	elif is_current and not is_global:
-		node_label.text = "► " + display_name + " (YOU ARE HERE)"
-		node_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
-	else:
-		node_label.text = display_name
-		node_label.add_theme_color_override("font_color", Color.WHITE)
-
-	node_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	node_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	row.add_child(node_label)
-
-	# Get children (upgrade options)
-	var children: Array = _get_upgrade_options(node_class_id)
-	for child_id: String in children:
-		_add_tree_node(container, child_id, indent + 1, current_class_id)
+static func _get_t1_children(t0_id: String) -> Array[String]:
+	var mapping := _t1_to_t0()
+	var children: Array[String] = []
+	for t1_id: String in mapping:
+		if mapping[t1_id] == t0_id:
+			children.append(t1_id)
+	return children
 
 
-func _get_upgrade_options(class_id: String) -> Array:
-	# Get upgrade items for this class
-	var upgrade_items: Array = _FighterDB.get_default_upgrade_items(class_id)
-	return upgrade_items
+static func _get_t2_children(t1_id: String) -> Array[String]:
+	var mapping := _t2_to_t1()
+	var children: Array[String] = []
+	for t2_id: String in mapping:
+		if mapping[t2_id] == t1_id:
+			children.append(t2_id)
+	return children
