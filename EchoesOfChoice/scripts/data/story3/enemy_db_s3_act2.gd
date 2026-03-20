@@ -179,13 +179,13 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 
 static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Shadow Pursuer", lvl)
-	f.health = _es(252, 297, 3, 6, lvl, 7); f.max_health = f.health
-	f.mana = _es(8, 12, 1, 2, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(28, 33, 1, 3, lvl, 7)
-	f.physical_defense = _es(14, 17, 1, 2, lvl, 7)
+	f.health = _es(265, 310, 3, 6, lvl, 7); f.max_health = f.health
+	f.mana = _es(9, 13, 1, 2, lvl, 7); f.max_mana = f.mana
+	f.physical_attack = _es(30, 35, 1, 3, lvl, 7)
+	f.physical_defense = _es(15, 18, 1, 2, lvl, 7)
 	f.magic_attack = _es(12, 15, 0, 2, lvl, 7)
-	f.magic_defense = _es(13, 16, 1, 2, lvl, 7)
-	f.speed = _es(33, 38, 1, 3, lvl, 7)
+	f.magic_defense = _es(14, 17, 1, 2, lvl, 7)
+	f.speed = _es(34, 39, 1, 3, lvl, 7)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.shadow_strike(), EAB.relentless_hound()]
 	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. No matter how far you run, it always closes the distance."
@@ -194,14 +194,14 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 
 static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Dread Tendril", lvl)
-	f.health = _es(234, 279, 3, 5, lvl, 7); f.max_health = f.health
-	f.mana = _es(16, 20, 1, 3, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(11, 14, 0, 2, lvl, 7)
-	f.physical_defense = _es(13, 16, 1, 2, lvl, 7)
-	f.magic_attack = _es(26, 31, 1, 3, lvl, 7)
-	f.magic_defense = _es(15, 18, 1, 2, lvl, 7)
-	f.speed = _es(27, 32, 1, 2, lvl, 7)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 7
+	f.health = _es(250, 295, 3, 6, lvl, 7); f.max_health = f.health
+	f.mana = _es(17, 21, 1, 3, lvl, 7); f.max_mana = f.mana
+	f.physical_attack = _es(12, 15, 0, 2, lvl, 7)
+	f.physical_defense = _es(14, 17, 1, 2, lvl, 7)
+	f.magic_attack = _es(28, 33, 1, 3, lvl, 7)
+	f.magic_defense = _es(16, 19, 1, 2, lvl, 7)
+	f.speed = _es(28, 33, 1, 2, lvl, 7)
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.dread_lash(), EAB.terror_grip()]
 	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. Its grip paralyzes the will and leaves victims unable to move or cry out."
 	return f
@@ -209,14 +209,14 @@ static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 
 static func create_faded_voice(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Faded Voice", lvl)
-	f.health = _es(216, 252, 3, 5, lvl, 7); f.max_health = f.health
-	f.mana = _es(14, 18, 1, 3, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(12, 15, 0, 2, lvl, 7)
-	f.physical_defense = _es(12, 15, 1, 2, lvl, 7)
-	f.magic_attack = _es(22, 26, 1, 3, lvl, 7)
-	f.magic_defense = _es(14, 17, 1, 2, lvl, 7)
-	f.speed = _es(28, 33, 1, 2, lvl, 7)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 9
+	f.health = _es(230, 270, 3, 5, lvl, 7); f.max_health = f.health
+	f.mana = _es(15, 19, 1, 3, lvl, 7); f.max_mana = f.mana
+	f.physical_attack = _es(13, 16, 0, 2, lvl, 7)
+	f.physical_defense = _es(13, 16, 1, 2, lvl, 7)
+	f.magic_attack = _es(24, 29, 1, 3, lvl, 7)
+	f.magic_defense = _es(15, 18, 1, 2, lvl, 7)
+	f.speed = _es(29, 34, 1, 2, lvl, 7)
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.echoed_cry(), EAB.fade()]
 	f.flavor_text = "The remnant of a voice that once belonged to a real person, now stripped of meaning and body. It cries out in fragments, and each echo saps the strength of those who hear it."
 	return f
@@ -279,14 +279,14 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 
 static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Cellar Watcher", lvl)
-	f.health = _es(380, 438, 4, 7, lvl, 11); f.max_health = f.health
+	f.health = _es(389, 448, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = _es(16, 20, 1, 3, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(50, 60, 2, 4, lvl, 11)
-	f.physical_defense = _es(28, 35, 2, 3, lvl, 11)
-	f.magic_attack = _es(50, 60, 2, 4, lvl, 11)
-	f.magic_defense = _es(26, 33, 1, 3, lvl, 11)
-	f.speed = _es(28, 34, 2, 3, lvl, 11)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
+	f.physical_attack = _es(54, 64, 2, 4, lvl, 11)
+	f.physical_defense = _es(30, 37, 2, 3, lvl, 11)
+	f.magic_attack = _es(54, 64, 2, 4, lvl, 11)
+	f.magic_defense = _es(28, 35, 1, 3, lvl, 11)
+	f.speed = _es(29, 35, 2, 3, lvl, 11)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.bound_strike(), EAB.tether_pull()]
 	f.flavor_text = "A guard stationed in the cellar beneath the inn, bound to the cult's hidden operations. It fights with the desperate fury of someone protecting a terrible secret."
 	return f
@@ -294,14 +294,14 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 
 static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Thread Construct", lvl)
-	f.health = _es(445, 510, 5, 8, lvl, 11); f.max_health = f.health
+	f.health = _es(457, 524, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = _es(12, 16, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(56, 66, 2, 4, lvl, 11)
-	f.physical_defense = _es(38, 45, 2, 3, lvl, 11)
+	f.physical_attack = _es(60, 70, 2, 4, lvl, 11)
+	f.physical_defense = _es(39, 47, 2, 3, lvl, 11)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 11)
-	f.magic_defense = _es(32, 39, 1, 3, lvl, 11)
-	f.speed = _es(22, 28, 1, 2, lvl, 11)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 4
+	f.magic_defense = _es(33, 40, 1, 3, lvl, 11)
+	f.speed = _es(23, 29, 1, 2, lvl, 11)
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.woven_fist(), EAB.reinforced_threads()]
 	f.flavor_text = "A humanoid frame assembled entirely from braided dream-threads. It moves with mechanical precision, reinforcing itself with fresh strands torn from the surrounding weave."
 	return f
@@ -309,14 +309,14 @@ static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 
 static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Ink Shade", lvl)
-	f.health = _es(320, 372, 4, 7, lvl, 11); f.max_health = f.health
+	f.health = _es(333, 386, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = _es(28, 34, 2, 3, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 11)
-	f.physical_defense = _es(20, 26, 1, 3, lvl, 11)
-	f.magic_attack = _es(65, 76, 2, 4, lvl, 11)
-	f.magic_defense = _es(30, 37, 2, 3, lvl, 11)
-	f.speed = _es(30, 36, 2, 3, lvl, 11)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 14
+	f.physical_defense = _es(22, 28, 1, 3, lvl, 11)
+	f.magic_attack = _es(68, 79, 2, 4, lvl, 11)
+	f.magic_defense = _es(31, 38, 2, 3, lvl, 11)
+	f.speed = _es(31, 37, 2, 3, lvl, 11)
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.ink_bolt(), EAB.ink_pool()]
 	f.flavor_text = "A shadow that bleeds ink from the cult's hidden ledgers and forbidden texts. It pools darkness beneath its enemies and strikes with bolts of living blackness."
 	return f

@@ -110,18 +110,18 @@ static func relentless_hound() -> AbilityData:
 # --- Dread Tendril ---
 
 static func dread_lash() -> AbilityData:
-	return _make("Dread Lash", "Tendrils of darkness sweep across the field.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0, 3)
+	return _make("Dread Lash", "Tendrils of darkness sweep across the field.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, true, 0, 0.0, 3)
 
 static func terror_grip() -> AbilityData:
-	return _make("Terror Grip", "Cold fingers close around the heart.", Enums.StatType.ATTACK, 4, 2, true, 3, false, 0, 0.0, 2)
+	return _make("Terror Grip", "Cold fingers close around the heart.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0, 2)
 
 # --- Faded Voice ---
 
 static func echoed_cry() -> AbilityData:
-	return _make("Echoed Cry", "A voice from a dream that was never yours.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Echoed Cry", "A voice from a dream that was never yours.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0, 2)
 
 static func fade() -> AbilityData:
-	return _make("Fade", "Everything feels slower, heavier, further away.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0, 3)
+	return _make("Fade", "Everything feels slower, heavier, further away.", Enums.StatType.SPEED, 5, 2, true, 4, true, 0, 0.0, 3)
 
 
 # =============================================================================
@@ -131,26 +131,26 @@ static func fade() -> AbilityData:
 # --- Market Watcher ---
 
 static func hidden_blade() -> AbilityData:
-	return _make("Hidden Blade", "The shopkeeper draws a knife from beneath the counter.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Hidden Blade", "The shopkeeper draws a knife from beneath the counter.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
 
 static func merchant_guard() -> AbilityData:
-	return _make("Merchant Guard", "Years of handling heavy goods built a sturdy frame.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
+	return _make("Merchant Guard", "Years of handling heavy goods built a sturdy frame.", Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0, 2)
 
 # --- Thread Smith ---
 
 static func hammer_blow() -> AbilityData:
-	return _make("Hammer Blow", "The smithing hammer was not meant for iron today.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Hammer Blow", "The smithing hammer was not meant for iron today.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func forge_hardened() -> AbilityData:
-	return _make("Forge Hardened", "Skin toughened by years at the anvil.", Enums.StatType.DEFENSE, 6, 2, false, 3, false, 0, 0.0, 2)
+	return _make("Forge Hardened", "Skin toughened by years at the anvil.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
 
 # --- Hex Herbalist ---
 
 static func tainted_salve() -> AbilityData:
-	return _make("Tainted Salve", "What was meant to heal now corrodes.", Enums.StatType.MAGIC_ATTACK, 5, 3, true, 3, false, 3, 0.0, 2)
+	return _make("Tainted Salve", "What was meant to heal now corrodes.", Enums.StatType.MAGIC_ATTACK, 4, 3, true, 3, false, 2, 0.0, 2)
 
 static func numbing_dust() -> AbilityData:
-	return _make("Numbing Dust", "Crushed herbs fill the air with paralytic spores.", Enums.StatType.SPEED, 5, 2, true, 4, true, 0, 0.0, 3)
+	return _make("Numbing Dust", "Crushed herbs fill the air with paralytic spores.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0, 3)
 
 
 # =============================================================================
@@ -160,23 +160,23 @@ static func numbing_dust() -> AbilityData:
 # --- Cellar Watcher ---
 
 static func bound_strike() -> AbilityData:
-	return _make("Bound Strike", "It lunges to the end of its tether and strikes.", Enums.StatType.MIXED_ATTACK, 9, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Bound Strike", "It lunges to the end of its tether and strikes.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
 
 static func tether_pull() -> AbilityData:
-	return _make("Tether Pull", "The threads jerk the target off balance.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0, 2)
+	return _make("Tether Pull", "The threads jerk the target off balance.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0, 2)
 
 # --- Thread Construct ---
 
 static func woven_fist() -> AbilityData:
-	return _make("Woven Fist", "A fist of physical thread strikes with mechanical force.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Woven Fist", "A fist of physical thread strikes with mechanical force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func reinforced_threads() -> AbilityData:
-	return _make("Reinforced Threads", "More threads wind around the construct, thickening its shell.", Enums.StatType.DEFENSE, 6, 2, false, 3, false, 0, 0.0, 2)
+	return _make("Reinforced Threads", "More threads wind around the construct, thickening its shell.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
 
 # --- Ink Shade ---
 
 static func ink_bolt() -> AbilityData:
-	return _make("Ink Bolt", "A jet of liquid shadow burns on contact.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0, 2)
+	return _make("Ink Bolt", "A jet of liquid shadow burns on contact.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func ink_pool() -> AbilityData:
-	return _make("Ink Pool", "Black liquid spreads across the floor, slowing everything.", Enums.StatType.SPEED, 5, 2, true, 4, true, 0, 0.0, 3)
+	return _make("Ink Pool", "Black liquid spreads across the floor, slowing everything.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0, 3)
