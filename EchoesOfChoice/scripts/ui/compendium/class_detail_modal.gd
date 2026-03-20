@@ -186,23 +186,30 @@ func _get_t0_root(class_id: String, tier: int) -> String:
 func _add_tree_node(container: VBoxContainer, node_class_id: String, indent: int, current_class_id: String) -> void:
 	var is_current := (node_class_id == current_class_id)
 	var is_discovered := discovered_classes.has(node_class_id)
-
-	var node_label := Label.new()
-	var indent_str := "  ".repeat(indent)
 	var display_name: String = node_class_id if not is_discovered else _FighterDB.get_display_name(node_class_id)
 
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 6)
+	if indent > 0:
+		var spacer := Control.new()
+		spacer.custom_minimum_size = Vector2(20 * indent, 0)
+		row.add_child(spacer)
+	container.add_child(row)
+
+	var node_label := Label.new()
 	if not is_discovered:
-		node_label.text = indent_str + "??? (Undiscovered)"
+		node_label.text = "??? (Undiscovered)"
 		node_label.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))
 	elif is_current and not is_global:
-		node_label.text = indent_str + "► " + display_name + " (YOU ARE HERE)"
+		node_label.text = "► " + display_name + " (YOU ARE HERE)"
 		node_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
 	else:
-		node_label.text = indent_str + display_name
+		node_label.text = display_name
 		node_label.add_theme_color_override("font_color", Color.WHITE)
 
 	node_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	container.add_child(node_label)
+	node_label.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(node_label)
 
 	# Get children (upgrade options)
 	var children: Array = _get_upgrade_options(node_class_id)

@@ -16,13 +16,14 @@ func build_content(container: VBoxContainer) -> void:
 	hbox.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	container.add_child(hbox)
 
-	# Left side: Portrait
+	# Left side: Portrait + encounter info (fixed width)
 	var portrait_container := VBoxContainer.new()
-	portrait_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	portrait_container.add_theme_constant_override("separation", 8)
+	portrait_container.custom_minimum_size = Vector2(240, 0)
 	hbox.add_child(portrait_container)
 
 	var portrait := TextureRect.new()
-	portrait.custom_minimum_size = Vector2(256, 256)
+	portrait.custom_minimum_size = Vector2(240, 240)
 	portrait.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
@@ -33,6 +34,30 @@ func build_content(container: VBoxContainer) -> void:
 		portrait.texture = load(portrait_path)
 
 	portrait_container.add_child(portrait)
+
+	# Encounter info below portrait
+	var story_id: String = enemy_data.get("story_id", "story_1")
+	var story_names := {
+		"story_1": "The Stranger's Shadow",
+		"story_2": "Echoes in the Dark",
+		"story_3": "The Woven Night",
+	}
+
+	var scene_image: String = enemy_data.get("scene_image", "")
+	if not scene_image.is_empty() and ResourceLoader.exists(scene_image):
+		var scene_tex := TextureRect.new()
+		scene_tex.custom_minimum_size = Vector2(240, 140)
+		scene_tex.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		scene_tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		scene_tex.texture = load(scene_image)
+		portrait_container.add_child(scene_tex)
+
+	var story_label := Label.new()
+	story_label.text = story_names.get(story_id, story_id)
+	story_label.add_theme_font_size_override("font_size", SettingsManager.font_size - 1)
+	story_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	story_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	portrait_container.add_child(story_label)
 
 	# Right side: Info panel
 	var info_panel := VBoxContainer.new()
@@ -47,19 +72,6 @@ func build_content(container: VBoxContainer) -> void:
 	name_label.add_theme_font_size_override("font_size", 20)
 	name_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
 	info_panel.add_child(name_label)
-
-	# Story label
-	var story_id: String = enemy_data.get("story_id", "story_1")
-	var story_names := {
-		"story_1": "Story 1: The Stranger's Shadow",
-		"story_2": "Story 2: Echoes in the Dark",
-		"story_3": "Story 3: The Woven Night",
-	}
-	var story_label := Label.new()
-	story_label.text = "Encountered in: " + story_names.get(story_id, story_id)
-	story_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	story_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
-	info_panel.add_child(story_label)
 
 	# Separator
 	var sep := HSeparator.new()

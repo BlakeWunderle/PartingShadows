@@ -165,6 +165,16 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 func _build_enemies_tab(discoveries: Dictionary) -> void:
 	var discovered_enemies: Dictionary = discoveries.get("enemies", {})
 
+	# Build enemy -> battle scene image mapping from completed battles
+	var enemy_battle_images: Dictionary = {}
+	var completed_battles: Dictionary = discoveries.get("battles", {})
+	for battle_id: String in completed_battles:
+		var battle := _BattleDB.create_battle(battle_id)
+		if battle and not battle.scene_image.is_empty():
+			for enemy: RefCounted in battle.enemies:
+				if not enemy_battle_images.has(enemy.class_id):
+					enemy_battle_images[enemy.class_id] = battle.scene_image
+
 	var items: Array = []
 	for class_id: String in discovered_enemies:
 		var enemy_data: Dictionary = discovered_enemies[class_id]
@@ -189,6 +199,7 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 				"story_id": enemy_data.get("story_id", "story_1"),
 				"abilities": abilities,
 				"flavor_text": flavor_text,
+				"scene_image": enemy_battle_images.get(class_id, ""),
 			}
 		}
 		items.append(item_dict)
@@ -214,16 +225,19 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 		var battle := _BattleDB.create_battle(battle_id)
 		var scene_image := ""
 		var flavor_text := ""
-		var enemy_names: Array[String] = []
+		var enemies_info: Array = []
 		if battle:
 			scene_image = battle.scene_image
 			flavor_text = battle.pre_battle_text[0] if not battle.pre_battle_text.is_empty() else ""
-			# Deduplicated enemy type names
+			# Deduplicated enemy types with portrait paths
 			var seen_types: Dictionary = {}
 			for enemy: RefCounted in battle.enemies:
 				if not seen_types.has(enemy.character_type):
 					seen_types[enemy.character_type] = true
-					enemy_names.append(enemy.character_type)
+					enemies_info.append({
+						"name": enemy.character_type,
+						"portrait_path": _get_enemy_portrait_path(enemy.class_id),
+					})
 
 		var item_dict := {
 			"is_discovered": true,
@@ -234,7 +248,7 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 				"scene_image": scene_image,
 				"flavor_text": flavor_text,
 				"story_id": _guess_story_from_battle_id(battle_id),
-				"enemy_names": enemy_names,
+				"enemies_info": enemies_info,
 			}
 		}
 		items.append(item_dict)
