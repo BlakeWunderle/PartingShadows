@@ -56,7 +56,7 @@ static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = _es(36, 43, 2, 3, lvl, 15)
 	f.speed = _es(36, 42, 2, 3, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.thread_bite(), EAB.unravel_ward()]
 	f.flavor_text = "A ravenous creature that feeds on dream-threads themselves, growing stronger with each strand it consumes. It tears apart protective wards with savage hunger."
 	return f
@@ -106,7 +106,7 @@ static func create_astral_enforcer(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = _es(42, 50, 2, 3, lvl, 16)
 	f.speed = _es(30, 36, 2, 3, lvl, 16)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 8
+	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 6
 	f.abilities = [EAB.dream_blade(), EAB.astral_brace()]
 	f.flavor_text = "A warrior whose astral projection fights with the full force of their waking body. Their dream-forged blade cuts through defenses, and their braced stance absorbs punishment meant to banish them."
 	return f
@@ -156,7 +156,7 @@ static func create_nightmare_sentinel(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = _es(46, 54, 2, 3, lvl, 17)
 	f.speed = _es(30, 36, 2, 3, lvl, 17)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 8
+	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 6
 	f.abilities = [EAB.nightmare_blade(), EAB.terror_ward()]
 	f.flavor_text = "An armored sentinel forged from concentrated nightmare, standing guard at the Threadmaster's threshold. Its blade is edged with terror, and its ward repels all but the most resolute attackers."
 	return f

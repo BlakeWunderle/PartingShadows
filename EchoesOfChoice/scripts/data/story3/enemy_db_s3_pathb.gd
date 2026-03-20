@@ -109,9 +109,9 @@ static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.health = _es(570, 652, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(90, 104, 3, 5, lvl, 14)
-	f.physical_defense = _es(48, 56, 2, 4, lvl, 14)
+	f.physical_defense = _es(42, 50, 2, 3, lvl, 14)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 14)
-	f.magic_defense = _es(40, 48, 2, 3, lvl, 14)
+	f.magic_defense = _es(34, 42, 2, 3, lvl, 14)
 	f.speed = _es(28, 34, 2, 3, lvl, 14)
 	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 6
 	f.abilities = [EAB.chokepoint_crush(), EAB.passage_block()]
@@ -159,11 +159,11 @@ static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 	f.health = _es(510, 586, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = _es(46, 54, 2, 4, lvl, 14)
-	f.magic_attack = _es(106, 122, 3, 6, lvl, 14)
-	f.magic_defense = _es(52, 60, 2, 4, lvl, 14)
-	f.speed = _es(38, 44, 2, 3, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 16
+	f.physical_defense = _es(38, 46, 2, 3, lvl, 14)
+	f.magic_attack = _es(86, 100, 3, 5, lvl, 14)
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 14)
+	f.speed = _es(34, 40, 2, 3, lvl, 14)
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.binding_rite(), EAB.enervation_chant()]
 	f.flavor_text = "A ritualist who maintains Thorne's protective ward through constant chanting. Their binding rites sap the strength of intruders while reinforcing the dream's barriers."
 	return f
@@ -176,9 +176,9 @@ static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 	f.physical_attack = _es(92, 106, 3, 5, lvl, 14)
 	f.physical_defense = _es(50, 58, 2, 4, lvl, 14)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 14)
-	f.magic_defense = _es(50, 58, 2, 4, lvl, 14)
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 14)
 	f.speed = _es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 6
 	f.abilities = [EAB.champions_cleave(), EAB.loom_aegis()]
 	f.flavor_text = "A champion of the hidden passages, clad in armor woven from the loom itself. Their cleaving strikes and impenetrable aegis make them the cult's most formidable gatekeeper."
 	return f
@@ -189,11 +189,11 @@ static func create_warding_shadow(n: String, lvl: int = 14) -> FighterData:
 	f.health = _es(460, 530, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = _es(40, 48, 2, 3, lvl, 14)
-	f.magic_attack = _es(102, 118, 3, 6, lvl, 14)
-	f.magic_defense = _es(48, 56, 2, 4, lvl, 14)
-	f.speed = _es(38, 44, 2, 3, lvl, 14)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 18
+	f.physical_defense = _es(34, 42, 2, 3, lvl, 14)
+	f.magic_attack = _es(86, 100, 3, 5, lvl, 14)
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 14)
+	f.speed = _es(34, 40, 2, 3, lvl, 14)
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.flickering_grasp(), EAB.shadow_veil()]
 	f.flavor_text = "A flickering shade that guards the passages with elusive, ghost-like movements. It cloaks itself in shadow and reaches through the veil to grasp at the living."
 	return f
