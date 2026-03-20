@@ -50,6 +50,7 @@ func set_items(new_items: Array, per_page: int = 12, columns: int = 4) -> void:
 	_current_page = 1
 	if is_node_ready():
 		_grid.columns = columns
+		_pagination.current_page = 1
 		_refresh_page()
 
 
