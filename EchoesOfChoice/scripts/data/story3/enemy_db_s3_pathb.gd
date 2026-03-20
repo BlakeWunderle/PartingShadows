@@ -156,14 +156,14 @@ static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 
 static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Thread Ritualist", lvl)
-	f.health = _es(510, 586, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = _es(540, 620, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = _es(38, 46, 2, 3, lvl, 14)
-	f.magic_attack = _es(86, 100, 3, 5, lvl, 14)
-	f.magic_defense = _es(42, 50, 2, 3, lvl, 14)
-	f.speed = _es(34, 40, 2, 3, lvl, 14)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 10
+	f.physical_defense = _es(42, 50, 2, 3, lvl, 14)
+	f.magic_attack = _es(94, 108, 3, 5, lvl, 14)
+	f.magic_defense = _es(46, 54, 2, 4, lvl, 14)
+	f.speed = _es(36, 42, 2, 3, lvl, 14)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.binding_rite(), EAB.enervation_chant()]
 	f.flavor_text = "A ritualist who maintains Thorne's protective ward through constant chanting. Their binding rites sap the strength of intruders while reinforcing the dream's barriers."
 	return f
