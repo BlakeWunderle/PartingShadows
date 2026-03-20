@@ -28,6 +28,7 @@ var _list_view: CompendiumListView
 var _active_modal: DetailModalBase
 var _FighterDB := preload("res://scripts/data/fighter_db.gd")
 var _BattleDB := preload("res://scripts/data/battle_db.gd")
+var _EnemyRouter := preload("res://scripts/data/enemy_db_router.gd")
 
 
 func _ready() -> void:
@@ -135,6 +136,15 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 	var items: Array = []
 	for class_id: String in all_class_ids:
 		var is_discovered := discovered_classes.has(class_id)
+		var abilities: Array = []
+		if is_discovered:
+			for a: RefCounted in _FighterDB.get_abilities_for_class(class_id):
+				abilities.append({
+					"name": a.ability_name,
+					"description": a.get_description(),
+					"mana_cost": a.mana_cost,
+					"cooldown": a.cooldown,
+				})
 		var item_dict := {
 			"is_discovered": is_discovered,
 			"data": {
@@ -142,8 +152,8 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 				"name": _FighterDB.get_display_name(class_id) if is_discovered else "???",
 				"tier": CompendiumManager.get_tier(class_id),
 				"portrait_path": _get_class_portrait_path(class_id) if is_discovered else "",
-				"flavor_text": "",  ## Will be populated from FighterDB in later phase
-				"abilities": [],  ## Will be populated from FighterDB in later phase
+				"flavor_text": "",
+				"abilities": abilities,
 				"display_name": _FighterDB.get_display_name(class_id) if is_discovered else "???",
 			}
 		}
@@ -158,6 +168,18 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 	var items: Array = []
 	for class_id: String in discovered_enemies:
 		var enemy_data: Dictionary = discovered_enemies[class_id]
+		var abilities: Array = []
+		var flavor_text := ""
+		var fighter: RefCounted = _EnemyRouter.create_enemy(class_id)
+		if fighter:
+			for a: RefCounted in fighter.abilities:
+				abilities.append({
+					"name": a.ability_name,
+					"description": a.get_description(),
+					"mana_cost": a.mana_cost,
+					"cooldown": a.cooldown,
+				})
+			flavor_text = fighter.flavor_text
 		var item_dict := {
 			"is_discovered": true,
 			"data": {
@@ -165,8 +187,8 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 				"name": enemy_data.get("name", "Unknown"),
 				"portrait_path": _get_enemy_portrait_path(class_id),
 				"story_id": enemy_data.get("story_id", "story_1"),
-				"abilities": enemy_data.get("abilities", []),
-				"flavor_text": "",  ## Will be populated from enemy DB in later phase
+				"abilities": abilities,
+				"flavor_text": flavor_text,
 			}
 		}
 		items.append(item_dict)
@@ -188,16 +210,31 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 
 	var items: Array = []
 	for battle_id: String in completed_battles:
+		# Load real battle data
+		var battle := _BattleDB.create_battle(battle_id)
+		var scene_image := ""
+		var flavor_text := ""
+		var enemy_names: Array[String] = []
+		if battle:
+			scene_image = battle.scene_image
+			flavor_text = battle.pre_battle_text[0] if not battle.pre_battle_text.is_empty() else ""
+			# Deduplicated enemy type names
+			var seen_types: Dictionary = {}
+			for enemy: RefCounted in battle.enemies:
+				if not seen_types.has(enemy.character_type):
+					seen_types[enemy.character_type] = true
+					enemy_names.append(enemy.character_type)
+
 		var item_dict := {
 			"is_discovered": true,
 			"data": {
 				"battle_id": battle_id,
 				"name": CompendiumManager.format_battle_name(battle_id),
-				"portrait_path": "",  ## Battles use background images, not portraits
-				"scene_image": "",  ## Will be populated from BattleDB in later phase
-				"flavor_text": "",  ## Will be populated from BattleDB in later phase
+				"portrait_path": scene_image,
+				"scene_image": scene_image,
+				"flavor_text": flavor_text,
 				"story_id": _guess_story_from_battle_id(battle_id),
-				"enemy_names": [],  ## Will be populated from BattleDB in later phase
+				"enemy_names": enemy_names,
 			}
 		}
 		items.append(item_dict)

@@ -97,11 +97,33 @@ func build_content(container: VBoxContainer) -> void:
 	info_panel.add_child(abilities_label)
 
 	var abilities: Array = class_data.get("abilities", [])
-	for ability_name: String in abilities:
-		var ability_label := Label.new()
-		ability_label.text = "  • " + ability_name
-		ability_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-		info_panel.add_child(ability_label)
+	if abilities.is_empty():
+		var none_label := Label.new()
+		none_label.text = "  (No abilities data)"
+		none_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		none_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		info_panel.add_child(none_label)
+	for ability: Dictionary in abilities:
+		var name_text := "  • " + ability.get("name", "???")
+		var cost: int = ability.get("mana_cost", 0)
+		if cost > 0:
+			name_text += "  (%d MP)" % cost
+		var cd: int = ability.get("cooldown", 0)
+		if cd > 0:
+			name_text += "  [%d turn CD]" % cd
+		var ability_name_label := Label.new()
+		ability_name_label.text = name_text
+		ability_name_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		ability_name_label.add_theme_color_override("font_color", Color.WHITE)
+		info_panel.add_child(ability_name_label)
+		var desc: String = ability.get("description", "")
+		if not desc.is_empty():
+			var desc_label := Label.new()
+			desc_label.text = "      " + desc
+			desc_label.add_theme_font_size_override("font_size", SettingsManager.font_size - 1)
+			desc_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+			desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+			info_panel.add_child(desc_label)
 
 
 func _build_tier_tree(container: VBoxContainer) -> void:

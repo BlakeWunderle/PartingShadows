@@ -3,7 +3,7 @@ class_name EnemyDetailModal extends DetailModalBase
 ## Detail modal for enemy entries: portrait, stats, abilities, flavor text.
 
 var enemy_data: Dictionary = {}
-var _FighterDB := preload("res://scripts/data/fighter_db.gd")
+var _EnemyRouter := preload("res://scripts/data/enemy_db_router.gd")
 
 
 func _init(data: Dictionary) -> void:
@@ -102,19 +102,54 @@ func build_content(container: VBoxContainer) -> void:
 	info_panel.add_child(abilities_label)
 
 	var abilities: Array = enemy_data.get("abilities", [])
-	for ability_name: String in abilities:
-		var ability_label := Label.new()
-		ability_label.text = "  • " + ability_name
-		ability_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-		info_panel.add_child(ability_label)
+	if abilities.is_empty():
+		var none_label := Label.new()
+		none_label.text = "  (No abilities data)"
+		none_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		none_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		info_panel.add_child(none_label)
+	for ability: Variant in abilities:
+		if ability is Dictionary:
+			var name_text := "  • " + ability.get("name", "???")
+			var cost: int = ability.get("mana_cost", 0)
+			if cost > 0:
+				name_text += "  (%d MP)" % cost
+			var cd: int = ability.get("cooldown", 0)
+			if cd > 0:
+				name_text += "  [%d turn CD]" % cd
+			var ability_name_label := Label.new()
+			ability_name_label.text = name_text
+			ability_name_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+			ability_name_label.add_theme_color_override("font_color", Color.WHITE)
+			info_panel.add_child(ability_name_label)
+			var desc: String = ability.get("description", "")
+			if not desc.is_empty():
+				var desc_label := Label.new()
+				desc_label.text = "      " + desc
+				desc_label.add_theme_font_size_override("font_size", SettingsManager.font_size - 1)
+				desc_label.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+				desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+				info_panel.add_child(desc_label)
+		elif ability is String:
+			var ability_label := Label.new()
+			ability_label.text = "  • " + ability
+			ability_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+			info_panel.add_child(ability_label)
 
 
 func _format_stats() -> String:
-	# Try to load the enemy from its class_id to get base stats
 	var class_id: String = enemy_data.get("class_id", "")
 	if class_id.is_empty():
 		return "Stats unavailable"
 
-	# For now, show placeholder - we'll need to implement enemy factory lookups
-	# in a future iteration to get actual stat values
-	return "HP: ??? | MP: ??? | ATK: ??? | DEF: ??? | SPD: ???"
+	var fighter: RefCounted = _EnemyRouter.create_enemy(class_id)
+	if not fighter:
+		return "Stats unavailable"
+
+	var lines: Array[String] = [
+		"HP: %d  |  MP: %d" % [fighter.max_health, fighter.max_mana],
+		"ATK: %d  |  DEF: %d" % [fighter.physical_attack, fighter.physical_defense],
+		"MAG: %d  |  MDEF: %d" % [fighter.magic_attack, fighter.magic_defense],
+		"SPD: %d  |  CRIT: %d%%  |  DODGE: %d%%" % [fighter.speed, fighter.crit_chance, fighter.dodge_chance],
+	]
+	return "\n".join(lines)
