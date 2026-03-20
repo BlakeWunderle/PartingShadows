@@ -64,35 +64,36 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 # =============================================================================
 # Prog 12: Cult members at early strength (S3_B_CultConfrontation)
 # Target 52%, 13 level-ups. NOTE: only 2 enemies -- needs very strong stats.
-# Buffed massively: 82.9%->52% target, 3v2 action economy disadvantage
+# Interpolated: baseline 82.9% -> overbuffed 0.1%, f=0.627 for target 52%
+# NOTE: 3v2 format -- needs very strong stats to compensate action economy
 # =============================================================================
 
 static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thread Disciple", lvl)
-	f.health = _es(620, 712, 6, 9, lvl, 13); f.max_health = f.health
+	f.health = _es(551, 633, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(34, 40, 2, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = _es(42, 50, 2, 4, lvl, 13)
-	f.magic_attack = _es(102, 118, 3, 6, lvl, 13)
-	f.magic_defense = _es(50, 58, 2, 4, lvl, 13)
-	f.speed = _es(38, 44, 2, 3, lvl, 13)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 20
+	f.physical_defense = _es(37, 44, 2, 3, lvl, 13)
+	f.magic_attack = _es(92, 107, 3, 5, lvl, 13)
+	f.magic_defense = _es(44, 52, 2, 4, lvl, 13)
+	f.speed = _es(35, 41, 2, 3, lvl, 13)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.unstable_channeling(), EAB.siphon_faith()]
 	f.flavor_text = "A young cultist whose devotion outpaces their skill. Their channeling is unstable and volatile, but their faith in the Thread grants them power beyond their training."
 	return f
 
 
-# Buffed massively for 3v2 format: enormous HP, ATK, DEF
+# Interpolated for 3v2 format: f=0.627, strong stats for action economy
 static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thread Warden", lvl)
-	f.health = _es(740, 848, 7, 10, lvl, 13); f.max_health = f.health
+	f.health = _es(652, 748, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = _es(110, 127, 3, 6, lvl, 13)
-	f.physical_defense = _es(58, 67, 2, 4, lvl, 13)
+	f.physical_attack = _es(97, 113, 3, 5, lvl, 13)
+	f.physical_defense = _es(52, 60, 2, 4, lvl, 13)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 13)
-	f.magic_defense = _es(48, 56, 2, 4, lvl, 13)
-	f.speed = _es(30, 36, 2, 3, lvl, 13)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 12
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 13)
+	f.speed = _es(27, 33, 2, 3, lvl, 13)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.shielding_blow(), EAB.guardians_oath()]
 	f.flavor_text = "A seasoned warrior sworn to protect the Thread cult's sanctum. Bound by an oath woven into their very being, they fight with unwavering purpose and crushing strength."
 	return f
