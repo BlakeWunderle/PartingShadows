@@ -156,7 +156,7 @@ static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 
 static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Thread Ritualist", lvl)
-	f.health = _es(580, 666, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = _es(510, 586, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = _es(46, 54, 2, 4, lvl, 14)
@@ -171,10 +171,10 @@ static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 
 static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Passage Guardian", lvl)
-	f.health = _es(690, 790, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = _es(580, 664, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(110, 127, 3, 6, lvl, 14)
-	f.physical_defense = _es(58, 67, 2, 4, lvl, 14)
+	f.physical_attack = _es(92, 106, 3, 5, lvl, 14)
+	f.physical_defense = _es(50, 58, 2, 4, lvl, 14)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 14)
 	f.magic_defense = _es(50, 58, 2, 4, lvl, 14)
 	f.speed = _es(32, 38, 2, 3, lvl, 14)
@@ -186,7 +186,7 @@ static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 
 static func create_warding_shadow(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Warding Shadow", lvl)
-	f.health = _es(520, 598, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = _es(460, 530, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = _es(40, 48, 2, 3, lvl, 14)
