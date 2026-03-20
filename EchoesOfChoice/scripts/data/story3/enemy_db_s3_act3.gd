@@ -34,112 +34,119 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # =============================================================================
 
 # Shared Prog 11 & 12 -- mage phantom (fast magic DPS)
+# Buffed to harden LucidDream (65.2%->54%): higher MATK, dodge, crit
 static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Lucid Phantom", lvl)
-	f.health = _es(405, 465, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = _es(420, 484, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(28, 35, 2, 3, lvl, 12)
-	f.magic_attack = _es(74, 86, 3, 5, lvl, 12)
-	f.magic_defense = _es(37, 44, 2, 3, lvl, 12)
-	f.speed = _es(33, 39, 2, 3, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 13
+	f.physical_defense = _es(30, 37, 2, 3, lvl, 12)
+	f.magic_attack = _es(82, 95, 3, 5, lvl, 12)
+	f.magic_defense = _es(40, 47, 2, 3, lvl, 12)
+	f.speed = _es(35, 41, 2, 3, lvl, 12)
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
 	f.flavor_text = "A phantom born from a dreamer who achieved lucidity but lost themselves in it. It wields focused thought like a weapon, phasing through attacks with terrifying ease."
 	return f
 
 
 # Shared Prog 11 & 12 -- support healer (mage support)
+# Buffed to harden LucidDream (65.2%->54%): higher MATK, dodge, crit
 static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Thread Spinner", lvl)
-	f.health = _es(450, 518, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = _es(470, 540, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(34, 41, 2, 3, lvl, 12)
-	f.magic_attack = _es(66, 77, 2, 4, lvl, 12)
-	f.magic_defense = _es(41, 48, 2, 3, lvl, 12)
-	f.speed = _es(30, 36, 2, 3, lvl, 12)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 9
+	f.physical_defense = _es(36, 43, 2, 3, lvl, 12)
+	f.magic_attack = _es(72, 84, 2, 4, lvl, 12)
+	f.magic_defense = _es(44, 52, 2, 3, lvl, 12)
+	f.speed = _es(32, 38, 2, 3, lvl, 12)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.woven_mend(), EAB.thread_snare()]
 	f.flavor_text = "A cult artisan who repairs the dream's fabric even as intruders tear through it. Its threads can mend allies or bind foes with equal skill."
 	return f
 
 
 # Prog 12 DreamTemple only -- physical tank
+# Buffed to harden DreamTemple (79.0%->52%): higher HP, PATK, PDEF, crit
 static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Loom Sentinel", lvl)
-	f.health = _es(529, 607, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(590, 678, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = _es(79, 92, 3, 5, lvl, 13)
-	f.physical_defense = _es(45, 53, 2, 3, lvl, 13)
+	f.physical_attack = _es(92, 106, 3, 5, lvl, 13)
+	f.physical_defense = _es(52, 60, 2, 4, lvl, 13)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 13)
-	f.magic_defense = _es(36, 43, 2, 3, lvl, 13)
-	f.speed = _es(24, 30, 1, 2, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 5
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 13)
+	f.speed = _es(28, 34, 2, 3, lvl, 13)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 7
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
 	f.flavor_text = "A towering automaton built around the skeleton of a great loom. Its strikes carry the weight of compacted dream-thread, and its woven armor turns aside all but the strongest blows."
 	return f
 
 
 # Shared Prog 11 & 13 -- magic DPS (glass cannon caster)
+# Buffed to harden LucidDream (65.2%->54%): higher MATK, dodge
 static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Cult Shade", lvl)
-	f.health = _es(375, 434, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = _es(390, 450, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = _es(24, 30, 1, 3, lvl, 12)
-	f.magic_attack = _es(78, 90, 3, 5, lvl, 12)
-	f.magic_defense = _es(35, 42, 2, 3, lvl, 12)
-	f.speed = _es(33, 39, 2, 3, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
+	f.physical_defense = _es(26, 33, 1, 3, lvl, 12)
+	f.magic_attack = _es(84, 97, 3, 5, lvl, 12)
+	f.magic_defense = _es(38, 45, 2, 3, lvl, 12)
+	f.speed = _es(35, 41, 2, 3, lvl, 12)
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	f.flavor_text = "A hooded cultist who channels forbidden thread-magic through rituals of devotion. It unravels the minds of its enemies, leaving them confused and vulnerable."
 	return f
 
 
 # Shared Prog 12 & 13 -- hybrid fighter (balanced physical/magic)
+# Buffed to harden DreamTemple (79.0%->52%): higher ATK, DEF, crit, dodge
 static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Dream Warden", lvl)
-	f.health = _es(463, 533, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(520, 598, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(28, 34, 2, 3, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = _es(68, 79, 2, 4, lvl, 13)
-	f.physical_defense = _es(35, 42, 2, 3, lvl, 13)
-	f.magic_attack = _es(68, 79, 2, 4, lvl, 13)
-	f.magic_defense = _es(35, 42, 2, 3, lvl, 13)
-	f.speed = _es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
+	f.physical_attack = _es(80, 92, 3, 5, lvl, 13)
+	f.physical_defense = _es(42, 50, 2, 3, lvl, 13)
+	f.magic_attack = _es(80, 92, 3, 5, lvl, 13)
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 13)
+	f.speed = _es(35, 41, 2, 3, lvl, 13)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
 	f.flavor_text = "An imposing guardian who patrols the border between the waking world and the cult's dream domain. It fights with both blade and binding light to repel all trespassers."
 	return f
 
 
 # Prog 12 DreamTemple only -- magic DPS
+# Buffed to harden DreamTemple (79.0%->52%): higher MATK, HP, crit, dodge
 static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thought Leech", lvl)
-	f.health = _es(409, 472, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(470, 540, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = _es(28, 35, 1, 3, lvl, 13)
-	f.magic_attack = _es(74, 86, 3, 5, lvl, 13)
-	f.magic_defense = _es(38, 46, 2, 3, lvl, 13)
-	f.speed = _es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
+	f.physical_defense = _es(34, 41, 2, 3, lvl, 13)
+	f.magic_attack = _es(86, 99, 3, 5, lvl, 13)
+	f.magic_defense = _es(44, 52, 2, 3, lvl, 13)
+	f.speed = _es(35, 41, 2, 3, lvl, 13)
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.psychic_siphon(), EAB.mind_fog()]
 	f.flavor_text = "A parasitic entity that attaches to the psyche and drains thought and willpower. Its victims stumble in a fog of confusion, unable to think clearly or act decisively."
 	return f
 
 
 # Prog 12 DreamVoid only -- magic DPS (void caster)
+# Buffed moderately: DreamVoid at 69.2%, LP+TS buffs help, target 52%
 static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Void Spinner", lvl)
-	f.health = _es(452, 519, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(490, 563, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = _es(31, 38, 2, 3, lvl, 13)
-	f.magic_attack = _es(78, 91, 3, 5, lvl, 13)
-	f.magic_defense = _es(44, 52, 2, 3, lvl, 13)
-	f.speed = _es(35, 41, 2, 3, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
+	f.physical_defense = _es(35, 42, 2, 3, lvl, 13)
+	f.magic_attack = _es(86, 99, 3, 5, lvl, 13)
+	f.magic_defense = _es(48, 56, 2, 3, lvl, 13)
+	f.speed = _es(37, 43, 2, 3, lvl, 13)
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.void_thread(), EAB.nullify()]
 	f.flavor_text = "A caster that draws power from the void between dreams, where nothing exists and all things unravel. Its threads nullify magic and dissolve protections on contact."
 	return f
