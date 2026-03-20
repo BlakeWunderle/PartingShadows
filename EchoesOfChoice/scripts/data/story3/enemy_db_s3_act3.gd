@@ -68,17 +68,17 @@ static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 
 
 # Prog 12 DreamTemple only -- physical tank
-# Re-interpolated: 16.8% too hard, move 56.6% toward baseline (79.0%)
+# Nerfed from 44.3%: lower HP/ATK/DEF to reach 52% target
 static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Loom Sentinel", lvl)
-	f.health = _es(538, 617, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(490, 563, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = _es(81, 94, 3, 5, lvl, 13)
-	f.physical_defense = _es(46, 54, 2, 3, lvl, 13)
+	f.physical_attack = _es(76, 88, 3, 5, lvl, 13)
+	f.physical_defense = _es(42, 50, 2, 3, lvl, 13)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 13)
-	f.magic_defense = _es(37, 44, 2, 3, lvl, 13)
+	f.magic_defense = _es(34, 41, 2, 3, lvl, 13)
 	f.speed = _es(24, 30, 1, 2, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 5
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
 	f.flavor_text = "A towering automaton built around the skeleton of a great loom. Its strikes carry the weight of compacted dream-thread, and its woven armor turns aside all but the strongest blows."
 	return f
@@ -102,34 +102,34 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 
 
 # Shared Prog 12 & 13 -- hybrid fighter (balanced physical/magic)
-# Re-interpolated: 16.8% too hard, move 56.6% toward baseline (79.0%)
+# Nerfed from 44.3%: lower HP/ATK/DEF/crit to reach 52% target
 static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Dream Warden", lvl)
-	f.health = _es(471, 543, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(440, 506, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = _es(28, 34, 2, 3, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = _es(70, 81, 2, 4, lvl, 13)
-	f.physical_defense = _es(36, 43, 2, 3, lvl, 13)
-	f.magic_attack = _es(70, 81, 2, 4, lvl, 13)
-	f.magic_defense = _es(36, 43, 2, 3, lvl, 13)
-	f.speed = _es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
+	f.physical_attack = _es(65, 76, 2, 4, lvl, 13)
+	f.physical_defense = _es(33, 40, 2, 3, lvl, 13)
+	f.magic_attack = _es(65, 76, 2, 4, lvl, 13)
+	f.magic_defense = _es(33, 40, 2, 3, lvl, 13)
+	f.speed = _es(30, 36, 2, 3, lvl, 13)
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
 	f.flavor_text = "An imposing guardian who patrols the border between the waking world and the cult's dream domain. It fights with both blade and binding light to repel all trespassers."
 	return f
 
 
 # Prog 12 DreamTemple only -- magic DPS
-# Re-interpolated: 16.8% too hard, move 56.6% toward baseline (79.0%)
+# Nerfed from 44.3%: lower HP/MATK/DEF/crit to reach 52% target
 static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thought Leech", lvl)
-	f.health = _es(418, 482, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = _es(385, 445, 4, 7, lvl, 13); f.max_health = f.health
 	f.mana = _es(30, 36, 2, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = _es(29, 36, 1, 3, lvl, 13)
-	f.magic_attack = _es(76, 88, 3, 5, lvl, 13)
-	f.magic_defense = _es(39, 47, 2, 3, lvl, 13)
-	f.speed = _es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
+	f.physical_defense = _es(26, 33, 1, 3, lvl, 13)
+	f.magic_attack = _es(72, 83, 3, 5, lvl, 13)
+	f.magic_defense = _es(36, 44, 2, 3, lvl, 13)
+	f.speed = _es(30, 36, 2, 3, lvl, 13)
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.psychic_siphon(), EAB.mind_fog()]
 	f.flavor_text = "A parasitic entity that attaches to the psyche and drains thought and willpower. Its victims stumble in a fog of confusion, unable to think clearly or act decisively."
 	return f
