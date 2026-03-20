@@ -1,6 +1,7 @@
 class_name EnemyDBS3Act45
 
 ## Story 3 Acts IV-V enemy factory. Cult members and the Threadmaster.
+## T2 rebalance: stats scaled to match T2 player power levels.
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3.gd")
@@ -27,139 +28,151 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 # =============================================================================
 # Acts IV-V: Cult members (Progression 14-17)
-# Per-enemy calibration from R4/R5 interpolation.
+# Prog 14 (S3_CultUnderbelly): target 48%, 15 level-ups
+# Prog 15 (S3_CultCatacombs): target 46%, 16 level-ups
+# Prog 16 (S3_CultRitualChamber): target 44%, 17 level-ups
+# Prog 17 (S3_DreamNexus): target 42%, 18 level-ups (final boss)
 # =============================================================================
 
-# Prog 14 (+21%)
+# Prog 14 -- mage acolyte (level 15)
 static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Cult Acolyte", lvl)
-	f.health = _es(514, 589, 7, 11, lvl, 15); f.max_health = f.health
-	f.mana = _es(16, 21, 1, 3, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(25, 31, 1, 3, lvl, 15)
-	f.physical_defense = _es(31, 37, 1, 3, lvl, 15)
-	f.magic_attack = _es(46, 52, 3, 4, lvl, 15)
-	f.magic_defense = _es(31, 37, 1, 3, lvl, 15)
-	f.speed = _es(42, 49, 1, 3, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 11
+	f.health = _es(470, 540, 5, 8, lvl, 15); f.max_health = f.health
+	f.mana = _es(32, 38, 2, 4, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 15)
+	f.physical_defense = _es(34, 42, 2, 3, lvl, 15)
+	f.magic_attack = _es(88, 102, 3, 5, lvl, 15)
+	f.magic_defense = _es(42, 50, 2, 4, lvl, 15)
+	f.speed = _es(34, 40, 2, 3, lvl, 15)
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.thread_sear(), EAB.zealots_fervor()]
+	f.flavor_text = "A junior member of the Thread cult, burning with fanatical devotion. Their searing thread-magic is crude but powerful, fueled by unshakable belief in the Threadmaster's vision."
 	return f
 
 
-# Prog 14 (+21%)
+# Prog 14 -- physical enforcer (level 15)
 static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Cult Enforcer", lvl)
-	f.health = _es(615, 693, 9, 14, lvl, 15); f.max_health = f.health
-	f.mana = _es(10, 15, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(49, 55, 3, 4, lvl, 15)
-	f.physical_defense = _es(39, 45, 3, 4, lvl, 15)
-	f.magic_attack = _es(17, 23, 0, 3, lvl, 15)
-	f.magic_defense = _es(34, 39, 1, 3, lvl, 15)
-	f.speed = _es(39, 47, 1, 3, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 7
+	f.health = _es(560, 640, 6, 9, lvl, 15); f.max_health = f.health
+	f.mana = _es(14, 18, 1, 2, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = _es(92, 106, 3, 5, lvl, 15)
+	f.physical_defense = _es(46, 54, 2, 4, lvl, 15)
+	f.magic_attack = _es(8, 12, 0, 1, lvl, 15)
+	f.magic_defense = _es(38, 45, 2, 3, lvl, 15)
+	f.speed = _es(28, 34, 2, 3, lvl, 15)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.thread_laced_fist(), EAB.threaded_sinew()]
+	f.flavor_text = "A heavily muscled enforcer whose body is laced with dream-threads that harden like steel beneath the skin. The cult sends them to silence anyone who asks too many questions."
 	return f
 
 
-# Prog 14 (+21%)
+# Prog 14 -- glass cannon hexer (level 15)
 static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Cult Hexer", lvl)
-	f.health = _es(499, 576, 6, 10, lvl, 15); f.max_health = f.health
-	f.mana = _es(21, 26, 2, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(23, 28, 1, 3, lvl, 15)
-	f.physical_defense = _es(28, 34, 1, 3, lvl, 15)
-	f.magic_attack = _es(49, 55, 3, 4, lvl, 15)
-	f.magic_defense = _es(34, 39, 1, 4, lvl, 15)
-	f.speed = _es(42, 49, 1, 3, lvl, 15)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 14
+	f.health = _es(400, 462, 4, 7, lvl, 15); f.max_health = f.health
+	f.mana = _es(32, 38, 2, 4, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 15)
+	f.physical_defense = _es(28, 35, 1, 3, lvl, 15)
+	f.magic_attack = _es(90, 104, 3, 5, lvl, 15)
+	f.magic_defense = _es(40, 48, 2, 4, lvl, 15)
+	f.speed = _es(36, 42, 2, 3, lvl, 15)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.hex_bolt(), EAB.curse()]
+	f.flavor_text = "A spellcaster who has traded sanity for power, channeling hexes drawn from the darkest layers of the dream. Their curses linger long after the battle ends."
 	return f
 
 
-# Shared Prog 15 & 16 (+31%)
+# Shared Prog 15 & 16 -- physical guard (level 16)
 static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Thread Guard", lvl)
-	f.health = _es(701, 798, 8, 14, lvl, 16); f.max_health = f.health
-	f.mana = _es(15, 20, 1, 2, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = _es(51, 56, 3, 4, lvl, 16)
-	f.physical_defense = _es(39, 44, 3, 4, lvl, 16)
-	f.magic_attack = _es(22, 28, 1, 3, lvl, 16)
-	f.magic_defense = _es(36, 41, 1, 4, lvl, 16)
-	f.speed = _es(41, 48, 1, 3, lvl, 16)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 11
+	f.health = _es(600, 685, 6, 9, lvl, 16); f.max_health = f.health
+	f.mana = _es(14, 18, 1, 2, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = _es(100, 115, 3, 5, lvl, 16)
+	f.physical_defense = _es(52, 61, 2, 4, lvl, 16)
+	f.magic_attack = _es(8, 12, 0, 1, lvl, 16)
+	f.magic_defense = _es(42, 50, 2, 3, lvl, 16)
+	f.speed = _es(26, 32, 1, 2, lvl, 16)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 6
 	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
+	f.flavor_text = "An elite warrior who wields a blade wrapped in shimmering dream-thread. Their woven shield can absorb tremendous punishment, making them the cult's frontline defender."
 	return f
 
 
-# Prog 15 (+2%)
+# Prog 15 -- fast agile hound (level 16)
 static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	var f := _base(n, "Dream Hound", lvl)
-	f.health = _es(480, 546, 7, 11, lvl, 16); f.max_health = f.health
-	f.mana = _es(12, 17, 1, 2, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = _es(53, 57, 3, 4, lvl, 16)
-	f.physical_defense = _es(31, 36, 1, 3, lvl, 16)
-	f.magic_attack = _es(20, 25, 1, 3, lvl, 16)
-	f.magic_defense = _es(28, 34, 1, 3, lvl, 16)
-	f.speed = _es(48, 55, 3, 4, lvl, 16)
-	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 15
+	f.health = _es(430, 495, 5, 8, lvl, 16); f.max_health = f.health
+	f.mana = _es(14, 18, 1, 2, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = _es(88, 102, 3, 5, lvl, 16)
+	f.physical_defense = _es(36, 43, 2, 3, lvl, 16)
+	f.magic_attack = _es(8, 12, 0, 1, lvl, 16)
+	f.magic_defense = _es(34, 41, 2, 3, lvl, 16)
+	f.speed = _es(40, 46, 3, 4, lvl, 16)
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
+	f.flavor_text = "A sleek beast bred in the cult's dream kennels, trained to hunt by scent of thought. It is blindingly fast and attacks with savage, coordinated ferocity."
 	return f
 
 
-# Prog 16 (+63%)
+# Prog 16 -- mage ritualist (level 17)
 static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	var f := _base(n, "Cult Ritualist", lvl)
-	f.health = _es(927, 1061, 8, 13, lvl, 17); f.max_health = f.health
-	f.mana = _es(26, 31, 3, 4, lvl, 17); f.max_mana = f.mana
-	f.physical_attack = _es(29, 36, 1, 3, lvl, 17)
-	f.physical_defense = _es(42, 49, 1, 5, lvl, 17)
-	f.magic_attack = _es(60, 66, 3, 5, lvl, 17)
-	f.magic_defense = _es(46, 52, 3, 5, lvl, 17)
-	f.speed = _es(49, 57, 1, 3, lvl, 17)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 12
+	f.health = _es(520, 598, 5, 8, lvl, 17); f.max_health = f.health
+	f.mana = _es(34, 40, 2, 4, lvl, 17); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 17)
+	f.physical_defense = _es(40, 48, 2, 4, lvl, 17)
+	f.magic_attack = _es(98, 113, 3, 6, lvl, 17)
+	f.magic_defense = _es(50, 58, 2, 4, lvl, 17)
+	f.speed = _es(34, 40, 2, 3, lvl, 17)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.thread_lash(), EAB.ritual_chant()]
+	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
 	return f
 
 
-# Prog 16 (+63%)
+# Prog 16 -- mage glass cannon (level 17)
 static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	var f := _base(n, "High Weaver", lvl)
-	f.health = _es(986, 1119, 8, 15, lvl, 17); f.max_health = f.health
-	f.mana = _es(28, 33, 3, 5, lvl, 17); f.max_mana = f.mana
-	f.physical_attack = _es(26, 33, 1, 3, lvl, 17)
-	f.physical_defense = _es(39, 46, 1, 5, lvl, 17)
-	f.magic_attack = _es(65, 72, 3, 6, lvl, 17)
-	f.magic_defense = _es(46, 52, 3, 5, lvl, 17)
-	f.speed = _es(52, 60, 1, 5, lvl, 17)
-	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 15
+	f.health = _es(460, 530, 5, 8, lvl, 17); f.max_health = f.health
+	f.mana = _es(36, 42, 3, 5, lvl, 17); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 17)
+	f.physical_defense = _es(34, 42, 2, 3, lvl, 17)
+	f.magic_attack = _es(102, 118, 3, 6, lvl, 17)
+	f.magic_defense = _es(48, 56, 2, 4, lvl, 17)
+	f.speed = _es(36, 42, 2, 3, lvl, 17)
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.loom_blast(), EAB.unweave()]
+	f.flavor_text = "One of the Threadmaster's inner circle, a master of the loom's destructive potential. They can unweave the protections of their enemies with a gesture and blast them with raw dream-force."
 	return f
 
 
-# Prog 17 boss minion (+29%)
+# Prog 17 boss minion -- fast magic DPS (level 18)
 static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	var f := _base(n, "Shadow Fragment", lvl)
-	f.health = _es(573, 658, 8, 12, lvl, 18); f.max_health = f.health
-	f.mana = _es(17, 22, 1, 4, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = _es(29, 35, 1, 4, lvl, 18)
-	f.physical_defense = _es(32, 38, 1, 5, lvl, 18)
-	f.magic_attack = _es(50, 56, 3, 5, lvl, 18)
-	f.magic_defense = _es(35, 41, 1, 4, lvl, 18)
-	f.speed = _es(49, 57, 3, 5, lvl, 18)
-	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 18
+	f.health = _es(440, 506, 5, 8, lvl, 18); f.max_health = f.health
+	f.mana = _es(30, 36, 2, 4, lvl, 18); f.max_mana = f.mana
+	f.physical_attack = _es(10, 14, 0, 2, lvl, 18)
+	f.physical_defense = _es(34, 42, 2, 3, lvl, 18)
+	f.magic_attack = _es(95, 110, 3, 6, lvl, 18)
+	f.magic_defense = _es(44, 52, 2, 4, lvl, 18)
+	f.speed = _es(38, 44, 3, 4, lvl, 18)
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
+	f.flavor_text = "A splinter of the Threadmaster's own shadow, given independent will. It devours light and hope in equal measure, weakening enemies before the final confrontation."
 	return f
 
 
-# Prog 17 boss (+31%)
+# Prog 17 boss -- The Threadmaster (level 18)
 static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := _base(n, "The Threadmaster", lvl)
-	f.health = _es(1016, 1157, 15, 22, lvl, 18); f.max_health = f.health
-	f.mana = _es(35, 40, 4, 6, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = _es(59, 66, 3, 6, lvl, 18)
-	f.physical_defense = _es(44, 50, 3, 5, lvl, 18)
-	f.magic_attack = _es(65, 71, 4, 6, lvl, 18)
-	f.magic_defense = _es(44, 50, 3, 5, lvl, 18)
-	f.speed = _es(53, 60, 3, 5, lvl, 18)
-	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 15
+	f.health = _es(780, 880, 8, 12, lvl, 18); f.max_health = f.health
+	f.mana = _es(42, 50, 3, 5, lvl, 18); f.max_mana = f.mana
+	f.physical_attack = _es(90, 104, 3, 5, lvl, 18)
+	f.physical_defense = _es(50, 58, 2, 4, lvl, 18)
+	f.magic_attack = _es(110, 126, 4, 6, lvl, 18)
+	f.magic_defense = _es(52, 60, 2, 4, lvl, 18)
+	f.speed = _es(36, 42, 3, 4, lvl, 18)
+	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 14
 	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion()]
+	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."
 	return f

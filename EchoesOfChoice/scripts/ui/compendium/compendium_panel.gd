@@ -152,7 +152,7 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 				"name": _FighterDB.get_display_name(class_id) if is_discovered else "???",
 				"tier": CompendiumManager.get_tier(class_id),
 				"portrait_path": _get_class_portrait_path(class_id) if is_discovered else "",
-				"flavor_text": "",
+				"flavor_text": _FighterDB.get_flavor_text(class_id) if is_discovered else "",
 				"abilities": abilities,
 				"display_name": _FighterDB.get_display_name(class_id) if is_discovered else "???",
 			}

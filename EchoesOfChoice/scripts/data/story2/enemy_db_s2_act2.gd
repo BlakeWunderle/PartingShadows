@@ -40,6 +40,7 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(24, 30, 1, 3, lvl, 5)
 	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 6
 	f.abilities = [EAB.cutlass_slash(), EAB.pillage_strike()]
+	f.flavor_text = "A weathered scavenger who builds weapons from shipwreck debris. Desperate and violent, they prey on anyone who washes ashore."
 	return f
 
 
@@ -54,6 +55,7 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(30, 36, 2, 3, lvl, 5)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.throwing_knife(), EAB.salt_blind()]
+	f.flavor_text = "A quick-handed smuggler who runs contraband through the coastal caves. They fight dirty and never hesitate to blind their foes with salt."
 	return f
 
 
@@ -68,6 +70,7 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(20, 26, 1, 2, lvl, 5)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 4
 	f.abilities = [EAB.harpoon_thrust(), EAB.brace_formation()]
+	f.flavor_text = "A heavily armored sentinel who guards the coastal passages. Their loyalty to the sea is absolute, and their harpoon strikes are precise."
 	return f
 
 
@@ -80,8 +83,9 @@ static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = _es(21, 26, 1, 3, lvl, 5)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 5)
 	f.speed = _es(32, 38, 2, 3, lvl, 5)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 17
+	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.peck_frenzy(), EAB.dive_screech()]
+	f.flavor_text = "A seabird twisted by the dark influence bleeding from the lighthouse. Its feathers are matted with tar-like corruption."
 	return f
 
 
@@ -96,6 +100,7 @@ static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(18, 24, 1, 2, lvl, 5)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 3
 	f.abilities = [EAB.crushing_claw(), EAB.chitin_shell()]
+	f.flavor_text = "A massive crustacean that drags itself along the rocky shore. Its barnacle-encrusted shell can withstand tremendous punishment."
 	return f
 
 
@@ -110,6 +115,7 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(30, 36, 2, 3, lvl, 5)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.feral_lunge(), EAB.brackish_howl()]
+	f.flavor_text = "A feral dog warped by prolonged exposure to corrupted tidewater. Its body is gaunt and its eyes burn with unnatural hunger."
 	return f
 
 
@@ -128,6 +134,7 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(26, 32, 1, 3, lvl, 8)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.boarding_axe(), EAB.captains_orders()]
+	f.flavor_text = "A ruthless pirate captain who commands the Blackwater fleet. Scars and sea salt have hardened both body and will."
 	return f
 
 
@@ -142,6 +149,7 @@ static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(28, 34, 2, 3, lvl, 8)
 	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.brine_curse(), EAB.corrode_ward()]
+	f.flavor_text = "A sea-witch who sails with the corsair fleet, dealing in curses drawn from the deep. Saltwater itself bends to their hexes."
 	return f
 
 
@@ -156,6 +164,7 @@ static func create_abyssal_lurker(n: String, lvl: int = 9) -> FighterData:
 	f.speed = _es(24, 30, 1, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.depth_pulse(), EAB.tidal_drain()]
+	f.flavor_text = "A deep-sea horror that surfaces near the coast when storms roll in. Its form is barely visible, a suggestion of tentacles and teeth in dark water."
 	return f
 
 
@@ -168,8 +177,9 @@ static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = _es(34, 40, 2, 4, lvl, 8)
 	f.magic_defense = _es(19, 24, 1, 2, lvl, 8)
 	f.speed = _es(36, 42, 2, 4, lvl, 8)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.lightning_dive(), EAB.static_screech()]
+	f.flavor_text = "A massive bird of prey that nests in storm clouds above the coast. Lightning crackles along its wingfeathers as it dives."
 	return f
 
 
@@ -184,6 +194,7 @@ static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 	f.speed = _es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.storm_surge(), EAB.drowning_grasp(), EAB.mist_veil()]
+	f.flavor_text = "The restless spirit of a drowned tidecaller, still commanding the waves in death. Storm and sea answer its hollow voice."
 	return f
 
 
@@ -198,6 +209,7 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 	f.speed = _es(32, 38, 2, 3, lvl, 9)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.spectral_chill(), EAB.memory_fog()]
+	f.flavor_text = "A translucent specter formed from crystallized sea salt and lost grief. It drifts through fog, erasing the memories of those it touches."
 	return f
 
 
@@ -215,8 +227,9 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = _es(45, 52, 2, 4, lvl, 9)
 	f.magic_defense = _es(31, 38, 2, 4, lvl, 9)
 	f.speed = _es(33, 39, 2, 3, lvl, 9)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 17
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.spectral_cutlass(), EAB.waterlogged_grasp()]
+	f.flavor_text = "The waterlogged ghost of a sailor claimed by the bay. It fights with the remembered motions of a life spent at sea."
 	return f
 
 
@@ -229,6 +242,7 @@ static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = _es(55, 63, 3, 5, lvl, 9)
 	f.magic_defense = _es(28, 34, 2, 3, lvl, 9)
 	f.speed = _es(28, 34, 2, 3, lvl, 9)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.tentacle_crush(), EAB.abyssal_terror()]
+	f.flavor_text = "An ancient thing from the ocean floor, drawn to the surface by the Eye's growing influence. Its mere presence fills the mind with dread."
 	return f

@@ -565,3 +565,81 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		_:
 			push_error("Unknown class_id for abilities: %s" % class_id)
 			return []
+
+
+# =============================================================================
+# Class flavor text
+# =============================================================================
+
+static func get_flavor_text(class_id: String) -> String:
+	match class_id:
+		# T0
+		"Squire": return "A fresh recruit with more courage than skill. Every legend starts with a wooden sword and a stubborn heart."
+		"Mage": return "An apprentice of the arcane, still learning to channel raw magic without singeing their robes."
+		"Entertainer": return "A traveling performer whose quick wit and silver tongue are sharper than any blade."
+		"Tinker": return "A curious inventor forever tinkering with gears and gadgets. Their workshop is wherever they happen to sit down."
+		"Wildling": return "Raised beyond the reach of civilization, they speak the language of root and claw."
+		"Wanderer": return "A seasoned traveler who has walked roads that no longer appear on any map. The wilds have taught them well."
+		# T1: Squire tree
+		"Duelist": return "A blade artist who treats every fight as a performance. Precision over power, always."
+		"Ranger": return "A keen-eyed archer comfortable in the deep woods, where patience is the truest weapon."
+		"MartialArtist": return "Fists and feet honed through years of discipline. They fight with nothing but their body and their will."
+		# T1: Mage tree
+		"Invoker": return "A channeler of elemental fury who bends fire, water, and lightning to their command."
+		"Acolyte": return "A student of divine light, still finding their faith. Their healing hands grow steadier with each prayer."
+		# T1: Entertainer tree
+		"Bard": return "A musician who weaves magic through melody. Their songs can mend wounds or shatter morale."
+		"Dervish": return "A whirling dancer whose movements blur the line between art and combat."
+		"Orator": return "A master of rhetoric whose speeches move allies to action and enemies to doubt."
+		# T1: Tinker tree
+		"Artificer": return "A skilled craftsperson who turns raw materials into instruments of war and healing alike."
+		"Cosmologist": return "A philosopher who gazes beyond the stars, seeking the hidden laws that govern all things."
+		"Arithmancer": return "A scholar who finds power in pure mathematics, solving equations that reshape reality."
+		# T1: Wildling tree
+		"Herbalist": return "A keeper of plant lore who can coax both remedy and ruin from the simplest garden."
+		"Shaman": return "A spirit-speaker who communes with the unseen world, drawing on ancestral power."
+		"Beastcaller": return "One who shares a primal bond with wild creatures, calling them to fight as family."
+		# T1: Wanderer tree
+		"Sentinel": return "A stoic guardian who stands between their allies and harm. Their wards hold when walls would crumble."
+		"Pathfinder": return "A tactical scout who reads the battlefield like a map, finding every advantage the terrain offers."
+		# T2: Squire tree
+		"Cavalry": return "A mounted lancer who charges through enemy lines with devastating momentum. Few can stand before the thundering hooves."
+		"Dragoon": return "A skyborne warrior who leaps to impossible heights, crashing down with the force of a falling star."
+		"Mercenary": return "A gun-wielding sellsword who lets coin decide their loyalty and a well-placed shot decide the battle."
+		"Hunter": return "A patient tracker who lays cunning traps and reads every broken twig. Their quarry never escapes."
+		"Ninja": return "A shadow that strikes without warning and vanishes without a trace. By the time you see them, it is already too late."
+		"Monk": return "A spiritual warrior who channels inner harmony into devastating strikes and mending light."
+		# T2: Mage tree
+		"Infernalist": return "A pyromancer consumed by the thrill of flame. Their fire burns hotter than reason, leaving only ash behind."
+		"Tidecaller": return "A water mage who commands the tides to shield allies and sweep away foes in surging waves."
+		"Tempest": return "A storm incarnate who crackles with lightning and howls with thunder. Standing near them makes your hair stand on end."
+		"Paladin": return "A holy knight who wields faith as both sword and shield. Their conviction is as unyielding as their armor."
+		"Priest": return "A devoted healer whose prayers call down radiant light, mending the broken and sanctifying the battlefield."
+		"Warlock": return "A wielder of forbidden magic who draws power from the dark spaces between stars. Their curses linger long after the battle ends."
+		# T2: Entertainer tree
+		"Warcrier": return "A battlefield vocalist whose thunderous shouts bolster allies and shatter enemy resolve."
+		"Minstrel": return "A gentle musician whose healing melodies can soothe even the deepest wounds."
+		"Illusionist": return "A trickster who bends light and perception, striking from angles that should not exist."
+		"Mime": return "A silent performer who shapes invisible walls and conjures phantom objects from pure imagination."
+		"Laureate": return "A poet of legendary renown whose words of praise elevate allies to heights they never thought possible."
+		"Elegist": return "A somber wordsmith who speaks of loss and futility, draining the will to fight from all who listen."
+		# T2: Tinker tree
+		"Alchemist": return "A master of transmutation who brews elixirs of restoration and vials of corrosive ruin."
+		"Bombardier": return "An explosives expert who solves every problem with a bigger blast. Subtlety is not in their vocabulary."
+		"Chronomancer": return "A time-bender who accelerates allies and freezes foes in moments stolen from the future."
+		"Astronomer": return "A celestial scholar who calls down starfire and meteor showers, wielding the heavens as a weapon."
+		"Automaton": return "A living construct of clockwork and willpower, trading flesh for steel without a moment of regret."
+		"Technomancer": return "A hybrid genius who fuses arcane circuits with raw magic, creating something entirely new."
+		# T2: Wildling tree
+		"Blighter": return "A harbinger of decay who wields poison and rot, turning the natural cycle of death into a weapon."
+		"GroveKeeper": return "A guardian of the green who commands roots and vines to shield allies and ensnare the unwary."
+		"WitchDoctor": return "A hex-weaver who curses enemies with ancient rites, unraveling their strength from the inside."
+		"Spiritwalker": return "A bridge between the living and the ancestral realm, channeling protective spirits to shelter their companions."
+		"Falconer": return "A raptor-bonded marksman whose birds of prey strike with surgical precision from above."
+		"Shapeshifter": return "A primal warrior who abandons human form to become fang and claw, embracing the beast within."
+		# T2: Wanderer tree
+		"Bulwark": return "An immovable fortress of magical defense. Spells break against them like waves against a cliff."
+		"Aegis": return "A counter-magic warrior who turns enemy sorcery back upon its caster with devastating precision."
+		"Trailblazer": return "An aggressive vanguard who carves new paths through enemy ranks with relentless mixed assaults."
+		"Survivalist": return "An endurance fighter who thrives where others falter, drawing strength from hardship itself."
+		_: return ""

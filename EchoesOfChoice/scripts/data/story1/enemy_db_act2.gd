@@ -45,6 +45,7 @@ static func create_raider(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(24, 30, 1, 3, lvl, 4)
 	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.cleave(), EAB.war_cry()]
+	f.flavor_text = "Hardened marauders who pillage the borderlands without mercy."
 	return f
 
 static func create_orc(n: String, lvl: int = 4) -> FighterData:
@@ -58,6 +59,7 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(19, 25, 1, 2, lvl, 4)
 	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 3
 	f.abilities = [EAB.crush(), EAB.thick_skin()]
+	f.flavor_text = "Towering brutes whose raw strength can crack stone. Slow to think, quick to rage."
 	return f
 
 static func create_troll(n: String, lvl: int = 5) -> FighterData:
@@ -71,6 +73,7 @@ static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(17, 23, 1, 2, lvl, 5)
 	f.crit_chance = 8; f.crit_damage = 3; f.dodge_chance = 3
 	f.abilities = [EAB.boulder_fist(), EAB.regenerate(), EAB.stomp()]
+	f.flavor_text = "Massive creatures whose wounds knit shut before your eyes. Best dealt with quickly."
 	return f
 
 static func create_harpy(n: String, lvl: int = 5) -> FighterData:
@@ -84,6 +87,7 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(29, 35, 2, 3, lvl, 5)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.talon_rake(), EAB.shriek()]
+	f.flavor_text = "Winged terrors that dive from above, raking with razor talons and piercing shrieks."
 	return f
 
 static func create_witch(n: String, lvl: int = 4) -> FighterData:
@@ -97,6 +101,7 @@ static func create_witch(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(21, 29, 1, 2, lvl, 4)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.enemy_hex(), EAB.bramble(), EAB.dark_blessing()]
+	f.flavor_text = "Reclusive casters who draw power from the deep woods. Their curses linger long after battle."
 	return f
 
 static func create_wisp(n: String, lvl: int = 4) -> FighterData:
@@ -110,6 +115,7 @@ static func create_wisp(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(29, 39, 2, 3, lvl, 4)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.lure(), EAB.bewitch()]
+	f.flavor_text = "Flickering motes of pale light that drift through the marshes, leading the unwary astray."
 	return f
 
 static func create_sprite(n: String, lvl: int = 4) -> FighterData:
@@ -123,6 +129,7 @@ static func create_sprite(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(25, 36, 1, 3, lvl, 4)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.thorn(), EAB.pollen()]
+	f.flavor_text = "Mischievous fey creatures born from old magic. They defend their groves with barbed thorns."
 	return f
 
 static func create_siren(n: String, lvl: int = 4) -> FighterData:
@@ -136,6 +143,7 @@ static func create_siren(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(23, 31, 1, 2, lvl, 3)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.siren_song(), EAB.drowning_wave()]
+	f.flavor_text = "Enchanting voices rise from the shore, luring travelers into the crushing tide."
 	return f
 
 static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
@@ -149,6 +157,7 @@ static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(22, 28, 1, 3, lvl, 4)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.trident_thrust(), EAB.tidal_splash()]
+	f.flavor_text = "Amphibious warriors who guard the coastal shallows with trident and wave."
 	return f
 
 static func create_captain(n: String, lvl: int = 5) -> FighterData:
@@ -162,6 +171,7 @@ static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(20, 28, 1, 2, lvl, 5)
 	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.flintlock(), EAB.cannon_barrage(), EAB.bravado()]
+	f.flavor_text = "A seasoned officer who commands through firepower and sheer bravado."
 	return f
 
 static func create_pirate(n: String, lvl: int = 4) -> FighterData:
@@ -175,6 +185,7 @@ static func create_pirate(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(20, 29, 1, 3, lvl, 4)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.flintlock(), EAB.dirty_trick()]
+	f.flavor_text = "Sea rogues who fight without honor, armed with flintlocks and dirty tricks."
 	return f
 
 # --- Prog 5-6: Branch battles ---
@@ -188,6 +199,7 @@ static func create_fire_wyrmling(n: String) -> FighterData:
 	f.speed = _fixed(29, 34)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), EAB.searing_hiss()]
+	f.flavor_text = "Young dragons wreathed in flame. Though small, their breath can melt steel."
 	return f
 
 static func create_frost_wyrmling(n: String) -> FighterData:
@@ -199,6 +211,7 @@ static func create_frost_wyrmling(n: String) -> FighterData:
 	f.speed = _fixed(29, 34)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.claw(), EAB.tail_strike(), EAB.frost_chains()]
+	f.flavor_text = "Icy-scaled dragonkin that freeze the ground beneath their claws."
 	return f
 
 static func create_ringmaster(n: String) -> FighterData:
@@ -210,6 +223,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.speed = _fixed(32, 37)
 	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
+	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
 
 static func create_harlequin(n: String) -> FighterData:
@@ -221,6 +235,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.speed = _fixed(31, 36)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
+	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f
 
 static func create_chanteuse(n: String) -> FighterData:
@@ -232,6 +247,7 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.speed = _fixed(36, 41)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
+	f.flavor_text = "Her voice carries both beauty and ruin. Each note can heal allies or shatter resolve."
 	return f
 
 static func create_android(n: String) -> FighterData:
@@ -243,6 +259,7 @@ static func create_android(n: String) -> FighterData:
 	f.speed = _fixed(32, 37)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.circuit_burst(), EAB.firewall(), EAB.overdrive()]
+	f.flavor_text = "A mechanical soldier powered by arcane circuitry. It feels neither pain nor mercy."
 	return f
 
 static func create_machinist(n: String) -> FighterData:
@@ -254,6 +271,7 @@ static func create_machinist(n: String) -> FighterData:
 	f.speed = _fixed(30, 35)
 	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.seismic_charge(), EAB.reinforce(), EAB.dismantle()]
+	f.flavor_text = "An engineer of war who deploys explosive charges and reinforced plating in equal measure."
 	return f
 
 static func create_ironclad(n: String) -> FighterData:
@@ -265,6 +283,7 @@ static func create_ironclad(n: String) -> FighterData:
 	f.speed = _fixed(24, 29)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.hammer_blow(), EAB.temper(), EAB.steel_plating()]
+	f.flavor_text = "A walking fortress of hammered steel. Each blow of its hammer rings like a forge bell."
 	return f
 
 static func create_commander(n: String) -> FighterData:
@@ -276,6 +295,7 @@ static func create_commander(n: String) -> FighterData:
 	f.speed = _fixed(28, 33)
 	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.shield_wall(), EAB.rally_strike(), EAB.war_ward()]
+	f.flavor_text = "A veteran field officer whose presence steadies the ranks and turns the tide of battle."
 	return f
 
 static func create_draconian(n: String) -> FighterData:
@@ -287,6 +307,7 @@ static func create_draconian(n: String) -> FighterData:
 	f.speed = _fixed(30, 35)
 	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.skewer(), EAB.drake_strike(), EAB.scale_guard()]
+	f.flavor_text = "Dragonblood warriors whose scaled hides and savage spears make them fearsome on any battlefield."
 	return f
 
 static func create_chaplain(n: String) -> FighterData:
@@ -298,6 +319,7 @@ static func create_chaplain(n: String) -> FighterData:
 	f.speed = _fixed(27, 32)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.blessing(), EAB.mace_strike(), EAB.enemy_consecrate()]
+	f.flavor_text = "A battle priest who bolsters allies with holy rites while swinging a heavy mace."
 	return f
 
 static func create_zombie(n: String, lvl: int = 6) -> FighterData:
@@ -311,6 +333,7 @@ static func create_zombie(n: String, lvl: int = 6) -> FighterData:
 	f.speed = _es(24, 34, 1, 2, lvl, 6)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.rend(), EAB.putrid_touch(), EAB.devour()]
+	f.flavor_text = "Shambling corpses that claw at the living with rotting hands. They feel nothing but hunger."
 	return f
 
 static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
@@ -324,6 +347,7 @@ static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
 	f.speed = _es(26, 32, 2, 3, lvl, 6)
 	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.claw(), EAB.paralyze(), EAB.devour()]
+	f.flavor_text = "Faster and crueler than common undead. Their paralyzing touch leaves victims helpless."
 	return f
 
 static func create_shade(n: String, lvl: int = 7) -> FighterData:
@@ -337,6 +361,7 @@ static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	f.speed = _es(32, 38, 2, 4, lvl, 7)
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.umbral_lash(), EAB.shadow_rot(), EAB.dread_whisper()]
+	f.flavor_text = "Remnants of souls consumed by darkness. They slip between shadows, whispering despair."
 	return f
 
 static func create_wraith(n: String, lvl: int = 7) -> FighterData:
@@ -350,4 +375,5 @@ static func create_wraith(n: String, lvl: int = 7) -> FighterData:
 	f.speed = _es(30, 36, 2, 4, lvl, 7)
 	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.soul_drain(), EAB.death_wither(), EAB.terrify()]
+	f.flavor_text = "Spectral horrors that drain the life force of the living. Even seasoned warriors tremble at their approach."
 	return f

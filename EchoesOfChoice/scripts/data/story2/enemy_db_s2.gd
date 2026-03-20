@@ -40,6 +40,7 @@ static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 	f.speed = _es(22, 28, 1, 3, lvl, 1)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.luminous_pulse(), EAB.dazzle()]
+	f.flavor_text = "A blind, segmented worm that navigates by bioluminescence. Its pulsing glow disorients prey before it strikes."
 	return f
 
 
@@ -54,6 +55,7 @@ static func create_crystal_spider(n: String, lvl: int = 1) -> FighterData:
 	f.speed = _es(20, 26, 1, 2, lvl, 1)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.crystal_fang(), EAB.refract()]
+	f.flavor_text = "A translucent arachnid with mineral-encrusted legs. Light scatters through its crystalline body, making it hard to track."
 	return f
 
 
@@ -72,6 +74,7 @@ static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.shadow_lash(), EAB.dissolve()]
+	f.flavor_text = "A flat, many-legged predator that clings to cavern ceilings. It drops silently onto its prey from the darkness above."
 	return f
 
 
@@ -86,6 +89,7 @@ static func create_echo_wisp(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(27, 33, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.resonance(), EAB.distortion()]
+	f.flavor_text = "A flickering orb of sound made visible. It mimics voices of the lost, luring travelers deeper into the caverns."
 	return f
 
 
@@ -104,6 +108,7 @@ static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(27, 33, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.toxic_dart(), EAB.spore_burst()]
+	f.flavor_text = "A gaunt, fungus-riddled creature that moves with unsettling precision. Poisonous barbs line its elongated limbs."
 	return f
 
 
@@ -118,6 +123,7 @@ static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(15, 19, 1, 2, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [EAB.fungal_slam(), EAB.mycelium_shield()]
+	f.flavor_text = "A massive creature overgrown with shelf mushrooms and hardened mycelia. Each thundering step shakes loose clouds of spores."
 	return f
 
 
@@ -132,6 +138,7 @@ static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.hallucinate(), EAB.phantasmal_haze()]
+	f.flavor_text = "A drifting mushroom cap wreathed in hallucinogenic mist. Those who breathe its spores see things that were never there."
 	return f
 
 
@@ -150,6 +157,7 @@ static func create_cave_eel(n: String, lvl: int = 3) -> FighterData:
 	f.speed = _es(29, 35, 2, 3, lvl, 3)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.jolt(), EAB.arc_flash()]
+	f.flavor_text = "A sinuous, eyeless fish that slithers through subterranean pools. Bioelectric organs along its flanks discharge painful jolts."
 	return f
 
 
@@ -164,6 +172,7 @@ static func create_blind_angler(n: String, lvl: int = 3) -> FighterData:
 	f.speed = _es(20, 26, 1, 2, lvl, 3)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.lure_light(), EAB.abyssal_gaze()]
+	f.flavor_text = "A deep-water predator that dangles a glowing lure from its head. Its blank, milky eyes conceal a piercing psychic awareness."
 	return f
 
 
@@ -178,6 +187,7 @@ static func create_pale_crayfish(n: String, lvl: int = 3) -> FighterData:
 	f.speed = _es(14, 20, 1, 2, lvl, 3)
 	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [EAB.pincer_crush(), EAB.shell_up()]
+	f.flavor_text = "An albino crustacean the size of a hound, armored in thick calcified plates. Its claws can shear through stone."
 	return f
 
 
@@ -196,6 +206,7 @@ static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 	f.speed = _es(20, 26, 1, 2, lvl, 3)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.crude_axe(), EAB.rock_toss()]
+	f.flavor_text = "A hunched, pale humanoid adapted to perpetual darkness. It fashions crude weapons from bone and stone."
 	return f
 
 
@@ -210,6 +221,7 @@ static func create_tunnel_shaman(n: String, lvl: int = 3) -> FighterData:
 	f.speed = _es(23, 29, 1, 2, lvl, 3)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 9
 	f.abilities = [EAB.hex_flame(), EAB.ward_bones()]
+	f.flavor_text = "An elder cave dweller draped in carved bone fetishes. It channels the strange energies that seep through the deep rock."
 	return f
 
 
@@ -224,6 +236,7 @@ static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 	f.speed = _es(29, 35, 2, 3, lvl, 3)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.dart_strike(), EAB.smoke_bomb()]
+	f.flavor_text = "A wiry, quick-footed cave dweller that patrols the outer tunnels. It strikes from the shadows and vanishes before retaliation."
 	return f
 
 
@@ -242,6 +255,7 @@ static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(17, 23, 1, 2, lvl, 3)
 	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 3
 	f.abilities = [EAB.gnash(), EAB.swallow(), EAB.tremor()]
+	f.flavor_text = "A gargantuan lamprey-like beast that lurks near the cave exit. Its circular jaws can swallow a person whole."
 	return f
 
 
@@ -256,6 +270,7 @@ static func create_vein_leech(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(23, 29, 1, 3, lvl, 3)
 	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.latch(), EAB.siphon_glow()]
+	f.flavor_text = "A bloated parasitic worm that clings to mineral veins. It drains both blood and the faint luminescence from living things."
 	return f
 
 
@@ -270,4 +285,5 @@ static func create_stone_moth(n: String, lvl: int = 5) -> FighterData:
 	f.speed = _es(27, 33, 2, 3, lvl, 3)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.petrify_pulse(), EAB.wing_dust()]
+	f.flavor_text = "A large moth with wings of calcite and granite dust. Its petrifying scales turn flesh to stone on contact."
 	return f

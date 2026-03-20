@@ -41,6 +41,7 @@ static func create_dream_wisp(n: String, lvl: int = 1) -> FighterData:
 	f.speed = _es(27, 32, 1, 3, lvl, 1)
 	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.shimmer_bolt(), EAB.daze()]
+	f.flavor_text = "A flickering mote of dream-light that drifts through the sleeping mind. Its glow entrances the unwary before striking with bursts of raw thought."
 	return f
 
 
@@ -55,6 +56,7 @@ static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 	f.speed = _es(25, 31, 1, 3, lvl, 1)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.phase_strike(), EAB.unnerve()]
+	f.flavor_text = "A translucent figure that flickers between presence and absence. It strikes from angles that should not exist, leaving a cold dread in its wake."
 	return f
 
 
@@ -70,6 +72,7 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	f.speed = _es(30, 36, 1, 3, lvl, 1)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 14
 	f.abilities = [EAB.dust_wing(), EAB.flit()]
+	f.flavor_text = "A dark-winged insect born from forgotten memories. Its scales scatter a soporific dust that clouds the senses."
 	return f
 
 
@@ -84,6 +87,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(27, 33, 1, 3, lvl, 2)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
+	f.flavor_text = "A gaunt predator that prowls the border between waking and sleep. It hunts by sensing the fear of dreamers who linger too long."
 	return f
 
 
@@ -98,6 +102,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(25, 31, 1, 2, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
+	f.flavor_text = "A distorted reflection that has stepped free of its mirror. It copies the movements of those it faces, turning their own strength against them."
 	return f
 
 
@@ -113,6 +118,7 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(20, 25, 1, 2, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [EAB.heavy_paw(), EAB.drowsy_roar()]
+	f.flavor_text = "A massive creature wrapped in matted fur and the haze of deep sleep. Its roar carries the weight of oblivion, dragging listeners toward unconsciousness."
 	return f
 
 
@@ -127,6 +133,7 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(24, 29, 1, 3, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.mist_tendril(), EAB.chill_fog()]
+	f.flavor_text = "A wisp of sentient fog that coils through the dream garden. It chills everything it touches, feeding on the warmth of living thought."
 	return f
 
 
@@ -141,6 +148,7 @@ static func create_thorn_dreamer(n: String, lvl: int = 2) -> FighterData:
 	f.speed = _es(22, 27, 1, 2, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.briar_lash(), EAB.spore_cloud()]
+	f.flavor_text = "A humanoid figure tangled in thorny vines that grow from its own dreaming flesh. It scatters toxic spores drawn from nightmares of wild, choking growth."
 	return f
 
 
@@ -160,6 +168,7 @@ static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(29, 34, 1, 3, lvl, 4)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.savage_bite(), EAB.howl()]
+	f.flavor_text = "A slavering beast shaped from primal terror, with eyes like smoldering coals. Its howl reverberates through the dreamscape and shakes the courage of all who hear it."
 	return f
 
 
@@ -174,6 +183,7 @@ static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(26, 31, 1, 2, lvl, 4)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.thread_bolt(), EAB.woven_ward()]
+	f.flavor_text = "A robed figure that pulls shimmering threads from the fabric of dreams. It weaves protective wards and hurls bolts of concentrated dream-stuff at intruders."
 	return f
 
 
@@ -188,6 +198,7 @@ static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 	f.speed = _es(26, 31, 1, 2, lvl, 4)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.echo_drain(), EAB.dissonance()]
+	f.flavor_text = "The empty husk of a dreamer who never woke. It repeats fragments of stolen voices and drains vitality from those who listen too closely."
 	return f
 
 
@@ -203,6 +214,7 @@ static func create_somnolent_serpent(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(28, 33, 1, 2, lvl, 8)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.venom_coil(), EAB.sleep_fang()]
+	f.flavor_text = "A great serpent that glides through the labyrinth of slumber. Its venom induces a sleep within sleep, trapping victims in layers of dream they cannot escape."
 	return f
 
 
@@ -217,6 +229,7 @@ static func create_twilight_stalker(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(30, 35, 1, 3, lvl, 8)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.dusk_blade(), EAB.vanish_strike()]
+	f.flavor_text = "A silent hunter cloaked in the half-light between dreams. It vanishes mid-stride and reappears behind its prey with lethal precision."
 	return f
 
 
@@ -231,6 +244,7 @@ static func create_waking_terror(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(25, 31, 1, 2, lvl, 8)
 	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.scream_blast(), EAB.terror_wave()]
+	f.flavor_text = "A towering horror that bleeds into the waking world, born where nightmares press too hard against reality. Its screams carry the force of raw, unfiltered panic."
 	return f
 
 
@@ -246,6 +260,7 @@ static func create_dusk_sentinel(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(25, 30, 1, 2, lvl, 8)
 	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.shield_bash(), EAB.iron_stance()]
+	f.flavor_text = "An armored guardian forged from the dying light of dusk. It stands vigil at the clock tower's threshold, unyielding and tireless in its purpose."
 	return f
 
 
@@ -260,6 +275,7 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	f.speed = _es(29, 35, 1, 3, lvl, 8)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.time_rend(), EAB.stasis_touch()]
+	f.flavor_text = "A spectral figure bound to a shattered clock face, its limbs moving in fractured time. It tears at the flow of moments, freezing enemies in temporal stasis."
 	return f
 
 
@@ -275,4 +291,5 @@ static func create_the_nightmare(n: String, lvl: int = 9) -> FighterData:
 	f.speed = _es(31, 36, 2, 3, lvl, 9)
 	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.nightmare_crush(), EAB.dream_rend(), EAB.dread_aura()]
+	f.flavor_text = "The collective dread of an entire town given form and will. It is the dark heart of the shared dream, a shape that shifts with every fear it consumes."
 	return f
