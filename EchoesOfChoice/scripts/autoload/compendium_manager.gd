@@ -5,8 +5,9 @@ extends Node
 
 const COMPENDIUM_PATH := "user://compendium.json"
 
-var _seen_enemies: Dictionary = {}  # class_id -> {name, abilities, story_id}
-var _seen_classes: Dictionary = {}  # class_id -> {display_name, tier}
+var _seen_enemies: Dictionary = {}  # class_id -> {name, abilities, story_id, timestamp}
+var _seen_classes: Dictionary = {}  # class_id -> {display_name, tier, timestamp}
+var _battles_completed: Dictionary = {}  # battle_id -> timestamp
 
 
 func _ready() -> void:
@@ -23,6 +24,7 @@ func record_enemy(fighter: RefCounted, story_id: String) -> void:
 		"name": fighter.character_type,
 		"abilities": ability_names,
 		"story_id": story_id,
+		"timestamp": Time.get_unix_time_from_system(),
 	}
 	_save()
 	if _seen_enemies.size() >= 50:
@@ -36,6 +38,7 @@ func record_class(class_id: String, display_name: String) -> void:
 	_seen_classes[class_id] = {
 		"display_name": display_name,
 		"tier": tier,
+		"timestamp": Time.get_unix_time_from_system(),
 	}
 	_save()
 	# Steam achievements for class collection
@@ -53,12 +56,45 @@ func record_class(class_id: String, display_name: String) -> void:
 		SteamManager.set_achievement("ALL_CLASSES")
 
 
+func mark_battle_complete(battle_id: String) -> void:
+	if _battles_completed.has(battle_id):
+		return
+	_battles_completed[battle_id] = Time.get_unix_time_from_system()
+	_save()
+
+
 func get_seen_enemies() -> Dictionary:
 	return _seen_enemies
 
 
 func get_seen_classes() -> Dictionary:
 	return _seen_classes
+
+
+func get_battles_completed() -> Dictionary:
+	return _battles_completed
+
+
+## Get global discoveries merged from all save slots
+func get_global_discoveries() -> Dictionary:
+	# For now, return current session data
+	# TODO: Implement cross-save merging by loading all save files
+	return {
+		"enemies": _seen_enemies,
+		"classes": _seen_classes,
+		"battles": _battles_completed,
+	}
+
+
+## Get discoveries for a specific save slot
+func get_save_discoveries(save_slot: int) -> Dictionary:
+	# For now, return current session data (assumes we're in that save)
+	# TODO: Load specific save file and return its compendium data
+	return {
+		"enemies": _seen_enemies,
+		"classes": _seen_classes,
+		"battles": _battles_completed,
+	}
 
 
 func _get_tier(class_id: String) -> int:
@@ -89,12 +125,14 @@ func _load() -> void:
 	var data: Dictionary = json.data
 	_seen_enemies = data.get("enemies", {})
 	_seen_classes = data.get("classes", {})
+	_battles_completed = data.get("battles", {})
 
 
 func _save() -> void:
 	var data := {
 		"enemies": _seen_enemies,
 		"classes": _seen_classes,
+		"battles": _battles_completed,
 	}
 	var json_str: String = JSON.stringify(data, "\t")
 	var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.WRITE)

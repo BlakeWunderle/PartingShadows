@@ -8,6 +8,7 @@ var character_name: String
 var character_type: String  ## Class display name (e.g. "Squire", "Thug")
 var class_id: String        ## Internal class key for save/load and level-up routing
 var portrait_variant: String = "m"  ## Portrait style: "m" or "f"
+var flavor_text: String = ""  ## Compendium flavor text (1-2 sentences)
 var is_user_controlled: bool
 var owner_peer_id: int = 1  ## Multiplayer peer ID that controls this fighter (1 = host/singleplayer)
 

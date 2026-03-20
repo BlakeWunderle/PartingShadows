@@ -7,8 +7,9 @@ const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
+const CompendiumPanelNew := preload("res://scripts/ui/compendium/compendium_panel.gd")
 
-enum Mode { MAIN_MENU, PLAY_MODE, LOAD_SLOTS, SETTINGS }
+enum Mode { MAIN_MENU, PLAY_MODE, LOAD_SLOTS, SETTINGS, COMPENDIUM }
 
 var _title_label: Label
 var _subtitle_label: Label
@@ -18,6 +19,7 @@ var _mode: Mode = Mode.MAIN_MENU
 var _has_saves: bool = false
 var _error_label: Label
 var _settings_panel: SettingsPanel
+var _compendium_panel: CompendiumPanelNew
 var _confirm_dialog: ConfirmDialog
 var _pending_delete_slot: int = -1
 
@@ -92,6 +94,13 @@ func _build_ui() -> void:
 	_settings_panel.back_pressed.connect(_show_main_menu)
 	_vbox.add_child(_settings_panel)
 
+	# Compendium panel (hidden by default, global context)
+	_compendium_panel = CompendiumPanelNew.new()
+	_compendium_panel.visible = false
+	_compendium_panel.set_context(CompendiumPanelNew.Context.GLOBAL, -1)
+	_compendium_panel.close_requested.connect(_show_main_menu)
+	_vbox.add_child(_compendium_panel)
+
 	# Version label (bottom-right corner)
 	var version_label := Label.new()
 	var version_str: String = ProjectSettings.get_setting("application/config/version", "")
@@ -142,6 +151,7 @@ func _show_main_menu() -> void:
 	_mode = Mode.MAIN_MENU
 	_has_saves = SaveManager.has_any_save()
 	_settings_panel.visible = false
+	_compendium_panel.visible = false
 	_menu.visible = true
 
 	var options: Array[Dictionary] = []
@@ -151,6 +161,7 @@ func _show_main_menu() -> void:
 	if _has_saves:
 		options.append({"label": "Load Game"})
 	options.append({"label": "Settings"})
+	options.append({"label": "Compendium"})
 	options.append({"label": "Credits"})
 	options.append({"label": "Quit"})
 
@@ -178,6 +189,7 @@ func _handle_main_choice(index: int) -> void:
 	if _has_saves:
 		labels.append("Load Game")
 	labels.append("Settings")
+	labels.append("Compendium")
 	labels.append("Credits")
 	labels.append("Quit")
 
@@ -197,6 +209,8 @@ func _handle_main_choice(index: int) -> void:
 			_show_load_slots()
 		"Settings":
 			_show_settings()
+		"Compendium":
+			_show_compendium()
 		"Credits":
 			SceneManager.change_scene("res://scenes/credits/credits.tscn")
 		"Quit":
@@ -260,6 +274,13 @@ func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_menu.hide_menu()
 	_settings_panel.visible = true
+
+
+func _show_compendium() -> void:
+	_mode = Mode.COMPENDIUM
+	_menu.hide_menu()
+	_compendium_panel.visible = true
+	_compendium_panel.refresh_data()
 
 
 func _on_quit_confirmed(accepted: bool) -> void:
