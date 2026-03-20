@@ -269,3 +269,31 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Loom Heart": return S3PC.create_loom_heart("")
 
 	return null
+
+
+## Sample an enemy multiple times to determine stat ranges (min-max).
+## Returns a Dictionary with stat name keys, each mapping to {min, max}.
+static func get_stat_ranges(class_id: String, samples: int = 50) -> Dictionary:
+	var stats := ["max_health", "max_mana", "physical_attack", "physical_defense",
+		"magic_attack", "magic_defense", "speed", "crit_chance", "dodge_chance"]
+	var mins: Dictionary = {}
+	var maxs: Dictionary = {}
+	for s: String in stats:
+		mins[s] = 99999
+		maxs[s] = 0
+
+	for i in samples:
+		var f: FighterData = create_enemy(class_id)
+		if not f:
+			return {}
+		for s: String in stats:
+			var val: int = f.get(s)
+			if val < mins[s]:
+				mins[s] = val
+			if val > maxs[s]:
+				maxs[s] = val
+
+	var result: Dictionary = {}
+	for s: String in stats:
+		result[s] = {"min": mins[s], "max": maxs[s]}
+	return result

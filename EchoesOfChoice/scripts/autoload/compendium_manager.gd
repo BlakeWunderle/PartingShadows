@@ -97,11 +97,117 @@ func get_save_discoveries(save_slot: int) -> Dictionary:
 	}
 
 
-## Convert battle_id to readable name (e.g., "s1_city_streets" -> "City Streets")
+## Convert battle_id to readable display name.
 func format_battle_name(battle_id: String) -> String:
-	var display_name := battle_id.replace("_", " ").capitalize()
-	display_name = display_name.replace("S1 ", "").replace("S2 ", "").replace("S3 ", "")
-	return display_name
+	const NAMES := {
+		# Story 1 - Act I
+		"CityStreetBattle": "City Streets",
+		"WolfForestBattle": "Wolf Forest",
+		"WaypointDefenseBattle": "Waypoint Defense",
+		"ForestWaypoint": "Forest Waypoint Inn",
+		# Story 1 - Act II
+		"HighlandBattle": "The Highlands",
+		"DeepForestBattle": "Deep Forest",
+		"ShoreBattle": "The Shore",
+		"MountainPassBattle": "Mountain Pass",
+		"CaveBattle": "The Cave",
+		"BeachBattle": "The Beach",
+		"WildernessOutpost": "Wilderness Outpost",
+		"CircusBattle": "The Circus",
+		"LabBattle": "The Laboratory",
+		"ArmyBattle": "Army Encampment",
+		"CemeteryBattle": "The Cemetery",
+		"OutpostDefenseBattle": "Outpost Defense",
+		"MirrorBattle": "The Mirror",
+		# Story 1 - Act III
+		"CityOutskirtsStop": "City Outskirts",
+		"ReturnToCityStreetBattle": "Return to City Streets",
+		"StrangerTowerBattle": "The Stranger's Tower",
+		# Story 1 - Acts IV-V
+		"CopperMugStop": "The Copper Mug Tavern",
+		"CorruptedCityBattle": "Corrupted City",
+		"CorruptedWildsBattle": "Corrupted Wilds",
+		"DepthsBattle": "The Depths",
+		"GateBattle": "The Gate",
+		"StrangerFinalBattle": "The Stranger (Final)",
+		# Story 2 - Act I
+		"S2_CaveAwakening": "Cave Awakening",
+		"S2_DeepCavern": "Deep Cavern",
+		"S2_FungalHollow": "Fungal Hollow",
+		"S2_TranquilPool": "Tranquil Pool",
+		"S2_TorchChamber": "Torch Chamber",
+		"S2_CaveMerchant": "Cave Merchant Camp",
+		"S2_CaveExit": "Cave Exit",
+		# Story 2 - Act II
+		"S2_CoastalDescent": "Coastal Descent",
+		"S2_FishingVillage": "Fishing Village",
+		"S2_SmugglersBluff": "Smuggler's Bluff",
+		"S2_HarborTown": "Harbor Town",
+		"S2_WreckersCove": "Wrecker's Cove",
+		"S2_CoastalRuins": "Coastal Ruins",
+		"S2_BlackwaterBay": "Blackwater Bay",
+		"S2_LighthouseStorm": "Lighthouse Storm",
+		# Story 2 - Act III
+		"S2_BeneathTheLighthouse": "Beneath the Lighthouse",
+		"S2_MemoryVault": "Memory Vault",
+		"S2_EchoGallery": "Echo Gallery",
+		"S2_ShatteredSanctum": "Shattered Sanctum",
+		"S2_GuardiansThreshold": "Guardian's Threshold",
+		"S2_ForgottenArchive": "Forgotten Archive",
+		"S2_TheReveal": "The Reveal",
+		# Story 2 - Act IV
+		"S2_DepthsOfRemembrance": "Depths of Remembrance",
+		"S2_MawOfTheEye": "Maw of the Eye",
+		"S2_EyeAwakening": "Eye Awakening",
+		"S2_EyeOfOblivion": "Eye of Oblivion",
+		# Story 3 - Acts I-II
+		"S3_WearyTraveler": "The Weary Traveler Inn",
+		"S3_DreamMeadow": "Dream Meadow",
+		"S3_DreamMirrorHall": "Dream Mirror Hall",
+		"S3_DreamFogGarden": "Dream Fog Garden",
+		"S3_TownMorning": "Town Morning",
+		"S3_DreamReturn": "Dream Return",
+		"S3_DreamLabyrinth": "Dream Labyrinth",
+		"S3_DreamClockTower": "Dream Clock Tower",
+		"S3_DreamNightmare": "The Nightmare",
+		# Story 3 - Act II expansion
+		"S3_DreamThreads": "Dream Threads",
+		"S3_DreamDrownedCorridor": "Drowned Corridor",
+		"S3_DreamShatteredGallery": "Shattered Gallery",
+		"S3_DreamShadowChase": "Shadow Chase",
+		"S3_TownInvestigation": "Town Investigation",
+		"S3_MarketConfrontation": "Market Confrontation",
+		"S3_CellarDiscovery": "Cellar Discovery",
+		# Story 3 - Act III
+		"S3_TownRealization": "Town Realization",
+		"S3_LucidDream": "Lucid Dream",
+		"S3_DreamTemple": "Dream Temple",
+		"S3_DreamVoid": "Dream Void",
+		"S3_DreamSanctum": "Dream Sanctum",
+		# Story 3 - Acts IV-V
+		"S3_CultUnderbelly": "Cult Underbelly",
+		"S3_CultCatacombs": "Cult Catacombs",
+		"S3_CultRitualChamber": "Cult Ritual Chamber",
+		"S3_DreamNexus": "Dream Nexus",
+		# Story 3 - Path B
+		"S3_B_InnSearch": "Inn Search",
+		"S3_B_CultConfrontation": "Cult Confrontation",
+		"S3_B_CallumsTruth": "Callum's Truth",
+		"S3_B_TunnelBreach": "Tunnel Breach",
+		"S3_B_ThornesWard": "Thorne's Ward",
+		"S3_B_LoomHeart": "Loom Heart",
+		"S3_B_DreamInvasion": "Dream Invasion",
+		"S3_B_DreamNexus": "Dream Nexus (Path B)",
+		# Story 3 - Path C
+		"S3_C_LirasConfession": "Lira's Confession",
+		"S3_C_DreamDescent": "Dream Descent",
+		"S3_C_CultInterception": "Cult Interception",
+		"S3_C_ThreadmasterLair": "Threadmaster's Lair",
+		"S3_C_DreamNexus": "Dream Nexus (Path C)",
+	}
+	if NAMES.has(battle_id):
+		return NAMES[battle_id]
+	return battle_id.replace("_", " ").capitalize()
 
 
 func get_tier(class_id: String) -> int:

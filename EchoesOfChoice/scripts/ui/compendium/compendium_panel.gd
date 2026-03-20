@@ -141,7 +141,7 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 			for a: RefCounted in _FighterDB.get_abilities_for_class(class_id):
 				abilities.append({
 					"name": a.ability_name,
-					"description": a.get_description(),
+					"description": a.get_compendium_description(),
 					"mana_cost": a.mana_cost,
 					"cooldown": a.cooldown,
 				})
@@ -175,7 +175,7 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 			for a: RefCounted in fighter.abilities:
 				abilities.append({
 					"name": a.ability_name,
-					"description": a.get_description(),
+					"description": a.get_compendium_description(),
 					"mana_cost": a.mana_cost,
 					"cooldown": a.cooldown,
 				})
@@ -311,17 +311,32 @@ func _get_all_class_ids() -> Array:
 
 
 func _get_class_portrait_path(class_id: String) -> String:
-	# Default to male variant for compendium
-	return "res://assets/art/portraits/classes/%s_m.png" % class_id.to_lower()
+	var display_name: String = _FighterDB.get_display_name(class_id)
+	return "res://assets/art/portraits/classes/%s_m.png" % _to_portrait_key(display_name)
 
 
 func _get_enemy_portrait_path(class_id: String) -> String:
-	return "res://assets/art/portraits/enemies/%s.png" % class_id.to_lower()
+	return "res://assets/art/portraits/enemies/%s.png" % _to_portrait_key(class_id)
+
+
+## Convert a name to a portrait filename key (snake_case, no punctuation).
+## "Fire Wyrmling" -> "fire_wyrmling", "StrangerFinal" -> "stranger_final",
+## "Lira, the Threadmaster" -> "lira_the_threadmaster"
+static func _to_portrait_key(name_str: String) -> String:
+	var clean := name_str.replace(",", "").replace("'", "")
+	# Insert space before uppercase letters in PascalCase words
+	var spaced := ""
+	for i in clean.length():
+		var c := clean[i]
+		if i > 0 and c >= "A" and c <= "Z" and clean[i - 1] != " ":
+			spaced += " "
+		spaced += c
+	return spaced.to_lower().strip_edges().replace("  ", " ").replace(" ", "_")
 
 
 func _guess_story_from_battle_id(battle_id: String) -> String:
-	if battle_id.begins_with("s2_"):
+	if battle_id.begins_with("S2_"):
 		return "story_2"
-	elif battle_id.begins_with("s3_"):
+	elif battle_id.begins_with("S3_"):
 		return "story_3"
 	return "story_1"

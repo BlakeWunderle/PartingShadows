@@ -65,17 +65,17 @@ func build_content(container: VBoxContainer) -> void:
 	var sep := HSeparator.new()
 	info_panel.add_child(sep)
 
-	# Flavor text
-	var flavor_label := Label.new()
-	flavor_label.text = enemy_data.get("flavor_text", "")
-	flavor_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	flavor_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	flavor_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.8))
-	info_panel.add_child(flavor_label)
-
-	# Another separator
-	var sep2 := HSeparator.new()
-	info_panel.add_child(sep2)
+	# Flavor text (only if present)
+	var flavor: String = enemy_data.get("flavor_text", "")
+	if not flavor.is_empty():
+		var flavor_label := Label.new()
+		flavor_label.text = flavor
+		flavor_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		flavor_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		flavor_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.8))
+		info_panel.add_child(flavor_label)
+		var sep2 := HSeparator.new()
+		info_panel.add_child(sep2)
 
 	# Stats (from base enemy definition)
 	var stats_label := Label.new()
@@ -110,7 +110,7 @@ func build_content(container: VBoxContainer) -> void:
 		info_panel.add_child(none_label)
 	for ability: Variant in abilities:
 		if ability is Dictionary:
-			var name_text := "  • " + ability.get("name", "???")
+			var name_text: String = "  • " + ability.get("name", "???")
 			var cost: int = ability.get("mana_cost", 0)
 			if cost > 0:
 				name_text += "  (%d MP)" % cost
@@ -142,14 +142,23 @@ func _format_stats() -> String:
 	if class_id.is_empty():
 		return "Stats unavailable"
 
-	var fighter: RefCounted = _EnemyRouter.create_enemy(class_id)
-	if not fighter:
+	var ranges: Dictionary = _EnemyRouter.get_stat_ranges(class_id)
+	if ranges.is_empty():
 		return "Stats unavailable"
 
 	var lines: Array[String] = [
-		"HP: %d  |  MP: %d" % [fighter.max_health, fighter.max_mana],
-		"ATK: %d  |  DEF: %d" % [fighter.physical_attack, fighter.physical_defense],
-		"MAG: %d  |  MDEF: %d" % [fighter.magic_attack, fighter.magic_defense],
-		"SPD: %d  |  CRIT: %d%%  |  DODGE: %d%%" % [fighter.speed, fighter.crit_chance, fighter.dodge_chance],
+		"HP: %s  |  MP: %s" % [_fmt_range(ranges, "max_health"), _fmt_range(ranges, "max_mana")],
+		"ATK: %s  |  DEF: %s" % [_fmt_range(ranges, "physical_attack"), _fmt_range(ranges, "physical_defense")],
+		"MAG: %s  |  MDEF: %s" % [_fmt_range(ranges, "magic_attack"), _fmt_range(ranges, "magic_defense")],
+		"SPD: %s  |  CRIT: %s%%  |  DODGE: %s%%" % [_fmt_range(ranges, "speed"), _fmt_range(ranges, "crit_chance"), _fmt_range(ranges, "dodge_chance")],
 	]
 	return "\n".join(lines)
+
+
+func _fmt_range(ranges: Dictionary, stat: String) -> String:
+	var r: Dictionary = ranges.get(stat, {})
+	var lo: int = r.get("min", 0)
+	var hi: int = r.get("max", 0)
+	if lo == hi:
+		return str(lo)
+	return "%d-%d" % [lo, hi]

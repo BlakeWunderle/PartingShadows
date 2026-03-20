@@ -50,3 +50,42 @@ func get_description() -> String:
 			_: effect = "Damage"
 
 	return "[%s] %s" % [target, effect]
+
+
+func get_compendium_description() -> String:
+	var effect: String
+	if not use_on_enemy and impacted_turns == 0:
+		effect = "Heals"
+	elif impacted_turns > 0:
+		var stat_name: String
+		match modified_stat:
+			Enums.StatType.ATTACK: stat_name = "Attack"
+			Enums.StatType.DEFENSE: stat_name = "Defense"
+			Enums.StatType.PHYSICAL_ATTACK: stat_name = "Physical Attack"
+			Enums.StatType.PHYSICAL_DEFENSE: stat_name = "Physical Defense"
+			Enums.StatType.MAGIC_ATTACK: stat_name = "Magic Attack"
+			Enums.StatType.MAGIC_DEFENSE: stat_name = "Magic Defense"
+			Enums.StatType.SPEED: stat_name = "Speed"
+			Enums.StatType.DODGE_CHANCE: stat_name = "Dodge"
+			Enums.StatType.TAUNT: stat_name = "Taunt"
+			_: stat_name = "Stats"
+		var verb: String = "Reduces" if use_on_enemy else "Boosts"
+		effect = "%s %s for %d turn(s)" % [verb, stat_name, impacted_turns]
+	else:
+		match modified_stat:
+			Enums.StatType.PHYSICAL_ATTACK: effect = "Physical damage"
+			Enums.StatType.MAGIC_ATTACK: effect = "Magic damage"
+			Enums.StatType.MIXED_ATTACK: effect = "Mixed damage"
+			_: effect = "Damage"
+
+	if target_all:
+		effect += " (all)"
+
+	if life_steal_percent > 0:
+		effect += ", drains %d%%" % int(life_steal_percent * 100)
+	if damage_per_turn > 0:
+		effect += ", %d/turn" % damage_per_turn
+
+	if not flavor_text.is_empty():
+		return flavor_text + " (" + effect + ")"
+	return effect

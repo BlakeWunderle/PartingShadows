@@ -77,17 +77,17 @@ func build_content(container: VBoxContainer) -> void:
 	var sep := HSeparator.new()
 	info_panel.add_child(sep)
 
-	# Flavor text
-	var flavor_label := Label.new()
-	flavor_label.text = class_data.get("flavor_text", "A skilled fighter ready for battle.")
-	flavor_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	flavor_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
-	flavor_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.8))
-	info_panel.add_child(flavor_label)
-
-	# Separator
-	var sep2 := HSeparator.new()
-	info_panel.add_child(sep2)
+	# Flavor text (only if present)
+	var flavor: String = class_data.get("flavor_text", "")
+	if not flavor.is_empty():
+		var flavor_label := Label.new()
+		flavor_label.text = flavor
+		flavor_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		flavor_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		flavor_label.add_theme_color_override("font_color", Color(0.9, 0.9, 0.8))
+		info_panel.add_child(flavor_label)
+		var sep2 := HSeparator.new()
+		info_panel.add_child(sep2)
 
 	# Abilities
 	var abilities_label := Label.new()
@@ -104,7 +104,7 @@ func build_content(container: VBoxContainer) -> void:
 		none_label.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 		info_panel.add_child(none_label)
 	for ability: Dictionary in abilities:
-		var name_text := "  • " + ability.get("name", "???")
+		var name_text: String = "  • " + ability.get("name", "???")
 		var cost: int = ability.get("mana_cost", 0)
 		if cost > 0:
 			name_text += "  (%d MP)" % cost
