@@ -148,13 +148,13 @@ func _build_ui() -> void:
 	_settings_panel.key_bindings_pressed.connect(_show_key_bindings)
 	root_vbox.add_child(_settings_panel)
 
-	# Compendium panel (hidden by default, save-specific context)
+	# Compendium panel (hidden by default, global context like title screen)
 	_compendium_panel = CompendiumPanelNew.new()
 	_compendium_panel.visible = false
 	_compendium_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_compendium_panel.grid_columns = 5
 	_compendium_panel.items_per_page = 10
-	_compendium_panel.set_context(CompendiumPanelNew.Context.SAVE_SPECIFIC, -1)
+	_compendium_panel.set_context(CompendiumPanelNew.Context.GLOBAL)
 	_compendium_panel.close_requested.connect(_back_to_main)
 	root_vbox.add_child(_compendium_panel)
 
@@ -413,11 +413,7 @@ func _show_key_bindings() -> void:
 	_main_vbox.visible = false
 	_settings_panel.visible = false
 	_remap_panel.visible = true
-	# Focus first binding button after frame so buttons are ready
-	await get_tree().process_frame
-	var first_action: String = InputConfig.ACTION_NAMES[0] if not InputConfig.ACTION_NAMES.is_empty() else ""
-	if not first_action.is_empty() and _remap_panel._buttons.has(first_action):
-		_remap_panel._buttons[first_action].grab_focus()
+	_remap_panel.focus_first()
 
 
 # =============================================================================

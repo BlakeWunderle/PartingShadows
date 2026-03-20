@@ -5,7 +5,7 @@ extends Node
 
 const ACTION_NAMES: Array[String] = [
 	"move_up", "move_down", "move_left", "move_right",
-	"confirm", "cancel", "inspect", "pause",
+	"confirm", "cancel", "pause",
 ]
 
 const ACTION_DISPLAY_NAMES: Dictionary = {
@@ -15,7 +15,6 @@ const ACTION_DISPLAY_NAMES: Dictionary = {
 	"move_right": "Move Right",
 	"confirm": "Confirm",
 	"cancel": "Cancel",
-	"inspect": "Inspect",
 	"pause": "Pause",
 }
 
@@ -26,12 +25,11 @@ const DEFAULT_KEYBOARD_BINDINGS: Dictionary = {
 	"move_right": [KEY_D, KEY_RIGHT],
 	"confirm": [KEY_ENTER, KEY_SPACE, KEY_Z],
 	"cancel": [KEY_ESCAPE, KEY_X],
-	"inspect": [KEY_TAB],
 	"pause": [KEY_ESCAPE],
 }
 
-## Hardcoded gamepad bindings (not remappable)
-const _GAMEPAD_BINDINGS: Dictionary = {
+## Default gamepad bindings (used for reset)
+const DEFAULT_GAMEPAD_BINDINGS: Dictionary = {
 	"move_up": [{"type": "button", "index": JOY_BUTTON_DPAD_UP},
 		{"type": "axis", "axis": JOY_AXIS_LEFT_Y, "value": -1.0}],
 	"move_down": [{"type": "button", "index": JOY_BUTTON_DPAD_DOWN},
@@ -42,9 +40,11 @@ const _GAMEPAD_BINDINGS: Dictionary = {
 		{"type": "axis", "axis": JOY_AXIS_LEFT_X, "value": 1.0}],
 	"confirm": [{"type": "button", "index": JOY_BUTTON_A}],
 	"cancel": [{"type": "button", "index": JOY_BUTTON_B}],
-	"inspect": [{"type": "button", "index": JOY_BUTTON_Y}],
 	"pause": [{"type": "button", "index": JOY_BUTTON_START}],
 }
+
+## Current gamepad bindings (remappable at runtime)
+var _GAMEPAD_BINDINGS: Dictionary = {}
 
 var keyboard_bindings: Dictionary = {}
 ## True when a Nintendo controller is detected (A/B face buttons are swapped vs Xbox)
@@ -53,6 +53,7 @@ var _nintendo_layout: bool = false
 
 func _ready() -> void:
 	keyboard_bindings = DEFAULT_KEYBOARD_BINDINGS.duplicate(true)
+	_GAMEPAD_BINDINGS = DEFAULT_GAMEPAD_BINDINGS.duplicate(true)
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	_detect_nintendo_layout()
 	apply_bindings()
@@ -130,8 +131,24 @@ func rebind_action(action_name: String, keycode: Key) -> void:
 	SettingsManager.save_key_bindings(keyboard_bindings)
 
 
+func rebind_gamepad_action(action_name: String, button: JoyButton) -> void:
+	## Replace the first button binding for this action with the new button.
+	var bindings: Array = _GAMEPAD_BINDINGS.get(action_name, [])
+	var found: bool = false
+	for i: int in bindings.size():
+		if bindings[i]["type"] == "button":
+			bindings[i] = {"type": "button", "index": int(button)}
+			found = true
+			break
+	if not found:
+		bindings.append({"type": "button", "index": int(button)})
+	_GAMEPAD_BINDINGS[action_name] = bindings
+	apply_bindings()
+
+
 func reset_bindings() -> void:
 	keyboard_bindings = DEFAULT_KEYBOARD_BINDINGS.duplicate(true)
+	_GAMEPAD_BINDINGS = DEFAULT_GAMEPAD_BINDINGS.duplicate(true)
 	apply_bindings()
 	SettingsManager.save_key_bindings(keyboard_bindings)
 

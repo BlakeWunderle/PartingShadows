@@ -43,7 +43,7 @@ var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_take
 var _auto_battle: bool = false
 var _auto_battle_unlocked: bool = false
 var _summary_waiting: bool = false
-var _auto_label: Label
+var _auto_button: Button
 
 signal _player_turn_done
 signal _remote_action_received(action: Dictionary)
@@ -242,18 +242,19 @@ func _build_ui() -> void:
 	_player_indicator.visible = false
 	add_child(_player_indicator)
 
-	# Auto-battle indicator
-	_auto_label = Label.new()
-	_auto_label.text = "AUTO"
-	_auto_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_auto_label.add_theme_font_size_override("font_size", 18)
-	_auto_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
-	_auto_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	_auto_label.offset_left = -100
-	_auto_label.offset_right = -12
-	_auto_label.offset_top = 12
-	_auto_label.visible = false
-	add_child(_auto_label)
+	# Auto-battle toggle button
+	_auto_button = Button.new()
+	_auto_button.text = "AUTO"
+	_auto_button.flat = true
+	_auto_button.focus_mode = Control.FOCUS_NONE
+	_auto_button.add_theme_font_size_override("font_size", 18)
+	_auto_button.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	_auto_button.offset_left = -100
+	_auto_button.offset_right = -12
+	_auto_button.offset_top = 12
+	_auto_button.visible = false
+	_auto_button.pressed.connect(_on_auto_button_pressed)
+	add_child(_auto_button)
 
 
 func _is_mp_guest() -> bool:
@@ -287,9 +288,10 @@ func _start_battle() -> void:
 		GameState.current_battle_id, battle.enemies.size()])
 
 	_auto_battle = false
-	_auto_label.visible = false
 	var unlock_key: String = GameState.current_story_id + "_complete"
 	_auto_battle_unlocked = UnlockManager.is_unlocked(unlock_key)
+	_auto_button.visible = _auto_battle_unlocked and not _is_mp_guest()
+	_update_auto_button_style()
 
 	_build_portrait_cards()
 
@@ -486,12 +488,38 @@ func _is_ability_available(fighter: FighterData, ability: AbilityData) -> bool:
 # Auto-battle
 # =============================================================================
 
+func _update_auto_button_style() -> void:
+	if _auto_battle:
+		_auto_button.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+		_auto_button.modulate.a = 1.0
+	else:
+		_auto_button.add_theme_color_override("font_color", Color(0.6, 0.55, 0.35))
+		_auto_button.modulate.a = 0.45
+
+
 func _execute_auto_turn() -> void:
 	# Reuse engine AI logic for player fighter
 	var targets: Array = _engine.enemies
 	var allies: Array = _engine.units
 	_engine.execute_ai_turn(_current_actor, targets, allies)
-	_player_turn_done.emit()
+	_player_turn_done.emit.call_deferred()
+
+
+func _on_auto_button_pressed() -> void:
+	if _phase == Phase.BATTLE_END or _is_mp_guest():
+		return
+	_auto_battle = not _auto_battle
+	_update_auto_button_style()
+	SFXManager.play(SFXManager.Category.UI_CONFIRM, 0.3)
+	if _auto_battle:
+		_tip_overlay.show_tip_once("auto_battle",
+			"Auto-battle lets the AI choose actions for your party. " +
+			"Press any button or click AUTO to take back control.\n\n" +
+			"Auto-battle speeds up combat but may not always make " +
+			"the best strategic choices.")
+		if _phase == Phase.PLAYER_ACTION and _action_menu.visible:
+			_action_menu.hide_menu()
+			_execute_auto_turn()
 
 
 func _input(event: InputEvent) -> void:
@@ -499,13 +527,63 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("confirm") or (event is InputEventMouseButton and event.pressed):
 			_summary_waiting = false
 			get_viewport().set_input_as_handled()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if _auto_battle and event.is_action_pressed("cancel"):
+			return
+	if _auto_battle and (event.is_action_pressed("confirm") or event.is_action_pressed("cancel")):
 		_auto_battle = false
-		_auto_label.visible = false
+		_update_auto_button_style()
 		get_viewport().set_input_as_handled()
+		return
+	if event.is_action_pressed("cancel"):
+		_handle_cancel()
+
+
+func _handle_cancel() -> void:
+	match _phase:
+		Phase.PLAYER_TARGET_ATTACK:
+			# Back to main action menu
+			if _action_menu.choice_selected.is_connected(_on_target_selected):
+				_action_menu.choice_selected.disconnect(_on_target_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.PLAYER_ABILITY_SELECT:
+			# Back to main action menu
+			if _action_menu.choice_selected.is_connected(_on_ability_selected):
+				_action_menu.choice_selected.disconnect(_on_ability_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.PLAYER_ABILITY_TARGET_ENEMY, Phase.PLAYER_ABILITY_TARGET_ALLY:
+			# Back to ability list
+			if _action_menu.choice_selected.is_connected(_on_target_selected):
+				_action_menu.choice_selected.disconnect(_on_target_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ABILITY_SELECT
+			_show_ability_menu()
+			get_viewport().set_input_as_handled()
+		Phase.STATS_PICK:
+			# Back to main action menu
+			if _action_menu.choice_selected.is_connected(_on_stats_pick_selected):
+				_action_menu.choice_selected.disconnect(_on_stats_pick_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.SHOWING_STATS:
+			_stats_panel.visible = false
+			_phase = Phase.STATS_PICK
+			_show_stats_pick()
+			get_viewport().set_input_as_handled()
 
 
 # =============================================================================
@@ -557,10 +635,10 @@ func _on_action_selected(index: int) -> void:
 			_show_ability_menu()
 		"Auto":
 			_auto_battle = true
-			_auto_label.visible = true
+			_update_auto_button_style()
 			_tip_overlay.show_tip_once("auto_battle",
 				"Auto-battle lets the AI choose actions for your party. " +
-				"Press Cancel at any time to take back control.\n\n" +
+				"Press any button or click AUTO to take back control.\n\n" +
 				"Auto-battle speeds up combat but may not always make " +
 				"the best strategic choices.")
 			_execute_auto_turn()

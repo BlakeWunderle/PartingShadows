@@ -360,8 +360,8 @@ func _on_modal_closed() -> void:
 		if layer:
 			layer.queue_free()
 	_active_modal = null
-	# Restore focus to the card grid after modal is freed
-	_list_view.grab_card_focus()
+	# Defer focus grab so the modal CanvasLayer is fully freed first
+	_list_view.grab_card_focus.call_deferred()
 
 
 ## Get all class IDs (T0, T1, T2) for the compendium

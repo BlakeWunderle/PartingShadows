@@ -294,6 +294,8 @@ func _handle_play_mode_choice(index: int) -> void:
 func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_menu.hide_menu()
+	_title_label.visible = false
+	_subtitle_label.visible = false
 	_remap_panel.visible = false
 	_settings_panel.visible = true
 	_settings_panel.focus_first()
@@ -301,8 +303,11 @@ func _show_settings() -> void:
 
 func _show_key_bindings() -> void:
 	_mode = Mode.KEY_BINDINGS
+	_title_label.visible = false
+	_subtitle_label.visible = false
 	_settings_panel.visible = false
 	_remap_panel.visible = true
+	_remap_panel.focus_first()
 
 
 func _show_compendium() -> void:
