@@ -146,21 +146,28 @@ func get_key_name(action_name: String) -> String:
 func _log_connected_joypads() -> void:
 	var pads: Array[int] = Input.get_connected_joypads()
 	if pads.is_empty():
-		GameLog.info("No controllers detected")
+		var msg := "No controllers detected"
+		GameLog.info(msg)
+		print(msg)
 		return
 	for device: int in pads:
 		var pad_name: String = Input.get_joy_name(device)
 		var guid: String = Input.get_joy_guid(device)
-		GameLog.info("Controller %d: %s (GUID: %s)" % [device, pad_name, guid])
+		var msg := "Controller %d: %s (GUID: %s)" % [device, pad_name, guid]
+		GameLog.info(msg)
+		print(msg)
 
 
 func _on_joy_connection_changed(device: int, connected: bool) -> void:
+	var msg: String
 	if connected:
 		var pad_name: String = Input.get_joy_name(device)
 		var guid: String = Input.get_joy_guid(device)
-		GameLog.info("Controller %d connected: %s (GUID: %s)" % [device, pad_name, guid])
+		msg = "Controller %d connected: %s (GUID: %s)" % [device, pad_name, guid]
 	else:
-		GameLog.info("Controller %d disconnected" % device)
+		msg = "Controller %d disconnected" % device
+	GameLog.info(msg)
+	print(msg)
 	# Re-detect layout and rebind in case controller type changed
 	_detect_nintendo_layout()
 	apply_bindings()

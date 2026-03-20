@@ -8,8 +8,9 @@ const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const CompendiumPanelNew := preload("res://scripts/ui/compendium/compendium_panel.gd")
+const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
 
-enum Mode { MAIN_MENU, PLAY_MODE, LOAD_SLOTS, SETTINGS, COMPENDIUM }
+enum Mode { MAIN_MENU, PLAY_MODE, LOAD_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS }
 
 var _title_label: Label
 var _subtitle_label: Label
@@ -19,6 +20,7 @@ var _mode: Mode = Mode.MAIN_MENU
 var _has_saves: bool = false
 var _error_label: Label
 var _settings_panel: SettingsPanel
+var _remap_panel: InputRemapPanel
 var _compendium_panel: CompendiumPanelNew
 var _confirm_dialog: ConfirmDialog
 var _pending_delete_slot: int = -1
@@ -92,7 +94,14 @@ func _build_ui() -> void:
 	_settings_panel = SettingsPanel.new()
 	_settings_panel.visible = false
 	_settings_panel.back_pressed.connect(_show_main_menu)
+	_settings_panel.key_bindings_pressed.connect(_show_key_bindings)
 	_vbox.add_child(_settings_panel)
+
+	# Key bindings panel (hidden by default)
+	_remap_panel = InputRemapPanel.new()
+	_remap_panel.visible = false
+	_remap_panel.back_pressed.connect(_show_settings)
+	_vbox.add_child(_remap_panel)
 
 	# Compendium panel (hidden by default, global context)
 	_compendium_panel = CompendiumPanelNew.new()
@@ -160,6 +169,7 @@ func _show_main_menu() -> void:
 	_mode = Mode.MAIN_MENU
 	_has_saves = SaveManager.has_any_save()
 	_settings_panel.visible = false
+	_remap_panel.visible = false
 	_compendium_panel.visible = false
 	_title_label.visible = true
 	_subtitle_label.visible = true
@@ -284,8 +294,15 @@ func _handle_play_mode_choice(index: int) -> void:
 func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_menu.hide_menu()
+	_remap_panel.visible = false
 	_settings_panel.visible = true
-	_settings_panel.grab_focus()
+	_settings_panel.focus_first()
+
+
+func _show_key_bindings() -> void:
+	_mode = Mode.KEY_BINDINGS
+	_settings_panel.visible = false
+	_remap_panel.visible = true
 
 
 func _show_compendium() -> void:
@@ -295,6 +312,17 @@ func _show_compendium() -> void:
 	_subtitle_label.visible = false
 	_compendium_panel.visible = true
 	_compendium_panel.refresh_data()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		match _mode:
+			Mode.PLAY_MODE:
+				get_viewport().set_input_as_handled()
+				_show_main_menu()
+			Mode.LOAD_SLOTS:
+				get_viewport().set_input_as_handled()
+				_show_main_menu()
 
 
 func _on_quit_confirmed(accepted: bool) -> void:

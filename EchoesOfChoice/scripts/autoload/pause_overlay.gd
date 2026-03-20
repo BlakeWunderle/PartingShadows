@@ -180,7 +180,18 @@ func _make_button(text: String) -> Button:
 	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style(btn)
 	return btn
+
+
+static func _apply_focus_style(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
 
 
 # =============================================================================
@@ -374,6 +385,7 @@ func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_main_vbox.visible = false
 	_settings_panel.visible = true
+	_settings_panel.focus_first()
 
 
 func _show_compendium() -> void:
@@ -401,6 +413,11 @@ func _show_key_bindings() -> void:
 	_main_vbox.visible = false
 	_settings_panel.visible = false
 	_remap_panel.visible = true
+	# Focus first binding button after frame so buttons are ready
+	await get_tree().process_frame
+	var first_action: String = InputConfig.ACTION_NAMES[0] if not InputConfig.ACTION_NAMES.is_empty() else ""
+	if not first_action.is_empty() and _remap_panel._buttons.has(first_action):
+		_remap_panel._buttons[first_action].grab_focus()
 
 
 # =============================================================================

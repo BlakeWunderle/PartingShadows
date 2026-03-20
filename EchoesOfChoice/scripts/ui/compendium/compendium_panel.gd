@@ -131,6 +131,10 @@ static func _apply_focus_style(btn: Button) -> void:
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		close_requested.emit()
+		return
 	if event is InputEventJoypadButton and event.pressed:
 		if event.button_index == JOY_BUTTON_LEFT_SHOULDER:
 			_switch_tab(wrapi(current_tab - 1, 0, 3) as Tab)

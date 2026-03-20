@@ -2,11 +2,28 @@ class_name InputRemapPanel extends VBoxContainer
 
 ## Key binding remapping panel. Shows current keyboard bindings for each action
 ## and lets the player rebind by clicking a button and pressing a key.
+## Also displays the fixed gamepad binding for each action.
 
 signal back_pressed
 
 var _buttons: Dictionary = {}  # action_name -> Button
 var _listening_action: String = ""
+
+## Gamepad button display names
+const _GAMEPAD_NAMES: Dictionary = {
+	JOY_BUTTON_A: "A",
+	JOY_BUTTON_B: "B",
+	JOY_BUTTON_X: "X",
+	JOY_BUTTON_Y: "Y",
+	JOY_BUTTON_START: "Start",
+	JOY_BUTTON_BACK: "Select",
+	JOY_BUTTON_DPAD_UP: "D-Pad Up",
+	JOY_BUTTON_DPAD_DOWN: "D-Pad Down",
+	JOY_BUTTON_DPAD_LEFT: "D-Pad Left",
+	JOY_BUTTON_DPAD_RIGHT: "D-Pad Right",
+	JOY_BUTTON_LEFT_SHOULDER: "LB",
+	JOY_BUTTON_RIGHT_SHOULDER: "RB",
+}
 
 
 func _ready() -> void:
@@ -26,11 +43,40 @@ func _build_ui() -> void:
 	var sep := HSeparator.new()
 	add_child(sep)
 
+	# Column headers
+	var header := HBoxContainer.new()
+	header.add_theme_constant_override("separation", 12)
+	add_child(header)
+
+	var action_header := Label.new()
+	action_header.text = "Action"
+	action_header.custom_minimum_size = Vector2(120, 0)
+	action_header.add_theme_font_size_override("font_size", 14)
+	action_header.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	header.add_child(action_header)
+
+	var keyboard_header := Label.new()
+	keyboard_header.text = "Keyboard"
+	keyboard_header.custom_minimum_size = Vector2(140, 0)
+	keyboard_header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	keyboard_header.add_theme_font_size_override("font_size", 14)
+	keyboard_header.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	header.add_child(keyboard_header)
+
+	var gamepad_header := Label.new()
+	gamepad_header.text = "Controller"
+	gamepad_header.custom_minimum_size = Vector2(120, 0)
+	gamepad_header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	gamepad_header.add_theme_font_size_override("font_size", 14)
+	gamepad_header.add_theme_color_override("font_color", Color(0.7, 0.7, 0.7))
+	header.add_child(gamepad_header)
+
 	# Scroll area for bindings
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.custom_minimum_size = Vector2(0, 280)
+	scroll.follow_focus = true
+	scroll.custom_minimum_size = Vector2(0, 260)
 	add_child(scroll)
 
 	var bindings_vbox := VBoxContainer.new()
@@ -46,19 +92,28 @@ func _build_ui() -> void:
 
 		var label := Label.new()
 		label.text = InputConfig.ACTION_DISPLAY_NAMES.get(action, action)
-		label.custom_minimum_size = Vector2(140, 0)
+		label.custom_minimum_size = Vector2(120, 0)
 		label.add_theme_font_size_override("font_size", SettingsManager.font_size)
 		row.add_child(label)
 
 		var btn := Button.new()
 		btn.text = InputConfig.get_key_name(action)
-		btn.custom_minimum_size = Vector2(160, 32)
+		btn.custom_minimum_size = Vector2(140, 32)
 		btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 		_apply_focus_style(btn)
 		var bound_action: String = action
 		btn.pressed.connect(func() -> void: _start_listening(bound_action))
 		row.add_child(btn)
 		_buttons[action] = btn
+
+		# Gamepad binding (read-only)
+		var pad_label := Label.new()
+		pad_label.text = _get_gamepad_display(action)
+		pad_label.custom_minimum_size = Vector2(120, 0)
+		pad_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		pad_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		pad_label.add_theme_color_override("font_color", Color(0.6, 0.75, 0.9))
+		row.add_child(pad_label)
 
 	# Bottom buttons
 	var btn_row := HBoxContainer.new()
@@ -83,6 +138,30 @@ func _build_ui() -> void:
 	btn_row.add_child(back_btn)
 
 
+func _get_gamepad_display(action: String) -> String:
+	var bindings: Array = InputConfig._GAMEPAD_BINDINGS.get(action, [])
+	var parts: Array[String] = []
+	for binding: Dictionary in bindings:
+		if binding["type"] == "button":
+			var idx: int = int(binding["index"])
+			# Show the effective button after Nintendo swap
+			if InputConfig._nintendo_layout:
+				if idx == JOY_BUTTON_A:
+					idx = JOY_BUTTON_B
+				elif idx == JOY_BUTTON_B:
+					idx = JOY_BUTTON_A
+			parts.append(_GAMEPAD_NAMES.get(idx, "Btn %d" % idx))
+		elif binding["type"] == "axis":
+			var axis_val: float = binding["value"]
+			if int(binding["axis"]) == JOY_AXIS_LEFT_Y:
+				parts.append("Stick " + ("Up" if axis_val < 0 else "Down"))
+			elif int(binding["axis"]) == JOY_AXIS_LEFT_X:
+				parts.append("Stick " + ("Left" if axis_val < 0 else "Right"))
+	if parts.is_empty():
+		return "-"
+	return " / ".join(parts)
+
+
 func _start_listening(action: String) -> void:
 	_listening_action = action
 	_buttons[action].text = "Press a key..."
@@ -101,6 +180,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	_buttons[_listening_action].text = InputConfig.get_key_name(_listening_action)
 	_listening_action = ""
 	get_viewport().set_input_as_handled()
+
+
+func _input(event: InputEvent) -> void:
+	if not visible or not _listening_action.is_empty():
+		return
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		back_pressed.emit()
 
 
 func _on_reset() -> void:
