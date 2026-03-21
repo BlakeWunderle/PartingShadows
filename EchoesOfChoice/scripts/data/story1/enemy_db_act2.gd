@@ -57,7 +57,7 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 4)
 	f.magic_defense = _es(13, 17, 1, 2, lvl, 4)
 	f.speed = _es(19, 25, 1, 2, lvl, 4)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 3
+	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 5
 	f.abilities = [EAB.crush(), EAB.thick_skin()]
 	f.flavor_text = "Towering brutes whose raw strength can crack stone. Slow to think, quick to rage."
 	return f
@@ -221,7 +221,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = _fixed(23, 27); f.physical_defense = _fixed(21, 25)
 	f.magic_attack = _fixed(24, 28); f.magic_defense = _fixed(21, 25)
 	f.speed = _fixed(32, 37)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
@@ -233,7 +233,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.physical_attack = _fixed(22, 26); f.physical_defense = _fixed(19, 23)
 	f.magic_attack = _fixed(32, 36); f.magic_defense = _fixed(22, 26)
 	f.speed = _fixed(31, 36)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f
@@ -245,7 +245,7 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.physical_attack = _fixed(22, 27); f.physical_defense = _fixed(21, 25)
 	f.magic_attack = _fixed(31, 35); f.magic_defense = _fixed(19, 23)
 	f.speed = _fixed(36, 41)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
 	f.flavor_text = "Her voice carries both beauty and ruin. Each note can heal allies or shatter resolve."
 	return f
