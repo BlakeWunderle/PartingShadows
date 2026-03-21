@@ -115,7 +115,7 @@ static func dash() -> AbilityData:
 
 static func blade_flurry() -> AbilityData:
 	return _make("Blade Flurry", "A whirlwind of steel that cuts through all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 5, true, 0, 0.0, 3)
+		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 5, true, 0, 0.0, 4)
 
 # Monk
 static func spirit_attack() -> AbilityData:
