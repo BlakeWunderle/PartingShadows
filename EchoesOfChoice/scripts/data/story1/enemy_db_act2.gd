@@ -64,9 +64,9 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 
 static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Troll", lvl)
-	f.health = _es(188, 213, 6, 10, lvl, 5); f.max_health = f.health
+	f.health = _es(195, 221, 6, 10, lvl, 5); f.max_health = f.health
 	f.mana = _es(13, 17, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(26, 31, 2, 4, lvl, 5)
+	f.physical_attack = _es(27, 32, 2, 4, lvl, 5)
 	f.physical_defense = _es(18, 22, 1, 3, lvl, 5)
 	f.magic_attack = _es(5, 9, 0, 1, lvl, 5)
 	f.magic_defense = _es(15, 19, 1, 2, lvl, 5)
@@ -85,7 +85,7 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = _es(9, 13, 0, 2, lvl, 5)
 	f.magic_defense = _es(14, 18, 1, 2, lvl, 5)
 	f.speed = _es(29, 35, 2, 3, lvl, 5)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.talon_rake(), EAB.shriek()]
 	f.flavor_text = "Winged terrors that dive from above, raking with razor talons and piercing shrieks."
 	return f
@@ -162,28 +162,28 @@ static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 
 static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Captain", lvl)
-	f.health = _es(131, 164, 5, 11, lvl, 5); f.max_health = f.health
+	f.health = _es(134, 167, 5, 11, lvl, 5); f.max_health = f.health
 	f.mana = _es(24, 50, 2, 7, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(27, 34, 2, 5, lvl, 5)
 	f.physical_defense = _es(19, 27, 2, 5, lvl, 5)
 	f.magic_attack = _es(9, 17, 1, 3, lvl, 5)
 	f.magic_defense = _es(11, 19, 1, 3, lvl, 5)
 	f.speed = _es(20, 28, 1, 2, lvl, 5)
-	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EAB.flintlock(), EAB.cannon_barrage(), EAB.bravado()]
 	f.flavor_text = "A seasoned officer who commands through firepower and sheer bravado."
 	return f
 
 static func create_pirate(n: String, lvl: int = 4) -> FighterData:
 	var f := _base(n, "Pirate", lvl)
-	f.health = _es(110, 141, 5, 11, lvl, 4); f.max_health = f.health
+	f.health = _es(112, 143, 5, 11, lvl, 4); f.max_health = f.health
 	f.mana = _es(17, 39, 2, 7, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = _es(23, 29, 2, 5, lvl, 4)
 	f.physical_defense = _es(14, 21, 2, 5, lvl, 4)
 	f.magic_attack = _es(9, 17, 1, 3, lvl, 4)
 	f.magic_defense = _es(11, 19, 1, 3, lvl, 4)
 	f.speed = _es(20, 29, 1, 3, lvl, 4)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.flintlock(), EAB.dirty_trick()]
 	f.flavor_text = "Sea rogues who fight without honor, armed with flintlocks and dirty tricks."
 	return f
