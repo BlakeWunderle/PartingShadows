@@ -67,8 +67,8 @@ static func trample() -> AbilityData:
 
 # Dragoon
 static func jump() -> AbilityData:
-	return _make("Jump", "Leap high and crash down with crushing force.",
-		Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 5, false, 0, 0.0, 3)
+	return _make("Jump", "Leap high and crash down on all enemies.",
+		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 5, true, 0, 0.0, 3)
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
@@ -107,7 +107,7 @@ static func hunters_mark() -> AbilityData:
 # Ninja
 static func sweeping_slash() -> AbilityData:
 	return _make("Sweeping Slash", "A wide arc of the blade.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0, 2)
 
 static func dash() -> AbilityData:
 	return _make("Dash", "Blur across the battlefield.",
