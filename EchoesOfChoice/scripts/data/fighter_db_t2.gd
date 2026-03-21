@@ -96,7 +96,7 @@ static func upgrade_to_ninja(f: FighterData) -> void:
 	f.class_id = "Ninja"; f.character_type = "Ninja"
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 8; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 10
+	f.speed += 5; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 7
 	f.abilities = [PAB.sweeping_slash(), PAB.dash(), PAB.blade_flurry()]
 	f.upgrade_items = []
 
@@ -112,10 +112,10 @@ static func _lu_ninja(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 3); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(4, 6); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(2, 3)
-	f.dodge_chance += randi_range(2, 4)
+	f.dodge_chance += randi_range(2, 3)
 	f.crit_chance += randi_range(2, 3)
 
 static func _lu_monk(f: FighterData) -> void:
