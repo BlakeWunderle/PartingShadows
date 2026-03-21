@@ -80,10 +80,10 @@ static func create_grief_shade(n: String, lvl: int = 11) -> FighterData:
 	f.mana = _es(26, 32, 2, 3, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = _es(12, 16, 0, 2, lvl, 11)
 	f.physical_defense = _es(20, 27, 1, 2, lvl, 11)
-	f.magic_attack = _es(67, 77, 2, 4, lvl, 11)
+	f.magic_attack = _es(69, 80, 2, 4, lvl, 11)
 	f.magic_defense = _es(33, 40, 2, 3, lvl, 11)
 	f.speed = _es(30, 36, 2, 3, lvl, 11)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.sorrows_touch(), EAB.wail_of_loss()]
 	f.flavor_text = "A weeping shadow born from concentrated sorrow. Its touch carries the weight of every loss ever felt in this place."
 	return f
@@ -93,12 +93,12 @@ static func create_hollow_watcher(n: String, lvl: int = 11) -> FighterData:
 	var f := _base(n, "Hollow Watcher", lvl)
 	f.health = _es(575, 658, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = _es(74, 86, 2, 4, lvl, 11)
+	f.physical_attack = _es(74, 88, 2, 4, lvl, 11)
 	f.physical_defense = _es(33, 40, 2, 3, lvl, 11)
 	f.magic_attack = _es(12, 16, 0, 2, lvl, 11)
 	f.magic_defense = _es(27, 34, 1, 3, lvl, 11)
 	f.speed = _es(27, 33, 1, 3, lvl, 11)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.blind_strike(), EAB.sense_intent()]
 	f.flavor_text = "A faceless guardian that perceives the world through stolen senses. It anticipates its enemies' movements before they act."
 	return f
@@ -117,7 +117,7 @@ static func create_mirror_self(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = _es(66, 76, 2, 4, lvl, 12)
 	f.magic_defense = _es(33, 41, 2, 3, lvl, 12)
 	f.speed = _es(31, 37, 2, 3, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.mirrored_slash(), EAB.reflected_spell()]
 	f.flavor_text = "A perfect reflection of the one who gazes upon it. It fights with borrowed skill, turning your own strengths against you."
 	return f
@@ -129,10 +129,10 @@ static func create_void_weaver(n: String, lvl: int = 12) -> FighterData:
 	f.mana = _es(32, 38, 2, 4, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = _es(26, 33, 1, 3, lvl, 12)
-	f.magic_attack = _es(70, 81, 3, 5, lvl, 12)
+	f.magic_attack = _es(70, 83, 3, 5, lvl, 12)
 	f.magic_defense = _es(47, 55, 2, 4, lvl, 12)
 	f.speed = _es(29, 35, 2, 3, lvl, 12)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.void_bolt(), EAB.unravel()]
 	f.flavor_text = "A spindly entity that weaves threads of nothingness between its fingers. Where its threads fall, memory and meaning unravel."
 	return f
@@ -236,7 +236,7 @@ static func create_ward_construct(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = _es(43, 50, 2, 3, lvl, 12)
 	f.speed = _es(20, 26, 1, 2, lvl, 12)
-	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 6
+	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 7
 	f.abilities = [EAB.reinforced_strike(), EAB.warding_presence()]
 	f.flavor_text = "A massive stone construct bound by ancient wards. It was built to hold the threshold against any intrusion, and it has never failed."
 	return f
@@ -266,7 +266,7 @@ static func create_threshold_echo(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = _es(70, 81, 2, 4, lvl, 12)
 	f.magic_defense = _es(34, 42, 2, 3, lvl, 12)
 	f.speed = _es(31, 37, 2, 3, lvl, 12)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.liminal_strike(), EAB.threshold_bind()]
 	f.flavor_text = "A repeating impression left at the boundary between memory and void. It strikes with the force of a moment that refuses to be forgotten."
 	return f
@@ -286,7 +286,7 @@ static func create_archive_keeper(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = _es(44, 52, 2, 3, lvl, 12)
 	f.speed = _es(20, 26, 1, 2, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 7
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.archive_slam(), EAB.guardian_oath()]
 	f.flavor_text = "An immense golem formed from compressed scrolls and petrified ink. It was sworn to protect the archive and will crush any who desecrate it."
 	return f
@@ -313,7 +313,7 @@ static func create_lost_record(n: String, lvl: int = 10) -> FighterData:
 	f.mana = _es(27, 33, 2, 3, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = _es(22, 28, 1, 3, lvl, 10)
-	f.magic_attack = _es(73, 85, 2, 5, lvl, 10)
+	f.magic_attack = _es(73, 86, 2, 5, lvl, 10)
 	f.magic_defense = _es(32, 39, 2, 3, lvl, 10)
 	f.speed = _es(31, 37, 2, 3, lvl, 10)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 17

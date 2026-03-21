@@ -63,12 +63,12 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Tide Warden", lvl)
 	f.health = _es(190, 215, 5, 8, lvl, 5); f.max_health = f.health
 	f.mana = _es(10, 14, 1, 3, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(31, 36, 2, 3, lvl, 5)
+	f.physical_attack = _es(31, 38, 2, 3, lvl, 5)
 	f.physical_defense = _es(25, 30, 1, 3, lvl, 5)
-	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
+	f.magic_attack = _es(6, 11, 0, 1, lvl, 5)
 	f.magic_defense = _es(17, 21, 1, 2, lvl, 5)
 	f.speed = _es(20, 26, 1, 2, lvl, 5)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 4
+	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 6
 	f.abilities = [EAB.harpoon_thrust(), EAB.brace_formation()]
 	f.flavor_text = "A heavily armored sentinel who guards the coastal passages. Their loyalty to the sea is absolute, and their harpoon strikes are precise."
 	return f
@@ -177,7 +177,7 @@ static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = _es(34, 40, 2, 4, lvl, 8)
 	f.magic_defense = _es(19, 24, 1, 2, lvl, 8)
 	f.speed = _es(36, 42, 2, 4, lvl, 8)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.lightning_dive(), EAB.static_screech()]
 	f.flavor_text = "A massive bird of prey that nests in storm clouds above the coast. Lightning crackles along its wingfeathers as it dives."
 	return f
