@@ -123,7 +123,7 @@ static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = _es(78, 89, 3, 5, lvl, 13)
 	f.magic_defense = _es(39, 46, 2, 3, lvl, 13)
 	f.speed = _es(32, 38, 2, 3, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 3
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.psychic_siphon(), EAB.mind_fog()]
 	f.flavor_text = "A parasitic entity that attaches to the psyche and drains thought and willpower. Its victims stumble in a fog of confusion, unable to think clearly or act decisively."
 	return f
@@ -137,10 +137,10 @@ static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 	f.mana = _es(32, 38, 2, 4, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = _es(31, 38, 2, 3, lvl, 13)
-	f.magic_attack = _es(81, 94, 3, 5, lvl, 13)
+	f.magic_attack = _es(82, 95, 3, 5, lvl, 13)
 	f.magic_defense = _es(45, 53, 2, 4, lvl, 13)
 	f.speed = _es(35, 41, 2, 3, lvl, 13)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.void_thread(), EAB.nullify()]
 	f.flavor_text = "A caster that draws power from the void between dreams, where nothing exists and all things unravel. Its threads nullify magic and dissolve protections on contact."
 	return f

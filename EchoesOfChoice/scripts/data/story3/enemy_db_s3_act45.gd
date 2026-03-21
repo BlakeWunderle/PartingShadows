@@ -124,7 +124,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _es(105, 121, 3, 6, lvl, 17)
 	f.magic_defense = _es(53, 61, 2, 4, lvl, 17)
 	f.speed = _es(36, 42, 2, 3, lvl, 17)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.thread_lash(), EAB.ritual_chant()]
 	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
 	return f
@@ -140,7 +140,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _es(109, 126, 3, 6, lvl, 17)
 	f.magic_defense = _es(51, 59, 2, 4, lvl, 17)
 	f.speed = _es(38, 44, 2, 3, lvl, 17)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 19
 	f.abilities = [EAB.loom_blast(), EAB.unweave()]
 	f.flavor_text = "One of the Threadmaster's inner circle, a master of the loom's destructive potential. They can unweave the protections of their enemies with a gesture and blast them with raw dream-force."
 	return f
@@ -156,7 +156,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = _es(95, 110, 3, 6, lvl, 18)
 	f.magic_defense = _es(44, 52, 2, 4, lvl, 18)
 	f.speed = _es(38, 44, 3, 4, lvl, 18)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
 	f.flavor_text = "A splinter of the Threadmaster's own shadow, given independent will. It devours light and hope in equal measure, weakening enemies before the final confrontation."
 	return f
@@ -172,7 +172,7 @@ static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = _es(110, 126, 4, 6, lvl, 18)
 	f.magic_defense = _es(52, 60, 2, 4, lvl, 18)
 	f.speed = _es(36, 42, 3, 4, lvl, 18)
-	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 14
+	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 15
 	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion()]
 	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."
 	return f

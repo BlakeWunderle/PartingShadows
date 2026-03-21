@@ -131,7 +131,7 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = _es(9, 14, 1, 2, lvl, 2)
 	f.speed = _es(24, 29, 1, 3, lvl, 2)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 7
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.mist_tendril(), EAB.chill_fog()]
 	f.flavor_text = "A wisp of sentient fog that coils through the dream garden. It chills everything it touches, feeding on the warmth of living thought."
 	return f
@@ -286,10 +286,10 @@ static func create_the_nightmare(n: String, lvl: int = 9) -> FighterData:
 	f.mana = _es(21, 25, 2, 4, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = _es(38, 43, 2, 3, lvl, 9)
 	f.physical_defense = _es(23, 28, 2, 3, lvl, 9)
-	f.magic_attack = _es(36, 41, 2, 3, lvl, 9)
+	f.magic_attack = _es(37, 42, 2, 3, lvl, 9)
 	f.magic_defense = _es(23, 28, 2, 3, lvl, 9)
 	f.speed = _es(35, 40, 2, 3, lvl, 9)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.nightmare_crush(), EAB.dream_rend(), EAB.dread_aura()]
 	f.flavor_text = "The collective dread of an entire town given form and will. It is the dark heart of the shared dream, a shape that shifts with every fear it consumes."
 	return f
