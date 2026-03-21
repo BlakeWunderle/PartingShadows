@@ -97,7 +97,7 @@ static func upgrade_to_ninja(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 8; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 10
-	f.abilities = [PAB.sweeping_slash(), PAB.dash(), PAB.smoke_bomb()]
+	f.abilities = [PAB.sweeping_slash(), PAB.dash(), PAB.blade_flurry()]
 	f.upgrade_items = []
 
 static func upgrade_to_monk(f: FighterData) -> void:
@@ -115,7 +115,7 @@ static func _lu_ninja(f: FighterData) -> void:
 	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(2, 3)
-	f.dodge_chance += randi_range(2, 3)
+	f.dodge_chance += randi_range(3, 4)
 	f.crit_chance += randi_range(2, 3)
 
 static func _lu_monk(f: FighterData) -> void:
@@ -255,7 +255,7 @@ static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.health += 6; f.max_health += 6; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
-	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
+	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.ironclad_challenge()]
 	f.upgrade_items = []
 
 static func upgrade_to_aegis(f: FighterData) -> void:

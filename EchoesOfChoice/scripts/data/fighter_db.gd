@@ -527,7 +527,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Dragoon": return [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_ward()]
 		"Mercenary": return [PAB.gun_shot(), PAB.called_shot(), PAB.quick_draw()]
 		"Hunter": return [PAB.triple_arrow(), PAB.snare(), PAB.hunters_mark()]
-		"Ninja": return [PAB.sweeping_slash(), PAB.dash(), PAB.smoke_bomb()]
+		"Ninja": return [PAB.sweeping_slash(), PAB.dash(), PAB.blade_flurry()]
 		"Monk": return [PAB.spirit_attack(), PAB.precise_strike(), PAB.meditate()]
 		# T2:Mage
 		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]
@@ -548,7 +548,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Bombardier": return [PAB.shrapnel(), PAB.explosion(), PAB.field_repair()]
 		"Chronomancer": return [PAB.warp_speed(), PAB.time_bomb(), PAB.time_freeze()]
 		"Astronomer": return [PAB.starfall(), PAB.meteor_shower(), PAB.eclipse()]
-		"Automaton": return [PAB.servo_strike(), PAB.program_defense(), PAB.overclock()]
+		"Automaton": return [PAB.servo_strike(), PAB.discharge(), PAB.overclock()]
 		"Technomancer": return [PAB.circuit_blast(), PAB.circuit_shield(), PAB.emp_pulse()]
 		# T2:Wildling
 		"Blighter": return [PAB.blight(), PAB.life_siphon(), PAB.poison_sting()]
@@ -558,7 +558,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Falconer": return [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptors_gift()]
 		"Shapeshifter": return [PAB.savage_maul(), PAB.frenzy(), PAB.primal_roar()]
 		# T2:Wanderer
-		"Bulwark": return [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
+		"Bulwark": return [PAB.fortress_strike(), PAB.iron_fist(), PAB.ironclad_challenge()]
 		"Aegis": return [PAB.guardians_blessing(), PAB.protective_ward(), PAB.aegis_barrier()]
 		"Trailblazer": return [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
 		"Survivalist": return [PAB.endure(), PAB.resourceful_strike(), PAB.adapt()]

@@ -221,7 +221,7 @@ static func upgrade_to_automaton(f: FighterData) -> void:
 	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
-	f.abilities = [PAB.servo_strike(), PAB.program_defense(), PAB.overclock()]
+	f.abilities = [PAB.servo_strike(), PAB.discharge(), PAB.overclock()]
 	f.upgrade_items = []
 
 static func upgrade_to_technomancer(f: FighterData) -> void:
@@ -379,8 +379,8 @@ static func _lu_shapeshifter(f: FighterData) -> void:
 
 static func upgrade_to_trailblazer(f: FighterData) -> void:
 	f.class_id = "Trailblazer"; f.character_type = "Trailblazer"
-	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 4; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 2
+	f.health += 6; f.max_health += 6; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 4; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 4
 	f.speed += 4; f.crit_chance += 4; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
 	f.upgrade_items = []
