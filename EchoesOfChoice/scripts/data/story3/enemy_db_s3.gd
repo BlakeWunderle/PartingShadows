@@ -116,7 +116,7 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 2)
 	f.magic_defense = _es(8, 11, 1, 2, lvl, 2)
 	f.speed = _es(20, 25, 1, 2, lvl, 2)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 3
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.heavy_paw(), EAB.drowsy_roar()]
 	f.flavor_text = "A massive creature wrapped in matted fur and the haze of deep sleep. Its roar carries the weight of oblivion, dragging listeners toward unconsciousness."
 	return f
@@ -131,7 +131,7 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = _es(9, 14, 1, 2, lvl, 2)
 	f.speed = _es(24, 29, 1, 3, lvl, 2)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.mist_tendril(), EAB.chill_fog()]
 	f.flavor_text = "A wisp of sentient fog that coils through the dream garden. It chills everything it touches, feeding on the warmth of living thought."
 	return f
@@ -146,7 +146,7 @@ static func create_thorn_dreamer(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(10, 14, 1, 2, lvl, 2)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 2)
 	f.speed = _es(22, 27, 1, 2, lvl, 2)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.briar_lash(), EAB.spore_cloud()]
 	f.flavor_text = "A humanoid figure tangled in thorny vines that grow from its own dreaming flesh. It scatters toxic spores drawn from nightmares of wild, choking growth."
 	return f
