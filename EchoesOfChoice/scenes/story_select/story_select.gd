@@ -5,6 +5,7 @@ extends Control
 
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
+const Title := preload("res://scenes/title/title.gd")
 
 var _menu: ChoiceMenu
 var _stories: Array[Dictionary] = []
@@ -23,7 +24,7 @@ func _build_ui() -> void:
 	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	bg.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	var bg_path := "res://assets/art/ui/title_background.png"
+	var bg_path := Title._cached_bg if not Title._cached_bg.is_empty() else "res://assets/art/ui/title_background.png"
 	if ResourceLoader.exists(bg_path):
 		bg.texture = load(bg_path)
 	add_child(bg)

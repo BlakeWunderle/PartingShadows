@@ -34,14 +34,14 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Abyssal Dreamer", lvl)
-	f.health = _es(490, 563, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = _es(460, 530, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = _es(32, 38, 2, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 15)
-	f.physical_defense = _es(36, 44, 2, 3, lvl, 15)
-	f.magic_attack = _es(88, 102, 3, 5, lvl, 15)
-	f.magic_defense = _es(44, 52, 2, 4, lvl, 15)
-	f.speed = _es(38, 44, 2, 3, lvl, 15)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 12
+	f.physical_defense = _es(34, 42, 2, 3, lvl, 15)
+	f.magic_attack = _es(90, 104, 3, 5, lvl, 15)
+	f.magic_defense = _es(42, 50, 2, 4, lvl, 15)
+	f.speed = _es(36, 42, 2, 3, lvl, 15)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.void_pulse(), EAB.deep_slumber()]
 	f.flavor_text = "A figure that drifts through the deepest layers of the dream, where light never reaches. Its void pulses drag victims into a slumber from which few return."
 	return f
@@ -49,14 +49,14 @@ static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 
 static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Thread Devourer", lvl)
-	f.health = _es(530, 608, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = _es(500, 575, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(90, 104, 3, 5, lvl, 15)
-	f.physical_defense = _es(42, 50, 2, 3, lvl, 15)
+	f.physical_attack = _es(92, 106, 3, 5, lvl, 15)
+	f.physical_defense = _es(40, 48, 2, 3, lvl, 15)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 15)
-	f.magic_defense = _es(38, 46, 2, 3, lvl, 15)
+	f.magic_defense = _es(36, 43, 2, 3, lvl, 15)
 	f.speed = _es(36, 42, 2, 3, lvl, 15)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 8
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.thread_bite(), EAB.unravel_ward()]
 	f.flavor_text = "A ravenous creature that feeds on dream-threads themselves, growing stronger with each strand it consumes. It tears apart protective wards with savage hunger."
 	return f
@@ -64,14 +64,14 @@ static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 
 static func create_slumbering_colossus(n: String, lvl: int = 15) -> FighterData:
 	var f := _base(n, "Slumbering Colossus", lvl)
-	f.health = _es(580, 664, 6, 9, lvl, 15); f.max_health = f.health
+	f.health = _es(600, 686, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = _es(92, 106, 3, 5, lvl, 15)
-	f.physical_defense = _es(50, 58, 2, 4, lvl, 15)
+	f.physical_attack = _es(96, 110, 3, 5, lvl, 15)
+	f.physical_defense = _es(52, 60, 2, 4, lvl, 15)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 15)
-	f.magic_defense = _es(42, 50, 2, 3, lvl, 15)
-	f.speed = _es(24, 30, 2, 3, lvl, 15)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 4
+	f.magic_defense = _es(44, 52, 2, 3, lvl, 15)
+	f.speed = _es(22, 28, 1, 2, lvl, 15)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 4
 	f.abilities = [EAB.crushing_dream(), EAB.ancient_yawn()]
 	f.flavor_text = "An ancient titan that has slumbered in the dream's foundations since before the cult existed. When roused, its crushing weight and tremendous yawns send waves of exhaustion through all who face it."
 	return f
@@ -106,7 +106,7 @@ static func create_astral_enforcer(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = _es(42, 50, 2, 3, lvl, 16)
 	f.speed = _es(30, 36, 2, 3, lvl, 16)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 6
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.dream_blade(), EAB.astral_brace()]
 	f.flavor_text = "A warrior whose astral projection fights with the full force of their waking body. Their dream-forged blade cuts through defenses, and their braced stance absorbs punishment meant to banish them."
 	return f
@@ -156,7 +156,7 @@ static func create_nightmare_sentinel(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = _es(46, 54, 2, 3, lvl, 17)
 	f.speed = _es(30, 36, 2, 3, lvl, 17)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 6
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 8
 	f.abilities = [EAB.nightmare_blade(), EAB.terror_ward()]
 	f.flavor_text = "An armored sentinel forged from concentrated nightmare, standing guard at the Threadmaster's threshold. Its blade is edged with terror, and its ward repels all but the most resolute attackers."
 	return f
