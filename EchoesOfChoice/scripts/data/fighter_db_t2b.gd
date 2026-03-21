@@ -14,7 +14,7 @@ const PAB := preload("res://scripts/data/ability_db_player.gd")
 static func upgrade_to_warcrier(f: FighterData) -> void:
 	f.class_id = "Warcrier"; f.character_type = "Warcrier"
 	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
+	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.battle_cry(), PAB.encore(), PAB.rally_cry()]
 	f.upgrade_items = []
@@ -32,7 +32,7 @@ static func _lu_warcrier(f: FighterData) -> void:
 	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(4, 6); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(2, 4); f.magic_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(2, 4); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(1, 2)
@@ -55,7 +55,7 @@ static func _lu_minstrel(f: FighterData) -> void:
 static func upgrade_to_illusionist(f: FighterData) -> void:
 	f.class_id = "Illusionist"; f.character_type = "Illusionist"
 	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 2
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 4
 	f.speed += 7; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 6
 	f.abilities = [PAB.phantom_strike(), PAB.mirage(), PAB.bewilderment()]
 	f.upgrade_items = []
@@ -73,7 +73,7 @@ static func _lu_illusionist(f: FighterData) -> void:
 	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(3, 4); f.physical_defense += randi_range(3, 5)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 4)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(2, 3)
 	f.dodge_chance += randi_range(1, 2)
 	f.crit_chance += randi_range(1, 2)
@@ -124,7 +124,7 @@ static func _lu_elegist(f: FighterData) -> void:
 	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(3, 5); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(7, 9)
+	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(5, 7)
 	f.speed += randi_range(2, 3)
 	f.dodge_chance += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
@@ -137,7 +137,7 @@ static func _lu_elegist(f: FighterData) -> void:
 static func upgrade_to_alchemist(f: FighterData) -> void:
 	f.class_id = "Alchemist"; f.character_type = "Alchemist"
 	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 2
+	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.transmute(), PAB.corrosive_acid(), PAB.elixir()]
 	f.upgrade_items = []
@@ -155,7 +155,7 @@ static func _lu_alchemist(f: FighterData) -> void:
 	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
 	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -206,7 +206,7 @@ static func _lu_astronomer(f: FighterData) -> void:
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
 	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(5, 7)
+	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(1, 1)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -259,7 +259,7 @@ static func _lu_technomancer(f: FighterData) -> void:
 static func upgrade_to_blighter(f: FighterData) -> void:
 	f.class_id = "Blighter"; f.character_type = "Blighter"
 	f.health += 8; f.max_health += 8; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 3
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 5
 	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.blight(), PAB.life_siphon(), PAB.poison_sting()]
 	f.upgrade_items = []
@@ -274,10 +274,10 @@ static func upgrade_to_grove_keeper(f: FighterData) -> void:
 
 static func _lu_blighter(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(7, 10); f.health += hp; f.max_health += hp
+	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
 	var mp := randi_range(3, 5); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 4)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(2, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
@@ -307,7 +307,7 @@ static func upgrade_to_witch_doctor(f: FighterData) -> void:
 static func upgrade_to_spiritwalker(f: FighterData) -> void:
 	f.class_id = "Spiritwalker"; f.character_type = "Spiritwalker"
 	f.health += 14; f.max_health += 14; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 8
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 5
 	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.spirit_shield(), PAB.ancestral_blessing(), PAB.spirit_mend()]
 	f.upgrade_items = []

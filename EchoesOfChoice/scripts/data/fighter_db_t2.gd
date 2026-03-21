@@ -22,7 +22,7 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
 	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 2
+	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_ward()]
 	f.upgrade_items = []
@@ -55,7 +55,7 @@ static func _lu_dragoon(f: FighterData) -> void:
 static func upgrade_to_mercenary(f: FighterData) -> void:
 	f.class_id = "Mercenary"; f.character_type = "Mercenary"
 	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 7; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.physical_attack += 7; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 3
 	f.speed += 5; f.crit_chance += 8; f.crit_damage += 4; f.dodge_chance += 2
 	f.abilities = [PAB.gun_shot(), PAB.called_shot(), PAB.quick_draw()]
 	f.upgrade_items = []
@@ -73,7 +73,7 @@ static func _lu_mercenary(f: FighterData) -> void:
 	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(6, 8); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(2, 4); f.magic_defense += randi_range(3, 4)
+	f.magic_attack += randi_range(2, 4); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(2, 2)
 	f.crit_chance += randi_range(2, 3)
 
@@ -96,7 +96,7 @@ static func upgrade_to_ninja(f: FighterData) -> void:
 	f.class_id = "Ninja"; f.character_type = "Ninja"
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 7; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 7
+	f.speed += 8; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 10
 	f.abilities = [PAB.sweeping_slash(), PAB.dash(), PAB.smoke_bomb()]
 	f.upgrade_items = []
 
@@ -110,12 +110,12 @@ static func upgrade_to_monk(f: FighterData) -> void:
 
 static func _lu_ninja(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
+	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(2, 3)
-	f.dodge_chance += randi_range(1, 3)
+	f.dodge_chance += randi_range(2, 3)
 	f.crit_chance += randi_range(2, 3)
 
 static func _lu_monk(f: FighterData) -> void:
@@ -181,7 +181,7 @@ static func _lu_tempest(f: FighterData) -> void:
 	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(4, 6); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(2, 2)
 	f.dodge_chance += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
@@ -253,7 +253,7 @@ static func _lu_warlock(f: FighterData) -> void:
 static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.class_id = "Bulwark"; f.character_type = "Bulwark"
 	f.health += 6; f.max_health += 6; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 3
+	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.bulwarks_stand()]
 	f.upgrade_items = []
