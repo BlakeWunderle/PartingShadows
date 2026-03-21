@@ -106,7 +106,7 @@ static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(11, 15, 1, 2, lvl, 2)
 	f.magic_defense = _es(7, 10, 0, 1, lvl, 2)
 	f.speed = _es(27, 33, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 14
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.toxic_dart(), EAB.spore_burst()]
 	f.flavor_text = "A gaunt, fungus-riddled creature that moves with unsettling precision. Poisonous barbs line its elongated limbs."
 	return f
@@ -121,7 +121,7 @@ static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(5, 8, 0, 1, lvl, 2)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 2)
 	f.speed = _es(15, 19, 1, 2, lvl, 2)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 3
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 1
 	f.abilities = [EAB.fungal_slam(), EAB.mycelium_shield()]
 	f.flavor_text = "A massive creature overgrown with shelf mushrooms and hardened mycelia. Each thundering step shakes loose clouds of spores."
 	return f
@@ -136,7 +136,7 @@ static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 2)
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 12
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.hallucinate(), EAB.phantasmal_haze()]
 	f.flavor_text = "A drifting mushroom cap wreathed in hallucinogenic mist. Those who breathe its spores see things that were never there."
 	return f
@@ -204,7 +204,7 @@ static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 3)
 	f.magic_defense = _es(8, 11, 1, 2, lvl, 3)
 	f.speed = _es(20, 26, 1, 2, lvl, 3)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.crude_axe(), EAB.rock_toss()]
 	f.flavor_text = "A hunched, pale humanoid adapted to perpetual darkness. It fashions crude weapons from bone and stone."
 	return f
@@ -219,7 +219,7 @@ static func create_tunnel_shaman(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = _es(18, 22, 1, 3, lvl, 3)
 	f.magic_defense = _es(13, 17, 1, 2, lvl, 3)
 	f.speed = _es(23, 29, 1, 2, lvl, 3)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 10
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.hex_flame(), EAB.ward_bones()]
 	f.flavor_text = "An elder cave dweller draped in carved bone fetishes. It channels the strange energies that seep through the deep rock."
 	return f
@@ -234,7 +234,7 @@ static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = _es(5, 8, 0, 1, lvl, 3)
 	f.magic_defense = _es(7, 10, 0, 1, lvl, 3)
 	f.speed = _es(29, 35, 2, 3, lvl, 3)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 22
 	f.abilities = [EAB.dart_strike(), EAB.smoke_bomb()]
 	f.flavor_text = "A wiry, quick-footed cave dweller that patrols the outer tunnels. It strikes from the shadows and vanishes before retaliation."
 	return f
