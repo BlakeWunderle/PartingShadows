@@ -31,14 +31,14 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Glow Worm", lvl)
-	f.health = _es(29, 38, 2, 4, lvl, 1); f.max_health = f.health
+	f.health = _es(28, 37, 2, 4, lvl, 1); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(9, 12, 0, 2, lvl, 1)
 	f.physical_defense = _es(5, 8, 0, 1, lvl, 1)
 	f.magic_attack = _es(15, 18, 1, 3, lvl, 1)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 1)
 	f.speed = _es(22, 28, 1, 3, lvl, 1)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 7
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.luminous_pulse(), EAB.dazzle()]
 	f.flavor_text = "A blind, segmented worm that navigates by bioluminescence. Its pulsing glow disorients prey before it strikes."
 	return f
@@ -46,14 +46,14 @@ static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 
 static func create_crystal_spider(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Crystal Spider", lvl)
-	f.health = _es(52, 62, 3, 6, lvl, 1); f.max_health = f.health
+	f.health = _es(50, 60, 3, 6, lvl, 1); f.max_health = f.health
 	f.mana = _es(3, 5, 1, 1, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(17, 20, 1, 3, lvl, 1)
 	f.physical_defense = _es(10, 13, 1, 2, lvl, 1)
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 1)
 	f.magic_defense = _es(8, 11, 1, 2, lvl, 1)
 	f.speed = _es(20, 26, 1, 2, lvl, 1)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 5
 	f.abilities = [EAB.crystal_fang(), EAB.refract()]
 	f.flavor_text = "A translucent arachnid with mineral-encrusted legs. Light scatters through its crystalline body, making it hard to track."
 	return f
@@ -72,7 +72,7 @@ static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(13, 16, 1, 2, lvl, 2)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 2)
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.shadow_lash(), EAB.dissolve()]
 	f.flavor_text = "A flat, many-legged predator that clings to cavern ceilings. It drops silently onto its prey from the darkness above."
 	return f
@@ -80,14 +80,14 @@ static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 
 static func create_echo_wisp(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Echo Wisp", lvl)
-	f.health = _es(35, 43, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(37, 45, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(7, 9, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 2)
 	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 2)
 	f.speed = _es(27, 33, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.resonance(), EAB.distortion()]
 	f.flavor_text = "A flickering orb of sound made visible. It mimics voices of the lost, luring travelers deeper into the caverns."
 	return f
@@ -99,14 +99,14 @@ static func create_echo_wisp(n: String, lvl: int = 2) -> FighterData:
 
 static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Spore Stalker", lvl)
-	f.health = _es(39, 47, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(42, 50, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(15, 18, 1, 3, lvl, 2)
 	f.physical_defense = _es(7, 10, 0, 1, lvl, 2)
 	f.magic_attack = _es(11, 15, 1, 2, lvl, 2)
 	f.magic_defense = _es(7, 10, 0, 1, lvl, 2)
 	f.speed = _es(27, 33, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.toxic_dart(), EAB.spore_burst()]
 	f.flavor_text = "A gaunt, fungus-riddled creature that moves with unsettling precision. Poisonous barbs line its elongated limbs."
 	return f
@@ -114,13 +114,13 @@ static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 
 static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Fungal Hulk", lvl)
-	f.health = _es(59, 70, 4, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(63, 74, 4, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.physical_defense = _es(11, 15, 1, 2, lvl, 2)
 	f.magic_attack = _es(5, 8, 0, 1, lvl, 2)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 2)
-	f.speed = _es(15, 19, 1, 2, lvl, 2)
+	f.speed = _es(17, 21, 1, 2, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 1
 	f.abilities = [EAB.fungal_slam(), EAB.mycelium_shield()]
 	f.flavor_text = "A massive creature overgrown with shelf mushrooms and hardened mycelia. Each thundering step shakes loose clouds of spores."
@@ -129,14 +129,14 @@ static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 
 static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Cap Wisp", lvl)
-	f.health = _es(33, 41, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(36, 44, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(8, 10, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 2)
 	f.magic_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 2)
 	f.speed = _es(25, 31, 2, 3, lvl, 2)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 10
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.hallucinate(), EAB.phantasmal_haze()]
 	f.flavor_text = "A drifting mushroom cap wreathed in hallucinogenic mist. Those who breathe its spores see things that were never there."
 	return f
@@ -155,7 +155,7 @@ static func create_cave_eel(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = _es(16, 19, 1, 2, lvl, 3)
 	f.magic_defense = _es(9, 12, 1, 2, lvl, 3)
 	f.speed = _es(29, 35, 2, 3, lvl, 3)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.jolt(), EAB.arc_flash()]
 	f.flavor_text = "A sinuous, eyeless fish that slithers through subterranean pools. Bioelectric organs along its flanks discharge painful jolts."
 	return f
@@ -178,14 +178,14 @@ static func create_blind_angler(n: String, lvl: int = 3) -> FighterData:
 
 static func create_pale_crayfish(n: String, lvl: int = 3) -> FighterData:
 	var f := _base(n, "Pale Crayfish", lvl)
-	f.health = _es(75, 88, 4, 6, lvl, 3); f.max_health = f.health
+	f.health = _es(78, 91, 4, 6, lvl, 3); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 1, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(21, 25, 2, 3, lvl, 3)
 	f.physical_defense = _es(14, 18, 1, 3, lvl, 3)
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 3)
 	f.magic_defense = _es(10, 14, 1, 2, lvl, 3)
 	f.speed = _es(14, 20, 1, 2, lvl, 3)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 3
+	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.pincer_crush(), EAB.shell_up()]
 	f.flavor_text = "An albino crustacean the size of a hound, armored in thick calcified plates. Its claws can shear through stone."
 	return f
