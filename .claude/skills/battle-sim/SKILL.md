@@ -9,19 +9,20 @@ All paths relative to workspace root. Godot project at `EchoesOfChoice/`.
 
 **Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
 
-**After all progressions locked:** Run `/class-report` to generate a comprehensive per-class performance snapshot.
+**After all progressions locked:** Run the final validation pass with `--json "$JSON_PATH"` to save structured data, then invoke `/class-report --from-json "$JSON_PATH"` to generate the report without re-simming.
 
 ## Quick Reference
 
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
 
 # Quick iteration (any tier) -- use --compact to reduce context
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> --compact 2>&1 | grep -v "$NOISE"
 
 # Final validation -- parallel (recommended, use 600000ms timeout)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 10 --compact 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 10 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Full verbose output (when you need class breakdowns, combo extremes)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
@@ -197,7 +198,7 @@ Before tuning a story, read the story-specific reference file for difficulty gra
 | Skill | When to Use |
 |-------|-------------|
 | `/balance-log` | After each sim run to record results and changes |
-| `/class-report` | After all progressions locked |
+| `/class-report` | After all progressions locked. Use `--from-json "$JSON_PATH"` with JSON from the final validation pass. |
 | `/update-ability-catalog` | After changing abilities |
 
 ## Key Files

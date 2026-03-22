@@ -14,10 +14,13 @@ Runs simulations and generates a persistent markdown report showing how every pl
 - `full`: full --auto simulation (10-15 minutes)
 - `story 1`, `story 2`, `story 3`: filter to a specific story
 - Combined: `full story 2`
+- `--from-json <path>`: Skip simulation, read pre-existing JSON from a previous sim run. Goes directly to Step 2.
 
 ## Procedure
 
 ### Step 1: Run the simulator with JSON output
+
+**If `--from-json <path>` was provided:** Skip this step entirely. Set `JSON_PATH` to the provided path and go directly to Step 2.
 
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
