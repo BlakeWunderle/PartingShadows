@@ -39,7 +39,7 @@ static func create_dream_wisp(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = _es(15, 18, 1, 3, lvl, 1)
 	f.magic_defense = _es(10, 14, 1, 2, lvl, 1)
 	f.speed = _es(27, 32, 1, 3, lvl, 1)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 8
+	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 5
 	f.abilities = [EAB.shimmer_bolt(), EAB.daze()]
 	f.flavor_text = "A flickering mote of dream-light that drifts through the sleeping mind. Its glow entrances the unwary before striking with bursts of raw thought."
 	return f
@@ -54,7 +54,7 @@ static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = _es(13, 16, 1, 2, lvl, 1)
 	f.magic_defense = _es(9, 13, 1, 2, lvl, 1)
 	f.speed = _es(25, 31, 1, 3, lvl, 1)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.phase_strike(), EAB.unnerve()]
 	f.flavor_text = "A translucent figure that flickers between presence and absence. It strikes from angles that should not exist, leaving a cold dread in its wake."
 	return f
@@ -70,7 +70,7 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = _es(9, 12, 0, 2, lvl, 1)
 	f.magic_defense = _es(7, 10, 0, 1, lvl, 1)
 	f.speed = _es(30, 36, 1, 3, lvl, 1)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 14
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.dust_wing(), EAB.flit()]
 	f.flavor_text = "A dark-winged insect born from forgotten memories. Its scales scatter a soporific dust that clouds the senses."
 	return f
@@ -85,7 +85,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = _es(8, 11, 0, 1, lvl, 2)
 	f.speed = _es(27, 33, 1, 3, lvl, 2)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	f.flavor_text = "A gaunt predator that prowls the border between waking and sleep. It hunts by sensing the fear of dreamers who linger too long."
 	return f
@@ -100,7 +100,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = _es(14, 18, 1, 2, lvl, 2)
 	f.magic_defense = _es(10, 13, 1, 2, lvl, 2)
 	f.speed = _es(25, 31, 1, 2, lvl, 2)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 8
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
 	f.flavor_text = "A distorted reflection that has stepped free of its mirror. It copies the movements of those it faces, turning their own strength against them."
 	return f
