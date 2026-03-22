@@ -148,6 +148,12 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 			attacker.character_name, damage, defender.character_name])
 		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
 
+	# Restore MP based on magic attack
+	var mp_restore: int = maxi(1, floori(attacker.magic_attack / 7))
+	attacker.mana = mini(attacker.mana + mp_restore, attacker.max_mana)
+	if not sim_mode:
+		combat_event.emit(attacker, mp_restore, "mp_restore")
+
 
 func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		ability: AbilityData, skip_flavor: bool = false) -> void:
@@ -274,6 +280,51 @@ func _calc_ability_damage(attacker: FighterData, defender: FighterData,
 				- (defender.physical_defense + defender.magic_defense) / 2
 		_:
 			return ability.modifier
+
+
+func perform_block(blocker: FighterData) -> void:
+	var phys_bonus: int = maxi(1, floori(blocker.physical_defense * 0.5))
+	var mag_bonus: int = maxi(1, floori(blocker.magic_defense * 0.5))
+	blocker._apply_stat_change(Enums.StatType.PHYSICAL_DEFENSE, phys_bonus, false)
+	blocker.modified_stats.append({
+		"stat": Enums.StatType.PHYSICAL_DEFENSE,
+		"modifier": phys_bonus,
+		"turns": 1,
+		"is_negative": false,
+		"damage_per_turn": 0,
+	})
+	blocker._apply_stat_change(Enums.StatType.MAGIC_DEFENSE, mag_bonus, false)
+	blocker.modified_stats.append({
+		"stat": Enums.StatType.MAGIC_DEFENSE,
+		"modifier": mag_bonus,
+		"turns": 1,
+		"is_negative": false,
+		"damage_per_turn": 0,
+	})
+	var mp_restore: int = maxi(1, floori(blocker.magic_attack / 7))
+	blocker.mana = mini(blocker.mana + mp_restore, blocker.max_mana)
+	if not sim_mode:
+		combat_message.emit("%s braces for impact." % blocker.character_name)
+		combat_event.emit(blocker, mp_restore, "block")
+
+
+func perform_rest(unit: FighterData) -> void:
+	var mp_restore: int = maxi(2, floori(unit.magic_attack / 7) * 2)
+	unit.mana = mini(unit.mana + mp_restore, unit.max_mana)
+	var hp_restore: int = maxi(1, floori(unit.max_health * 0.1))
+	unit.health = mini(unit.health + hp_restore, unit.max_health)
+	if sim_mode:
+		sim_stats[unit].heals += hp_restore
+	else:
+		combat_message.emit("%s takes a moment to rest." % unit.character_name)
+		combat_event.emit(unit, mp_restore, "rest")
+
+
+func _has_defense_buff(fighter: FighterData) -> bool:
+	for mod: Dictionary in fighter.modified_stats:
+		if mod["stat"] == Enums.StatType.PHYSICAL_DEFENSE and not mod["is_negative"]:
+			return true
+	return false
 
 
 # =============================================================================
@@ -499,6 +550,25 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 					unit.mana -= buff.mana_cost
 					use_ability_on_teammate(unit, buff_target, buff)
 					return
+
+	# Priority 2.5: Block or Rest (basic actions)
+	var hp_pct: float = float(unit.health) / float(unit.max_health)
+	var mp_pct: float = float(unit.mana) / float(unit.max_mana) if unit.max_mana > 0 else 1.0
+
+	if hp_pct < 0.35 and not _has_defense_buff(unit):
+		if unit.is_user_controlled:
+			# Player auto-battle: always block when low HP
+			perform_block(unit)
+			return
+		else:
+			# Enemy: 25% chance to block, never consecutively
+			if randf() < 0.25:
+				perform_block(unit)
+				return
+
+	if mp_pct < 0.3 and hp_pct >= 0.35:
+		perform_rest(unit)
+		return
 
 	# Priority 3: Offensive ability vs physical attack
 	var ability_chance: float = magic_ratio
