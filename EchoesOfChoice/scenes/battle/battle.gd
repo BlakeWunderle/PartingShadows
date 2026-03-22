@@ -604,6 +604,11 @@ func _show_action_menu(actor: FighterData) -> void:
 		options.append({"label": "Auto"})
 	options.append({"label": "Stats"})
 	_action_menu.show_choices(options, true)
+	_tip_overlay.show_tip_once("combat_actions",
+		"Attack, Block, and Rest all restore MP based on your Magic Attack.\n\n" +
+		"Attack deals damage. Block raises defenses for one turn. " +
+		"Rest restores double MP and a little HP, but leaves you exposed.\n\n" +
+		"Use basic actions to recharge between abilities.")
 
 
 func _on_action_selected(index: int) -> void:
