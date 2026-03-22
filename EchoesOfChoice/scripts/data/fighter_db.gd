@@ -28,7 +28,7 @@ static func create_squire(fighter_name: String) -> FighterData:
 	f.physical_defense = randi_range(12, 15)
 	f.magic_attack = randi_range(6, 9)
 	f.magic_defense = randi_range(8, 12)
-	f.speed = randi_range(20, 24)
+	f.speed = randi_range(18, 22)
 	f.crit_chance = 10
 	f.crit_damage = 1
 	f.dodge_chance = 5
@@ -46,7 +46,7 @@ static func create_mage(fighter_name: String) -> FighterData:
 	f.level = 1
 	f.health = randi_range(38, 44); f.max_health = f.health
 	f.mana = randi_range(6, 8); f.max_mana = f.mana
-	f.physical_attack = randi_range(7, 10)
+	f.physical_attack = randi_range(9, 12)
 	f.physical_defense = randi_range(7, 10)
 	f.magic_attack = randi_range(15, 19)
 	f.magic_defense = randi_range(14, 18)
@@ -70,9 +70,9 @@ static func create_entertainer(fighter_name: String) -> FighterData:
 	f.mana = randi_range(4, 7); f.max_mana = f.mana
 	f.physical_attack = randi_range(11, 14)
 	f.physical_defense = randi_range(10, 13)
-	f.magic_attack = randi_range(11, 14)
+	f.magic_attack = randi_range(13, 16)
 	f.magic_defense = randi_range(11, 14)
-	f.speed = randi_range(18, 22)
+	f.speed = randi_range(22, 26)
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 5
@@ -116,7 +116,7 @@ static func create_wildling(fighter_name: String) -> FighterData:
 	f.physical_defense = randi_range(10, 13)
 	f.magic_attack = randi_range(11, 15)
 	f.magic_defense = randi_range(10, 13)
-	f.speed = randi_range(22, 26)
+	f.speed = randi_range(20, 24)
 	f.crit_chance = 5
 	f.crit_damage = 1
 	f.dodge_chance = 8

@@ -32,7 +32,7 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 # Prog 0 (+8%)
 static func create_dream_wisp(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Dream Wisp", lvl)
-	f.health = _es(30, 40, 2, 5, lvl, 1); f.max_health = f.health
+	f.health = _es(32, 42, 2, 5, lvl, 1); f.max_health = f.health
 	f.mana = _es(7, 10, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(9, 13, 0, 2, lvl, 1)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 1)
@@ -47,7 +47,7 @@ static func create_dream_wisp(n: String, lvl: int = 1) -> FighterData:
 
 static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Phantasm", lvl)
-	f.health = _es(34, 45, 2, 5, lvl, 1); f.max_health = f.health
+	f.health = _es(37, 48, 2, 5, lvl, 1); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 1, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(14, 17, 1, 2, lvl, 1)
 	f.physical_defense = _es(7, 10, 0, 1, lvl, 1)
@@ -63,7 +63,7 @@ static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 # Prog 1 MirrorHall enemies
 static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	var f := _base(n, "Shade Moth", lvl)
-	f.health = _es(27, 35, 2, 3, lvl, 1); f.max_health = f.health
+	f.health = _es(28, 36, 2, 3, lvl, 1); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 1, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = _es(11, 14, 1, 2, lvl, 1)
 	f.physical_defense = _es(5, 9, 0, 1, lvl, 1)
@@ -78,7 +78,7 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 
 static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Sleep Stalker", lvl)
-	f.health = _es(46, 54, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(47, 55, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(20, 24, 1, 3, lvl, 2)
 	f.physical_defense = _es(9, 12, 1, 2, lvl, 2)
@@ -93,7 +93,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 
 static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Mirror Shade", lvl)
-	f.health = _es(42, 50, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(43, 51, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(14, 18, 1, 2, lvl, 2)
 	f.physical_defense = _es(10, 13, 1, 2, lvl, 2)
