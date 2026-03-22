@@ -38,7 +38,7 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = _es(72, 82, 3, 5, lvl, 14)
 	f.magic_defense = _es(31, 39, 2, 3, lvl, 14)
 	f.speed = _es(36, 42, 2, 3, lvl, 14)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.piercing_gaze_strike(), EAB.focus_break()]
 	f.flavor_text = "A swift predator that serves as the Eye's hunting hound. It locks onto its prey with an unblinking stare that shatters concentration."
 	return f
@@ -53,7 +53,7 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = _es(107, 123, 3, 5, lvl, 14)
 	f.magic_defense = _es(45, 53, 2, 4, lvl, 14)
 	f.speed = _es(31, 37, 2, 3, lvl, 14)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.harvest_thought(), EAB.mass_extraction()]
 	f.flavor_text = "A grotesque collector that reaps thoughts like grain. The memories it steals are fed directly to the Eye, fueling its terrible awareness."
 	return f
@@ -83,7 +83,7 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = _es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = _es(47, 55, 2, 4, lvl, 14)
 	f.speed = _es(24, 30, 1, 3, lvl, 14)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 19
 	f.abilities = [EAB.memory_blade(), EAB.ironclad_will()]
 	f.flavor_text = "A warrior conjured from stolen memories of great knights. It fights with borrowed valor and an unshakable conviction that it is real."
 	return f

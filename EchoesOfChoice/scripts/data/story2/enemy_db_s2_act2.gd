@@ -83,7 +83,7 @@ static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = _es(21, 26, 1, 3, lvl, 5)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 5)
 	f.speed = _es(32, 38, 2, 3, lvl, 5)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 15
+	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.peck_frenzy(), EAB.dive_screech()]
 	f.flavor_text = "A seabird twisted by the dark influence bleeding from the lighthouse. Its feathers are matted with tar-like corruption."
 	return f
@@ -93,12 +93,12 @@ static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Shore Crawler", lvl)
 	f.health = _es(137, 158, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 12, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = _es(34, 39, 2, 4, lvl, 5)
+	f.physical_attack = _es(36, 41, 2, 4, lvl, 5)
 	f.physical_defense = _es(21, 26, 1, 3, lvl, 5)
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = _es(14, 18, 1, 2, lvl, 5)
 	f.speed = _es(18, 24, 1, 2, lvl, 5)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 5
+	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.crushing_claw(), EAB.chitin_shell()]
 	f.flavor_text = "A massive crustacean that drags itself along the rocky shore. Its barnacle-encrusted shell can withstand tremendous punishment."
 	return f
@@ -113,7 +113,7 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = _es(9, 12, 0, 1, lvl, 5)
 	f.speed = _es(30, 36, 2, 3, lvl, 5)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.feral_lunge(), EAB.brackish_howl()]
 	f.flavor_text = "A feral dog warped by prolonged exposure to corrupted tidewater. Its body is gaunt and its eyes burn with unnatural hunger."
 	return f
@@ -127,12 +127,12 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Blackwater Captain", lvl)
 	f.health = _es(314, 359, 6, 9, lvl, 8); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(52, 60, 3, 5, lvl, 8)
+	f.physical_attack = _es(54, 62, 3, 5, lvl, 8)
 	f.physical_defense = _es(33, 39, 2, 3, lvl, 8)
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 8)
 	f.magic_defense = _es(22, 27, 1, 2, lvl, 8)
 	f.speed = _es(26, 32, 1, 3, lvl, 8)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.boarding_axe(), EAB.captains_orders()]
 	f.flavor_text = "A ruthless pirate captain who commands the Blackwater fleet. Scars and sea salt have hardened both body and will."
 	return f
@@ -147,7 +147,7 @@ static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = _es(49, 56, 3, 5, lvl, 8)
 	f.magic_defense = _es(32, 38, 2, 3, lvl, 8)
 	f.speed = _es(28, 34, 2, 3, lvl, 8)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.brine_curse(), EAB.corrode_ward()]
 	f.flavor_text = "A sea-witch who sails with the corsair fleet, dealing in curses drawn from the deep. Saltwater itself bends to their hexes."
 	return f
@@ -162,7 +162,7 @@ static func create_abyssal_lurker(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = _es(52, 59, 3, 5, lvl, 9)
 	f.magic_defense = _es(27, 33, 2, 3, lvl, 9)
 	f.speed = _es(24, 30, 1, 3, lvl, 9)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.depth_pulse(), EAB.tidal_drain()]
 	f.flavor_text = "A deep-sea horror that surfaces near the coast when storms roll in. Its form is barely visible, a suggestion of tentacles and teeth in dark water."
 	return f
@@ -172,12 +172,12 @@ static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 	var f := _base(n, "Stormwrack Raptor", lvl)
 	f.health = _es(234, 267, 5, 8, lvl, 8); f.max_health = f.health
 	f.mana = _es(14, 18, 1, 3, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = _es(47, 54, 3, 5, lvl, 8)
+	f.physical_attack = _es(48, 55, 3, 5, lvl, 8)
 	f.physical_defense = _es(19, 24, 1, 2, lvl, 8)
 	f.magic_attack = _es(34, 40, 2, 4, lvl, 8)
 	f.magic_defense = _es(19, 24, 1, 2, lvl, 8)
 	f.speed = _es(36, 42, 2, 4, lvl, 8)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.lightning_dive(), EAB.static_screech()]
 	f.flavor_text = "A massive bird of prey that nests in storm clouds above the coast. Lightning crackles along its wingfeathers as it dives."
 	return f
