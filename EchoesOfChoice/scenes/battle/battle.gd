@@ -18,6 +18,7 @@ enum Phase {
 	STARTING,
 	TICKING_ATB,
 	PLAYER_ACTION,
+	PLAYER_ACTIONS_SUBMENU,
 	PLAYER_TARGET_ATTACK,
 	PLAYER_ABILITY_SELECT,
 	PLAYER_ABILITY_TARGET_ENEMY,
@@ -528,15 +529,25 @@ func _input(event: InputEvent) -> void:
 
 func _handle_cancel() -> void:
 	match _phase:
-		Phase.PLAYER_TARGET_ATTACK:
+		Phase.PLAYER_ACTIONS_SUBMENU:
 			# Back to main action menu
-			if _action_menu.choice_selected.is_connected(_on_target_selected):
-				_action_menu.choice_selected.disconnect(_on_target_selected)
+			if _action_menu.choice_selected.is_connected(_on_actions_submenu_selected):
+				_action_menu.choice_selected.disconnect(_on_actions_submenu_selected)
 			if not _action_menu.choice_selected.is_connected(_on_action_selected):
 				_action_menu.choice_selected.connect(_on_action_selected)
 			_action_menu.hide_menu()
 			_phase = Phase.PLAYER_ACTION
 			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.PLAYER_TARGET_ATTACK:
+			# Back to actions submenu
+			if _action_menu.choice_selected.is_connected(_on_target_selected):
+				_action_menu.choice_selected.disconnect(_on_target_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTIONS_SUBMENU
+			_show_actions_submenu()
 			get_viewport().set_input_as_handled()
 		Phase.PLAYER_ABILITY_SELECT:
 			# Back to main action menu
@@ -586,7 +597,7 @@ func _show_action_menu(actor: FighterData) -> void:
 			has_available = true
 			break
 
-	var options: Array[Dictionary] = [{"label": "Attack"}]
+	var options: Array[Dictionary] = [{"label": "Actions"}]
 	if has_available:
 		options.append({"label": "Ability"})
 	if _auto_battle_unlocked:
@@ -606,7 +617,7 @@ func _on_action_selected(index: int) -> void:
 			break
 
 	# Rebuild the same label list used in _show_action_menu to find action by index
-	var labels: Array[String] = ["Attack"]
+	var labels: Array[String] = ["Actions"]
 	if has_available:
 		labels.append("Ability")
 	if _auto_battle_unlocked:
@@ -616,9 +627,9 @@ func _on_action_selected(index: int) -> void:
 	var action: String = labels[index] if index < labels.size() else "Stats"
 
 	match action:
-		"Attack":
-			_phase = Phase.PLAYER_TARGET_ATTACK
-			_show_target_menu(_engine.enemies)
+		"Actions":
+			_phase = Phase.PLAYER_ACTIONS_SUBMENU
+			_show_actions_submenu()
 		"Ability":
 			_phase = Phase.PLAYER_ABILITY_SELECT
 			_show_ability_menu()
@@ -634,6 +645,47 @@ func _on_action_selected(index: int) -> void:
 		"Stats":
 			_phase = Phase.STATS_PICK
 			_show_stats_pick()
+
+
+func _show_actions_submenu() -> void:
+	var options: Array[Dictionary] = [
+		{"label": "Attack"}, {"label": "Block"},
+		{"label": "Rest"}, {"label": "Back"},
+	]
+	_action_menu.choice_selected.disconnect(_on_action_selected)
+	_action_menu.choice_selected.connect(_on_actions_submenu_selected)
+	_action_menu.show_choices(options, true)
+
+
+func _on_actions_submenu_selected(index: int) -> void:
+	_action_menu.hide_menu()
+	_action_menu.choice_selected.disconnect(_on_actions_submenu_selected)
+	_action_menu.choice_selected.connect(_on_action_selected)
+
+	var labels: Array[String] = ["Attack", "Block", "Rest", "Back"]
+	var action: String = labels[index] if index < labels.size() else "Back"
+
+	match action:
+		"Attack":
+			_phase = Phase.PLAYER_TARGET_ATTACK
+			_show_target_menu(_engine.enemies)
+		"Block":
+			if _is_mp_guest():
+				_rpc_submit_action.rpc_id(1, {"type": "block"})
+				_player_turn_done.emit()
+				return
+			_engine.perform_block(_current_actor)
+			_player_turn_done.emit()
+		"Rest":
+			if _is_mp_guest():
+				_rpc_submit_action.rpc_id(1, {"type": "rest"})
+				_player_turn_done.emit()
+				return
+			_engine.perform_rest(_current_actor)
+			_player_turn_done.emit()
+		"Back":
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
 
 
 func _show_target_menu(fighters: Array) -> void:
@@ -664,8 +716,8 @@ func _on_target_selected(index: int) -> void:
 		_action_menu.choice_selected.connect(_on_action_selected)
 		_action_menu.hide_menu()
 		if _phase == Phase.PLAYER_TARGET_ATTACK:
-			_phase = Phase.PLAYER_ACTION
-			_show_action_menu(_current_actor)
+			_phase = Phase.PLAYER_ACTIONS_SUBMENU
+			_show_actions_submenu()
 		else:
 			# Ability target, go back to ability list
 			_phase = Phase.PLAYER_ABILITY_SELECT
@@ -885,6 +937,17 @@ func _on_combat_event(target: FighterData, amount: int, event_type: String) -> v
 		"miss":
 			SFXManager.play(SFXManager.Category.WHOOSH, 0.7)
 			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))
+		"mp_restore":
+			card.show_floating_text("+%d MP" % amount, Color(0.3, 0.6, 1.0))
+			card.update_display(target)
+		"block":
+			SFXManager.play(SFXManager.Category.BUFF)
+			card.show_floating_text("BLOCK +%d MP" % amount, Color(0.4, 0.7, 1.0))
+			card.update_display(target)
+		"rest":
+			SFXManager.play(SFXManager.Category.SHIMMER)
+			card.show_floating_text("REST +%d MP" % amount, Color(0.5, 0.8, 0.4))
+			card.update_display(target)
 
 
 func _find_card_for_fighter(fighter: FighterData) -> PortraitCard:
@@ -1208,6 +1271,12 @@ func _execute_remote_action(actor: FighterData, action: Dictionary) -> void:
 			else:
 				if target_index < _engine.units.size():
 					_engine.use_ability_on_teammate(actor, _engine.units[target_index], ability)
+
+		"block":
+			_engine.perform_block(actor)
+
+		"rest":
+			_engine.perform_rest(actor)
 
 
 func _find_ability(actor: FighterData, ability_name: String) -> AbilityData:
