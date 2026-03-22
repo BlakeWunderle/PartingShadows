@@ -107,13 +107,13 @@ static func iron_link() -> AbilityData:
 # --- The Ancient Threadmaster ---
 
 static func primordial_dream() -> AbilityData:
-	return _make("Primordial Dream", "The first dream ever dreamed crashes down like a wave.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 5, true, 0, 0.0, 3)
+	return _make("Primordial Dream", "The first dream ever dreamed crashes down like a wave.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0, 3)
 
 static func loom_dominion() -> AbilityData:
-	return _make("Loom Dominion", "The Loom itself lashes out at the Threadmaster's command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)
+	return _make("Loom Dominion", "The Loom itself lashes out at the Threadmaster's command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0, 3)
 
 static func chain_of_ages() -> AbilityData:
-	return _make("Chain of Ages", "Centuries of stolen power weigh down every limb.", Enums.StatType.ATTACK, 6, 2, true, 6, true, 0, 0.0, 3)
+	return _make("Chain of Ages", "Centuries of stolen power weigh down every limb.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0, 3)
 
 # --- Dream Shackle ---
 
@@ -126,7 +126,7 @@ static func reclaim() -> AbilityData:
 # --- Loom Heart ---
 
 static func pulse_of_the_loom() -> AbilityData:
-	return _make("Pulse of the Loom", "The Loom's heartbeat mends and fortifies.", Enums.StatType.DEFENSE, 6, 2, false, 5, true, 0, 0.0, 3)
+	return _make("Pulse of the Loom", "The Loom's heartbeat mends and fortifies.", Enums.StatType.DEFENSE, 6, 2, false, 3, true, 0, 0.0, 3)
 
 static func loom_storm() -> AbilityData:
-	return _make("Loom Storm", "Threads of raw energy lash outward in every direction.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, true, 0, 0.0, 3)
+	return _make("Loom Storm", "Threads of raw energy lash outward in every direction.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0, 3)

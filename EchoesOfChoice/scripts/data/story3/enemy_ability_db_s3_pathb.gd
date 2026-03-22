@@ -181,10 +181,10 @@ static func thread_puppetry() -> AbilityData:
 	return _make("Thread Puppetry", "Lira pulls threads you cannot see.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0, 2)
 
 static func dreamers_harvest() -> AbilityData:
-	return _make("Dreamer's Harvest", "Every trust you gave her feeds her now.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, true, 0, 0.25, 3)
+	return _make("Dreamer's Harvest", "Every trust you gave her feeds her now.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, true, 0, 0.25, 3)
 
 static func liras_loom() -> AbilityData:
-	return _make("Lira's Loom", "The dream itself strikes at her command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)
+	return _make("Lira's Loom", "The dream itself strikes at her command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0, 3)
 
 # --- Tattered Deception (mixed glass cannon, magic defense shredder) ---
 
@@ -200,4 +200,4 @@ static func bastion_slam() -> AbilityData:
 	return _make("Bastion Slam", "The fortress itself strikes with a wall of solidified dream.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0, 2)
 
 static func nexus_shield() -> AbilityData:
-	return _make("Nexus Shield", "The bastion projects the nexus's remaining power outward.", Enums.StatType.DEFENSE, 6, 2, false, 5, true, 0, 0.0, 3)
+	return _make("Nexus Shield", "The bastion projects the nexus's remaining power outward.", Enums.StatType.DEFENSE, 6, 2, false, 3, true, 0, 0.0, 3)

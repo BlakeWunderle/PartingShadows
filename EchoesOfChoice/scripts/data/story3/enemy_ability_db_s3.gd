@@ -156,7 +156,7 @@ static func nightmare_crush() -> AbilityData:
 	return _make("Nightmare Crush", "The full weight of dread made physical.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0, 3)
 
 static func dream_rend() -> AbilityData:
-	return _make("Dream Rend", "The dreamscape tears apart around you.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, true, 0, 0.0, 3)
+	return _make("Dream Rend", "The dreamscape tears apart around you.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0, 3)
 
 static func dread_aura() -> AbilityData:
 	return _make("Dread Aura", "Courage withers in its presence.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0, 3)
@@ -228,7 +228,7 @@ static func loom_slam() -> AbilityData:
 	return _make("Loom Slam", "The guardian brings down a column of woven force.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0, 3)
 
 static func thread_storm() -> AbilityData:
-	return _make("Thread Storm", "A maelstrom of razor-sharp threads fills the air.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, true, 0, 0.0, 3)
+	return _make("Thread Storm", "A maelstrom of razor-sharp threads fills the air.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, true, 0, 0.0, 3)
 
 static func guardians_veil() -> AbilityData:
 	return _make("Guardian's Veil", "The guardian wraps itself in the Loom's protection.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0, 2)
@@ -305,11 +305,11 @@ static func consume_light() -> AbilityData:
 # --- The Threadmaster (final boss) ---
 
 static func dream_shatter() -> AbilityData:
-	return _make("Dream Shatter", "The Loom convulses and everything breaks.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 5, true, 0, 0.0, 3)
+	return _make("Dream Shatter", "The Loom convulses and everything breaks.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0, 3)
 
 static func loom_collapse() -> AbilityData:
-	return _make("Loom Collapse", "Pillars of woven reality crash down.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0, 3)
+	return _make("Loom Collapse", "Pillars of woven reality crash down.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0, 3)
 
 static func thread_of_oblivion() -> AbilityData:
-	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 6, true, 0, 0.0, 3)
+	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0, 3)
 

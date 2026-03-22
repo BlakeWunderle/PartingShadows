@@ -37,7 +37,7 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Lucid Phantom", lvl)
 	f.health = _es(397, 456, 5, 8, lvl, 12); f.max_health = f.health
-	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
+	f.mana = _es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = _es(27, 34, 2, 3, lvl, 12)
 	f.magic_attack = _es(78, 89, 3, 5, lvl, 12)
@@ -53,7 +53,7 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Thread Spinner", lvl)
 	f.health = _es(446, 513, 5, 8, lvl, 12); f.max_health = f.health
-	f.mana = _es(32, 38, 2, 4, lvl, 12); f.max_mana = f.mana
+	f.mana = _es(19, 23, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = _es(33, 41, 2, 3, lvl, 12)
 	f.magic_attack = _es(66, 77, 2, 4, lvl, 12)
@@ -69,7 +69,7 @@ static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Loom Sentinel", lvl)
 	f.health = _es(541, 618, 6, 9, lvl, 13); f.max_health = f.health
-	f.mana = _es(14, 18, 1, 2, lvl, 13); f.max_mana = f.mana
+	f.mana = _es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(82, 94, 3, 5, lvl, 13)
 	f.physical_defense = _es(46, 54, 2, 3, lvl, 13)
 	f.magic_attack = _es(8, 12, 0, 1, lvl, 13)
@@ -85,7 +85,7 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := _base(n, "Cult Shade", lvl)
 	f.health = _es(369, 426, 4, 7, lvl, 12); f.max_health = f.health
-	f.mana = _es(30, 36, 2, 4, lvl, 12); f.max_mana = f.mana
+	f.mana = _es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = _es(23, 29, 1, 3, lvl, 12)
 	f.magic_attack = _es(82, 94, 3, 5, lvl, 12)
@@ -101,7 +101,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Dream Warden", lvl)
 	f.health = _es(464, 532, 5, 8, lvl, 13); f.max_health = f.health
-	f.mana = _es(28, 34, 2, 3, lvl, 13); f.max_mana = f.mana
+	f.mana = _es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(72, 83, 2, 4, lvl, 13)
 	f.physical_defense = _es(35, 42, 2, 3, lvl, 13)
 	f.magic_attack = _es(72, 83, 2, 4, lvl, 13)
@@ -117,7 +117,7 @@ static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Thought Leech", lvl)
 	f.health = _es(406, 467, 5, 8, lvl, 13); f.max_health = f.health
-	f.mana = _es(30, 36, 2, 4, lvl, 13); f.max_mana = f.mana
+	f.mana = _es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = _es(27, 34, 1, 3, lvl, 13)
 	f.magic_attack = _es(78, 89, 3, 5, lvl, 13)
@@ -134,7 +134,7 @@ static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 	var f := _base(n, "Void Spinner", lvl)
 	f.health = _es(473, 542, 5, 8, lvl, 13); f.max_health = f.health
-	f.mana = _es(32, 38, 2, 4, lvl, 13); f.max_mana = f.mana
+	f.mana = _es(19, 23, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = _es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = _es(31, 38, 2, 3, lvl, 13)
 	f.magic_attack = _es(84, 97, 3, 5, lvl, 13)
@@ -150,7 +150,7 @@ static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Sanctum Guardian", lvl)
 	f.health = _es(631, 708, 6, 9, lvl, 14); f.max_health = f.health
-	f.mana = _es(32, 38, 2, 4, lvl, 14); f.max_mana = f.mana
+	f.mana = _es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = _es(78, 90, 3, 5, lvl, 14)
 	f.physical_defense = _es(42, 50, 2, 3, lvl, 14)
 	f.magic_attack = _es(78, 90, 3, 5, lvl, 14)

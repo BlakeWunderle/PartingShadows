@@ -136,7 +136,7 @@ static func roar() -> AbilityData:
 
 static func shadow_attack() -> AbilityData:
 	return _make("Shadow Attack", "Strike from the shadows with dark energy.",
-		Enums.StatType.MIXED_ATTACK, 7, 0, true, 5, false, 0, 0.0, 3)
+		Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0, 3)
 
 static func frustrate() -> AbilityData:
 	return _make("Frustrate", "Undermine the enemy's will to fight.",
@@ -148,7 +148,7 @@ static func ember() -> AbilityData:
 
 static func corruption() -> AbilityData:
 	return _make("Corruption", "Dark magic that corrodes the target.",
-		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, false, 0, 0.0, 2)
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
 static func shield_slam() -> AbilityData:
 	return _make("Shield Slam", "Bash the enemy with a heavy shield.",
