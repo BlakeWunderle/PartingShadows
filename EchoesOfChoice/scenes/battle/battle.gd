@@ -384,7 +384,6 @@ func _tick_loop() -> void:
 			_display_turn_order()
 
 			_engine.reset_modified_stat(actor)
-			_engine.tick_cooldowns(actor)
 			await _drain_messages()
 
 			if _engine.is_battle_over():
@@ -470,18 +469,8 @@ func _tick_loop() -> void:
 		_display_turn_order()
 
 
-# =============================================================================
-# Cooldown management
-# =============================================================================
-
-func _set_cooldown(fighter: FighterData, ability: AbilityData) -> void:
-	if ability.cooldown > 0:
-		fighter.ability_cooldowns[ability.ability_name] = ability.cooldown
-
-
 func _is_ability_available(fighter: FighterData, ability: AbilityData) -> bool:
-	return ability.mana_cost <= fighter.mana \
-		and fighter.ability_cooldowns.get(ability.ability_name, 0) <= 0
+	return ability.mana_cost <= fighter.mana
 
 
 # =============================================================================
@@ -720,11 +709,9 @@ func _on_target_selected(index: int) -> void:
 			else:
 				target = _engine.enemies[index]
 			_current_actor.mana -= _selected_ability.mana_cost
-			_set_cooldown(_current_actor, _selected_ability)
 			_engine.use_ability_on_enemy(_current_actor, target, _selected_ability)
 		Phase.PLAYER_ABILITY_TARGET_ALLY:
 			_current_actor.mana -= _selected_ability.mana_cost
-			_set_cooldown(_current_actor, _selected_ability)
 			_engine.use_ability_on_teammate(
 				_current_actor, _engine.units[index], _selected_ability)
 
@@ -740,18 +727,10 @@ func _show_ability_menu() -> void:
 	var options: Array[Dictionary] = []
 	for a: AbilityData in available:
 		var label: String = "%s (%d MP)" % [a.ability_name, a.mana_cost]
-		if a.cooldown > 0:
-			label += " [CD %d]" % a.cooldown
 		options.append({"label": label, "description": a.get_description()})
 	options.append({"label": "Back"})
 
 	_action_menu.show_choices(options, true)
-	_tip_overlay.show_tip_once("ability_cooldowns",
-		"Abilities have cooldowns shown as [CD X] next to their name. " +
-		"After using an ability, you must wait that many turns before " +
-		"you can use it again.\n\n" +
-		"Plan your turns carefully and rotate between different " +
-		"abilities while powerful ones recharge.")
 	_action_menu.choice_selected.disconnect(_on_action_selected)
 	_action_menu.choice_selected.connect(_on_ability_selected)
 
@@ -791,7 +770,6 @@ func _on_ability_selected(index: int) -> void:
 
 		# AoE, no target selection needed
 		_current_actor.mana -= _selected_ability.mana_cost
-		_set_cooldown(_current_actor, _selected_ability)
 		if _selected_ability.use_on_enemy:
 			_add_log("%s targets all enemies!" % _current_actor.character_name)
 			for enemy: FighterData in _engine.enemies.duplicate():
@@ -1205,7 +1183,6 @@ func _execute_remote_action(actor: FighterData, action: Dictionary) -> void:
 				_engine.physical_attack(actor, _engine.enemies[0])
 				return
 			actor.mana -= ability.mana_cost
-			_set_cooldown(actor, ability)
 			if ability.target_all:
 				for enemy: FighterData in _engine.enemies.duplicate():
 					_engine.use_ability_on_enemy(actor, enemy, ability, true)
@@ -1225,7 +1202,6 @@ func _execute_remote_action(actor: FighterData, action: Dictionary) -> void:
 			if ability == null:
 				return
 			actor.mana -= ability.mana_cost
-			_set_cooldown(actor, ability)
 			if ability.target_all:
 				for ally: FighterData in _engine.units.duplicate():
 					_engine.use_ability_on_teammate(actor, ally, ability, true)
@@ -1286,7 +1262,6 @@ func _serialize_fighter_combat(f: FighterData) -> Dictionary:
 		"speed": f.speed,
 		"crit": f.crit_chance,
 		"dodge": f.dodge_chance,
-		"cooldowns": f.ability_cooldowns.duplicate(),
 	}
 
 
@@ -1303,8 +1278,6 @@ func _apply_fighter_combat(f: FighterData, data: Dictionary) -> void:
 	f.speed = data.get("speed", f.speed)
 	f.crit_chance = data.get("crit", f.crit_chance)
 	f.dodge_chance = data.get("dodge", f.dodge_chance)
-	var cd = data.get("cooldowns", {})
-	f.ability_cooldowns = cd.duplicate() if cd is Dictionary else {}
 
 
 ## Host -> All: Full state sync after each action.

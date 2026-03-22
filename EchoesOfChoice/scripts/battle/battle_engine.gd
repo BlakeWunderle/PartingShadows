@@ -367,25 +367,6 @@ func finish_battle() -> void:
 
 
 # =============================================================================
-# Cooldown
-# =============================================================================
-
-func tick_cooldowns(fighter: FighterData) -> void:
-	var expired: Array[String] = []
-	for ability_name: String in fighter.ability_cooldowns:
-		fighter.ability_cooldowns[ability_name] -= 1
-		if fighter.ability_cooldowns[ability_name] <= 0:
-			expired.append(ability_name)
-	for ability_name: String in expired:
-		fighter.ability_cooldowns.erase(ability_name)
-
-
-func _set_cooldown(fighter: FighterData, ability: AbilityData) -> void:
-	if ability.cooldown > 0:
-		fighter.ability_cooldowns[ability.ability_name] = ability.cooldown
-
-
-# =============================================================================
 # Crit & dodge
 # =============================================================================
 
@@ -438,8 +419,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 	for a: AbilityData in unit.abilities:
 		if a.mana_cost > unit.mana:
 			continue
-		if unit.ability_cooldowns.get(a.ability_name, 0) > 0:
-			continue
 		affordable.append(a)
 
 		if a.use_on_enemy:
@@ -466,7 +445,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		if wounded != null:
 			var heal: AbilityData = _weighted_pick(heal_abilities)
 			unit.mana -= heal.mana_cost
-			_set_cooldown(unit, heal)
 			if heal.target_all:
 				if not sim_mode:
 					combat_message.emit(heal.flavor_text)
@@ -485,7 +463,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var taunt_chance: float = tank_ratio * (targets.size() / 3.0)
 		if randf() < taunt_chance:
 			unit.mana -= taunt_ability.mana_cost
-			_set_cooldown(unit, taunt_ability)
 			use_ability_on_teammate(unit, unit, taunt_ability)
 			return
 
@@ -503,7 +480,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 						break
 				if any_unbuffed:
 					unit.mana -= buff.mana_cost
-					_set_cooldown(unit, buff)
 					if not sim_mode:
 						combat_message.emit(buff.flavor_text)
 					for ally: FighterData in allies:
@@ -521,7 +497,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 							buff_target = ally
 				if buff_target != null and not _has_modifier(buff_target, buff.modified_stat, false):
 					unit.mana -= buff.mana_cost
-					_set_cooldown(unit, buff)
 					use_ability_on_teammate(unit, buff_target, buff)
 					return
 
@@ -540,7 +515,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var ability: AbilityData = _choose_offensive_ability(
 			unit, offensive_abilities, magic_ratio)
 		unit.mana -= ability.mana_cost
-		_set_cooldown(unit, ability)
 		if ability.target_all:
 			if not sim_mode:
 				combat_message.emit(ability.flavor_text)
@@ -586,13 +560,13 @@ func _find_max_health(targets: Array) -> FighterData:
 
 
 func _weighted_pick(abilities: Array[AbilityData]) -> AbilityData:
-	## Pick an ability weighted by cooldown (higher CD = stronger = preferred).
+	## Pick an ability weighted by mana cost (higher cost = stronger = preferred).
 	var total: float = 0.0
 	for a: AbilityData in abilities:
-		total += 1.0 + a.cooldown
+		total += 1.0 + a.mana_cost
 	var roll: float = randf() * total
 	for a: AbilityData in abilities:
-		roll -= 1.0 + a.cooldown
+		roll -= 1.0 + a.mana_cost
 		if roll <= 0.0:
 			return a
 	return abilities[abilities.size() - 1]

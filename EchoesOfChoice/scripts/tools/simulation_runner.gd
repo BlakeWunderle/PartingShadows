@@ -51,7 +51,6 @@ static func run_single_battle(party: Array, enemies: Array,
 			if engine.is_battle_over():
 				break
 			engine.reset_modified_stat(actor)
-			engine.tick_cooldowns(actor)
 			var is_player := engine.units.has(actor)
 			var targets: Array = engine.enemies if is_player else engine.units
 			var allies: Array = engine.units if is_player else engine.enemies

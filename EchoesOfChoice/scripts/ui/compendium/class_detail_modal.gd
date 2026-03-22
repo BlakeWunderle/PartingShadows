@@ -121,9 +121,6 @@ func build_content(container: VBoxContainer) -> void:
 		var cost: int = ability.get("mana_cost", 0)
 		if cost > 0:
 			name_text += "  (%d MP)" % cost
-		var cd: int = ability.get("cooldown", 0)
-		if cd > 0:
-			name_text += "  [%d turn CD]" % cd
 		var ability_name_label := Label.new()
 		ability_name_label.text = name_text
 		ability_name_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
