@@ -33,12 +33,12 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Gaze Stalker", lvl)
 	f.health = _es(410, 465, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = _es(18, 23, 1, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(73, 85, 3, 5, lvl, 14)
+	f.physical_attack = _es(74, 86, 3, 5, lvl, 14)
 	f.physical_defense = _es(35, 43, 2, 3, lvl, 14)
 	f.magic_attack = _es(72, 82, 3, 5, lvl, 14)
 	f.magic_defense = _es(31, 39, 2, 3, lvl, 14)
 	f.speed = _es(36, 42, 2, 3, lvl, 14)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EAB.piercing_gaze_strike(), EAB.focus_break()]
 	f.flavor_text = "A swift predator that serves as the Eye's hunting hound. It locks onto its prey with an unblinking stare that shatters concentration."
 	return f
@@ -53,7 +53,7 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = _es(107, 123, 3, 5, lvl, 14)
 	f.magic_defense = _es(45, 53, 2, 4, lvl, 14)
 	f.speed = _es(31, 37, 2, 3, lvl, 14)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 15
+	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.harvest_thought(), EAB.mass_extraction()]
 	f.flavor_text = "A grotesque collector that reaps thoughts like grain. The memories it steals are fed directly to the Eye, fueling its terrible awareness."
 	return f
@@ -78,12 +78,12 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := _base(n, "Thoughtform Knight", lvl)
 	f.health = _es(630, 720, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = _es(23, 29, 2, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = _es(121, 140, 3, 5, lvl, 14)
+	f.physical_attack = _es(122, 141, 3, 5, lvl, 14)
 	f.physical_defense = _es(58, 68, 3, 5, lvl, 14)
 	f.magic_attack = _es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = _es(47, 55, 2, 4, lvl, 14)
 	f.speed = _es(24, 30, 1, 3, lvl, 14)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 19
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.memory_blade(), EAB.ironclad_will()]
 	f.flavor_text = "A warrior conjured from stolen memories of great knights. It fights with borrowed valor and an unshakable conviction that it is real."
 	return f
