@@ -24,16 +24,22 @@ Story 2 has 18 progressions (Prog 0-17), 24 battle stages. Harder than Story 1: 
 
 **Cross-story validation**: After ANY Wanderer tree change, re-validate Story 1. If S1 breaks, revert and compensate with S2 enemy adjustments.
 
-## Power Curve
+## Power Curve -- Post-Combat-Rework
 
-| Archetype | Peak Window | Tunable? |
-|-----------|-------------|----------|
-| **Squire** | Prog 0-2 | LOCKED |
-| **Wanderer** | Prog 0-4 | **YES** |
-| **Mage** | Prog 3-7 | LOCKED |
-| **Entertainer** | Throughout | LOCKED |
-| **Tinker** | Prog 8+ | LOCKED |
-| **Wildling** | Prog 2-8 | LOCKED |
+| Archetype | T0 Avg | Behavior | Tunable? |
+|-----------|--------|----------|----------|
+| **Tinker** | 80.2% | Leads T0 in caves. Benefits from mixed attack profile vs high-PDEF cave enemies. | LOCKED |
+| **Wanderer** | 77.4% | Strong T0 thanks to magic defense vs cave magic. Volatile per-battle. | **YES** |
+| **Wildling** | 77.5% | Mid-pack, consistent. | LOCKED |
+| **Squire** | 76.3% | Mid-pack in S2. Cave enemies counter physical with high PDEF. | LOCKED |
+| **Mage** | 75.2% | Mid-pack. Cave enemies are magic-heavy so Mage offense is decent here. | LOCKED |
+| **Entertainer** | 71.9% | Weakest in S2 T0. Low physical and magic attack hurts MP sustain. | LOCKED |
+
+### S2-Specific Notes
+
+- Cave enemies have high PDEF, which naturally counters Squire dominance seen in S1
+- This creates the tightest T0 spreads across all stories (good)
+- Tinker leads due to mixed attack profile bypassing PDEF stacking
 
 ## Difficulty Gradient
 

@@ -69,11 +69,11 @@ static func mockery() -> AbilityData:
 static func demoralize() -> AbilityData:
 	return _make("Demoralize",
 		"A mocking performance that saps the enemy's fighting spirit. Reduces attacks.",
-		Enums.StatType.ATTACK, 2, 2, true, 3, true, 0, 0.0, 2)
+		Enums.StatType.ATTACK, 3, 2, true, 3, true, 0, 0.0, 2)
 
 static func inspire() -> AbilityData:
 	return _make("Inspire", "A quick word of encouragement quickens an ally.",
-		Enums.StatType.SPEED, 2, 2, false, 1)
+		Enums.StatType.SPEED, 3, 2, false, 1)
 
 
 static func proof() -> AbilityData:

@@ -38,7 +38,7 @@ static func create_dream_wisp(n: String, lvl: int = 1) -> FighterData:
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 1)
 	f.magic_attack = _es(15, 18, 1, 3, lvl, 1)
 	f.magic_defense = _es(10, 14, 1, 2, lvl, 1)
-	f.speed = _es(27, 32, 1, 3, lvl, 1)
+	f.speed = _es(26, 31, 1, 3, lvl, 1)
 	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.shimmer_bolt(), EAB.daze()]
 	f.flavor_text = "A flickering mote of dream-light that drifts through the sleeping mind. Its glow entrances the unwary before striking with bursts of raw thought."

@@ -99,7 +99,7 @@ static func create_echo_wisp(n: String, lvl: int = 2) -> FighterData:
 
 static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Spore Stalker", lvl)
-	f.health = _es(42, 50, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(40, 48, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(15, 18, 1, 3, lvl, 2)
 	f.physical_defense = _es(7, 10, 0, 1, lvl, 2)
@@ -114,7 +114,7 @@ static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 
 static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Fungal Hulk", lvl)
-	f.health = _es(63, 74, 4, 6, lvl, 2); f.max_health = f.health
+	f.health = _es(61, 72, 4, 6, lvl, 2); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(17, 21, 1, 3, lvl, 2)
 	f.physical_defense = _es(11, 15, 1, 2, lvl, 2)
@@ -129,7 +129,7 @@ static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 
 static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 	var f := _base(n, "Cap Wisp", lvl)
-	f.health = _es(36, 44, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = _es(34, 42, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = _es(8, 10, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = _es(7, 10, 0, 1, lvl, 2)
 	f.physical_defense = _es(6, 9, 0, 1, lvl, 2)
@@ -197,7 +197,7 @@ static func create_pale_crayfish(n: String, lvl: int = 3) -> FighterData:
 
 static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 	var f := _base(n, "Cave Dweller", lvl)
-	f.health = _es(62, 77, 3, 5, lvl, 3); f.max_health = f.health
+	f.health = _es(59, 74, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 1, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(19, 23, 2, 3, lvl, 3)
 	f.physical_defense = _es(12, 16, 1, 2, lvl, 3)
@@ -212,7 +212,7 @@ static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 
 static func create_tunnel_shaman(n: String, lvl: int = 3) -> FighterData:
 	var f := _base(n, "Tunnel Shaman", lvl)
-	f.health = _es(51, 60, 2, 4, lvl, 3); f.max_health = f.health
+	f.health = _es(48, 57, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = _es(9, 11, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(7, 10, 0, 1, lvl, 3)
 	f.physical_defense = _es(8, 11, 0, 2, lvl, 3)
@@ -227,7 +227,7 @@ static func create_tunnel_shaman(n: String, lvl: int = 3) -> FighterData:
 
 static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 	var f := _base(n, "Burrow Scout", lvl)
-	f.health = _es(45, 53, 2, 4, lvl, 3); f.max_health = f.health
+	f.health = _es(42, 50, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 1, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(17, 21, 1, 3, lvl, 3)
 	f.physical_defense = _es(7, 10, 0, 1, lvl, 3)

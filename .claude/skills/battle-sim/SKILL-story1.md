@@ -32,29 +32,23 @@ Story 1 has 14 progressions (Prog 0-13), 22 battle stages, and uses all 6 base c
 | 12 | 69% | 66-72% | T2 | GateBattle |
 | 13 | 65% | 62-68% | T2 | StrangerFinalBattle |
 
-## Power Curve (6 Archetypes)
+## Power Curve (6 Archetypes) -- Post-Combat-Rework
 
-| Archetype | Peak Window | Behavior |
-|-----------|-------------|----------|
-| **Squire** | Prog 0-2 | Highest win rate at base tier. Tapers to mid-pack by Prog 5+. |
-| **Wanderer** | Prog 0-4 | Magic-defense fighter. Strong early, tapers mid-pack by Prog 5+. |
-| **Mage** | Prog 3-7 | Ramps after T1. Peaks mid-game. |
-| **Entertainer** | Throughout | Consistently strong. Never flagged WEAK. |
-| **Tinker** | Prog 8-13 | Weakest early, highest growth. Top performer by endgame. |
-| **Wildling** | Prog 2-8 | Competitive mid-game, not dominant at extremes. |
+| Archetype | T0 Avg | Behavior |
+|-----------|--------|----------|
+| **Squire** | 95.1% | Dominates T0. Basic attacks + Block/Rest = no mana needed. Tapers once enemies get tougher. |
+| **Wildling** | 90.3% | Strong T0, benefits from physical sustain loop. |
+| **Tinker** | 86.4% | Consistently strong across all stories and tiers. |
+| **Entertainer** | 81.9% | Mid-pack. Reliable but never top. |
+| **Mage** | 75.0% | Weak at T0. Low physical attack = minimal MP-on-hit. Relies on mana for abilities but caps reduced. Ramps after T1. |
+| **Wanderer** | 73.7% | Weak-to-mid at T0 in S1 despite magic defense. Strong in S3 vs dream magic enemies (92.5% DreamMeadow). Story-dependent. |
 
-### Fixing Curve Problems
+### Key Rework Effects
 
-| Problem | Fix | Where | Cascade |
-|---------|-----|-------|---------|
-| Squire too weak early | Buff base stats | `fighter_db.gd` | Prog 0 |
-| Squire too strong late | Reduce T2 growth | `fighter_db_t2.gd` / `t2b.gd` | Prog 8 |
-| Wanderer too weak early | Buff base stats | `fighter_db.gd` | Prog 0 |
-| Wanderer too strong mid | Reduce T1 growth | `fighter_db_t1.gd` | Prog 3 |
-| Mage doesn't spike mid | Buff T1 growth | `fighter_db_t1.gd` | Prog 3 |
-| Entertainer flagged WEAK | Buff base or growth | `fighter_db.gd` / `t1` | Affected prog |
-| Tinker still weak late | Buff T2 growth | `fighter_db_t2.gd` / `t2b.gd` | Prog 8 |
-| Wildling too weak mid | Buff T1 growth | `fighter_db_t1.gd` | Prog 3 |
+- MP-on-hit (`magic_attack / 7`) heavily favors physical classes at T0 since Mage/Entertainer have low physical attack
+- Block + Rest sustain loop means physical classes rarely need mana abilities to win
+- Mage improves significantly at T1+ when mana pools and ability modifiers scale up
+- Enemy PDEF is the primary lever for closing Squire/physical class gaps without hurting casters
 
 ## Class Band Table
 

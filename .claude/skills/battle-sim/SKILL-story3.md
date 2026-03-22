@@ -18,6 +18,23 @@ Story 3 ("The Woven Night") is the hardest story: 75% down to 50% across 13 prog
 
 No cross-story validation needed since no player classes can change.
 
+## Power Curve -- Post-Combat-Rework
+
+| Archetype | T0 Avg | Behavior |
+|-----------|--------|----------|
+| **Tinker** | 81.7% | Leads T0 overall. Mixed attack profile bypasses dream enemy defenses. |
+| **Squire** | 81.4% | Strong but volatile. Dominates MirrorHall (92%) but average elsewhere. |
+| **Wanderer** | 78.2% | High magic defense counters dream magic. Dominates DreamMeadow (92.5%). |
+| **Wildling** | 75.9% | Mid-pack, consistent across battles. |
+| **Mage** | 70.4% | Below mid. Struggles in MirrorHall (60.1%). MP sustain issues persist. |
+| **Entertainer** | 67.0% | Weakest in S3 T0. Low attack = poor MP-on-hit sustain vs dream enemies. |
+
+### S3-Specific Notes
+
+- Dream enemies are magic-heavy, giving Wanderer a natural advantage (high MDEF)
+- Physical classes still strong due to Block/Rest sustain not needing mana
+- Entertainer consistently underperforms here; enemy PDEF adjustments can help narrow the Squire gap without worsening Entertainer
+
 ## Difficulty Gradient
 
 | Prog | Target | Range | Tier | Battles |
