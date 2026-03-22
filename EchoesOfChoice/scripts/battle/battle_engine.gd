@@ -567,8 +567,13 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 				return
 
 	if mp_pct < 0.3 and hp_pct >= 0.35:
-		perform_rest(unit)
-		return
+		if unit.is_user_controlled:
+			perform_rest(unit)
+			return
+		else:
+			if randf() < 0.25:
+				perform_rest(unit)
+				return
 
 	# Priority 3: Offensive ability vs physical attack
 	var ability_chance: float = magic_ratio
