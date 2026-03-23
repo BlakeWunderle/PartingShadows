@@ -22,6 +22,7 @@ const GLOBAL_FILES: Array[String] = [
 	"res://scripts/tools/party_composer.gd",
 	"res://scripts/tools/simulation_runner.gd",
 	"res://scripts/tools/battle_stage_db.gd",
+	"res://scripts/tools/battle_stage_db_s2s3.gd",
 	"res://scripts/battle/battle_engine.gd",
 ]
 
