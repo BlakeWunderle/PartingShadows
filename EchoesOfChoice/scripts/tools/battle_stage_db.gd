@@ -425,8 +425,8 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBS3.create_dusk_sentinel("Twilight Warden")]
 		"S3_DreamNightmare":
 			return [EnemyDBS3.create_the_nightmare("The Nightmare"),
-				EnemyDBS3.create_nightmare_hound("Shadow Fang"),
-				EnemyDBS3.create_hollow_echo("Distant Cry")]
+				EnemyDBS3.create_nightmare_guard("Dread Sentinel"),
+				EnemyDBS3.create_void_echo("Fading Cry")]
 		"S3_LucidDream":
 			return [EnemyDBS3Act3.create_lucid_phantom("Aware One"),
 				EnemyDBS3Act3.create_thread_spinner("Spindle"),

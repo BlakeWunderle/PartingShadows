@@ -233,8 +233,8 @@ static func s3_dream_nightmare() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_nightmare.png"
 	b.enemies = [
 		EnemyDB.create_the_nightmare("The Nightmare"),
-		EnemyDB.create_nightmare_hound("Shadow Fang"),
-		EnemyDB.create_hollow_echo("Distant Cry"),
+		EnemyDB.create_nightmare_guard("Dread Sentinel"),
+		EnemyDB.create_void_echo("Fading Cry"),
 	]
 	b.pre_battle_text = [
 		"The space beneath the dream is vast and formless. A presence fills it, heavier than air, denser than thought.",

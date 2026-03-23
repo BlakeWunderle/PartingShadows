@@ -32,14 +32,14 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_thread_lurker(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Thread Lurker", lvl)
-	f.health = _es(168, 196, 3, 6, lvl, 5); f.max_health = f.health
+	f.health = _es(185, 215, 3, 6, lvl, 5); f.max_health = f.health
 	f.mana = _es(5, 7, 1, 1, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(24, 28, 1, 3, lvl, 5)
 	f.physical_defense = _es(13, 16, 1, 2, lvl, 5)
 	f.magic_attack = _es(10, 13, 0, 2, lvl, 5)
 	f.magic_defense = _es(12, 15, 1, 2, lvl, 5)
-	f.speed = _es(30, 35, 1, 3, lvl, 5)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 12
+	f.speed = _es(31, 36, 1, 3, lvl, 5)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.thread_ambush(), EAB.web_snare()]
 	f.flavor_text = "A spindly predator that clings to the threads woven through the dream. It waits in stillness until prey draws near, then strikes from the tangled weave."
 	return f
@@ -47,14 +47,14 @@ static func create_thread_lurker(n: String, lvl: int = 5) -> FighterData:
 
 static func create_dream_sentinel(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Dream Sentinel", lvl)
-	f.health = _es(217, 252, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(237, 275, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 1, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(19, 23, 1, 2, lvl, 5)
 	f.physical_defense = _es(18, 22, 1, 3, lvl, 5)
 	f.magic_attack = _es(11, 14, 0, 2, lvl, 5)
 	f.magic_defense = _es(16, 19, 1, 2, lvl, 5)
-	f.speed = _es(23, 28, 1, 2, lvl, 5)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 4
+	f.speed = _es(24, 29, 1, 2, lvl, 5)
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.sentinel_strike(), EAB.woven_guard()]
 	f.flavor_text = "A towering guardian woven from layered dream-thread. It was placed here by the cult to keep the deeper passages sealed against intruders."
 	return f
@@ -62,14 +62,14 @@ static func create_dream_sentinel(n: String, lvl: int = 5) -> FighterData:
 
 static func create_gloom_spinner(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Gloom Spinner", lvl)
-	f.health = _es(147, 175, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(163, 192, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(8, 11, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(10, 13, 0, 2, lvl, 5)
 	f.physical_defense = _es(10, 13, 1, 2, lvl, 5)
 	f.magic_attack = _es(22, 28, 1, 3, lvl, 5)
 	f.magic_defense = _es(14, 17, 1, 2, lvl, 5)
-	f.speed = _es(27, 32, 1, 2, lvl, 5)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 7
+	f.speed = _es(28, 33, 1, 2, lvl, 5)
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.shadow_thread(), EAB.gloom_web()]
 	f.flavor_text = "A caster that draws darkness from the dream's frayed edges and spins it into sticky webs of gloom. Anything caught in its threads loses the will to fight."
 	return f
@@ -81,14 +81,14 @@ static func create_gloom_spinner(n: String, lvl: int = 5) -> FighterData:
 
 static func create_drowned_reverie(n: String, lvl: int = 6) -> FighterData:
 	var f := _base(n, "Drowned Reverie", lvl)
-	f.health = _es(235, 271, 3, 6, lvl, 6); f.max_health = f.health
+	f.health = _es(218, 252, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = _es(9, 11, 1, 2, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = _es(11, 14, 0, 2, lvl, 6)
 	f.physical_defense = _es(12, 15, 1, 2, lvl, 6)
 	f.magic_attack = _es(26, 30, 1, 3, lvl, 6)
 	f.magic_defense = _es(15, 18, 1, 2, lvl, 6)
 	f.speed = _es(27, 32, 1, 2, lvl, 6)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 3
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [EAB.memory_surge(), EAB.deep_pulse()]
 	f.flavor_text = "A spectral figure that drifts through flooded corridors, trailing memories like bubbles. It unleashes surges of recalled emotion that overwhelm the mind."
 	return f
@@ -96,14 +96,14 @@ static func create_drowned_reverie(n: String, lvl: int = 6) -> FighterData:
 
 static func create_riptide_beast(n: String, lvl: int = 6) -> FighterData:
 	var f := _base(n, "Riptide Beast", lvl)
-	f.health = _es(226, 263, 3, 6, lvl, 6); f.max_health = f.health
+	f.health = _es(215, 250, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = _es(5, 7, 1, 1, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = _es(27, 31, 1, 3, lvl, 6)
 	f.physical_defense = _es(14, 17, 1, 2, lvl, 6)
 	f.magic_attack = _es(10, 13, 0, 2, lvl, 6)
 	f.magic_defense = _es(12, 15, 1, 2, lvl, 6)
 	f.speed = _es(32, 37, 1, 3, lvl, 6)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 7
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.riptide_slash(), EAB.swift_current()]
 	f.flavor_text = "A ferocious aquatic predator that surges through dream-water with blinding speed. Its claws carry the force of a riptide, dragging victims under."
 	return f
@@ -111,14 +111,14 @@ static func create_riptide_beast(n: String, lvl: int = 6) -> FighterData:
 
 static func create_depth_crawler(n: String, lvl: int = 6) -> FighterData:
 	var f := _base(n, "Depth Crawler", lvl)
-	f.health = _es(253, 289, 3, 6, lvl, 6); f.max_health = f.health
+	f.health = _es(235, 268, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = _es(6, 8, 1, 1, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = _es(22, 26, 1, 3, lvl, 6)
 	f.physical_defense = _es(16, 19, 1, 2, lvl, 6)
 	f.magic_attack = _es(20, 24, 1, 2, lvl, 6)
 	f.magic_defense = _es(14, 17, 1, 2, lvl, 6)
 	f.speed = _es(26, 31, 1, 2, lvl, 6)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 2
+	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 2
 	f.abilities = [EAB.thread_burn(), EAB.latch()]
 	f.flavor_text = "A many-legged thing that scuttles through the drowned depths, burning through dream-threads with caustic secretions. Once it latches on, it does not let go."
 	return f
@@ -179,14 +179,14 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 
 static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Shadow Pursuer", lvl)
-	f.health = _es(265, 310, 3, 6, lvl, 7); f.max_health = f.health
+	f.health = _es(255, 298, 3, 6, lvl, 7); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 1, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = _es(30, 35, 1, 3, lvl, 7)
+	f.physical_attack = _es(29, 34, 1, 3, lvl, 7)
 	f.physical_defense = _es(15, 18, 1, 2, lvl, 7)
 	f.magic_attack = _es(12, 15, 0, 2, lvl, 7)
 	f.magic_defense = _es(14, 17, 1, 2, lvl, 7)
-	f.speed = _es(34, 39, 1, 3, lvl, 7)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 14
+	f.speed = _es(33, 38, 1, 3, lvl, 7)
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.shadow_strike(), EAB.relentless_hound()]
 	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. No matter how far you run, it always closes the distance."
 	return f
@@ -194,14 +194,14 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 
 static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Dread Tendril", lvl)
-	f.health = _es(250, 295, 3, 6, lvl, 7); f.max_health = f.health
+	f.health = _es(241, 285, 3, 6, lvl, 7); f.max_health = f.health
 	f.mana = _es(10, 13, 1, 2, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(12, 15, 0, 2, lvl, 7)
 	f.physical_defense = _es(14, 17, 1, 2, lvl, 7)
-	f.magic_attack = _es(28, 33, 1, 3, lvl, 7)
+	f.magic_attack = _es(27, 32, 1, 3, lvl, 7)
 	f.magic_defense = _es(16, 19, 1, 2, lvl, 7)
 	f.speed = _es(28, 33, 1, 2, lvl, 7)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 9
 	f.abilities = [EAB.dread_lash(), EAB.terror_grip()]
 	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. Its grip paralyzes the will and leaves victims unable to move or cry out."
 	return f
@@ -209,14 +209,14 @@ static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 
 static func create_faded_voice(n: String, lvl: int = 7) -> FighterData:
 	var f := _base(n, "Faded Voice", lvl)
-	f.health = _es(230, 270, 3, 5, lvl, 7); f.max_health = f.health
+	f.health = _es(223, 261, 3, 5, lvl, 7); f.max_health = f.health
 	f.mana = _es(9, 11, 1, 2, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = _es(13, 16, 0, 2, lvl, 7)
 	f.physical_defense = _es(13, 16, 1, 2, lvl, 7)
-	f.magic_attack = _es(24, 29, 1, 3, lvl, 7)
+	f.magic_attack = _es(23, 28, 1, 3, lvl, 7)
 	f.magic_defense = _es(15, 18, 1, 2, lvl, 7)
 	f.speed = _es(29, 34, 1, 2, lvl, 7)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.echoed_cry(), EAB.fade()]
 	f.flavor_text = "The remnant of a voice that once belonged to a real person, now stripped of meaning and body. It cries out in fragments, and each echo saps the strength of those who hear it."
 	return f

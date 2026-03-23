@@ -161,6 +161,22 @@ static func dream_rend() -> AbilityData:
 static func dread_aura() -> AbilityData:
 	return _make("Dread Aura", "Courage withers in its presence.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0, 3)
 
+# --- Nightmare Guard ---
+
+static func dread_fang() -> AbilityData:
+	return _make("Dread Fang", "Corrupted jaws snap with the weight of stolen nightmares.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0, 2)
+
+static func guardian_howl() -> AbilityData:
+	return _make("Guardian Howl", "A rallying cry that hardens the resolve of the Nightmare's servants.", Enums.StatType.DEFENSE, 4, 2, false, 3, true, 0, 0.0, 3)
+
+# --- Void Echo ---
+
+static func void_siphon() -> AbilityData:
+	return _make("Void Siphon", "It drinks the warmth from thought itself.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3, 2)
+
+static func hollow_wail() -> AbilityData:
+	return _make("Hollow Wail", "A keening cry that strips away all defenses.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0, 3)
+
 
 # =============================================================================
 # Act III: Cult dream guardian abilities
