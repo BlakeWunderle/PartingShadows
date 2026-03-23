@@ -18,7 +18,7 @@ static func upgrade_to_duelist(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 1; f.magic_defense += 1
 	f.speed += 3; f.crit_chance += 5; f.crit_damage += 1; f.dodge_chance += 1
-	f.abilities = [AbilityDB.slash(), PAB.feint(), PAB.riposte()]
+	f.abilities = [PAB.lunge(), PAB.feint(), PAB.riposte()]
 	f.upgrade_items = ["Horse", "Spear"]
 
 static func upgrade_to_ranger(f: FighterData) -> void:
@@ -77,7 +77,7 @@ static func upgrade_to_invoker(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 1; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
-	f.abilities = [AbilityDB.arcane_bolt(), PAB.elemental_surge(), PAB.arcane_ward()]
+	f.abilities = [PAB.elemental_barrage(), PAB.elemental_surge(), PAB.elemental_focus()]
 	f.upgrade_items = ["FireStone", "WaterStone", "LightningStone"]
 
 static func upgrade_to_acolyte(f: FighterData) -> void:
@@ -125,7 +125,7 @@ static func upgrade_to_dervish(f: FighterData) -> void:
 	f.class_id = "Dervish"; f.character_type = "Dervish"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 1; f.magic_defense += 2
-	f.speed += 4; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 5
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 3
 	f.abilities = [PAB.mesmerize(), PAB.dance(), PAB.whirling_step()]
 	f.upgrade_items = ["Light", "Paint"]
 
@@ -177,7 +177,7 @@ static func upgrade_to_artificer(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 1
 	f.speed += 1; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
-	f.abilities = [AbilityDB.energy_blast(), PAB.magical_tinkering(), PAB.flash_powder()]
+	f.abilities = [PAB.volatile_flask(), PAB.magical_tinkering(), PAB.healing_draught()]
 	f.upgrade_items = ["Potion", "Hammer"]
 
 static func upgrade_to_cosmologist(f: FighterData) -> void:
@@ -244,7 +244,7 @@ static func upgrade_to_shaman(f: FighterData) -> void:
 	f.health += 6; f.max_health += 6; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 3; f.physical_defense += 1; f.magic_attack += 4; f.magic_defense += 1
 	f.speed += 1; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
-	f.abilities = [PAB.spectral_lance(), PAB.player_hex(), PAB.spirit_ward()]
+	f.abilities = [PAB.spirit_bolt(), PAB.ancestral_curse(), PAB.spirit_veil()]
 	f.upgrade_items = ["Shrunkenhead", "SpiritOrb"]
 
 static func upgrade_to_beastcaller(f: FighterData) -> void:
@@ -270,7 +270,7 @@ static func _lu_shaman(f: FighterData) -> void:
 	var hp := randi_range(7, 9); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(1, 2)
+	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
@@ -278,7 +278,7 @@ static func _lu_shaman(f: FighterData) -> void:
 static func _lu_beastcaller(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(7, 9); f.health += hp; f.max_health += hp
-	var mp := randi_range(1, 1); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(3, 4); f.physical_defense += randi_range(1, 2)
 	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(1, 2)
 	f.speed += randi_range(1, 2)
@@ -303,7 +303,7 @@ static func upgrade_to_pathfinder(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 2; f.magic_defense += 1
 	f.speed += 3; f.crit_chance += 3; f.crit_damage += 1; f.dodge_chance += 3
-	f.abilities = [PAB.keen_strike(), PAB.exploit_weakness(), PAB.wayfinders_sense()]
+	f.abilities = [PAB.keen_strike(), PAB.exploit_weakness(), PAB.adaptable_strike()]
 	f.upgrade_items = ["Torch", "Waterskin"]
 
 static func _lu_sentinel(f: FighterData) -> void:
