@@ -1,7 +1,10 @@
 @echo off
 echo === Echoes of Choice SteamPipe Upload ===
 echo.
-echo Make sure you have exported the Windows build to build\windows\ first.
+echo Export builds to these folders before uploading:
+echo   build\windows\  (EchoesOfChoice.exe + .pck + DLLs)
+echo   build\linux\    (EchoesOfChoice.x86_64 + .pck + .so)
+echo   build\macos\    (EchoesOfChoice.app)
 echo.
 
 set /p USERNAME=Enter Steam username:
