@@ -31,14 +31,14 @@ static func _base(name: String, type: String, lvl: int) -> FighterData:
 
 static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Driftwood Bandit", lvl)
-	f.health = _es(150, 175, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(165, 190, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(5, 7, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(35, 40, 2, 3, lvl, 5)
 	f.physical_defense = _es(17, 21, 1, 2, lvl, 5)
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = _es(12, 16, 1, 2, lvl, 5)
-	f.speed = _es(24, 30, 1, 3, lvl, 5)
-	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 6
+	f.speed = _es(26, 32, 1, 3, lvl, 5)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.cutlass_slash(), EAB.pillage_strike()]
 	f.flavor_text = "A weathered scavenger who builds weapons from shipwreck debris. Desperate and violent, they prey on anyone who washes ashore."
 	return f
@@ -46,14 +46,14 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 
 static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Saltrunner Smuggler", lvl)
-	f.health = _es(118, 136, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(130, 150, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(29, 35, 2, 3, lvl, 5)
 	f.physical_defense = _es(12, 15, 1, 2, lvl, 5)
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = _es(12, 15, 1, 2, lvl, 5)
-	f.speed = _es(30, 36, 2, 3, lvl, 5)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 16
+	f.speed = _es(31, 37, 2, 3, lvl, 5)
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.throwing_knife(), EAB.salt_blind()]
 	f.flavor_text = "A quick-handed smuggler who runs contraband through the coastal caves. They fight dirty and never hesitate to blind their foes with salt."
 	return f
@@ -61,14 +61,14 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 
 static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Tide Warden", lvl)
-	f.health = _es(190, 215, 5, 8, lvl, 5); f.max_health = f.health
+	f.health = _es(205, 233, 5, 8, lvl, 5); f.max_health = f.health
 	f.mana = _es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(31, 38, 2, 3, lvl, 5)
 	f.physical_defense = _es(25, 30, 1, 3, lvl, 5)
 	f.magic_attack = _es(6, 11, 0, 1, lvl, 5)
 	f.magic_defense = _es(17, 21, 1, 2, lvl, 5)
-	f.speed = _es(20, 26, 1, 2, lvl, 5)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 6
+	f.speed = _es(22, 28, 1, 2, lvl, 5)
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.harpoon_thrust(), EAB.brace_formation()]
 	f.flavor_text = "A heavily armored sentinel who guards the coastal passages. Their loyalty to the sea is absolute, and their harpoon strikes are precise."
 	return f
@@ -76,14 +76,14 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 
 static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Blighted Gull", lvl)
-	f.health = _es(86, 101, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(95, 112, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(7, 10, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(8, 11, 0, 2, lvl, 5)
 	f.physical_defense = _es(9, 12, 0, 1, lvl, 5)
 	f.magic_attack = _es(21, 26, 1, 3, lvl, 5)
 	f.magic_defense = _es(11, 14, 1, 2, lvl, 5)
 	f.speed = _es(32, 38, 2, 3, lvl, 5)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 16
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.peck_frenzy(), EAB.dive_screech()]
 	f.flavor_text = "A seabird twisted by the dark influence bleeding from the lighthouse. Its feathers are matted with tar-like corruption."
 	return f
@@ -91,14 +91,14 @@ static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 
 static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Shore Crawler", lvl)
-	f.health = _es(137, 158, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = _es(150, 172, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = _es(5, 7, 1, 1, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(34, 39, 2, 4, lvl, 5)
 	f.physical_defense = _es(21, 26, 1, 3, lvl, 5)
 	f.magic_attack = _es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = _es(14, 18, 1, 2, lvl, 5)
 	f.speed = _es(18, 24, 1, 2, lvl, 5)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 6
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.crushing_claw(), EAB.chitin_shell()]
 	f.flavor_text = "A massive crustacean that drags itself along the rocky shore. Its barnacle-encrusted shell can withstand tremendous punishment."
 	return f
@@ -106,14 +106,14 @@ static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 
 static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Warped Hound", lvl)
-	f.health = _es(112, 131, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = _es(125, 145, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = _es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = _es(32, 37, 2, 4, lvl, 5)
 	f.physical_defense = _es(14, 18, 1, 2, lvl, 5)
 	f.magic_attack = _es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = _es(9, 12, 0, 1, lvl, 5)
 	f.speed = _es(30, 36, 2, 3, lvl, 5)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 13
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.feral_lunge(), EAB.brackish_howl()]
 	f.flavor_text = "A feral dog warped by prolonged exposure to corrupted tidewater. Its body is gaunt and its eyes burn with unnatural hunger."
 	return f
