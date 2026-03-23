@@ -4,6 +4,7 @@ class_name FighterDBMeta
 
 const AbilityDB := preload("res://scripts/data/ability_db.gd")
 const PAB := preload("res://scripts/data/ability_db_player.gd")
+const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 
 
 static func get_display_name(class_id: String) -> String:
@@ -102,16 +103,16 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Dervish": return [PAB.mesmerize(), PAB.dance()]
 		"Orator": return [PAB.oration(), PAB.encourage()]
 		# T1:Tinker
-		"Artificer": return [AbilityDB.energy_blast(), PAB.magical_tinkering()]
-		"Cosmologist": return [PAB.time_warp(), PAB.black_hole(), PAB.gravity()]
-		"Arithmancer": return [PAB.theorem(), PAB.calculate()]
+		"Artificer": return [AbilityDB.energy_blast(), PAB_B.magical_tinkering()]
+		"Cosmologist": return [PAB_B.time_warp(), PAB_B.black_hole(), PAB_B.gravity()]
+		"Arithmancer": return [PAB_B.theorem(), PAB_B.calculate()]
 		# T1:Wildling
-		"Herbalist": return [PAB.mending_herbs(), PAB.sapping_vine()]
-		"Shaman": return [PAB.spectral_lance(), PAB.player_hex()]
-		"Beastcaller": return [PAB.feral_strike(), PAB.pack_howl(), PAB.stampede()]
+		"Herbalist": return [PAB_B.mending_herbs(), PAB_B.sapping_vine()]
+		"Shaman": return [PAB_B.spectral_lance(), PAB_B.player_hex()]
+		"Beastcaller": return [PAB_B.feral_strike(), PAB_B.pack_howl(), PAB_B.stampede()]
 		# T1:Wanderer
-		"Sentinel": return [PAB.shield_bash(), PAB.barrier(), PAB.fortify()]
-		"Pathfinder": return [PAB.keen_strike(), PAB.exploit_weakness()]
+		"Sentinel": return [PAB_B.shield_bash(), PAB_B.barrier(), PAB_B.fortify()]
+		"Pathfinder": return [PAB_B.keen_strike(), PAB_B.exploit_weakness()]
 		# T2:Squire
 		"Cavalry": return [PAB.lance(), PAB.trample(), AbilityDB.rally()]
 		"Dragoon": return [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_ward()]
@@ -134,24 +135,24 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Laureate": return [PAB.ovation(), PAB.recite(), PAB.eulogy()]
 		"Elegist": return [PAB.requiem(), PAB.elegy_of_valor(), PAB.dirge()]
 		# T2:Tinker
-		"Alchemist": return [PAB.transmute(), PAB.corrosive_acid(), PAB.elixir()]
-		"Bombardier": return [PAB.shrapnel(), PAB.explosion(), PAB.field_repair()]
-		"Chronomancer": return [PAB.warp_speed(), PAB.time_bomb(), PAB.time_freeze()]
-		"Astronomer": return [PAB.starfall(), PAB.meteor_shower(), PAB.eclipse()]
-		"Automaton": return [PAB.servo_strike(), PAB.discharge(), PAB.overclock()]
-		"Technomancer": return [PAB.circuit_blast(), PAB.circuit_shield(), PAB.emp_pulse()]
+		"Alchemist": return [PAB_B.transmute(), PAB_B.corrosive_acid(), PAB_B.elixir()]
+		"Bombardier": return [PAB_B.shrapnel(), PAB_B.explosion(), PAB_B.field_repair()]
+		"Chronomancer": return [PAB_B.warp_speed(), PAB_B.time_bomb(), PAB_B.time_freeze()]
+		"Astronomer": return [PAB_B.starfall(), PAB_B.meteor_shower(), PAB_B.eclipse()]
+		"Automaton": return [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.overclock()]
+		"Technomancer": return [PAB_B.circuit_blast(), PAB_B.circuit_shield(), PAB_B.emp_pulse()]
 		# T2:Wildling
-		"Blighter": return [PAB.blight(), PAB.life_siphon(), PAB.poison_sting()]
-		"GroveKeeper": return [PAB.thorn_burst(), PAB.root_trap(), PAB.draining_vines()]
-		"WitchDoctor": return [PAB.voodoo_bolt(), PAB.dark_hex(), PAB.creeping_rot()]
-		"Spiritwalker": return [PAB.spirit_shield(), PAB.ancestral_blessing(), PAB.spirit_mend()]
-		"Falconer": return [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptors_gift()]
-		"Shapeshifter": return [PAB.savage_maul(), PAB.frenzy(), PAB.primal_roar()]
+		"Blighter": return [PAB_B.blight(), PAB_B.life_siphon(), PAB_B.poison_sting()]
+		"GroveKeeper": return [PAB_B.thorn_burst(), PAB_B.root_trap(), PAB_B.draining_vines()]
+		"WitchDoctor": return [PAB_B.voodoo_bolt(), PAB_B.dark_hex(), PAB_B.creeping_rot()]
+		"Spiritwalker": return [PAB_B.spirit_shield(), PAB_B.ancestral_blessing(), PAB_B.spirit_mend()]
+		"Falconer": return [PAB_B.falcon_strike(), PAB_B.talon_rend(), PAB_B.raptors_gift()]
+		"Shapeshifter": return [PAB_B.savage_maul(), PAB_B.frenzy(), PAB_B.primal_roar()]
 		# T2:Wanderer
-		"Bulwark": return [PAB.fortress_strike(), PAB.iron_fist(), PAB.ironclad_challenge()]
-		"Aegis": return [PAB.guardians_blessing(), PAB.protective_ward(), PAB.aegis_barrier()]
-		"Trailblazer": return [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
-		"Survivalist": return [PAB.endure(), PAB.resourceful_strike(), PAB.adapt()]
+		"Bulwark": return [PAB_B.fortress_strike(), PAB_B.iron_fist(), PAB_B.ironclad_challenge()]
+		"Aegis": return [PAB_B.guardians_blessing(), PAB_B.protective_ward(), PAB_B.aegis_barrier()]
+		"Trailblazer": return [PAB_B.blaze_trail(), PAB_B.ambush(), PAB_B.expose()]
+		"Survivalist": return [PAB_B.endure(), PAB_B.resourceful_strike(), PAB_B.adapt()]
 		_:
 			push_error("Unknown class_id for abilities: %s" % class_id)
 			return []

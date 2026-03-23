@@ -15,6 +15,7 @@ const GLOBAL_FILES: Array[String] = [
 	"res://scripts/data/fighter_db_t2b.gd",
 	"res://scripts/data/ability_db.gd",
 	"res://scripts/data/ability_db_player.gd",
+	"res://scripts/data/ability_db_player_b.gd",
 	"res://scripts/data/fighter_data.gd",
 	"res://scripts/data/ability_data.gd",
 	"res://scripts/data/enums.gd",

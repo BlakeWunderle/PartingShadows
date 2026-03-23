@@ -5,6 +5,7 @@ class_name FighterDBT2
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityDB := preload("res://scripts/data/ability_db.gd")
 const PAB := preload("res://scripts/data/ability_db_player.gd")
+const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 
 
 # =============================================================================
@@ -255,7 +256,7 @@ static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.health += 6; f.max_health += 6; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
-	f.abilities = [PAB.fortress_strike(), PAB.iron_fist(), PAB.ironclad_challenge()]
+	f.abilities = [PAB_B.fortress_strike(), PAB_B.iron_fist(), PAB_B.ironclad_challenge()]
 	f.upgrade_items = []
 
 static func upgrade_to_aegis(f: FighterData) -> void:
@@ -263,7 +264,7 @@ static func upgrade_to_aegis(f: FighterData) -> void:
 	f.health += 4; f.max_health += 4; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
-	f.abilities = [PAB.guardians_blessing(), PAB.protective_ward(), PAB.aegis_barrier()]
+	f.abilities = [PAB_B.guardians_blessing(), PAB_B.protective_ward(), PAB_B.aegis_barrier()]
 	f.upgrade_items = []
 
 static func _lu_bulwark(f: FighterData) -> void:

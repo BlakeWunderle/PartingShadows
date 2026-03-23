@@ -1,10 +1,11 @@
 class_name FighterDBT2B
 
-## Tier 2 class upgrades and level-up growth rates (Entertainer, Tinker, Wildling trees).
+## Tier 2 class upgrades and level-up growth rates (Entertainer, Tinker trees).
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityDB := preload("res://scripts/data/ability_db.gd")
 const PAB := preload("res://scripts/data/ability_db_player.gd")
+const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 
 
 # =============================================================================
@@ -139,7 +140,7 @@ static func upgrade_to_alchemist(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.transmute(), PAB.corrosive_acid(), PAB.elixir()]
+	f.abilities = [PAB_B.transmute(), PAB_B.corrosive_acid(), PAB_B.elixir()]
 	f.upgrade_items = []
 
 static func upgrade_to_bombardier(f: FighterData) -> void:
@@ -147,7 +148,7 @@ static func upgrade_to_bombardier(f: FighterData) -> void:
 	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.shrapnel(), PAB.explosion(), PAB.field_repair()]
+	f.abilities = [PAB_B.shrapnel(), PAB_B.explosion(), PAB_B.field_repair()]
 	f.upgrade_items = []
 
 static func _lu_alchemist(f: FighterData) -> void:
@@ -180,7 +181,7 @@ static func upgrade_to_chronomancer(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 3
 	f.speed += 7; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.warp_speed(), PAB.time_bomb(), PAB.time_freeze()]
+	f.abilities = [PAB_B.warp_speed(), PAB_B.time_bomb(), PAB_B.time_freeze()]
 	f.upgrade_items = []
 
 static func upgrade_to_astronomer(f: FighterData) -> void:
@@ -188,7 +189,7 @@ static func upgrade_to_astronomer(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.starfall(), PAB.meteor_shower(), PAB.eclipse()]
+	f.abilities = [PAB_B.starfall(), PAB_B.meteor_shower(), PAB_B.eclipse()]
 	f.upgrade_items = []
 
 static func _lu_chronomancer(f: FighterData) -> void:
@@ -221,7 +222,7 @@ static func upgrade_to_automaton(f: FighterData) -> void:
 	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
-	f.abilities = [PAB.servo_strike(), PAB.discharge(), PAB.overclock()]
+	f.abilities = [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.overclock()]
 	f.upgrade_items = []
 
 static func upgrade_to_technomancer(f: FighterData) -> void:
@@ -229,7 +230,7 @@ static func upgrade_to_technomancer(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.circuit_blast(), PAB.circuit_shield(), PAB.emp_pulse()]
+	f.abilities = [PAB_B.circuit_blast(), PAB_B.circuit_shield(), PAB_B.emp_pulse()]
 	f.upgrade_items = []
 
 static func _lu_automaton(f: FighterData) -> void:
@@ -253,166 +254,6 @@ static func _lu_technomancer(f: FighterData) -> void:
 
 
 # =============================================================================
-# Wildling tree:Herbalist branch
-# =============================================================================
-
-static func upgrade_to_blighter(f: FighterData) -> void:
-	f.class_id = "Blighter"; f.character_type = "Blighter"
-	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 5
-	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.blight(), PAB.life_siphon(), PAB.poison_sting()]
-	f.upgrade_items = []
-
-static func upgrade_to_grove_keeper(f: FighterData) -> void:
-	f.class_id = "GroveKeeper"; f.character_type = "Grove Keeper"
-	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 6; f.magic_defense += 3
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 4
-	f.abilities = [PAB.thorn_burst(), PAB.root_trap(), PAB.draining_vines()]
-	f.upgrade_items = []
-
-static func _lu_blighter(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
-	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
-	f.speed += randi_range(2, 2)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(0, 1)
-
-static func _lu_grove_keeper(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
-	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 4)
-	f.speed += randi_range(1, 2)
-	f.crit_chance += randi_range(0, 1)
-
-
-# =============================================================================
-# Wildling tree:Shaman branch
-# =============================================================================
-
-static func upgrade_to_witch_doctor(f: FighterData) -> void:
-	f.class_id = "WitchDoctor"; f.character_type = "Witch Doctor"
-	f.health += 12; f.max_health += 12; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 9; f.magic_defense += 5
-	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.voodoo_bolt(), PAB.dark_hex(), PAB.creeping_rot()]
-	f.upgrade_items = []
-
-static func upgrade_to_spiritwalker(f: FighterData) -> void:
-	f.class_id = "Spiritwalker"; f.character_type = "Spiritwalker"
-	f.health += 14; f.max_health += 14; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 5
-	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.spirit_shield(), PAB.ancestral_blessing(), PAB.spirit_mend()]
-	f.upgrade_items = []
-
-static func _lu_witch_doctor(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
-	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 4)
-	f.speed += randi_range(2, 2)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(0, 1)
-
-static func _lu_spiritwalker(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(10, 13); f.health += hp; f.max_health += hp
-	var mp := randi_range(2, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
-	f.speed += randi_range(2, 2)
-	f.dodge_chance += randi_range(0, 1)
-
-
-# =============================================================================
-# Wildling tree:Beastcaller branch
-# =============================================================================
-
-static func upgrade_to_falconer(f: FighterData) -> void:
-	f.class_id = "Falconer"; f.character_type = "Falconer"
-	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 7; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 5; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.falcon_strike(), PAB.talon_rend(), PAB.raptors_gift()]
-	f.upgrade_items = []
-
-static func upgrade_to_shapeshifter(f: FighterData) -> void:
-	f.class_id = "Shapeshifter"; f.character_type = "Shapeshifter"
-	f.health += 16; f.max_health += 16; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 12; f.physical_defense += 5; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 6; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 4
-	f.abilities = [PAB.savage_maul(), PAB.frenzy(), PAB.primal_roar()]
-	f.upgrade_items = []
-
-static func _lu_falconer(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
-	var mp := randi_range(1, 1); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(7, 9); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(3, 4)
-	f.speed += randi_range(2, 3)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(1, 2)
-
-static func _lu_shapeshifter(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(12, 15); f.health += hp; f.max_health += hp
-	var mp := randi_range(1, 1); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(8, 10); f.physical_defense += randi_range(4, 5)
-	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(3, 4)
-	f.speed += randi_range(2, 3)
-	f.dodge_chance += randi_range(1, 2)
-	f.crit_chance += randi_range(1, 2)
-
-
-# =============================================================================
-# Wanderer tree:Pathfinder branch
-# =============================================================================
-
-static func upgrade_to_trailblazer(f: FighterData) -> void:
-	f.class_id = "Trailblazer"; f.character_type = "Trailblazer"
-	f.health += 6; f.max_health += 6; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 4; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 4
-	f.speed += 4; f.crit_chance += 4; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.blaze_trail(), PAB.ambush(), PAB.expose()]
-	f.upgrade_items = []
-
-static func upgrade_to_survivalist(f: FighterData) -> void:
-	f.class_id = "Survivalist"; f.character_type = "Survivalist"
-	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 3
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 6
-	f.abilities = [PAB.endure(), PAB.resourceful_strike(), PAB.adapt()]
-	f.upgrade_items = []
-
-static func _lu_trailblazer(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
-	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(4, 6); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(4, 5)
-	f.speed += randi_range(2, 3)
-	f.crit_chance += randi_range(1, 2)
-
-static func _lu_survivalist(f: FighterData) -> void:
-	f.level += 1
-	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
-	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(4, 6)
-	f.speed += randi_range(1, 2)
-	f.dodge_chance += randi_range(0, 1)
-
-
-# =============================================================================
 # Level-up router
 # =============================================================================
 
@@ -430,13 +271,5 @@ static func level_up(f: FighterData) -> bool:
 		"Astronomer": _lu_astronomer(f)
 		"Automaton": _lu_automaton(f)
 		"Technomancer": _lu_technomancer(f)
-		"Blighter": _lu_blighter(f)
-		"GroveKeeper": _lu_grove_keeper(f)
-		"WitchDoctor": _lu_witch_doctor(f)
-		"Spiritwalker": _lu_spiritwalker(f)
-		"Falconer": _lu_falconer(f)
-		"Shapeshifter": _lu_shapeshifter(f)
-		"Trailblazer": _lu_trailblazer(f)
-		"Survivalist": _lu_survivalist(f)
 		_: return false
 	return true
