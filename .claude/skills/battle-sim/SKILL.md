@@ -145,9 +145,11 @@ If the ranking is roughly correct -> move to Step 3. If not, adjust player growt
 
 ## Step 3: Class Win Rate Band
 
-**Goal:** Every class's win rate at this stage falls within `target +/- 15%`.
+**Goal:** Every class's win rate at this stage falls within the tier-specific band.
 
-- Floor = `target - 15%`, Ceiling = `target + 15%`
+- **Base (T0):** `target +/- 15%`
+- **Tier 1:** `target +/- 12.5%`
+- **Tier 2:** `target +/- 10%`
 - Classes flagged `** WEAK **` (below `target * 0.60`) are most urgent
 - If all classes within band -> **LOCK** this progression, move to next
 

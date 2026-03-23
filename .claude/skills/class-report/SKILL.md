@@ -109,7 +109,7 @@ Generated: YYYY-MM-DD | Mode: quick/full | Stories: 1, 2, 3
 
 ## Outlier Details
 
-[Only include classes that fall outside target +/- 15% at any battle]
+[Only include classes that fall outside the tier-specific band (base +/- 15%, T1 +/- 12.5%, T2 +/- 10%) at any battle]
 
 ### ClassName (avg XX.X%)
 - Battle1: XX.X% (target YY%, **below floor**)
@@ -119,8 +119,8 @@ Generated: YYYY-MM-DD | Mode: quick/full | Stories: 1, 2, 3
 
 #### Formatting Rules
 
-- **Bold** win rates that are below the class floor (`target - 15%`)
-- *Italic* win rates that are above the class ceiling (`target + 15%`)
+- **Bold** win rates that are below the class floor (tier-specific: base `target - 15%`, T1 `target - 12.5%`, T2 `target - 10%`)
+- *Italic* win rates that are above the class ceiling (tier-specific: base `target + 15%`, T1 `target + 12.5%`, T2 `target + 10%`)
 - Shorten battle names in column headers if needed (e.g., `CityStr` for `CityStreetBattle`, drop the `Battle` suffix)
 - Sort classes alphabetically within each tier section
 - Only show classes that are active at the tier (base = 6 classes, T1 = 16, T2 = 34)
@@ -151,7 +151,7 @@ CLASS BALANCE REPORT GENERATED
 
   Top 3 strongest: ClassName (XX.X%), ...
   Top 3 weakest: ClassName (XX.X%), ...
-  Outliers: N classes outside target +/- 15% band
+  Outliers: N classes outside tier-specific band (base +/-15%, T1 +/-12.5%, T2 +/-10%)
 ```
 
 ## Related Skills

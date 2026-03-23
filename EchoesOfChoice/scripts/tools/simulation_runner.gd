@@ -13,6 +13,7 @@ const MIN_SIMS_PER_COMBO := 40
 const MAX_SIMS_PER_COMBO := 500
 const TOLERANCE := 0.03
 const MAX_TICKS := 500
+const CLASS_BAND := {"base": 0.15, "tier1": 0.125, "tier2": 0.10}
 
 static var _sim_engine: BattleEngine = null
 
@@ -146,6 +147,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		"stage_name": stage.name,
 		"target_win_rate": stage.target_win_rate,
 		"progression_stage": stage.progression_stage,
+		"tier": stage.get("tier", "base"),
 		"combo_results": combo_results,
 		"overall_win_rate": overall_wr,
 		"elapsed_ms": Time.get_ticks_msec() - start_ms,
@@ -316,9 +318,11 @@ static func print_stage_compact(result: Dictionary) -> void:
 	print(line)
 	if status == "PASS":
 		return
-	# Show weak classes (below band floor = target - 15%).
+	# Show weak classes below the tier-specific band floor.
 	var breakdown := get_class_breakdown(result)
-	var band_floor: float = result.target_win_rate - 0.15
+	var tier: String = result.get("tier", "base")
+	var band_width: float = CLASS_BAND.get(tier, 0.15)
+	var band_floor: float = result.target_win_rate - band_width
 	var weak: PackedStringArray = []
 	for cname: String in breakdown:
 		if breakdown[cname].win_rate < band_floor:
