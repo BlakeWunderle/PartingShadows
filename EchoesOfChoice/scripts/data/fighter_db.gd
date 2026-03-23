@@ -9,6 +9,7 @@ const AbilityDB := preload("res://scripts/data/ability_db.gd")
 const T1 := preload("res://scripts/data/fighter_db_t1.gd")
 const T2 := preload("res://scripts/data/fighter_db_t2.gd")
 const T2B := preload("res://scripts/data/fighter_db_t2b.gd")
+const T2C := preload("res://scripts/data/fighter_db_t2c.gd")
 const Meta := preload("res://scripts/data/fighter_db_meta.gd")
 
 
@@ -149,7 +150,7 @@ static func create_wanderer(fighter_name: String) -> FighterData:
 
 
 # =============================================================================
-# Level up: chains through T0 → T1 → T2/T2B
+# Level up: chains through T0 → T1 → T2/T2B/T2C
 # =============================================================================
 
 static func level_up(fighter: FighterData) -> void:
@@ -159,6 +160,7 @@ static func level_up(fighter: FighterData) -> void:
 	if T1.level_up(fighter): return
 	if T2.level_up(fighter): return
 	if T2B.level_up(fighter): return
+	if T2C.level_up(fighter): return
 	_apply_level_up(fighter, _GROWTH["_generic"])
 
 
@@ -294,17 +296,17 @@ static func upgrade_class(fighter: FighterData, item: String) -> bool:
 		"Arithmancer:ClockworkCore": T2B.upgrade_to_automaton(fighter)
 		"Arithmancer:Computer": T2B.upgrade_to_technomancer(fighter)
 		# T1 → T2 (Wildling tree)
-		"Herbalist:Venom": T2B.upgrade_to_blighter(fighter)
-		"Herbalist:Seedling": T2B.upgrade_to_grove_keeper(fighter)
-		"Shaman:Shrunkenhead": T2B.upgrade_to_witch_doctor(fighter)
-		"Shaman:SpiritOrb": T2B.upgrade_to_spiritwalker(fighter)
-		"Beastcaller:Feather": T2B.upgrade_to_falconer(fighter)
-		"Beastcaller:Pelt": T2B.upgrade_to_shapeshifter(fighter)
+		"Herbalist:Venom": T2C.upgrade_to_blighter(fighter)
+		"Herbalist:Seedling": T2C.upgrade_to_grove_keeper(fighter)
+		"Shaman:Shrunkenhead": T2C.upgrade_to_witch_doctor(fighter)
+		"Shaman:SpiritOrb": T2C.upgrade_to_spiritwalker(fighter)
+		"Beastcaller:Feather": T2C.upgrade_to_falconer(fighter)
+		"Beastcaller:Pelt": T2C.upgrade_to_shapeshifter(fighter)
 		# T1 → T2 (Wanderer tree)
 		"Sentinel:Fortress": T2.upgrade_to_bulwark(fighter)
 		"Sentinel:Mirror": T2.upgrade_to_aegis(fighter)
-		"Pathfinder:Torch": T2B.upgrade_to_trailblazer(fighter)
-		"Pathfinder:Waterskin": T2B.upgrade_to_survivalist(fighter)
+		"Pathfinder:Torch": T2C.upgrade_to_trailblazer(fighter)
+		"Pathfinder:Waterskin": T2C.upgrade_to_survivalist(fighter)
 		_:
 			push_error("Unknown upgrade: %s" % key)
 			return false
