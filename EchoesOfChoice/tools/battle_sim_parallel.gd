@@ -311,6 +311,21 @@ func _print_progressive_summary(all_stages: Array, elapsed: float) -> void:
 func _write_json(all_stages: Array) -> void:
 	if _json_path == "" or all_stages.is_empty():
 		return
+	# Merge with existing JSON: keep old stages, replace matching stage_names
+	var new_names := {}
+	for s in all_stages:
+		new_names[s.stage_name] = true
+	var existing_file := FileAccess.open(_json_path, FileAccess.READ)
+	if existing_file:
+		var json := JSON.new()
+		if json.parse(existing_file.get_as_text()) == OK and json.data is Dictionary:
+			var old_stages: Array = json.data.get("stages", [])
+			for old_s in old_stages:
+				if old_s is Dictionary and not new_names.has(old_s.get("stage_name", "")):
+					all_stages.append(old_s)
+		existing_file.close()
+	all_stages.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return a.get("stage_name", "") < b.get("stage_name", ""))
 	var json_str := JSON.stringify({"stages": all_stages}, "\t")
 	var out_file := FileAccess.open(_json_path, FileAccess.WRITE)
 	if out_file:

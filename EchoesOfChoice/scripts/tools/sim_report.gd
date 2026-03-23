@@ -38,6 +38,21 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 
 ## Write an array of report entries to a JSON file.
 static func write_json(path: String, entries: Array) -> void:
+	# Merge with existing JSON: keep old stages, replace matching stage_names
+	var new_names := {}
+	for e in entries:
+		new_names[e.get("stage_name", "")] = true
+	var existing := FileAccess.open(path, FileAccess.READ)
+	if existing:
+		var parser := JSON.new()
+		if parser.parse(existing.get_as_text()) == OK and parser.data is Dictionary:
+			var old: Array = parser.data.get("stages", [])
+			for o in old:
+				if o is Dictionary and not new_names.has(o.get("stage_name", "")):
+					entries.append(o)
+		existing.close()
+	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		return a.get("stage_name", "") < b.get("stage_name", ""))
 	var json_str := JSON.stringify({"stages": entries}, "\t")
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	if file:
