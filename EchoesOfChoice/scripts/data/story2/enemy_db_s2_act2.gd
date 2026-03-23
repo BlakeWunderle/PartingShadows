@@ -20,7 +20,7 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 5)
 	f.speed = EH.es(26, 32, 1, 3, lvl, 5)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.cutlass_slash(), EAB.pillage_strike()]
 	f.flavor_text = "A weathered scavenger who builds weapons from shipwreck debris. Desperate and violent, they prey on anyone who washes ashore."
 	return f
@@ -35,7 +35,7 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 5)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 5)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 22
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EAB.throwing_knife(), EAB.salt_blind()]
 	f.flavor_text = "A quick-handed smuggler who runs contraband through the coastal caves. They fight dirty and never hesitate to blind their foes with salt."
 	return f
@@ -49,8 +49,8 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	f.physical_defense = EH.es(25, 30, 1, 3, lvl, 5)
 	f.magic_attack = EH.es(6, 11, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 5)
-	f.speed = EH.es(22, 28, 1, 2, lvl, 5)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 17
+	f.speed = EH.es(24, 30, 1, 2, lvl, 5)
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.harpoon_thrust(), EAB.brace_formation()]
 	f.flavor_text = "A heavily armored sentinel who guards the coastal passages. Their loyalty to the sea is absolute, and their harpoon strikes are precise."
 	return f
@@ -65,7 +65,7 @@ static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(21, 26, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(11, 14, 1, 2, lvl, 5)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 5)
-	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 19
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 22
 	f.abilities = [EAB.peck_frenzy(), EAB.dive_screech()]
 	f.flavor_text = "A seabird twisted by the dark influence bleeding from the lighthouse. Its feathers are matted with tar-like corruption."
 	return f
@@ -80,7 +80,7 @@ static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(14, 18, 1, 2, lvl, 5)
 	f.speed = EH.es(18, 24, 1, 2, lvl, 5)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.crushing_claw(), EAB.chitin_shell()]
 	f.flavor_text = "A massive crustacean that drags itself along the rocky shore. Its barnacle-encrusted shell can withstand tremendous punishment."
 	return f
@@ -95,7 +95,7 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(9, 12, 0, 1, lvl, 5)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 5)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.feral_lunge(), EAB.brackish_howl()]
 	f.flavor_text = "A feral dog warped by prolonged exposure to corrupted tidewater. Its body is gaunt and its eyes burn with unnatural hunger."
 	return f
