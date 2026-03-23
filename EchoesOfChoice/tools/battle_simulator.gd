@@ -34,6 +34,7 @@ func _init() -> void:
 	var from_progression := 0
 	var sample_size := 0
 	var stage_name := ""
+	var battle_names: Array[String] = []
 	var story_filter := 0
 	var tier_filter := ""
 	var worker_index := -1
@@ -83,6 +84,13 @@ func _init() -> void:
 					if parts.size() == 2:
 						worker_index = int(parts[0])
 						worker_count = int(parts[1])
+					i += 1
+			"--battles":
+				if i + 1 < args.size():
+					for bname: String in args[i + 1].split(","):
+						var trimmed := bname.strip_edges()
+						if trimmed != "":
+							battle_names.append(trimmed)
 					i += 1
 			"--diagnostics":
 				_diagnostics = true
@@ -142,6 +150,22 @@ func _init() -> void:
 			from_progression, _use_cache, _worker_mode, _all_results, _all_stages)
 	elif run_all:
 		_run_stages(stages, sims_per_combo, auto_sims, sample_size, _worker_mode)
+	elif not battle_names.is_empty():
+		var matched: Array[Dictionary] = []
+		var missing: Array[String] = []
+		for bname: String in battle_names:
+			var found := false
+			for s: Dictionary in stages:
+				if s.name.to_lower() == bname.to_lower():
+					matched.append(s)
+					found = true
+					break
+			if not found:
+				missing.append(bname)
+		if not missing.is_empty() and not _worker_mode:
+			print("  WARNING: Stages not found: %s" % ", ".join(missing))
+		if not matched.is_empty():
+			_run_stages(matched, sims_per_combo, auto_sims, sample_size, _worker_mode)
 	elif progression_filter >= 0:
 		var prog_stages := stages.filter(
 			func(s: Dictionary) -> bool: return s.progression_stage == progression_filter)
@@ -322,6 +346,7 @@ func _print_help() -> void:
 	print("  --progressive        Run all battles progression-by-progression, stop on failure")
 	print("  --from <n>           Start progressive run from progression n (default: 0)")
 	print("  --all                Run all battles")
+	print("  --battles <a,b,...>   Run specific battles (comma-separated names)")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
 	print("  --compact            Minimal output (1 line/PASS, details to file)")
@@ -344,3 +369,4 @@ func _print_help() -> void:
 	print("  ... -- --sample 500 --sims 50 --progression 4")
 	print("  ... -- --progressive --story 1 --auto --sample 100")
 	print("  ... -- --progressive --from 3 --story 2 --sims 50")
+	print("  ... -- --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare")

@@ -29,6 +29,9 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 # Final validation -- all tiers, saves class data (recommended, use 600000ms timeout)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 10 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
+# Targeted battles (specific changed battles only, much faster than full tier)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare --compact 2>&1 | grep -v "$NOISE"
+
 # Full verbose output (when you need class breakdowns, combo extremes)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
 ```
@@ -191,6 +194,7 @@ All battles show PASS. Power curve roughly correct. Every class within or near t
 | `--progressive` | Run all progs in order, stop on failure |
 | `--from <n>` | Start progressive run from prog n |
 | `--all` | Run all battles |
+| `--battles <a,b,...>` | Run specific battles by name (comma-separated) |
 | `--auto` | Auto-calculate sims (200k+ total) |
 | `--sims <n>` | Manual sims per combo |
 | `--sample <n>` | Stratified sample of n combos |

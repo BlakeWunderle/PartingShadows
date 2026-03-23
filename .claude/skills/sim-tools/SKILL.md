@@ -14,6 +14,28 @@ NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string
 
 ---
 
+## Targeted Battles (`--battles`)
+
+Run specific battles by name with full `--auto` precision, without simming the entire tier. Much faster than `--all` when only a few battles changed.
+
+### Usage
+
+```bash
+# Run 3 specific battles with auto sims
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare --compact 2>&1 | grep -v "$NOISE"
+
+# Combine with --json to persist class data for those battles
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --battles CityStreetBattle,WolfForestBattle --json report.json 2>&1 | grep -v "$NOISE"
+```
+
+### When to Use
+
+- **After enemy-only changes**: Only the battles using those enemies need re-simming
+- **Quick iteration**: Verify 2-3 battles land before committing to a full tier validation
+- **Spot checks**: Re-verify specific battles after player-side changes cascade
+
+---
+
 ## Progressive Runner (`--progressive`)
 
 Runs battles grouped by progression stage (lowest to highest), stopping at the first progression where any stage fails. Prevents wasting time on later progressions when early ones are broken.

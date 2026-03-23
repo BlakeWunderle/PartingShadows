@@ -21,7 +21,7 @@ static func create_thread_lurker(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 5)
 	f.speed = EH.es(31, 36, 1, 3, lvl, 5)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.thread_ambush(), EAB.web_snare()]
 	f.flavor_text = "A spindly predator that clings to the threads woven through the dream. It waits in stillness until prey draws near, then strikes from the tangled weave."
 	return f
@@ -36,7 +36,7 @@ static func create_dream_sentinel(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(11, 14, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(24, 29, 1, 2, lvl, 5)
-	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.sentinel_strike(), EAB.woven_guard()]
 	f.flavor_text = "A towering guardian woven from layered dream-thread. It was placed here by the cult to keep the deeper passages sealed against intruders."
 	return f
@@ -51,7 +51,7 @@ static func create_gloom_spinner(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(22, 28, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 5)
 	f.speed = EH.es(28, 33, 1, 2, lvl, 5)
-	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 15
+	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 17
 	f.abilities = [EAB.shadow_thread(), EAB.gloom_web()]
 	f.flavor_text = "A caster that draws darkness from the dream's frayed edges and spins it into sticky webs of gloom. Anything caught in its threads loses the will to fight."
 	return f
@@ -70,7 +70,7 @@ static func create_drowned_reverie(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(26, 30, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(15, 18, 1, 2, lvl, 6)
 	f.speed = EH.es(27, 32, 1, 2, lvl, 6)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 9
 	f.abilities = [EAB.memory_surge(), EAB.deep_pulse()]
 	f.flavor_text = "A spectral figure that drifts through flooded corridors, trailing memories like bubbles. It unleashes surges of recalled emotion that overwhelm the mind."
 	return f
@@ -85,7 +85,7 @@ static func create_riptide_beast(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
 	f.speed = EH.es(32, 37, 1, 3, lvl, 6)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 7
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.riptide_slash(), EAB.swift_current()]
 	f.flavor_text = "A ferocious aquatic predator that surges through dream-water with blinding speed. Its claws carry the force of a riptide, dragging victims under."
 	return f
@@ -100,7 +100,7 @@ static func create_depth_crawler(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(20, 24, 1, 2, lvl, 6)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 6)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 6)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 5
+	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.thread_burn(), EAB.latch()]
 	f.flavor_text = "A many-legged thing that scuttles through the drowned depths, burning through dream-threads with caustic secretions. Once it latches on, it does not let go."
 	return f
@@ -118,8 +118,8 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	f.physical_defense = EH.es(22, 26, 1, 3, lvl, 6)
 	f.magic_attack = EH.es(9, 12, 0, 1, lvl, 6)
 	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 6)
-	f.speed = EH.es(22, 27, 1, 2, lvl, 6)
-	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 10
+	f.speed = EH.es(23, 28, 1, 2, lvl, 6)
+	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.dream_crush(), EAB.fragment_shield()]
 	f.flavor_text = "A hulking construct assembled from shattered dream-fragments. Each piece remembers a different sleeper, and the golem fights with their collective, fractured will."
 	return f
@@ -133,8 +133,8 @@ static func create_memory_wisp(n: String, lvl: int = 6) -> FighterData:
 	f.physical_defense = EH.es(10, 13, 0, 1, lvl, 6)
 	f.magic_attack = EH.es(21, 25, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 6)
-	f.speed = EH.es(33, 38, 1, 3, lvl, 6)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 19
+	f.speed = EH.es(34, 39, 1, 3, lvl, 6)
+	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 24
 	f.abilities = [EAB.stolen_thought(), EAB.blur()]
 	f.flavor_text = "A tiny, darting light that feeds on stray thoughts left behind in the dream. It is almost impossible to pin down, flickering away the instant attention falls on it."
 	return f
@@ -148,8 +148,8 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
-	f.speed = EH.es(30, 35, 1, 3, lvl, 6)
-	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 20
+	f.speed = EH.es(31, 36, 1, 3, lvl, 6)
+	f.crit_chance = 22; f.crit_damage = 1; f.dodge_chance = 25
 	f.abilities = [EAB.gallery_bolt(), EAB.shatter_ward()]
 	f.flavor_text = "A dark silhouette that steps out of painted portraits in the shattered gallery. It hurls splinters of broken frames and conjures wards from cracked canvas."
 	return f
@@ -168,7 +168,7 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 7)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 7)
 	f.speed = EH.es(33, 38, 1, 3, lvl, 7)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.shadow_strike(), EAB.relentless_hound()]
 	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. No matter how far you run, it always closes the distance."
 	return f
@@ -183,7 +183,7 @@ static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(27, 32, 1, 3, lvl, 7)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 7)
 	f.speed = EH.es(28, 33, 1, 2, lvl, 7)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 15
+	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 17
 	f.abilities = [EAB.dread_lash(), EAB.terror_grip()]
 	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. Its grip paralyzes the will and leaves victims unable to move or cry out."
 	return f
@@ -198,7 +198,7 @@ static func create_faded_voice(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(13, 16, 0, 2, lvl, 7)
 	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 7)
 	f.speed = EH.es(29, 34, 1, 2, lvl, 7)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 20
 	f.abilities = [EAB.echoed_cry(), EAB.fade()]
 	f.flavor_text = "The remnant of a voice that once belonged to a real person, now stripped of meaning and body. It cries out in fragments, and each echo saps the strength of those who hear it."
 	return f

@@ -194,7 +194,7 @@ static func create_somnolent_serpent(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(17, 21, 1, 2, lvl, 8)
 	f.magic_defense = EH.es(18, 22, 1, 2, lvl, 8)
 	f.speed = EH.es(30, 35, 1, 3, lvl, 8)
-	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 14
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.venom_coil(), EAB.sleep_fang()]
 	f.flavor_text = "A great serpent that glides through the labyrinth of slumber. Its venom induces a sleep within sleep, trapping victims in layers of dream they cannot escape."
 	return f
@@ -208,8 +208,8 @@ static func create_twilight_stalker(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(17, 21, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(14, 17, 0, 2, lvl, 8)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 8)
-	f.speed = EH.es(33, 38, 1, 3, lvl, 8)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 16
+	f.speed = EH.es(34, 39, 1, 3, lvl, 8)
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.dusk_blade(), EAB.vanish_strike()]
 	f.flavor_text = "A silent hunter cloaked in the half-light between dreams. It vanishes mid-stride and reappears behind its prey with lethal precision."
 	return f
@@ -223,8 +223,8 @@ static func create_waking_terror(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(29, 34, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(20, 24, 1, 2, lvl, 8)
-	f.speed = EH.es(28, 33, 1, 2, lvl, 8)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 13
+	f.speed = EH.es(29, 34, 1, 2, lvl, 8)
+	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 14
 	f.abilities = [EAB.scream_blast(), EAB.terror_wave()]
 	f.flavor_text = "A towering horror that bleeds into the waking world, born where nightmares press too hard against reality. Its screams carry the force of raw, unfiltered panic."
 	return f
@@ -239,8 +239,8 @@ static func create_dusk_sentinel(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(25, 30, 1, 3, lvl, 8)
 	f.magic_attack = EH.es(11, 14, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(22, 26, 1, 2, lvl, 8)
-	f.speed = EH.es(30, 35, 1, 2, lvl, 8)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 17
+	f.speed = EH.es(33, 38, 1, 2, lvl, 8)
+	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 19
 	f.abilities = [EAB.shield_bash(), EAB.iron_stance()]
 	f.flavor_text = "An armored guardian forged from the dying light of dusk. It stands vigil at the clock tower's threshold, unyielding and tireless in its purpose."
 	return f
@@ -254,8 +254,8 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(27, 32, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(19, 23, 1, 2, lvl, 8)
-	f.speed = EH.es(34, 39, 1, 3, lvl, 8)
-	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 21
+	f.speed = EH.es(37, 42, 1, 3, lvl, 8)
+	f.crit_chance = 23; f.crit_damage = 1; f.dodge_chance = 23
 	f.abilities = [EAB.time_rend(), EAB.stasis_touch()]
 	f.flavor_text = "A spectral figure bound to a shattered clock face, its limbs moving in fractured time. It tears at the flow of moments, freezing enemies in temporal stasis."
 	return f
@@ -271,7 +271,7 @@ static func create_the_nightmare(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = EH.es(37, 42, 2, 3, lvl, 9)
 	f.magic_defense = EH.es(23, 28, 2, 3, lvl, 9)
 	f.speed = EH.es(34, 39, 2, 3, lvl, 9)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.nightmare_crush(), EAB.dream_rend(), EAB.dread_aura()]
 	f.flavor_text = "The collective dread of an entire town given form and will. It is the dark heart of the shared dream, a shape that shifts with every fear it consumes."
 	return f
