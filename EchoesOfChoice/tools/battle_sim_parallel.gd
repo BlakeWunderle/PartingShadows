@@ -242,6 +242,8 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String]) -> Array:
 		var pid := OS.create_process(godot_exe, worker_args)
 		if pid > 0:
 			pids.append(pid)
+		else:
+			print("  ERROR: Failed to spawn worker %d" % wi)
 
 	# Wait for all workers.
 	while true:
@@ -259,18 +261,28 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String]) -> Array:
 	for wi in jobs:
 		var worker_json := "user://sim_worker_%d.json" % wi
 		if not FileAccess.file_exists(worker_json):
+			print("  WARNING: Worker %d did not produce output (file missing)" % wi)
 			continue
 		var file := FileAccess.open(worker_json, FileAccess.READ)
 		if file == null:
+			print("  WARNING: Worker %d output unreadable" % wi)
 			continue
 		var json := JSON.new()
 		if json.parse(file.get_as_text()) == OK and json.data is Dictionary:
 			var data: Dictionary = json.data
 			if data.has("stages"):
 				results.append_array(data.stages)
+			else:
+				print("  WARNING: Worker %d JSON missing 'stages' key" % wi)
+		else:
+			print("  WARNING: Worker %d JSON parse failed" % wi)
 		file.close()
 		DirAccess.remove_absolute(
 			ProjectSettings.globalize_path(worker_json))
+
+	if results.is_empty() and jobs > 0:
+		print("  ERROR: All %d workers produced no results." % jobs)
+		print("  Godot exe: %s" % godot_exe)
 
 	results.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return a.get("stage_name", "") < b.get("stage_name", ""))
