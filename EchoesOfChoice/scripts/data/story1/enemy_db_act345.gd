@@ -6,6 +6,7 @@ class_name EnemyDBAct345
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityDB := preload("res://scripts/data/ability_db.gd")
 const EAB := preload("res://scripts/data/story1/enemy_ability_db.gd")
+const EABL := preload("res://scripts/data/story1/enemy_ability_db_late.gd")
 const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 
@@ -23,7 +24,7 @@ static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 	f.magic_defense = EH.es(29, 35, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 21
-	f.abilities = [EAB.bulwark_slam(), EAB.sword_strike(), EAB.defensive_formation()]
+	f.abilities = [EABL.bulwark_slam(), EABL.sword_strike(), EABL.defensive_formation()]
 	f.flavor_text = "Elite soldiers sworn to the crown. Their discipline and heavy armor make them formidable."
 	return f
 
@@ -37,7 +38,7 @@ static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 	f.magic_defense = EH.es(25, 29, 1, 2, lvl, 10)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 10)
 	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 18
-	f.abilities = [EAB.sword_strike(), EAB.battle_command(), EAB.decisive_blow()]
+	f.abilities = [EABL.sword_strike(), EABL.battle_command(), EABL.decisive_blow()]
 	f.flavor_text = "A hardened officer who leads from the front, rallying guards with sharp commands."
 	return f
 
@@ -51,7 +52,7 @@ static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 	f.magic_defense = EH.es(23, 29, 1, 3, lvl, 10)
 	f.speed = EH.es(34, 40, 3, 4, lvl, 10)
 	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 22
-	f.abilities = [EAB.arrow_shot(), EAB.volley(), EAB.pin_down()]
+	f.abilities = [EABL.arrow_shot(), EABL.volley(), EABL.pin_down()]
 	f.flavor_text = "Sharpshooters stationed on the city walls. They pin targets down with precise volleys."
 	return f
 
@@ -65,7 +66,7 @@ static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 	f.magic_defense = EH.es(37, 44, 2, 4, lvl, 11)
 	f.speed = EH.es(41, 47, 2, 4, lvl, 11)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 21
-	f.abilities = [EAB.shadow_strike(), EAB.dark_pulse(), EAB.void_shield(), EAB.drain()]
+	f.abilities = [EABL.shadow_strike(), EABL.dark_pulse(), EABL.void_shield(), EABL.drain()]
 	f.flavor_text = "A cloaked figure radiating dark power. His true nature remains hidden beneath layers of shadow."
 	return f
 
@@ -84,7 +85,7 @@ static func create_lich(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = EH.es(39, 47, 3, 5, lvl, 12)
 	f.speed = EH.es(37, 43, 2, 4, lvl, 12)
 	f.crit_chance = 24; f.crit_damage = 5; f.dodge_chance = 21
-	f.abilities = [EAB.death_bolt(), EAB.raise_dead(), EAB.soul_cage()]
+	f.abilities = [EABL.death_bolt(), EABL.raise_dead(), EABL.soul_cage()]
 	f.flavor_text = "An undead sorcerer sustained by stolen souls. Death magic bends to its will."
 	return f
 
@@ -98,7 +99,7 @@ static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = EH.es(24, 30, 1, 3, lvl, 12)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 12)
 	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 12
-	f.abilities = [EAB.slam(), EAB.poison_cloud(), EAB.rend()]
+	f.abilities = [EABL.slam(), EABL.poison_cloud(), EAB.rend()]
 	f.flavor_text = "A bloated horror that reeks of decay. Its poisonous miasma chokes the air around it."
 	return f
 
@@ -112,7 +113,7 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = EH.es(38, 44, 2, 4, lvl, 12)
 	f.speed = EH.es(36, 42, 2, 4, lvl, 12)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 19
-	f.abilities = [EAB.brimstone(), EAB.infernal_strike(), EAB.dread()]
+	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
 	f.flavor_text = "A fiend born from brimstone and fury. Its mere presence fills the air with dread."
 	return f
 
@@ -126,7 +127,7 @@ static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = EH.es(35, 40, 2, 4, lvl, 12)
 	f.speed = EH.es(29, 35, 1, 3, lvl, 12)
 	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 14
-	f.abilities = [EAB.vine_whip(), EAB.root_slam(), EAB.bark_shield()]
+	f.abilities = [EABL.vine_whip(), EABL.root_slam(), EABL.bark_shield()]
 	f.flavor_text = "Once a guardian of the ancient wood, now twisted by corruption into a weapon of ruin."
 	return f
 
@@ -138,7 +139,7 @@ static func create_hellion(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.fixed(34, 39); f.magic_defense = EH.fixed(19, 23)
 	f.speed = EH.fixed(37, 43)
 	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 18
-	f.abilities = [EAB.frenzy_slash(), EAB.chaos_rend(), EAB.manic_howl()]
+	f.abilities = [EABL.frenzy_slash(), EABL.chaos_rend(), EABL.manic_howl()]
 	f.flavor_text = "Frenzied lesser demons that slash wildly, driven by an insatiable thirst for chaos."
 	return f
 
@@ -150,7 +151,7 @@ static func create_fiendling(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.fixed(43, 50); f.magic_defense = EH.fixed(22, 26)
 	f.speed = EH.fixed(39, 45)
 	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 18
-	f.abilities = [EAB.hellspark(), EAB.imp_curse(), EAB.fiend_mark()]
+	f.abilities = [EABL.hellspark(), EABL.imp_curse(), EABL.fiend_mark()]
 	f.flavor_text = "Impish creatures that hurl sparks and curses with gleeful malice."
 	return f
 
@@ -162,7 +163,7 @@ static func create_dragon(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.fixed(40, 44); f.magic_defense = EH.fixed(22, 26)
 	f.speed = EH.fixed(35, 41)
 	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 16
-	f.abilities = [EAB.cataclysm_breath(), EAB.rending_talons(), EAB.draconic_terror()]
+	f.abilities = [EABL.cataclysm_breath(), EABL.rending_talons(), EABL.draconic_terror()]
 	f.flavor_text = "An ancient wyrm of devastating power. Its breath reduces armies to ash."
 	return f
 
@@ -174,7 +175,7 @@ static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.fixed(18, 22); f.magic_defense = EH.fixed(16, 21)
 	f.speed = EH.fixed(39, 45)
 	f.crit_chance = 21; f.crit_damage = 4; f.dodge_chance = 17
-	f.abilities = [EAB.antler_charge(), EAB.rot_aura(), EAB.blighted_breath()]
+	f.abilities = [EABL.antler_charge(), EABL.rot_aura(), EABL.blighted_breath()]
 	f.flavor_text = "A noble beast warped by corruption. Rot spreads from its hooves with every step."
 	return f
 
@@ -188,7 +189,7 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = EH.es(36, 43, 2, 4, lvl, 14)
 	f.speed = EH.es(38, 44, 2, 4, lvl, 14)
 	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 21
-	f.abilities = [EAB.dark_blade(), EAB.shadow_guard(), EAB.cleave()]
+	f.abilities = [EABL.dark_blade(), EABL.shadow_guard(), EAB.cleave()]
 	f.flavor_text = "A fallen champion clad in shadowed plate. Dark magic courses through every strike of his blade."
 	return f
 
@@ -202,7 +203,7 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = EH.es(34, 39, 2, 4, lvl, 14)
 	f.speed = EH.es(43, 49, 3, 5, lvl, 14)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 23
-	f.abilities = [EAB.shadow_bite(), EAB.howl_of_dread(), EAB.corruption_fang()]
+	f.abilities = [EABL.shadow_bite(), EABL.howl_of_dread(), EABL.corruption_fang()]
 	f.flavor_text = "Spectral hounds that hunt in packs across the corrupted wastes. Their howls freeze the blood."
 	return f
 
@@ -216,7 +217,7 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = EH.es(36, 42, 2, 4, lvl, 13)
 	f.speed = EH.es(41, 47, 3, 5, lvl, 13)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 21
-	f.abilities = [EAB.sigil_flare(), EAB.glyph_burn(), EAB.ward_break()]
+	f.abilities = [EABL.sigil_flare(), EABL.glyph_burn(), EABL.ward_break()]
 	f.flavor_text = "Twisted creatures bound to arcane sigils. They detonate glyphs of searing light at will."
 	return f
 
@@ -230,7 +231,7 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 13)
 	f.speed = EH.es(38, 44, 3, 5, lvl, 13)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 19
-	f.abilities = [EAB.venomous_bite(), EAB.web(), EAB.poison_cloud()]
+	f.abilities = [EABL.venomous_bite(), EABL.web(), EABL.poison_cloud()]
 	f.flavor_text = "Massive burrowing predators that ambush from below, ensnaring prey in venomous webs."
 	return f
 
@@ -245,6 +246,6 @@ static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = EH.es(54, 60, 3, 5, lvl, 15)
 	f.speed = EH.es(55, 62, 3, 5, lvl, 15)
 	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 20
-	f.abilities = [EAB.shadow_blast(), EAB.siphon(), EAB.dark_veil(), EAB.unmake(), EAB.entropy()]
+	f.abilities = [EABL.shadow_blast(), EABL.siphon(), EABL.dark_veil(), EABL.unmake(), EABL.entropy()]
 	f.flavor_text = "The Stranger revealed in full, terrible power. Reality itself bends around him as he prepares to unmake everything."
 	return f
