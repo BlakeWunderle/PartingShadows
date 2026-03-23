@@ -133,11 +133,9 @@ T1 (16): Duelist, Ranger, Martial Artist, Invoker, Acolyte, Bard, Dervish, Orato
 
 T2 (34): Cavalry, Dragoon, Mercenary, Hunter, Ninja, Monk, Infernalist, Tidecaller, Tempest, Paladin, Priest, Warlock, Warcrier, Minstrel, Illusionist, Mime, Laureate, Elegist, Alchemist, Bombardier, Chronomancer, Astronomer, Automaton, Technomancer, Blighter, Grove Keeper, Witch Doctor, Spiritwalker, Falconer, Shapeshifter, Bulwark, Aegis, Trailblazer, Survivalist
 
-### Step 4: Delete the intermediate JSON file
+### Step 4: Keep the JSON file
 
-```bash
-rm "$JSON_PATH"
-```
+Do NOT delete the JSON file. It persists class breakdown data across sessions so future conversations can read it for band checks, outlier analysis, and tier handoffs without re-simming. It will be overwritten naturally by the next validation run.
 
 ### Step 5: Print summary to user
 

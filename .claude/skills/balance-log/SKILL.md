@@ -56,6 +56,8 @@ Also look for any **changes made** since the last sim run:
 - Enemy count changes in battle configs
 - Player class changes (note cascade scope)
 
+**Class data source priority:** If a JSON report exists at the standard path (`C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json`), read per-class win rates from it instead of requiring sim output in the conversation. Only fall back to conversation output if no JSON is available.
+
 #### Step 3: Append to the log
 
 Find the section for the current progression. If it doesn't exist, create it. Append a new run entry under it.
@@ -84,6 +86,20 @@ If changes were made before this run, add them before the run entry:
 
 If this run's status is PASS and all 3 steps pass, add `- LOCKED` at the end.
 
+#### Recording class band data on LOCK
+
+When a progression (or tier validation) is LOCKED, append a **full class band table** to the log entry. This preserves per-class win rates so future sessions don't need to re-sim.
+
+```markdown
+**Class bands (target XX%):**
+| Class | WR | Band |
+|-------|----|------|
+| ClassName | XX.X% | OK / BELOW / ABOVE |
+| ... | ... | ... |
+```
+
+Sort by win rate descending. Mark BELOW if under floor, ABOVE if over ceiling, OK otherwise. Include all classes active at the tier. If the data comes from the JSON file, note `(from JSON)` next to the heading.
+
 #### Step 4: Update the status table
 
 Update the Status table at the top of the log:
@@ -98,7 +114,7 @@ Update the "Last updated" date.
 If ALL progressions for the active story are LOCKED:
 
 1. Print a completion message with final stats
-2. Suggest running `/class-report` for a comprehensive per-class performance snapshot
+2. Suggest running `/class-report --from-json "$JSON_PATH"` (no re-sim needed if JSON exists from tier validation)
 3. Replace the log body with:
 
 ```markdown

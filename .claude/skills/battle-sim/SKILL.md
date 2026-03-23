@@ -9,7 +9,9 @@ All paths relative to workspace root. Godot project at `EchoesOfChoice/`.
 
 **Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
 
-**After all progressions locked:** Run the final validation pass with `--json "$JSON_PATH"` to save structured data, then invoke `/class-report --from-json "$JSON_PATH"` to generate the report without re-simming.
+**After locking a tier:** Run validation with `--json "$JSON_PATH"` to persist class breakdown data. The JSON file survives across sessions — read it instead of re-simming when you need class win rates.
+
+**After all progressions locked:** Invoke `/class-report --from-json "$JSON_PATH"` to generate the report without re-simming.
 
 ## Quick Reference
 
@@ -18,10 +20,13 @@ GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotE
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
 JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
 
-# Quick iteration (any tier) -- use --compact to reduce context
+# Quick iteration (single prog) -- use --compact to reduce context
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> --compact 2>&1 | grep -v "$NOISE"
 
-# Final validation -- parallel (recommended, use 600000ms timeout)
+# Tier validation -- saves class data to JSON for later reference (no need to re-sim)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --tier <TIER> --auto --all --jobs 10 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+
+# Final validation -- all tiers, saves class data (recommended, use 600000ms timeout)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 10 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Full verbose output (when you need class breakdowns, combo extremes)
@@ -30,11 +35,24 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 
 **IMPORTANT: Never run two sim processes at the same time.** Each `battle_sim_parallel.gd` invocation spawns multiple Godot worker processes. Running two parallel sims simultaneously causes severe CPU contention (10x+ slower, unreliable results). Always wait for one sim to complete before launching the next. Use `run_in_background` only for a single sim at a time.
 
+### Persisted Class Data
+
+The JSON file at `$JSON_PATH` contains per-class win rates for every battle from the last validation run. Structure:
+
+```json
+{ "stages": [ { "stage_name": "...", "class_breakdown": { "ClassName": { "win_rate": 0.75, "wins": N, "total": N, "combo_count": N } } } ] }
+```
+
+**When you need class data** (band checks, outlier analysis, tier handoffs): read the JSON file first. Only re-sim if the JSON is missing or stale (enemy/player changes since it was written).
+
+**When to refresh**: After any stat change, re-run the tier validation with `--json` to update the file.
+
 ### Resuming a Previous Session
 
 1. Read the balance log. If it has an active pass, find the first non-LOCKED progression.
 2. Start from that progression (do not re-validate already LOCKED progs unless a cascade occurred).
 3. If the log shows a cascade note, start from the noted progression.
+4. Check if `$JSON_PATH` has recent class data — use it for context instead of re-simming.
 
 ---
 
