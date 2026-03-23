@@ -355,15 +355,14 @@ static func outpost_defense_battle() -> BattleData:
 	b.scene_image = "res://assets/art/battles/outpost_night.png"
 	b.enemies = [
 		EnemyDB.create_shade("Umbra"),
-		EnemyDB.create_wraith("Revenant"),
-		EnemyDB.create_shade("Penumbra"),
 		EnemyDB.create_wraith("Specter"),
+		EnemyDB.create_boneguard("Osseus"),
 	]
 	b.pre_battle_text = [
 		"Night falls at the outpost and the temperature drops unnaturally fast. Breath turns to fog. The campfires gutter and dim as though something is pulling the warmth out of the air.",
 		"Two shapes materialize from the darkness at the edge of the firelight. Not animals. Not people. Shadows with substance.",
-		"They move without sound, drifting toward the camp with purpose. The first real sign that something beyond nature is at work.",
-		"Weapons won't help much against things without bodies. But the party has to try.",
+		"Behind them, something worse. The body of a fallen guard rises, still gripping its rusted sword. Whatever controls the shadows has learned to use the dead as well.",
+		"Weapons won't help much against things without bodies. But the risen guard proves they can be fought with steel.",
 	]
 	b.post_battle_text = [
 		"The shadows dissolve into wisps of dark smoke, but the unnatural cold lingers in the air.",

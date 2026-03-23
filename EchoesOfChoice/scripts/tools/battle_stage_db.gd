@@ -245,9 +245,8 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBAct2.create_zombie("Dredge")]
 		"OutpostDefenseBattle":
 			return [EnemyDBAct2.create_shade("Umbra"),
-				EnemyDBAct2.create_wraith("Revenant"),
-				EnemyDBAct2.create_shade("Penumbra"),
-				EnemyDBAct2.create_wraith("Specter")]
+				EnemyDBAct2.create_wraith("Specter"),
+				EnemyDBAct2.create_boneguard("Osseus")]
 		"MirrorBattle":
 			return _mirror_enemies(party)
 		"ReturnToCityStreetBattle":

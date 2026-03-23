@@ -88,7 +88,7 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 | LabBattle | 5 | Android, Machinist, Ironclad | 3v3 |
 | ArmyBattle | 5 | Commander, Draconian, Chaplain | 3v3 |
 | CemeteryBattle | 5 | 2x Zombie, Ghoul | 3v3 |
-| OutpostDefenseBattle | 6 | 2x Shade, 2x Wraith | 3v4 |
+| OutpostDefenseBattle | 6 | Shade, Wraith, Boneguard | 3v3 |
 | MirrorBattle | 7 | Shadow clones (98% stat copies) | 3vN |
 | ReturnToCityStreetBattle | 8 | RoyalGuard, GuardSergeant, 2x GuardArcher | 3v4 |
 | StrangerTowerBattle | 9 | Stranger | 3v1 (boss) |

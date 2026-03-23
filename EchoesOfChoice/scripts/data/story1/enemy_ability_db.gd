@@ -469,3 +469,14 @@ static func draconic_terror() -> AbilityData:
 static func entropy() -> AbilityData:
 	return _make("Entropy", "Reality frays at the Stranger's touch.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
 
+# --- Boneguard (physical undead for OutpostDefense) ---
+
+static func rusted_cleave() -> AbilityData:
+	return _make("Rusted Cleave", "A corroded blade carves through armor.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0, 2)
+
+static func grave_charge() -> AbilityData:
+	return _make("Grave Charge", "The dead soldier lunges with grim purpose.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, true, 0, 0.0, 3)
+
+static func deathless_guard() -> AbilityData:
+	return _make("Deathless Guard", "Ancient duty hardens crumbling bones.", Enums.StatType.PHYSICAL_DEFENSE, 5, 2, false, 3, false, 0, 0.0, 2)
+
