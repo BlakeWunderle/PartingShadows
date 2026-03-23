@@ -5,6 +5,7 @@ class_name ClassDetailModal extends DetailModalBase
 var class_data: Dictionary = {}
 var discovered_classes: Dictionary = {}  ## class_id -> discovered status
 var is_global: bool = false  ## True when viewed from title screen (no "YOU ARE HERE")
+const Registry := preload("res://scripts/ui/compendium/compendium_registry.gd")
 var _FighterDB := preload("res://scripts/data/fighter_db.gd")
 var _FighterDBT1 := preload("res://scripts/data/fighter_db_t1.gd")
 var _FighterDBT2 := preload("res://scripts/data/fighter_db_t2.gd")
@@ -256,7 +257,7 @@ func _navigate_to_class(target_class_id: String) -> void:
 		"display_name": _FighterDB.get_display_name(target_class_id),
 		"name": _FighterDB.get_display_name(target_class_id),
 		"tier": tier,
-		"portrait_path": "res://assets/art/portraits/classes/%s_m.png" % CompendiumPanelNew._to_portrait_key(_FighterDB.get_display_name(target_class_id)),
+		"portrait_path": Registry.get_class_portrait_path(target_class_id),
 		"flavor_text": _FighterDB.get_flavor_text(target_class_id),
 		"abilities": abilities,
 	}
@@ -280,8 +281,7 @@ func _add_portrait_thumb(row: HBoxContainer, class_id: String, is_discovered: bo
 	thumb.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	thumb.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	if is_discovered:
-		var portrait_key: String = CompendiumPanelNew._to_portrait_key(display_name)
-		var path: String = "res://assets/art/portraits/classes/%s_m.png" % portrait_key
+		var path: String = "res://assets/art/portraits/classes/%s_m.png" % Registry.to_portrait_key(display_name)
 		if ResourceLoader.exists(path):
 			thumb.texture = load(path)
 	row.add_child(thumb)
