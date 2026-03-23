@@ -246,14 +246,14 @@ static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 
 static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Cave Maw", lvl)
-	f.health = _es(120, 138, 5, 8, lvl, 3); f.max_health = f.health
+	f.health = _es(132, 152, 5, 8, lvl, 3); f.max_health = f.health
 	f.mana = _es(5, 8, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(24, 28, 2, 3, lvl, 3)
 	f.physical_defense = _es(15, 19, 1, 3, lvl, 3)
 	f.magic_attack = _es(5, 8, 0, 2, lvl, 3)
 	f.magic_defense = _es(11, 15, 1, 2, lvl, 3)
 	f.speed = _es(19, 25, 1, 2, lvl, 3)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 7
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.gnash(), EAB.swallow(), EAB.tremor()]
 	f.flavor_text = "A gargantuan lamprey-like beast that lurks near the cave exit. Its circular jaws can swallow a person whole."
 	return f
@@ -261,14 +261,14 @@ static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 
 static func create_vein_leech(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Vein Leech", lvl)
-	f.health = _es(82, 96, 3, 5, lvl, 3); f.max_health = f.health
+	f.health = _es(90, 105, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = _es(4, 7, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(23, 27, 2, 3, lvl, 3)
 	f.physical_defense = _es(9, 12, 1, 2, lvl, 3)
 	f.magic_attack = _es(6, 9, 0, 2, lvl, 3)
 	f.magic_defense = _es(8, 11, 1, 2, lvl, 3)
 	f.speed = _es(24, 30, 1, 3, lvl, 3)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.latch(), EAB.siphon_glow()]
 	f.flavor_text = "A bloated parasitic worm that clings to mineral veins. It drains both blood and the faint luminescence from living things."
 	return f
@@ -276,14 +276,14 @@ static func create_vein_leech(n: String, lvl: int = 5) -> FighterData:
 
 static func create_stone_moth(n: String, lvl: int = 5) -> FighterData:
 	var f := _base(n, "Stone Moth", lvl)
-	f.health = _es(64, 73, 2, 4, lvl, 3); f.max_health = f.health
+	f.health = _es(70, 80, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = _es(7, 9, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = _es(9, 12, 0, 2, lvl, 3)
 	f.physical_defense = _es(7, 10, 0, 1, lvl, 3)
 	f.magic_attack = _es(22, 26, 1, 3, lvl, 3)
 	f.magic_defense = _es(13, 17, 1, 2, lvl, 3)
 	f.speed = _es(27, 33, 2, 3, lvl, 3)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 19
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 21
 	f.abilities = [EAB.petrify_pulse(), EAB.wing_dust()]
 	f.flavor_text = "A large moth with wings of calcite and granite dust. Its petrifying scales turn flesh to stone on contact."
 	return f
