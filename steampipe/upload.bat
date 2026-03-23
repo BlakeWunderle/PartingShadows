@@ -7,7 +7,7 @@ if exist "%~dp0..\build\macos\EchoesOfChoice.zip" (
     echo Preparing macOS build...
     if exist "%~dp0..\build\macos\EchoesOfChoice.app" rmdir /s /q "%~dp0..\build\macos\EchoesOfChoice.app"
     if exist "%~dp0..\build\macos\Echoes of Choice.app" rmdir /s /q "%~dp0..\build\macos\Echoes of Choice.app"
-    tar -xf "%~dp0..\build\macos\EchoesOfChoice.zip" -C "%~dp0..\build\macos\"
+    powershell -Command "Expand-Archive -Path '%~dp0..\build\macos\EchoesOfChoice.zip' -DestinationPath '%~dp0..\build\macos' -Force"
     if exist "%~dp0..\build\macos\Echoes of Choice.app" (
         ren "%~dp0..\build\macos\Echoes of Choice.app" "EchoesOfChoice.app"
         echo   Renamed .app bundle to EchoesOfChoice.app
