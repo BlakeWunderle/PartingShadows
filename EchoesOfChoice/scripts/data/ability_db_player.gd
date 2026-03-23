@@ -387,7 +387,7 @@ static func volatile_flask() -> AbilityData:
 
 static func healing_draught() -> AbilityData:
 	return _make("Healing Draught", "A carefully brewed potion that mends wounds.",
-		Enums.StatType.HEALTH, 6, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 4, 0, false, 4, false, 0, 0.0)
 
 # Cosmologist (Philosopher)
 static func time_warp() -> AbilityData:
