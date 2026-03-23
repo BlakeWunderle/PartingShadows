@@ -11,6 +11,7 @@ const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
 const CompendiumPanelNew := preload("res://scripts/ui/compendium/compendium_panel.gd")
 const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
+const PauseSaveSlots_C := preload("res://scripts/autoload/pause_save_slots.gd")
 
 enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS, WAITING_MP, FIGHTER_PICK }
 
@@ -34,11 +35,13 @@ var _pause_title: Label
 var _pause_sep: HSeparator
 var _panel_expanded: bool = false
 var _pending_save_slot: int = -1
+var _save_slots: PauseSaveSlots_C
 
 
 func _ready() -> void:
 	layer = 99  # Below SceneManager fader (100)
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_save_slots = PauseSaveSlots_C.new(self)
 	_build_ui()
 	_panel.visible = false
 
@@ -421,98 +424,27 @@ func _show_key_bindings() -> void:
 # =============================================================================
 
 func _show_save_slots() -> void:
-	_mode = Mode.SAVE_SLOTS
-	_main_vbox.visible = false
-
-	# Clear old slot buttons
-	for child: Node in _save_vbox.get_children():
-		child.queue_free()
-
-	# Build slot buttons with summaries
-	for i: int in SaveManager.MAX_SAVE_SLOTS:
-		var summary: Dictionary = SaveManager.get_save_summary(i)
-		var label: String
-		if summary.get("exists", false):
-			var story_title: String = StoryDB.get_story(
-				summary.get("story_id", "story_1")).get("title", "")
-			var secs: float = summary.get("play_seconds", 0.0)
-			var h: int = int(secs) / 3600
-			var m: int = (int(secs) % 3600) / 60
-			label = "Slot %d: %s the %s - Lv %d (%s) [%dh %dm]" % [
-				i + 1,
-				summary.get("lead_name", "???"),
-				summary.get("lead_class", "???"),
-				summary.get("level", 1),
-				story_title,
-				h, m,
-			]
-		else:
-			label = "Slot %d: Empty" % [i + 1]
-		var btn := _make_button(label)
-		var slot: int = i  # Capture for lambda
-		btn.pressed.connect(_on_save_slot_selected.bind(slot))
-		_save_vbox.add_child(btn)
-
-		# Delete button for occupied slots
-		if summary.get("exists", false):
-			var del_btn := _make_button("  Delete Slot %d" % [i + 1])
-			del_btn.add_theme_color_override("font_color", Color(0.8, 0.4, 0.4))
-			del_btn.custom_minimum_size.y = 28
-			del_btn.pressed.connect(_on_delete_slot_selected.bind(slot))
-			_save_vbox.add_child(del_btn)
-
-	# Back button
-	var back_btn := _make_button("Back")
-	back_btn.pressed.connect(_back_to_main)
-	_save_vbox.add_child(back_btn)
-
-	_save_vbox.visible = true
-
-	# Focus first slot after frame so buttons are ready
-	await get_tree().process_frame
-	if _save_vbox.get_child_count() > 0:
-		var first: Button = _save_vbox.get_child(0) as Button
-		if first:
-			first.grab_focus()
+	_save_slots.show_save_slots()
 
 
 func _on_save_slot_selected(slot: int) -> void:
-	if SaveManager.has_save(slot):
-		_pending_save_slot = slot
-		_confirm_dialog.confirmed.connect(_on_overwrite_confirmed, CONNECT_ONE_SHOT)
-		_confirm_dialog.show_confirm("Overwrite this save?")
-	else:
-		_do_save(slot)
+	_save_slots.on_save_slot_selected(slot)
 
 
 func _on_overwrite_confirmed(accepted: bool) -> void:
-	if accepted and _pending_save_slot >= 0:
-		_do_save(_pending_save_slot)
-	_pending_save_slot = -1
+	_save_slots.on_overwrite_confirmed(accepted)
 
 
 func _do_save(slot: int) -> void:
-	SaveManager.save_to_slot(slot)
-	for i: int in _save_vbox.get_child_count():
-		var btn: Button = _save_vbox.get_child(i) as Button
-		if btn and i == slot:
-			btn.text = "Slot %d: Saved!" % [slot + 1]
-	await get_tree().create_timer(0.6).timeout
-	if _mode == Mode.SAVE_SLOTS:
-		_back_to_main()
+	_save_slots.do_save(slot)
 
 
 func _on_delete_slot_selected(slot: int) -> void:
-	_pending_save_slot = slot
-	_confirm_dialog.confirmed.connect(_on_delete_confirmed, CONNECT_ONE_SHOT)
-	_confirm_dialog.show_confirm("Delete this save? This cannot be undone.")
+	_save_slots.on_delete_slot_selected(slot)
 
 
 func _on_delete_confirmed(accepted: bool) -> void:
-	if accepted and _pending_save_slot >= 0:
-		SaveManager.delete_save(_pending_save_slot)
-		_show_save_slots()  # Refresh the slot list
-	_pending_save_slot = -1
+	_save_slots.on_delete_confirmed(accepted)
 
 
 func _back_to_main() -> void:
