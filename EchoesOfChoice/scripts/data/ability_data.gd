@@ -14,7 +14,6 @@ const Enums := preload("res://scripts/data/enums.gd")
 @export var target_all: bool = false
 @export var damage_per_turn: int = 0
 @export var life_steal_percent: float = 0.0
-@export var cooldown: int = 0  ## Turns before ability can be reused (0 = no cooldown)
 
 
 func get_description() -> String:

@@ -250,7 +250,6 @@ func _navigate_to_class(target_class_id: String) -> void:
 			"name": a.ability_name,
 			"description": a.get_compendium_description(),
 			"mana_cost": a.mana_cost,
-			"cooldown": a.cooldown,
 		})
 	var target_data := {
 		"class_id": target_class_id,

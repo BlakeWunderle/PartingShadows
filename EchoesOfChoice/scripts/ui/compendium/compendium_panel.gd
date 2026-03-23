@@ -192,7 +192,7 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 					"name": a.ability_name,
 					"description": a.get_compendium_description(),
 					"mana_cost": a.mana_cost,
-					"cooldown": a.cooldown,
+
 				})
 		var item_dict := {
 			"is_discovered": is_discovered,
@@ -240,7 +240,7 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 						"name": a.ability_name,
 						"description": a.get_compendium_description(),
 						"mana_cost": a.mana_cost,
-						"cooldown": a.cooldown,
+	
 					})
 				flavor_text = fighter.flavor_text
 		var item_dict := {
