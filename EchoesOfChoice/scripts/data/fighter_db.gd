@@ -152,109 +152,38 @@ static func create_wanderer(fighter_name: String) -> FighterData:
 # =============================================================================
 
 static func level_up(fighter: FighterData) -> void:
-	match fighter.class_id:
-		"Squire": _level_up_squire(fighter)
-		"Mage": _level_up_mage(fighter)
-		"Entertainer": _level_up_entertainer(fighter)
-		"Tinker": _level_up_scholar(fighter)
-		"Wildling": _level_up_wildling(fighter)
-		"Wanderer": _level_up_wanderer(fighter)
-		_:
-			if T1.level_up(fighter): return
-			if T2.level_up(fighter): return
-			if T2B.level_up(fighter): return
-			_level_up_generic(fighter)
+	if fighter.class_id in _GROWTH:
+		_apply_level_up(fighter, _GROWTH[fighter.class_id])
+		return
+	if T1.level_up(fighter): return
+	if T2.level_up(fighter): return
+	if T2B.level_up(fighter): return
+	_apply_level_up(fighter, _GROWTH["_generic"])
 
 
-static func _level_up_squire(f: FighterData) -> void:
+# Growth rates: [hp, mp, patk, pdef, matk, mdef, spd, dodge, crit] as [min, max] pairs
+const _GROWTH := {
+	#                  hp     mp     patk   pdef   matk   mdef   spd    dodge  crit
+	"Squire":      [[7,9], [1,2], [1,2], [1,2], [1,2], [1,2], [1,2], [0,1], [0,1]],
+	"Mage":        [[5,7], [2,3], [1,2], [1,2], [1,2], [1,2], [1,1], [0,1], [0,1]],
+	"Entertainer": [[7,9], [1,2], [2,3], [1,2], [2,3], [1,2], [1,1], [0,1], [0,1]],
+	"Tinker":      [[6,8], [1,2], [1,2], [1,2], [1,2], [1,2], [1,1], [0,1], [0,1]],
+	"Wildling":    [[6,7], [1,2], [1,2], [1,2], [2,3], [1,2], [1,2], [0,1], [0,1]],
+	"Wanderer":    [[6,8], [1,2], [1,2], [1,2], [1,2], [2,3], [1,2], [0,1], [0,1]],
+	"_generic":    [[5,8], [1,2], [1,2], [1,2], [1,2], [1,2], [1,1], [0,1], [0,1]],
+}
+
+static func _apply_level_up(f: FighterData, g: Array) -> void:
 	f.level += 1
-	var hp: int = randi_range(7, 9); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(1, 2)
-	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 2)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(0, 1)
-
-
-static func _level_up_mage(f: FighterData) -> void:
-	f.level += 1
-	var hp: int = randi_range(5, 7); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(2, 3); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(1, 2)
-	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 1)
-	f.crit_chance += randi_range(0, 1)
-	f.dodge_chance += randi_range(0, 1)
-
-
-static func _level_up_entertainer(f: FighterData) -> void:
-	f.level += 1
-	var hp: int = randi_range(7, 9); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(2, 3)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(2, 3)
-	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 1)
-	f.crit_chance += randi_range(0, 1)
-	f.dodge_chance += randi_range(0, 1)
-
-
-static func _level_up_scholar(f: FighterData) -> void:
-	f.level += 1
-	var hp: int = randi_range(6, 8); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(1, 2)
-	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 1)
-	f.crit_chance += randi_range(0, 1)
-	f.dodge_chance += randi_range(0, 1)
-
-
-static func _level_up_wildling(f: FighterData) -> void:
-	f.level += 1
-	var hp: int = randi_range(6, 7); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(2, 3)
-	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 2)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(0, 1)
-
-
-static func _level_up_wanderer(f: FighterData) -> void:
-	f.level += 1
-	var hp: int = randi_range(6, 8); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(1, 2)
-	f.magic_defense += randi_range(2, 3)
-	f.speed += randi_range(1, 2)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(0, 1)
-
-
-static func _level_up_generic(f: FighterData) -> void:
-	f.level += 1
-	var hp: int = randi_range(5, 8); f.health += hp; f.max_health += hp
-	var mp: int = randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2)
-	f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(1, 2)
-	f.magic_defense += randi_range(1, 2)
-	f.speed += randi_range(1, 1)
-	f.dodge_chance += randi_range(0, 1)
-	f.crit_chance += randi_range(0, 1)
+	var hp: int = randi_range(g[0][0], g[0][1]); f.health += hp; f.max_health += hp
+	var mp: int = randi_range(g[1][0], g[1][1]); f.mana += mp; f.max_mana += mp
+	f.physical_attack += randi_range(g[2][0], g[2][1])
+	f.physical_defense += randi_range(g[3][0], g[3][1])
+	f.magic_attack += randi_range(g[4][0], g[4][1])
+	f.magic_defense += randi_range(g[5][0], g[5][1])
+	f.speed += randi_range(g[6][0], g[6][1])
+	f.dodge_chance += randi_range(g[7][0], g[7][1])
+	f.crit_chance += randi_range(g[8][0], g[8][1])
 
 
 # =============================================================================
