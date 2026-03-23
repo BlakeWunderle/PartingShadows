@@ -375,11 +375,6 @@ static func magical_tinkering() -> AbilityData:
 	return _make("Magical Tinkering", "Enhance an ally's magical potency.",
 		Enums.StatType.MAGIC_ATTACK, 5, 2, false, 2, false, 0, 0.0)
 
-static func flash_powder() -> AbilityData:
-	return _make("Flash Powder", "A blinding flash that lowers guard.",
-		Enums.StatType.DEFENSE, 2, 2, true, 3, true, 0, 0.0)
-
-
 static func volatile_flask() -> AbilityData:
 	return _make("Volatile Flask", "A bubbling concoction hurled at the enemy.",
 		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
@@ -524,11 +519,6 @@ static func player_hex() -> AbilityData:
 	return _make("Hex", "A curse that saps the enemy's power.",
 		Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
 
-static func spirit_ward() -> AbilityData:
-	return _make("Spirit Ward", "Ancestral spirits bolster defenses.",
-		Enums.StatType.DEFENSE, 3, 2, false, 2, false, 0, 0.0)
-
-
 static func spirit_bolt() -> AbilityData:
 	return _make("Spirit Bolt", "A crackling bolt of ancestral energy.",
 		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
@@ -574,10 +564,6 @@ static func poison_sting() -> AbilityData:
 		Enums.StatType.HEALTH, 0, 3, true, 3, false, 4, 0.0)
 
 # Grove Keeper
-static func vine_wall() -> AbilityData:
-	return _make("Vine Wall", "Thick vines shield an ally.",
-		Enums.StatType.DEFENSE, 3, 2, false, 4, false, 0, 0.0)
-
 static func root_trap() -> AbilityData:
 	return _make("Root Trap", "Roots that entangle all enemies.",
 		Enums.StatType.SPEED, 4, 2, true, 5, true, 0, 0.0)
@@ -668,11 +654,6 @@ static func keen_strike() -> AbilityData:
 static func exploit_weakness() -> AbilityData:
 	return _make("Exploit Weakness", "Study the enemy to find their flaw.",
 		Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
-
-static func wayfinders_sense() -> AbilityData:
-	return _make("Wayfinder's Sense", "Read the terrain for tactical advantage.",
-		Enums.StatType.SPEED, 3, 2, false, 2, false, 0, 0.0)
-
 
 static func adaptable_strike() -> AbilityData:
 	return _make("Adaptable Strike", "A versatile blow that siphons the enemy's vitality.",

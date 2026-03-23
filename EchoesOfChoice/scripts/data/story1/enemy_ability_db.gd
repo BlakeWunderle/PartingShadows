@@ -116,9 +116,6 @@ static func devour() -> AbilityData:
 static func rend() -> AbilityData:
 	return _make("Rend", "Tear at the enemy.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
-static func enemy_blight() -> AbilityData:
-	return _make("Blight", "Dark corruption seeps in.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0)
-
 static func shadow_strike() -> AbilityData:
 	return _make("Shadow Strike", "A blow from the darkness.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
@@ -136,9 +133,6 @@ static func arrow_shot() -> AbilityData:
 
 static func volley() -> AbilityData:
 	return _make("Volley", "A rain of arrows.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, true, 0, 0.0)
-
-static func spark() -> AbilityData:
-	return _make("Spark", "A crackling bolt of energy.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0)
 
 static func dark_pulse() -> AbilityData:
 	return _make("Dark Pulse", "Shadow energy pulses outward.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
@@ -224,9 +218,6 @@ static func shriek() -> AbilityData:
 
 static func dirty_trick() -> AbilityData:
 	return _make("Dirty Trick", "Throw sand in their eyes.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
-
-static func riptide() -> AbilityData:
-	return _make("Riptide", "Drag the enemy into slow currents.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
 
 static func center_ring() -> AbilityData:
 	return _make("Center Ring", "Force the enemy into the spotlight.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
