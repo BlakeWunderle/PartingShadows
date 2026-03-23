@@ -1,0 +1,11 @@
+"AppBuild"
+{
+	"AppID" "4545380"
+	"Desc" "Echoes of Choice build"
+	"BuildOutput" "C:\Projects\EchoesOfChoice\build\steampipe_output"
+	"ContentRoot" "C:\Projects\EchoesOfChoice\build\windows"
+	"Depots"
+	{
+		"4545382" "C:\Projects\EchoesOfChoice\steampipe\depot_build_4545382.vdf"
+	}
+}

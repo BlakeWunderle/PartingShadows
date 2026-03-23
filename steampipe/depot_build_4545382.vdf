@@ -1,0 +1,13 @@
+"DepotBuildConfig"
+{
+	"DepotID" "4545382"
+	"ContentRoot" "C:\Projects\EchoesOfChoice\build\windows"
+	"FileMapping"
+	{
+		"LocalPath" "*"
+		"DepotPath" "."
+		"Recursive" "1"
+	}
+	"FileExclusion" "*.zip"
+	"FileExclusion" "*.pdb"
+}
