@@ -2,6 +2,7 @@
 {
 	"AppID" "4545380"
 	"Desc" "Echoes of Choice build"
+	"SetLive" "default"
 	"BuildOutput" "C:\Projects\EchoesOfChoice\build\steampipe_output"
 	"Depots"
 	{
