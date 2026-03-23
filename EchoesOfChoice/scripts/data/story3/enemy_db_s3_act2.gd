@@ -142,14 +142,14 @@ static func create_memory_wisp(n: String, lvl: int = 6) -> FighterData:
 
 static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Gallery Shade", lvl)
-	f.health = EH.es(244, 285, 3, 5, lvl, 6); f.max_health = f.health
+	f.health = EH.es(262, 306, 3, 5, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(12, 15, 0, 2, lvl, 6)
-	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 6)
-	f.magic_attack = EH.es(27, 31, 1, 3, lvl, 6)
-	f.magic_defense = EH.es(15, 18, 1, 2, lvl, 6)
+	f.physical_attack = EH.es(27, 31, 1, 3, lvl, 6)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 6)
+	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 6)
+	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
 	f.speed = EH.es(30, 35, 1, 3, lvl, 6)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 20
 	f.abilities = [EAB.gallery_bolt(), EAB.shatter_ward()]
 	f.flavor_text = "A dark silhouette that steps out of painted portraits in the shattered gallery. It hurls splinters of broken frames and conjures wards from cracked canvas."
 	return f
@@ -161,14 +161,14 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 
 static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	var f := EH.base(n, "Shadow Pursuer", lvl)
-	f.health = EH.es(268, 313, 3, 6, lvl, 7); f.max_health = f.health
+	f.health = EH.es(275, 321, 3, 6, lvl, 7); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = EH.es(29, 34, 1, 3, lvl, 7)
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 7)
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 7)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 7)
 	f.speed = EH.es(33, 38, 1, 3, lvl, 7)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.shadow_strike(), EAB.relentless_hound()]
 	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. No matter how far you run, it always closes the distance."
 	return f
@@ -176,14 +176,14 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 
 static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 	var f := EH.base(n, "Dread Tendril", lvl)
-	f.health = EH.es(258, 305, 3, 6, lvl, 7); f.max_health = f.health
+	f.health = EH.es(264, 312, 3, 6, lvl, 7); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = EH.es(12, 15, 0, 2, lvl, 7)
 	f.physical_defense = EH.es(14, 17, 1, 2, lvl, 7)
 	f.magic_attack = EH.es(27, 32, 1, 3, lvl, 7)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 7)
 	f.speed = EH.es(28, 33, 1, 2, lvl, 7)
-	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 15
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.dread_lash(), EAB.terror_grip()]
 	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. Its grip paralyzes the will and leaves victims unable to move or cry out."
 	return f
@@ -191,14 +191,14 @@ static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 
 static func create_faded_voice(n: String, lvl: int = 7) -> FighterData:
 	var f := EH.base(n, "Faded Voice", lvl)
-	f.health = EH.es(239, 280, 3, 5, lvl, 7); f.max_health = f.health
+	f.health = EH.es(251, 294, 3, 5, lvl, 7); f.max_health = f.health
 	f.mana = EH.es(9, 11, 1, 2, lvl, 7); f.max_mana = f.mana
-	f.physical_attack = EH.es(13, 16, 0, 2, lvl, 7)
-	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 7)
-	f.magic_attack = EH.es(23, 28, 1, 3, lvl, 7)
-	f.magic_defense = EH.es(15, 18, 1, 2, lvl, 7)
+	f.physical_attack = EH.es(23, 28, 1, 3, lvl, 7)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 7)
+	f.magic_attack = EH.es(13, 16, 0, 2, lvl, 7)
+	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 7)
 	f.speed = EH.es(29, 34, 1, 2, lvl, 7)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 16
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.echoed_cry(), EAB.fade()]
 	f.flavor_text = "The remnant of a voice that once belonged to a real person, now stripped of meaning and body. It cries out in fragments, and each echo saps the strength of those who hear it."
 	return f

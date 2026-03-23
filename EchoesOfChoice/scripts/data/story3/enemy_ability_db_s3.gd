@@ -129,7 +129,7 @@ static func shield_bash() -> AbilityData:
 # --- Hollow Echo ---
 
 static func echo_drain() -> AbilityData:
-	return _make("Echo Drain", "It feeds on the reverberations of your voice.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.3)
+	return _make("Echo Drain", "A shockwave of stolen sound slams into flesh and bone.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.3)
 
 static func dissonance() -> AbilityData:
 	return _make("Dissonance", "Conflicting sounds shatter concentration.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)

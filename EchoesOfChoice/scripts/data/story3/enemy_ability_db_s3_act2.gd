@@ -89,10 +89,10 @@ static func blur() -> AbilityData:
 # --- Gallery Shade ---
 
 static func gallery_bolt() -> AbilityData:
-	return _make("Gallery Bolt", "A shard of stolen dream launched like an arrow.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Gallery Bolt", "A jagged shard of frame and canvas hurled with spectral force.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func shatter_ward() -> AbilityData:
-	return _make("Shatter Ward", "The shade peels away magical defenses like old paint.", Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 3, false, 0, 0.0)
+	return _make("Shatter Ward", "The shade peels away defenses like old paint.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -118,7 +118,7 @@ static func terror_grip() -> AbilityData:
 # --- Faded Voice ---
 
 static func echoed_cry() -> AbilityData:
-	return _make("Echoed Cry", "A voice from a dream that was never yours.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Echoed Cry", "The voice hits like a physical blow, rattling teeth and bone.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func fade() -> AbilityData:
 	return _make("Fade", "Everything feels slower, heavier, further away.", Enums.StatType.SPEED, 5, 2, true, 4, true, 0, 0.0)

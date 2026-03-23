@@ -179,14 +179,14 @@ static func create_pale_crayfish(n: String, lvl: int = 3) -> FighterData:
 
 static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 	var f := EH.base(n, "Cave Dweller", lvl)
-	f.health = EH.es(61, 76, 3, 5, lvl, 3); f.max_health = f.health
+	f.health = EH.es(63, 78, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(19, 23, 2, 3, lvl, 3)
 	f.physical_defense = EH.es(12, 16, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 3)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 3)
 	f.speed = EH.es(20, 26, 1, 2, lvl, 3)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 7
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.crude_axe(), EAB.rock_toss()]
 	f.flavor_text = "A hunched, pale humanoid adapted to perpetual darkness. It fashions crude weapons from bone and stone."
 	return f
@@ -194,14 +194,14 @@ static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 
 static func create_tunnel_shaman(n: String, lvl: int = 3) -> FighterData:
 	var f := EH.base(n, "Tunnel Shaman", lvl)
-	f.health = EH.es(50, 59, 2, 4, lvl, 3); f.max_health = f.health
+	f.health = EH.es(51, 60, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(9, 11, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(7, 10, 0, 1, lvl, 3)
 	f.physical_defense = EH.es(8, 11, 0, 2, lvl, 3)
 	f.magic_attack = EH.es(18, 22, 1, 3, lvl, 3)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 3)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 3)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.hex_flame(), EAB.ward_bones()]
 	f.flavor_text = "An elder cave dweller draped in carved bone fetishes. It channels the strange energies that seep through the deep rock."
 	return f
@@ -209,14 +209,14 @@ static func create_tunnel_shaman(n: String, lvl: int = 3) -> FighterData:
 
 static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 	var f := EH.base(n, "Burrow Scout", lvl)
-	f.health = EH.es(44, 52, 2, 4, lvl, 3); f.max_health = f.health
+	f.health = EH.es(45, 53, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(17, 21, 1, 3, lvl, 3)
 	f.physical_defense = EH.es(7, 10, 0, 1, lvl, 3)
 	f.magic_attack = EH.es(5, 8, 0, 1, lvl, 3)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 3)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 3)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 22
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 22
 	f.abilities = [EAB.dart_strike(), EAB.smoke_bomb()]
 	f.flavor_text = "A wiry, quick-footed cave dweller that patrols the outer tunnels. It strikes from the shadows and vanishes before retaliation."
 	return f

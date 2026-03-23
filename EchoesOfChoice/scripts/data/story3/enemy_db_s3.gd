@@ -45,14 +45,14 @@ static func create_phantasm(n: String, lvl: int = 1) -> FighterData:
 # Prog 1 MirrorHall enemies
 static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	var f := EH.base(n, "Shade Moth", lvl)
-	f.health = EH.es(28, 36, 2, 3, lvl, 1); f.max_health = f.health
+	f.health = EH.es(29, 37, 2, 3, lvl, 1); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(11, 14, 1, 2, lvl, 1)
 	f.physical_defense = EH.es(5, 9, 0, 1, lvl, 1)
 	f.magic_attack = EH.es(9, 12, 0, 2, lvl, 1)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 1)
 	f.speed = EH.es(30, 36, 1, 3, lvl, 1)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 12
+	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.dust_wing(), EAB.flit()]
 	f.flavor_text = "A dark-winged insect born from forgotten memories. Its scales scatter a soporific dust that clouds the senses."
 	return f
@@ -60,14 +60,14 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 
 static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Sleep Stalker", lvl)
-	f.health = EH.es(47, 55, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = EH.es(49, 58, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 24, 1, 3, lvl, 2)
 	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 0, 1, lvl, 2)
 	f.speed = EH.es(27, 33, 1, 3, lvl, 2)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	f.flavor_text = "A gaunt predator that prowls the border between waking and sleep. It hunts by sensing the fear of dreamers who linger too long."
 	return f
@@ -75,14 +75,14 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 
 static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Mirror Shade", lvl)
-	f.health = EH.es(43, 51, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = EH.es(45, 54, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 1, 2, lvl, 2)
 	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(14, 18, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 1, 2, lvl, 2)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
 	f.flavor_text = "A distorted reflection that has stepped free of its mirror. It copies the movements of those it faces, turning their own strength against them."
 	return f
@@ -173,10 +173,10 @@ static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 	var f := EH.base(n, "Hollow Echo", lvl)
 	f.health = EH.es(111, 131, 3, 5, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 2, lvl, 4); f.max_mana = f.mana
-	f.physical_attack = EH.es(10, 13, 0, 2, lvl, 4)
-	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 4)
-	f.magic_attack = EH.es(20, 24, 1, 3, lvl, 4)
-	f.magic_defense = EH.es(15, 18, 1, 2, lvl, 4)
+	f.physical_attack = EH.es(20, 24, 1, 3, lvl, 4)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 4)
+	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 4)
+	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 4)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 4)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.echo_drain(), EAB.dissonance()]
