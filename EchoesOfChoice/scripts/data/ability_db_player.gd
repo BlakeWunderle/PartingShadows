@@ -28,7 +28,7 @@ static func feint() -> AbilityData:
 
 static func riposte() -> AbilityData:
 	return _make("Riposte", "Counter with a precise thrust.",
-		Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 # Ranger
 static func pierce() -> AbilityData:
@@ -46,15 +46,15 @@ static func mark_prey() -> AbilityData:
 # Martial Artist
 static func punch() -> AbilityData:
 	return _make("Punch", "A powerful unarmed strike.",
-		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
 
 static func topple() -> AbilityData:
 	return _make("Topple", "Sweep the enemy off their feet.",
-		Enums.StatType.SPEED, 3, 2, true, 2, false, 0, 0.0)
+		Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
 
 static func inner_focus() -> AbilityData:
 	return _make("Inner Focus", "Center energy for greater strength.",
-		Enums.StatType.ATTACK, 3, 2, false, 2, false, 0, 0.0)
+		Enums.StatType.ATTACK, 4, 2, false, 2, false, 0, 0.0)
 
 # =============================================================================
 # Squire tree:T2
@@ -142,7 +142,7 @@ static func meditate() -> AbilityData:
 # Invoker
 static func elemental_barrage() -> AbilityData:
 	return _make("Elemental Barrage", "A volley of elemental bolts rains down on all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0)
 
 static func elemental_surge() -> AbilityData:
 	return _make("Elemental Surge", "Raw elemental power unleashed.",
@@ -159,11 +159,11 @@ static func cure() -> AbilityData:
 
 static func protect() -> AbilityData:
 	return _make("Protect", "A ward of light shields an ally.",
-		Enums.StatType.DEFENSE, 2, 2, false, 2, false, 0, 0.0)
+		Enums.StatType.DEFENSE, 3, 2, false, 2, false, 0, 0.0)
 
 static func radiance() -> AbilityData:
 	return _make("Radiance", "A flash of searing light.",
-		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 2, false, 0, 0.0)
 
 # =============================================================================
 # Mage tree:T2
@@ -264,7 +264,7 @@ static func encourage() -> AbilityData:
 # Dervish
 static func mesmerize() -> AbilityData:
 	return _make("Mesmerize", "A hypnotic dance that lowers the enemy's guard.",
-		Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0)
+		Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
 
 static func dance() -> AbilityData:
 	return _make("Dance", "A whirling strike of blades and grace.",
@@ -272,12 +272,12 @@ static func dance() -> AbilityData:
 
 static func whirling_step() -> AbilityData:
 	return _make("Whirling Step", "Spin through the enemy ranks.",
-		Enums.StatType.MAGIC_ATTACK, 3, 0, true, 3, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, true, 0, 0.0)
 
 # Orator
 static func oration() -> AbilityData:
 	return _make("Oration", "Words sharp enough to wound.",
-		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func rebuke() -> AbilityData:
 	return _make("Rebuke", "Harsh words that slow the mind.",

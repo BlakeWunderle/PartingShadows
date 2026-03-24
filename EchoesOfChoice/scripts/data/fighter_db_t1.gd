@@ -52,8 +52,8 @@ static func _lu_ranger(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(2, 4); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(2, 3)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(1, 2)
@@ -104,7 +104,7 @@ static func _lu_acolyte(f: FighterData) -> void:
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 1)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -142,8 +142,8 @@ static func _lu_bard(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
@@ -209,10 +209,10 @@ static func _lu_artificer(f: FighterData) -> void:
 
 static func _lu_cosmologist(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
+	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(3, 5)
+	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(5, 6); f.magic_defense += randi_range(3, 5)
 	f.speed += randi_range(1, 1)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -235,7 +235,7 @@ static func _lu_arithmancer(f: FighterData) -> void:
 static func upgrade_to_herbalist(f: FighterData) -> void:
 	f.class_id = "Herbalist"; f.character_type = "Herbalist"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 3; f.magic_defense += 2
+	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 1; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
 	f.abilities = [PAB_B.mending_herbs(), PAB_B.sapping_vine(), PAB_B.thorn_spray()]
 	f.upgrade_items = ["Venom", "Seedling"]
@@ -268,11 +268,11 @@ static func _lu_herbalist(f: FighterData) -> void:
 
 static func _lu_shaman(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(7, 9); f.health += hp; f.max_health += hp
+	var hp := randi_range(8, 10); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(2, 3)
-	f.speed += randi_range(2, 3)
+	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(4, 5); f.magic_defense += randi_range(2, 3)
+	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
 

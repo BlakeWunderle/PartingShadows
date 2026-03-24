@@ -47,7 +47,7 @@ static func gravity() -> AbilityData:
 # Arithmancer
 static func theorem() -> AbilityData:
 	return _make("Theorem", "A mathematical proof made manifest.",
-		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
 
 static func calculate() -> AbilityData:
 	return _make("Calculate", "Exploit mathematical weakness.",
@@ -183,7 +183,7 @@ static func spirit_veil() -> AbilityData:
 # Beastcaller
 static func feral_strike() -> AbilityData:
 	return _make("Feral Strike", "Call a beast to strike the enemy.",
-		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func pack_howl() -> AbilityData:
 	return _make("Pack Howl", "Rally the pack for greater power.",
@@ -304,7 +304,7 @@ static func exploit_weakness() -> AbilityData:
 
 static func adaptable_strike() -> AbilityData:
 	return _make("Adaptable Strike", "A versatile blow that siphons the enemy's vitality.",
-		Enums.StatType.MIXED_ATTACK, 4, 0, true, 2, false, 0, 0.2)
+		Enums.StatType.MIXED_ATTACK, 5, 0, true, 2, false, 0, 0.25)
 
 # =============================================================================
 # Wanderer tree:T2
