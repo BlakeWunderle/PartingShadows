@@ -24,10 +24,10 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --sample 100 --sims 50 --progression <P> --compact 2>&1 | grep -v "$NOISE"
 
 # Tier validation -- saves class data to JSON for later reference (no need to re-sim)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --tier <TIER> --auto --all --jobs 10 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --tier <TIER> --auto --all --jobs 8 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Final validation -- all tiers, saves class data (recommended, use 600000ms timeout)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 10 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --story <N> --auto --all --jobs 8 --compact --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Targeted battles (specific changed battles only, much faster than full tier)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare --compact 2>&1 | grep -v "$NOISE"
@@ -35,6 +35,22 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 # Full verbose output (when you need class breakdowns, combo extremes)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --story <N> --auto --all 2>&1 | grep -v "$NOISE"
 ```
+
+### Parallel Sim Behavior
+
+The parallel coordinator (`battle_sim_parallel.gd`) auto-detects the best split mode:
+
+- **Stage-split** (default): each worker gets a round-robin slice of stages. Used when stages ≥ workers.
+- **Combo-split** (auto): when a progression has fewer stages than workers (e.g. 1 battle, 4 workers), all workers share the party combos for each stage instead. Single-stage runs now use all workers automatically.
+
+**Worker count guidance:**
+- Default on Windows: **4 workers** (capped automatically, no `--jobs` needed)
+- Quick iteration (1-3 stages): leave default — combo-split handles it
+- Full tier validation: `--jobs 8` gives ~3x speedup with modest stagger overhead (14s)
+- Maximum: `--jobs 32` (hard cap); diminishing returns above 8 for most runs
+- Each extra worker adds 2s of startup stagger (`--stagger <ms>` to tune)
+
+**If workers hang or timeout:** use `--stagger 4000` (slower starts, less file lock contention) or drop to `--jobs 2`.
 
 **IMPORTANT: Never run two sim processes at the same time.** Each `battle_sim_parallel.gd` invocation spawns multiple Godot worker processes. Running two parallel sims simultaneously causes severe CPU contention (10x+ slower, unreliable results). Always wait for one sim to complete before launching the next. Use `run_in_background` only for a single sim at a time.
 
@@ -202,7 +218,10 @@ All battles show PASS. Power curve roughly correct. Every class within or near t
 | `--compact` | Minimal stdout (1 line/PASS, 3-5 lines/FAIL), full details to file |
 | `--diagnostics` | Show WEAK class analysis |
 | `--json <path>` | Write JSON report |
-| `--jobs <n>` | Worker count (parallel coordinator only) |
+| `--jobs <n>` | Worker count (parallel only; default 4 on Windows) |
+| `--stagger <ms>` | Delay between worker spawns (parallel only; default 2000) |
+| `--timeout <s>` | Kill workers after N seconds (parallel only; default max(300, jobs×120)) |
+| `--combo-worker <N/M>` | Run 1/M of party combos per stage (used internally by parallel coordinator) |
 | `--no-cache` | Force re-simulation |
 
 ---
