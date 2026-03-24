@@ -20,7 +20,7 @@ static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int
 # --- Cellar Sentinel (mixed attacker, tanky) ---
 
 static func petrified_slam() -> AbilityData:
-	return _make("Petrified Slam", "Stone fist meets dream energy in a grinding impact.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Petrified Slam", "Stone fist meets dream energy in a grinding impact.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func stagnant_chill() -> AbilityData:
 	return _make("Stagnant Chill", "Decades of cold stillness seep outward and slow everything.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
@@ -28,10 +28,10 @@ static func stagnant_chill() -> AbilityData:
 # --- Bound Stalker (physical DPS, DoT specialist) ---
 
 static func tethered_lunge() -> AbilityData:
-	return _make("Tethered Lunge", "It hurls itself forward to the full length of its chain.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Tethered Lunge", "It hurls itself forward to the full length of its chain.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func fraying_bite() -> AbilityData:
-	return _make("Fraying Bite", "Teeth find flesh and the wound keeps tearing.", Enums.StatType.PHYSICAL_ATTACK, 4, 3, true, 3, false, 2, 0.0)
+	return _make("Fraying Bite", "Teeth find flesh and the wound keeps tearing.", Enums.StatType.PHYSICAL_ATTACK, 6, 3, true, 3, false, 2, 0.0)
 
 
 # =============================================================================
@@ -75,13 +75,13 @@ static func piercing_thread() -> AbilityData:
 static func expose_weakness() -> AbilityData:
 	return _make("Expose Weakness", "The sniper's eye finds every gap in the armor.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0)
 
-# --- Pale Devotee "Brother Hale" (magic DoT + support) ---
+# --- Pale Devotee "Brother Hale" (magic DoT, AoE defense debuffer) ---
 
 static func burning_devotion() -> AbilityData:
 	return _make("Burning Devotion", "Faith made manifest sears the skin and keeps smoldering.", Enums.StatType.MAGIC_ATTACK, 5, 3, true, 3, false, 3, 0.0)
 
 static func martyrs_gift() -> AbilityData:
-	return _make("Martyr's Gift", "He offers his suffering as a shield for the faithful.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Martyr's Gift", "His suffering strips the protection from every enemy, leaving them exposed.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
@@ -96,21 +96,21 @@ static func binding_rite() -> AbilityData:
 static func enervation_chant() -> AbilityData:
 	return _make("Enervation Chant", "A droning chant that saps the will to fight.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)
 
-# --- Passage Guardian "Loom Champion" (physical DPS, magic defense specialist) ---
+# --- Passage Guardian "Loom Champion" (physical DPS, magic defense debuffer) ---
 
 static func champions_cleave() -> AbilityData:
 	return _make("Champion's Cleave", "A measured, devastating arc from a master combatant.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func loom_aegis() -> AbilityData:
-	return _make("Loom Aegis", "The Loom's own protection wraps around its champion.", Enums.StatType.MAGIC_DEFENSE, 6, 2, false, 3, false, 0, 0.0)
+	return _make("Loom Aegis", "The champion's gaze pierces through magical barriers.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
 
-# --- Warding Shadow (magic DPS, dodge specialist) ---
+# --- Warding Shadow (magic DPS, speed debuffer) ---
 
 static func flickering_grasp() -> AbilityData:
 	return _make("Flickering Grasp", "A hand that shifts between real and shadow reaches through the guard.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func shadow_veil() -> AbilityData:
-	return _make("Shadow Veil", "The shadow blurs until nothing solid remains to strike.", Enums.StatType.DODGE_CHANCE, 12, 2, false, 3, false, 0, 0.0)
+	return _make("Shadow Grasp", "The shadow reaches through the veil and drags at the limbs.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -146,29 +146,29 @@ static func constricting_weave() -> AbilityData:
 # Prog 15: Dream Invasion -- Lira's dream cathedral
 # =============================================================================
 
-# --- Cathedral Warden "Loom Warden" (mixed attacker, AoE buffer) ---
+# --- Cathedral Warden "Loom Warden" (mixed attacker, AoE mixed DPS) ---
 
 static func consecrated_strike() -> AbilityData:
 	return _make("Consecrated Strike", "A blow that carries the weight of centuries of worship.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func cathedrals_blessing() -> AbilityData:
-	return _make("Cathedral's Blessing", "The soaring arches pulse with protective light.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Consecrated Blast", "The cathedral itself punishes all who defile this ground.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, true, 0, 0.0)
 
 # --- Dream Binder "Thread Binder" (magic DoT, AoE attack debuffer) ---
 
 static func binding_chains() -> AbilityData:
-	return _make("Binding Chains", "Chains of dream-stuff lock on and keep burning.", Enums.StatType.MAGIC_ATTACK, 6, 3, true, 3, false, 2, 0.0)
+	return _make("Binding Chains", "Chains of dream-stuff lock on and keep burning.", Enums.StatType.MAGIC_ATTACK, 8, 3, true, 3, false, 2, 0.0)
 
 static func dreamlock() -> AbilityData:
 	return _make("Dreamlock", "The binder freezes every muscle and thought.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)
 
-# --- Thread Anchor "Dream Anchor" (mixed attacker, magic defense buffer) ---
+# --- Thread Anchor "Dream Anchor" (mixed attacker, AoE magic defense debuffer) ---
 
 static func anchor_pulse() -> AbilityData:
-	return _make("Anchor Pulse", "A wave of grounded energy disrupts body and mind.", Enums.StatType.MIXED_ATTACK, 5, 0, true, 3, false, 0, 0.0)
+	return _make("Anchor Pulse", "A wave of grounded energy disrupts body and mind.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func fortifying_thread() -> AbilityData:
-	return _make("Fortifying Thread", "The anchor reinforces the magical wards of its allies.", Enums.StatType.MAGIC_DEFENSE, 6, 2, false, 4, true, 0, 0.0)
+	return _make("Fortifying Thread", "The anchor's threads strip away every ward they touch.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
@@ -194,10 +194,10 @@ static func mirrored_assault() -> AbilityData:
 static func unraveling_touch() -> AbilityData:
 	return _make("Unraveling Touch", "Fingers of frayed thread peel back every ward and protection.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
 
-# --- Dream Bastion (physical tank, AoE defense buffer) ---
+# --- Dream Bastion (physical tank, AoE mixed DPS) ---
 
 static func bastion_slam() -> AbilityData:
 	return _make("Bastion Slam", "The fortress itself strikes with a wall of solidified dream.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func nexus_shield() -> AbilityData:
-	return _make("Nexus Shield", "The bastion projects the nexus's remaining power outward.", Enums.StatType.DEFENSE, 6, 2, false, 3, true, 0, 0.0)
+	return _make("Nexus Blast", "The bastion projects the nexus's remaining power outward as a devastating wave.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, true, 0, 0.0)

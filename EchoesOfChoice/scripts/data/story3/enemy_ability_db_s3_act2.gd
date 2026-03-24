@@ -134,7 +134,7 @@ static func hidden_blade() -> AbilityData:
 	return _make("Hidden Blade", "The shopkeeper draws a knife from beneath the counter.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func merchant_guard() -> AbilityData:
-	return _make("Merchant Guard", "Years of handling heavy goods built a sturdy frame.", Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0)
+	return _make("Merchant Guard", "The shopkeeper spots a gap in the opponent's guard.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)
 
 # --- Thread Smith ---
 
@@ -142,12 +142,12 @@ static func hammer_blow() -> AbilityData:
 	return _make("Hammer Blow", "The smithing hammer was not meant for iron today.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func forge_hardened() -> AbilityData:
-	return _make("Forge Hardened", "Skin toughened by years at the anvil.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Forge Strike", "White-hot tools leave burns that keep smoldering.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 2, 0.0)
 
 # --- Hex Herbalist ---
 
 static func tainted_salve() -> AbilityData:
-	return _make("Tainted Salve", "What was meant to heal now corrodes.", Enums.StatType.MAGIC_ATTACK, 4, 3, true, 3, false, 2, 0.0)
+	return _make("Tainted Salve", "What was meant to heal now corrodes.", Enums.StatType.MAGIC_ATTACK, 6, 3, true, 3, false, 2, 0.0)
 
 static func numbing_dust() -> AbilityData:
 	return _make("Numbing Dust", "Crushed herbs fill the air with paralytic spores.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
@@ -171,7 +171,7 @@ static func woven_fist() -> AbilityData:
 	return _make("Woven Fist", "A fist of physical thread strikes with mechanical force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func reinforced_threads() -> AbilityData:
-	return _make("Reinforced Threads", "More threads wind around the construct, thickening its shell.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Reinforced Threads", "Threads unwind the target's protections with mechanical precision.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0)
 
 # --- Ink Shade ---
 

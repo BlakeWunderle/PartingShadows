@@ -204,7 +204,7 @@ static func loom_strike() -> AbilityData:
 	return _make("Loom Strike", "A fist of woven energy crashes down.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func woven_armor() -> AbilityData:
-	return _make("Woven Armor", "Layers of thread harden into plating.", Enums.StatType.DEFENSE, 6, 2, false, 3, false, 0, 0.0)
+	return _make("Loom Bash", "The sentinel swings an armored limb like a battering ram.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3)
 
 # --- Cult Shade ---
 
@@ -233,10 +233,10 @@ static func mind_fog() -> AbilityData:
 # --- Void Spinner ---
 
 static func void_thread() -> AbilityData:
-	return _make("Void Thread", "Threads of nothingness cut through everything.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, true, 0, 0.0)
+	return _make("Void Thread", "Threads of nothingness pierce through all targets.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0)
 
 static func nullify() -> AbilityData:
-	return _make("Nullify", "Magic defenses dissolve like mist.", Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Nullify", "All targets' magic defense dissolves like mist.", Enums.StatType.MAGIC_DEFENSE, 3, 2, true, 3, false, 0, 0.0)
 
 # --- Sanctum Guardian (boss) ---
 
@@ -247,7 +247,7 @@ static func thread_storm() -> AbilityData:
 	return _make("Thread Storm", "A maelstrom of razor-sharp threads fills the air.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, true, 0, 0.0)
 
 static func guardians_veil() -> AbilityData:
-	return _make("Guardian's Veil", "The guardian wraps itself in the Loom's protection.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Guardian's Veil", "The guardian's power strips away the veil of protection from all intruders.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
@@ -260,7 +260,7 @@ static func thread_sear() -> AbilityData:
 	return _make("Thread Sear", "Raw Loom energy burns through body and spirit alike.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func zealots_fervor() -> AbilityData:
-	return _make("Zealot's Fervor", "Fanatical devotion fuels a surge of reckless power.", Enums.StatType.ATTACK, 4, 2, false, 3, false, 0, 0.0)
+	return _make("Zealot's Strike", "Fanatical devotion channels into a reckless, devastating blow.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3)
 
 # --- Cult Enforcer (thread-augmented warrior, muscles laced with filament) ---
 
@@ -268,7 +268,7 @@ static func thread_laced_fist() -> AbilityData:
 	return _make("Thread-Laced Fist", "Threads woven through the knuckles keep cutting after impact.", Enums.StatType.PHYSICAL_ATTACK, 7, 3, true, 3, false, 2, 0.0)
 
 static func threaded_sinew() -> AbilityData:
-	return _make("Threaded Sinew", "The enforcer's war-rhythm strengthens every ally nearby.", Enums.StatType.ATTACK, 4, 2, false, 4, true, 0, 0.0)
+	return _make("Threaded Sinew", "The enforcer's war-rhythm saps the fighting spirit of every opponent.", Enums.StatType.ATTACK, 4, 2, true, 4, true, 0, 0.0)
 
 # --- Cult Hexer ---
 
@@ -284,7 +284,7 @@ static func threaded_blade() -> AbilityData:
 	return _make("Threaded Blade", "A sword wrapped in strands of woven power.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func woven_shield() -> AbilityData:
-	return _make("Woven Shield", "Dream-threads form a barrier around allies.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Woven Shield", "Dream-threads reach out and unravel every barrier at once.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 # --- Dream Hound ---
 
@@ -297,7 +297,7 @@ static func dream_howl() -> AbilityData:
 # --- Cult Ritualist ---
 
 static func ritual_chant() -> AbilityData:
-	return _make("Ritual Chant", "An incantation that strengthens all who hear it.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Ritual Chant", "An incantation that weakens every defense within earshot.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 static func thread_lash() -> AbilityData:
 	return _make("Thread Lash", "A whip of woven dream-stuff cracks through the air.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)

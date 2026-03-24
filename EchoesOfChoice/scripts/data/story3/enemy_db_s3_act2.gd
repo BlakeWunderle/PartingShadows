@@ -211,14 +211,14 @@ static func create_faded_voice(n: String, lvl: int = 7) -> FighterData:
 
 static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Market Watcher", lvl)
-	f.health = EH.es(365, 420, 4, 7, lvl, 10); f.max_health = f.health
+	f.health = EH.es(438, 504, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(53, 63, 2, 4, lvl, 10)
-	f.physical_defense = EH.es(34, 41, 2, 3, lvl, 10)
+	f.physical_attack = EH.es(62, 74, 2, 4, lvl, 10)
+	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 10)
-	f.magic_defense = EH.es(28, 35, 1, 3, lvl, 10)
+	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 10)
 	f.speed = EH.es(28, 34, 2, 3, lvl, 10)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.hidden_blade(), EAB.merchant_guard()]
 	f.flavor_text = "A keen-eyed operative disguised among the market crowd. Behind a merchant's pleasant smile hides a blade and the Thread cult's unwavering loyalty."
 	return f
@@ -226,14 +226,14 @@ static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 
 static func create_thread_smith(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Thread Smith", lvl)
-	f.health = EH.es(430, 495, 5, 8, lvl, 10); f.max_health = f.health
+	f.health = EH.es(516, 594, 5, 8, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(54, 64, 2, 4, lvl, 10)
-	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 10)
+	f.physical_attack = EH.es(63, 75, 2, 4, lvl, 10)
+	f.physical_defense = EH.es(40, 47, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
-	f.magic_defense = EH.es(32, 39, 1, 3, lvl, 10)
+	f.magic_defense = EH.es(34, 41, 1, 3, lvl, 10)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 10)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 9
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.hammer_blow(), EAB.forge_hardened()]
 	f.flavor_text = "A burly artisan who hammers dream-threads into weapons and armor for the cult. Years at the forge have tempered both body and resolve into unyielding steel."
 	return f
@@ -241,14 +241,14 @@ static func create_thread_smith(n: String, lvl: int = 10) -> FighterData:
 
 static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Hex Herbalist", lvl)
-	f.health = EH.es(290, 340, 4, 7, lvl, 10); f.max_health = f.health
+	f.health = EH.es(348, 408, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
-	f.physical_defense = EH.es(20, 26, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(65, 76, 2, 4, lvl, 10)
-	f.magic_defense = EH.es(30, 37, 2, 3, lvl, 10)
+	f.physical_defense = EH.es(21, 27, 1, 3, lvl, 10)
+	f.magic_attack = EH.es(77, 89, 2, 4, lvl, 10)
+	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.tainted_salve(), EAB.numbing_dust()]
 	f.flavor_text = "A healer whose remedies conceal darker purposes. The herbs she grows are laced with thread-essence, and her salves cloud the mind as often as they mend the body."
 	return f
@@ -261,14 +261,14 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 
 static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Cellar Watcher", lvl)
-	f.health = EH.es(389, 448, 4, 7, lvl, 11); f.max_health = f.health
+	f.health = EH.es(417, 480, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(10, 12, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(56, 66, 2, 4, lvl, 11)
-	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 11)
-	f.magic_attack = EH.es(56, 66, 2, 4, lvl, 11)
-	f.magic_defense = EH.es(28, 35, 1, 3, lvl, 11)
+	f.physical_attack = EH.es(58, 69, 2, 4, lvl, 11)
+	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 11)
+	f.magic_attack = EH.es(58, 69, 2, 4, lvl, 11)
+	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 11)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 11)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.bound_strike(), EAB.tether_pull()]
 	f.flavor_text = "A guard stationed in the cellar beneath the inn, bound to the cult's hidden operations. It fights with the desperate fury of someone protecting a terrible secret."
 	return f
@@ -276,14 +276,14 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 
 static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Thread Construct", lvl)
-	f.health = EH.es(457, 524, 5, 8, lvl, 11); f.max_health = f.health
+	f.health = EH.es(489, 560, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(62, 75, 2, 4, lvl, 11)
-	f.physical_defense = EH.es(39, 47, 2, 3, lvl, 11)
+	f.physical_attack = EH.es(65, 79, 2, 4, lvl, 11)
+	f.physical_defense = EH.es(41, 49, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 11)
-	f.magic_defense = EH.es(33, 40, 1, 3, lvl, 11)
+	f.magic_defense = EH.es(35, 42, 1, 3, lvl, 11)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 11)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.woven_fist(), EAB.reinforced_threads()]
 	f.flavor_text = "A humanoid frame assembled entirely from braided dream-threads. It moves with mechanical precision, reinforcing itself with fresh strands torn from the surrounding weave."
 	return f
@@ -291,14 +291,14 @@ static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 
 static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Ink Shade", lvl)
-	f.health = EH.es(333, 386, 4, 7, lvl, 11); f.max_health = f.health
+	f.health = EH.es(356, 413, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
-	f.physical_defense = EH.es(22, 28, 1, 3, lvl, 11)
-	f.magic_attack = EH.es(70, 81, 2, 4, lvl, 11)
-	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 11)
+	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 11)
+	f.magic_attack = EH.es(74, 85, 2, 4, lvl, 11)
+	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 11)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.ink_bolt(), EAB.ink_pool()]
 	f.flavor_text = "A shadow that bleeds ink from the cult's hidden ledgers and forbidden texts. It pools darkness beneath its enemies and strikes with bolts of living blackness."
 	return f

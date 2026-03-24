@@ -49,7 +49,7 @@ static func ancient_yawn() -> AbilityData:
 # --- Dream Priest (Thorne's dream form) ---
 
 static func loom_prayer() -> AbilityData:
-	return _make("Loom Prayer", "A chant that draws strength from the dreaming world.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Loom Prayer", "A chant that strips away the defenses of the faithless.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 static func sacred_thread() -> AbilityData:
 	return _make("Sacred Thread", "A bolt of consecrated dream-stuff strikes with purpose.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
@@ -60,7 +60,7 @@ static func dream_blade() -> AbilityData:
 	return _make("Dream Blade", "A sword forged from pure intent cuts deeper than steel.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func astral_brace() -> AbilityData:
-	return _make("Astral Brace", "The enforcer hardens their dream-form against harm.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Astral Fist", "The enforcer channels astral force through a devastating punch.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 # --- Oneiric Hexer ---
 
@@ -89,7 +89,7 @@ static func nightmare_blade() -> AbilityData:
 	return _make("Nightmare Blade", "A blade forged in the deepest fears of a thousand sleepers.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func terror_ward() -> AbilityData:
-	return _make("Terror Ward", "Fear itself becomes a shield.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Terror Aura", "Fear radiates outward, sapping the will to fight from every enemy.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)
 
 # --- Anchor Chain ---
 
@@ -97,7 +97,7 @@ static func binding_pull() -> AbilityData:
 	return _make("Binding Pull", "The chain tightens and the blood slows.", Enums.StatType.SPEED, 4, 3, true, 3, false, 2, 0.0)
 
 static func iron_link() -> AbilityData:
-	return _make("Iron Link", "The chain coils around itself, hardening into armor.", Enums.StatType.DEFENSE, 6, 2, false, 3, false, 0, 0.0)
+	return _make("Chain Strike", "The chain whips outward and crashes into the nearest target.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -126,7 +126,7 @@ static func reclaim() -> AbilityData:
 # --- Loom Heart ---
 
 static func pulse_of_the_loom() -> AbilityData:
-	return _make("Pulse of the Loom", "The Loom's heartbeat mends and fortifies.", Enums.StatType.DEFENSE, 6, 2, false, 3, true, 0, 0.0)
+	return _make("Pulse of the Loom", "The Loom's heartbeat reverberates through everything, rattling armor and resolve.", Enums.StatType.DEFENSE, 5, 2, true, 3, true, 0, 0.0)
 
 static func loom_storm() -> AbilityData:
 	return _make("Loom Storm", "Threads of raw energy lash outward in every direction.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
