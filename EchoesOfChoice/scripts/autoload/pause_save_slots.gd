@@ -46,21 +46,21 @@ func show_save_slots() -> void:
 			]
 		else:
 			label = "Slot %d: Empty" % [i + 1]
-		var btn := _overlay._make_button(label)
+		var btn: Button = _overlay._make_button(label)
 		var slot: int = i  # Capture for lambda
 		btn.pressed.connect(on_save_slot_selected.bind(slot))
 		_overlay._save_vbox.add_child(btn)
 
 		# Delete button for occupied slots
 		if summary.get("exists", false):
-			var del_btn := _overlay._make_button("  Delete Slot %d" % [i + 1])
+			var del_btn: Button = _overlay._make_button("  Delete Slot %d" % [i + 1])
 			del_btn.add_theme_color_override("font_color", Color(0.8, 0.4, 0.4))
 			del_btn.custom_minimum_size.y = 28
 			del_btn.pressed.connect(on_delete_slot_selected.bind(slot))
 			_overlay._save_vbox.add_child(del_btn)
 
 	# Back button
-	var back_btn := _overlay._make_button("Back")
+	var back_btn: Button = _overlay._make_button("Back")
 	back_btn.pressed.connect(_overlay._back_to_main)
 	_overlay._save_vbox.add_child(back_btn)
 
