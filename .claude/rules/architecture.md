@@ -29,24 +29,30 @@ All paths below are relative to `EchoesOfChoice/`.
 - `battle_db_act1.gd` -- Act I battles (city streets, forest, waypoint, forest waypoint town)
 - `battle_db_act2.gd` -- Act II battles (branching wilds)
 - `battle_db_act3.gd` -- Act III battles (city return + tower reveal)
-- `battle_db_act45.gd` -- Act IV-V battles (corruption + final)
+- `battle_db_act45.gd` -- Act IV-V battles (corruption + final, GateBattle branches to Path A or B)
+- `battle_db_act5b.gd` -- Path B battles (ritual anchor, sanctum collapse, stranger undone)
 - `enemy_db.gd` -- Act I enemies (thug, ruffian, pickpocket, wolf, boar, goblin, hound, bandit)
 - `enemy_db_act2.gd` -- Act II enemies (raider through wraith, 26 types)
 - `enemy_db_act345.gd` -- Acts III-V enemies (royal_guard through stranger_final, 17 types)
+- `enemy_db_act5b.gd` -- Path B enemies (sigil_colossus through stranger_undone, 7 types)
 - `enemy_ability_db.gd` -- Story 1 enemy ability definitions (Acts I-II)
 - `enemy_ability_db_late.gd` -- Story 1 enemy ability definitions (Acts III-V)
+- `enemy_ability_db_act5b.gd` -- Story 1 Path B enemy ability definitions
 
 ### Core Data -- Story 2 (`scripts/data/story2/`)
 - `battle_db_s2.gd` -- Act I battles (cave awakening through cave exit)
 - `battle_db_s2_act2.gd` -- Act II battles (coastal descent through lighthouse storm)
-- `battle_db_s2_act3.gd` -- Act III battles (beneath lighthouse through the reveal)
-- `battle_db_s2_act4.gd` -- Act IV battles (depths through Eye of Oblivion)
+- `battle_db_s2_act3.gd` -- Act III battles (beneath lighthouse through the reveal, ShatteredSanctum branches to Path A or B)
+- `battle_db_s2_act4.gd` -- Act IV Path A battles (depths through Eye of Oblivion, Sera sacrifice)
+- `battle_db_s2_pathb.gd` -- Path B battles (archive awakening through Unblinking Eye, save Sera)
 - `enemy_db_s2.gd` -- Act I enemies
 - `enemy_db_s2_act2.gd` -- Act II enemies
 - `enemy_db_s2_act3.gd` -- Act III enemies
 - `enemy_db_s2_act4.gd` -- Act IV enemies
+- `enemy_db_s2_pathb.gd` -- Path B enemies (fractured_scholar through unblinking_eye, 12 types)
 - `enemy_ability_db_s2.gd` -- Story 2 enemy ability definitions (Acts I-II)
 - `enemy_ability_db_s2_late.gd` -- Story 2 enemy ability definitions (Acts III-IV)
+- `enemy_ability_db_s2_pathb.gd` -- Story 2 Path B enemy ability definitions
 
 ### Core Data -- Story 3 (`scripts/data/story3/`)
 - `battle_db_s3.gd` -- Acts I-II battles (dream onset through second dream)
