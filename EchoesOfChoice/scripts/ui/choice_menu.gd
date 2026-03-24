@@ -25,7 +25,7 @@ var _player_cursors: Array[int] = []
 var _player_overlays: Array = []   # [button_idx][player_idx] -> Panel
 var _player_sbs: Array = []        # [button_idx][player_idx] -> StyleBoxFlat
 var _last_nav_ms: Array[int] = []  # per-player tick at last stick navigation
-const _NAV_COOLDOWN_MS: int = 180  # ms between repeated stick navigations
+const _NAV_COOLDOWN_MS: int = 280  # ms between repeated stick navigations
 
 
 func _ready() -> void:
@@ -288,18 +288,29 @@ func _input(event: InputEvent) -> void:
 	if player_idx < 0:
 		return
 
-	# Left stick: apply cooldown and reset timer when stick returns to center
+	# Respect LocalCoop turn gating — during sequential character creation etc.
+	# active_player is set to the owning player; others must not act.
+	if LocalCoop.active_player >= 0 and player_idx != LocalCoop.active_player:
+		return
+
+	# Left stick: use direct axis sign check — is_action() doesn't reliably distinguish
+	# direction for JoypadMotion, causing both up and down to trigger the same action.
 	if is_motion:
-		if abs((event as InputEventJoypadMotion).axis_value) < 0.3:
-			_last_nav_ms[player_idx] = 0
+		var motion := event as InputEventJoypadMotion
+		if motion.axis != JOY_AXIS_LEFT_Y:
+			return
+		if abs(motion.axis_value) < 0.5:
 			return
 		var now: int = Time.get_ticks_msec()
 		if now - _last_nav_ms[player_idx] < _NAV_COOLDOWN_MS:
 			return
-		if not (event.is_action("move_up") or event.is_action("move_down") \
-				or event.is_action("ui_up") or event.is_action("ui_down")):
-			return
 		_last_nav_ms[player_idx] = now
+		if motion.axis_value < 0:
+			_move_cursor(player_idx, -1)
+		else:
+			_move_cursor(player_idx, 1)
+		get_viewport().set_input_as_handled()
+		return
 
 	if event.is_action("move_up") or event.is_action("ui_up"):
 		_move_cursor(player_idx, -1)
@@ -307,7 +318,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action("move_down") or event.is_action("ui_down"):
 		_move_cursor(player_idx, 1)
 		get_viewport().set_input_as_handled()
-	elif not is_motion and (event.is_action("confirm") or event.is_action("ui_accept")):
+	elif event.is_action("confirm") or event.is_action("ui_accept"):
 		var idx: int = _player_cursors[player_idx]
 		if not _buttons[idx].disabled:
 			_on_button_pressed(idx)
