@@ -262,6 +262,36 @@ func _move_cursor(player_idx: int, direction: int) -> void:
 		SFXManager.play(SFXManager.Category.UI_SELECT, 0.2)
 
 
+## Route navigation to list or grid movement depending on layout.
+func _navigate(player_idx: int, dir: Vector2i) -> void:
+	if _grid != null:
+		_navigate_grid(player_idx, dir)
+	else:
+		# In list mode treat left/up as -1 and right/down as +1
+		var step: int = -1 if (dir.y < 0 or dir.x < 0) else 1
+		_move_cursor(player_idx, step)
+
+
+## Grid-aware cursor movement. dir.y = row delta (-1/+1), dir.x = col delta (-1/+1).
+func _navigate_grid(player_idx: int, dir: Vector2i) -> void:
+	const COLS: int = 2
+	var current: int = _player_cursors[player_idx]
+	var count: int = _buttons.size()
+	var rows: int = (count + COLS - 1) / COLS
+
+	var cur_row: int = current / COLS
+	var cur_col: int = current % COLS
+
+	var new_row: int = (cur_row + dir.y + rows) % rows
+	var new_col: int = (cur_col + dir.x + COLS) % COLS
+	var new_idx: int = mini(new_row * COLS + new_col, count - 1)
+
+	if not _buttons[new_idx].disabled and new_idx != current:
+		_player_cursors[player_idx] = new_idx
+		_refresh_coop_cursors()
+		SFXManager.play(SFXManager.Category.UI_SELECT, 0.2)
+
+
 func _get_player_for_event(event: InputEvent) -> int:
 	for p: int in LocalCoop.player_devices.size():
 		var device: int = LocalCoop.player_devices[p]
@@ -293,30 +323,36 @@ func _input(event: InputEvent) -> void:
 	if LocalCoop.active_player >= 0 and player_idx != LocalCoop.active_player:
 		return
 
-	# Left stick: use direct axis sign check — is_action() doesn't reliably distinguish
-	# direction for JoypadMotion, causing both up and down to trigger the same action.
+	# Left stick: direct axis sign check with cooldown
+	# is_action() doesn't reliably distinguish direction for JoypadMotion.
 	if is_motion:
 		var motion := event as InputEventJoypadMotion
-		if motion.axis != JOY_AXIS_LEFT_Y:
-			return
-		if abs(motion.axis_value) < 0.5:
+		var nav_dir := Vector2i.ZERO
+		if motion.axis == JOY_AXIS_LEFT_Y and abs(motion.axis_value) >= 0.5:
+			nav_dir.y = 1 if motion.axis_value > 0 else -1
+		elif motion.axis == JOY_AXIS_LEFT_X and abs(motion.axis_value) >= 0.5 and _grid != null:
+			nav_dir.x = 1 if motion.axis_value > 0 else -1
+		else:
 			return
 		var now: int = Time.get_ticks_msec()
 		if now - _last_nav_ms[player_idx] < _NAV_COOLDOWN_MS:
 			return
 		_last_nav_ms[player_idx] = now
-		if motion.axis_value < 0:
-			_move_cursor(player_idx, -1)
-		else:
-			_move_cursor(player_idx, 1)
+		_navigate(player_idx, nav_dir)
 		get_viewport().set_input_as_handled()
 		return
 
 	if event.is_action("move_up") or event.is_action("ui_up"):
-		_move_cursor(player_idx, -1)
+		_navigate(player_idx, Vector2i(0, -1))
 		get_viewport().set_input_as_handled()
 	elif event.is_action("move_down") or event.is_action("ui_down"):
-		_move_cursor(player_idx, 1)
+		_navigate(player_idx, Vector2i(0, 1))
+		get_viewport().set_input_as_handled()
+	elif event.is_action("move_left") or event.is_action("ui_left"):
+		_navigate(player_idx, Vector2i(-1, 0))
+		get_viewport().set_input_as_handled()
+	elif event.is_action("move_right") or event.is_action("ui_right"):
+		_navigate(player_idx, Vector2i(1, 0))
 		get_viewport().set_input_as_handled()
 	elif event.is_action("confirm") or event.is_action("ui_accept"):
 		var idx: int = _player_cursors[player_idx]

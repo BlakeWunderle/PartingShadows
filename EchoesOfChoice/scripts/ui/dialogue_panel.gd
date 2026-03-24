@@ -118,6 +118,8 @@ func _start_pulse() -> void:
 func _input(event: InputEvent) -> void:
 	if not visible or not _accepting_input:
 		return
+	if LocalCoop.is_event_gated(event):
+		return
 
 	var pressed: bool = false
 	if event.is_action_pressed("confirm"):

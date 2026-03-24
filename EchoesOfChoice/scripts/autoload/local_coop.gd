@@ -106,3 +106,22 @@ func get_player_for_device(device_id: int) -> int:
 ## Display name for a local player.
 func get_player_name(idx: int) -> String:
 	return "Player %d" % (idx + 1)
+
+
+## Returns true if this event should be blocked because another player currently
+## has input authority. Use at the top of any _input() handler that should
+## respect co-op turn gating.
+func is_event_gated(event: InputEvent) -> bool:
+	if not is_active or active_player < 0:
+		return false
+	if event.is_action("pause"):
+		return false
+	var active_device: int = player_devices[active_player] if active_player < player_devices.size() else -1
+	if active_device == -1:
+		return event is InputEventJoypadButton or event is InputEventJoypadMotion
+	if event is InputEventKey or event is InputEventMouseButton:
+		return true
+	if (event is InputEventJoypadButton or event is InputEventJoypadMotion) \
+			and event.device != active_device:
+		return true
+	return false
