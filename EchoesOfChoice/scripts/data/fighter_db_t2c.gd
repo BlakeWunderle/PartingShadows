@@ -15,7 +15,7 @@ static func upgrade_to_blighter(f: FighterData) -> void:
 	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 5
 	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB_B.blight(), PAB_B.life_siphon(), PAB_B.poison_sting()]
+	f.abilities = [PAB_B.blight(), PAB_B.plague(), PAB_B.poison_sting()]
 	f.upgrade_items = []
 
 static func upgrade_to_grove_keeper(f: FighterData) -> void:
@@ -23,7 +23,7 @@ static func upgrade_to_grove_keeper(f: FighterData) -> void:
 	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 6; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 4
-	f.abilities = [PAB_B.thorn_burst(), PAB_B.root_trap(), PAB_B.draining_vines()]
+	f.abilities = [PAB_B.thorn_burst(), PAB_B.root_trap(), PAB_B.vine_wall()]
 	f.upgrade_items = []
 
 static func _lu_blighter(f: FighterData) -> void:
@@ -95,7 +95,7 @@ static func upgrade_to_falconer(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 7; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 5; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB_B.falcon_strike(), PAB_B.talon_rend(), PAB_B.raptors_gift()]
+	f.abilities = [PAB_B.falcon_strike(), PAB_B.talon_rend(), PAB_B.aerial_strike()]
 	f.upgrade_items = []
 
 static func upgrade_to_shapeshifter(f: FighterData) -> void:
