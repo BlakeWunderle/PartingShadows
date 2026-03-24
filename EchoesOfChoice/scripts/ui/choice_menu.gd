@@ -26,6 +26,7 @@ var _player_overlays: Array = []   # [button_idx][player_idx] -> Panel
 var _player_sbs: Array = []        # [button_idx][player_idx] -> StyleBoxFlat
 var _last_nav_ms: Array[int] = []  # per-player tick at last stick navigation
 const _NAV_COOLDOWN_MS: int = 280  # ms between repeated stick navigations
+var _sp_last_nav_ms: int = 0       # cooldown for single-player/online left stick nav
 
 
 func _ready() -> void:
@@ -108,6 +109,7 @@ func _clear_buttons() -> void:
 	_player_overlays.clear()
 	_player_sbs.clear()
 	_last_nav_ms.clear()
+	_sp_last_nav_ms = 0
 
 
 func hide_menu() -> void:
@@ -314,7 +316,34 @@ func _get_player_for_event(event: InputEvent) -> int:
 
 
 func _input(event: InputEvent) -> void:
-	if not _coop_mode or not visible:
+	if not visible:
+		return
+
+	# Single-player and online: handle left stick nav only.
+	# D-pad, keyboard, and gamepad face buttons are handled by Godot's focus system.
+	if not _coop_mode:
+		if not (event is InputEventJoypadMotion):
+			return
+		var motion := event as InputEventJoypadMotion
+		var side: int = -1
+		if motion.axis == JOY_AXIS_LEFT_Y and abs(motion.axis_value) >= 0.5:
+			side = SIDE_BOTTOM if motion.axis_value > 0 else SIDE_TOP
+		elif motion.axis == JOY_AXIS_LEFT_X and abs(motion.axis_value) >= 0.5 and _grid != null:
+			side = SIDE_RIGHT if motion.axis_value > 0 else SIDE_LEFT
+		else:
+			return
+		var now: int = Time.get_ticks_msec()
+		if now - _sp_last_nav_ms < _NAV_COOLDOWN_MS:
+			return
+		_sp_last_nav_ms = now
+		var focused := get_viewport().gui_get_focus_owner()
+		if focused == null:
+			return
+		var next := focused.find_valid_focus_neighbor(side)
+		if next:
+			next.grab_focus()
+			SFXManager.play(SFXManager.Category.UI_SELECT, 0.2)
+		get_viewport().set_input_as_handled()
 		return
 
 	var is_motion: bool = event is InputEventJoypadMotion
