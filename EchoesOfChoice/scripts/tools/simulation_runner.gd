@@ -83,10 +83,17 @@ static func _clone_fighters(template: Array) -> Array:
 
 
 static func simulate_stage(stage: Dictionary, sims_per_combo: int,
-		sample_size: int = 0) -> Dictionary:
+		sample_size: int = 0,
+		combo_worker_index: int = -1, combo_worker_count: int = 0) -> Dictionary:
 	var parties := _get_parties(stage)
 	if sample_size > 0:
 		parties = PC.sample_parties(parties, sample_size)
+	if combo_worker_index >= 0 and combo_worker_count > 1:
+		var my_parties := []
+		for pi in parties.size():
+			if pi % combo_worker_count == combo_worker_index:
+				my_parties.append(parties[pi])
+		parties = my_parties
 
 	var combo_results := []
 	var class_diag := {}

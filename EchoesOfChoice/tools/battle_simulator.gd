@@ -15,6 +15,9 @@ var _json_path := ""
 var _use_cache := true
 var _diagnostics := false
 var _compact := false
+var _combo_worker_index := -1
+var _combo_worker_count := 0
+var _combo_worker_mode := false
 var _all_results: Array = []
 var _all_stages: Array = []
 
@@ -85,6 +88,13 @@ func _init() -> void:
 						worker_index = int(parts[0])
 						worker_count = int(parts[1])
 					i += 1
+			"--combo-worker":
+				if i + 1 < args.size():
+					var parts := args[i + 1].split("/")
+					if parts.size() == 2:
+						_combo_worker_index = int(parts[0])
+						_combo_worker_count = int(parts[1])
+					i += 1
 			"--battles":
 				if i + 1 < args.size():
 					for bname: String in args[i + 1].split(","):
@@ -130,6 +140,13 @@ func _init() -> void:
 			if si % worker_count == worker_index:
 				my_stages.append(stages[si])
 		stages = my_stages
+
+	# Combo-worker mode: process all stages but only 1/N of party combos per stage.
+	_combo_worker_mode = _combo_worker_index >= 0 and _combo_worker_count > 1
+	if _combo_worker_mode:
+		_use_cache = false  ## partial results must not be cached
+		print("  Combo-worker %d/%d starting (pid %d)" % [
+			_combo_worker_index, _combo_worker_count, OS.get_process_id()])
 
 	if show_list:
 		_print_stage_list(stages)
@@ -224,7 +241,8 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 	if not quiet:
 		print("\nRunning %d sims/combo for %s..." % [sims_per_combo, stage.name])
 	var sw := Time.get_ticks_msec()
-	var result := SR.simulate_stage(stage, sims_per_combo, sample_size)
+	var result := SR.simulate_stage(stage, sims_per_combo, sample_size,
+		_combo_worker_index, _combo_worker_count)
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
 
 	_all_results.append(result)
@@ -288,7 +306,8 @@ func _run_stages(stages: Array, sims_per_combo: int,
 				print("  (cached: %.1f%%, %s)" % [
 					result.overall_win_rate * 100, SR.get_status(result)])
 		else:
-			result = SR.simulate_stage(stage, sims, sample_size)
+			result = SR.simulate_stage(stage, sims, sample_size,
+				_combo_worker_index, _combo_worker_count)
 			if _use_cache:
 				SC.store(stage.name, stage.get("story", 1),
 					sims, sample_size, result, stage)
@@ -320,10 +339,25 @@ func _run_stages(stages: Array, sims_per_combo: int,
 
 
 func _write_json_report() -> void:
-	var report := []
-	for idx in _all_results.size():
-		report.append(SRep.build_entry(_all_results[idx], _all_stages[idx]))
-	SRep.write_json(_json_path, report)
+	if _combo_worker_mode:
+		## Write raw simulate_stage() results tagged with worker identity.
+		## The coordinator merges these partial_stages and calls build_entry() itself.
+		var raw := []
+		for idx in _all_results.size():
+			var entry: Dictionary = _all_results[idx].duplicate()
+			entry["combo_worker_index"] = _combo_worker_index
+			entry["combo_worker_count"] = _combo_worker_count
+			raw.append(entry)
+		var json_str := JSON.stringify({"partial_stages": raw}, "\t")
+		var file := FileAccess.open(_json_path, FileAccess.WRITE)
+		if file:
+			file.store_string(json_str)
+			file.close()
+	else:
+		var report := []
+		for idx in _all_results.size():
+			report.append(SRep.build_entry(_all_results[idx], _all_stages[idx]))
+		SRep.write_json(_json_path, report)
 
 
 func _print_stage_list(stages: Array) -> void:
@@ -351,6 +385,7 @@ func _print_help() -> void:
 	print("  --battles <a,b,...>   Run specific battles (comma-separated names)")
 	print("  --json <path>        Write structured JSON report to file")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
+	print("  --combo-worker <N/M> Combo-worker mode: run 1/M of party combos per stage (used by parallel coordinator)")
 	print("  --compact            Minimal output (1 line/PASS, details to file)")
 	print("  --diagnostics        Show detailed analysis of WEAK classes")
 	print("  --no-cache           Skip cache lookups, force re-simulation")

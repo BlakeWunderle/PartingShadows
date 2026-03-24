@@ -15,6 +15,7 @@ extends SceneTree
 const SR := preload("res://scripts/tools/simulation_runner.gd")
 const SC := preload("res://scripts/tools/sim_cache.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
+const SRep := preload("res://scripts/tools/sim_report.gd")
 
 const DEFAULT_STAGGER_MS: int = 2000       ## delay between spawning each worker
 const DEFAULT_TIMEOUT_SECONDS: int = 300   ## baseline; scaled by job count
@@ -256,6 +257,16 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 			godot_exe.replace(".exe", "_console.exe")):
 		godot_exe = godot_exe.replace(".exe", "_console.exe")
 
+	## Auto-detect split mode: use combo-split when fewer stages than workers.
+	var effective_stages := _get_effective_stages(passthrough)
+	var use_combo_split: bool = effective_stages.size() > 0 and effective_stages.size() < jobs
+	if use_combo_split:
+		print("  Mode: combo-split (%d stage(s) across %d workers)" % [
+			effective_stages.size(), jobs])
+	else:
+		print("  Mode: stage-split (%d stages, %d workers)" % [
+			effective_stages.size(), jobs])
+
 	var pids: Array[int] = []
 	for wi in jobs:
 		var worker_json := "user://sim_worker_%d.json" % wi
@@ -270,8 +281,12 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 			"--",
 		]
 		worker_args.append_array(passthrough)
-		worker_args.append("--worker")
-		worker_args.append("%d/%d" % [wi, jobs])
+		if use_combo_split:
+			worker_args.append("--combo-worker")
+			worker_args.append("%d/%d" % [wi, jobs])
+		else:
+			worker_args.append("--worker")
+			worker_args.append("%d/%d" % [wi, jobs])
 		worker_args.append("--json")
 		worker_args.append(worker_json)
 
@@ -323,6 +338,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 
 	# Collect results.
 	var results: Array = []
+	var partials_by_stage: Dictionary = {}
 	for wi in jobs:
 		var worker_json := "user://sim_worker_%d.json" % wi
 		if not FileAccess.file_exists(worker_json):
@@ -337,13 +353,38 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 			var data: Dictionary = json.data
 			if data.has("stages"):
 				results.append_array(data.stages)
+			elif data.has("partial_stages"):
+				for partial: Dictionary in data.partial_stages:
+					var sname: String = partial.get("stage_name", "")
+					if sname == "":
+						continue
+					if not partials_by_stage.has(sname):
+						partials_by_stage[sname] = []
+					partials_by_stage[sname].append(partial)
 			else:
-				print("  WARNING: Worker %d JSON missing 'stages' key" % wi)
+				print("  WARNING: Worker %d JSON missing 'stages' or 'partial_stages' key" % wi)
 		else:
 			print("  WARNING: Worker %d JSON parse failed" % wi)
 		file.close()
 		DirAccess.remove_absolute(
 			ProjectSettings.globalize_path(worker_json))
+
+	# Merge partial results from combo-split workers.
+	if use_combo_split and not partials_by_stage.is_empty():
+		for sname: String in partials_by_stage:
+			var parts: Array = partials_by_stage[sname]
+			if parts.is_empty():
+				continue
+			var merged := _merge_partial_results(parts)
+			var stage_cfg := {}
+			for s: Dictionary in effective_stages:
+				if s.name == sname:
+					stage_cfg = s
+					break
+			if stage_cfg.is_empty():
+				print("  WARNING: No stage config found for merged result '%s'" % sname)
+				continue
+			results.append(SRep.build_entry(merged, stage_cfg))
 
 	if results.is_empty() and jobs > 0:
 		print("  ERROR: All %d workers produced no results." % jobs)
@@ -352,6 +393,53 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 	results.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return a.get("stage_name", "") < b.get("stage_name", ""))
 	return results
+
+
+func _get_effective_stages(passthrough: Array[String]) -> Array:
+	var stages := BSDB.get_all_stages()
+	var story_filter := 0
+	var tier_filter := ""
+	var progression_filter := -1
+	for fi in passthrough.size():
+		if passthrough[fi] == "--story" and fi + 1 < passthrough.size():
+			story_filter = int(passthrough[fi + 1])
+		elif passthrough[fi] == "--tier" and fi + 1 < passthrough.size():
+			tier_filter = passthrough[fi + 1]
+		elif passthrough[fi] == "--progression" and fi + 1 < passthrough.size():
+			progression_filter = int(passthrough[fi + 1])
+	if story_filter > 0:
+		stages = stages.filter(func(s: Dictionary) -> bool: return s.story == story_filter)
+	if tier_filter != "":
+		stages = stages.filter(func(s: Dictionary) -> bool: return s.tier == tier_filter)
+	if progression_filter >= 0:
+		stages = stages.filter(
+			func(s: Dictionary) -> bool: return s.progression_stage == progression_filter)
+	return stages
+
+
+func _merge_partial_results(partials: Array) -> Dictionary:
+	var merged: Dictionary = (partials[0] as Dictionary).duplicate(true)
+	merged["combo_results"] = []
+	merged["class_diag"] = {}
+	merged["elapsed_ms"] = 0
+	for partial: Dictionary in partials:
+		merged.combo_results.append_array(partial.get("combo_results", []))
+		merged.elapsed_ms += partial.get("elapsed_ms", 0)
+		for cls: String in partial.get("class_diag", {}):
+			if not merged.class_diag.has(cls):
+				merged.class_diag[cls] = partial.class_diag[cls].duplicate()
+			else:
+				for key: String in ["dmg_dealt", "dmg_taken", "heals", "deaths", "battles"]:
+					merged.class_diag[cls][key] += partial.class_diag[cls].get(key, 0)
+	## Recalculate overall_win_rate as average of combo win_rates (matches simulate_stage).
+	var total_wr := 0.0
+	for combo: Dictionary in merged.combo_results:
+		total_wr += combo.win_rate
+	merged["overall_win_rate"] = total_wr / merged.combo_results.size() \
+		if not merged.combo_results.is_empty() else 0.0
+	merged.erase("combo_worker_index")
+	merged.erase("combo_worker_count")
+	return merged
 
 
 func _print_progressive_summary(all_stages: Array, elapsed: float) -> void:
