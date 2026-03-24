@@ -7,10 +7,10 @@ extends RefCounted
 
 const StoryDB := preload("res://scripts/data/story_db.gd")
 
-var _overlay: Control  # The PauseOverlay instance
+var _overlay: CanvasLayer  # The PauseOverlay instance
 
 
-func _init(overlay: Control) -> void:
+func _init(overlay: CanvasLayer) -> void:
 	_overlay = overlay
 
 
