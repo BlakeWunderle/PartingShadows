@@ -79,7 +79,7 @@ static func s3_cult_ritual_chamber() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
 		EnemyDB.create_high_weaver("Weaver Aldric"),
-		EnemyDB.create_thread_guard("Loom Champion"),
+		EnemyDB.create_ritual_guardian("Loom Champion"),
 	]
 	b.pre_battle_text = [
 		"The ritual chamber is enormous. A web of threads stretches from floor to ceiling, each one vibrating with stolen energy. At the center, a loom, not a metaphor but a physical device, spins threads of light into patterns.",

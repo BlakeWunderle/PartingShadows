@@ -109,8 +109,8 @@ static func s3_dream_void() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_void.png"
 	b.enemies = [
 		EnemyDB.create_void_spinner("Thread Ripper"),
-		EnemyDB.create_lucid_phantom("Watcher"),
-		EnemyDB.create_thread_spinner("Mender"),
+		EnemyDB.create_void_phantom("Watcher"),
+		EnemyDB.create_rift_mender("Mender"),
 	]
 	b.pre_battle_text = [
 		"The void between dreams is a place that should not exist. It is the gap between threads, the space where the weaving fails.",
@@ -133,8 +133,8 @@ static func s3_dream_sanctum() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_sanctum.png"
 	b.enemies = [
 		EnemyDB.create_sanctum_guardian("Loom Guardian"),
-		EnemyDB.create_cult_shade("Shadow Weaver"),
-		EnemyDB.create_dream_warden("Core Defender"),
+		EnemyDB.create_sanctum_shade("Shadow Weaver"),
+		EnemyDB.create_loom_warden("Core Defender"),
 	]
 	b.pre_battle_text = [
 		"The sanctum pulses with stolen energy. Threads converge here from every direction, each one connected to a sleeping mind somewhere in the town. Somewhere beyond the town.",

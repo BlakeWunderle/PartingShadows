@@ -64,7 +64,7 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	return f
 
 
-# Shared Prog 15 & 16 -- physical guard (level 16)
+# Prog 15 (CultCatacombs) only -- physical guard
 static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Thread Guard", lvl)
 	f.health = EH.es(660, 754, 6, 9, lvl, 16); f.max_health = f.health
@@ -93,6 +93,22 @@ static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
 	f.flavor_text = "A sleek beast bred in the cult's dream kennels, trained to hunt by scent of thought. It is blindingly fast and attacks with savage, coordinated ferocity."
+	return f
+
+
+# Prog 16 (CultRitualChamber) only -- physical guard (ritual chamber elite)
+static func create_ritual_guardian(n: String, lvl: int = 16) -> FighterData:
+	var f := EH.base(n, "Ritual Guardian", lvl)
+	f.health = EH.es(660, 754, 6, 9, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(111, 127, 3, 5, lvl, 16)
+	f.physical_defense = EH.es(55, 64, 2, 4, lvl, 16)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
+	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
+	f.speed = EH.es(26, 32, 1, 2, lvl, 16)
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 12
+	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
+	f.flavor_text = "A guardian stationed specifically to protect the ritual chamber during the Loom's most sacred ceremonies. More fanatical than a standard thread guard, it treats every intrusion as a personal desecration."
 	return f
 
 

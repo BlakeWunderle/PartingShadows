@@ -15,7 +15,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 # Prog 13 (S3_DreamSanctum): target 50%, 14 level-ups (boss)
 # =============================================================================
 
-# Shared Prog 11 (LucidDream) & 12 (DreamVoid) -- mage phantom (fast magic DPS)
+# Prog 11 (LucidDream) only -- mage phantom (fast magic DPS)
 static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Lucid Phantom", lvl)
 	f.health = EH.es(433, 498, 5, 8, lvl, 12); f.max_health = f.health
@@ -31,7 +31,7 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	return f
 
 
-# Shared Prog 11 (LucidDream) & 12 (DreamVoid) -- support healer (mage support)
+# Prog 11 (LucidDream) only -- support healer (mage support)
 static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Thread Spinner", lvl)
 	f.health = EH.es(486, 559, 5, 8, lvl, 12); f.max_health = f.health
@@ -63,7 +63,7 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	return f
 
 
-# Shared Prog 11 (LucidDream) & 13 (DreamSanctum) -- magic DPS (glass cannon caster)
+# Prog 11 (LucidDream) only -- magic DPS (glass cannon caster)
 static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Cult Shade", lvl)
 	f.health = EH.es(356, 411, 4, 7, lvl, 12); f.max_health = f.health
@@ -79,7 +79,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	return f
 
 
-# Shared Prog 12 (DreamTemple) & 13 (DreamSanctum) -- hybrid fighter
+# Prog 12 (DreamTemple) only -- hybrid fighter
 static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Dream Warden", lvl)
 	f.health = EH.es(501, 575, 5, 8, lvl, 13); f.max_health = f.health
@@ -125,6 +125,78 @@ static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.void_thread(), EAB.nullify()]
 	f.flavor_text = "A caster that draws power from the void between dreams, where nothing exists and all things unravel. Its threads nullify magic and dissolve protections on contact."
+	return f
+
+
+# =============================================================================
+# Prog 12 (DreamVoid) unique enemies
+# =============================================================================
+
+# Prog 12 DreamVoid only -- fast magic DPS (void-infused phantom)
+static func create_void_phantom(n: String, lvl: int = 12) -> FighterData:
+	var f := EH.base(n, "Void Phantom", lvl)
+	f.health = EH.es(433, 498, 5, 8, lvl, 12); f.max_health = f.health
+	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
+	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 12)
+	f.magic_attack = EH.es(84, 95, 3, 5, lvl, 12)
+	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 12)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 12)
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 14
+	f.abilities = [EAB.void_siphon(), EAB.phase_shift()]
+	f.flavor_text = "A phantom that has slipped into the void between dreams and returned changed. It drains vitality through rifts in the weave and phases through attacks with unsettling ease."
+	return f
+
+
+# Prog 12 DreamVoid only -- mage support (rift-repairing healer)
+static func create_rift_mender(n: String, lvl: int = 12) -> FighterData:
+	var f := EH.base(n, "Rift Mender", lvl)
+	f.health = EH.es(486, 559, 5, 8, lvl, 12); f.max_health = f.health
+	f.mana = EH.es(19, 23, 1, 2, lvl, 12); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
+	f.physical_defense = EH.es(35, 43, 2, 3, lvl, 12)
+	f.magic_attack = EH.es(69, 83, 2, 4, lvl, 12)
+	f.magic_defense = EH.es(43, 51, 2, 3, lvl, 12)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 10
+	f.abilities = [EAB.woven_mend(), EAB.void_thread()]
+	f.flavor_text = "A cult weaver stationed in the void to frantically repair the tears intruders leave behind. It stitches the fraying dream back together with threads drawn from the void itself."
+	return f
+
+
+# =============================================================================
+# Prog 13 (DreamSanctum) unique enemies
+# =============================================================================
+
+# Prog 13 DreamSanctum only -- magic DPS (sanctum glass cannon)
+static func create_sanctum_shade(n: String, lvl: int = 12) -> FighterData:
+	var f := EH.base(n, "Sanctum Shade", lvl)
+	f.health = EH.es(356, 411, 4, 7, lvl, 12); f.max_health = f.health
+	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
+	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 12)
+	f.magic_attack = EH.es(78, 89, 3, 5, lvl, 12)
+	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
+	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
+	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
+	f.flavor_text = "A shade bound to the sanctum's innermost chamber, woven into the loom's defenses since the cult's founding. It guards the core with absolute devotion, unraveling the minds of any who reach this deep."
+	return f
+
+
+# Prog 13 DreamSanctum only -- hybrid fighter (loom-bound guardian)
+static func create_loom_warden(n: String, lvl: int = 13) -> FighterData:
+	var f := EH.base(n, "Loom Warden", lvl)
+	f.health = EH.es(501, 575, 5, 8, lvl, 13); f.max_health = f.health
+	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
+	f.physical_attack = EH.es(77, 88, 2, 4, lvl, 13)
+	f.physical_defense = EH.es(37, 44, 2, 3, lvl, 13)
+	f.magic_attack = EH.es(77, 88, 2, 4, lvl, 13)
+	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
+	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 9
+	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
+	f.flavor_text = "A guardian woven directly into the sanctum's core, its existence inseparable from the loom itself. It fights with the absolute conviction of something that cannot exist apart from what it protects."
 	return f
 
 
