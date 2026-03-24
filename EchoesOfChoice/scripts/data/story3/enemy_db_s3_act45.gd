@@ -107,8 +107,8 @@ static func create_ritual_guardian(n: String, lvl: int = 16) -> FighterData:
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
 	f.speed = EH.es(26, 32, 1, 2, lvl, 16)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 12
-	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
-	f.flavor_text = "A guardian stationed specifically to protect the ritual chamber during the Loom's most sacred ceremonies. More fanatical than a standard thread guard, it treats every intrusion as a personal desecration."
+	f.abilities = [EAB.ritual_chant(), EAB.threaded_blade()]
+	f.flavor_text = "A guardian stationed specifically to protect the ritual chamber during the Loom's most sacred ceremonies. It chants as it fights, reinforcing the ceremony's power with every blow it lands against those who would defile the rite."
 	return f
 
 

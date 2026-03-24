@@ -179,8 +179,8 @@ static func create_sanctum_shade(n: String, lvl: int = 12) -> FighterData:
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
-	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
-	f.flavor_text = "A shade bound to the sanctum's innermost chamber, woven into the loom's defenses since the cult's founding. It guards the core with absolute devotion, unraveling the minds of any who reach this deep."
+	f.abilities = [EAB.loom_blast(), EAB.nullify()]
+	f.flavor_text = "A shade bound to the sanctum's innermost chamber, woven into the loom's defenses since the cult's founding. It blasts intruders with raw loom-force and nullifies their protections before they can reach the core."
 	return f
 
 
@@ -195,8 +195,8 @@ static func create_loom_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 9
-	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
-	f.flavor_text = "A guardian woven directly into the sanctum's core, its existence inseparable from the loom itself. It fights with the absolute conviction of something that cannot exist apart from what it protects."
+	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
+	f.flavor_text = "A guardian woven directly into the sanctum's core, its existence inseparable from the loom itself. Its strikes carry the full weight of the loom's power, and its armor reforms from dream-thread with every blow it absorbs."
 	return f
 
 

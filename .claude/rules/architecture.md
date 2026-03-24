@@ -63,8 +63,8 @@ All paths below are relative to `EchoesOfChoice/`.
 - `battle_db_s3_pathc.gd` -- Path C battles (Lira's confession route)
 - `enemy_db_s3.gd` -- Acts I-II enemies
 - `enemy_db_s3_act2.gd` -- Act II expansion enemies (dream + waking investigation)
-- `enemy_db_s3_act3.gd` -- Act III enemies
-- `enemy_db_s3_act45.gd` -- Acts IV-V enemies
+- `enemy_db_s3_act3.gd` -- Act III enemies (lucid_phantom, thread_spinner, loom_sentinel, cult_shade, dream_warden, thought_leech, void_spinner, void_phantom, rift_mender, sanctum_shade, loom_warden, sanctum_guardian — all unique per battle)
+- `enemy_db_s3_act45.gd` -- Acts IV-V enemies (cult_acolyte, cult_enforcer, cult_hexer, thread_guard, dream_hound, ritual_guardian, cult_ritualist, high_weaver, shadow_fragment, threadmaster — all unique per battle)
 - `enemy_db_s3_pathb.gd` -- Path B enemies
 - `enemy_db_s3_pathc.gd` -- Path C enemies
 - `enemy_ability_db_s3.gd` -- Story 3 enemy ability definitions

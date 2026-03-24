@@ -311,3 +311,40 @@ A humanoid figure woven entirely from tightly braided dream-threads, standing up
 ```
 A fragment of dream-shadow that has leaked into the physical world, its body made of liquid darkness that pools on the cellar floor and drips upward in defiance of gravity. Droplets of ink-black substance rise from its base and collect into a vaguely humanoid upper body that flickers and reforms constantly. Teal light glows from within its shifting mass like bioluminescence in deep water. Where it touches the stone ceiling dark stains spread like watercolor bleeding through paper. Fast and fluid, it moves like spilled ink running in reverse, a piece of the dream that should not exist in waking, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
 ```
+
+---
+
+## Act III Unique Enemies (5 portraits)
+
+*Added 2026-03-24 to eliminate cross-battle enemy sharing in Act III and Act IV-V.*
+
+### S3_DreamVoid
+
+**void_phantom.png**
+```
+A phantom that has passed through the void between dreams and returned permanently altered. Its form is translucent but shot through with deep violet and black void-energy that pulses in slow waves, the light bending wrongly around its edges. Its face is more defined than a standard phantom, aware and purposeful, with hollow eyes that glow a pale sickly violet. Threads of stolen vitality spiral away from its outstretched hands like smoke. Where it moves it leaves brief tears in the dream-fabric that seal behind it. Elusive and draining, a predator of the empty spaces between dreams, dark fantasy RPG character portrait, full body, dark background with deep purple and void accents, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+**rift_mender.png**
+```
+A robed cult weaver working frantically in a space that should not exist, the void between dreams, surrounded by torn and fraying dream-threads that drift like shredded fabric in zero gravity. Its robes are woven from void-stuff, deep charcoal edged with faint violet light, and threads of purple and teal energy stream from its fingers as it stitches the tears closed. Its face is obscured by a hood, only the intense glow of concentration visible beneath it. A spinning wheel of condensed void-thread orbits its waist like a tool belt. Desperate and focused, a craftsperson trying to repair damage faster than it is being made, dark fantasy RPG character portrait, full body, dark background with purple and teal void accents, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+### S3_DreamSanctum
+
+**sanctum_shade.png**
+```
+A shade that has existed in the sanctum's innermost chamber since the cult's founding, its form compressed and dense with centuries of absorbed loom-energy. Unlike ordinary cult shades it does not flicker — it is perfectly still, perfectly dark, the shape of a hooded figure cut from absolute shadow with only two burning white-gold points where eyes should be. Threads of raw loom-force arc between its fingers like static electricity. Its robes have no texture or detail, a void in the shape of a person, surrounded by slow orbiting fragments of shattered dream-light it has nullified. Ancient, patient, and absolute, dark fantasy RPG character portrait, full body, dark background with subtle sanctum gold glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+**loom_warden.png**
+```
+A guardian whose physical form has partially merged with the loom itself, threads of the great weave running visibly through its body like veins of glowing teal light beneath near-translucent skin. It wears no armor because it does not need any — its flesh has been reinforced by dream-thread from within, the threads tightening reflexively around any damage it takes. Its face is human but serene to the point of blankness, the expression of something that has surrendered individuality completely to its purpose. One fist is raised, knuckles wrapped in coiled thread that flares with loom-energy on impact. The other arm trails threads back into the sanctum floor behind it like an umbilical cord. It cannot leave this room and does not want to, dark fantasy RPG character portrait, full body, dark sanctum background with teal thread-veins glowing through the floor, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+### S3_CultRitualChamber
+
+**ritual_guardian.png**
+```
+A heavily armored cult guardian stationed at the ritual chamber's threshold, plate armor engraved with the Thread's ceremonial sigils that glow faintly during the rites. Its helmet is a full-face ceremonial visor shaped like a stylized loom-beater, imposing and ritualistic. It holds a long-hafted weapon in one hand while the other traces a slow chanting gesture at its side, lips moving behind the visor. Thread-sigils orbit its shoulders like slow satellites, empowered by proximity to the active ceremony. More than a fighter — a participant in the rite itself, its violence an act of devotion, dark fantasy RPG character portrait, full body, dark ritual chamber background with warm golden ceremony light, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
