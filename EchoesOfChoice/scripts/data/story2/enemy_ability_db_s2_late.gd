@@ -17,6 +17,38 @@ static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int
 # Act III: Memory sanctum abilities
 # =============================================================================
 
+# --- Shattered Frame ---
+
+static func mirror_shard() -> AbilityData:
+	return _make("Mirror Shard", "A razor-edged shard of enchanted glass tears free and hurls itself at the target.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+static func dissonant_echo() -> AbilityData:
+	return _make("Dissonant Echo", "Overlapping reflections of the target's own movements scramble their timing.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)
+
+# --- Sorrow Shade ---
+
+static func grief_surge() -> AbilityData:
+	return _make("Grief Surge", "Crystallized sorrow launches itself at the target with shattering force.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+static func shattered_trust() -> AbilityData:
+	return _make("Shattered Trust", "The memory of betrayal crumbles all defensive conviction.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0)
+
+# --- Memory Reaper ---
+
+static func harvesting_scythe() -> AbilityData:
+	return _make("Harvesting Scythe", "The scythe sweeps through memories and flesh at once.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
+
+static func accumulated_toll() -> AbilityData:
+	return _make("Accumulated Toll", "Each memory claimed leaves a festering wound. The toll spreads.", Enums.StatType.HEALTH, 6, 3, true, 4, true, 3, 0.0)
+
+# --- Void Iris ---
+
+static func void_gaze() -> AbilityData:
+	return _make("Void Gaze", "The void at the Iris's center opens fully. To meet it is to lose yourself in darkness.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
+
+static func iris_flash() -> AbilityData:
+	return _make("Iris Flash", "The Iris flares open, flooding the chamber with blinding light that scrambles all reaction.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
+
 # --- Memory Wisp ---
 
 static func recall_bolt() -> AbilityData:

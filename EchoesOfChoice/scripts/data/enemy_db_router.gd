@@ -164,6 +164,8 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Silent Archivist": return S2A3.create_silent_archivist("")
 		"Lost Record": return S2A3.create_lost_record("")
 		"Faded Page": return S2A3.create_faded_page("")
+		"Shattered Frame": return S2A3.create_shattered_frame("")
+		"Sorrow Shade": return S2A3.create_sorrow_shade("")
 
 		# =====================================================================
 		# Story 2 - Act IV
@@ -171,6 +173,8 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Gaze Stalker": return S2A4.create_gaze_stalker("")
 		"Memory Harvester": return S2A4.create_memory_harvester("")
 		"Oblivion Shade": return S2A4.create_oblivion_shade("")
+		"Memory Reaper": return S2A4.create_memory_reaper("")
+		"Void Iris": return S2A4.create_void_iris("")
 		"Thoughtform Knight": return S2A4.create_thoughtform_knight("")
 		"The Iris": return S2A4.create_the_iris("")
 		"The Lidless Eye": return S2A4.create_the_lidless_eye("")

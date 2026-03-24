@@ -100,8 +100,8 @@ static func s2_echo_gallery() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act3.create_hollow_watcher("Flicker"),
 		EnemyDBS2Act3.create_grief_shade("Reverb"),
-		EnemyDBS2Act3.create_memory_wisp("Whisper"),
-		EnemyDBS2Act3.create_memory_wisp("Echo"),
+		EnemyDBS2Act3.create_shattered_frame("Whisper"),
+		EnemyDBS2Act3.create_shattered_frame("Echo"),
 	]
 	b.pre_battle_text = [
 		"A long corridor where the walls are not walls but windows into moments that already happened. Voices repeat in fragments, layered and overlapping.",
@@ -133,7 +133,7 @@ static func s2_shattered_sanctum() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act3.create_mirror_self("Reflection"),
 		EnemyDBS2Act3.create_void_weaver("Unmaker"),
-		EnemyDBS2Act3.create_grief_shade("Mourning"),
+		EnemyDBS2Act3.create_sorrow_shade("Mourning"),
 	]
 	b.pre_battle_text = [
 		"The sanctum is broken. Something tore through here. The crystalline walls are fractured, memories leaking like water from cracked vessels, pooling on the floor in shimmering puddles.",

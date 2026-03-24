@@ -62,7 +62,7 @@ static func s2_maw_of_the_eye() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act4.create_thoughtform_knight("Oathbound"),
 		EnemyDBS2Act4.create_oblivion_shade("The Hollow"),
-		EnemyDBS2Act4.create_memory_harvester("The Reaper"),
+		EnemyDBS2Act4.create_memory_reaper("The Reaper"),
 	]
 	b.pre_battle_text = [
 		"A vast underground chamber. The ceiling is darkness. The floor is a carpet of crystallized memories so dense the party walks on stolen lives.",
@@ -94,7 +94,7 @@ static func s2_eye_awakening() -> BattleData:
 	b.scene_image = "res://assets/art/battles/the_eye.png"
 	b.enemies = [
 		EnemyDBS2Act4.create_the_iris("The Iris"),
-		EnemyDBS2Act4.create_oblivion_shade("Nullsight"),
+		EnemyDBS2Act4.create_void_iris("Nullsight"),
 	]
 	b.pre_battle_text = [
 		"The wall of light parts. Beyond it, the Eye.",
