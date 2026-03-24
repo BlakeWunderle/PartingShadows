@@ -7,6 +7,7 @@ extends Control
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
+const TitleScene := preload("res://scenes/title/title.gd")
 
 enum Phase { ASSIGNING, MENU, LOAD_SLOTS, STORY_SELECT }
 
@@ -39,7 +40,9 @@ func _build_ui() -> void:
 	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	bg.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	var bg_path := "res://assets/art/ui/title_background.png"
+	var bg_path: String = TitleScene._cached_bg
+	if bg_path.is_empty():
+		bg_path = "res://assets/art/ui/title_background.png"
 	if ResourceLoader.exists(bg_path):
 		bg.texture = load(bg_path)
 	add_child(bg)
@@ -179,7 +182,7 @@ func _input(event: InputEvent) -> void:
 			_menu_container.visible = false
 			get_viewport().set_input_as_handled()
 		elif event is InputEventJoypadButton and event.pressed \
-				and event.button_index == JOY_BUTTON_B:
+				and event.is_action("cancel"):
 			_reset_slots()
 			_phase = Phase.ASSIGNING
 			_menu_container.visible = false
@@ -207,11 +210,11 @@ func _input(event: InputEvent) -> void:
 
 	# Gamepad claim: A button (joypad button 0)
 	elif event is InputEventJoypadButton and event.pressed:
-		if event.button_index == JOY_BUTTON_A:
+		if event.is_action("confirm"):
 			if not _is_device_taken(event.device):
 				_claim_device(event.device)
 				get_viewport().set_input_as_handled()
-		elif event.button_index == JOY_BUTTON_B:
+		elif event.is_action("cancel"):
 			# If nothing claimed yet, exit co-op setup entirely
 			if _claimed_devices.is_empty() or _claimed_devices[0] == UNCLAIMED:
 				LocalCoop.stop()

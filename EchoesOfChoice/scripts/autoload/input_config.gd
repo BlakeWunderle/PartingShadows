@@ -83,10 +83,12 @@ func apply_bindings() -> void:
 					elif btn_index == JOY_BUTTON_B:
 						btn_index = JOY_BUTTON_A
 				var ev := InputEventJoypadButton.new()
+				ev.device = -1
 				ev.button_index = btn_index
 				InputMap.action_add_event(action, ev)
 			elif pad["type"] == "axis":
 				var ev := InputEventJoypadMotion.new()
+				ev.device = -1
 				ev.axis = int(pad["axis"]) as JoyAxis
 				ev.axis_value = pad["value"]
 				InputMap.action_add_event(action, ev)
