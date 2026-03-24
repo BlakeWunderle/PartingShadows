@@ -28,9 +28,9 @@ var _battles_btn: Button
 var _back_btn: Button
 var _list_view: CompendiumListView
 var _active_modal: DetailModalBase
-var _FighterDB := preload("res://scripts/data/fighter_db.gd")
-var _BattleDB := preload("res://scripts/data/battle_db.gd")
-var _EnemyRouter := preload("res://scripts/data/enemy_db_router.gd")
+var _FighterDB: GDScript
+var _BattleDB: GDScript
+var _EnemyRouter: GDScript
 
 
 func _ready() -> void:
@@ -150,9 +150,17 @@ func _switch_tab(tab: Tab) -> void:
 	refresh_data()
 
 
+func _ensure_data_loaded() -> void:
+	if _FighterDB == null:
+		_FighterDB = load("res://scripts/data/fighter_db.gd")
+		_BattleDB = load("res://scripts/data/battle_db.gd")
+		_EnemyRouter = load("res://scripts/data/enemy_db_router.gd")
+
+
 func refresh_data() -> void:
 	if not is_node_ready():
 		return
+	_ensure_data_loaded()
 
 	# Update tab button styling
 	_classes_btn.modulate = Color.WHITE if current_tab == Tab.CLASSES else Color(0.6, 0.6, 0.6)
@@ -220,7 +228,7 @@ func _build_enemies_tab(discoveries: Dictionary) -> void:
 	var enemy_battle_images: Dictionary = {}
 	var completed_battles: Dictionary = discoveries.get("battles", {})
 	for battle_id: String in completed_battles:
-		var battle := _BattleDB.create_battle(battle_id)
+		var battle = _BattleDB.create_battle(battle_id)
 		if battle and not battle.scene_image.is_empty():
 			for enemy: RefCounted in battle.enemies:
 				if not enemy_battle_images.has(enemy.class_id):
@@ -272,7 +280,7 @@ func _build_battles_tab(discoveries: Dictionary) -> void:
 		var flavor_text := ""
 		var enemies_info: Array = []
 		if is_completed:
-			var battle := _BattleDB.create_battle(battle_id)
+			var battle = _BattleDB.create_battle(battle_id)
 			if battle:
 				scene_image = battle.scene_image
 				flavor_text = battle.pre_battle_text[0] if not battle.pre_battle_text.is_empty() else ""
