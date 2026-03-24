@@ -24,6 +24,8 @@ var _coop_mode: bool = false
 var _player_cursors: Array[int] = []
 var _player_overlays: Array = []   # [button_idx][player_idx] -> Panel
 var _player_sbs: Array = []        # [button_idx][player_idx] -> StyleBoxFlat
+var _last_nav_ms: Array[int] = []  # per-player tick at last stick navigation
+const _NAV_COOLDOWN_MS: int = 180  # ms between repeated stick navigations
 
 
 func _ready() -> void:
@@ -105,6 +107,7 @@ func _clear_buttons() -> void:
 	_player_cursors.clear()
 	_player_overlays.clear()
 	_player_sbs.clear()
+	_last_nav_ms.clear()
 
 
 func hide_menu() -> void:
@@ -187,6 +190,7 @@ func _setup_coop_cursors() -> void:
 			break
 	for _p: int in player_count:
 		_player_cursors.append(first_enabled)
+		_last_nav_ms.append(0)
 
 	# Add a colored border overlay per player onto each button
 	for btn: Button in _buttons:
@@ -273,17 +277,29 @@ func _get_player_for_event(event: InputEvent) -> int:
 func _input(event: InputEvent) -> void:
 	if not _coop_mode or not visible:
 		return
-	# Ignore non-press events and axis motion (d-pad buttons only for navigation)
+
+	var is_motion: bool = event is InputEventJoypadMotion
 	if event is InputEventKey and (not event.pressed or event.echo):
 		return
 	if event is InputEventJoypadButton and not event.pressed:
-		return
-	if event is InputEventJoypadMotion:
 		return
 
 	var player_idx: int = _get_player_for_event(event)
 	if player_idx < 0:
 		return
+
+	# Left stick: apply cooldown and reset timer when stick returns to center
+	if is_motion:
+		if abs((event as InputEventJoypadMotion).axis_value) < 0.3:
+			_last_nav_ms[player_idx] = 0
+			return
+		var now: int = Time.get_ticks_msec()
+		if now - _last_nav_ms[player_idx] < _NAV_COOLDOWN_MS:
+			return
+		if not (event.is_action("move_up") or event.is_action("move_down") \
+				or event.is_action("ui_up") or event.is_action("ui_down")):
+			return
+		_last_nav_ms[player_idx] = now
 
 	if event.is_action("move_up") or event.is_action("ui_up"):
 		_move_cursor(player_idx, -1)
@@ -291,7 +307,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action("move_down") or event.is_action("ui_down"):
 		_move_cursor(player_idx, 1)
 		get_viewport().set_input_as_handled()
-	elif event.is_action("confirm") or event.is_action("ui_accept"):
+	elif not is_motion and (event.is_action("confirm") or event.is_action("ui_accept")):
 		var idx: int = _player_cursors[player_idx]
 		if not _buttons[idx].disabled:
 			_on_button_pressed(idx)
