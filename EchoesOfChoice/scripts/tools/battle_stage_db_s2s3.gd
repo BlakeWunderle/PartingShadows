@@ -223,11 +223,12 @@ static func create_enemies(stage_name: String) -> Array:
 		"S2_EchoGallery":
 			return [EnemyDBS2Act3.create_hollow_watcher("Flicker"),
 				EnemyDBS2Act3.create_grief_shade("Reverb"),
-				EnemyDBS2Act3.create_memory_wisp("Whisper")]
+				EnemyDBS2Act3.create_shattered_frame("Whisper"),
+				EnemyDBS2Act3.create_shattered_frame("Echo")]
 		"S2_ShatteredSanctum":
 			return [EnemyDBS2Act3.create_mirror_self("Reflection"),
 				EnemyDBS2Act3.create_void_weaver("Unmaker"),
-				EnemyDBS2Act3.create_grief_shade("Mourning")]
+				EnemyDBS2Act3.create_sorrow_shade("Mourning")]
 		"S2_GuardiansThreshold":
 			return [EnemyDBS2Act3.create_ward_construct("Remembrance"),
 				EnemyDBS2Act3.create_null_phantom("Erasure"),
@@ -248,10 +249,10 @@ static func create_enemies(stage_name: String) -> Array:
 		"S2_MawOfTheEye":
 			return [EnemyDBS2Act4.create_thoughtform_knight("Oathbound"),
 				EnemyDBS2Act4.create_oblivion_shade("The Hollow"),
-				EnemyDBS2Act4.create_memory_harvester("The Reaper")]
+				EnemyDBS2Act4.create_memory_reaper("The Reaper")]
 		"S2_EyeAwakening":
 			return [EnemyDBS2Act4.create_the_iris("The Iris"),
-				EnemyDBS2Act4.create_oblivion_shade("Nullsight")]
+				EnemyDBS2Act4.create_void_iris("Nullsight")]
 		"S2_EyeOfOblivion":
 			return [EnemyDBS2Act4.create_the_lidless_eye("The Lidless Eye")]
 		# Story 2 Path B
