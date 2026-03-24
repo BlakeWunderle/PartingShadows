@@ -6,6 +6,7 @@ class_name BattleStageDB
 const EnemyDB := preload("res://scripts/data/story1/enemy_db.gd")
 const EnemyDBAct2 := preload("res://scripts/data/story1/enemy_db_act2.gd")
 const EnemyDBAct345 := preload("res://scripts/data/story1/enemy_db_act345.gd")
+const EnemyDBAct5B := preload("res://scripts/data/story1/enemy_db_act5b.gd")
 const S2S3 := preload("res://scripts/tools/battle_stage_db_s2s3.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 
@@ -60,6 +61,10 @@ static func _get_story1_stages() -> Array:
 		_s("GateBattle", 14, "tier2", 0.69, 12),
 		# Prog 13: Tier 2, 15 total level ups (final boss)
 		_s("StrangerFinalBattle", 15, "tier2", 0.65, 13),
+		# Path B: Sever the Ritual (branches from GateBattle)
+		_s("RitualAnchorBattle", 14, "tier2", 0.69, 12),
+		_s("SanctumCollapseBattle", 15, "tier2", 0.67, 13),
+		_s("StrangerUndoneBattle", 15, "tier2", 0.65, 13),
 	]
 
 
@@ -163,6 +168,16 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 				EnemyDBAct345.create_tunnel_lurker("Webweaver")]
 		"StrangerFinalBattle":
 			return [EnemyDBAct345.create_stranger_final("The Stranger")]
+		"RitualAnchorBattle":
+			return [EnemyDBAct5B.create_sigil_colossus("Pillarguard"),
+				EnemyDBAct5B.create_ritual_conduit("The Conduit"),
+				EnemyDBAct5B.create_void_sentinel("Nullblade")]
+		"SanctumCollapseBattle":
+			return [EnemyDBAct5B.create_void_horror("The Hollow"),
+				EnemyDBAct5B.create_fractured_shadow("Splinter"),
+				EnemyDBAct5B.create_shadow_remnant("Fadelight")]
+		"StrangerUndoneBattle":
+			return [EnemyDBAct5B.create_stranger_undone("The Stranger")]
 		_:
 			var result := S2S3.create_enemies(stage_name)
 			if result.is_empty():

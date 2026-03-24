@@ -6,6 +6,7 @@ const EnemyDBS2 := preload("res://scripts/data/story2/enemy_db_s2.gd")
 const EnemyDBS2Act2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
 const EnemyDBS2Act3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
 const EnemyDBS2Act4 := preload("res://scripts/data/story2/enemy_db_s2_act4.gd")
+const EnemyDBS2PathB := preload("res://scripts/data/story2/enemy_db_s2_pathb.gd")
 const EnemyDBS3 := preload("res://scripts/data/story3/enemy_db_s3.gd")
 const EnemyDBS3Act2 := preload("res://scripts/data/story3/enemy_db_s3_act2.gd")
 const EnemyDBS3Act3 := preload("res://scripts/data/story3/enemy_db_s3_act3.gd")
@@ -62,6 +63,12 @@ static func get_story2_stages() -> Array:
 		_s("S2_EyeAwakening", 18, "tier2", 0.57, 16, 2),
 		# Prog 17: Tier 2, 19 level ups (final boss)
 		_s("S2_EyeOfOblivion", 19, "tier2", 0.55, 17, 2),
+		# --- Story 2 Path B: Save Sera (branches from ShatteredSanctum) ---
+		_s("S2_B_ArchiveAwakening", 15, "tier2", 0.63, 13, 2),
+		_s("S2_B_LighthouseCore", 16, "tier2", 0.61, 14, 2),
+		_s("S2_B_ResonanceChamber", 17, "tier2", 0.59, 15, 2),
+		_s("S2_B_MemoryFlood", 18, "tier2", 0.57, 16, 2),
+		_s("S2_B_EyeUnblinking", 19, "tier2", 0.55, 17, 2),
 	]
 
 
@@ -247,6 +254,24 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS2Act4.create_oblivion_shade("Nullsight")]
 		"S2_EyeOfOblivion":
 			return [EnemyDBS2Act4.create_the_lidless_eye("The Lidless Eye")]
+		# Story 2 Path B
+		"S2_B_ArchiveAwakening":
+			return [EnemyDBS2PathB.create_fractured_scholar("Sera"),
+				EnemyDBS2PathB.create_archive_sentinel("Archivist")]
+		"S2_B_LighthouseCore":
+			return [EnemyDBS2PathB.create_pipeline_warden("Ironpipe"),
+				EnemyDBS2PathB.create_maintenance_drone("Sparkfly"),
+				EnemyDBS2PathB.create_resonance_node("Harmonic")]
+		"S2_B_ResonanceChamber":
+			return [EnemyDBS2PathB.create_eyes_fist("Crushing Gaze"),
+				EnemyDBS2PathB.create_null_sentinel("Voidwatch"),
+				EnemyDBS2PathB.create_overload_spark("Feedback")]
+		"S2_B_MemoryFlood":
+			return [EnemyDBS2PathB.create_memory_torrent("The Torrent"),
+				EnemyDBS2PathB.create_unleashed_recollection("The Surge"),
+				EnemyDBS2PathB.create_rage_fragment("The Shard")]
+		"S2_B_EyeUnblinking":
+			return [EnemyDBS2PathB.create_the_unblinking_eye("The Unblinking Eye")]
 		# Story 3
 		"S3_DreamMeadow":
 			return [EnemyDBS3.create_dream_wisp("Glimmer"),

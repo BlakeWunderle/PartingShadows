@@ -4,8 +4,11 @@ class_name NarrativeEndings
 ## No scene dependencies; all methods are static and take only primitive parameters.
 
 
-static func get_ending_text_story_1(game_won: bool) -> Array[String]:
+static func get_ending_text_story_1(game_won: bool, battle_id: String = "") -> Array[String]:
+	var is_path_b: bool = battle_id == "StrangerUndoneBattle"
 	if game_won:
+		if is_path_b:
+			return _get_ending_text_story_1_path_b()
 		return [
 			"The stranger is gone and with them, the shadow that covered the land.",
 			"The sky clears. The city stirs. People emerge from hiding.",
@@ -16,14 +19,36 @@ static func get_ending_text_story_1(game_won: bool) -> Array[String]:
 			"Thank you for playing Echoes of Choice.",
 		]
 	else:
+		if is_path_b:
+			return [
+				"The Stranger stands alone in the ruins of his sanctum, broken but undefeated.",
+				"Without his ritual he is diminished. Without challengers he is uncontested. The shadow grows slowly, quietly, the way it always has.",
+				"This journey may be over, but every great story deserves another telling.",
+			]
 		return [
 			"Our heroes fall and the darkness grows a little stronger.",
 			"This journey may be over, but every great story deserves another telling.",
 		]
 
 
-static func get_ending_text_story_2(game_won: bool) -> Array[String]:
+static func _get_ending_text_story_1_path_b() -> Array[String]:
+	return [
+		"The Stranger crumbles quietly. No shattering glass, no dramatic burst of light. He simply falls, and the shadow falls with him.",
+		"The sky clears slowly, like fog lifting from a lake. Not the triumphant dawn of a villain's defeat but the gradual return of something that was always there, waiting.",
+		"The journal weighs heavy in a pocket. A scholar's handwriting, growing more frantic with every page. A man who believed he was saving the world, one sigil at a time, until the world became his enemy.",
+		"People emerge from hiding. They do not cheer. They blink at the sky and hold each other and try to remember what normal felt like.",
+		"The barkeep pours cups at The Copper Mug. He does not ask what happened below. Some questions are better left in the dark.",
+		"The world will heal. The scars will remain. And somewhere in a collapsed tunnel beneath the city, a journal full of unanswered questions gathers dust.",
+		"",
+		"Thank you for playing Echoes of Choice.",
+	]
+
+
+static func get_ending_text_story_2(game_won: bool, battle_id: String = "") -> Array[String]:
+	var is_path_b: bool = battle_id == "S2_B_EyeUnblinking"
 	if game_won:
+		if is_path_b:
+			return _get_ending_text_story_2_path_b()
 		return [
 			"The Eye closes for the last time. The crystallized memories shatter, and light rises from the depths like a thousand lanterns set free.",
 			"Across the coast, people stop mid-sentence. A name they forgot. A face they lost. A moment that was taken, returned without explanation.",
@@ -36,11 +61,33 @@ static func get_ending_text_story_2(game_won: bool) -> Array[String]:
 			"Thank you for playing Echoes of Choice.",
 		]
 	else:
+		if is_path_b:
+			return [
+				"The Eye remains open. The overload was not enough.",
+				"Sera's failsafe failed, and the Eye turns its full, undiminished attention on the four who dared to challenge it. This time, there is nowhere to run.",
+				"This journey may be over, but every great story deserves another telling.",
+			]
 		return [
 			"The Eye remains open. The memories do not return.",
 			"In the darkness below the world, something watches. Something waits. Something remembers everything it has taken.",
 			"This journey may be over, but every great story deserves another telling.",
 		]
+
+
+static func _get_ending_text_story_2_path_b() -> Array[String]:
+	return [
+		"The Eye closes. The crystallized memories shatter, and light rises from the depths like a thousand lanterns set free.",
+		"Across the coast, people stop mid-sentence. A name they forgot. A face they lost. A moment that was taken, returned without explanation.",
+		"The old woman in the fishing village remembers the dinner. The blacksmith remembers why the sword was urgent. The barkeep remembers the conversations.",
+		"Deep below, in the place where the Eye once watched, four people stand in silence. The machinery is dark. The crystals are empty. No voice echoes in the chamber. There is no ghost here. Just four living, breathing people.",
+		"Sera stands in the sunlight for the first time in years. She squints. She has forgotten how bright the world can be.",
+		"'I thought I would never see this again,' she says quietly. She touches her face, surprised to find it wet.",
+		"Someone hands her a cup of water from a well. She drinks it and laughs, short and startled, surprised that something so simple can still feel good.",
+		"She does not know what to do next. She has centuries of guilt to carry and a lifetime to figure out how. But she is alive, and that is more than she planned for.",
+		"Four of them walked in. Four of them walk out.",
+		"",
+		"Thank you for playing Echoes of Choice.",
+	]
 
 
 static func get_ending_text_story_3(game_won: bool, battle_id: String) -> Array[String]:

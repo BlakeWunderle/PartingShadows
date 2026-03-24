@@ -7,10 +7,12 @@ const Act1 := preload("res://scripts/data/story1/battle_db_act1.gd")
 const Act2 := preload("res://scripts/data/story1/battle_db_act2.gd")
 const Act3 := preload("res://scripts/data/story1/battle_db_act3.gd")
 const Act45 := preload("res://scripts/data/story1/battle_db_act45.gd")
+const Act5B := preload("res://scripts/data/story1/battle_db_act5b.gd")
 const S2 := preload("res://scripts/data/story2/battle_db_s2.gd")
 const S2Act2 := preload("res://scripts/data/story2/battle_db_s2_act2.gd")
 const S2Act3 := preload("res://scripts/data/story2/battle_db_s2_act3.gd")
 const S2Act4 := preload("res://scripts/data/story2/battle_db_s2_act4.gd")
+const S2PathB := preload("res://scripts/data/story2/battle_db_s2_pathb.gd")
 const S3 := preload("res://scripts/data/story3/battle_db_s3.gd")
 const S3Act3 := preload("res://scripts/data/story3/battle_db_s3_act3.gd")
 const S3Act45 := preload("res://scripts/data/story3/battle_db_s3_act45.gd")
@@ -51,6 +53,10 @@ static func create_battle(battle_id: String) -> BattleData:
 		"DepthsBattle": return Act45.depths_battle()
 		"GateBattle": return Act45.gate_battle()
 		"StrangerFinalBattle": return Act45.stranger_final_battle()
+		# Story 1 - Act V Path B (sever the ritual)
+		"RitualAnchorBattle", "SanctumCollapseBattle", \
+		"StrangerUndoneBattle":
+			return Act5B.create_battle(battle_id)
 		# Story 2 - Act I
 		"S2_CaveAwakening", "S2_DeepCavern", "S2_FungalHollow", \
 		"S2_TranquilPool", "S2_TorchChamber", "S2_CaveMerchant", \
@@ -70,6 +76,11 @@ static func create_battle(battle_id: String) -> BattleData:
 		"S2_DepthsOfRemembrance", "S2_MawOfTheEye", \
 		"S2_EyeAwakening", "S2_EyeOfOblivion":
 			return S2Act4.create_battle(battle_id)
+		# Story 2 - Path B (Save Sera)
+		"S2_B_ArchiveAwakening", "S2_B_LighthouseCore", \
+		"S2_B_ResonanceChamber", "S2_B_MemoryFlood", \
+		"S2_B_EyeUnblinking":
+			return S2PathB.create_battle(battle_id)
 		# Story 3 - Acts I-II
 		"S3_WearyTraveler", "S3_DreamMeadow", "S3_DreamMirrorHall", \
 		"S3_DreamFogGarden", "S3_TownMorning", "S3_DreamReturn", \

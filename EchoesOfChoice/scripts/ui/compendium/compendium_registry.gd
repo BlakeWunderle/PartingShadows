@@ -88,6 +88,14 @@ static func get_all_enemy_ids() -> Array:
 		{"class_id": "Fell Hound", "story_id": s1},
 		{"class_id": "Sigil Wretch", "story_id": s1},
 		{"class_id": "Tunnel Lurker", "story_id": s1},
+		# Story 1 - Act V Path B
+		{"class_id": "Sigil Colossus", "story_id": s1},
+		{"class_id": "Ritual Conduit", "story_id": s1},
+		{"class_id": "Void Sentinel", "story_id": s1},
+		{"class_id": "Void Horror", "story_id": s1},
+		{"class_id": "Fractured Shadow", "story_id": s1},
+		{"class_id": "Shadow Remnant", "story_id": s1},
+		{"class_id": "StrangerUndone", "story_id": s1},
 		# Story 2 - Act I
 		{"class_id": "Glow Worm", "story_id": s2},
 		{"class_id": "Crystal Spider", "story_id": s2},
@@ -147,6 +155,19 @@ static func get_all_enemy_ids() -> Array:
 		{"class_id": "Thoughtform Knight", "story_id": s2},
 		{"class_id": "The Iris", "story_id": s2},
 		{"class_id": "The Lidless Eye", "story_id": s2},
+		# Story 2 - Path B (Save Sera)
+		{"class_id": "Fractured Scholar", "story_id": s2},
+		{"class_id": "Archive Sentinel", "story_id": s2},
+		{"class_id": "Pipeline Warden", "story_id": s2},
+		{"class_id": "Maintenance Drone", "story_id": s2},
+		{"class_id": "Resonance Node", "story_id": s2},
+		{"class_id": "Eye's Fist", "story_id": s2},
+		{"class_id": "Null Sentinel", "story_id": s2},
+		{"class_id": "Overload Spark", "story_id": s2},
+		{"class_id": "Memory Torrent", "story_id": s2},
+		{"class_id": "Unleashed Recollection", "story_id": s2},
+		{"class_id": "Rage Fragment", "story_id": s2},
+		{"class_id": "The Unblinking Eye", "story_id": s2},
 		# Story 3 - Acts I-II
 		{"class_id": "Dream Wisp", "story_id": s3},
 		{"class_id": "Phantasm", "story_id": s3},
@@ -252,6 +273,8 @@ static func get_all_battle_ids() -> Array:
 		# Story 1 - Acts IV-V
 		"CorruptedCityBattle", "CorruptedWildsBattle",
 		"DepthsBattle", "GateBattle", "StrangerFinalBattle",
+		# Story 1 - Act V Path B
+		"RitualAnchorBattle", "SanctumCollapseBattle", "StrangerUndoneBattle",
 		# Story 2 - Act I
 		"S2_CaveAwakening", "S2_DeepCavern", "S2_FungalHollow",
 		"S2_TranquilPool", "S2_TorchChamber", "S2_CaveExit",
@@ -266,6 +289,9 @@ static func get_all_battle_ids() -> Array:
 		# Story 2 - Act IV
 		"S2_DepthsOfRemembrance", "S2_MawOfTheEye",
 		"S2_EyeAwakening", "S2_EyeOfOblivion",
+		# Story 2 - Path B (Save Sera)
+		"S2_B_ArchiveAwakening", "S2_B_LighthouseCore",
+		"S2_B_ResonanceChamber", "S2_B_MemoryFlood", "S2_B_EyeUnblinking",
 		# Story 3 - Acts I-II
 		"S3_DreamMeadow", "S3_DreamMirrorHall",
 		"S3_DreamFogGarden", "S3_DreamReturn",

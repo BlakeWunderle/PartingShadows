@@ -9,12 +9,14 @@ const FighterData := preload("res://scripts/data/fighter_data.gd")
 const S1 := preload("res://scripts/data/story1/enemy_db.gd")
 const S1A2 := preload("res://scripts/data/story1/enemy_db_act2.gd")
 const S1A345 := preload("res://scripts/data/story1/enemy_db_act345.gd")
+const S1A5B := preload("res://scripts/data/story1/enemy_db_act5b.gd")
 
 # Story 2
 const S2 := preload("res://scripts/data/story2/enemy_db_s2.gd")
 const S2A2 := preload("res://scripts/data/story2/enemy_db_s2_act2.gd")
 const S2A3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
 const S2A4 := preload("res://scripts/data/story2/enemy_db_s2_act4.gd")
+const S2PB := preload("res://scripts/data/story2/enemy_db_s2_pathb.gd")
 
 # Story 3
 const S3 := preload("res://scripts/data/story3/enemy_db_s3.gd")
@@ -92,6 +94,17 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Tunnel Lurker": return S1A345.create_tunnel_lurker("")
 
 		# =====================================================================
+		# Story 1 - Act V Path B
+		# =====================================================================
+		"Sigil Colossus": return S1A5B.create_sigil_colossus("")
+		"Ritual Conduit": return S1A5B.create_ritual_conduit("")
+		"Void Sentinel": return S1A5B.create_void_sentinel("")
+		"Void Horror": return S1A5B.create_void_horror("")
+		"Fractured Shadow": return S1A5B.create_fractured_shadow("")
+		"Shadow Remnant": return S1A5B.create_shadow_remnant("")
+		"StrangerUndone": return S1A5B.create_stranger_undone("")
+
+		# =====================================================================
 		# Story 2 - Act I
 		# =====================================================================
 		"Glow Worm": return S2.create_glow_worm("")
@@ -161,6 +174,22 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Thoughtform Knight": return S2A4.create_thoughtform_knight("")
 		"The Iris": return S2A4.create_the_iris("")
 		"The Lidless Eye": return S2A4.create_the_lidless_eye("")
+
+		# =====================================================================
+		# Story 2 - Path B (Save Sera)
+		# =====================================================================
+		"Fractured Scholar": return S2PB.create_fractured_scholar("")
+		"Archive Sentinel": return S2PB.create_archive_sentinel("")
+		"Pipeline Warden": return S2PB.create_pipeline_warden("")
+		"Maintenance Drone": return S2PB.create_maintenance_drone("")
+		"Resonance Node": return S2PB.create_resonance_node("")
+		"Eye's Fist": return S2PB.create_eyes_fist("")
+		"Null Sentinel": return S2PB.create_null_sentinel("")
+		"Overload Spark": return S2PB.create_overload_spark("")
+		"Memory Torrent": return S2PB.create_memory_torrent("")
+		"Unleashed Recollection": return S2PB.create_unleashed_recollection("")
+		"Rage Fragment": return S2PB.create_rage_fragment("")
+		"The Unblinking Eye": return S2PB.create_the_unblinking_eye("")
 
 		# =====================================================================
 		# Story 3 - Acts I-II

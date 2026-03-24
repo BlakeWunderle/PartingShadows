@@ -138,11 +138,11 @@ func _show_ending() -> void:
 	var lines: Array[String]
 	match GameState.current_story_id:
 		"story_2":
-			lines = Endings.get_ending_text_story_2(GameState.game_won)
+			lines = Endings.get_ending_text_story_2(GameState.game_won, GameState.current_battle_id)
 		"story_3":
 			lines = Endings.get_ending_text_story_3(GameState.game_won, GameState.current_battle_id)
 		_:
-			lines = Endings.get_ending_text_story_1(GameState.game_won)
+			lines = Endings.get_ending_text_story_1(GameState.game_won, GameState.current_battle_id)
 	if _is_defeat:
 		lines.append("")
 		lines.append("Battles won: %d" % GameState.battles_won)
