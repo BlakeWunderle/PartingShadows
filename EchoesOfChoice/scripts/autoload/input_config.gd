@@ -90,9 +90,11 @@ func apply_bindings() -> void:
 				ev.axis = int(pad["axis"]) as JoyAxis
 				ev.axis_value = pad["value"]
 				InputMap.action_add_event(action, ev)
-	# Add gamepad buttons to built-in UI actions so Godot controls respond to gamepads
+	# Add gamepad buttons/axes to built-in UI actions so Godot controls respond to gamepads.
+	# Use device=-1 (any device) so all connected controllers work.
 	_add_joypad_to_ui_action("ui_accept", _get_confirm_button())
 	_add_joypad_to_ui_action("ui_cancel", _get_cancel_button())
+	_add_joypad_nav_to_ui_actions()
 
 
 func _detect_nintendo_layout() -> void:
@@ -116,13 +118,47 @@ func _get_cancel_button() -> JoyButton:
 func _add_joypad_to_ui_action(action_name: String, button: JoyButton) -> void:
 	if not InputMap.has_action(action_name):
 		return
-	# Check if already mapped to avoid duplicates
-	for existing: InputEvent in InputMap.action_get_events(action_name):
-		if existing is InputEventJoypadButton and existing.button_index == button:
-			return
+	# Remove any existing joypad button events (may have wrong device) then re-add with device=-1
+	for existing: InputEvent in InputMap.action_get_events(action_name).duplicate():
+		if existing is InputEventJoypadButton:
+			InputMap.action_erase_event(action_name, existing)
 	var ev := InputEventJoypadButton.new()
+	ev.device = -1
 	ev.button_index = button
 	InputMap.action_add_event(action_name, ev)
+
+
+func _add_joypad_nav_to_ui_actions() -> void:
+	## Ensure d-pad and left-stick navigation works for all UI menus.
+	## Godot 4's built-in ui_up/down/left/right may lack gamepad mappings.
+	var nav_buttons: Dictionary = {
+		"ui_up": JOY_BUTTON_DPAD_UP,
+		"ui_down": JOY_BUTTON_DPAD_DOWN,
+		"ui_left": JOY_BUTTON_DPAD_LEFT,
+		"ui_right": JOY_BUTTON_DPAD_RIGHT,
+	}
+	var nav_axes: Dictionary = {
+		"ui_up": [JOY_AXIS_LEFT_Y, -1.0],
+		"ui_down": [JOY_AXIS_LEFT_Y, 1.0],
+		"ui_left": [JOY_AXIS_LEFT_X, -1.0],
+		"ui_right": [JOY_AXIS_LEFT_X, 1.0],
+	}
+	for action: String in nav_buttons.keys():
+		if not InputMap.has_action(action):
+			continue
+		# Remove existing joypad events then re-add with device=-1
+		for existing: InputEvent in InputMap.action_get_events(action).duplicate():
+			if existing is InputEventJoypadButton or existing is InputEventJoypadMotion:
+				InputMap.action_erase_event(action, existing)
+		var btn := InputEventJoypadButton.new()
+		btn.device = -1
+		btn.button_index = nav_buttons[action] as JoyButton
+		InputMap.action_add_event(action, btn)
+		var axis := InputEventJoypadMotion.new()
+		axis.device = -1
+		axis.axis = nav_axes[action][0] as JoyAxis
+		axis.axis_value = nav_axes[action][1]
+		InputMap.action_add_event(action, axis)
 
 
 func rebind_action(action_name: String, keycode: Key) -> void:
