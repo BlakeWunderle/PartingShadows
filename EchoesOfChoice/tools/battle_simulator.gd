@@ -123,6 +123,8 @@ func _init() -> void:
 	# Worker mode: take only this worker's slice of stages (round-robin).
 	var _worker_mode: bool = worker_index >= 0 and worker_count > 0
 	if _worker_mode:
+		print("  Worker %d/%d starting (pid %d)" % [
+			worker_index, worker_count, OS.get_process_id()])
 		var my_stages := []
 		for si in stages.size():
 			if si % worker_count == worker_index:

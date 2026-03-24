@@ -7,12 +7,19 @@ extends SceneTree
 ##        --script res://tools/battle_sim_parallel.gd -- [options]
 ##
 ## Options:
-##   --jobs <n>   Number of worker processes (default: CPU count)
+##   --jobs <n>      Number of worker processes (default: CPU count, capped at 4 on Windows)
+##   --stagger <ms>  Delay in ms between spawning workers (default: 2000)
+##   --timeout <s>   Max seconds to wait before killing workers (default: max(300, jobs*120))
 ##   All other options are forwarded to battle_simulator.gd workers.
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
 const SC := preload("res://scripts/tools/sim_cache.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
+
+const DEFAULT_STAGGER_MS: int = 2000       ## delay between spawning each worker
+const DEFAULT_TIMEOUT_SECONDS: int = 300   ## baseline; scaled by job count
+const WINDOWS_MAX_JOBS: int = 4            ## cap on Windows to reduce contention
+const PROGRESS_DOT_INTERVAL_MS: int = 5000
 
 var _json_path := ""
 var _progressive := false
@@ -23,6 +30,8 @@ var _compact := false
 func _init() -> void:
 	var args := OS.get_cmdline_user_args()
 	var jobs: int = OS.get_processor_count()
+	var stagger_ms: int = DEFAULT_STAGGER_MS
+	var timeout_sec: int = -1  ## -1 = auto-calculate from job count
 	var passthrough: Array[String] = []
 
 	# Parse coordinator-specific args; collect the rest for workers.
@@ -32,6 +41,14 @@ func _init() -> void:
 			"--jobs":
 				if i + 1 < args.size():
 					jobs = int(args[i + 1])
+					i += 1
+			"--stagger":
+				if i + 1 < args.size():
+					stagger_ms = int(args[i + 1])
+					i += 1
+			"--timeout":
+				if i + 1 < args.size():
+					timeout_sec = int(args[i + 1])
 					i += 1
 			"--json":
 				if i + 1 < args.size():
@@ -57,8 +74,16 @@ func _init() -> void:
 
 	jobs = clampi(jobs, 1, 32)
 
+	## Cap default job count on Windows to reduce Godot startup cache contention.
+	if OS.get_name() == "Windows" and not args.has("--jobs"):
+		jobs = mini(jobs, WINDOWS_MAX_JOBS)
+
+	## Auto-calculate timeout if not explicitly set.
+	if timeout_sec < 0:
+		timeout_sec = maxi(DEFAULT_TIMEOUT_SECONDS, jobs * 120)
+
 	if _progressive:
-		_run_progressive(jobs, passthrough)
+		_run_progressive(jobs, passthrough, stagger_ms, timeout_sec)
 		return
 
 	# Ensure a run mode is present. Parallel coordinator needs --all or
@@ -67,15 +92,21 @@ func _init() -> void:
 		passthrough.append("--all")
 
 	print("=== Parallel Battle Simulator ===")
-	print("  Workers: %d" % jobs)
+	print("  Workers: %d  Stagger: %dms  Timeout: %ds" % [jobs, stagger_ms, timeout_sec])
 	print("  Args: %s\n" % " ".join(passthrough))
 
 	var sw := Time.get_ticks_msec()
-	var all_stages := _spawn_and_collect(jobs, passthrough)
+	var all_stages := _spawn_and_collect(jobs, passthrough, stagger_ms, timeout_sec)
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
 
 	if all_stages.is_empty():
 		print("ERROR: No results collected from workers.")
+		print("  Workers likely timed out due to Godot startup cache contention on Windows.")
+		print("  Try one of:")
+		print("    --jobs 1            Run sequentially (reliable fallback)")
+		print("    --stagger 4000      Wait 4s between spawning each worker")
+		print("    --jobs 2            Use fewer parallel workers")
+		print("  Or delete .godot/ and let Godot re-import before running the sim.")
 		quit(1)
 		return
 
@@ -135,7 +166,8 @@ func _init() -> void:
 	quit()
 
 
-func _run_progressive(jobs: int, passthrough: Array[String]) -> void:
+func _run_progressive(jobs: int, passthrough: Array[String],
+		stagger_ms: int, timeout_sec: int) -> void:
 	# Build stage list applying same filters workers would use.
 	var stages := BSDB.get_all_stages()
 	var story_filter := 0
@@ -165,7 +197,8 @@ func _run_progressive(jobs: int, passthrough: Array[String]) -> void:
 	prog_keys.sort()
 
 	print("=== Parallel Progressive Simulator ===")
-	print("  Workers: %d | Progressions: %s\n" % [jobs, prog_keys])
+	print("  Workers: %d  Stagger: %dms  Timeout: %ds | Progressions: %s\n" % [
+		jobs, stagger_ms, timeout_sec, prog_keys])
 
 	var grand_sw := Time.get_ticks_msec()
 	var all_stages: Array = []
@@ -181,9 +214,10 @@ func _run_progressive(jobs: int, passthrough: Array[String]) -> void:
 		prog_args.append("--progression")
 		prog_args.append(str(prog))
 
-		var prog_stages := _spawn_and_collect(jobs, prog_args)
+		var prog_stages := _spawn_and_collect(jobs, prog_args, stagger_ms, timeout_sec)
 		if prog_stages.is_empty():
-			print("  ERROR: No results for progression %d" % prog)
+			print("  ERROR: No results for progression %d." % prog)
+			print("  Workers likely timed out. Try --stagger 4000 or --jobs 1.")
 			break
 
 		all_stages.append_array(prog_stages)
@@ -213,7 +247,9 @@ func _run_progressive(jobs: int, passthrough: Array[String]) -> void:
 	quit()
 
 
-func _spawn_and_collect(jobs: int, passthrough: Array[String]) -> Array:
+func _spawn_and_collect(jobs: int, passthrough: Array[String],
+		stagger_ms: int = DEFAULT_STAGGER_MS,
+		timeout_sec: int = DEFAULT_TIMEOUT_SECONDS) -> Array:
 	DirAccess.make_dir_recursive_absolute(OS.get_user_data_dir())
 	var godot_exe := OS.get_executable_path()
 	if not godot_exe.contains("_console") and FileAccess.file_exists(
@@ -244,17 +280,46 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String]) -> Array:
 			pids.append(pid)
 		else:
 			print("  ERROR: Failed to spawn worker %d" % wi)
+		## Stagger starts to prevent Godot startup cache contention on Windows.
+		if wi < jobs - 1:
+			OS.delay_msec(stagger_ms)
 
-	# Wait for all workers.
+	# Wait for all workers with timeout and progress dots.
+	var deadline_msec: int = Time.get_ticks_msec() + timeout_sec * 1000
+	var last_dot_msec: int = Time.get_ticks_msec()
+	var dot_count := 0
+	var timed_out := false
+
+	printraw("  Waiting for workers")
 	while true:
+		var now := Time.get_ticks_msec()
 		var still_running := false
 		for pid: int in pids:
 			if OS.is_process_running(pid):
 				still_running = true
 				break
 		if not still_running:
+			print("")
 			break
+		if now >= deadline_msec:
+			print("\n  TIMEOUT: Workers did not finish within %ds." % timeout_sec)
+			for pid: int in pids:
+				if OS.is_process_running(pid):
+					OS.kill(pid)
+			timed_out = true
+			break
+		if now - last_dot_msec >= PROGRESS_DOT_INTERVAL_MS:
+			dot_count += 1
+			if dot_count % 10 == 0:
+				var elapsed_s: int = (now - (deadline_msec - timeout_sec * 1000)) / 1000
+				printraw(" %ds" % elapsed_s)
+			else:
+				printraw(".")
+			last_dot_msec = now
 		OS.delay_msec(500)
+
+	if timed_out:
+		return []
 
 	# Collect results.
 	var results: Array = []
