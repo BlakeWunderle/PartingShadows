@@ -19,16 +19,179 @@ static func get_ending_text_story_1(game_won: bool, battle_id: String = "") -> A
 			"Thank you for playing Echoes of Choice.",
 		]
 	else:
-		if is_path_b:
-			return [
-				"The Stranger stands alone in the ruins of his sanctum, broken but undefeated.",
-				"Without his ritual he is diminished. Without challengers he is uncontested. The shadow grows slowly, quietly, the way it always has.",
-				"This journey may be over, but every great story deserves another telling.",
-			]
+		return _get_defeat_text_story_1(battle_id)
+
+
+static func _get_defeat_text_story_1(battle_id: String) -> Array[String]:
+	# Acts I-II: Stranger is still an ally, player doesn't know he's the villain
+	const ACT_1_2: Array = [
+		"CityStreetBattle", "WolfForestBattle", "WaypointDefenseBattle",
+		"HighlandBattle", "MountainPassBattle", "DeepForestBattle", "CaveBattle",
+		"ShoreBattle", "BeachBattle", "CircusBattle", "LabBattle", "ArmyBattle",
+		"CemeteryBattle", "OutpostDefenseBattle", "MirrorBattle",
+	]
+	# Act III: The reveal — Stranger is the villain
+	const ACT_3: Array = ["ReturnToCityStreetBattle", "StrangerTowerBattle"]
+	if battle_id in ACT_1_2:
 		return [
-			"Our heroes fall and the darkness grows a little stronger.",
+			"The road was long and the wilds unforgiving. Our heroes fought bravely, but the world had more teeth than they had steel.",
+			"Somewhere, a stranger waits by a fire, wondering why his friends never returned.",
 			"This journey may be over, but every great story deserves another telling.",
 		]
+	if battle_id in ACT_3:
+		return [
+			"The Stranger's betrayal cut deeper than any blade. His shadow stretches across the city, unchallenged.",
+			"The tower stands. The sigils glow. And the people below learn to live in the dark.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id == "StrangerUndoneBattle":
+		return [
+			"The Stranger stands alone in the ruins of his sanctum, broken but undefeated.",
+			"Without his ritual he is diminished. Without challengers he is uncontested. The shadow grows slowly, quietly, the way it always has.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	# Acts IV-V Path A (default): hunting the Stranger
+	return [
+		"Our heroes fall and the darkness grows a little stronger.",
+		"The Stranger's sigils pulse beneath the city. Whatever he is building down there, no one is left to stop it.",
+		"This journey may be over, but every great story deserves another telling.",
+	]
+
+
+static func _get_defeat_text_story_2(battle_id: String) -> Array[String]:
+	# Act I: No memories, trapped in a strange cave
+	const ACT_1: Array = [
+		"S2_CaveAwakening", "S2_DeepCavern", "S2_FungalHollow",
+		"S2_TranquilPool", "S2_TorchChamber", "S2_CaveExit",
+	]
+	# Act II: Surface, discovering clues about memory theft
+	const ACT_2: Array = [
+		"S2_CoastalDescent", "S2_FishingVillage", "S2_SmugglersBluff",
+		"S2_WreckersCove", "S2_CoastalRuins", "S2_BlackwaterBay",
+		"S2_LighthouseStorm",
+	]
+	# Act III: Learning the truth about Sera and the Eye
+	const ACT_3: Array = [
+		"S2_BeneathTheLighthouse", "S2_MemoryVault", "S2_EchoGallery",
+		"S2_ShatteredSanctum", "S2_GuardiansThreshold", "S2_ForgottenArchive",
+		"S2_TheReveal",
+	]
+	# Path B: Save Sera route
+	const PATH_B: Array = [
+		"S2_B_ArchiveAwakening", "S2_B_LighthouseCore",
+		"S2_B_ResonanceChamber", "S2_B_MemoryFlood",
+	]
+	if battle_id in ACT_1:
+		return [
+			"The cave does not let go. The light at the edge of memory fades, and the darkness settles back in, patient and absolute.",
+			"Three strangers lie still in the deep. They will not remember why they came here. They will not remember anything at all.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in ACT_2:
+		return [
+			"The trail goes cold. The questions remain, carved into driftwood and whispered by strangers who remember too little and fear too much.",
+			"Somewhere beneath the lighthouse, something watches the coast and waits for the next dreamers to wash ashore.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in ACT_3:
+		return [
+			"The truth was not enough to set them free. Sera's name echoes in the broken sanctum, unanswered.",
+			"The Eye's machinery hums on. The memories do not return. And somewhere in the dark, a woman who erased herself stands guard over secrets no one will ever read.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in PATH_B:
+		return [
+			"Sera's failsafe was not enough. The resonance fades, the overload stalls, and the Eye turns its gaze on the four who dared to look back.",
+			"The memories scatter. Sera falls to her knees in the machinery she built, watching her second chance slip through her fingers.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id == "S2_B_EyeUnblinking":
+		return [
+			"The Eye remains open. The overload was not enough.",
+			"Sera's failsafe failed, and the Eye turns its full, undiminished attention on the four who dared to challenge it. This time, there is nowhere to run.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	# Act IV Path A (default): fighting the Eye after Sera's sacrifice
+	return [
+		"The Eye remains open. The memories do not return.",
+		"Sera's sacrifice was not enough. In the darkness below the world, something watches. Something waits. Something remembers everything it has taken.",
+		"This journey may be over, but every great story deserves another telling.",
+	]
+
+
+static func _get_defeat_text_story_3(battle_id: String) -> Array[String]:
+	# Acts I-II early: Strange dreams, something is wrong
+	const ACT_1_2_EARLY: Array = [
+		"S3_DreamMeadow", "S3_DreamMirrorHall", "S3_DreamFogGarden",
+		"S3_DreamReturn", "S3_DreamThreads", "S3_DreamDrownedCorridor",
+		"S3_DreamShatteredGallery", "S3_DreamShadowChase",
+	]
+	# Acts I-II late: Deeper dreams + waking investigation
+	const ACT_2_LATE: Array = [
+		"S3_DreamLabyrinth", "S3_DreamClockTower", "S3_DreamNightmare",
+		"S3_MarketConfrontation", "S3_CellarDiscovery",
+	]
+	# Act III: Lira revealed, cult discovered, lucid dreaming
+	const ACT_3: Array = [
+		"S3_LucidDream", "S3_DreamTemple", "S3_DreamVoid", "S3_DreamSanctum",
+	]
+	# Path B: Suspicion route
+	const PATH_B: Array = [
+		"S3_B_InnSearch", "S3_B_CultConfrontation", "S3_B_TunnelBreach",
+		"S3_B_ThornesWard", "S3_B_LoomHeart", "S3_B_DreamInvasion",
+	]
+	# Path C: Lira's confession route
+	const PATH_C: Array = [
+		"S3_C_DreamDescent", "S3_C_CultInterception", "S3_C_ThreadmasterLair",
+	]
+	if battle_id in ACT_1_2_EARLY:
+		return [
+			"The dream does not release its hold. The travelers sink deeper into sleep, and the weariness they carried into the inn settles into their bones like lead.",
+			"At The Weary Traveler, a kind face smiles and pours ale for the next guest. Rest well. Everyone rests well here.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in ACT_2_LATE:
+		return [
+			"The town keeps its secrets. The threads pull tight, the cellar door locks, and the questions that surfaced in the market sink back into silence.",
+			"The travelers sleep. The dreams return, familiar and warm and not their own. By morning, they will have forgotten they ever thought to ask.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in ACT_3:
+		return [
+			"The Loom tightens. The lucid dream collapses, and the travelers fall back into the woven night. They knew the truth for a moment. That moment is gone.",
+			"In the sanctum below the inn, threads pulse and mend. The cult tends the Loom. The innkeeper smiles.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in PATH_B:
+		return [
+			"The threads hold. The girl smiles. She was always going to smile.",
+			"Somewhere in a quiet town, a serving girl pours ale for the next weary traveler. She has done this for centuries. She will do it for centuries more.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id == "S3_B_DreamNexus":
+		return [
+			"The threads hold. The girl smiles. She was always going to smile.",
+			"Somewhere in a quiet town, a serving girl pours ale for the next weary traveler. She has done this for centuries. She will do it for centuries more.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id in PATH_C:
+		return [
+			"The Threadmaster pulls Lira back into the threads. Her scream fades into the hum of the Loom. The dream tightens, and the travelers forget they ever heard her voice.",
+			"Somewhere in a quiet town, a serving girl pours ale with trembling hands. The chains beneath her skin pulse, and she cannot remember why she is crying.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	if battle_id == "S3_C_DreamNexus":
+		return [
+			"The Threadmaster pulls Lira back into the threads. Her scream fades into the hum of the Loom. The dream tightens, and the travelers forget they ever heard her voice.",
+			"Somewhere in a quiet town, a serving girl pours ale with trembling hands. The chains beneath her skin pulse, and she cannot remember why she is crying.",
+			"This journey may be over, but every great story deserves another telling.",
+		]
+	# Acts IV-V Path A (default): direct assault on the Threadmaster
+	return [
+		"The Loom holds. The threads tighten. The dream does not end.",
+		"Somewhere in a quiet town, a kind face smiles and pours ale for the next weary traveler. She was never real, but no one will ever know.",
+		"This journey may be over, but every great story deserves another telling.",
+	]
 
 
 static func _get_ending_text_story_1_path_b() -> Array[String]:
@@ -61,17 +224,7 @@ static func get_ending_text_story_2(game_won: bool, battle_id: String = "") -> A
 			"Thank you for playing Echoes of Choice.",
 		]
 	else:
-		if is_path_b:
-			return [
-				"The Eye remains open. The overload was not enough.",
-				"Sera's failsafe failed, and the Eye turns its full, undiminished attention on the four who dared to challenge it. This time, there is nowhere to run.",
-				"This journey may be over, but every great story deserves another telling.",
-			]
-		return [
-			"The Eye remains open. The memories do not return.",
-			"In the darkness below the world, something watches. Something waits. Something remembers everything it has taken.",
-			"This journey may be over, but every great story deserves another telling.",
-		]
+		return _get_defeat_text_story_2(battle_id)
 
 
 static func _get_ending_text_story_2_path_b() -> Array[String]:
@@ -100,23 +253,7 @@ static func get_ending_text_story_3(game_won: bool, battle_id: String) -> Array[
 			return _get_ending_text_story_3_path_b()
 		return _get_ending_text_story_3_path_a()
 	else:
-		if is_path_c:
-			return [
-				"The Threadmaster pulls Lira back into the threads. Her scream fades into the hum of the Loom. The dream tightens, and the travelers forget they ever heard her voice.",
-				"Somewhere in a quiet town, a serving girl pours ale with trembling hands. The chains beneath her skin pulse, and she cannot remember why she is crying.",
-				"This journey may be over, but every great story deserves another telling.",
-			]
-		if is_path_b:
-			return [
-				"The threads hold. The girl smiles. She was always going to smile.",
-				"Somewhere in a quiet town, a serving girl pours ale for the next weary traveler. She has done this for centuries. She will do it for centuries more.",
-				"This journey may be over, but every great story deserves another telling.",
-			]
-		return [
-			"The Loom holds. The threads tighten. The dream does not end.",
-			"Somewhere in a quiet town, a kind face smiles and pours ale for the next weary traveler. She was never real, but no one will ever know.",
-			"This journey may be over, but every great story deserves another telling.",
-		]
+		return _get_defeat_text_story_3(battle_id)
 
 
 static func _get_ending_text_story_3_path_a() -> Array[String]:
