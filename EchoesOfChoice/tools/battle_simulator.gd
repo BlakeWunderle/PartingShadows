@@ -23,6 +23,13 @@ var _all_stages: Array = []
 
 
 func _init() -> void:
+	# Signal to coordinator that Godot initialization (import, class cache) is complete.
+	# Written immediately so the coordinator can serialize worker import phases on Windows.
+	var _ready_sentinel := "user://sim_ready_%d.sentinel" % OS.get_process_id()
+	var _rsf := FileAccess.open(_ready_sentinel, FileAccess.WRITE)
+	if _rsf:
+		_rsf.close()
+
 	var stages := BSDB.get_all_stages()
 	var args := OS.get_cmdline_user_args()
 

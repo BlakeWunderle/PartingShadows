@@ -17,10 +17,11 @@ const SC := preload("res://scripts/tools/sim_cache.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const SRep := preload("res://scripts/tools/sim_report.gd")
 
-const DEFAULT_STAGGER_MS: int = 2000       ## delay between spawning each worker
-const DEFAULT_TIMEOUT_SECONDS: int = 300   ## baseline; scaled by job count
-const WINDOWS_MAX_JOBS: int = 4            ## cap on Windows to reduce contention
+const DEFAULT_STAGGER_MS: int = 2000             ## fallback delay if sentinel not received
+const DEFAULT_TIMEOUT_SECONDS: int = 300         ## baseline; scaled by job count
+const WINDOWS_MAX_JOBS: int = 8                  ## cap on Windows (imports are now serialized via sentinel)
 const PROGRESS_DOT_INTERVAL_MS: int = 5000
+const IMPORT_SENTINEL_TIMEOUT_MS: int = 90000    ## max ms to wait for a worker import sentinel
 
 var _json_path := ""
 var _progressive := false
@@ -102,12 +103,8 @@ func _init() -> void:
 
 	if all_stages.is_empty():
 		print("ERROR: No results collected from workers.")
-		print("  Workers likely timed out due to Godot startup cache contention on Windows.")
-		print("  Try one of:")
-		print("    --jobs 1            Run sequentially (reliable fallback)")
-		print("    --stagger 4000      Wait 4s between spawning each worker")
-		print("    --jobs 2            Use fewer parallel workers")
-		print("  Or delete .godot/ and let Godot re-import before running the sim.")
+		print("  Workers timed out or crashed. Try:")
+		print("    --jobs 1    Run sequentially (reliable fallback)")
 		quit(1)
 		return
 
@@ -252,6 +249,18 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		stagger_ms: int = DEFAULT_STAGGER_MS,
 		timeout_sec: int = DEFAULT_TIMEOUT_SECONDS) -> Array:
 	DirAccess.make_dir_recursive_absolute(OS.get_user_data_dir())
+
+	# Clean up stale sentinels from any previous crashed run.
+	var _da := DirAccess.open(OS.get_user_data_dir())
+	if _da:
+		_da.list_dir_begin()
+		var _fname := _da.get_next()
+		while _fname != "":
+			if _fname.begins_with("sim_ready_") and _fname.ends_with(".sentinel"):
+				_da.remove(_fname)
+			_fname = _da.get_next()
+		_da.list_dir_end()
+
 	var godot_exe := OS.get_executable_path()
 	if not godot_exe.contains("_console") and FileAccess.file_exists(
 			godot_exe.replace(".exe", "_console.exe")):
@@ -293,11 +302,14 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		var pid := OS.create_process(godot_exe, worker_args)
 		if pid > 0:
 			pids.append(pid)
+			# Wait for this worker to finish import before spawning the next.
+			# Serializes .godot/ write locks so workers don't deadlock on Windows.
+			if wi < jobs - 1:
+				if not _wait_for_import_sentinel(pid):
+					print("  WARNING: Worker %d import sentinel not received (pid %d) — using stagger fallback" % [wi, pid])
+					OS.delay_msec(stagger_ms)
 		else:
 			print("  ERROR: Failed to spawn worker %d" % wi)
-		## Stagger starts to prevent Godot startup cache contention on Windows.
-		if wi < jobs - 1:
-			OS.delay_msec(stagger_ms)
 
 	# Wait for all workers with timeout and progress dots.
 	var deadline_msec: int = Time.get_ticks_msec() + timeout_sec * 1000
@@ -393,6 +405,29 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 	results.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return a.get("stage_name", "") < b.get("stage_name", ""))
 	return results
+
+
+## Wait for a worker to write its import-done sentinel file.
+## battle_simulator.gd writes user://sim_ready_{pid}.sentinel at the top of _init(),
+## which only runs after Godot has finished all initialization and released .godot/ locks.
+## Returns true when sentinel is found, false on timeout or if process exited early.
+func _wait_for_import_sentinel(pid: int) -> bool:
+	var sentinel := "user://sim_ready_%d.sentinel" % pid
+	var sentinel_abs := ProjectSettings.globalize_path(sentinel)
+	var deadline := Time.get_ticks_msec() + IMPORT_SENTINEL_TIMEOUT_MS
+	while Time.get_ticks_msec() < deadline:
+		if FileAccess.file_exists(sentinel):
+			DirAccess.remove_absolute(sentinel_abs)
+			return true
+		if not OS.is_process_running(pid):
+			# Process exited before writing sentinel — likely a fast cache hit or crash.
+			DirAccess.remove_absolute(sentinel_abs)
+			return false
+		OS.delay_msec(500)
+	# Timeout — clean up if the sentinel appeared just after the deadline.
+	if FileAccess.file_exists(sentinel):
+		DirAccess.remove_absolute(sentinel_abs)
+	return false
 
 
 func _get_effective_stages(passthrough: Array[String]) -> Array:
