@@ -152,7 +152,7 @@ func _list_tracks(folder: String) -> Array[String]:
 			elif lower.ends_with(".wav.import") or lower.ends_with(".ogg.import") or lower.ends_with(".mp3.import"):
 				var original := file_name.substr(0, file_name.length() - 7)
 				var original_path := folder + original
-				if FileAccess.file_exists(original_path):
+				if ResourceLoader.exists(original_path):
 					tracks.append(original_path)
 		file_name = dir.get_next()
 	dir.list_dir_end()
