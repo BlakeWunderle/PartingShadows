@@ -22,7 +22,7 @@ static func create_raider(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(4, 8, 0, 2, lvl, 4)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 4)
 	f.speed = EH.es(27, 33, 1, 3, lvl, 4)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 13
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.cleave(), EAB.war_cry()]
 	f.flavor_text = "Hardened marauders who pillage the borderlands without mercy."
 	return f
@@ -36,7 +36,7 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 4)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 4)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 4)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 10
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.crush(), EAB.thick_skin()]
 	f.flavor_text = "Towering brutes whose raw strength can crack stone. Slow to think, quick to rage."
 	return f
@@ -148,7 +148,7 @@ static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(9, 17, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(11, 19, 1, 3, lvl, 5)
 	f.speed = EH.es(20, 28, 1, 2, lvl, 5)
-	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 27; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.flintlock(), EAB.cannon_barrage(), EAB.bravado()]
 	f.flavor_text = "A seasoned officer who commands through firepower and sheer bravado."
 	return f
@@ -162,7 +162,7 @@ static func create_pirate(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(9, 17, 1, 3, lvl, 4)
 	f.magic_defense = EH.es(11, 19, 1, 3, lvl, 4)
 	f.speed = EH.es(20, 29, 1, 3, lvl, 4)
-	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.flintlock(), EAB.dirty_trick()]
 	f.flavor_text = "Sea rogues who fight without honor, armed with flintlocks and dirty tricks."
 	return f
@@ -175,8 +175,8 @@ static func create_fire_wyrmling(n: String) -> FighterData:
 	f.mana = EH.fixed(16, 18); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(15, 19); f.physical_defense = EH.fixed(15, 19)
 	f.magic_attack = EH.fixed(26, 30); f.magic_defense = EH.fixed(20, 24)
-	f.speed = EH.fixed(29, 34)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 9
+	f.speed = EH.fixed(30, 35)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.dragon_breath(), EAB.tail_strike(), EAB.searing_hiss()]
 	f.flavor_text = "Young dragons wreathed in flame. Though small, their breath can melt steel."
 	return f
@@ -187,8 +187,8 @@ static func create_frost_wyrmling(n: String) -> FighterData:
 	f.mana = EH.fixed(13, 15); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(24, 28); f.physical_defense = EH.fixed(19, 23)
 	f.magic_attack = EH.fixed(15, 19); f.magic_defense = EH.fixed(16, 20)
-	f.speed = EH.fixed(29, 34)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 9
+	f.speed = EH.fixed(30, 35)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.claw(), EAB.tail_strike(), EAB.frost_chains()]
 	f.flavor_text = "Icy-scaled dragonkin that freeze the ground beneath their claws."
 	return f
@@ -200,7 +200,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(21, 25); f.physical_defense = EH.fixed(19, 23)
 	f.magic_attack = EH.fixed(24, 28); f.magic_defense = EH.fixed(19, 23)
 	f.speed = EH.fixed(31, 36)
-	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 26; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
@@ -212,7 +212,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(20, 24); f.physical_defense = EH.fixed(17, 21)
 	f.magic_attack = EH.fixed(32, 36); f.magic_defense = EH.fixed(20, 24)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 26
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f
@@ -224,7 +224,7 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(20, 25); f.physical_defense = EH.fixed(19, 23)
 	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(17, 21)
 	f.speed = EH.fixed(36, 41)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
 	f.flavor_text = "Her voice carries both beauty and ruin. Each note can heal allies or shatter resolve."
 	return f
@@ -235,8 +235,8 @@ static func create_android(n: String) -> FighterData:
 	f.mana = EH.fixed(17, 20); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(23, 27); f.physical_defense = EH.fixed(21, 25)
 	f.magic_attack = EH.fixed(24, 28); f.magic_defense = EH.fixed(23, 27)
-	f.speed = EH.fixed(33, 38)
-	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 15
+	f.speed = EH.fixed(35, 40)
+	f.crit_chance = 26; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.circuit_burst(), EAB.firewall(), EAB.overdrive()]
 	f.flavor_text = "A mechanical soldier powered by arcane circuitry. It feels neither pain nor mercy."
 	return f
@@ -247,8 +247,8 @@ static func create_machinist(n: String) -> FighterData:
 	f.mana = EH.fixed(13, 16); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(24, 28); f.physical_defense = EH.fixed(25, 30)
 	f.magic_attack = EH.fixed(22, 26); f.magic_defense = EH.fixed(23, 27)
-	f.speed = EH.fixed(31, 36)
-	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 14
+	f.speed = EH.fixed(33, 38)
+	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.seismic_charge(), EAB.reinforce(), EAB.dismantle()]
 	f.flavor_text = "An engineer of war who deploys explosive charges and reinforced plating in equal measure."
 	return f
@@ -259,8 +259,8 @@ static func create_ironclad(n: String) -> FighterData:
 	f.mana = EH.fixed(13, 16); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(22, 25); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(16, 20); f.magic_defense = EH.fixed(27, 31)
-	f.speed = EH.fixed(25, 30)
-	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 14
+	f.speed = EH.fixed(27, 32)
+	f.crit_chance = 20; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.hammer_blow(), EAB.temper(), EAB.steel_plating()]
 	f.flavor_text = "A walking fortress of hammered steel. Each blow of its hammer rings like a forge bell."
 	return f
@@ -271,8 +271,8 @@ static func create_commander(n: String) -> FighterData:
 	f.mana = EH.fixed(14, 16); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(26, 31); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(12, 16); f.magic_defense = EH.fixed(22, 27)
-	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 14
+	f.speed = EH.fixed(32, 37)
+	f.crit_chance = 28; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.shield_wall(), EAB.rally_strike(), EAB.war_ward()]
 	f.flavor_text = "A veteran field officer whose presence steadies the ranks and turns the tide of battle."
 	return f
@@ -284,7 +284,7 @@ static func create_draconian(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(28, 32); f.physical_defense = EH.fixed(17, 21)
 	f.magic_attack = EH.fixed(30, 34); f.magic_defense = EH.fixed(20, 25)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EAB.skewer(), EAB.drake_strike(), EAB.scale_guard()]
 	f.flavor_text = "Dragonblood warriors whose scaled hides and savage spears make them fearsome on any battlefield."
 	return f
@@ -296,7 +296,7 @@ static func create_chaplain(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(16, 20); f.physical_defense = EH.fixed(23, 27)
 	f.magic_attack = EH.fixed(26, 30); f.magic_defense = EH.fixed(25, 29)
 	f.speed = EH.fixed(27, 32)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 14
+	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.blessing(), EAB.mace_strike(), EAB.enemy_consecrate()]
 	f.flavor_text = "A battle priest who bolsters allies with holy rites while swinging a heavy mace."
 	return f
@@ -310,7 +310,7 @@ static func create_zombie(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(24, 31, 3, 5, lvl, 6)
 	f.magic_defense = EH.es(22, 32, 2, 4, lvl, 6)
 	f.speed = EH.es(28, 38, 1, 2, lvl, 6)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 17
+	f.crit_chance = 26; f.crit_damage = 3; f.dodge_chance = 23
 	f.abilities = [EAB.rend(), EAB.putrid_touch(), EAB.devour()]
 	f.flavor_text = "Shambling corpses that claw at the living with rotting hands. They feel nothing but hunger."
 	return f
@@ -324,7 +324,7 @@ static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(12, 17, 1, 2, lvl, 6)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 6)
 	f.speed = EH.es(28, 34, 2, 3, lvl, 6)
-	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 27; f.crit_damage = 3; f.dodge_chance = 24
 	f.abilities = [EAB.claw(), EAB.paralyze(), EAB.devour()]
 	f.flavor_text = "Faster and crueler than common undead. Their paralyzing touch leaves victims helpless."
 	return f
@@ -338,7 +338,7 @@ static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(33, 40, 3, 5, lvl, 7)
 	f.magic_defense = EH.es(16, 22, 2, 4, lvl, 7)
 	f.speed = EH.es(34, 40, 2, 4, lvl, 7)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.umbral_lash(), EAB.shadow_rot(), EAB.dread_whisper()]
 	f.flavor_text = "Remnants of souls consumed by darkness. They slip between shadows, whispering despair."
 	return f
@@ -352,7 +352,7 @@ static func create_wraith(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(32, 41, 3, 5, lvl, 7)
 	f.magic_defense = EH.es(16, 22, 2, 3, lvl, 7)
 	f.speed = EH.es(31, 37, 2, 4, lvl, 7)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.soul_drain(), EAB.death_wither(), EAB.terrify()]
 	f.flavor_text = "Spectral horrors that drain the life force of the living. Even seasoned warriors tremble at their approach."
 	return f
@@ -366,7 +366,7 @@ static func create_boneguard(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(12, 16, 1, 2, lvl, 7)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 7)
 	f.speed = EH.es(29, 35, 1, 3, lvl, 7)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 15
+	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.rusted_cleave(), EAB.grave_charge(), EAB.deathless_guard()]
 	f.flavor_text = "The remains of an outpost guard, still clutching its weapon. Whatever raised it kept the muscle memory intact."
 	return f

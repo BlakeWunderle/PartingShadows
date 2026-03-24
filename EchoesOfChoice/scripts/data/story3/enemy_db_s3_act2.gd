@@ -70,7 +70,7 @@ static func create_drowned_reverie(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(26, 30, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(15, 18, 1, 2, lvl, 6)
 	f.speed = EH.es(27, 32, 1, 2, lvl, 6)
-	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 9
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.memory_surge(), EAB.deep_pulse()]
 	f.flavor_text = "A spectral figure that drifts through flooded corridors, trailing memories like bubbles. It unleashes surges of recalled emotion that overwhelm the mind."
 	return f
@@ -84,8 +84,8 @@ static func create_riptide_beast(n: String, lvl: int = 6) -> FighterData:
 	f.physical_defense = EH.es(14, 17, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
-	f.speed = EH.es(32, 37, 1, 3, lvl, 6)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 10
+	f.speed = EH.es(33, 38, 1, 3, lvl, 6)
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.riptide_slash(), EAB.swift_current()]
 	f.flavor_text = "A ferocious aquatic predator that surges through dream-water with blinding speed. Its claws carry the force of a riptide, dragging victims under."
 	return f
@@ -100,7 +100,7 @@ static func create_depth_crawler(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(20, 24, 1, 2, lvl, 6)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 6)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 6)
-	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 8
+	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.thread_burn(), EAB.latch()]
 	f.flavor_text = "A many-legged thing that scuttles through the drowned depths, burning through dream-threads with caustic secretions. Once it latches on, it does not let go."
 	return f
@@ -167,8 +167,8 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 7)
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 7)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 7)
-	f.speed = EH.es(33, 38, 1, 3, lvl, 7)
-	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 19
+	f.speed = EH.es(34, 39, 1, 3, lvl, 7)
+	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.shadow_strike(), EAB.relentless_hound()]
 	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. No matter how far you run, it always closes the distance."
 	return f
@@ -182,8 +182,8 @@ static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 	f.physical_defense = EH.es(14, 17, 1, 2, lvl, 7)
 	f.magic_attack = EH.es(27, 32, 1, 3, lvl, 7)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 7)
-	f.speed = EH.es(28, 33, 1, 2, lvl, 7)
-	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 17
+	f.speed = EH.es(29, 34, 1, 2, lvl, 7)
+	f.crit_chance = 20; f.crit_damage = 1; f.dodge_chance = 19
 	f.abilities = [EAB.dread_lash(), EAB.terror_grip()]
 	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. Its grip paralyzes the will and leaves victims unable to move or cry out."
 	return f
@@ -197,8 +197,8 @@ static func create_faded_voice(n: String, lvl: int = 7) -> FighterData:
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 7)
 	f.magic_attack = EH.es(13, 16, 0, 2, lvl, 7)
 	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 7)
-	f.speed = EH.es(29, 34, 1, 2, lvl, 7)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 20
+	f.speed = EH.es(30, 35, 1, 2, lvl, 7)
+	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 22
 	f.abilities = [EAB.echoed_cry(), EAB.fade()]
 	f.flavor_text = "The remnant of a voice that once belonged to a real person, now stripped of meaning and body. It cries out in fragments, and each echo saps the strength of those who hear it."
 	return f
