@@ -220,32 +220,41 @@ func _setup_coop_cursors() -> void:
 
 func _refresh_coop_cursors() -> void:
 	var player_count: int = _player_cursors.size()
-	for i: int in _buttons.size():
-		# Count how many players are on this button
-		var here_count: int = 0
-		for p: int in player_count:
-			if _player_cursors[p] == i:
-				here_count += 1
+	var active: int = LocalCoop.active_player  # -1 = all visible, >= 0 = only this player
 
+	for i: int in _buttons.size():
 		var overlays: Array = _player_overlays[i]
 		var sbs: Array = _player_sbs[i]
 
-		if here_count == 0:
-			for overlay: Panel in overlays:
-				overlay.visible = false
-		elif here_count == player_count:
-			# All players on same button — show white on first overlay, hide rest
-			(overlays[0] as Panel).visible = true
-			(sbs[0] as StyleBoxFlat).border_color = Color.WHITE
-			for p: int in range(1, overlays.size()):
-				(overlays[p] as Panel).visible = false
-		else:
-			# Mixed — show each player's color on their own overlay
+		if active >= 0:
+			# Turn gating: only the active player's cursor is ever visible
 			for p: int in player_count:
-				var on_btn: bool = _player_cursors[p] == i
+				var on_btn: bool = (p == active and _player_cursors[p] == i)
 				(overlays[p] as Panel).visible = on_btn
 				if on_btn:
 					(sbs[p] as StyleBoxFlat).border_color = PLAYER_COLORS[mini(p, PLAYER_COLORS.size() - 1)]
+		else:
+			# All players active — show individual colors, white if all on same button
+			var here_count: int = 0
+			for p: int in player_count:
+				if _player_cursors[p] == i:
+					here_count += 1
+
+			if here_count == 0:
+				for p: int in player_count:
+					(overlays[p] as Panel).visible = false
+			elif here_count == player_count:
+				# All on same button — white on first overlay, hide rest
+				(overlays[0] as Panel).visible = true
+				(sbs[0] as StyleBoxFlat).border_color = Color.WHITE
+				for p: int in range(1, overlays.size()):
+					(overlays[p] as Panel).visible = false
+			else:
+				for p: int in player_count:
+					var on_btn: bool = _player_cursors[p] == i
+					(overlays[p] as Panel).visible = on_btn
+					if on_btn:
+						(sbs[p] as StyleBoxFlat).border_color = PLAYER_COLORS[mini(p, PLAYER_COLORS.size() - 1)]
 
 
 func _move_cursor(player_idx: int, direction: int) -> void:

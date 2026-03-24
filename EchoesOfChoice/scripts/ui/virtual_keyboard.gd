@@ -217,6 +217,8 @@ func _wire_row(start: int, end_idx: int) -> void:
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
+	if LocalCoop.is_event_gated(event):
+		return
 	if event.is_action_pressed("cancel"):
 		get_viewport().set_input_as_handled()
 		backspace_pressed.emit()
