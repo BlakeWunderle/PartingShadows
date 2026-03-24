@@ -2,14 +2,28 @@ class_name ChoiceMenu extends VBoxContainer
 
 ## Clickable button menu for player choices.
 ## Supports vertical list (default) and 2-column grid layout.
+## In local co-op, each player gets their own colored cursor overlay.
+## All players on the same button shows a white combined border.
 
 signal choice_selected(index: int)
 
 const BUTTON_MIN_SIZE := Vector2(320, 48)
 const GRID_BUTTON_MIN_SIZE := Vector2(180, 64)
+## Distinct cursor colors per player slot (P1 blue, P2 orange, P3 green)
+const PLAYER_COLORS: Array[Color] = [
+	Color(0.3, 0.65, 1.0),
+	Color(1.0, 0.60, 0.15),
+	Color(0.35, 1.0, 0.35),
+]
 
 var _buttons: Array[Button] = []
 var _grid: GridContainer
+
+## Co-op multi-cursor state
+var _coop_mode: bool = false
+var _player_cursors: Array[int] = []
+var _player_overlays: Array = []   # [button_idx][player_idx] -> Panel
+var _player_sbs: Array = []        # [button_idx][player_idx] -> StyleBoxFlat
 
 
 func _ready() -> void:
@@ -65,11 +79,14 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 
 	_wire_focus(use_grid)
 
-	# Focus first enabled button
-	for btn: Button in _buttons:
-		if not btn.disabled:
-			btn.grab_focus()
-			break
+	if LocalCoop.is_active and LocalCoop.player_devices.size() > 1:
+		_setup_coop_cursors()
+	else:
+		# Single player: focus first enabled button
+		for btn: Button in _buttons:
+			if not btn.disabled:
+				btn.grab_focus()
+				break
 
 
 func _on_button_pressed(index: int) -> void:
@@ -84,6 +101,10 @@ func _clear_buttons() -> void:
 	if _grid:
 		_grid.queue_free()
 		_grid = null
+	_coop_mode = false
+	_player_cursors.clear()
+	_player_overlays.clear()
+	_player_sbs.clear()
 
 
 func hide_menu() -> void:
@@ -120,7 +141,6 @@ func _wire_grid_focus(enabled: Array[Button]) -> void:
 	var cols: int = 2
 	for i: int in enabled.size():
 		var btn: Button = enabled[i]
-		var row: int = i / cols
 		var col: int = i % cols
 
 		# Left/right within row
@@ -139,7 +159,6 @@ func _wire_grid_focus(enabled: Array[Button]) -> void:
 		if up_idx >= 0:
 			btn.focus_neighbor_top = enabled[up_idx].get_path()
 		else:
-			# Wrap to last row
 			var last_row_start: int = (enabled.size() - 1) / cols * cols
 			var wrap_idx: int = mini(last_row_start + col, enabled.size() - 1)
 			btn.focus_neighbor_top = enabled[wrap_idx].get_path()
@@ -148,9 +167,136 @@ func _wire_grid_focus(enabled: Array[Button]) -> void:
 		if down_idx < enabled.size():
 			btn.focus_neighbor_bottom = enabled[down_idx].get_path()
 		else:
-			# Wrap to first row
 			var wrap_idx: int = mini(col, enabled.size() - 1)
 			btn.focus_neighbor_bottom = enabled[wrap_idx].get_path()
+
+
+# =============================================================================
+# Co-op multi-cursor
+# =============================================================================
+
+func _setup_coop_cursors() -> void:
+	_coop_mode = true
+	var player_count: int = LocalCoop.player_devices.size()
+
+	# All players start on the first enabled button
+	var first_enabled: int = 0
+	for i: int in _buttons.size():
+		if not _buttons[i].disabled:
+			first_enabled = i
+			break
+	for _p: int in player_count:
+		_player_cursors.append(first_enabled)
+
+	# Add a colored border overlay per player onto each button
+	for btn: Button in _buttons:
+		btn.focus_mode = Control.FOCUS_NONE
+		var btn_overlays: Array[Panel] = []
+		var btn_sbs: Array[StyleBoxFlat] = []
+		for p: int in player_count:
+			var overlay := Panel.new()
+			overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
+			overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			overlay.visible = false
+			var sb := StyleBoxFlat.new()
+			sb.bg_color = Color.TRANSPARENT
+			sb.draw_center = false
+			sb.set_border_width_all(3)
+			sb.set_corner_radius_all(4)
+			sb.border_color = PLAYER_COLORS[mini(p, PLAYER_COLORS.size() - 1)]
+			overlay.add_theme_stylebox_override("panel", sb)
+			btn.add_child(overlay)
+			btn_overlays.append(overlay)
+			btn_sbs.append(sb)
+		_player_overlays.append(btn_overlays)
+		_player_sbs.append(btn_sbs)
+
+	_refresh_coop_cursors()
+
+
+func _refresh_coop_cursors() -> void:
+	var player_count: int = _player_cursors.size()
+	for i: int in _buttons.size():
+		# Count how many players are on this button
+		var here_count: int = 0
+		for p: int in player_count:
+			if _player_cursors[p] == i:
+				here_count += 1
+
+		var overlays: Array = _player_overlays[i]
+		var sbs: Array = _player_sbs[i]
+
+		if here_count == 0:
+			for overlay: Panel in overlays:
+				overlay.visible = false
+		elif here_count == player_count:
+			# All players on same button — show white on first overlay, hide rest
+			(overlays[0] as Panel).visible = true
+			(sbs[0] as StyleBoxFlat).border_color = Color.WHITE
+			for p: int in range(1, overlays.size()):
+				(overlays[p] as Panel).visible = false
+		else:
+			# Mixed — show each player's color on their own overlay
+			for p: int in player_count:
+				var on_btn: bool = _player_cursors[p] == i
+				(overlays[p] as Panel).visible = on_btn
+				if on_btn:
+					(sbs[p] as StyleBoxFlat).border_color = PLAYER_COLORS[mini(p, PLAYER_COLORS.size() - 1)]
+
+
+func _move_cursor(player_idx: int, direction: int) -> void:
+	var current: int = _player_cursors[player_idx]
+	var new_idx: int = current
+	var count: int = _buttons.size()
+	for _attempt: int in count:
+		new_idx = (new_idx + direction + count) % count
+		if not _buttons[new_idx].disabled:
+			break
+	if new_idx != current:
+		_player_cursors[player_idx] = new_idx
+		_refresh_coop_cursors()
+		SFXManager.play(SFXManager.Category.UI_SELECT, 0.2)
+
+
+func _get_player_for_event(event: InputEvent) -> int:
+	for p: int in LocalCoop.player_devices.size():
+		var device: int = LocalCoop.player_devices[p]
+		if device == -1 and event is InputEventKey:
+			return p
+		elif device >= 0 \
+				and (event is InputEventJoypadButton or event is InputEventJoypadMotion) \
+				and event.device == device:
+			return p
+	return -1
+
+
+func _input(event: InputEvent) -> void:
+	if not _coop_mode or not visible:
+		return
+	# Ignore non-press events and axis motion (d-pad buttons only for navigation)
+	if event is InputEventKey and (not event.pressed or event.echo):
+		return
+	if event is InputEventJoypadButton and not event.pressed:
+		return
+	if event is InputEventJoypadMotion:
+		return
+
+	var player_idx: int = _get_player_for_event(event)
+	if player_idx < 0:
+		return
+
+	if event.is_action("move_up") or event.is_action("ui_up"):
+		_move_cursor(player_idx, -1)
+		get_viewport().set_input_as_handled()
+	elif event.is_action("move_down") or event.is_action("ui_down"):
+		_move_cursor(player_idx, 1)
+		get_viewport().set_input_as_handled()
+	elif event.is_action("confirm") or event.is_action("ui_accept"):
+		var idx: int = _player_cursors[player_idx]
+		if not _buttons[idx].disabled:
+			_on_button_pressed(idx)
+		get_viewport().set_input_as_handled()
+	# cancel/ui_cancel intentionally not consumed — parent scenes handle back navigation
 
 
 static func _apply_focus_style(btn: Button) -> void:

@@ -134,6 +134,7 @@ func _reset_slots() -> void:
 	_claimed_devices.clear()
 	for i: int in LocalCoop.player_count:
 		_claimed_devices.append(UNCLAIMED)
+	LocalCoop.player_devices.clear()
 	_update_display()
 
 
@@ -261,6 +262,7 @@ func _unclaim_device(device_id: int) -> void:
 # =============================================================================
 
 func _show_action_menu() -> void:
+	_finalize_devices()
 	_phase = Phase.MENU
 	_menu_container.visible = true
 	var options: Array[Dictionary] = [

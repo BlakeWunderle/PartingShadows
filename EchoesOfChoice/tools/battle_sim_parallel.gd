@@ -88,9 +88,10 @@ func _init() -> void:
 		_run_progressive(jobs, passthrough, stagger_ms, timeout_sec)
 		return
 
-	# Ensure a run mode is present. Parallel coordinator needs --all or
-	# --progression; single stage names don't benefit from parallelism.
-	if not passthrough.has("--all") and not passthrough.has("--progression"):
+	# Ensure a run mode is present. --battles is self-contained; --all or
+	# --progression are needed otherwise so workers have something to run.
+	if not passthrough.has("--all") and not passthrough.has("--progression") \
+			and not passthrough.has("--battles"):
 		passthrough.append("--all")
 
 	print("=== Parallel Battle Simulator ===")
@@ -415,12 +416,16 @@ func _wait_for_import_sentinel(pid: int) -> bool:
 	var sentinel := "user://sim_ready_%d.sentinel" % pid
 	var sentinel_abs := ProjectSettings.globalize_path(sentinel)
 	var deadline := Time.get_ticks_msec() + IMPORT_SENTINEL_TIMEOUT_MS
+	# OS.is_process_running() races on Windows: a freshly-spawned process may not
+	# be visible to OpenProcess() for a short window. Ignore is_process_running
+	# results for the first 5s after spawn.
+	var min_alive_until := Time.get_ticks_msec() + 5000
 	while Time.get_ticks_msec() < deadline:
 		if FileAccess.file_exists(sentinel):
 			DirAccess.remove_absolute(sentinel_abs)
 			return true
-		if not OS.is_process_running(pid):
-			# Process exited before writing sentinel — likely a fast cache hit or crash.
+		if Time.get_ticks_msec() > min_alive_until and not OS.is_process_running(pid):
+			# Process confirmed exited without writing sentinel (fast finish or crash).
 			DirAccess.remove_absolute(sentinel_abs)
 			return false
 		OS.delay_msec(500)
@@ -435,6 +440,7 @@ func _get_effective_stages(passthrough: Array[String]) -> Array:
 	var story_filter := 0
 	var tier_filter := ""
 	var progression_filter := -1
+	var battle_names: Array[String] = []
 	for fi in passthrough.size():
 		if passthrough[fi] == "--story" and fi + 1 < passthrough.size():
 			story_filter = int(passthrough[fi + 1])
@@ -442,6 +448,11 @@ func _get_effective_stages(passthrough: Array[String]) -> Array:
 			tier_filter = passthrough[fi + 1]
 		elif passthrough[fi] == "--progression" and fi + 1 < passthrough.size():
 			progression_filter = int(passthrough[fi + 1])
+		elif passthrough[fi] == "--battles" and fi + 1 < passthrough.size():
+			for bname: String in passthrough[fi + 1].split(","):
+				var trimmed := bname.strip_edges()
+				if trimmed != "":
+					battle_names.append(trimmed.to_lower())
 	if story_filter > 0:
 		stages = stages.filter(func(s: Dictionary) -> bool: return s.story == story_filter)
 	if tier_filter != "":
@@ -449,6 +460,9 @@ func _get_effective_stages(passthrough: Array[String]) -> Array:
 	if progression_filter >= 0:
 		stages = stages.filter(
 			func(s: Dictionary) -> bool: return s.progression_stage == progression_filter)
+	if not battle_names.is_empty():
+		stages = stages.filter(
+			func(s: Dictionary) -> bool: return s.name.to_lower() in battle_names)
 	return stages
 
 
