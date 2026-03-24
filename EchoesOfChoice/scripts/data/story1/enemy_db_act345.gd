@@ -16,13 +16,13 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Royal Guard", lvl)
-	f.health = EH.es(295, 335, 8, 12, lvl, 10); f.max_health = f.health
+	f.health = EH.es(318, 360, 8, 12, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(41, 48, 3, 5, lvl, 10)
-	f.physical_defense = EH.es(30, 35, 3, 4, lvl, 10)
+	f.physical_attack = EH.es(45, 51, 3, 5, lvl, 10)
+	f.physical_defense = EH.es(33, 38, 3, 4, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
-	f.magic_defense = EH.es(29, 35, 2, 3, lvl, 10)
-	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
+	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 10)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 10)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EABL.bulwark_slam(), EABL.sword_strike(), EABL.defensive_formation()]
 	f.flavor_text = "Elite soldiers sworn to the crown. Their discipline and heavy armor make them formidable."
@@ -30,13 +30,13 @@ static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 
 static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Sergeant", lvl)
-	f.health = EH.es(305, 348, 8, 12, lvl, 10); f.max_health = f.health
+	f.health = EH.es(327, 374, 8, 12, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(44, 52, 3, 5, lvl, 10)
-	f.physical_defense = EH.es(22, 28, 2, 3, lvl, 10)
+	f.physical_attack = EH.es(47, 56, 3, 5, lvl, 10)
+	f.physical_defense = EH.es(23, 30, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(7, 11, 0, 2, lvl, 10)
-	f.magic_defense = EH.es(25, 29, 1, 2, lvl, 10)
-	f.speed = EH.es(31, 37, 2, 3, lvl, 10)
+	f.magic_defense = EH.es(26, 31, 1, 2, lvl, 10)
+	f.speed = EH.es(34, 40, 2, 3, lvl, 10)
 	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 18
 	f.abilities = [EABL.sword_strike(), EABL.battle_command(), EABL.decisive_blow()]
 	f.flavor_text = "A hardened officer who leads from the front, rallying guards with sharp commands."
@@ -44,13 +44,13 @@ static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 
 static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Archer", lvl)
-	f.health = EH.es(257, 296, 6, 10, lvl, 10); f.max_health = f.health
+	f.health = EH.es(276, 319, 6, 10, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(42, 49, 3, 5, lvl, 10)
-	f.physical_defense = EH.es(16, 22, 1, 3, lvl, 10)
+	f.physical_attack = EH.es(46, 52, 3, 5, lvl, 10)
+	f.physical_defense = EH.es(17, 23, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
-	f.magic_defense = EH.es(23, 29, 1, 3, lvl, 10)
-	f.speed = EH.es(34, 40, 3, 4, lvl, 10)
+	f.magic_defense = EH.es(24, 31, 1, 3, lvl, 10)
+	f.speed = EH.es(37, 43, 3, 4, lvl, 10)
 	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 22
 	f.abilities = [EABL.arrow_shot(), EABL.volley(), EABL.pin_down()]
 	f.flavor_text = "Sharpshooters stationed on the city walls. They pin targets down with precise volleys."
@@ -58,13 +58,13 @@ static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 
 static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Stranger", lvl)
-	f.health = EH.es(757, 842, 16, 22, lvl, 11); f.max_health = f.health
+	f.health = EH.es(818, 910, 16, 22, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(30, 35, 2, 3, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(59, 68, 4, 6, lvl, 11)
-	f.physical_defense = EH.es(34, 40, 2, 4, lvl, 11)
-	f.magic_attack = EH.es(64, 74, 4, 7, lvl, 11)
-	f.magic_defense = EH.es(37, 44, 2, 4, lvl, 11)
-	f.speed = EH.es(41, 47, 2, 4, lvl, 11)
+	f.physical_attack = EH.es(64, 73, 4, 6, lvl, 11)
+	f.physical_defense = EH.es(37, 43, 2, 4, lvl, 11)
+	f.magic_attack = EH.es(69, 80, 4, 7, lvl, 11)
+	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 11)
+	f.speed = EH.es(44, 50, 2, 4, lvl, 11)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EABL.shadow_strike(), EABL.dark_pulse(), EABL.void_shield(), EABL.drain()]
 	f.flavor_text = "A cloaked figure radiating dark power. His true nature remains hidden beneath layers of shadow."
@@ -77,13 +77,13 @@ static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 
 static func create_lich(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Lich", lvl)
-	f.health = EH.es(342, 385, 8, 12, lvl, 12); f.max_health = f.health
+	f.health = EH.es(363, 408, 8, 12, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(26, 31, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 12)
-	f.physical_defense = EH.es(23, 29, 2, 3, lvl, 12)
-	f.magic_attack = EH.es(55, 63, 4, 6, lvl, 12)
-	f.magic_defense = EH.es(39, 47, 3, 5, lvl, 12)
-	f.speed = EH.es(37, 43, 2, 4, lvl, 12)
+	f.physical_defense = EH.es(25, 30, 2, 3, lvl, 12)
+	f.magic_attack = EH.es(59, 67, 4, 6, lvl, 12)
+	f.magic_defense = EH.es(41, 49, 3, 5, lvl, 12)
+	f.speed = EH.es(39, 45, 2, 4, lvl, 12)
 	f.crit_chance = 24; f.crit_damage = 5; f.dodge_chance = 21
 	f.abilities = [EABL.death_bolt(), EABL.raise_dead(), EABL.soul_cage()]
 	f.flavor_text = "An undead sorcerer sustained by stolen souls. Death magic bends to its will."
@@ -91,13 +91,13 @@ static func create_lich(n: String, lvl: int = 12) -> FighterData:
 
 static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Ghast", lvl)
-	f.health = EH.es(299, 339, 7, 10, lvl, 12); f.max_health = f.health
+	f.health = EH.es(317, 359, 7, 10, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(13, 17, 1, 2, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(53, 60, 3, 5, lvl, 12)
-	f.physical_defense = EH.es(32, 37, 2, 4, lvl, 12)
+	f.physical_attack = EH.es(57, 64, 3, 5, lvl, 12)
+	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(18, 24, 1, 2, lvl, 12)
-	f.magic_defense = EH.es(24, 30, 1, 3, lvl, 12)
-	f.speed = EH.es(31, 37, 2, 3, lvl, 12)
+	f.magic_defense = EH.es(26, 31, 1, 3, lvl, 12)
+	f.speed = EH.es(32, 39, 2, 3, lvl, 12)
 	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 12
 	f.abilities = [EABL.slam(), EABL.poison_cloud(), EAB.rend()]
 	f.flavor_text = "A bloated horror that reeks of decay. Its poisonous miasma chokes the air around it."
@@ -105,13 +105,13 @@ static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 
 static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Demon", lvl)
-	f.health = EH.es(462, 514, 8, 12, lvl, 12); f.max_health = f.health
+	f.health = EH.es(496, 552, 8, 12, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(29, 34, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 30, 1, 3, lvl, 12)
-	f.physical_defense = EH.es(30, 36, 2, 4, lvl, 12)
-	f.magic_attack = EH.es(62, 71, 4, 6, lvl, 12)
-	f.magic_defense = EH.es(38, 44, 2, 4, lvl, 12)
-	f.speed = EH.es(36, 42, 2, 4, lvl, 12)
+	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
+	f.magic_attack = EH.es(66, 76, 4, 6, lvl, 12)
+	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 12)
+	f.speed = EH.es(39, 45, 2, 4, lvl, 12)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 19
 	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
 	f.flavor_text = "A fiend born from brimstone and fury. Its mere presence fills the air with dread."
@@ -119,13 +119,13 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 
 static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Corrupted Treant", lvl)
-	f.health = EH.es(378, 421, 8, 12, lvl, 12); f.max_health = f.health
+	f.health = EH.es(406, 452, 8, 12, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(49, 56, 3, 5, lvl, 12)
-	f.physical_defense = EH.es(39, 45, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(52, 60, 3, 5, lvl, 12)
+	f.physical_defense = EH.es(42, 48, 3, 5, lvl, 12)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 12)
-	f.magic_defense = EH.es(35, 40, 2, 4, lvl, 12)
-	f.speed = EH.es(29, 35, 1, 3, lvl, 12)
+	f.magic_defense = EH.es(37, 43, 2, 4, lvl, 12)
+	f.speed = EH.es(31, 37, 1, 3, lvl, 12)
 	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 14
 	f.abilities = [EABL.vine_whip(), EABL.root_slam(), EABL.bark_shield()]
 	f.flavor_text = "Once a guardian of the ancient wood, now twisted by corruption into a weapon of ruin."
@@ -181,13 +181,13 @@ static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
 
 static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Dark Knight", lvl)
-	f.health = EH.es(443, 491, 8, 12, lvl, 14); f.max_health = f.health
+	f.health = EH.es(470, 520, 8, 12, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 23, 2, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(66, 73, 4, 6, lvl, 14)
-	f.physical_defense = EH.es(37, 45, 3, 5, lvl, 14)
-	f.magic_attack = EH.es(35, 43, 2, 4, lvl, 14)
-	f.magic_defense = EH.es(36, 43, 2, 4, lvl, 14)
-	f.speed = EH.es(38, 44, 2, 4, lvl, 14)
+	f.physical_attack = EH.es(70, 78, 4, 6, lvl, 14)
+	f.physical_defense = EH.es(39, 48, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(37, 46, 2, 4, lvl, 14)
+	f.magic_defense = EH.es(38, 46, 2, 4, lvl, 14)
+	f.speed = EH.es(40, 47, 2, 4, lvl, 14)
 	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 21
 	f.abilities = [EABL.dark_blade(), EABL.shadow_guard(), EAB.cleave()]
 	f.flavor_text = "A fallen champion clad in shadowed plate. Dark magic courses through every strike of his blade."
@@ -195,13 +195,13 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 
 static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Fell Hound", lvl)
-	f.health = EH.es(371, 415, 7, 10, lvl, 14); f.max_health = f.health
+	f.health = EH.es(393, 440, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 23, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(23, 28, 1, 3, lvl, 14)
-	f.physical_defense = EH.es(26, 31, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(56, 63, 3, 5, lvl, 14)
-	f.magic_defense = EH.es(34, 39, 2, 4, lvl, 14)
-	f.speed = EH.es(43, 49, 3, 5, lvl, 14)
+	f.physical_defense = EH.es(27, 33, 2, 3, lvl, 14)
+	f.magic_attack = EH.es(59, 67, 3, 5, lvl, 14)
+	f.magic_defense = EH.es(36, 42, 2, 4, lvl, 14)
+	f.speed = EH.es(46, 52, 3, 5, lvl, 14)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 23
 	f.abilities = [EABL.shadow_bite(), EABL.howl_of_dread(), EABL.corruption_fang()]
 	f.flavor_text = "Spectral hounds that hunt in packs across the corrupted wastes. Their howls freeze the blood."
@@ -209,13 +209,13 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 
 static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Sigil Wretch", lvl)
-	f.health = EH.es(340, 380, 7, 10, lvl, 13); f.max_health = f.health
+	f.health = EH.es(369, 412, 7, 10, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(24, 29, 2, 3, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(13, 16, 0, 2, lvl, 13)
-	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 13)
-	f.magic_attack = EH.es(60, 69, 5, 7, lvl, 13)
-	f.magic_defense = EH.es(36, 42, 2, 4, lvl, 13)
-	f.speed = EH.es(41, 47, 3, 5, lvl, 13)
+	f.physical_defense = EH.es(26, 33, 1, 3, lvl, 13)
+	f.magic_attack = EH.es(65, 75, 5, 7, lvl, 13)
+	f.magic_defense = EH.es(39, 45, 2, 4, lvl, 13)
+	f.speed = EH.es(44, 51, 3, 5, lvl, 13)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EABL.sigil_flare(), EABL.glyph_burn(), EABL.ward_break()]
 	f.flavor_text = "Twisted creatures bound to arcane sigils. They detonate glyphs of searing light at will."
@@ -223,13 +223,13 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 
 static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Tunnel Lurker", lvl)
-	f.health = EH.es(435, 475, 10, 14, lvl, 13); f.max_health = f.health
+	f.health = EH.es(472, 516, 10, 14, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(64, 72, 5, 7, lvl, 13)
-	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 13)
+	f.physical_attack = EH.es(69, 78, 5, 7, lvl, 13)
+	f.physical_defense = EH.es(36, 42, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(14, 20, 1, 2, lvl, 13)
-	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 13)
-	f.speed = EH.es(38, 44, 3, 5, lvl, 13)
+	f.magic_defense = EH.es(38, 44, 2, 3, lvl, 13)
+	f.speed = EH.es(41, 48, 3, 5, lvl, 13)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 19
 	f.abilities = [EABL.venomous_bite(), EABL.web(), EABL.poison_cloud()]
 	f.flavor_text = "Massive burrowing predators that ambush from below, ensnaring prey in venomous webs."
@@ -238,13 +238,13 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Stranger", lvl)
 	f.class_id = "StrangerFinal"
-	f.health = EH.es(1085, 1190, 17, 23, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1173, 1286, 17, 23, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(42, 48, 3, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(74, 83, 4, 6, lvl, 15)
-	f.physical_defense = EH.es(51, 57, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(85, 94, 5, 7, lvl, 15)
-	f.magic_defense = EH.es(54, 60, 3, 5, lvl, 15)
-	f.speed = EH.es(55, 62, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(80, 90, 4, 6, lvl, 15)
+	f.physical_defense = EH.es(55, 62, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(92, 101, 5, 7, lvl, 15)
+	f.magic_defense = EH.es(58, 65, 3, 5, lvl, 15)
+	f.speed = EH.es(60, 67, 3, 5, lvl, 15)
 	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 20
 	f.abilities = [EABL.shadow_blast(), EABL.siphon(), EABL.dark_veil(), EABL.unmake(), EABL.entropy()]
 	f.flavor_text = "The Stranger revealed in full, terrible power. Reality itself bends around him as he prepares to unmake everything."
