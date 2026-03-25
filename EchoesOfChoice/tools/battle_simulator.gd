@@ -24,11 +24,17 @@ var _all_stages: Array = []
 
 func _init() -> void:
 	# Signal to coordinator that Godot initialization (import, class cache) is complete.
-	# Written immediately so the coordinator can serialize worker import phases on Windows.
-	var _ready_sentinel := "user://sim_ready_%d.sentinel" % OS.get_process_id()
-	var _rsf := FileAccess.open(_ready_sentinel, FileAccess.WRITE)
-	if _rsf:
-		_rsf.close()
+	# The coordinator passes --sentinel-path so the file name is coordinator-controlled,
+	# avoiding the PID mismatch that occurs because godot_console.exe is a two-process
+	# wrapper: OS.create_process() returns the wrapper PID, but OS.get_process_id()
+	# inside the actual Godot engine returns a different PID.
+	var _args_pre := OS.get_cmdline_user_args()
+	for _i in _args_pre.size():
+		if _args_pre[_i] == "--sentinel-path" and _i + 1 < _args_pre.size():
+			var _rsf := FileAccess.open(_args_pre[_i + 1], FileAccess.WRITE)
+			if _rsf:
+				_rsf.close()
+			break
 
 	var stages := BSDB.get_all_stages()
 	var args := OS.get_cmdline_user_args()
@@ -109,6 +115,8 @@ func _init() -> void:
 						if trimmed != "":
 							battle_names.append(trimmed)
 					i += 1
+			"--sentinel-path":
+				i += 1  # already handled above; skip value argument
 			"--diagnostics":
 				_diagnostics = true
 			"--compact":
