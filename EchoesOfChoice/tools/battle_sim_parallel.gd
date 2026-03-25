@@ -1,15 +1,16 @@
 extends SceneTree
 
 ## Parallel battle simulation coordinator.
-## Splits stages across multiple Godot worker processes for faster runs.
+## Processes one battle at a time; all workers split the party combos for that battle,
+## finish quickly, then the coordinator merges and moves to the next battle.
 ##
 ## Usage: godot --path EchoesOfChoice --headless \
 ##        --script res://tools/battle_sim_parallel.gd -- [options]
 ##
 ## Options:
-##   --jobs <n>      Number of worker processes (default: CPU count, capped at 4 on Windows)
+##   --jobs <n>      Number of worker processes (default: CPU count, capped at 8 on Windows)
 ##   --stagger <ms>  Delay in ms between spawning workers (default: 2000)
-##   --timeout <s>   Max seconds to wait before killing workers (default: max(300, jobs*120))
+##   --timeout <s>   Per-battle timeout in seconds (default: 300)
 ##   All other options are forwarded to battle_simulator.gd workers.
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
@@ -19,7 +20,8 @@ const SRep := preload("res://scripts/tools/sim_report.gd")
 const SD := preload("res://scripts/tools/sim_diagnostics.gd")
 
 const DEFAULT_STAGGER_MS: int = 2000             ## fallback delay if sentinel not received
-const DEFAULT_TIMEOUT_SECONDS: int = 300         ## baseline; scaled by job count
+const DEFAULT_TIMEOUT_SECONDS: int = 300         ## baseline timeout
+const PER_BATTLE_TIMEOUT_SEC: int = 300          ## per-battle timeout; workers only run 1/N of one battle
 const WINDOWS_MAX_JOBS: int = 8                  ## cap on Windows (imports are now serialized via sentinel)
 const PROGRESS_DOT_INTERVAL_MS: int = 5000
 const IMPORT_SENTINEL_TIMEOUT_MS: int = 90000    ## max ms to wait for a worker import sentinel
@@ -81,32 +83,36 @@ func _init() -> void:
 	if OS.get_name() == "Windows" and not args.has("--jobs"):
 		jobs = mini(jobs, WINDOWS_MAX_JOBS)
 
-	## Auto-calculate timeout if not explicitly set.
+	## Per-battle timeout: workers only process 1/N of a single battle's combos.
 	if timeout_sec < 0:
-		timeout_sec = maxi(DEFAULT_TIMEOUT_SECONDS, jobs * 120)
+		timeout_sec = PER_BATTLE_TIMEOUT_SEC
 
 	if _progressive:
 		_run_progressive(jobs, passthrough, stagger_ms, timeout_sec)
 		return
 
-	# Ensure a run mode is present. --battles is self-contained; --all or
-	# --progression are needed otherwise so workers have something to run.
+	# Ensure a run mode flag is present so _get_effective_stages can filter correctly.
 	if not passthrough.has("--all") and not passthrough.has("--progression") \
 			and not passthrough.has("--battles"):
 		passthrough.append("--all")
 
+	var effective_stages := _get_effective_stages(passthrough)
+	if effective_stages.is_empty():
+		print("ERROR: No stages matched the given filters.")
+		quit(1)
+		return
+
 	print("=== Parallel Battle Simulator ===")
-	print("  Workers: %d  Stagger: %dms  Timeout: %ds" % [jobs, stagger_ms, timeout_sec])
+	print("  Workers: %d/battle  Stagger: %dms  Timeout/battle: %ds  Stages: %d" % [
+		jobs, stagger_ms, timeout_sec, effective_stages.size()])
 	print("  Args: %s\n" % " ".join(passthrough))
 
 	var sw := Time.get_ticks_msec()
-	var all_stages := _spawn_and_collect(jobs, passthrough, stagger_ms, timeout_sec)
+	var all_stages := _run_all_per_battle(jobs, effective_stages, passthrough, stagger_ms, timeout_sec)
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
 
 	if all_stages.is_empty():
-		print("ERROR: No results collected from workers.")
-		print("  Workers timed out or crashed. Try:")
-		print("    --jobs 1    Run sequentially (reliable fallback)")
+		print("ERROR: No results collected.")
 		quit(1)
 		return
 
@@ -192,6 +198,47 @@ func _init() -> void:
 
 	_write_json(all_stages)
 	quit()
+
+
+## Process each battle sequentially, parallelizing party combos within each battle.
+## N workers each run 1/N of the combos for the current battle, finish quickly (~1-3 min),
+## then we merge and move on. Avoids the long-running worker timeout issue.
+func _run_all_per_battle(jobs: int, stages: Array, passthrough: Array[String],
+		stagger_ms: int, timeout_sec: int) -> Array:
+	## Build base worker args: strip run-mode flags (--all, --battles, --progression).
+	## We add --battles per iteration.
+	var base_args: Array[String] = []
+	var pi := 0
+	while pi < passthrough.size():
+		var arg: String = passthrough[pi]
+		if arg == "--all":
+			pass  ## standalone flag, skip
+		elif arg in ["--progression", "--battles"] and pi + 1 < passthrough.size():
+			pi += 1  ## skip value; pi++ below skips the flag
+		else:
+			base_args.append(arg)
+		pi += 1
+
+	var all_results: Array = []
+	for si in stages.size():
+		var stage: Dictionary = stages[si]
+		var stage_args: Array[String] = base_args.duplicate()
+		stage_args.append("--battles")
+		stage_args.append(stage.name)
+
+		printraw("  [%d/%d] %-28s" % [si + 1, stages.size(), stage.name])
+		var stage_results := _spawn_and_collect(jobs, stage_args, stagger_ms, timeout_sec)
+		if stage_results.is_empty():
+			print("  FAIL (timeout or no workers)")
+			continue
+		var r: Dictionary = stage_results[0]
+		print("  %.1f%%  target %d%%  %s" % [
+			r.overall_win_rate * 100,
+			int(r.get("target_win_rate", 0.0) * 100),
+			r.get("status", "?")])
+		all_results.append(r)
+
+	return all_results
 
 
 func _run_progressive(jobs: int, passthrough: Array[String],
