@@ -168,6 +168,10 @@ func _start_hosting() -> void:
 	_address_input.visible = false
 	_show_host_menu()
 	_refresh_player_list()
+	# Show local IP so host knows what address to share with guests
+	var local_ip: String = _get_local_ip()
+	_status_label.text = "Your IP: %s  (port 7777)" % local_ip
+	_status_label.visible = true
 
 
 var _host_menu_actions: Array[String] = []
@@ -477,6 +481,27 @@ func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: S
 		GameState.current_story_id = story_id
 		GameState.advance_to_battle(battle_id)
 	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+
+
+# =============================================================================
+# Helpers
+# =============================================================================
+
+## Returns the best local IPv4 address to share with LAN guests.
+## Skips loopback and link-local addresses, preferring 192.168/10/172 ranges.
+func _get_local_ip() -> String:
+	var addresses: Array = IP.get_local_addresses()
+	var best: String = ""
+	for addr: String in addresses:
+		if addr.begins_with("127.") or addr.begins_with("::"):
+			continue
+		if not "." in addr:
+			continue  # skip IPv6
+		if addr.begins_with("192.168.") or addr.begins_with("10.") or addr.begins_with("172."):
+			return addr
+		if best.is_empty():
+			best = addr
+	return best if not best.is_empty() else "unknown"
 
 
 # =============================================================================
