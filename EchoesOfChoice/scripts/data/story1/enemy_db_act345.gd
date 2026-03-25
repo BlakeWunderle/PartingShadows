@@ -112,7 +112,7 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(66, 76, 4, 6, lvl, 12)
 	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 12)
 	f.speed = EH.es(39, 45, 2, 4, lvl, 12)
-	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 19
+	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
 	f.flavor_text = "A fiend born from brimstone and fury. Its mere presence fills the air with dread."
 	return f
@@ -126,7 +126,7 @@ static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 12)
 	f.magic_defense = EH.es(37, 43, 2, 4, lvl, 12)
 	f.speed = EH.es(31, 37, 1, 3, lvl, 12)
-	f.crit_chance = 18; f.crit_damage = 4; f.dodge_chance = 14
+	f.crit_chance = 19; f.crit_damage = 4; f.dodge_chance = 16
 	f.abilities = [EABL.vine_whip(), EABL.root_slam(), EABL.bark_shield()]
 	f.flavor_text = "Once a guardian of the ancient wood, now twisted by corruption into a weapon of ruin."
 	return f
