@@ -37,8 +37,16 @@ func _ready() -> void:
 	NetManager.player_left.connect(_on_player_left)
 	NetManager.lobby_ready.connect(_on_lobby_ready)
 	NetManager.session_ended.connect(_on_session_ended)
+	NetManager.steam_hosting_started.connect(_on_steam_hosting_started)
+	NetManager.steam_hosting_failed.connect(_on_steam_hosting_failed)
 	_build_ui()
-	_show_role_select()
+	# Auto-join if arriving from a Steam overlay invite
+	if NetManager.pending_join_lobby_id > 0:
+		var lobby := NetManager.pending_join_lobby_id
+		NetManager.pending_join_lobby_id = 0
+		_auto_join_steam_lobby(lobby)
+	else:
+		_show_role_select()
 
 
 func _build_ui() -> void:
@@ -120,9 +128,11 @@ func _show_role_select() -> void:
 	_player_list.visible = false
 	_address_input.visible = false
 
+	var join_desc: String = "Accept a Steam invite from the host" \
+		if SteamManager.is_steam_running else "Join a friend's game via IP"
 	_menu.show_choices([
 		{"label": "Host Game", "description": "Create a game and invite friends"},
-		{"label": "Join Game", "description": "Join a friend's game"},
+		{"label": "Join Game", "description": join_desc},
 		{"label": "Back"},
 	])
 
@@ -157,6 +167,16 @@ func _handle_role_choice(index: int) -> void:
 
 func _start_hosting() -> void:
 	NetManager.target_player_count = 2
+	if SteamManager.is_steam_running:
+		_header.text = "HOST GAME"
+		_status_label.text = "Creating Steam lobby..."
+		_status_label.visible = true
+		_address_input.visible = false
+		_menu.hide_menu()
+		NetManager.host_game_steam()
+		return
+
+	# ENet fallback: synchronous, show local IP
 	var err := NetManager.host_game()
 	if err != OK:
 		_status_label.text = "Failed to start server. Try again."
@@ -168,10 +188,25 @@ func _start_hosting() -> void:
 	_address_input.visible = false
 	_show_host_menu()
 	_refresh_player_list()
-	# Show local IP so host knows what address to share with guests
 	var local_ip: String = _get_local_ip()
 	_status_label.text = "Your IP: %s  (port 7777)" % local_ip
 	_status_label.visible = true
+
+
+func _on_steam_hosting_started(_lobby_id: int) -> void:
+	_mode = Mode.HOSTING
+	_header.text = "HOST GAME"
+	_address_input.visible = false
+	_show_host_menu()
+	_refresh_player_list()
+	_status_label.text = "Steam lobby ready. Press Shift+Tab to invite friends."
+	_status_label.visible = true
+
+
+func _on_steam_hosting_failed() -> void:
+	_status_label.text = "Failed to create Steam lobby. Check your connection."
+	_status_label.visible = true
+	_show_role_select()
 
 
 var _host_menu_actions: Array[String] = []
@@ -246,12 +281,21 @@ func _handle_host_menu_choice(index: int) -> void:
 func _show_join_input() -> void:
 	_mode = Mode.JOIN_INPUT
 	_header.text = "JOIN GAME"
-	_status_label.visible = false
 	_player_list.visible = false
+
+	if SteamManager.is_steam_running:
+		# Steam: guest joins only via overlay invite — no manual IP input
+		_address_input.visible = false
+		_status_label.text = "Ask the host to invite you via Steam overlay (Shift+Tab)."
+		_status_label.visible = true
+		_menu.show_choices([{"label": "Back"}])
+		return
+
+	# ENet: manual IP entry
+	_status_label.visible = false
 	_address_input.visible = true
 	_address_input.text = ""
 	_address_input.grab_focus()
-
 	_menu.show_choices([
 		{"label": "Connect"},
 		{"label": "Back"},
@@ -259,11 +303,24 @@ func _show_join_input() -> void:
 
 
 func _handle_join_input_choice(index: int) -> void:
+	if SteamManager.is_steam_running:
+		_show_role_select()  # Only option is "Back"
+		return
 	match index:
 		0:  # Connect
 			_try_connect()
 		1:  # Back
 			_show_role_select()
+
+
+func _auto_join_steam_lobby(steam_lobby_id: int) -> void:
+	_mode = Mode.CONNECTING
+	_header.text = "JOIN GAME"
+	_status_label.text = "Connecting via Steam..."
+	_status_label.visible = true
+	_address_input.visible = false
+	_menu.hide_menu()
+	NetManager.join_game_steam(steam_lobby_id)
 
 
 func _on_address_submitted(_text: String) -> void:

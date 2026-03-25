@@ -9,6 +9,7 @@ func _ready() -> void:
 	var status: int = init_result.get("status", -1)
 	if status == 0:
 		is_steam_running = true
+		Steam.join_requested.connect(_on_join_requested)
 		GameLog.info("SteamManager: Steam initialized (user: %s)" % Steam.getPersonaName())
 	else:
 		GameLog.info("SteamManager: Steam not available (status %d), continuing offline" % status)
@@ -17,6 +18,20 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if is_steam_running:
 		Steam.run_callbacks()
+
+
+# =============================================================================
+# Overlay invite handler
+# =============================================================================
+
+## Fires when the user accepts a "Join Game" invite from the Steam overlay
+## while the game is already running. Navigate to the lobby and auto-connect.
+func _on_join_requested(lobby_id: int, _steam_id: int) -> void:
+	GameLog.info("SteamManager: join_requested for lobby %d" % lobby_id)
+	if NetManager.is_multiplayer_active:
+		NetManager.leave_session()
+	NetManager.pending_join_lobby_id = lobby_id
+	SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
 
 
 # =============================================================================
