@@ -37,7 +37,7 @@ static func calculate_sims_for_party_count(party_count: int) -> int:
 # =============================================================================
 
 static func run_single_battle(party: Array, enemies: Array,
-		engine: BattleEngine = null) -> bool:
+		engine: BattleEngine = null) -> Dictionary:
 	if engine == null:
 		engine = BattleEngine.new()
 	if engine.sim_mode:
@@ -45,6 +45,9 @@ static func run_single_battle(party: Array, enemies: Array,
 	else:
 		engine.start_battle(party, enemies)
 	var ticks := 0
+	var player_actions := 0
+	var all_actions := 0
+	var unit_actions: Dictionary = {}  # FighterData -> int
 	while not engine.is_battle_over() and ticks < MAX_TICKS:
 		ticks += 1
 		engine.tick_atb_fast()
@@ -58,9 +61,18 @@ static func run_single_battle(party: Array, enemies: Array,
 			if targets.is_empty():
 				break
 			engine.execute_ai_turn(actor, targets, allies)
+			all_actions += 1
+			unit_actions[actor] = unit_actions.get(actor, 0) + 1
+			if is_player:
+				player_actions += 1
 			engine.check_for_death()
 		engine.reset_turns()
-	return engine.did_player_win()
+	return {
+		"won": engine.did_player_win(),
+		"player_actions": player_actions,
+		"all_actions": all_actions,
+		"unit_actions": unit_actions,
+	}
 
 
 # =============================================================================
@@ -100,6 +112,12 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 	var start_ms := Time.get_ticks_msec()
 	var is_mirror: bool = stage.name == "MirrorBattle"
 	var engine := _get_sim_engine()
+	var turn_all_sum := 0
+	var turn_player_sum := 0
+	var turn_min := 999999
+	var turn_max := 0
+	var turn_battle_count := 0
+	var party_size := 3
 
 	for pi in parties.size():
 		var party_def: Dictionary = parties[pi]
@@ -116,20 +134,28 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				enemies = BSDB.create_enemies(stage.name, party_fighters)
 			else:
 				enemies = _clone_fighters(enemy_template)
-			if run_single_battle(party_fighters, enemies, engine):
+			var br: Dictionary = run_single_battle(party_fighters, enemies, engine)
+			if br.won:
 				wins += 1
+			turn_all_sum += br.all_actions
+			turn_player_sum += br.player_actions
+			turn_min = mini(turn_min, br.all_actions)
+			turn_max = maxi(turn_max, br.all_actions)
+			turn_battle_count += 1
+			party_size = party_fighters.size()
 			# Accumulate per-class combat diagnostics.
 			for f: FighterData in party_fighters:
 				var ct: String = f.character_type
 				if not class_diag.has(ct):
 					class_diag[ct] = {dmg_dealt = 0, dmg_taken = 0,
-						heals = 0, deaths = 0, battles = 0}
+						heals = 0, deaths = 0, battles = 0, actions = 0}
 				var ss: Dictionary = engine.sim_stats.get(f, {})
 				class_diag[ct].dmg_dealt += ss.get("dmg_dealt", 0)
 				class_diag[ct].dmg_taken += ss.get("dmg_taken", 0)
 				class_diag[ct].heals += ss.get("heals", 0)
 				class_diag[ct].deaths += 1 if ss.get("died", false) else 0
 				class_diag[ct].battles += 1
+				class_diag[ct].actions += br.unit_actions.get(f, 0)
 
 		combo_results.append({
 			"description": PC.get_party_description(party_def),
@@ -150,6 +176,10 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		total_wr += c.win_rate
 	var overall_wr: float = total_wr / combo_results.size() if not combo_results.is_empty() else 0.0
 
+	var avg_player_per_char := (float(turn_player_sum) / (party_size * turn_battle_count)
+		if turn_battle_count > 0 else 0.0)
+	var avg_all := float(turn_all_sum) / turn_battle_count if turn_battle_count > 0 else 0.0
+
 	return {
 		"stage_name": stage.name,
 		"target_win_rate": stage.target_win_rate,
@@ -159,6 +189,12 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		"overall_win_rate": overall_wr,
 		"elapsed_ms": Time.get_ticks_msec() - start_ms,
 		"class_diag": class_diag,
+		"turn_stats": {
+			"avg_player_per_char": avg_player_per_char,
+			"avg_all_actions": avg_all,
+			"min_all_actions": turn_min if turn_battle_count > 0 else 0,
+			"max_all_actions": turn_max if turn_battle_count > 0 else 0,
+		},
 	}
 
 
@@ -183,6 +219,11 @@ static func print_stage_result(result: Dictionary) -> void:
 	print("  Overall win rate: %.1f%%" % [result.overall_win_rate * 100])
 	print("  Target: %d%% (+/- %d%%)" % [
 		int(result.target_win_rate * 100), int(TOLERANCE * 100)])
+	var ts: Dictionary = result.get("turn_stats", {})
+	if not ts.is_empty():
+		print("  Battle length: %.1f turns/char  (%.1f total avg, min %d, max %d)" % [
+			ts.avg_player_per_char, ts.avg_all_actions,
+			ts.min_all_actions, ts.max_all_actions])
 	print_combo_extremes(result)
 	print_class_breakdown(result)
 	print("\n  STATUS: %s" % get_status(result))
@@ -263,25 +304,30 @@ static func print_combo_extremes(result: Dictionary, count: int = 5) -> void:
 
 static func print_class_breakdown(result: Dictionary) -> void:
 	var breakdown := get_class_breakdown(result)
+	var diag: Dictionary = result.get("class_diag", {})
 	var entries := []
 	for cname: String in breakdown:
+		var d: Dictionary = diag.get(cname, {})
+		var avg_acts := (float(d.get("actions", 0)) / d.get("battles", 1)
+			if d.get("battles", 0) > 0 else 0.0)
 		entries.append({
 			"class": cname,
 			"win_rate": breakdown[cname].win_rate,
 			"count": breakdown[cname].combo_count,
+			"avg_acts": avg_acts,
 		})
 	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return a.win_rate > b.win_rate)
 
 	print("\n  CLASS BREAKDOWN:")
-	print("    %-22s %10s %8s  %s" % ["Class", "Win Rate", "Combos", "Note"])
-	print("    " + "-".repeat(54))
+	print("    %-22s %10s %8s %8s  %s" % ["Class", "Win Rate", "Combos", "AvgActs", "Note"])
+	print("    " + "-".repeat(62))
 
 	var warn_threshold: float = result.target_win_rate * 0.60
 	for e: Dictionary in entries:
 		var note: String = "** WEAK **" if e.win_rate < warn_threshold else ""
-		print("    %-22s %9.1f%% %8d  %s" % [
-			e["class"], e.win_rate * 100, e.count, note])
+		print("    %-22s %9.1f%% %8d %8.1f  %s" % [
+			e["class"], e.win_rate * 100, e.count, e.avg_acts, note])
 
 
 static func print_summary(results: Array) -> void:
@@ -363,6 +409,11 @@ static func format_stage_verbose(result: Dictionary) -> PackedStringArray:
 	lines.append("  Overall win rate: %.1f%%" % [result.overall_win_rate * 100])
 	lines.append("  Target: %d%% (+/- %d%%)" % [
 		int(result.target_win_rate * 100), int(TOLERANCE * 100)])
+	var ts: Dictionary = result.get("turn_stats", {})
+	if not ts.is_empty():
+		lines.append("  Battle length: %.1f turns/char  (%.1f total avg, min %d, max %d)" % [
+			ts.avg_player_per_char, ts.avg_all_actions,
+			ts.min_all_actions, ts.max_all_actions])
 
 	# Combo extremes.
 	var extremes := get_combo_extremes(result)
@@ -384,24 +435,29 @@ static func format_stage_verbose(result: Dictionary) -> PackedStringArray:
 
 	# Class breakdown.
 	var breakdown := get_class_breakdown(result)
+	var diag: Dictionary = result.get("class_diag", {})
 	var entries := []
 	for cname: String in breakdown:
+		var d: Dictionary = diag.get(cname, {})
+		var avg_acts := (float(d.get("actions", 0)) / d.get("battles", 1)
+			if d.get("battles", 0) > 0 else 0.0)
 		entries.append({
 			"class": cname,
 			"win_rate": breakdown[cname].win_rate,
 			"count": breakdown[cname].combo_count,
+			"avg_acts": avg_acts,
 		})
 	entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		return a.win_rate > b.win_rate)
 	lines.append("")
 	lines.append("  CLASS BREAKDOWN:")
-	lines.append("    %-22s %10s %8s  %s" % ["Class", "Win Rate", "Combos", "Note"])
-	lines.append("    " + "-".repeat(54))
+	lines.append("    %-22s %10s %8s %8s  %s" % ["Class", "Win Rate", "Combos", "AvgActs", "Note"])
+	lines.append("    " + "-".repeat(62))
 	var warn_threshold: float = result.target_win_rate * 0.60
 	for e: Dictionary in entries:
 		var note: String = "** WEAK **" if e.win_rate < warn_threshold else ""
-		lines.append("    %-22s %9.1f%% %8d  %s" % [
-			e["class"], e.win_rate * 100, e.count, note])
+		lines.append("    %-22s %9.1f%% %8d %8.1f  %s" % [
+			e["class"], e.win_rate * 100, e.count, e.avg_acts, note])
 
 	lines.append("")
 	lines.append("  STATUS: %s" % get_status(result))
