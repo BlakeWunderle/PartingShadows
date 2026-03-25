@@ -18,7 +18,7 @@ GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotE
 The following error patterns are **known harmless** and should always be filtered from output:
 
 ```bash
-NOISE_FILTER='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
+NOISE_FILTER='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::\|at: cleanup (core/object\|at: clear (core/io/resource'
 ```
 
 ### What each filter covers
@@ -37,6 +37,8 @@ NOISE_FILTER='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static
 | `resources still in use at exit` | Engine cleanup | Resource cache not fully cleared |
 | `OpenGL API\|NVIDIA\|WASAPI` | Driver info | GPU/audio driver identification lines |
 | `Cleanup\|Main::` | Engine lifecycle | Godot startup/shutdown messages |
+| `at: cleanup (core/object` | Engine cleanup | Stack frame from ObjectDB leaked warning |
+| `at: clear (core/io/resource` | Engine cleanup | Stack frame from resources-still-in-use warning |
 
 ## Commands
 

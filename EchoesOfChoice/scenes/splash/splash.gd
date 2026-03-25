@@ -18,7 +18,10 @@ var _skip_enabled: bool = false
 
 
 func _ready() -> void:
-	SceneManager.preload_scene(_TITLE_SCENE)
+	# Skip threaded preload in headless mode — the load thread races with --quit shutdown
+	# and produces a spurious "Parse Error: Failed" during cleanup.
+	if DisplayServer.get_name() != "headless":
+		SceneManager.preload_scene(_TITLE_SCENE)
 	_build_ui()
 	_play_sequence()
 
