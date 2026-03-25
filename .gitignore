@@ -26,6 +26,7 @@ __pycache__/
 
 # Temp files
 *~RF*.TMP
+~*.dll
 
 # OS
 Thumbs.db
