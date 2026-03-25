@@ -16,6 +16,7 @@ const SR := preload("res://scripts/tools/simulation_runner.gd")
 const SC := preload("res://scripts/tools/sim_cache.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const SRep := preload("res://scripts/tools/sim_report.gd")
+const SD := preload("res://scripts/tools/sim_diagnostics.gd")
 
 const DEFAULT_STAGGER_MS: int = 2000             ## fallback delay if sentinel not received
 const DEFAULT_TIMEOUT_SECONDS: int = 300         ## baseline; scaled by job count
@@ -160,6 +161,34 @@ func _init() -> void:
 		print("  Worker sim time: %.1fs (sum of all workers)" % [total_ms / 1000.0])
 		print("  Wall clock time: %.1fs" % elapsed)
 		print("  Speedup: %.1fx" % [total_ms / 1000.0 / maxf(elapsed, 0.001)])
+
+		# Print class breakdown and weak-class diagnostics when --diagnostics requested.
+		if passthrough.has("--diagnostics"):
+			for s: Dictionary in all_stages:
+				print("\n--- %s ---" % s.stage_name)
+				# Use pre-computed class_breakdown (build_entry format) rather than
+				# SR.print_class_breakdown which requires combo_results.
+				var breakdown: Dictionary = s.get("class_breakdown", {})
+				if not breakdown.is_empty():
+					var entries := []
+					for cname: String in breakdown:
+						entries.append({
+							"class": cname,
+							"win_rate": breakdown[cname].get("win_rate", 0.0),
+							"count": breakdown[cname].get("combo_count", 0),
+						})
+					entries.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+						return a.win_rate > b.win_rate)
+					var warn_thr: float = s.get("target_win_rate", 0.0) * 0.60
+					print("\n  CLASS BREAKDOWN:")
+					print("    %-22s %10s %8s  %s" % ["Class", "Win Rate", "Combos", "Note"])
+					print("    " + "-".repeat(54))
+					for e: Dictionary in entries:
+						var note: String = "** WEAK **" if e.win_rate < warn_thr else ""
+						print("    %-22s %9.1f%% %8d  %s" % [
+							e["class"], e.win_rate * 100, e.count, note])
+				# build_entry pre-computes diagnostics — use it directly.
+				SD.print_diagnostics(s.get("diagnostics", []), s.stage_name)
 
 	_write_json(all_stages)
 	quit()
