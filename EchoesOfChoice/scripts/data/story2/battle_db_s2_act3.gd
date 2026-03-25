@@ -101,7 +101,6 @@ static func s2_echo_gallery() -> BattleData:
 		EnemyDBS2Act3.create_hollow_watcher("Flicker"),
 		EnemyDBS2Act3.create_grief_shade("Reverb"),
 		EnemyDBS2Act3.create_shattered_frame("Whisper"),
-		EnemyDBS2Act3.create_shattered_frame("Echo"),
 	]
 	b.pre_battle_text = [
 		"A long corridor where the walls are not walls but windows into moments that already happened. Voices repeat in fragments, layered and overlapping.",
