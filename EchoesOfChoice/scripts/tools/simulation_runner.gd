@@ -308,7 +308,7 @@ static func print_class_breakdown(result: Dictionary) -> void:
 	var entries := []
 	for cname: String in breakdown:
 		var d: Dictionary = diag.get(cname, {})
-		var avg_acts := (float(d.get("actions", 0)) / d.get("battles", 1)
+		var avg_acts: float = (float(d.get("actions", 0)) / float(d.get("battles", 1))
 			if d.get("battles", 0) > 0 else 0.0)
 		entries.append({
 			"class": cname,
@@ -439,7 +439,7 @@ static func format_stage_verbose(result: Dictionary) -> PackedStringArray:
 	var entries := []
 	for cname: String in breakdown:
 		var d: Dictionary = diag.get(cname, {})
-		var avg_acts := (float(d.get("actions", 0)) / d.get("battles", 1)
+		var avg_acts: float = (float(d.get("actions", 0)) / float(d.get("battles", 1))
 			if d.get("battles", 0) > 0 else 0.0)
 		entries.append({
 			"class": cname,
