@@ -212,7 +212,7 @@ static func s3_b_dream_invasion() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_cathedral_warden("Loom Warden"),
 		EnemyDB.create_dream_binder("Thread Binder"),
-		EnemyDB.create_thread_anchor("Dream Anchor"),
+		EnemyDB.create_weft_stalker("The Weft Predator"),
 	]
 	b.pre_battle_text = [
 		"The dream is different from what they remember. The broken architecture, the impossible geometry. All of it is gone.",

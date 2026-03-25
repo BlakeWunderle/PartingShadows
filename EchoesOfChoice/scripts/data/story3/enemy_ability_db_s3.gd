@@ -329,3 +329,32 @@ static func loom_collapse() -> AbilityData:
 static func thread_of_oblivion() -> AbilityData:
 	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
 
+
+# =============================================================================
+# Physical attacker additions: high-mDef cult/weaving enemies (T2 rework pass)
+# =============================================================================
+
+# --- DreadTailor (cult seamstress, dream-shears) ---
+
+static func shear() -> AbilityData:
+	return _make("Shear", "Dream-shears close with surgical precision. Magic glances off the blades.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+static func snip_away() -> AbilityData:
+	return _make("Snip Away", "The seamstress pivots, raking both blades across the entire field.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0)
+
+# --- NeedleWraith (animated bone-needle construct) ---
+
+static func pin_barrage() -> AbilityData:
+	return _make("Pin Barrage", "Dozens of bone-needles scatter in every direction at once.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 4, true, 0, 0.0)
+
+static func puncture() -> AbilityData:
+	return _make("Puncture", "A single needle drives through the thickest armor like paper.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+
+# --- LoomCrusher (compacted woven-thread construct) ---
+
+static func thread_crush() -> AbilityData:
+	return _make("Thread Crush", "A fist of compacted dream-thread slams down with crushing force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+static func weave_brace() -> AbilityData:
+	return _make("Weave Brace", "The construct draws its threads inward, coiling for a devastating follow-up strike.", Enums.StatType.ATTACK, 5, 1, false, 2, false, 0, 0.0)
+

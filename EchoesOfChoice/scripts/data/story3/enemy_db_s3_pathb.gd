@@ -278,6 +278,24 @@ static func create_thread_anchor(n: String, lvl: int = 16) -> FighterData:
 	return f
 
 
+# Prog 16 physical attacker addition (T2 rework pass)
+# WeftStalker: fast hunting predator woven from dream-loom weft threads (level 16)
+# Elevated mDef, high speed, MIXED AoE + speed debuff kit
+static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
+	var f := EH.base(n, "WeftStalker", lvl)
+	f.health = EH.es(618, 712, 5, 8, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(110, 127, 3, 5, lvl, 16)
+	f.physical_defense = EH.es(44, 52, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(58, 70, 2, 4, lvl, 16)
+	f.magic_defense = EH.es(72, 82, 3, 5, lvl, 16)
+	f.speed = EH.es(48, 55, 3, 4, lvl, 16)
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 28
+	f.abilities = [EAB.weft_lash(), EAB.stalk()]
+	f.flavor_text = "A predator woven from the weft threads of Lira's loom, designed to hunt. It moves with terrifying speed, lashing out in all directions and slowing anything it marks as prey. Magic sinks into the weave without effect."
+	return f
+
+
 # =============================================================================
 # Prog 17: Lira boss and minions (S3_B_DreamNexus)
 # Target 42%, 18 level-ups (final boss)

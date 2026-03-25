@@ -70,17 +70,17 @@ static func cavalry_charge() -> AbilityData:
 		Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 5, false, 0, 0.3)
 
 static func trample() -> AbilityData:
-	return _make("Trample", "Charge through the enemy lines.",
-		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 4, true, 0, 0.0)
+	return _make("Trample", "Charge through the enemy lines, crushing body and spirit alike.",
+		Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, true, 0, 0.0)
 
 # Dragoon
 static func jump() -> AbilityData:
 	return _make("Jump", "Leap high and crash down on all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, true, 0, 0.0)
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
-		Enums.StatType.MIXED_ATTACK, 7, 0, true, 5, false, 3, 0.0)
+		Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 3, 0.0)
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
@@ -123,7 +123,7 @@ static func vanish() -> AbilityData:
 
 static func blade_flurry() -> AbilityData:
 	return _make("Blade Flurry", "A whirlwind of steel that cuts through all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, true, 0, 0.0)
 
 # Monk
 static func spirit_attack() -> AbilityData:
@@ -136,7 +136,7 @@ static func precise_strike() -> AbilityData:
 
 static func inner_peace() -> AbilityData:
 	return _make("Inner Peace", "Channel spiritual harmony to mend an ally's wounds.",
-		Enums.StatType.HEALTH, 10, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 7, 0, false, 4, false, 0, 0.0)
 
 
 # =============================================================================
@@ -202,7 +202,7 @@ static func undertow() -> AbilityData:
 # Tempest
 static func hurricane() -> AbilityData:
 	return _make("Hurricane", "A storm that strikes all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, true, 0, 0.0)
 
 static func tornado() -> AbilityData:
 	return _make("Tornado", "A focused vortex of destruction.",
@@ -210,7 +210,7 @@ static func tornado() -> AbilityData:
 
 static func storm_surge() -> AbilityData:
 	return _make("Storm Surge", "Harness the storm's fury to amplify magical power.",
-		Enums.StatType.MAGIC_ATTACK, 5, 2, false, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 5, 3, false, 3, false, 0, 0.0)
 
 # Paladin
 static func lay_on_hands() -> AbilityData:
@@ -245,11 +245,11 @@ static func shadow_bolt() -> AbilityData:
 
 static func dark_pact() -> AbilityData:
 	return _make("Dark Pact", "Invoke forbidden rites that erode the magical defenses of all enemies.",
-		Enums.StatType.MAGIC_DEFENSE, 3, 2, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 static func drain_life() -> AbilityData:
 	return _make("Drain Life", "Steal the enemy's life force.",
-		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, false, 0, 0.5)
+		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 5, false, 0, 0.5)
 
 
 # =============================================================================
@@ -311,7 +311,7 @@ static func rally_cry() -> AbilityData:
 # Minstrel
 static func dissonance() -> AbilityData:
 	return _make("Dissonance", "A grating chord that saps the will to fight.",
-		Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
+		Enums.StatType.ATTACK, 3, 2, true, 3, false, 0, 0.0)
 
 static func ballad() -> AbilityData:
 	return _make("Ballad", "A sorrowful melody turned weapon.",
@@ -319,7 +319,7 @@ static func ballad() -> AbilityData:
 
 static func serenade() -> AbilityData:
 	return _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
 
 # Illusionist
 static func phantom_strike() -> AbilityData:

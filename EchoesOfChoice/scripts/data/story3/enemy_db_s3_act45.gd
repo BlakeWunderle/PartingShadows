@@ -144,6 +144,61 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	return f
 
 
+# =============================================================================
+# Physical attacker additions: high-mDef cult/weaving enemies (T2 rework pass)
+# =============================================================================
+
+# Prog 14 -- DreadTailor: cult seamstress with dream-shears (level 15)
+# High pAtk + very high mDef, magic passes through the blades
+static func create_dread_tailor(n: String, lvl: int = 15) -> FighterData:
+	var f := EH.base(n, "DreadTailor", lvl)
+	f.health = EH.es(660, 757, 5, 8, lvl, 15); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = EH.es(112, 129, 3, 5, lvl, 15)
+	f.physical_defense = EH.es(32, 40, 1, 3, lvl, 15)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
+	f.magic_defense = EH.es(62, 72, 2, 4, lvl, 15)
+	f.speed = EH.es(38, 45, 2, 3, lvl, 15)
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
+	f.abilities = [EAB.shear(), EAB.snip_away()]
+	f.flavor_text = "A cultist who gave up her name and replaced it with a title. She fights with oversized dream-shears, each blade honed at the intersection of cloth and nightmare. Magic slides off the enchanted steel without leaving a mark."
+	return f
+
+
+# Prog 15 -- NeedleWraith: construct of animated bone-needles (level 16)
+# High pAtk + high mDef, moderate HP, fragile
+static func create_needle_wraith(n: String, lvl: int = 16) -> FighterData:
+	var f := EH.base(n, "NeedleWraith", lvl)
+	f.health = EH.es(556, 641, 5, 8, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(113, 130, 3, 5, lvl, 16)
+	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
+	f.magic_defense = EH.es(58, 68, 2, 4, lvl, 16)
+	f.speed = EH.es(34, 40, 2, 3, lvl, 16)
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 18
+	f.abilities = [EAB.pin_barrage(), EAB.puncture()]
+	f.flavor_text = "A construct assembled from the bones of failed cult initiates, each shard sharpened to a point and animated by loom-thread. Every strike is a dozen tiny stabs. Magic passes between the gaps in its lattice form."
+	return f
+
+
+# Prog 16 -- LoomCrusher: massive compacted-thread construct (level 17)
+# Very high HP + pAtk + mDef, very slow, magic passes through the weave
+static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
+	var f := EH.base(n, "LoomCrusher", lvl)
+	f.health = EH.es(782, 900, 7, 10, lvl, 17); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 1, lvl, 17); f.max_mana = f.mana
+	f.physical_attack = EH.es(122, 140, 4, 6, lvl, 17)
+	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 17)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
+	f.magic_defense = EH.es(72, 83, 3, 5, lvl, 17)
+	f.speed = EH.es(18, 24, 1, 2, lvl, 17)
+	f.crit_chance = 15; f.crit_damage = 4; f.dodge_chance = 8
+	f.abilities = [EAB.thread_crush(), EAB.weave_brace()]
+	f.flavor_text = "An enormous dream-construct whose body is formed from thousands of threads compressed so tightly they became solid matter. Magic passes through the weave harmlessly. It moves with ponderous, inevitable force."
+	return f
+
+
 # Prog 17 boss minion -- fast magic DPS (level 18)
 static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Shadow Fragment", lvl)

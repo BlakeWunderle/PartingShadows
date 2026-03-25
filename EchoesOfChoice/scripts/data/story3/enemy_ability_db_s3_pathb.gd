@@ -201,3 +201,16 @@ static func bastion_slam() -> AbilityData:
 
 static func nexus_shield() -> AbilityData:
 	return _make("Nexus Blast", "The bastion projects the nexus's remaining power outward as a devastating wave.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, true, 0, 0.0)
+
+
+# =============================================================================
+# Prog 16 physical attacker addition: WeftStalker (T2 rework pass)
+# =============================================================================
+
+# --- WeftStalker (hunting predator woven from loom weft threads) ---
+
+static func weft_lash() -> AbilityData:
+	return _make("Weft Lash", "Threads of weft snap outward like whips, catching everyone in the arc.", Enums.StatType.MIXED_ATTACK, 5, 0, true, 4, true, 0, 0.0)
+
+static func stalk() -> AbilityData:
+	return _make("Stalk", "The creature circles its prey, hampering every move and slowing the quarry.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)

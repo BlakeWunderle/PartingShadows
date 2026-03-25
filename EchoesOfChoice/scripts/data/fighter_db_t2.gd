@@ -124,7 +124,7 @@ static func _lu_monk(f: FighterData) -> void:
 	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(4, 6); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(4, 6)
+	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(2, 2)
 	f.dodge_chance += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
@@ -210,8 +210,8 @@ static func upgrade_to_priest(f: FighterData) -> void:
 
 static func upgrade_to_warlock(f: FighterData) -> void:
 	f.class_id = "Warlock"; f.character_type = "Warlock"
-	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 4
+	f.health += 12; f.max_health += 12; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 14; f.magic_defense += 4
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.shadow_bolt(), PAB.dark_pact(), PAB.drain_life()]
 	f.upgrade_items = []

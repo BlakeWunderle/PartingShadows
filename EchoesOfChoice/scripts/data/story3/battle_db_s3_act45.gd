@@ -28,7 +28,7 @@ static func s3_cult_underbelly() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_cult_acolyte("Brother Voss"),
 		EnemyDB.create_cult_enforcer("Sister Maren"),
-		EnemyDB.create_cult_hexer("Brother Callum"),
+		EnemyDB.create_dread_tailor("Loom's Seamstress"),
 	]
 	b.pre_battle_text = [
 		"The town wears a different face in the gray hours before dawn. Alleyways that seemed charming by day are narrow and watchful in the dark.",
@@ -55,7 +55,7 @@ static func s3_cult_catacombs() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_thread_guard("Loom Watcher"),
 		EnemyDB.create_dream_hound("Bound Hound"),
-		EnemyDB.create_dream_hound("Chain Fang"),
+		EnemyDB.create_needle_wraith("The Stitched"),
 	]
 	b.pre_battle_text = [
 		"Beneath the inn, the cellar gives way to something much older. Stone corridors stretch in directions that no building above could contain.",
@@ -79,7 +79,7 @@ static func s3_cult_ritual_chamber() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
 		EnemyDB.create_high_weaver("Weaver Aldric"),
-		EnemyDB.create_ritual_guardian("Loom Champion"),
+		EnemyDB.create_loom_crusher("The Loom's Fist"),
 	]
 	b.pre_battle_text = [
 		"The ritual chamber is enormous. A web of threads stretches from floor to ceiling, each one vibrating with stolen energy. At the center, a loom, not a metaphor but a physical device, spins threads of light into patterns.",
