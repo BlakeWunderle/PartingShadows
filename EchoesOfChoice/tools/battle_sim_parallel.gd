@@ -30,9 +30,11 @@ var _json_path := ""
 var _progressive := false
 var _from_prog := 0
 var _compact := false
+var _run_id: int = 0  ## unique per coordinator invocation — prevents file collisions when two sims run simultaneously
 
 
 func _init() -> void:
+	_run_id = (Time.get_ticks_msec() ^ randi()) & 0xFFFFFF  ## 24-bit unique ID for this run
 	var args := OS.get_cmdline_user_args()
 	var jobs: int = OS.get_processor_count()
 	var stagger_ms: int = DEFAULT_STAGGER_MS
@@ -333,7 +335,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		_da.list_dir_begin()
 		var _fname := _da.get_next()
 		while _fname != "":
-			if _fname.begins_with("sim_ready_w") and _fname.ends_with(".sentinel"):
+			if _fname.begins_with("sim_ready_w%d_" % _run_id) and _fname.ends_with(".sentinel"):
 				_da.remove(_fname)
 			_fname = _da.get_next()
 		_da.list_dir_end()
@@ -356,7 +358,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 	var pids: Array[int] = []
 	var sentinel_paths: Array[String] = []
 	for wi in jobs:
-		var worker_json := "user://sim_worker_%d.json" % wi
+		var worker_json := "user://sim_worker_%d_%d.json" % [_run_id, wi]
 		if FileAccess.file_exists(worker_json):
 			DirAccess.remove_absolute(
 				ProjectSettings.globalize_path(worker_json))
@@ -365,7 +367,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		# OS.create_process() (wrapper PID) and OS.get_process_id() (engine PID)
 		# that occurs because godot_console.exe is a two-process wrapper on Windows.
 		var sentinel_path := OS.get_user_data_dir().path_join(
-			"sim_ready_w%d.sentinel" % wi)
+			"sim_ready_w%d_%d.sentinel" % [_run_id, wi])
 		DirAccess.remove_absolute(sentinel_path)
 		sentinel_paths.append(sentinel_path)
 
@@ -440,7 +442,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 	var results: Array = []
 	var partials_by_stage: Dictionary = {}
 	for wi in jobs:
-		var worker_json := "user://sim_worker_%d.json" % wi
+		var worker_json := "user://sim_worker_%d_%d.json" % [_run_id, wi]
 		if not FileAccess.file_exists(worker_json):
 			print("  WARNING: Worker %d did not produce output (file missing)" % wi)
 			continue

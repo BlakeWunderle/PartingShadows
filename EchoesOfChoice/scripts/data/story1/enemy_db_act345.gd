@@ -16,9 +16,9 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Royal Guard", lvl)
-	f.health = EH.es(318, 360, 8, 12, lvl, 10); f.max_health = f.health
+	f.health = EH.es(335, 379, 9, 13, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(45, 51, 3, 5, lvl, 10)
+	f.physical_attack = EH.es(47, 54, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(33, 38, 3, 4, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 10)
@@ -30,9 +30,9 @@ static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 
 static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Sergeant", lvl)
-	f.health = EH.es(327, 374, 8, 12, lvl, 10); f.max_health = f.health
+	f.health = EH.es(343, 392, 9, 13, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(47, 56, 3, 5, lvl, 10)
+	f.physical_attack = EH.es(50, 59, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(23, 30, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(7, 11, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(26, 31, 1, 2, lvl, 10)
@@ -44,9 +44,9 @@ static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 
 static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Archer", lvl)
-	f.health = EH.es(276, 319, 6, 10, lvl, 10); f.max_health = f.health
+	f.health = EH.es(291, 336, 7, 11, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(46, 52, 3, 5, lvl, 10)
+	f.physical_attack = EH.es(49, 55, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(17, 23, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(24, 31, 1, 3, lvl, 10)
@@ -105,11 +105,11 @@ static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 
 static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Demon", lvl)
-	f.health = EH.es(496, 552, 8, 12, lvl, 12); f.max_health = f.health
+	f.health = EH.es(521, 579, 9, 13, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(29, 34, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 30, 1, 3, lvl, 12)
 	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
-	f.magic_attack = EH.es(66, 76, 4, 6, lvl, 12)
+	f.magic_attack = EH.es(70, 81, 5, 7, lvl, 12)
 	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 12)
 	f.speed = EH.es(39, 45, 2, 4, lvl, 12)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 21
@@ -119,9 +119,9 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 
 static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Corrupted Treant", lvl)
-	f.health = EH.es(406, 452, 8, 12, lvl, 12); f.max_health = f.health
+	f.health = EH.es(426, 474, 9, 13, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(52, 60, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(55, 64, 4, 6, lvl, 12)
 	f.physical_defense = EH.es(42, 48, 3, 5, lvl, 12)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 12)
 	f.magic_defense = EH.es(37, 43, 2, 4, lvl, 12)
@@ -240,9 +240,9 @@ static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	f.class_id = "StrangerFinal"
 	f.health = EH.es(1173, 1286, 17, 23, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(42, 48, 3, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(80, 90, 4, 6, lvl, 15)
+	f.physical_attack = EH.es(75, 84, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(55, 62, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(92, 101, 5, 7, lvl, 15)
+	f.magic_attack = EH.es(86, 95, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(58, 65, 3, 5, lvl, 15)
 	f.speed = EH.es(60, 67, 3, 5, lvl, 15)
 	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 20
