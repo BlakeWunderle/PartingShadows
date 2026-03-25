@@ -257,7 +257,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		_da.list_dir_begin()
 		var _fname := _da.get_next()
 		while _fname != "":
-			if _fname.begins_with("sim_ready_w") and _fname.ends_with(".sentinel"):
+			if _fname.begins_with("sim_ready_") and _fname.ends_with(".sentinel"):
 				_da.remove(_fname)
 			_fname = _da.get_next()
 		_da.list_dir_end()
@@ -278,20 +278,11 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 			effective_stages.size(), jobs])
 
 	var pids: Array[int] = []
-	var sentinel_paths: Array[String] = []
 	for wi in jobs:
 		var worker_json := "user://sim_worker_%d.json" % wi
 		if FileAccess.file_exists(worker_json):
 			DirAccess.remove_absolute(
 				ProjectSettings.globalize_path(worker_json))
-
-		# Coordinator-controlled sentinel path: avoids PID mismatch between
-		# OS.create_process() (wrapper PID) and OS.get_process_id() (engine PID)
-		# that occurs because godot_console.exe is a two-process wrapper on Windows.
-		var sentinel_path := OS.get_user_data_dir().path_join(
-			"sim_ready_w%d.sentinel" % wi)
-		DirAccess.remove_absolute(sentinel_path)
-		sentinel_paths.append(sentinel_path)
 
 		var worker_args: Array[String] = [
 			"--path", ProjectSettings.globalize_path("res://"),
@@ -308,8 +299,6 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 			worker_args.append("%d/%d" % [wi, jobs])
 		worker_args.append("--json")
 		worker_args.append(worker_json)
-		worker_args.append("--sentinel-path")
-		worker_args.append(sentinel_path)
 
 		var pid := OS.create_process(godot_exe, worker_args)
 		if pid > 0:
@@ -317,8 +306,8 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 			# Wait for this worker to finish import before spawning the next.
 			# Serializes .godot/ write locks so workers don't deadlock on Windows.
 			if wi < jobs - 1:
-				if not _wait_for_import_sentinel(sentinel_path, pid):
-					print("  WARNING: Worker %d import sentinel not received — using stagger fallback" % wi)
+				if not _wait_for_import_sentinel(pid):
+					print("  WARNING: Worker %d import sentinel not received (pid %d) — using stagger fallback" % [wi, pid])
 					OS.delay_msec(stagger_ms)
 		else:
 			print("  ERROR: Failed to spawn worker %d" % wi)
@@ -420,29 +409,29 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 
 
 ## Wait for a worker to write its import-done sentinel file.
-## battle_simulator.gd writes a sentinel file via absolute path at the top of _init(),
+## battle_simulator.gd writes user://sim_ready_{pid}.sentinel at the top of _init(),
 ## which only runs after Godot has finished all initialization and released .godot/ locks.
 ## Returns true when sentinel is found, false on timeout or if process exited early.
-## sentinel_path is the absolute path constructed by the coordinator and passed to the
-## worker via --sentinel-path, eliminating any PID mismatch.
-func _wait_for_import_sentinel(sentinel_path: String, pid: int) -> bool:
+func _wait_for_import_sentinel(pid: int) -> bool:
+	var sentinel := "user://sim_ready_%d.sentinel" % pid
+	var sentinel_abs := ProjectSettings.globalize_path(sentinel)
 	var deadline := Time.get_ticks_msec() + IMPORT_SENTINEL_TIMEOUT_MS
 	# OS.is_process_running() races on Windows: a freshly-spawned process may not
 	# be visible to OpenProcess() for a short window. Ignore is_process_running
 	# results for the first 5s after spawn.
 	var min_alive_until := Time.get_ticks_msec() + 5000
 	while Time.get_ticks_msec() < deadline:
-		if FileAccess.file_exists(sentinel_path):
-			DirAccess.remove_absolute(sentinel_path)
+		if FileAccess.file_exists(sentinel):
+			DirAccess.remove_absolute(sentinel_abs)
 			return true
 		if Time.get_ticks_msec() > min_alive_until and not OS.is_process_running(pid):
 			# Process confirmed exited without writing sentinel (fast finish or crash).
-			DirAccess.remove_absolute(sentinel_path)
+			DirAccess.remove_absolute(sentinel_abs)
 			return false
 		OS.delay_msec(500)
 	# Timeout — clean up if the sentinel appeared just after the deadline.
-	if FileAccess.file_exists(sentinel_path):
-		DirAccess.remove_absolute(sentinel_path)
+	if FileAccess.file_exists(sentinel):
+		DirAccess.remove_absolute(sentinel_abs)
 	return false
 
 
