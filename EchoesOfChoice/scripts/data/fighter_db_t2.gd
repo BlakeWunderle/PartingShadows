@@ -98,7 +98,7 @@ static func upgrade_to_ninja(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 5; f.crit_chance += 3; f.crit_damage += 3; f.dodge_chance += 7
-	f.abilities = [PAB.shadow_strike(), PAB.vanish(), PAB.blade_flurry()]
+	f.abilities = [PAB.shadow_strike(), PAB.smoke_bomb(), PAB.blade_flurry()]
 	f.upgrade_items = []
 
 static func upgrade_to_monk(f: FighterData) -> void:
@@ -124,7 +124,7 @@ static func _lu_monk(f: FighterData) -> void:
 	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(4, 6)
+	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(3, 4)
 	f.speed += randi_range(2, 2)
 	f.dodge_chance += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)

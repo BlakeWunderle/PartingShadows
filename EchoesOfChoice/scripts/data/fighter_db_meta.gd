@@ -118,7 +118,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Dragoon": return [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_dive()]
 		"Mercenary": return [PAB.gun_shot(), PAB.called_shot(), PAB.suppressing_fire()]
 		"Hunter": return [PAB.triple_arrow(), PAB.snare(), PAB.hunters_mark()]
-		"Ninja": return [PAB.shadow_strike(), PAB.vanish(), PAB.blade_flurry()]
+		"Ninja": return [PAB.shadow_strike(), PAB.smoke_bomb(), PAB.blade_flurry()]
 		"Monk": return [PAB.spirit_attack(), PAB.precise_strike(), PAB.inner_peace()]
 		# T2:Mage
 		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]

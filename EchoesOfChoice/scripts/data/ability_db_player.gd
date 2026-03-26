@@ -114,12 +114,12 @@ static func hunters_mark() -> AbilityData:
 
 # Ninja
 static func shadow_strike() -> AbilityData:
-	return _make("Shadow Strike", "Strike from the shadows, draining vitality before vanishing.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.2)
+	return _make("Shadow Strike", "A precise strike from the darkness that drains vitality with every blow.",
+		Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 4, false, 0, 0.2)
 
-static func vanish() -> AbilityData:
-	return _make("Vanish", "Disappear into shadow, becoming nearly impossible to hit.",
-		Enums.StatType.DODGE_CHANCE, 5, 2, false, 2, false, 0, 0.0)
+static func smoke_bomb() -> AbilityData:
+	return _make("Smoke Bomb", "A cloud of choking smoke blankets the field, making the whole party nearly impossible to target.",
+		Enums.StatType.DODGE_CHANCE, 5, 2, false, 3, true, 0, 0.0)
 
 static func blade_flurry() -> AbilityData:
 	return _make("Blade Flurry", "A whirlwind of steel that cuts through all enemies.",
@@ -219,11 +219,11 @@ static func lay_on_hands() -> AbilityData:
 
 static func holy_strike() -> AbilityData:
 	return _make("Holy Strike", "A blow charged with divine wrath.",
-		Enums.StatType.PHYSICAL_ATTACK, 16, 0, true, 2, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 20, 0, true, 2, false, 0, 0.0)
 
 static func smite() -> AbilityData:
 	return _make("Smite", "Holy wrath made manifest.",
-		Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 16, 0, true, 4, false, 0, 0.0)
 
 # Priest
 static func restoration() -> AbilityData:
@@ -244,8 +244,8 @@ static func shadow_bolt() -> AbilityData:
 		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
 
 static func dark_pact() -> AbilityData:
-	return _make("Dark Pact", "Invoke forbidden rites that erode the magical defenses of all enemies.",
-		Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
+	return _make("Dark Pact", "Invoke forbidden rites that shatter the magical defenses of one enemy.",
+		Enums.StatType.MAGIC_DEFENSE, 8, 2, true, 4, false, 0, 0.0)
 
 static func drain_life() -> AbilityData:
 	return _make("Drain Life", "Steal the enemy's life force.",

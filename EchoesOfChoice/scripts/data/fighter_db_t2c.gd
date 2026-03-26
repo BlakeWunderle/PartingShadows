@@ -20,7 +20,7 @@ static func upgrade_to_blighter(f: FighterData) -> void:
 
 static func upgrade_to_grove_keeper(f: FighterData) -> void:
 	f.class_id = "GroveKeeper"; f.character_type = "Grove Keeper"
-	f.health += 18; f.max_health += 18; f.mana += 2; f.max_mana += 2
+	f.health += 15; f.max_health += 15; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 11; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 4
 	f.abilities = [PAB_B.thorn_burst(), PAB_B.natures_mend(), PAB_B.vine_wall()]

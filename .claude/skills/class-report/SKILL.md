@@ -176,6 +176,12 @@ CLASS BALANCE REPORT GENERATED
   Outliers: N classes outside tier-specific band (base +/-15%, T1 +/-12.5%, T2 +/-10%)
 ```
 
+## STOP: This Skill Is Read-Only
+
+After printing the Step 5 summary, **stop**. Do not tune enemies, modify stats, adjust abilities, or make any code changes based on this report.
+
+If the report shows failures or outliers, surface them to the user and wait for explicit instructions before taking any action.
+
 ## Related Skills
 
 | Skill | When to Use |
