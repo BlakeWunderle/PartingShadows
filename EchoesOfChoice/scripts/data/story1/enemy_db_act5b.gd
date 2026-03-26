@@ -20,7 +20,7 @@ static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 14)
 	f.speed = EH.es(34, 41, 1, 3, lvl, 14)
-	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 10
+	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 10
 	f.abilities = [EAB.sigil_crush(), EAB.anchor_pulse(), EAB.sigil_ward()]
 	f.flavor_text = "A massive construct of carved stone and living sigils. It guards the ritual pillars with relentless force."
 	return f
@@ -35,7 +35,7 @@ static func create_ritual_conduit(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(70, 79, 4, 6, lvl, 14)
 	f.magic_defense = EH.es(48, 56, 3, 5, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 4, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.conduit_beam(), EAB.mending_sigil(), EAB.ritual_shield()]
 	f.flavor_text = "A crystalline pillar that channels ritual energy. It mends damage to the anchors and shields its allies."
 	return f
@@ -50,7 +50,7 @@ static func create_void_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(60, 68, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 14)
 	f.speed = EH.es(43, 50, 2, 4, lvl, 14)
-	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 19
+	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 19
 	f.abilities = [EAB.void_slash(), EAB.nullfield()]
 	f.flavor_text = "A silent guardian of void energy. Its blade cuts through both armor and magic with equal ease."
 	return f
@@ -69,7 +69,7 @@ static func create_void_horror(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(78, 90, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(50, 58, 3, 5, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 4, lvl, 15)
-	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 16
+	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EAB.void_eruption(), EAB.terror_gaze()]
 	f.flavor_text = "A howling mass of void energy given terrible form. Its eruptions leave nothing but silence."
 	return f
@@ -84,7 +84,7 @@ static func create_fractured_shadow(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(14, 18, 0, 2, lvl, 15)
 	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 15)
 	f.speed = EH.es(51, 59, 3, 5, lvl, 15)
-	f.crit_chance = 28; f.crit_damage = 5; f.dodge_chance = 24
+	f.crit_chance = 30; f.crit_damage = 5; f.dodge_chance = 27
 	f.abilities = [EAB.shadow_rend(), EAB.flickerstrike(), EAB.speed_siphon()]
 	f.flavor_text = "A splintering fragment of the Stranger's essence. It moves faster than sight, striking from every angle."
 	return f
@@ -99,7 +99,7 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(67, 77, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
 	f.speed = EH.es(42, 49, 2, 4, lvl, 15)
-	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 20
+	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 20
 	f.abilities = [EAB.fading_curse(), EAB.remnant_bolt(), EAB.dissolution()]
 	f.flavor_text = "The decaying afterimage of the Stranger's power. It weakens everything it touches, draining strength and resolve."
 	return f
@@ -119,7 +119,7 @@ static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(88, 100, 3, 6, lvl, 15)
 	f.magic_defense = EH.es(52, 62, 2, 4, lvl, 15)
 	f.speed = EH.es(67, 76, 3, 5, lvl, 15)
-	f.crit_chance = 32; f.crit_damage = 6; f.dodge_chance = 24
+	f.crit_chance = 36; f.crit_damage = 6; f.dodge_chance = 26
 	f.abilities = [EAB.desperate_strike(), EAB.unraveling(), EAB.last_refuge(), EAB.entropy_spike()]
 	f.flavor_text = "The Stranger, stripped of ritual power, smaller and more human than ever before. Desperate, fast, and unpredictable."
 	return f
