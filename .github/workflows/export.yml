@@ -213,20 +213,28 @@ jobs:
         run: |
           cd macos-artifact
           unzip -q EchoesOfChoice-macos.zip
-          APP=$(ls -d *.app | head -1)
+          APP=$(find . -maxdepth 1 -name "*.app" | head -1)
           echo "Testing: $APP"
-          BINARY="$APP/Contents/MacOS/$(ls $APP/Contents/MacOS/ | head -1)"
+          BINARY="$APP/Contents/MacOS/$(ls "$APP/Contents/MacOS/" | head -1)"
+          echo "Binary: $BINARY"
           chmod +x "$BINARY"
-          # Run headlessly for up to 20s — exit 0 (clean quit) or 124 (timeout) are both fine
-          timeout 20 "$BINARY" --headless --quit 2>&1 | tee smoke.log || EXIT=$?
-          if [ "${EXIT:-0}" -eq 124 ]; then
-            echo "Game ran for 20s without crashing — PASS"
-          elif [ "${EXIT:-0}" -eq 0 ]; then
-            echo "Game initialized and quit cleanly — PASS"
+          # Run headlessly in background, wait up to 20s, then check result
+          "$BINARY" --headless --quit > smoke.log 2>&1 &
+          PID=$!
+          sleep 15
+          if kill -0 $PID 2>/dev/null; then
+            kill $PID
+            echo "Game ran for 15s without crashing — PASS"
           else
-            echo "Game crashed with exit code $EXIT — FAIL"
-            cat smoke.log
-            exit 1
+            wait $PID
+            EXIT=$?
+            if [ $EXIT -eq 0 ]; then
+              echo "Game initialized and quit cleanly — PASS"
+            else
+              echo "Game crashed with exit code $EXIT — FAIL"
+              cat smoke.log
+              exit 1
+            fi
           fi
 
   release:

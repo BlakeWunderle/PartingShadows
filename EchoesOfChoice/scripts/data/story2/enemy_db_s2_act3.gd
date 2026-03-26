@@ -171,7 +171,7 @@ static func create_mnemonic_golem(n: String, lvl: int = 12) -> FighterData:
 
 static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "The Warden", lvl)
-	f.health = EH.es(628, 710, 6, 9, lvl, 13); f.max_health = f.health
+	f.health = EH.es(597, 675, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(12, 16, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(38, 44, 2, 3, lvl, 13)
@@ -186,7 +186,7 @@ static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 
 static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Fractured Protector", lvl)
-	f.health = EH.es(590, 665, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(561, 632, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(87, 99, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 13)
@@ -206,11 +206,11 @@ static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 
 static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Fading Wisp", lvl)
-	f.health = EH.es(302, 345, 4, 7, lvl, 10); f.max_health = f.health
+	f.health = EH.es(306, 350, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(22, 28, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(69, 80, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(70, 81, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 10)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 10)
 	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 19
@@ -221,9 +221,9 @@ static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 
 static func create_dim_guardian(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Dim Guardian", lvl)
-	f.health = EH.es(381, 438, 4, 6, lvl, 10); f.max_health = f.health
+	f.health = EH.es(391, 449, 4, 6, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(54, 63, 2, 3, lvl, 10)
+	f.physical_attack = EH.es(55, 65, 2, 3, lvl, 10)
 	f.physical_defense = EH.es(42, 49, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
 	f.magic_defense = EH.es(36, 43, 1, 3, lvl, 10)
