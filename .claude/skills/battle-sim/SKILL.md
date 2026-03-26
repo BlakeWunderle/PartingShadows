@@ -47,7 +47,7 @@ Each run produces:
 **Enemy tuning iteration** (changed battles only — much faster):
 ```bash
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles BattleA,BattleB --diagnostics --auto --jobs 8 2>&1 | grep -v "$NOISE"
+  --battles BattleA,BattleB --diagnostics --auto --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 ---
@@ -69,7 +69,7 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 
 # Targeted battles (specific changed battles only)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --auto --jobs 8 2>&1 | grep -v "$NOISE"
+  --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --auto --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Full story validation (all tiers, all battles)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
@@ -112,37 +112,26 @@ The JSON file at `$JSON_PATH` accumulates results across runs. New runs merge in
 
 ## The Loop
 
-**Work one progression at a time, lowest to highest.** Each progression completes all three phases before moving on.
+**Work one battle at a time, lowest progression to highest.** Tune each battle to PASS before moving to the next. Enemy-only changes only — do not adjust player stats or growth rates here.
 
 ```
 FOR each progression 0 -> N, in order:
-  +-------------------------------------------------+
-  |  STEP 1: Enemy Tuning                           |
-  |  Stage hits gradient win rate?                   |
-  |  NO -> adjust enemy stats -> re-sim -> repeat   |
-  |  YES v                                          |
-  +-------------------------------------------------+
-  |  STEP 2: Power Curve Check                      |
-  |  Archetype ranking correct for this stage?       |
-  |  NO -> adjust player growth -> restart this prog |
-  |  YES v                                          |
-  +-------------------------------------------------+
-  |  STEP 3: Class Win Rate Band                    |
-  |  Every class between floor and ceiling?          |
-  |  NO -> buff/nerf outliers -> restart this prog   |
-  |  YES -> LOCK this progression, move to next      |
-  +-------------------------------------------------+
+  FOR each battle in this progression, in order:
+    +-----------------------------------------------+
+    |  Enemy Tuning (one battle at a time)          |
+    |  Run: --battles <ThisBattle> --diagnostics    |
+    |  TOO HARD / TOO EASY?                         |
+    |  -> adjust enemy stats -> re-sim -> repeat    |
+    |  PASS -> move to next battle in progression   |
+    +-----------------------------------------------+
+
+  All battles in progression PASS?
+  -> LOCK this progression, move to next
 
 AFTER all progressions locked:
-  -> Final validation pass (--story <N> --auto --all --diagnostics)
+  -> Final validation pass (--story <N> --tier <T> --auto --all --diagnostics --json "$JSON_PATH")
   -> If any stage broke, restart FROM that progression forward
 ```
-
-### Why This Order Matters
-
-- **Enemy-only changes** (Step 1) don't affect other stages -- safe to iterate freely.
-- **Player-side changes** (Steps 2-3) cascade forward through every later stage because growth rates compound with level-ups.
-- By locking stages low-to-high, earlier work is preserved.
 
 ### Generic Cascade Scope
 
@@ -150,10 +139,6 @@ AFTER all progressions locked:
 |-------------|---------|-------------|
 | Enemy stat ranges | The battle using that enemy | Re-sim that battle |
 | Enemy ability Modifier | Battles with enemies using that ability | Earliest battle using it |
-| Player base stats (T0) | ALL stages | Prog 0 |
-| Player T1 growth rates | Prog 3+ (T1 and later) | Prog 3 |
-| Player T2 growth rates | Prog 8+ (T2 only) | Prog 8 |
-| Ability Modifier changes | All stages with classes using that ability | Earliest affected stage |
 
 ---
 
@@ -199,36 +184,19 @@ Every battle after the first must have **at least 3 enemies**, unless it is a bo
 
 ## Step 1: Enemy Tuning
 
-**Goal:** Stage overall win rate falls within target +/- 3%.
+**Goal:** Each battle's overall win rate falls within target +/- 3%. Tune one battle at a time — sim only that battle, fix it, move on.
 
-- **PASS** -> move to Step 2
+```bash
+# Tune one battle at a time
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+  --battles <BattleName> --diagnostics --auto --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+```
+
+- **PASS** -> move to the next battle in this progression
 - **TOO HARD** -> weaken enemies: lower crit/dodge, reduce ability Modifiers, lower speed, remove an enemy (if >3), then fallback to HP ranges
 - **TOO EASY** -> strengthen enemies: add crit/dodge, increase ability Modifiers, raise speed, add a thematic enemy, then fallback to HP ranges
 
-Re-sim after each change until all battles at this progression show PASS. Use `--sample 100 --sims 50` for quick iteration.
-
-## Step 2: Power Curve Check
-
-**Goal:** Archetype ranking at this stage roughly follows the expected peaks. Per-battle variation is fine; the concern is persistent, stage-wide deviations.
-
-Group classes by archetype in CLASS BREAKDOWN and average their win rates. Compare against the story-specific power curve (see story reference file).
-
-If the ranking is roughly correct -> move to Step 3. If not, adjust player growth (see story reference for fixing curve problems).
-
-## Step 3: Class Win Rate Band
-
-**Goal:** Every class's win rate at this stage falls within the tier-specific band.
-
-- **Base (T0):** `target +/- 15%`
-- **Tier 1:** `target +/- 12.5%`
-- **Tier 2:** `target +/- 10%`
-- Classes flagged `** WEAK **` (below `target * 0.60`) are most urgent
-- If all classes within band -> **LOCK** this progression, move to next
-
-**Fixing outliers:**
-- Underpowered: check siblings (same T1 parent). If both weak, buff T1 growth. If solo, buff T2 growth or check for dead abilities.
-- Overpowered: reduce primary stat growth or ability Modifiers.
-- After any player-side change, restart from earliest affected progression.
+Once the battle PASSes, move to the next battle. Once all battles in the progression PASS, LOCK it and move on.
 
 ### When to Stop
 
