@@ -14,7 +14,7 @@ const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 
 static func upgrade_to_cavalry(f: FighterData) -> void:
 	f.class_id = "Cavalry"; f.character_type = "Cavalry"
-	f.health += 4; f.max_health += 4; f.mana += 1; f.max_mana += 1
+	f.health += 10; f.max_health += 10; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 9; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 3; f.crit_chance += 8; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB.lance(), PAB.trample(), PAB.cavalry_charge()]
@@ -271,7 +271,7 @@ static func _lu_bulwark(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(5, 6); f.physical_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(5, 6); f.physical_defense += randi_range(3, 5)
 	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
