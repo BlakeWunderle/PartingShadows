@@ -34,6 +34,7 @@ var _run_id: int = 0  ## unique per coordinator invocation — prevents file col
 
 
 func _init() -> void:
+	randomize()  ## ensure unique RNG seed per process (prevents collision when two coordinators start simultaneously)
 	_run_id = (Time.get_ticks_msec() ^ randi()) & 0xFFFFFF  ## 24-bit unique ID for this run
 	var args := OS.get_cmdline_user_args()
 	var jobs: int = OS.get_processor_count()

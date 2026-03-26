@@ -15,9 +15,9 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Cellar Sentinel", lvl)
-	f.health = EH.es(518, 593, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = EH.es(513, 587, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(83, 95, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(82, 94, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 12)
@@ -30,9 +30,9 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 
 static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Bound Stalker", lvl)
-	f.health = EH.es(401, 462, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = EH.es(397, 457, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(80, 91, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(79, 90, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
@@ -50,11 +50,11 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 
 static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Thread Disciple", lvl)
-	f.health = EH.es(588, 677, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(582, 670, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(101, 116, 3, 5, lvl, 13)
+	f.magic_attack = EH.es(100, 115, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(44, 53, 2, 4, lvl, 13)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 13)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 18
@@ -65,9 +65,9 @@ static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 
 static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Thread Warden", lvl)
-	f.health = EH.es(701, 803, 6, 9, lvl, 13); f.max_health = f.health
+	f.health = EH.es(694, 795, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(107, 123, 3, 5, lvl, 13)
+	f.physical_attack = EH.es(106, 122, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
 	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 13)
@@ -85,9 +85,9 @@ static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 
 static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Tunnel Sentinel", lvl)
-	f.health = EH.es(627, 717, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(618, 706, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(99, 114, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(98, 112, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(50, 59, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
 	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 14)
@@ -100,11 +100,11 @@ static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 
 static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Thread Sniper", lvl)
-	f.health = EH.es(462, 532, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = EH.es(455, 524, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(95, 109, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(94, 108, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(42, 50, 2, 4, lvl, 14)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 14)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 24
@@ -115,11 +115,11 @@ static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
 
 static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pale Devotee", lvl)
-	f.health = EH.es(506, 583, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = EH.es(499, 574, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(91, 105, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(90, 104, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 4, lvl, 14)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 14)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 18
