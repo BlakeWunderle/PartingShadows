@@ -265,9 +265,10 @@ func _show_play_mode() -> void:
 		{"label": "Single Player"},
 		{"label": "Local Co-op (2 Players)"},
 		{"label": "Local Co-op (3 Players)"},
-		{"label": "Online Multiplayer"},
-		{"label": "Back"},
 	]
+	if SteamManager.is_steam_running:
+		options.append({"label": "Online Multiplayer"})
+	options.append({"label": "Back"})
 	_menu.show_choices(options)
 
 
@@ -285,9 +286,12 @@ func _handle_play_mode_choice(index: int) -> void:
 		2:  # Local Co-op (3 Players)
 			LocalCoop.start(3)
 			SceneManager.change_scene("res://scenes/controller_assign/controller_assign.tscn")
-		3:  # Online Multiplayer
-			SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
-		4:  # Back
+		3:  # Online Multiplayer (Steam) or Back (no Steam)
+			if SteamManager.is_steam_running:
+				SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
+			else:
+				_show_main_menu()
+		4:  # Back (only reached when Online Multiplayer was shown)
 			_show_main_menu()
 
 

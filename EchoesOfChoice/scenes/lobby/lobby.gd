@@ -32,6 +32,9 @@ var _fighter_picker: FighterPicker
 
 
 func _ready() -> void:
+	if not SteamManager.is_steam_running:
+		SceneManager.change_scene("res://scenes/title/title.tscn")
+		return
 	MusicManager.play_music("res://assets/audio/music/menu/Land of Heroes Alt LOOP.wav")
 	NetManager.player_joined.connect(_on_player_joined)
 	NetManager.player_left.connect(_on_player_left)
@@ -104,7 +107,7 @@ func _build_ui() -> void:
 	_address_input.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_address_input.max_length = 45
 	_address_input.visible = false
-	_address_input.text_submitted.connect(_on_address_submitted)
+	# _address_input is kept in the scene tree but unused (Steam-only lobby)
 	_vbox.add_child(_address_input)
 
 	# Menu
@@ -176,20 +179,8 @@ func _start_hosting() -> void:
 		NetManager.host_game_steam()
 		return
 
-	# ENet fallback: synchronous, show local IP
-	var err := NetManager.host_game()
-	if err != OK:
-		_status_label.text = "Failed to start server. Try again."
-		_status_label.visible = true
-		return
-
-	_mode = Mode.HOSTING
-	_header.text = "HOST GAME"
-	_address_input.visible = false
-	_show_host_menu()
-	_refresh_player_list()
-	var local_ip: String = _get_local_ip()
-	_status_label.text = "Your IP: %s  (port 7777)" % local_ip
+	# Steam required — should not reach here after the _ready() guard
+	_status_label.text = "Steam is required for online play."
 	_status_label.visible = true
 
 
@@ -283,34 +274,14 @@ func _show_join_input() -> void:
 	_header.text = "JOIN GAME"
 	_player_list.visible = false
 
-	if SteamManager.is_steam_running:
-		# Steam: guest joins only via overlay invite — no manual IP input
-		_address_input.visible = false
-		_status_label.text = "Ask the host to invite you via Steam overlay (Shift+Tab)."
-		_status_label.visible = true
-		_menu.show_choices([{"label": "Back"}])
-		return
-
-	# ENet: manual IP entry
-	_status_label.visible = false
-	_address_input.visible = true
-	_address_input.text = ""
-	_address_input.grab_focus()
-	_menu.show_choices([
-		{"label": "Connect"},
-		{"label": "Back"},
-	])
+	_address_input.visible = false
+	_status_label.text = "Ask the host to invite you via Steam overlay (Shift+Tab)."
+	_status_label.visible = true
+	_menu.show_choices([{"label": "Back"}])
 
 
-func _handle_join_input_choice(index: int) -> void:
-	if SteamManager.is_steam_running:
-		_show_role_select()  # Only option is "Back"
-		return
-	match index:
-		0:  # Connect
-			_try_connect()
-		1:  # Back
-			_show_role_select()
+func _handle_join_input_choice(_index: int) -> void:
+	_show_role_select()
 
 
 func _auto_join_steam_lobby(steam_lobby_id: int) -> void:
@@ -322,29 +293,6 @@ func _auto_join_steam_lobby(steam_lobby_id: int) -> void:
 	_menu.hide_menu()
 	NetManager.join_game_steam(steam_lobby_id)
 
-
-func _on_address_submitted(_text: String) -> void:
-	_try_connect()
-
-
-func _try_connect() -> void:
-	var address: String = _address_input.text.strip_edges()
-	if address.is_empty():
-		_status_label.text = "Please enter an IP address."
-		_status_label.visible = true
-		return
-
-	_mode = Mode.CONNECTING
-	_status_label.text = "Connecting to %s..." % address
-	_status_label.visible = true
-	_address_input.visible = false
-	_menu.hide_menu()
-
-	var err := NetManager.join_game(address)
-	if err != OK:
-		_status_label.text = "Failed to connect. Check the address and try again."
-		await get_tree().create_timer(2.0).timeout
-		_show_join_input()
 
 
 # =============================================================================
@@ -543,22 +491,6 @@ func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: S
 # =============================================================================
 # Helpers
 # =============================================================================
-
-## Returns the best local IPv4 address to share with LAN guests.
-## Skips loopback and link-local addresses, preferring 192.168/10/172 ranges.
-func _get_local_ip() -> String:
-	var addresses: Array = IP.get_local_addresses()
-	var best: String = ""
-	for addr: String in addresses:
-		if addr.begins_with("127.") or addr.begins_with("::"):
-			continue
-		if not "." in addr:
-			continue  # skip IPv6
-		if addr.begins_with("192.168.") or addr.begins_with("10.") or addr.begins_with("172."):
-			return addr
-		if best.is_empty():
-			best = addr
-	return best if not best.is_empty() else "unknown"
 
 
 # =============================================================================
