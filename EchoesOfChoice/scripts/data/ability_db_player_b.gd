@@ -252,11 +252,11 @@ static func spirit_mend() -> AbilityData:
 # Falconer
 static func falcon_strike() -> AbilityData:
 	return _make("Falcon Strike", "A raptor dives from above.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func talon_rend() -> AbilityData:
-	return _make("Talon Rend", "The falcon shreds the enemy's armor with razor talons, leaving lacerations that bleed.",
-		Enums.StatType.DEFENSE, 6, 2, true, 3, false, 3, 0.0)
+	return _make("Talon Rend", "The falcon rakes razor talons across the enemy, lacerations bleeding long after the strike.",
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 3, 0.0)
 
 static func aerial_strike() -> AbilityData:
 	return _make("Aerial Strike", "The falcon sweeps low, raking talons across all enemies.",

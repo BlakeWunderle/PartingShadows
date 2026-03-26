@@ -63,28 +63,28 @@ static func inner_focus() -> AbilityData:
 # Cavalry
 static func lance() -> AbilityData:
 	return _make("Lance", "A devastating mounted charge.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
 static func cavalry_charge() -> AbilityData:
 	return _make("Cavalry Charge", "Crash into the enemy with unstoppable momentum.",
-		Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 5, false, 0, 0.3)
+		Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 5, false, 0, 0.3)
 
 static func trample() -> AbilityData:
 	return _make("Trample", "Charge through the enemy lines, crushing body and spirit alike.",
-		Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, true, 0, 0.0)
 
 # Dragoon
 static func jump() -> AbilityData:
 	return _make("Jump", "Leap high and crash down on all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, true, 0, 0.0)
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
-		Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 3, 0.0)
+		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 3, 0.0)
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
-		Enums.StatType.MIXED_ATTACK, 10, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 14, 0, true, 5, false, 0, 0.0)
 
 # Mercenary
 static func gun_shot() -> AbilityData:
@@ -219,11 +219,11 @@ static func lay_on_hands() -> AbilityData:
 
 static func holy_strike() -> AbilityData:
 	return _make("Holy Strike", "A blow charged with divine wrath.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 2, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 16, 0, true, 2, false, 0, 0.0)
 
 static func smite() -> AbilityData:
 	return _make("Smite", "Holy wrath made manifest.",
-		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 # Priest
 static func restoration() -> AbilityData:

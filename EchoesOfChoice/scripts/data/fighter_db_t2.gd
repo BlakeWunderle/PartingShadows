@@ -15,7 +15,7 @@ const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 static func upgrade_to_cavalry(f: FighterData) -> void:
 	f.class_id = "Cavalry"; f.character_type = "Cavalry"
 	f.health += 4; f.max_health += 4; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
+	f.physical_attack += 9; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 3; f.crit_chance += 8; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB.lance(), PAB.trample(), PAB.cavalry_charge()]
 	f.upgrade_items = []
@@ -23,7 +23,7 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
 	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 4
+	f.physical_attack += 8; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_dive()]
 	f.upgrade_items = []
@@ -195,7 +195,7 @@ static func _lu_tempest(f: FighterData) -> void:
 static func upgrade_to_paladin(f: FighterData) -> void:
 	f.class_id = "Paladin"; f.character_type = "Paladin"
 	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 2
+	f.physical_attack += 8; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.lay_on_hands(), PAB.holy_strike(), PAB.smite()]
 	f.upgrade_items = []
