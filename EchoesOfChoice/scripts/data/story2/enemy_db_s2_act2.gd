@@ -114,7 +114,7 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(23, 28, 1, 2, lvl, 8)
 	f.speed = EH.es(27, 34, 1, 3, lvl, 8)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 12
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.boarding_axe(), EAB.captains_orders()]
 	f.flavor_text = "A ruthless pirate captain who commands the Blackwater fleet. Scars and sea salt have hardened both body and will."
 	return f
@@ -129,7 +129,7 @@ static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(51, 59, 3, 5, lvl, 8)
 	f.magic_defense = EH.es(34, 40, 2, 3, lvl, 8)
 	f.speed = EH.es(29, 36, 2, 3, lvl, 8)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.brine_curse(), EAB.corrode_ward()]
 	f.flavor_text = "A sea-witch who sails with the corsair fleet, dealing in curses drawn from the deep. Saltwater itself bends to their hexes."
 	return f

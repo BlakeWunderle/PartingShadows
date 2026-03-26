@@ -50,7 +50,7 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(103, 120, 3, 4, lvl, 14)
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 4, lvl, 14)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 26
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 26
 	f.abilities = [EABL.wave_of_oblivion(), EABL.nihil_bolt()]
 	f.flavor_text = "A wraith woven from pure forgetting. Where it passes, all sense of self dissolves, leaving only a hollow ache where identity once lived."
 	return f
@@ -95,7 +95,7 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
 	f.speed = EH.es(38, 46, 2, 4, lvl, 14)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 25
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EABL.memory_blade(), EABL.ironclad_will()]
 	f.flavor_text = "A warrior conjured from stolen memories of great knights. It fights with borrowed valor and an unshakable conviction that it is real."
 	return f
