@@ -62,12 +62,12 @@ static func create_void_sentinel(n: String, lvl: int = 14) -> FighterData:
 
 static func create_void_horror(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Void Horror", lvl)
-	f.health = EH.es(398, 448, 6, 9, lvl, 15); f.max_health = f.health
+	f.health = EH.es(409, 460, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(26, 31, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 15)
-	f.physical_defense = EH.es(31, 38, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(71, 82, 4, 6, lvl, 15)
-	f.magic_defense = EH.es(46, 54, 3, 5, lvl, 15)
+	f.physical_defense = EH.es(34, 41, 2, 4, lvl, 15)
+	f.magic_attack = EH.es(78, 90, 4, 6, lvl, 15)
+	f.magic_defense = EH.es(50, 58, 3, 5, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 4, lvl, 15)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 16
 	f.abilities = [EAB.void_eruption(), EAB.terror_gaze()]
@@ -77,10 +77,10 @@ static func create_void_horror(n: String, lvl: int = 15) -> FighterData:
 
 static func create_fractured_shadow(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Fractured Shadow", lvl)
-	f.health = EH.es(372, 422, 6, 9, lvl, 15); f.max_health = f.health
+	f.health = EH.es(383, 434, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(68, 78, 3, 5, lvl, 15)
-	f.physical_defense = EH.es(27, 33, 2, 3, lvl, 15)
+	f.physical_attack = EH.es(75, 86, 3, 5, lvl, 15)
+	f.physical_defense = EH.es(29, 36, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(14, 18, 0, 2, lvl, 15)
 	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 15)
 	f.speed = EH.es(51, 59, 3, 5, lvl, 15)
@@ -92,12 +92,12 @@ static func create_fractured_shadow(n: String, lvl: int = 15) -> FighterData:
 
 static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Shadow Remnant", lvl)
-	f.health = EH.es(363, 410, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(374, 422, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(22, 27, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 15)
-	f.physical_defense = EH.es(33, 40, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(60, 70, 3, 5, lvl, 15)
-	f.magic_defense = EH.es(42, 50, 2, 4, lvl, 15)
+	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 15)
+	f.magic_attack = EH.es(67, 77, 3, 5, lvl, 15)
+	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
 	f.speed = EH.es(42, 49, 2, 4, lvl, 15)
 	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 20
 	f.abilities = [EAB.fading_curse(), EAB.remnant_bolt(), EAB.dissolution()]
@@ -112,11 +112,11 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Stranger Undone", lvl)
 	f.class_id = "StrangerUndone"
-	f.health = EH.es(1110, 1215, 13, 18, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1176, 1286, 13, 19, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(38, 44, 3, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(73, 84, 2, 4, lvl, 15)
+	f.physical_attack = EH.es(78, 89, 2, 4, lvl, 15)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 15)
-	f.magic_attack = EH.es(82, 94, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(88, 100, 3, 6, lvl, 15)
 	f.magic_defense = EH.es(52, 62, 2, 4, lvl, 15)
 	f.speed = EH.es(67, 76, 3, 5, lvl, 15)
 	f.crit_chance = 32; f.crit_damage = 6; f.dodge_chance = 24
