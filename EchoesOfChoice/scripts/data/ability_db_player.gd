@@ -128,11 +128,11 @@ static func blade_flurry() -> AbilityData:
 # Monk
 static func spirit_attack() -> AbilityData:
 	return _make("Spirit Attack", "Channel inner energy into a focused strike.",
-		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 static func precise_strike() -> AbilityData:
 	return _make("Precise Strike", "Find the exact point of weakness.",
-		Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 5, false, 0, 0.0)
 
 static func inner_peace() -> AbilityData:
 	return _make("Inner Peace", "Channel spiritual harmony to mend an ally's wounds.",
@@ -319,7 +319,7 @@ static func ballad() -> AbilityData:
 
 static func serenade() -> AbilityData:
 	return _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 5, 0, false, 4, false, 0, 0.0)
 
 # Illusionist
 static func phantom_strike() -> AbilityData:

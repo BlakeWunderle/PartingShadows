@@ -220,7 +220,7 @@ static func _lu_astronomer(f: FighterData) -> void:
 static func upgrade_to_automaton(f: FighterData) -> void:
 	f.class_id = "Automaton"; f.character_type = "Automaton"
 	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 3; f.magic_defense += 2
+	f.physical_attack += 2; f.physical_defense += 0; f.magic_attack += 3; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.self_repair()]
 	f.upgrade_items = []
@@ -228,7 +228,7 @@ static func upgrade_to_automaton(f: FighterData) -> void:
 static func upgrade_to_technomancer(f: FighterData) -> void:
 	f.class_id = "Technomancer"; f.character_type = "Technomancer"
 	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 2
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.circuit_blast(), PAB_B.techno_drain(), PAB_B.emp_pulse()]
 	f.upgrade_items = []

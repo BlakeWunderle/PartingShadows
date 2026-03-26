@@ -124,16 +124,16 @@ static func discharge() -> AbilityData:
 
 static func self_repair() -> AbilityData:
 	return _make("Self-Repair", "Reroute power to internal repair systems.",
-		Enums.StatType.HEALTH, 10, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 7, 0, false, 4, false, 0, 0.0)
 
 # Technomancer
 static func circuit_blast() -> AbilityData:
 	return _make("Circuit Blast", "Channel magic through overcharged circuits.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 static func techno_drain() -> AbilityData:
 	return _make("Techno Drain", "Siphon the enemy's energy through crackling circuits.",
-		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, false, 0, 0.5)
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 4, false, 0, 0.5)
 
 static func emp_pulse() -> AbilityData:
 	return _make("EMP Pulse", "An electromagnetic burst disrupts all enemies' reactions.",
@@ -243,11 +243,11 @@ static func spirit_shield() -> AbilityData:
 
 static func ancestral_blessing() -> AbilityData:
 	return _make("Ancestral Blessing", "The ancestors empower all allies.",
-		Enums.StatType.ATTACK, 3, 2, false, 4, true, 0, 0.0)
+		Enums.StatType.ATTACK, 2, 2, false, 4, true, 0, 0.0)
 
 static func spirit_mend() -> AbilityData:
 	return _make("Spirit Mend", "Healing energy from the spirit world.",
-		Enums.StatType.HEALTH, 7, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.HEALTH, 5, 0, false, 5, false, 0, 0.0)
 
 # Falconer
 static func falcon_strike() -> AbilityData:
