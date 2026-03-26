@@ -115,11 +115,11 @@ static func create_ritual_guardian(n: String, lvl: int = 16) -> FighterData:
 # Prog 16 -- mage ritualist (level 17)
 static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	var f := EH.base(n, "Cult Ritualist", lvl)
-	f.health = EH.es(566, 651, 5, 8, lvl, 17); f.max_health = f.health
+	f.health = EH.es(573, 659, 5, 8, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(20, 24, 1, 2, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(44, 54, 2, 4, lvl, 17)
-	f.magic_attack = EH.es(106, 122, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(107, 123, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
@@ -131,11 +131,11 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 # Prog 16 -- mage glass cannon (level 17)
 static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	var f := EH.base(n, "High Weaver", lvl)
-	f.health = EH.es(502, 578, 5, 8, lvl, 17); f.max_health = f.health
+	f.health = EH.es(508, 585, 5, 8, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(22, 25, 2, 3, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 17)
-	f.magic_attack = EH.es(110, 127, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(111, 129, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 17)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 17)
 	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 25
@@ -186,9 +186,9 @@ static func create_needle_wraith(n: String, lvl: int = 16) -> FighterData:
 # Very high HP + pAtk + mDef, very slow, magic passes through the weave
 static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 	var f := EH.base(n, "LoomCrusher", lvl)
-	f.health = EH.es(775, 892, 7, 10, lvl, 17); f.max_health = f.health
+	f.health = EH.es(784, 903, 7, 10, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 17); f.max_mana = f.mana
-	f.physical_attack = EH.es(121, 139, 4, 6, lvl, 17)
+	f.physical_attack = EH.es(122, 141, 4, 6, lvl, 17)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = EH.es(72, 83, 3, 5, lvl, 17)
@@ -209,7 +209,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(99, 114, 3, 6, lvl, 18)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
 	f.speed = EH.es(38, 44, 3, 4, lvl, 18)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 29
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 27
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
 	f.flavor_text = "A splinter of the Threadmaster's own shadow, given independent will. It devours light and hope in equal measure, weakening enemies before the final confrontation."
 	return f

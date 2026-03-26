@@ -245,7 +245,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(21, 27, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(77, 89, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(70, 80, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 23
@@ -295,7 +295,7 @@ static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	f.mana = EH.es(17, 20, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
 	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 11)
-	f.magic_attack = EH.es(74, 85, 2, 4, lvl, 11)
+	f.magic_attack = EH.es(76, 87, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 11)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 23
