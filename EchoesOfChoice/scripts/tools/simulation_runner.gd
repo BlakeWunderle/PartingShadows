@@ -148,7 +148,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				var ct: String = f.character_type
 				if not class_diag.has(ct):
 					class_diag[ct] = {dmg_dealt = 0, dmg_taken = 0,
-						heals = 0, deaths = 0, battles = 0, actions = 0}
+						heals = 0, deaths = 0, battles = 0, actions = 0, dmg_mitigated = 0}
 				var ss: Dictionary = engine.sim_stats.get(f, {})
 				class_diag[ct].dmg_dealt += ss.get("dmg_dealt", 0)
 				class_diag[ct].dmg_taken += ss.get("dmg_taken", 0)
@@ -156,6 +156,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				class_diag[ct].deaths += 1 if ss.get("died", false) else 0
 				class_diag[ct].battles += 1
 				class_diag[ct].actions += br.unit_actions.get(f, 0)
+				class_diag[ct].dmg_mitigated += ss.get("dmg_mitigated", 0)
 
 		combo_results.append({
 			"description": PC.get_party_description(party_def),
@@ -329,6 +330,23 @@ static func print_class_breakdown(result: Dictionary) -> void:
 		print("    %-22s %9.1f%% %8d %8.1f  %s" % [
 			e["class"], e.win_rate * 100, e.count, e.avg_acts, note])
 
+	# Combat stats section (all classes).
+	print("
+  COMBAT STATS (avg per battle):")
+	print("    %-22s %8s %8s %10s %8s" % ["Class", "Dealt", "Taken", "Mitigated", "Heals"])
+	print("    " + "-".repeat(62))
+	for e: Dictionary in entries:
+		var d: Dictionary = diag.get(e["class"], {})
+		var battles: int = d.get("battles", 0)
+		if battles == 0:
+			continue
+		var avg_dealt: float = float(d.get("dmg_dealt", 0)) / battles
+		var avg_taken: float = float(d.get("dmg_taken", 0)) / battles
+		var avg_mitigated: float = float(d.get("dmg_mitigated", 0)) / battles
+		var avg_heals: float = float(d.get("heals", 0)) / battles
+		print("    %-22s %8.1f %8.1f %10.1f %8.1f" % [
+			e["class"], avg_dealt, avg_taken, avg_mitigated, avg_heals])
+
 
 static func print_summary(results: Array) -> void:
 	print("\n" + "=".repeat(80))
@@ -458,6 +476,23 @@ static func format_stage_verbose(result: Dictionary) -> PackedStringArray:
 		var note: String = "** WEAK **" if e.win_rate < warn_threshold else ""
 		lines.append("    %-22s %9.1f%% %8d %8.1f  %s" % [
 			e["class"], e.win_rate * 100, e.count, e.avg_acts, note])
+
+	# Combat stats section (all classes).
+	lines.append("")
+	lines.append("  COMBAT STATS (avg per battle):")
+	lines.append("    %-22s %8s %8s %10s %8s" % ["Class", "Dealt", "Taken", "Mitigated", "Heals"])
+	lines.append("    " + "-".repeat(62))
+	for e: Dictionary in entries:
+		var dc: Dictionary = diag.get(e["class"], {})
+		var battles_c: int = dc.get("battles", 0)
+		if battles_c == 0:
+			continue
+		var avg_dealt: float = float(dc.get("dmg_dealt", 0)) / battles_c
+		var avg_taken: float = float(dc.get("dmg_taken", 0)) / battles_c
+		var avg_mitigated: float = float(dc.get("dmg_mitigated", 0)) / battles_c
+		var avg_heals: float = float(dc.get("heals", 0)) / battles_c
+		lines.append("    %-22s %8.1f %8.1f %10.1f %8.1f" % [
+			e["class"], avg_dealt, avg_taken, avg_mitigated, avg_heals])
 
 	lines.append("")
 	lines.append("  STATUS: %s" % get_status(result))

@@ -1,34 +1,39 @@
 ---
 name: class-report
-description: Generate a per-class win rate report across all battles. Runs the battle simulator with JSON output, then builds a persistent markdown report saved to the memory directory. Use after balance changes, before releases, or to understand how each class performs across every fight.
+description: Generate a per-class win rate report across all battles. Uses existing sim JSON when available (no re-sim by default), or runs the battle simulator fresh with `refresh`. Builds a persistent markdown report saved to the memory directory. Use after balance changes, before releases, or to understand how each class performs across every fight.
 ---
 
 # Class Performance Report Generator
 
-Runs simulations and generates a persistent markdown report showing how every player class performs at every battle.
+Builds a persistent markdown report showing how every player class performs at every battle. Uses existing JSON data by default — only re-sims when explicitly requested.
 
 ## Arguments
 
-- No args: quick report for all stories
-- `quick`: explicit quick mode (default)
-- `full`: full --auto simulation (10-15 minutes)
-- `story 1`, `story 2`, `story 3`: filter to a specific story
-- Combined: `full story 2`
-- `--from-json <path>`: Skip simulation, read pre-existing JSON from a previous sim run. Goes directly to Step 2.
+- No args: use existing JSON if present, otherwise run quick sim
+- `refresh`: force a new simulation run even if JSON exists
+- `refresh quick`: force quick sim (--sample 150 --sims 80)
+- `refresh full`: force full sim (--auto, 10-15 minutes)
+- `story 1`, `story 2`, `story 3`: filter to a specific story (only applies when refreshing)
+- Combined: `refresh full story 2`
 
 ## Procedure
 
-### Step 1: Run the simulator with JSON output
+### Step 1: Determine data source
 
-**If `--from-json <path>` was provided:** Skip this step entirely. Set `JSON_PATH` to the provided path and go directly to Step 2.
+```
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
+```
+
+**If `refresh` was NOT provided AND `JSON_PATH` exists:** Skip simulation entirely. Go directly to Step 2.
+
+**If `refresh` was provided OR `JSON_PATH` does not exist:** Run the simulator:
 
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
 ```
 
-**Quick mode** (default): `--sample 150 --sims 80`
+**Quick mode** (default when refreshing): `--sample 150 --sims 80`
 ```bash
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --sample 150 --sims 80 [--story N] --all --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 ```
@@ -50,6 +55,8 @@ combo_count, elapsed_ms, status, class_breakdown, spread, best_combos, worst_com
 ```
 
 `class_breakdown` is a dictionary keyed by class display name, each with `wins`, `total`, `win_rate`, `combo_count`.
+
+`combat_stats` is a dictionary keyed by class display name, each with `avg_dealt`, `avg_taken`, `avg_mitigated`, `avg_heals`, `death_rate` (per-battle averages).
 
 ### Step 3: Generate the markdown report
 
@@ -100,6 +107,23 @@ Generated: YYYY-MM-DD | Mode: quick/full | Stories: 1, 2, 3
 
 ### Story 1
 [same table format with T2 class names]
+
+## Combat Effectiveness
+
+Per-class averages across all battles the class appears in (averaged over stages, not individual sims).
+
+### Base Tier
+| Class | Avg Dealt | Avg Taken | Avg Mitigated | Avg Heals |
+|-------|-----------|-----------|---------------|-----------|
+| Squire | 210.3 | 185.2 | 42.1 | 8.5 |
+
+[Repeat rows for all base classes]
+
+### Tier 1
+[same format, T1 classes]
+
+### Tier 2
+[same format, T2 classes]
 
 ## Spread Analysis
 

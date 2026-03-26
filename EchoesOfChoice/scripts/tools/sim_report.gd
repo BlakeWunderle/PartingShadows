@@ -18,6 +18,21 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 	var best_entries := []
 	for c: Dictionary in extremes.best:
 		best_entries.append({"description": c.description, "win_rate": c.win_rate})
+	# Build per-class combat stat averages for JSON persistence.
+	var diag_raw: Dictionary = result.get("class_diag", {})
+	var combat_stats := {}
+	for cname: String in diag_raw:
+		var cd: Dictionary = diag_raw[cname]
+		var b: int = cd.get("battles", 0)
+		if b == 0:
+			continue
+		combat_stats[cname] = {
+			"avg_dealt": float(cd.get("dmg_dealt", 0)) / b,
+			"avg_taken": float(cd.get("dmg_taken", 0)) / b,
+			"avg_mitigated": float(cd.get("dmg_mitigated", 0)) / b,
+			"avg_heals": float(cd.get("heals", 0)) / b,
+			"death_rate": float(cd.get("deaths", 0)) / b,
+		}
 	return {
 		"stage_name": result.stage_name,
 		"story": stage.get("story", 1),
@@ -29,6 +44,7 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 		"elapsed_ms": result.elapsed_ms,
 		"status": SR.get_status(result),
 		"class_breakdown": breakdown,
+		"combat_stats": combat_stats,
 		"spread": spread,
 		"best_combos": best_entries,
 		"worst_combos": worst_entries,

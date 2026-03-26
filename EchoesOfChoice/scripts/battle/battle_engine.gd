@@ -44,9 +44,9 @@ func start_battle_sim(party: Array, enemy_list: Array) -> void:
 		f.reset_for_battle()
 	sim_stats.clear()
 	for f: FighterData in units:
-		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false}
+		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false, dmg_mitigated = 0}
 	for f: FighterData in enemies:
-		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false}
+		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false, dmg_mitigated = 0}
 
 
 ## Advance ATB timers by one tick. Returns true if any units can act.
@@ -143,6 +143,11 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 	if sim_mode:
 		sim_stats[attacker].dmg_dealt += damage
 		sim_stats[defender].dmg_taken += damage
+		var raw_phys: int = maxi(attacker.physical_attack, 0)
+		var raw_mag: int = maxi(attacker.magic_attack / 2, 0)
+		var raw_base: int = maxi(raw_phys, raw_mag)
+		var base_after_def: int = damage - (attacker.crit_damage if is_crit else 0)
+		sim_stats[defender].dmg_mitigated += maxi(raw_base - base_after_def, 0)
 	else:
 		combat_message.emit("%s did %d points of damage to %s." % [
 			attacker.character_name, damage, defender.character_name])
@@ -177,6 +182,9 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		if sim_mode:
 			sim_stats[attacker].dmg_dealt += damage
 			sim_stats[defender].dmg_taken += damage
+			var raw_ability: int = maxi(_calc_ability_damage_raw(attacker, ability), 0)
+			var base_after_def: int = damage - (attacker.crit_damage if is_crit else 0)
+			sim_stats[defender].dmg_mitigated += maxi(raw_ability - base_after_def, 0)
 		else:
 			if not skip_flavor:
 				combat_message.emit(ability.flavor_text)
@@ -278,6 +286,19 @@ func _calc_ability_damage(attacker: FighterData, defender: FighterData,
 			return ability.modifier \
 				+ (attacker.physical_attack + attacker.magic_attack) / 2 \
 				- (defender.physical_defense + defender.magic_defense) / 2
+		_:
+			return ability.modifier
+
+
+func _calc_ability_damage_raw(attacker: FighterData, ability: AbilityData) -> int:
+	match ability.modified_stat:
+		Enums.StatType.MAGIC_ATTACK:
+			return ability.modifier + attacker.magic_attack
+		Enums.StatType.PHYSICAL_ATTACK:
+			return ability.modifier + attacker.physical_attack
+		Enums.StatType.MIXED_ATTACK:
+			return ability.modifier \
+				+ (attacker.physical_attack + attacker.magic_attack) / 2
 		_:
 			return ability.modifier
 

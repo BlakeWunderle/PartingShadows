@@ -37,6 +37,7 @@ static func analyze(result: Dictionary, stage: Dictionary) -> Array:
 		var avg_dealt: float = float(cd.dmg_dealt) / battles
 		var avg_taken: float = float(cd.dmg_taken) / battles
 		var avg_heals: float = float(cd.heals) / battles
+		var avg_mitigated: float = float(cd.get("dmg_mitigated", 0)) / battles
 		var death_rate: float = float(cd.deaths) / battles
 
 		var offense_ratio: float = avg_dealt / avg.dmg_dealt if avg.dmg_dealt > 0 else 1.0
@@ -59,9 +60,11 @@ static func analyze(result: Dictionary, stage: Dictionary) -> Array:
 			"avg_dmg_dealt": avg_dealt,
 			"avg_dmg_taken": avg_taken,
 			"avg_heals": avg_heals,
+			"avg_mitigated": avg_mitigated,
 			"death_rate": death_rate,
 			"stage_avg_dealt": avg.dmg_dealt,
 			"stage_avg_taken": avg.dmg_taken,
+			"stage_avg_mitigated": avg.dmg_mitigated,
 			"offense_ratio": offense_ratio,
 			"defense_ratio": defense_ratio,
 			"enemy_profile": enemy_profile,
@@ -79,19 +82,22 @@ static func _compute_averages(diag: Dictionary) -> Dictionary:
 	var total_heals := 0
 	var total_deaths := 0
 	var total_battles := 0
+	var total_mitigated := 0
 	for cd: Dictionary in diag.values():
 		total_dealt += cd.dmg_dealt
 		total_taken += cd.dmg_taken
 		total_heals += cd.heals
 		total_deaths += cd.deaths
 		total_battles += cd.battles
+		total_mitigated += cd.get("dmg_mitigated", 0)
 	if total_battles == 0:
-		return {dmg_dealt = 0.0, dmg_taken = 0.0, heals = 0.0, death_rate = 0.0}
+		return {dmg_dealt = 0.0, dmg_taken = 0.0, heals = 0.0, death_rate = 0.0, dmg_mitigated = 0.0}
 	return {
 		dmg_dealt = float(total_dealt) / total_battles,
 		dmg_taken = float(total_taken) / total_battles,
 		heals = float(total_heals) / total_battles,
 		death_rate = float(total_deaths) / total_battles,
+		dmg_mitigated = float(total_mitigated) / total_battles,
 	}
 
 
@@ -137,6 +143,8 @@ static func print_diagnostics(diagnostics: Array, stage_name: String) -> void:
 			d.avg_dmg_taken, d.stage_avg_taken, d.defense_ratio])
 		print("      Heals: avg %.0f | Death rate: %.0f%%" % [
 			d.avg_heals, d.death_rate * 100])
+		print("      Mitigated: avg %.0f (stage avg %.0f)" % [
+			d.get("avg_mitigated", 0.0), d.get("stage_avg_mitigated", 0.0)])
 		if not d.enemy_profile.is_empty():
 			var ep: Dictionary = d.enemy_profile
 			print("      Enemies: %d units, avg p_def=%d m_def=%d p_atk=%d m_atk=%d" % [

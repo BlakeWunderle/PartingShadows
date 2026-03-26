@@ -40,7 +40,8 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 Each run produces:
 - Pass/fail summary for every T2 battle
 - Full per-class win rate breakdown (sorted by win rate)
-- WEAK class diagnostics (offense/defense ratios for classes below 60% of target)
+- Per-class combat stats (avg dealt / taken / mitigated / heals per battle) — always shown
+- WEAK class diagnostics (offense/defense ratios + mitigated for classes below 60% of target)
 - Persisted JSON for later reference
 
 **Enemy tuning iteration** (changed battles only — much faster):
@@ -95,7 +96,7 @@ The parallel coordinator (`battle_sim_parallel.gd`) auto-detects the best split 
 The JSON file at `$JSON_PATH` accumulates results across runs. New runs merge into existing data, replacing matching stage names. Structure:
 
 ```json
-{ "stages": [ { "stage_name": "...", "class_breakdown": { "ClassName": { "win_rate": 0.75, "wins": N, "total": N, "combo_count": N } } } ] }
+{ "stages": [ { "stage_name": "...", "class_breakdown": { "ClassName": { "win_rate": 0.75, "wins": N, "total": N, "combo_count": N } }, "combat_stats": { "ClassName": { "avg_dealt": 210.3, "avg_taken": 185.2, "avg_mitigated": 42.1, "avg_heals": 8.5, "death_rate": 0.12 } } } ] }
 ```
 
 **When you need class data** (band checks, outlier analysis, tier handoffs): read the JSON file first. Only re-sim if stats changed since it was written.
