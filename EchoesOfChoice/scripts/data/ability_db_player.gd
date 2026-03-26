@@ -241,7 +241,7 @@ static func holy() -> AbilityData:
 # Warlock
 static func shadow_bolt() -> AbilityData:
 	return _make("Shadow Bolt", "A bolt of concentrated darkness.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
 
 static func dark_pact() -> AbilityData:
 	return _make("Dark Pact", "Invoke forbidden rites that erode the magical defenses of all enemies.",
@@ -249,7 +249,7 @@ static func dark_pact() -> AbilityData:
 
 static func drain_life() -> AbilityData:
 	return _make("Drain Life", "Steal the enemy's life force.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 5, false, 0, 0.5)
+		Enums.StatType.MAGIC_ATTACK, 11, 0, true, 5, false, 0, 0.5)
 
 
 # =============================================================================
@@ -341,11 +341,11 @@ static func invisible_wall() -> AbilityData:
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 16, 0, true, 4, false, 0, 0.0)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",
-		Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
+		Enums.StatType.SPEED, 6, 2, true, 2, false, 0, 0.0)
 
 # Laureate
 static func ovation() -> AbilityData:

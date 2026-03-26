@@ -200,15 +200,15 @@ static func stampede() -> AbilityData:
 # Blighter
 static func blight() -> AbilityData:
 	return _make("Blight", "Dark natural magic that corrupts.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 5, false, 0, 0.0)
 
 static func plague() -> AbilityData:
 	return _make("Plague", "Corruption spreads to everything it touches.",
-		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, true, 0, 0.0)
 
 static func poison_sting() -> AbilityData:
 	return _make("Poison Sting", "A venomous barb that festers.",
-		Enums.StatType.HEALTH, 0, 3, true, 3, false, 6, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 3, false, 6, 0.0)
 
 # Grove Keeper
 static func natures_mend() -> AbilityData:
@@ -217,7 +217,7 @@ static func natures_mend() -> AbilityData:
 
 static func thorn_burst() -> AbilityData:
 	return _make("Thorn Burst", "A violent eruption of razor-sharp thorns.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 5, false, 0, 0.0)
 
 static func vine_wall() -> AbilityData:
 	return _make("Vine Wall", "A living wall of thorned vines shields all allies.",
@@ -233,8 +233,8 @@ static func dark_hex() -> AbilityData:
 		Enums.StatType.MAGIC_DEFENSE, 5, 3, true, 4, false, 0, 0.0)
 
 static func creeping_rot() -> AbilityData:
-	return _make("Creeping Rot", "A slow decay that saps strength.",
-		Enums.StatType.ATTACK, 3, 3, true, 3, false, 4, 0.0)
+	return _make("Creeping Rot", "A slow decay that rots flesh and festers long after impact.",
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 4, 0.0)
 
 # Spiritwalker
 static func spirit_shield() -> AbilityData:
@@ -317,7 +317,7 @@ static func spell_ward() -> AbilityData:
 
 static func iron_fist() -> AbilityData:
 	return _make("Iron Fist", "A devastating blow that shatters defenses.",
-		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 13, 0, true, 4, false, 0, 0.0)
 
 static func ironclad_challenge() -> AbilityData:
 	return _make("Ironclad Challenge", "Issue a thunderous challenge that forces enemies to attack you.",

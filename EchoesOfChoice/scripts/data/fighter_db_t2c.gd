@@ -13,7 +13,7 @@ const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 static func upgrade_to_blighter(f: FighterData) -> void:
 	f.class_id = "Blighter"; f.character_type = "Blighter"
 	f.health += 14; f.max_health += 14; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 5
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 13; f.magic_defense += 5
 	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.blight(), PAB_B.plague(), PAB_B.poison_sting()]
 	f.upgrade_items = []
@@ -21,7 +21,7 @@ static func upgrade_to_blighter(f: FighterData) -> void:
 static func upgrade_to_grove_keeper(f: FighterData) -> void:
 	f.class_id = "GroveKeeper"; f.character_type = "Grove Keeper"
 	f.health += 18; f.max_health += 18; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 6; f.magic_defense += 3
+	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 11; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 4
 	f.abilities = [PAB_B.thorn_burst(), PAB_B.natures_mend(), PAB_B.vine_wall()]
 	f.upgrade_items = []

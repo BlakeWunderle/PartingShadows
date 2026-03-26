@@ -253,8 +253,8 @@ static func _lu_warlock(f: FighterData) -> void:
 
 static func upgrade_to_bulwark(f: FighterData) -> void:
 	f.class_id = "Bulwark"; f.character_type = "Bulwark"
-	f.health += 6; f.max_health += 6; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 4; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 5
+	f.health += 18; f.max_health += 18; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 7; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB_B.spell_ward(), PAB_B.iron_fist(), PAB_B.ironclad_challenge()]
 	f.upgrade_items = []

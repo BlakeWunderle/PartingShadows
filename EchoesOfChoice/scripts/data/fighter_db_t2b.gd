@@ -64,7 +64,7 @@ static func upgrade_to_illusionist(f: FighterData) -> void:
 static func upgrade_to_mime(f: FighterData) -> void:
 	f.class_id = "Mime"; f.character_type = "Mime"
 	f.health += 3; f.max_health += 3; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 5
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 10; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.invisible_wall(), PAB.anvil(), PAB.invisible_box()]
 	f.upgrade_items = []
