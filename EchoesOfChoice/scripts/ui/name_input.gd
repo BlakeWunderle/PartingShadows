@@ -60,6 +60,8 @@ func show_prompt(text: String) -> void:
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
+	if LocalCoop.is_event_gated(event):
+		return
 	# Controller input while virtual keyboard hidden → show it
 	if not _virtual_kb.visible:
 		if event is InputEventJoypadButton and event.pressed:

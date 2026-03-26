@@ -1,0 +1,12 @@
+"DepotBuildConfig"
+{
+	"DepotID" "4545383"
+	"ContentRoot" "C:\Projects\EchoesOfChoice\build\linux"
+	"FileMapping"
+	{
+		"LocalPath" "*"
+		"DepotPath" "."
+		"Recursive" "1"
+	}
+	"FileExclusion" "*.zip"
+}

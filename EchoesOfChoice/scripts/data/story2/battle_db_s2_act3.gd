@@ -2,8 +2,8 @@ class_name BattleDBS2Act3
 
 ## Story 2 Act III battle configurations: "The Truth"
 ## Structure: BeneathTheLighthouse -> (MemoryVault | EchoGallery)
-##   -> ShatteredSanctum -> (GuardiansThreshold | ForgottenArchive)
-##   -> TheReveal
+##   -> ShatteredSanctum -> GuardiansThreshold -> TheReveal (Path A: Sera sacrifice)
+##                       -> ForgottenArchive -> Path B (Save Sera, see battle_db_s2_pathb.gd)
 
 const BattleData := preload("res://scripts/data/battle_data.gd")
 const EnemyDBS2Act3 := preload("res://scripts/data/story2/enemy_db_s2_act3.gd")
@@ -100,7 +100,7 @@ static func s2_echo_gallery() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act3.create_hollow_watcher("Flicker"),
 		EnemyDBS2Act3.create_grief_shade("Reverb"),
-		EnemyDBS2Act3.create_memory_wisp("Whisper"),
+		EnemyDBS2Act3.create_shattered_frame("Whisper"),
 	]
 	b.pre_battle_text = [
 		"A long corridor where the walls are not walls but windows into moments that already happened. Voices repeat in fragments, layered and overlapping.",
@@ -132,7 +132,7 @@ static func s2_shattered_sanctum() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act3.create_mirror_self("Reflection"),
 		EnemyDBS2Act3.create_void_weaver("Unmaker"),
-		EnemyDBS2Act3.create_grief_shade("Mourning"),
+		EnemyDBS2Act3.create_sorrow_shade("Mourning"),
 	]
 	b.pre_battle_text = [
 		"The sanctum is broken. Something tore through here. The crystalline walls are fractured, memories leaking like water from cracked vessels, pooling on the floor in shimmering puddles.",
@@ -215,9 +215,10 @@ static func s2_forgotten_archive() -> BattleData:
 		"They could not stop it alone. They tried. They failed. People died.",
 		"Sera offered the only escape she could think of. Forget everything. Become no one. The Eye cannot hunt what it cannot remember.",
 		"They agreed. But Sera, unable to live with what she had done, erased herself too. Neither side remembers why.",
-		"The archive connects to the sanctum core through a narrow passage.",
+		"Behind a collapsed shelf, a hidden chamber. Schematics cover the walls: resonance diagrams, extraction pipeline maps, and something labeled 'Failsafe' in a woman's careful handwriting.",
+		"A sound from the deeper archive. Someone else is here.",
 	]
-	b.next_battle_id = "S2_TheReveal"
+	b.next_battle_id = "S2_B_ArchiveAwakening"
 	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - Dark Fables.ogg"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 02.wav"
 	return b

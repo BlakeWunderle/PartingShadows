@@ -3,12 +3,12 @@ class_name FighterData extends RefCounted
 ## Mirrors C# BaseFighter. A live fighter instance with mutable combat state.
 
 const Enums := preload("res://scripts/data/enums.gd")
-const _FighterDB := preload("res://scripts/data/fighter_db.gd")
 
 var character_name: String
 var character_type: String  ## Class display name (e.g. "Squire", "Thug")
 var class_id: String        ## Internal class key for save/load and level-up routing
 var portrait_variant: String = "m"  ## Portrait style: "m" or "f"
+var flavor_text: String = ""  ## Compendium flavor text (1-2 sentences)
 var is_user_controlled: bool
 var owner_peer_id: int = 1  ## Multiplayer peer ID that controls this fighter (1 = host/singleplayer)
 
@@ -29,7 +29,6 @@ var dodge_chance: int
 var turn_calculation: int = 0  ## ATB accumulator
 var abilities: Array = []  ## Array of AbilityData
 var modified_stats: Array[Dictionary] = []  ## {stat, modifier, turns, is_negative, damage_per_turn}
-var ability_cooldowns: Dictionary = {}      ## ability_name -> remaining turns
 var upgrade_items: Array[String] = []       ## For class upgrade paths
 
 
@@ -53,7 +52,6 @@ func clone() -> FighterData:
 	c.crit_damage = crit_damage
 	c.dodge_chance = dodge_chance
 	c.abilities = abilities.duplicate()
-	c.ability_cooldowns = ability_cooldowns.duplicate()
 	c.upgrade_items = upgrade_items.duplicate()
 	return c
 
@@ -62,7 +60,6 @@ func reset_for_battle() -> void:
 	health = max_health
 	mana = max_mana
 	turn_calculation = 0
-	ability_cooldowns.clear()
 	# Revert any lingering stat mods
 	for mod: Dictionary in modified_stats:
 		_revert_mod(mod)
@@ -162,7 +159,7 @@ func apply_save_data(data: Dictionary) -> void:
 	var saved_items = data.get("upgrade_items", [])
 	upgrade_items.clear()
 	if saved_items.is_empty():
-		upgrade_items = _FighterDB.get_default_upgrade_items(class_id)
+		upgrade_items = load("res://scripts/data/fighter_db.gd").get_default_upgrade_items(class_id)
 	else:
 		for item in saved_items:
 			upgrade_items.append(item)

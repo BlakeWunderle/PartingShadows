@@ -32,13 +32,24 @@ var _fighter_picker: FighterPicker
 
 
 func _ready() -> void:
+	if not SteamManager.is_steam_running:
+		SceneManager.change_scene("res://scenes/title/title.tscn")
+		return
 	MusicManager.play_music("res://assets/audio/music/menu/Land of Heroes Alt LOOP.wav")
 	NetManager.player_joined.connect(_on_player_joined)
 	NetManager.player_left.connect(_on_player_left)
 	NetManager.lobby_ready.connect(_on_lobby_ready)
 	NetManager.session_ended.connect(_on_session_ended)
+	NetManager.steam_hosting_started.connect(_on_steam_hosting_started)
+	NetManager.steam_hosting_failed.connect(_on_steam_hosting_failed)
 	_build_ui()
-	_show_role_select()
+	# Auto-join if arriving from a Steam overlay invite
+	if NetManager.pending_join_lobby_id > 0:
+		var lobby := NetManager.pending_join_lobby_id
+		NetManager.pending_join_lobby_id = 0
+		_auto_join_steam_lobby(lobby)
+	else:
+		_show_role_select()
 
 
 func _build_ui() -> void:
@@ -96,7 +107,7 @@ func _build_ui() -> void:
 	_address_input.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_address_input.max_length = 45
 	_address_input.visible = false
-	_address_input.text_submitted.connect(_on_address_submitted)
+	# _address_input is kept in the scene tree but unused (Steam-only lobby)
 	_vbox.add_child(_address_input)
 
 	# Menu
@@ -120,9 +131,11 @@ func _show_role_select() -> void:
 	_player_list.visible = false
 	_address_input.visible = false
 
+	var join_desc: String = "Accept a Steam invite from the host" \
+		if SteamManager.is_steam_running else "Join a friend's game via IP"
 	_menu.show_choices([
 		{"label": "Host Game", "description": "Create a game and invite friends"},
-		{"label": "Join Game", "description": "Join a friend's game"},
+		{"label": "Join Game", "description": join_desc},
 		{"label": "Back"},
 	])
 
@@ -157,17 +170,34 @@ func _handle_role_choice(index: int) -> void:
 
 func _start_hosting() -> void:
 	NetManager.target_player_count = 2
-	var err := NetManager.host_game()
-	if err != OK:
-		_status_label.text = "Failed to start server. Try again."
+	if SteamManager.is_steam_running:
+		_header.text = "HOST GAME"
+		_status_label.text = "Creating Steam lobby..."
 		_status_label.visible = true
+		_address_input.visible = false
+		_menu.hide_menu()
+		NetManager.host_game_steam()
 		return
 
+	# Steam required — should not reach here after the _ready() guard
+	_status_label.text = "Steam is required for online play."
+	_status_label.visible = true
+
+
+func _on_steam_hosting_started(_lobby_id: int) -> void:
 	_mode = Mode.HOSTING
 	_header.text = "HOST GAME"
 	_address_input.visible = false
 	_show_host_menu()
 	_refresh_player_list()
+	_status_label.text = "Steam lobby ready. Press Shift+Tab to invite friends."
+	_status_label.visible = true
+
+
+func _on_steam_hosting_failed() -> void:
+	_status_label.text = "Failed to create Steam lobby. Check your connection."
+	_status_label.visible = true
+	_show_role_select()
 
 
 var _host_menu_actions: Array[String] = []
@@ -242,48 +272,27 @@ func _handle_host_menu_choice(index: int) -> void:
 func _show_join_input() -> void:
 	_mode = Mode.JOIN_INPUT
 	_header.text = "JOIN GAME"
-	_status_label.visible = false
 	_player_list.visible = false
-	_address_input.visible = true
-	_address_input.text = ""
-	_address_input.grab_focus()
 
-	_menu.show_choices([
-		{"label": "Connect"},
-		{"label": "Back"},
-	])
+	_address_input.visible = false
+	_status_label.text = "Ask the host to invite you via Steam overlay (Shift+Tab)."
+	_status_label.visible = true
+	_menu.show_choices([{"label": "Back"}])
 
 
-func _handle_join_input_choice(index: int) -> void:
-	match index:
-		0:  # Connect
-			_try_connect()
-		1:  # Back
-			_show_role_select()
+func _handle_join_input_choice(_index: int) -> void:
+	_show_role_select()
 
 
-func _on_address_submitted(_text: String) -> void:
-	_try_connect()
-
-
-func _try_connect() -> void:
-	var address: String = _address_input.text.strip_edges()
-	if address.is_empty():
-		_status_label.text = "Please enter an IP address."
-		_status_label.visible = true
-		return
-
+func _auto_join_steam_lobby(steam_lobby_id: int) -> void:
 	_mode = Mode.CONNECTING
-	_status_label.text = "Connecting to %s..." % address
+	_header.text = "JOIN GAME"
+	_status_label.text = "Connecting via Steam..."
 	_status_label.visible = true
 	_address_input.visible = false
 	_menu.hide_menu()
+	NetManager.join_game_steam(steam_lobby_id)
 
-	var err := NetManager.join_game(address)
-	if err != OK:
-		_status_label.text = "Failed to connect. Check the address and try again."
-		await get_tree().create_timer(2.0).timeout
-		_show_join_input()
 
 
 # =============================================================================
@@ -477,6 +486,11 @@ func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: S
 		GameState.current_story_id = story_id
 		GameState.advance_to_battle(battle_id)
 	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+
+
+# =============================================================================
+# Helpers
+# =============================================================================
 
 
 # =============================================================================

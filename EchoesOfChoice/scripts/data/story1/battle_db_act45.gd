@@ -159,10 +159,12 @@ static func gate_battle() -> BattleData:
 	b.post_battle_text = [
 		"The dark knight crumbles and the fell hound evaporates. The sigils on the gate crack one by one until the stone swings open.",
 		"Beyond, stairs lead down into darkness. The air rising from below thrums with power so thick it presses against the skin.",
-		"This is it. Whatever the stranger has been building toward, it's down there.",
-		"The party descends.",
+		"Two passages branch at the bottom of the stairs. One leads to a massive set of doors, the stranger's sanctum. The other is narrower, lined with pulsing sigils that feed energy upward through the stone.",
 	]
-	b.next_battle_id = "StrangerFinalBattle"
+	b.choices = [
+		{"label": "The sanctum doors. The Stranger waits beyond.", "battle_id": "StrangerFinalBattle"},
+		{"label": "The side passage. Sigils pulse along the walls, feeding power to something above.", "battle_id": "RitualAnchorBattle"},
+	]
 	b.music_track = "res://assets/audio/music/boss/Awakening of the Juggernaut_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#15 Dark Strings Swell.wav"
 	return b

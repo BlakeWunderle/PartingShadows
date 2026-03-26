@@ -5,6 +5,8 @@ extends Control
 ## minimal action text overlay instead of scrolling combat log.
 
 const BattleEngine := preload("res://scripts/battle/battle_engine.gd")
+const BattleDisplay_C := preload("res://scenes/battle/battle_display.gd")
+const BattleUIBuilder_C := preload("res://scenes/battle/battle_ui_builder.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const PortraitCard := preload("res://scripts/ui/portrait_card.gd")
 const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
@@ -13,11 +15,13 @@ const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityData := preload("res://scripts/data/ability_data.gd")
 const BattleData := preload("res://scripts/data/battle_data.gd")
+const BattleMultiplayer_C := preload("res://scenes/battle/battle_multiplayer.gd")
 
 enum Phase {
 	STARTING,
 	TICKING_ATB,
 	PLAYER_ACTION,
+	PLAYER_ACTIONS_SUBMENU,
 	PLAYER_TARGET_ATTACK,
 	PLAYER_ABILITY_SELECT,
 	PLAYER_ABILITY_TARGET_ENEMY,
@@ -42,7 +46,10 @@ var _boss_escaped: bool = false
 var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_taken, healing_done, kills}
 var _auto_battle: bool = false
 var _auto_battle_unlocked: bool = false
-var _auto_label: Label
+var _summary_waiting: bool = false
+var _auto_button: Button
+var _display: BattleDisplay
+var _mp: BattleMultiplayer
 
 signal _player_turn_done
 signal _remote_action_received(action: Dictionary)
@@ -79,180 +86,31 @@ var _all_enemies: Array = []
 func _ready() -> void:
 	COMBAT_PAUSE = SettingsManager.combat_pause
 	SettingsManager.combat_pause_changed.connect(func(s: float) -> void: COMBAT_PAUSE = s)
+	_display = BattleDisplay_C.new(self)
+	_mp = BattleMultiplayer_C.new(self)
 	_build_ui()
 	_start_battle()
 
 
 func _build_ui() -> void:
-	# Scene image -- full screen background
-	_scene_image = TextureRect.new()
-	_scene_image.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_scene_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_scene_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
-	_scene_image.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	_scene_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(_scene_image)
-
-	# Gradient overlay -- fades scene image into dark at bottom
-	_gradient_overlay = TextureRect.new()
-	_gradient_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_gradient_overlay.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_gradient_overlay.stretch_mode = TextureRect.STRETCH_SCALE
-	_gradient_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	var grad := GradientTexture2D.new()
-	grad.gradient = Gradient.new()
-	grad.gradient.set_color(0, Color(0.05, 0.05, 0.08, 0.0))
-	grad.gradient.set_color(1, Color(0.05, 0.05, 0.08, 1.0))
-	grad.gradient.set_offset(0, 0.3)
-	grad.gradient.set_offset(1, 0.7)
-	grad.fill_from = Vector2(0.5, 0.0)
-	grad.fill_to = Vector2(0.5, 1.0)
-	_gradient_overlay.texture = grad
-	add_child(_gradient_overlay)
-
-	# UI root -- layered on top of scene image with bottom padding
-	var ui_margin := MarginContainer.new()
-	ui_margin.set_anchors_preset(Control.PRESET_FULL_RECT)
-	ui_margin.add_theme_constant_override("margin_bottom", 16)
-	ui_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(ui_margin)
-
-	var ui_root := VBoxContainer.new()
-	ui_root.add_theme_constant_override("separation", 4)
-	ui_root.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	ui_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui_margin.add_child(ui_root)
-
-	# Scene spacer -- pushes UI content to bottom half
-	var scene_spacer := Control.new()
-	scene_spacer.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	scene_spacer.size_flags_stretch_ratio = 3.0
-	scene_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui_root.add_child(scene_spacer)
-
-	# Turn order bar (fixed height, no resizing)
-	_turn_order_label = RichTextLabel.new()
-	_turn_order_label.bbcode_enabled = true
-	_turn_order_label.fit_content = false
-	_turn_order_label.scroll_active = false
-	_turn_order_label.add_theme_font_size_override("normal_font_size", 13)
-	_turn_order_label.custom_minimum_size = Vector2(0, 22)
-	_turn_order_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui_root.add_child(_turn_order_label)
-
-	# Portraits row -- party left, enemies right
-	var portraits_row := HBoxContainer.new()
-	portraits_row.add_theme_constant_override("separation", 0)
-	portraits_row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	# Add left margin
-	var left_margin := Control.new()
-	left_margin.custom_minimum_size = Vector2(16, 0)
-	left_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	portraits_row.add_child(left_margin)
-
-	_party_cards_box = HBoxContainer.new()
-	_party_cards_box.add_theme_constant_override("separation", 8)
-	_party_cards_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	portraits_row.add_child(_party_cards_box)
-
-	var card_spacer := Control.new()
-	card_spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	card_spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	portraits_row.add_child(card_spacer)
-
-	_enemy_cards_box = HBoxContainer.new()
-	_enemy_cards_box.add_theme_constant_override("separation", 8)
-	_enemy_cards_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	portraits_row.add_child(_enemy_cards_box)
-
-	# Add right margin
-	var right_margin := Control.new()
-	right_margin.custom_minimum_size = Vector2(16, 0)
-	right_margin.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	portraits_row.add_child(right_margin)
-
-	ui_root.add_child(portraits_row)
-
-	# Bottom area: combat log (left) + action menu (right)
-	var bottom_row := HBoxContainer.new()
-	bottom_row.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	bottom_row.size_flags_stretch_ratio = 1.2
-	bottom_row.add_theme_constant_override("separation", 16)
-	ui_root.add_child(bottom_row)
-
-	# Left side: persistent combat log
-	var log_panel := VBoxContainer.new()
-	log_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	log_panel.size_flags_stretch_ratio = 1.0
-	log_panel.add_theme_constant_override("separation", 2)
-	bottom_row.add_child(log_panel)
-
-	_action_text = RichTextLabel.new()
-	_action_text.bbcode_enabled = true
-	_action_text.fit_content = false
-	_action_text.scroll_active = true
-	_action_text.scroll_following = true
-	_action_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_action_text.add_theme_font_size_override("normal_font_size", 14)
-	_action_text.mouse_filter = Control.MOUSE_FILTER_STOP
-	log_panel.add_child(_action_text)
-
-	# Right side: action menu (bottom-aligned so content sits at bottom edge)
-	_bottom_panel = VBoxContainer.new()
-	_bottom_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	_bottom_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_bottom_panel.size_flags_stretch_ratio = 1.0
-	_bottom_panel.alignment = BoxContainer.ALIGNMENT_END
-	bottom_row.add_child(_bottom_panel)
-
-	_action_menu = ChoiceMenu.new()
+	var refs: Dictionary = BattleUIBuilder_C.build(self)
+	_scene_image = refs.scene_image
+	_gradient_overlay = refs.gradient_overlay
+	_action_text = refs.action_text
+	_action_menu = refs.action_menu
+	_stats_panel = refs.stats_panel
+	_party_cards_box = refs.party_cards_box
+	_enemy_cards_box = refs.enemy_cards_box
+	_bottom_panel = refs.bottom_panel
+	_turn_order_label = refs.turn_order_label
+	_tip_overlay = refs.tip_overlay
+	_waiting_overlay = refs.waiting_overlay
+	_player_indicator = refs.player_indicator
+	_auto_button = refs.auto_button
+	# Connect signals
 	_action_menu.choice_selected.connect(_on_action_selected)
-	_action_menu.visible = false
-	_bottom_panel.add_child(_action_menu)
-
-	# Stats panel (overlay, on top of everything)
-	_stats_panel = StatsPanel.new()
 	_stats_panel.closed.connect(_on_stats_closed)
-	_stats_panel.visible = false
-	_stats_panel.set_anchors_preset(Control.PRESET_CENTER)
-	_stats_panel.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_stats_panel.grow_vertical = Control.GROW_DIRECTION_BOTH
-	_stats_panel.custom_minimum_size = Vector2(350, 0)
-	add_child(_stats_panel)
-
-	_tip_overlay = TipOverlay.new()
-	add_child(_tip_overlay)
-
-	_waiting_overlay = WaitingOverlay.new()
-	add_child(_waiting_overlay)
-
-	# Local co-op player indicator
-	_player_indicator = Label.new()
-	_player_indicator.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_player_indicator.add_theme_font_size_override("font_size", 20)
-	_player_indicator.add_theme_color_override("font_color", Color(0.3, 0.9, 0.5))
-	_player_indicator.set_anchors_preset(Control.PRESET_CENTER_TOP)
-	_player_indicator.grow_horizontal = Control.GROW_DIRECTION_BOTH
-	_player_indicator.offset_left = -200
-	_player_indicator.offset_right = 200
-	_player_indicator.offset_top = 12
-	_player_indicator.visible = false
-	add_child(_player_indicator)
-
-	# Auto-battle indicator
-	_auto_label = Label.new()
-	_auto_label.text = "AUTO"
-	_auto_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_auto_label.add_theme_font_size_override("font_size", 18)
-	_auto_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
-	_auto_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	_auto_label.offset_left = -100
-	_auto_label.offset_right = -12
-	_auto_label.offset_top = 12
-	_auto_label.visible = false
-	add_child(_auto_label)
+	_auto_button.pressed.connect(_on_auto_button_pressed)
 
 
 func _is_mp_guest() -> bool:
@@ -286,15 +144,16 @@ func _start_battle() -> void:
 		GameState.current_battle_id, battle.enemies.size()])
 
 	_auto_battle = false
-	_auto_label.visible = false
 	var unlock_key: String = GameState.current_story_id + "_complete"
 	_auto_battle_unlocked = UnlockManager.is_unlocked(unlock_key)
+	_auto_button.visible = _auto_battle_unlocked and not _is_mp_guest()
+	_update_auto_button_style()
+
+	_build_portrait_cards()
 
 	_battle_stats.clear()
 	for f: FighterData in _all_party:
 		_battle_stats[f] = {"damage_dealt": 0, "damage_taken": 0, "healing_done": 0, "kills": 0}
-
-	_build_portrait_cards()
 	_add_log("[color=gold]Battle begins![/color]")
 	_compute_turn_order()
 	_display_turn_order()
@@ -381,7 +240,6 @@ func _tick_loop() -> void:
 			_display_turn_order()
 
 			_engine.reset_modified_stat(actor)
-			_engine.tick_cooldowns(actor)
 			await _drain_messages()
 
 			if _engine.is_battle_over():
@@ -467,37 +325,120 @@ func _tick_loop() -> void:
 		_display_turn_order()
 
 
-# =============================================================================
-# Cooldown management
-# =============================================================================
-
-func _set_cooldown(fighter: FighterData, ability: AbilityData) -> void:
-	if ability.cooldown > 0:
-		fighter.ability_cooldowns[ability.ability_name] = ability.cooldown
-
-
 func _is_ability_available(fighter: FighterData, ability: AbilityData) -> bool:
-	return ability.mana_cost <= fighter.mana \
-		and fighter.ability_cooldowns.get(ability.ability_name, 0) <= 0
+	return ability.mana_cost <= fighter.mana
 
 
 # =============================================================================
 # Auto-battle
 # =============================================================================
 
+func _update_auto_button_style() -> void:
+	if _auto_battle:
+		_auto_button.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+		_auto_button.modulate.a = 1.0
+	else:
+		_auto_button.add_theme_color_override("font_color", Color(0.6, 0.55, 0.35))
+		_auto_button.modulate.a = 0.45
+
+
 func _execute_auto_turn() -> void:
 	# Reuse engine AI logic for player fighter
 	var targets: Array = _engine.enemies
 	var allies: Array = _engine.units
 	_engine.execute_ai_turn(_current_actor, targets, allies)
-	_player_turn_done.emit()
+	_player_turn_done.emit.call_deferred()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if _auto_battle and event.is_action_pressed("cancel"):
+func _on_auto_button_pressed() -> void:
+	if _phase == Phase.BATTLE_END or _is_mp_guest():
+		return
+	_auto_battle = not _auto_battle
+	_update_auto_button_style()
+	SFXManager.play(SFXManager.Category.UI_CONFIRM, 0.3)
+	if _auto_battle:
+		_tip_overlay.show_tip_once("auto_battle",
+			"Auto-battle lets the AI choose actions for your party. " +
+			"Press any button or click AUTO to take back control.\n\n" +
+			"Auto-battle speeds up combat but may not always make " +
+			"the best strategic choices.")
+		if _phase == Phase.PLAYER_ACTION and _action_menu.visible:
+			_action_menu.hide_menu()
+			_execute_auto_turn()
+
+
+func _input(event: InputEvent) -> void:
+	if _summary_waiting:
+		if event.is_action_pressed("confirm") or (event is InputEventMouseButton and event.pressed):
+			_summary_waiting = false
+			get_viewport().set_input_as_handled()
+			return
+	if _auto_battle and (event.is_action_pressed("confirm") or event.is_action_pressed("cancel")):
 		_auto_battle = false
-		_auto_label.visible = false
+		_update_auto_button_style()
 		get_viewport().set_input_as_handled()
+		return
+	if event.is_action_pressed("cancel"):
+		_handle_cancel()
+
+
+func _handle_cancel() -> void:
+	match _phase:
+		Phase.PLAYER_ACTIONS_SUBMENU:
+			# Back to main action menu
+			if _action_menu.choice_selected.is_connected(_on_actions_submenu_selected):
+				_action_menu.choice_selected.disconnect(_on_actions_submenu_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.PLAYER_TARGET_ATTACK:
+			# Back to actions submenu
+			if _action_menu.choice_selected.is_connected(_on_target_selected):
+				_action_menu.choice_selected.disconnect(_on_target_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTIONS_SUBMENU
+			_show_actions_submenu()
+			get_viewport().set_input_as_handled()
+		Phase.PLAYER_ABILITY_SELECT:
+			# Back to main action menu
+			if _action_menu.choice_selected.is_connected(_on_ability_selected):
+				_action_menu.choice_selected.disconnect(_on_ability_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.PLAYER_ABILITY_TARGET_ENEMY, Phase.PLAYER_ABILITY_TARGET_ALLY:
+			# Back to ability list
+			if _action_menu.choice_selected.is_connected(_on_target_selected):
+				_action_menu.choice_selected.disconnect(_on_target_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ABILITY_SELECT
+			_show_ability_menu()
+			get_viewport().set_input_as_handled()
+		Phase.STATS_PICK:
+			# Back to main action menu
+			if _action_menu.choice_selected.is_connected(_on_stats_pick_selected):
+				_action_menu.choice_selected.disconnect(_on_stats_pick_selected)
+			if not _action_menu.choice_selected.is_connected(_on_action_selected):
+				_action_menu.choice_selected.connect(_on_action_selected)
+			_action_menu.hide_menu()
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
+			get_viewport().set_input_as_handled()
+		Phase.SHOWING_STATS:
+			_stats_panel.visible = false
+			_phase = Phase.STATS_PICK
+			_show_stats_pick()
+			get_viewport().set_input_as_handled()
 
 
 # =============================================================================
@@ -511,13 +452,18 @@ func _show_action_menu(actor: FighterData) -> void:
 			has_available = true
 			break
 
-	var options: Array[Dictionary] = [{"label": "Attack"}]
+	var options: Array[Dictionary] = [{"label": "Actions"}]
 	if has_available:
 		options.append({"label": "Ability"})
 	if _auto_battle_unlocked:
 		options.append({"label": "Auto"})
 	options.append({"label": "Stats"})
 	_action_menu.show_choices(options, true)
+	_tip_overlay.show_tip_once("combat_actions",
+		"Attack, Block, and Rest all restore MP based on your Magic Attack.\n\n" +
+		"Attack deals damage. Block raises defenses for one turn. " +
+		"Rest restores double MP and a little HP, but leaves you exposed.\n\n" +
+		"Use basic actions to recharge between abilities.")
 
 
 func _on_action_selected(index: int) -> void:
@@ -531,7 +477,7 @@ func _on_action_selected(index: int) -> void:
 			break
 
 	# Rebuild the same label list used in _show_action_menu to find action by index
-	var labels: Array[String] = ["Attack"]
+	var labels: Array[String] = ["Actions"]
 	if has_available:
 		labels.append("Ability")
 	if _auto_battle_unlocked:
@@ -541,19 +487,65 @@ func _on_action_selected(index: int) -> void:
 	var action: String = labels[index] if index < labels.size() else "Stats"
 
 	match action:
-		"Attack":
-			_phase = Phase.PLAYER_TARGET_ATTACK
-			_show_target_menu(_engine.enemies)
+		"Actions":
+			_phase = Phase.PLAYER_ACTIONS_SUBMENU
+			_show_actions_submenu()
 		"Ability":
 			_phase = Phase.PLAYER_ABILITY_SELECT
 			_show_ability_menu()
 		"Auto":
 			_auto_battle = true
-			_auto_label.visible = true
+			_update_auto_button_style()
+			_tip_overlay.show_tip_once("auto_battle",
+				"Auto-battle lets the AI choose actions for your party. " +
+				"Press any button or click AUTO to take back control.\n\n" +
+				"Auto-battle speeds up combat but may not always make " +
+				"the best strategic choices.")
 			_execute_auto_turn()
 		"Stats":
 			_phase = Phase.STATS_PICK
 			_show_stats_pick()
+
+
+func _show_actions_submenu() -> void:
+	var options: Array[Dictionary] = [
+		{"label": "Attack"}, {"label": "Block"},
+		{"label": "Rest"}, {"label": "Back"},
+	]
+	_action_menu.choice_selected.disconnect(_on_action_selected)
+	_action_menu.choice_selected.connect(_on_actions_submenu_selected)
+	_action_menu.show_choices(options, true)
+
+
+func _on_actions_submenu_selected(index: int) -> void:
+	_action_menu.hide_menu()
+	_action_menu.choice_selected.disconnect(_on_actions_submenu_selected)
+	_action_menu.choice_selected.connect(_on_action_selected)
+
+	var labels: Array[String] = ["Attack", "Block", "Rest", "Back"]
+	var action: String = labels[index] if index < labels.size() else "Back"
+
+	match action:
+		"Attack":
+			_phase = Phase.PLAYER_TARGET_ATTACK
+			_show_target_menu(_engine.enemies)
+		"Block":
+			if _is_mp_guest():
+				_rpc_submit_action.rpc_id(1, {"type": "block"})
+				_player_turn_done.emit()
+				return
+			_engine.perform_block(_current_actor)
+			_player_turn_done.emit()
+		"Rest":
+			if _is_mp_guest():
+				_rpc_submit_action.rpc_id(1, {"type": "rest"})
+				_player_turn_done.emit()
+				return
+			_engine.perform_rest(_current_actor)
+			_player_turn_done.emit()
+		"Back":
+			_phase = Phase.PLAYER_ACTION
+			_show_action_menu(_current_actor)
 
 
 func _show_target_menu(fighters: Array) -> void:
@@ -584,8 +576,8 @@ func _on_target_selected(index: int) -> void:
 		_action_menu.choice_selected.connect(_on_action_selected)
 		_action_menu.hide_menu()
 		if _phase == Phase.PLAYER_TARGET_ATTACK:
-			_phase = Phase.PLAYER_ACTION
-			_show_action_menu(_current_actor)
+			_phase = Phase.PLAYER_ACTIONS_SUBMENU
+			_show_actions_submenu()
 		else:
 			# Ability target, go back to ability list
 			_phase = Phase.PLAYER_ABILITY_SELECT
@@ -629,11 +621,9 @@ func _on_target_selected(index: int) -> void:
 			else:
 				target = _engine.enemies[index]
 			_current_actor.mana -= _selected_ability.mana_cost
-			_set_cooldown(_current_actor, _selected_ability)
 			_engine.use_ability_on_enemy(_current_actor, target, _selected_ability)
 		Phase.PLAYER_ABILITY_TARGET_ALLY:
 			_current_actor.mana -= _selected_ability.mana_cost
-			_set_cooldown(_current_actor, _selected_ability)
 			_engine.use_ability_on_teammate(
 				_current_actor, _engine.units[index], _selected_ability)
 
@@ -649,8 +639,6 @@ func _show_ability_menu() -> void:
 	var options: Array[Dictionary] = []
 	for a: AbilityData in available:
 		var label: String = "%s (%d MP)" % [a.ability_name, a.mana_cost]
-		if a.cooldown > 0:
-			label += " [CD %d]" % a.cooldown
 		options.append({"label": label, "description": a.get_description()})
 	options.append({"label": "Back"})
 
@@ -694,7 +682,6 @@ func _on_ability_selected(index: int) -> void:
 
 		# AoE, no target selection needed
 		_current_actor.mana -= _selected_ability.mana_cost
-		_set_cooldown(_current_actor, _selected_ability)
 		if _selected_ability.use_on_enemy:
 			_add_log("%s targets all enemies!" % _current_actor.character_name)
 			for enemy: FighterData in _engine.enemies.duplicate():
@@ -762,42 +749,11 @@ func _on_combat_message(text: String) -> void:
 
 
 func _on_combat_event(target: FighterData, amount: int, event_type: String) -> void:
-	var card: PortraitCard = _find_card_for_fighter(target)
-	if not card:
-		return
-	# Track battle stats for party members
-	if event_type in ["damage", "crit"]:
-		if _current_actor != null and _battle_stats.has(_current_actor):
-			_battle_stats[_current_actor]["damage_dealt"] += amount
-		if _battle_stats.has(target):
-			_battle_stats[target]["damage_taken"] += amount
-	elif event_type == "heal":
-		if _current_actor != null and _battle_stats.has(_current_actor):
-			_battle_stats[_current_actor]["healing_done"] += amount
-
-	match event_type:
-		"damage":
-			SFXManager.play(SFXManager.Category.STRIKE)
-			card.show_floating_text("-%d" % amount, Color(1.0, 0.3, 0.3))
-		"crit":
-			SFXManager.play(SFXManager.Category.IMPACT)
-			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
-		"heal":
-			SFXManager.play(SFXManager.Category.SHIMMER)
-			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
-		"miss":
-			SFXManager.play(SFXManager.Category.WHOOSH, 0.7)
-			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))
+	_display.on_combat_event(target, amount, event_type)
 
 
 func _find_card_for_fighter(fighter: FighterData) -> PortraitCard:
-	for card: PortraitCard in _party_cards:
-		if card.get_fighter() == fighter:
-			return card
-	for card: PortraitCard in _enemy_cards:
-		if card.get_fighter() == fighter:
-			return card
-	return null
+	return _display.find_card_for_fighter(fighter)
 
 
 func _drain_messages() -> void:
@@ -859,65 +815,11 @@ func _end_battle() -> void:
 
 
 func _show_battle_summary() -> void:
-	var overlay := PanelContainer.new()
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.05, 0.08, 0.12, 0.92)
-	style.border_color = Color(0.9, 0.8, 0.5, 0.6)
-	style.set_border_width_all(2)
-	style.set_corner_radius_all(8)
-	style.set_content_margin_all(24)
-	overlay.add_theme_stylebox_override("panel", style)
-	overlay.set_anchors_preset(Control.PRESET_CENTER)
-	overlay.offset_left = -220.0
-	overlay.offset_top = -160.0
-	overlay.offset_right = 220.0
-	overlay.offset_bottom = 160.0
-	add_child(overlay)
-
-	var vbox := VBoxContainer.new()
-	vbox.add_theme_constant_override("separation", 8)
-	overlay.add_child(vbox)
-
-	var title := Label.new()
-	title.text = "BATTLE SUMMARY"
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 20)
-	title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
-	vbox.add_child(title)
-
-	var sep := HSeparator.new()
-	vbox.add_child(sep)
-
-	for f: FighterData in _all_party:
-		var stats: Dictionary = _battle_stats.get(f, {})
-		var dmg: int = stats.get("damage_dealt", 0)
-		var heal: int = stats.get("healing_done", 0)
-		var kills: int = stats.get("kills", 0)
-		var line := Label.new()
-		line.text = "%s the %s  -  DMG: %d, HEAL: %d, KOs: %d" % [
-			f.character_name, f.character_type, dmg, heal, kills]
-		line.add_theme_font_size_override("font_size", SettingsManager.font_size)
-		vbox.add_child(line)
-
-	var hint := Label.new()
-	hint.text = "\nPress any key to continue..."
-	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	hint.add_theme_font_size_override("font_size", 14)
-	hint.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
-	vbox.add_child(hint)
-
-	# Wait for confirm input to dismiss
-	await get_tree().create_timer(0.5).timeout  # Brief delay to prevent accidental skip
-	while not Input.is_action_just_pressed("confirm"):
-		await get_tree().process_frame
-	overlay.queue_free()
+	await _display.show_battle_summary()
 
 
 func _on_fighter_died(fighter: FighterData) -> void:
-	# Track kills for party members
-	if _current_actor != null and _battle_stats.has(_current_actor) \
-			and not _all_party.has(fighter):
-		_battle_stats[_current_actor]["kills"] += 1
+	_display.on_fighter_died(fighter)
 
 
 func _on_battle_won() -> void:
@@ -929,82 +831,15 @@ func _on_battle_lost() -> void:
 
 
 func _rebuild_cards_if_needed() -> void:
-	# Mark dead fighters' cards as dead (desaturated) instead of hiding
-	for card: PortraitCard in _party_cards:
-		var fighter: FighterData = card.get_fighter()
-		var is_dead: bool = not _engine.units.has(fighter)
-		card.set_dead(is_dead)
-		card.update_display(fighter)
-	for card: PortraitCard in _enemy_cards:
-		var fighter: FighterData = card.get_fighter()
-		var is_dead: bool = not _engine.enemies.has(fighter)
-		card.set_dead(is_dead)
-		card.update_display(fighter)
+	_display.rebuild_cards_if_needed()
 
 
 func _compute_turn_order() -> void:
-	## Predict the next several turns by simulating ATB ticks forward.
-	_turn_queue.clear()
-
-	var all_fighters: Array = []
-	for f: FighterData in _engine.units:
-		all_fighters.append(f)
-	for f: FighterData in _engine.enemies:
-		all_fighters.append(f)
-
-	if all_fighters.is_empty():
-		return
-
-	# Snapshot current ATB values
-	var atb: Dictionary = {}
-	for f: FighterData in all_fighters:
-		atb[f] = f.turn_calculation
-
-	var show_count: int = mini(8, all_fighters.size() * 2)
-
-	while _turn_queue.size() < show_count:
-		# Tick until someone reaches 100
-		var ready: Array = []
-		for _i: int in 200:  # safety limit
-			for f: FighterData in all_fighters:
-				atb[f] += f.speed
-			ready.clear()
-			for f: FighterData in all_fighters:
-				if atb[f] >= 100:
-					ready.append(f)
-			if not ready.is_empty():
-				break
-
-		if ready.is_empty():
-			break
-
-		# Sort by highest ATB (same as get_acting_units)
-		ready.sort_custom(func(a: FighterData, b: FighterData) -> bool:
-			return atb[a] > atb[b])
-
-		for f: FighterData in ready:
-			atb[f] -= 100
-			_turn_queue.append(f)
+	_display.compute_turn_order()
 
 
 func _display_turn_order() -> void:
-	## Render the turn queue. Current actor in green, allies cyan, enemies salmon.
-	var parts: Array[String] = []
-
-	# Current actor first (green)
-	if _current_actor != null:
-		parts.append("[color=lime]%s[/color]" % _current_actor.character_name)
-
-	# Remaining queue
-	for f: FighterData in _turn_queue:
-		if _engine.units.has(f):
-			parts.append("[color=cyan]%s[/color]" % f.character_name)
-		else:
-			parts.append("[color=salmon]%s[/color]" % f.character_name)
-
-	_turn_order_label.clear()
-	_turn_order_label.append_text(
-		"[color=gray]Turn Order:[/color]  " + "  >  ".join(parts))
+	_display.display_turn_order()
 
 
 # =============================================================================
@@ -1012,277 +847,45 @@ func _display_turn_order() -> void:
 # =============================================================================
 
 func _get_portrait_texture(fighter: FighterData) -> Texture2D:
-	var key: String
-	if fighter.is_user_controlled:
-		key = fighter.character_type + "_" + fighter.portrait_variant
-	else:
-		key = fighter.class_id if not fighter.class_id.is_empty() else fighter.character_type
-	if _portrait_cache.has(key):
-		return _portrait_cache[key]
-
-	var path: String
-	if fighter.is_user_controlled:
-		var slug: String = fighter.character_type.to_lower().replace(" ", "_")
-		path = "res://assets/art/portraits/classes/%s_%s.png" % [slug, fighter.portrait_variant]
-	else:
-		var slug: String = key.to_snake_case()
-		path = "res://assets/art/portraits/enemies/%s.png" % slug
-
-	var tex: Texture2D = null
-	if ResourceLoader.exists(path):
-		tex = load(path) as Texture2D
-
-	_portrait_cache[key] = tex
-	return tex
+	return _display.get_portrait_texture(fighter)
 
 
 func _highlight_active_card(fighter: FighterData) -> void:
-	# Deactivate previous
-	if _active_card:
-		_active_card.set_active(false)
-		_active_card = null
-
-	if fighter == null:
-		return
-
-	# Find the card for this fighter
-	for card: PortraitCard in _party_cards:
-		if card.get_fighter() == fighter:
-			card.set_active(true)
-			_active_card = card
-			return
-	for card: PortraitCard in _enemy_cards:
-		if card.get_fighter() == fighter:
-			card.set_active(true)
-			_active_card = card
-			return
+	_display.highlight_active_card(fighter)
 
 
 # =============================================================================
-# Multiplayer RPCs & helpers
+# Multiplayer RPCs (logic delegated to battle_multiplayer.gd)
 # =============================================================================
 
-## Host executes a remote player's action on the engine.
 func _execute_remote_action(actor: FighterData, action: Dictionary) -> void:
-	var action_type: String = action.get("type", "attack")
-	var target_index: int = action.get("target_index", 0)
-
-	match action_type:
-		"attack":
-			var taunter: FighterData = _engine.get_taunt_target(_engine.enemies)
-			var target: FighterData
-			if taunter:
-				target = taunter
-			elif target_index < _engine.enemies.size():
-				target = _engine.enemies[target_index]
-			else:
-				target = _engine.enemies[0]
-			_engine.physical_attack(actor, target)
-
-		"ability_enemy":
-			var ability: AbilityData = _find_ability(actor, action.get("ability_name", ""))
-			if ability == null:
-				_engine.physical_attack(actor, _engine.enemies[0])
-				return
-			actor.mana -= ability.mana_cost
-			_set_cooldown(actor, ability)
-			if ability.target_all:
-				for enemy: FighterData in _engine.enemies.duplicate():
-					_engine.use_ability_on_enemy(actor, enemy, ability, true)
-			else:
-				var taunter: FighterData = _engine.get_taunt_target(_engine.enemies)
-				var target: FighterData
-				if taunter:
-					target = taunter
-				elif target_index < _engine.enemies.size():
-					target = _engine.enemies[target_index]
-				else:
-					target = _engine.enemies[0]
-				_engine.use_ability_on_enemy(actor, target, ability)
-
-		"ability_ally":
-			var ability: AbilityData = _find_ability(actor, action.get("ability_name", ""))
-			if ability == null:
-				return
-			actor.mana -= ability.mana_cost
-			_set_cooldown(actor, ability)
-			if ability.target_all:
-				for ally: FighterData in _engine.units.duplicate():
-					_engine.use_ability_on_teammate(actor, ally, ability, true)
-			else:
-				if target_index < _engine.units.size():
-					_engine.use_ability_on_teammate(actor, _engine.units[target_index], ability)
-
+	_mp.execute_remote_action(actor, action)
 
 func _find_ability(actor: FighterData, ability_name: String) -> AbilityData:
-	for a: AbilityData in actor.abilities:
-		if a.ability_name == ability_name:
-			return a
-	return null
+	return _mp.find_ability(actor, ability_name)
 
-
-## Host broadcasts full fighter state to all peers after each action.
 func _broadcast_state_sync() -> void:
-	if not NetManager.is_host:
-		return
+	_mp.broadcast_state_sync()
 
-	# Serialize all fighters
-	var party_state: Array[Dictionary] = []
-	for f: FighterData in _all_party:
-		party_state.append(_serialize_fighter_combat(f))
-	var enemy_state: Array[Dictionary] = []
-	for f: FighterData in _all_enemies:
-		enemy_state.append(_serialize_fighter_combat(f))
-
-	# Alive indices
-	var alive_party: Array[int] = []
-	for f: FighterData in _engine.units:
-		var idx: int = _all_party.find(f)
-		if idx >= 0:
-			alive_party.append(idx)
-	var alive_enemies: Array[int] = []
-	for f: FighterData in _engine.enemies:
-		var idx: int = _all_enemies.find(f)
-		if idx >= 0:
-			alive_enemies.append(idx)
-
-	# Combat log messages accumulated since last sync
-	var log_lines: Array[String] = _message_queue.duplicate()
-
-	_rpc_state_sync.rpc(party_state, enemy_state, alive_party, alive_enemies, log_lines)
-
-
-func _serialize_fighter_combat(f: FighterData) -> Dictionary:
-	return {
-		"hp": f.health,
-		"max_hp": f.max_health,
-		"mp": f.mana,
-		"max_mp": f.max_mana,
-		"atb": f.turn_calculation,
-		"phys_atk": f.physical_attack,
-		"phys_def": f.physical_defense,
-		"mag_atk": f.magic_attack,
-		"mag_def": f.magic_defense,
-		"speed": f.speed,
-		"crit": f.crit_chance,
-		"dodge": f.dodge_chance,
-		"cooldowns": f.ability_cooldowns.duplicate(),
-	}
-
-
-func _apply_fighter_combat(f: FighterData, data: Dictionary) -> void:
-	f.health = data.get("hp", f.health)
-	f.max_health = data.get("max_hp", f.max_health)
-	f.mana = data.get("mp", f.mana)
-	f.max_mana = data.get("max_mp", f.max_mana)
-	f.turn_calculation = data.get("atb", f.turn_calculation)
-	f.physical_attack = data.get("phys_atk", f.physical_attack)
-	f.physical_defense = data.get("phys_def", f.physical_defense)
-	f.magic_attack = data.get("mag_atk", f.magic_attack)
-	f.magic_defense = data.get("mag_def", f.magic_defense)
-	f.speed = data.get("speed", f.speed)
-	f.crit_chance = data.get("crit", f.crit_chance)
-	f.dodge_chance = data.get("dodge", f.dodge_chance)
-	var cd = data.get("cooldowns", {})
-	f.ability_cooldowns = cd.duplicate() if cd is Dictionary else {}
-
-
-## Host -> All: Full state sync after each action.
 @rpc("authority", "call_remote", "reliable")
-func _rpc_state_sync(
-	party_state: Array,
-	enemy_state: Array,
-	alive_party: Array,
-	alive_enemies: Array,
-	log_lines: Array,
-) -> void:
-	# Apply combat state to local fighter instances
-	for i: int in mini(party_state.size(), _all_party.size()):
-		_apply_fighter_combat(_all_party[i], party_state[i])
-	for i: int in mini(enemy_state.size(), _all_enemies.size()):
-		_apply_fighter_combat(_all_enemies[i], enemy_state[i])
+func _rpc_state_sync(party_state: Array, enemy_state: Array, alive_party: Array, alive_enemies: Array, log_lines: Array) -> void:
+	_mp.handle_state_sync(party_state, enemy_state, alive_party, alive_enemies, log_lines)
 
-	# Update alive/dead status on engine arrays
-	_engine.units.clear()
-	for idx: int in alive_party:
-		if idx < _all_party.size():
-			_engine.units.append(_all_party[idx])
-	_engine.enemies.clear()
-	for idx: int in alive_enemies:
-		if idx < _all_enemies.size():
-			_engine.enemies.append(_all_enemies[idx])
-
-	# Display combat log messages
-	for line: String in log_lines:
-		_add_log(line)
-
-	# Refresh cards
-	_rebuild_cards_if_needed()
-	_refresh_cards()
-
-
-## Host -> Specific Peer: Request player action for their character.
 @rpc("authority", "call_remote", "reliable")
 func _rpc_request_action(actor_party_idx: int) -> void:
-	# Guest receives: show action menu for this character
-	if actor_party_idx < 0 or actor_party_idx >= _all_party.size():
-		return
-	var actor: FighterData = _all_party[actor_party_idx]
-	_current_actor = actor
-	_highlight_active_card(actor)
+	_mp.handle_request_action(actor_party_idx)
 
-	# Turn announcement
-	var turn_text: String
-	if actor.character_name.ends_with("s"):
-		turn_text = "It is %s' turn." % actor.character_name
-	else:
-		turn_text = "It is %s's turn." % actor.character_name
-	_add_log_separator()
-	_add_log("[color=yellow]%s[/color]" % turn_text)
-
-	_phase = Phase.PLAYER_ACTION
-	_show_action_menu(actor)
-	await _player_turn_done
-	# Action completed -- send it to host
-	# (action dict was built by the modified _on_target_selected / _on_ability_selected)
-
-
-## Guest -> Host: Submit chosen action.
 @rpc("any_peer", "call_remote", "reliable")
 func _rpc_submit_action(action: Dictionary) -> void:
-	if not NetManager.is_host:
-		return
-	_remote_action_received.emit(action)
+	_mp.handle_submit_action(action)
 
-
-## Host -> All: Battle ended.
 @rpc("authority", "call_remote", "reliable")
 func _rpc_battle_ended(won: bool) -> void:
-	_phase = Phase.BATTLE_END
-	_highlight_active_card(null)
-	if won:
-		_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
-	else:
-		_add_log("[color=red]The party has been defeated...[/color]")
-	await get_tree().create_timer(2.0).timeout
-	if won:
-		GameState.advance_to_post_battle()
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
-	else:
-		GameState.go_to_ending(false)
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+	_mp.handle_battle_ended(won)
 
-
-## Host -> All: Combat log line (for real-time log display).
 @rpc("authority", "call_remote", "reliable")
 func _rpc_combat_log(text: String) -> void:
-	_add_log(text)
+	_mp.handle_combat_log(text)
 
-
-## Handle peer disconnect during battle. If we're awaiting their action, emit
-## a fallback attack so the tick loop can continue.
-func _on_peer_left_mid_battle(_peer_id: int, player_name: String) -> void:
-	_add_log("[color=yellow]%s disconnected. AI will take over.[/color]" % player_name)
-	# If we're waiting for a remote action, unblock the tick loop
-	if _phase == Phase.PLAYER_ACTION and _waiting_overlay.visible:
-		_remote_action_received.emit({"type": "attack", "target_index": 0})
+func _on_peer_left_mid_battle(peer_id: int, player_name: String) -> void:
+	_mp.on_peer_left_mid_battle(peer_id, player_name)

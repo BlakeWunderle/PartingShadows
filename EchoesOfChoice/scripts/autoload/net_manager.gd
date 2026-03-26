@@ -15,6 +15,8 @@ signal player_joined(peer_id: int, player_name: String)
 signal player_left(peer_id: int, player_name: String)
 signal lobby_ready  ## Enough players have joined to start
 signal session_ended(reason: String)
+signal steam_hosting_started(lobby_id: int)
+signal steam_hosting_failed
 
 ## Whether a multiplayer session is active (host or guest)
 var is_multiplayer_active: bool = false
@@ -22,6 +24,10 @@ var is_multiplayer_active: bool = false
 var is_host: bool = false
 ## Steam lobby ID (0 when not using Steam lobbies)
 var lobby_id: int = 0
+## True when session uses Steam relay instead of direct ENet
+var _use_steam: bool = false
+## Set by SteamManager when a join_requested overlay invite arrives
+var pending_join_lobby_id: int = 0
 ## Number of players in this session (1 = singleplayer, 2 or 3)
 var player_count: int = 1
 ## Mapping of peer_id -> Array[int] of party slot indices
@@ -90,10 +96,75 @@ func join_game(address: String, port: int = DEFAULT_PORT) -> Error:
 	return OK
 
 
+## Create a Steam lobby and host via SteamMultiplayerPeer relay.
+## Async: emits steam_hosting_started(lobby_id) on success or steam_hosting_failed on error.
+func host_game_steam() -> void:
+	_use_steam = true
+	Steam.lobby_created.connect(_on_steam_lobby_created, CONNECT_ONE_SHOT)
+	Steam.createLobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, MAX_PLAYERS)
+
+
+func _on_steam_lobby_created(connect: int, new_lobby_id: int) -> void:
+	if connect != 1:  # 1 = k_EResultOK
+		GameLog.info("NetManager: Steam lobby creation failed (result %d)" % connect)
+		_use_steam = false
+		steam_hosting_failed.emit()
+		return
+	var peer := SteamMultiplayerPeer.new()
+	var err: int = peer.host_with_lobby(new_lobby_id)
+	if err != OK:
+		GameLog.info("NetManager: host_with_lobby failed (%d)" % err)
+		_use_steam = false
+		Steam.leaveLobby(new_lobby_id)
+		steam_hosting_failed.emit()
+		return
+	multiplayer.multiplayer_peer = peer
+	lobby_id = new_lobby_id
+	is_host = true
+	is_multiplayer_active = true
+	player_count = 1
+	var host_name: String = _get_local_player_name()
+	peer_names[1] = host_name
+	_assign_host_slots()
+	GameLog.info("NetManager: Steam lobby %d created as '%s'" % [new_lobby_id, host_name])
+	steam_hosting_started.emit(new_lobby_id)
+
+
+## Join a Steam lobby and connect via SteamMultiplayerPeer relay.
+## Async: connection result arrives via multiplayer.connected_to_server / connection_failed.
+func join_game_steam(steam_lobby_id: int) -> void:
+	_use_steam = true
+	Steam.lobby_joined.connect(_on_steam_lobby_joined, CONNECT_ONE_SHOT)
+	Steam.joinLobby(steam_lobby_id)
+
+
+func _on_steam_lobby_joined(joined_lobby: int, _permissions: int, _locked: bool, response: int) -> void:
+	if response != 1:  # 1 = k_EChatRoomEnterResponseSuccess
+		GameLog.info("NetManager: Failed to join Steam lobby (response %d)" % response)
+		_use_steam = false
+		session_ended.emit("Failed to join lobby")
+		return
+	var peer := SteamMultiplayerPeer.new()
+	var err: int = peer.connect_to_lobby(joined_lobby)
+	if err != OK:
+		GameLog.info("NetManager: connect_to_lobby failed (%d)" % err)
+		_use_steam = false
+		Steam.leaveLobby(joined_lobby)
+		session_ended.emit("Failed to connect to lobby")
+		return
+	multiplayer.multiplayer_peer = peer
+	lobby_id = joined_lobby
+	is_host = false
+	is_multiplayer_active = true
+	GameLog.info("NetManager: Joined Steam lobby %d" % joined_lobby)
+
+
 func leave_session() -> void:
 	if not is_multiplayer_active:
 		return
 	GameLog.info("NetManager: Leaving session")
+	if _use_steam and lobby_id != 0:
+		Steam.leaveLobby(lobby_id)
 	multiplayer.multiplayer_peer = null
 	_reset_state()
 
@@ -102,6 +173,7 @@ func _reset_state() -> void:
 	is_multiplayer_active = false
 	is_host = false
 	lobby_id = 0
+	_use_steam = false
 	player_count = 1
 	peer_slots.clear()
 	my_slots.clear()

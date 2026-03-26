@@ -167,14 +167,11 @@ static func s3_dream_return() -> BattleData:
 		"A hound made of shadow snarls. Something woven from light hangs in the air, watching. An echo of a voice that never existed whispers from the walls.",
 	]
 	b.post_battle_text = [
-		"The dream shudders. The broken architecture groans. Through the noise, two paths appear.",
-		"The dancing figure is back. Brighter than before, moving with purpose through the wreckage. It pauses at the junction, gestures toward both passages, and fades into a trail of light.",
+		"The dream shudders. The broken architecture groans. Through the noise, a passage opens deeper into the structure.",
+		"The dancing figure is back. Brighter than before, moving with purpose through the wreckage. It gestures ahead, urgently, and fades into a trail of light.",
 		"But the figure does not linger. A dark shape surges through the wreckage behind it, fast and silent. The dancer flees, and the shadow follows, close enough to touch.",
 	]
-	b.choices = [
-		{"label": "Left: Walls of shifting stone form a labyrinth that breathes.", "battle_id": "S3_DreamLabyrinth"},
-		{"label": "Right: A clock tower rises, its hands frozen at midnight.", "battle_id": "S3_DreamClockTower"},
-	]
+	b.next_battle_id = "S3_DreamThreads"
 	b.music_track = "res://assets/audio/music/battle_dark/04_Eyes_in_the_Woods.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#15 Dark Strings Swell.wav"
 	return b
@@ -236,8 +233,8 @@ static func s3_dream_nightmare() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_nightmare.png"
 	b.enemies = [
 		EnemyDB.create_the_nightmare("The Nightmare"),
-		EnemyDB.create_nightmare_hound("Shadow Fang"),
-		EnemyDB.create_hollow_echo("Distant Cry"),
+		EnemyDB.create_nightmare_guard("Dread Sentinel"),
+		EnemyDB.create_void_echo("Fading Cry"),
 	]
 	b.pre_battle_text = [
 		"The space beneath the dream is vast and formless. A presence fills it, heavier than air, denser than thought.",
@@ -249,17 +246,10 @@ static func s3_dream_nightmare() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The Nightmare dissolves, screaming in frequencies that vibrate the bones. The dream tears apart.",
-		"Morning. All three travelers are standing in the hallway outside their rooms, pale and shaking.",
-		"'I heard you,' one says. 'In the dream. I heard your voice.'",
-		"'I heard you too.'",
-		"'There was someone else,' the third says. 'A figure. Dancing. It was helping us. I think it distracted the creature at the end.'",
-		"'I saw it too,' another confirms. 'Both nights. The same figure. Glowing. It has been in every dream.'",
-		"'And something was chasing it,' one adds. 'Every time it appeared, something dark followed. Fast. Relentless.'",
-		"Silence. Then the third speaks: 'We were in the same dream. All three of us. Both nights.'",
-		"They sit in the common room and compare notes. The meadow. The creatures. The dancing figure. Every detail matches.",
-		"Something in this town is doing this to them. And tonight, it will happen again.",
+		"In the last moment before waking, the dancer appears one final time. Dimmer than before. Exhausted. It presses both hands against the fading dreamscape as if holding a door open.",
+		"The shadow slams into the barrier from the other side. The dancer buckles but holds. Just long enough.",
 	]
-	b.next_battle_id = "S3_TownRealization"
+	b.next_battle_id = "S3_TownInvestigation"
 	b.music_track = "res://assets/audio/music/boss/Impending Terror_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#11.wav"
 	return b

@@ -20,6 +20,9 @@ var _resolution_btn: OptionButton
 var _resolution_row: HBoxContainer
 var _color_blind_btn: OptionButton
 var _screen_reader_btn: CheckButton
+var _keys_btn: Button
+var _defaults_btn: Button
+var _back_btn: Button
 
 const TEXT_SPEEDS: Array[float] = [0.04, 0.02, 0.01, 0.0]
 const TEXT_SPEED_LABELS: Array[String] = ["Slow", "Normal", "Fast", "Instant"]
@@ -41,6 +44,11 @@ func _ready() -> void:
 	_sync_from_settings()
 
 
+func focus_first() -> void:
+	if _music_slider:
+		_music_slider.grab_focus()
+
+
 func _build_ui() -> void:
 	# Title
 	var title := Label.new()
@@ -57,6 +65,7 @@ func _build_ui() -> void:
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.follow_focus = true
 	scroll.custom_minimum_size = Vector2(0, 300)
 	add_child(scroll)
 
@@ -124,17 +133,35 @@ func _build_ui() -> void:
 	btn_row.alignment = BoxContainer.ALIGNMENT_CENTER
 	add_child(btn_row)
 
-	var keys_btn := _styled_button("Key Bindings")
-	keys_btn.pressed.connect(func() -> void: key_bindings_pressed.emit())
-	btn_row.add_child(keys_btn)
+	_keys_btn = _styled_button("Key Bindings")
+	_keys_btn.pressed.connect(func() -> void: key_bindings_pressed.emit())
+	btn_row.add_child(_keys_btn)
 
-	var defaults_btn := _styled_button("Reset Defaults")
-	defaults_btn.pressed.connect(_on_defaults_pressed)
-	btn_row.add_child(defaults_btn)
+	_defaults_btn = _styled_button("Reset Defaults")
+	_defaults_btn.pressed.connect(_on_defaults_pressed)
+	btn_row.add_child(_defaults_btn)
 
-	var back_btn := _styled_button("Back")
-	back_btn.pressed.connect(func() -> void: back_pressed.emit())
-	btn_row.add_child(back_btn)
+	_back_btn = _styled_button("Back")
+	_back_btn.pressed.connect(func() -> void: back_pressed.emit())
+	btn_row.add_child(_back_btn)
+
+	# Wire focus: bottom buttons left/right
+	_keys_btn.focus_neighbor_right = _defaults_btn.get_path()
+	_defaults_btn.focus_neighbor_left = _keys_btn.get_path()
+	_defaults_btn.focus_neighbor_right = _back_btn.get_path()
+	_back_btn.focus_neighbor_left = _defaults_btn.get_path()
+	_keys_btn.focus_neighbor_left = _back_btn.get_path()
+	_back_btn.focus_neighbor_right = _keys_btn.get_path()
+
+	# Wire focus: screen reader toggle ↔ bottom buttons ↔ music slider (wrap)
+	_screen_reader_btn.focus_neighbor_bottom = _keys_btn.get_path()
+	_keys_btn.focus_neighbor_top = _screen_reader_btn.get_path()
+	_defaults_btn.focus_neighbor_top = _screen_reader_btn.get_path()
+	_back_btn.focus_neighbor_top = _screen_reader_btn.get_path()
+	_keys_btn.focus_neighbor_bottom = _music_slider.get_path()
+	_defaults_btn.focus_neighbor_bottom = _music_slider.get_path()
+	_back_btn.focus_neighbor_bottom = _music_slider.get_path()
+	_music_slider.focus_neighbor_top = _keys_btn.get_path()
 
 
 func _add_slider_row(parent: VBoxContainer, label_text: String, slider: HSlider, value_label: Label) -> void:
@@ -152,6 +179,7 @@ func _add_slider_row(parent: VBoxContainer, label_text: String, slider: HSlider,
 	slider.step = 1.0
 	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	slider.custom_minimum_size = Vector2(140, 0)
+	_apply_focus_style_slider(slider)
 	row.add_child(slider)
 
 	value_label.custom_minimum_size = Vector2(48, 0)
@@ -172,6 +200,7 @@ func _add_dropdown_row(parent: VBoxContainer, label_text: String, option_btn: Op
 	for item: String in items:
 		option_btn.add_item(item)
 	option_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_focus_style_option(option_btn)
 	row.add_child(option_btn)
 	return row
 
@@ -187,6 +216,7 @@ func _add_toggle_row(parent: VBoxContainer, label_text: String, check_btn: Check
 	row.add_child(lbl)
 
 	check_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_apply_focus_style_check(check_btn)
 	row.add_child(check_btn)
 
 
@@ -196,7 +226,48 @@ func _styled_button(text: String) -> Button:
 	btn.custom_minimum_size = Vector2(140, 36)
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style_button(btn)
 	return btn
+
+
+static func _apply_focus_style_button(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
+
+
+static func _apply_focus_style_slider(slider: HSlider) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	slider.add_theme_stylebox_override("focus", focus_sb)
+
+
+static func _apply_focus_style_option(btn: OptionButton) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
+
+
+static func _apply_focus_style_check(btn: CheckButton) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
 
 
 # =============================================================================
@@ -291,6 +362,14 @@ func _on_color_blind_selected(index: int) -> void:
 
 func _on_screen_reader_toggled(pressed: bool) -> void:
 	SettingsManager.screen_reader = pressed
+
+
+func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		back_pressed.emit()
 
 
 func _on_defaults_pressed() -> void:

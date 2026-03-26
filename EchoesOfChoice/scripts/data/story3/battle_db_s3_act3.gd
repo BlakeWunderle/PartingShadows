@@ -24,26 +24,23 @@ static func s3_town_realization() -> BattleData:
 	b.scene_image = "res://assets/art/battles/weary_traveler_night.png"
 	b.is_town_stop = true
 	b.pre_battle_text = [
-		"The innkeeper smiles when they come downstairs. 'Sleep well?' she asks, as if she already knows the answer.",
-		"The travelers exchange glances but say nothing to her. Over breakfast, they plan quietly.",
-		"'Tonight, we go in together,' one says. 'On purpose. If we are sharing dreams, we need to understand why.'",
-		"'And we need to stay awake as long as we can. Watch who watches us.'",
-		"They spend the day preparing. Sharpening weapons. Studying the town. They notice things they missed before: a symbol carved into a doorframe, a shopkeeper who watches them too carefully, a cellar door that has three locks.",
-		"One of them pulls the guest book from behind the bar and spreads it open. The entries go back decades. Name after name. But the later pages are wrong. The handwriting grows unsteady. Some names are half-formed, as if the writers fell asleep mid-stroke. A few entries are just meaningless scrawls. And on every page, faint lines of thread-thin ink connect the names like a web.",
-		"'Every name in this book,' one traveler says quietly. 'Every person who ever slept here. They were all feeding it.'",
-		"A knock at the door. The serving girl, Lira, stands in the hallway, pale and trembling.",
-		"'I know what you are planning,' she says. 'Because I have been there too. Every night. I am the one who has been dancing.'",
-		"She steps inside and closes the door. 'I have lived in this town my whole life. The dreams started when I was a child. I learned to move through them, to resist what the Loom does. But I could never fight it alone.'",
+		"Lira closes the door behind her and sits on the edge of a chair, hands clasped tight.",
+		"'I have lived in this town my whole life,' she says. 'The dreams started when I was a child. I learned to move through them, to resist what the Loom does. But I could never fight it alone.'",
+		"'The guest book you found in the cellar. The one that goes back centuries. Every name in it is someone who fed the Loom. I have watched it happen my whole life and I could not stop it.'",
 		"'I can help you. I know the dream better than anyone. And I know things about this town that will make your blood run cold.'",
-		"'There is something else you should know,' Lira says. 'The Loom knows I resist it. It sends something after me every night. A shadow. It cannot kill me, but it can drive me out, keep me running. That is why I could never stay long enough to fight back.'",
+		"'The Loom sends something after me every night. A shadow. You have seen it. It cannot kill me, but it can drive me out, keep me running. That is why I could never stay long enough to fight back.'",
 		"She spends the day training them, teaching them how to hold their awareness in the dream, how to recognize the Thread's traps, how to fight while sleeping. Her years of navigating the dream world have taught her things about mind and body that no academy could. Old limitations fall away under her guidance.",
 	]
 	b.post_battle_text = [
-		"Night falls. They fight the pull of sleep for as long as they can, talking in one room with the candles burning. Lira sits with them, steady and calm.",
-		"But the exhaustion is not natural. It settles like a weight, and one by one their eyes close.",
-		"The dream is waiting. And this time, they step into it together.",
+		"Night falls. The candles burn low. Lira sits with them, steady and calm, waiting.",
+		"But something nags at the edge of thought. The guest book entries in the same hand. The shadow that always chased her but never caught her. A serving girl who survived decades in a town run by a cult, and no one thought to ask how.",
+		"Lira watches them with patient eyes. 'Shall we sleep?' she asks. 'The dream is waiting.'",
+		"The travelers exchange a glance. They have a choice to make.",
 	]
-	b.next_battle_id = "S3_LucidDream"
+	b.choices = [
+		{"label": "Trust Lira. Step into the dream together, guided by her knowledge of the Loom.", "battle_id": "S3_LucidDream"},
+		{"label": "Something does not add up. Pretend to sleep, then search the inn.", "battle_id": "S3_B_InnSearch"},
+	]
 	b.music_track = "res://assets/audio/music/town/Medieval Tavern 03.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#14.wav"
 	return b
@@ -112,8 +109,8 @@ static func s3_dream_void() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_void.png"
 	b.enemies = [
 		EnemyDB.create_void_spinner("Thread Ripper"),
-		EnemyDB.create_lucid_phantom("Watcher"),
-		EnemyDB.create_thread_spinner("Mender"),
+		EnemyDB.create_void_phantom("Watcher"),
+		EnemyDB.create_rift_mender("Mender"),
 	]
 	b.pre_battle_text = [
 		"The void between dreams is a place that should not exist. It is the gap between threads, the space where the weaving fails.",
@@ -136,8 +133,8 @@ static func s3_dream_sanctum() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_sanctum.png"
 	b.enemies = [
 		EnemyDB.create_sanctum_guardian("Loom Guardian"),
-		EnemyDB.create_cult_shade("Shadow Weaver"),
-		EnemyDB.create_dream_warden("Core Defender"),
+		EnemyDB.create_sanctum_shade("Shadow Weaver"),
+		EnemyDB.create_loom_warden("Core Defender"),
 	]
 	b.pre_battle_text = [
 		"The sanctum pulses with stolen energy. Threads converge here from every direction, each one connected to a sleeping mind somewhere in the town. Somewhere beyond the town.",
@@ -153,9 +150,17 @@ static func s3_dream_sanctum() -> BattleData:
 		"In the last moment before waking, the travelers see it clearly: the cellar beneath the inn. Robed figures around a circle of woven thread. The innkeeper, standing at the center, eyes closed, hands raised.",
 		"They wake up. It is still dark. And now they know exactly what they are dealing with.",
 		"'The Thread,' one says, reading a symbol sketched from memory. 'That is what they call themselves. And they have been doing this for years.'",
-		"Dawn is hours away. They have until then to prepare. Because tonight, they are not going to sleep. Tonight, they are going underneath the inn.",
+		"Dawn is hours away. They have until then to prepare.",
+		"One traveler paces. Another stares at the ceiling. Lira sits cross-legged on her bed, eyes closed, hands still.",
+		"'The cult first,' one says. 'Go underneath the inn before they realize we know.'",
+		"But another hesitates. 'In the dream, when the Threadmaster spoke through the guardian, its voice had the same cadence as yours, Lira. Not the same words. The same rhythm. As if it learned to speak by listening to you.'",
+		"Lira opens her eyes. For a moment, something crosses her face. Not guilt. Not fear. Something older and deeper than either.",
 	]
-	b.next_battle_id = "S3_CultUnderbelly"
+	b.choices = [
+		{"label": "The cult first. Go underneath the inn before they realize we know.", "battle_id": "S3_CultUnderbelly"},
+	]
+	if UnlockManager.is_unlocked("story_3_path_a") and UnlockManager.is_unlocked("story_3_path_b"):
+		b.choices.append({"label": "Lira, wait. In the dream, the Threadmaster's voice sounded like yours. Talk to us.", "battle_id": "S3_C_LirasConfession"})
 	b.music_track = "res://assets/audio/music/boss/Awakening of the Juggernaut_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 09.wav"
 	return b

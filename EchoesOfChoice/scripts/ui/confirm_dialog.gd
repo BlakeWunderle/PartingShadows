@@ -87,7 +87,18 @@ func _make_button(text: String) -> Button:
 	btn.custom_minimum_size = Vector2(120, 40)
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style(btn)
 	return btn
+
+
+static func _apply_focus_style(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
 
 
 func _unhandled_input(event: InputEvent) -> void:

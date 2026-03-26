@@ -71,7 +71,7 @@ func show_text(lines: Array) -> void:
 
 func _start_input_guard() -> void:
 	## Brief delay before accepting input to prevent scene-transition clicks
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	_accepting_input = true
 
 
@@ -95,7 +95,7 @@ func _type_next_line() -> void:
 			var remaining: String = _full_text.substr(chars_added)
 			_label.append_text(remaining)
 			break
-		await get_tree().create_timer(CHAR_DELAY).timeout
+		await get_tree().create_timer(CHAR_DELAY, false).timeout
 
 	_typing = false
 	_current_line += 1
@@ -117,6 +117,8 @@ func _start_pulse() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not visible or not _accepting_input:
+		return
+	if LocalCoop.is_event_gated(event):
 		return
 
 	var pressed: bool = false

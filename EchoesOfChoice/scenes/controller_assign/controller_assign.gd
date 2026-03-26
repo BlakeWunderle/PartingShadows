@@ -7,6 +7,7 @@ extends Control
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const StoryDB := preload("res://scripts/data/story_db.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
+const TitleScene := preload("res://scenes/title/title.gd")
 
 enum Phase { ASSIGNING, MENU, LOAD_SLOTS, STORY_SELECT }
 
@@ -39,7 +40,9 @@ func _build_ui() -> void:
 	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	bg.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	var bg_path := "res://assets/art/ui/title_background.png"
+	var bg_path: String = TitleScene._cached_bg
+	if bg_path.is_empty():
+		bg_path = "res://assets/art/ui/title_background.png"
 	if ResourceLoader.exists(bg_path):
 		bg.texture = load(bg_path)
 	add_child(bg)
@@ -109,7 +112,7 @@ func _build_ui() -> void:
 	_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hint_label.add_theme_font_size_override("font_size", 16)
 	_hint_label.add_theme_color_override("font_color", Color(0.5, 0.55, 0.6))
-	_hint_label.text = "Press B / Escape to unclaim"
+	_hint_label.text = "Press B / Escape to unclaim  |  Escape/B with nothing claimed to exit"
 	vbox.add_child(_hint_label)
 
 	# Menu (hidden until all slots claimed)
@@ -131,6 +134,7 @@ func _reset_slots() -> void:
 	_claimed_devices.clear()
 	for i: int in LocalCoop.player_count:
 		_claimed_devices.append(UNCLAIMED)
+	LocalCoop.player_devices.clear()
 	_update_display()
 
 
@@ -170,6 +174,22 @@ func _first_unclaimed_slot() -> int:
 # =============================================================================
 
 func _input(event: InputEvent) -> void:
+	# In MENU phase, Escape/B cancels back to ASSIGNING (re-pick devices)
+	if _phase == Phase.MENU:
+		if event is InputEventKey and event.pressed and not event.echo \
+				and event.keycode == KEY_ESCAPE:
+			_reset_slots()
+			_phase = Phase.ASSIGNING
+			_menu_container.visible = false
+			get_viewport().set_input_as_handled()
+		elif event is InputEventJoypadButton and event.pressed \
+				and event.is_action("cancel"):
+			_reset_slots()
+			_phase = Phase.ASSIGNING
+			_menu_container.visible = false
+			get_viewport().set_input_as_handled()
+		return
+
 	if _phase != Phase.ASSIGNING:
 		return
 
@@ -181,17 +201,27 @@ func _input(event: InputEvent) -> void:
 				_claim_device(-1)
 				get_viewport().set_input_as_handled()
 		elif event.keycode == KEY_ESCAPE:
-			_unclaim_device(-1)
+			# If nothing claimed yet, exit co-op setup entirely
+			if _claimed_devices.is_empty() or _claimed_devices[0] == UNCLAIMED:
+				LocalCoop.stop()
+				SceneManager.change_scene("res://scenes/title/title.tscn")
+			else:
+				_unclaim_device(-1)
 			get_viewport().set_input_as_handled()
 
 	# Gamepad claim: A button (joypad button 0)
 	elif event is InputEventJoypadButton and event.pressed:
-		if event.button_index == JOY_BUTTON_A:
+		if event.is_action("confirm"):
 			if not _is_device_taken(event.device):
 				_claim_device(event.device)
 				get_viewport().set_input_as_handled()
-		elif event.button_index == JOY_BUTTON_B:
-			_unclaim_device(event.device)
+		elif event.is_action("cancel"):
+			# If nothing claimed yet, exit co-op setup entirely
+			if _claimed_devices.is_empty() or _claimed_devices[0] == UNCLAIMED:
+				LocalCoop.stop()
+				SceneManager.change_scene("res://scenes/title/title.tscn")
+			else:
+				_unclaim_device(event.device)
 			get_viewport().set_input_as_handled()
 
 
@@ -232,6 +262,7 @@ func _unclaim_device(device_id: int) -> void:
 # =============================================================================
 
 func _show_action_menu() -> void:
+	_finalize_devices()
 	_phase = Phase.MENU
 	_menu_container.visible = true
 	var options: Array[Dictionary] = [
@@ -239,7 +270,7 @@ func _show_action_menu() -> void:
 	]
 	if SaveManager.has_any_save():
 		options.append({"label": "Load Save"})
-	options.append({"label": "Back"})
+	options.append({"label": "Cancel"})
 	_menu.show_choices(options)
 
 
@@ -257,7 +288,7 @@ func _handle_action_choice(index: int) -> void:
 	var labels: Array[String] = ["New Story"]
 	if SaveManager.has_any_save():
 		labels.append("Load Save")
-	labels.append("Back")
+	labels.append("Cancel")
 
 	if index < 0 or index >= labels.size():
 		return
@@ -272,9 +303,10 @@ func _handle_action_choice(index: int) -> void:
 				SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
 		"Load Save":
 			_show_load_slots()
-		"Back":
-			LocalCoop.stop()
-			SceneManager.change_scene("res://scenes/title/title.tscn")
+		"Cancel":
+			_reset_slots()
+			_phase = Phase.ASSIGNING
+			_menu_container.visible = false
 
 
 # =============================================================================

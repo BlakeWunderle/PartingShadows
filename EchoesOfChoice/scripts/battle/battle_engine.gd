@@ -17,6 +17,8 @@ var units: Array = []      ## Player party (alive)
 var enemies: Array = []    ## Enemy team (alive)
 var dead_units: Array = [] ## Dead party members (revived at end)
 
+var sim_mode: bool = false  ## Skip signal emissions for headless simulation
+var sim_stats: Dictionary = {}  ## Per-fighter combat stats (sim mode only)
 var _acting_units: Array = []
 
 
@@ -30,6 +32,23 @@ func start_battle(party: Array, enemy_list: Array) -> void:
 		f.reset_for_battle()
 
 
+## Start battle without array duplication. Sim mode only: callers must
+## pass freshly-created or cloned arrays that will not be reused.
+func start_battle_sim(party: Array, enemy_list: Array) -> void:
+	units = party
+	enemies = enemy_list
+	dead_units.clear()
+	for f: FighterData in units:
+		f.reset_for_battle()
+	for f: FighterData in enemies:
+		f.reset_for_battle()
+	sim_stats.clear()
+	for f: FighterData in units:
+		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false}
+	for f: FighterData in enemies:
+		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false}
+
+
 ## Advance ATB timers by one tick. Returns true if any units can act.
 func tick_atb() -> bool:
 	for f: FighterData in units:
@@ -37,6 +56,35 @@ func tick_atb() -> bool:
 	for f: FighterData in enemies:
 		f.turn_calculation += f.speed
 	return _has_acting_units()
+
+
+## Fast-forward ATB to the exact point where the next actor(s) reach 100.
+## Always produces at least one ready actor. Used by the simulation runner
+## to skip the many no-op ticks where nobody is ready.
+func tick_atb_fast() -> void:
+	var min_ticks := 999999
+	for f: FighterData in units:
+		var remaining := 100 - f.turn_calculation
+		if remaining <= 0:
+			min_ticks = 0
+			break
+		var needed := ceili(float(remaining) / float(f.speed))
+		if needed < min_ticks:
+			min_ticks = needed
+	if min_ticks > 0:
+		for f: FighterData in enemies:
+			var remaining := 100 - f.turn_calculation
+			if remaining <= 0:
+				min_ticks = 0
+				break
+			var needed := ceili(float(remaining) / float(f.speed))
+			if needed < min_ticks:
+				min_ticks = needed
+	if min_ticks > 0:
+		for f: FighterData in units:
+			f.turn_calculation += f.speed * min_ticks
+		for f: FighterData in enemies:
+			f.turn_calculation += f.speed * min_ticks
 
 
 ## Get all units ready to act, sorted by highest ATB first.
@@ -86,22 +134,34 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 		damage += attacker.crit_damage
 
 	if _check_for_dodge(defender):
-		combat_message.emit("The attack from %s missed" % attacker.character_name)
-		combat_event.emit(defender, 0, "miss")
+		if not sim_mode:
+			combat_message.emit("The attack from %s missed" % attacker.character_name)
+			combat_event.emit(defender, 0, "miss")
 		return
 
 	defender.health -= damage
-	combat_message.emit("%s did %d points of damage to %s." % [
-		attacker.character_name, damage, defender.character_name])
-	combat_event.emit(defender, damage, "crit" if is_crit else "damage")
+	if sim_mode:
+		sim_stats[attacker].dmg_dealt += damage
+		sim_stats[defender].dmg_taken += damage
+	else:
+		combat_message.emit("%s did %d points of damage to %s." % [
+			attacker.character_name, damage, defender.character_name])
+		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
+
+	# Restore MP based on magic attack
+	var mp_restore: int = maxi(1, floori(attacker.magic_attack / 7))
+	attacker.mana = mini(attacker.mana + mp_restore, attacker.max_mana)
+	if not sim_mode:
+		combat_event.emit(attacker, mp_restore, "mp_restore")
 
 
 func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		ability: AbilityData, skip_flavor: bool = false) -> void:
 	if _check_for_ability_dodge(defender):
-		combat_message.emit("%s dodged %s's ability!" % [
-			defender.character_name, attacker.character_name])
-		combat_event.emit(defender, 0, "miss")
+		if not sim_mode:
+			combat_message.emit("%s dodged %s's ability!" % [
+				defender.character_name, attacker.character_name])
+			combat_event.emit(defender, 0, "miss")
 		return
 
 	if ability.impacted_turns == 0:
@@ -114,18 +174,25 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			damage += attacker.crit_damage
 
 		defender.health -= damage
-		if not skip_flavor:
-			combat_message.emit(ability.flavor_text)
-		combat_message.emit("%s did %d points of damage to %s." % [
-			attacker.character_name, damage, defender.character_name])
-		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
+		if sim_mode:
+			sim_stats[attacker].dmg_dealt += damage
+			sim_stats[defender].dmg_taken += damage
+		else:
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
+			combat_message.emit("%s did %d points of damage to %s." % [
+				attacker.character_name, damage, defender.character_name])
+			combat_event.emit(defender, damage, "spell_crit" if is_crit else "spell_damage")
 
 		if ability.life_steal_percent > 0.0 and damage > 0:
 			var heal_amount: int = int(damage * ability.life_steal_percent)
 			attacker.health = mini(attacker.health + heal_amount, attacker.max_health)
-			combat_message.emit("%s absorbed %d health." % [
-				attacker.character_name, heal_amount])
-			combat_event.emit(attacker, heal_amount, "heal")
+			if sim_mode:
+				sim_stats[attacker].heals += heal_amount
+			else:
+				combat_message.emit("%s absorbed %d health." % [
+					attacker.character_name, heal_amount])
+				combat_event.emit(attacker, heal_amount, "heal")
 	else:
 		# Over-time effect
 		if ability.damage_per_turn > 0:
@@ -136,10 +203,12 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"is_negative": true,
 				"damage_per_turn": ability.damage_per_turn,
 			})
-			if not skip_flavor:
-				combat_message.emit(ability.flavor_text)
-			combat_message.emit("%s will take %d damage per turn for %d turns." % [
-				defender.character_name, ability.damage_per_turn, ability.impacted_turns])
+			if not sim_mode:
+				if not skip_flavor:
+					combat_message.emit(ability.flavor_text)
+				combat_message.emit("%s will take %d damage per turn for %d turns." % [
+					defender.character_name, ability.damage_per_turn, ability.impacted_turns])
+				combat_event.emit(defender, ability.damage_per_turn, "debuff")
 
 		if ability.modifier > 0 and (ability.damage_per_turn == 0 \
 				or ability.modified_stat != Enums.StatType.HEALTH):
@@ -151,10 +220,11 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"damage_per_turn": 0,
 			})
 			_modify_stats(defender, ability.modified_stat, ability.modifier, true)
-			if ability.damage_per_turn == 0:
+			if not sim_mode and ability.damage_per_turn == 0:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
 				combat_message.emit("%s was hit with this ability." % defender.character_name)
+				combat_event.emit(defender, ability.modifier, "debuff")
 
 
 func use_ability_on_teammate(caster: FighterData, target: FighterData,
@@ -172,11 +242,14 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		if target.health > target.max_health:
 			target.health = target.max_health
 
-		if not skip_flavor:
-			combat_message.emit(ability.flavor_text)
-		combat_message.emit("%s healed %d points of damage." % [
-			target.character_name, heal_amount])
-		combat_event.emit(target, heal_amount, "heal")
+		if sim_mode:
+			sim_stats[caster].heals += heal_amount
+		else:
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
+			combat_message.emit("%s healed %d points of damage." % [
+				target.character_name, heal_amount])
+			combat_event.emit(target, heal_amount, "heal")
 	else:
 		# Buff
 		target.modified_stats.append({
@@ -187,9 +260,11 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			"damage_per_turn": 0,
 		})
 		_modify_stats(target, ability.modified_stat, ability.modifier, false)
-		if not skip_flavor:
-			combat_message.emit(ability.flavor_text)
-		combat_message.emit("%s was impacted by the ability." % target.character_name)
+		if not sim_mode:
+			if not skip_flavor:
+				combat_message.emit(ability.flavor_text)
+			combat_message.emit("%s was impacted by the ability." % target.character_name)
+			combat_event.emit(target, ability.modifier, "buff")
 
 
 func _calc_ability_damage(attacker: FighterData, defender: FighterData,
@@ -205,6 +280,51 @@ func _calc_ability_damage(attacker: FighterData, defender: FighterData,
 				- (defender.physical_defense + defender.magic_defense) / 2
 		_:
 			return ability.modifier
+
+
+func perform_block(blocker: FighterData) -> void:
+	var phys_bonus: int = maxi(1, floori(blocker.physical_defense * 0.5))
+	var mag_bonus: int = maxi(1, floori(blocker.magic_defense * 0.5))
+	blocker._apply_stat_change(Enums.StatType.PHYSICAL_DEFENSE, phys_bonus, false)
+	blocker.modified_stats.append({
+		"stat": Enums.StatType.PHYSICAL_DEFENSE,
+		"modifier": phys_bonus,
+		"turns": 1,
+		"is_negative": false,
+		"damage_per_turn": 0,
+	})
+	blocker._apply_stat_change(Enums.StatType.MAGIC_DEFENSE, mag_bonus, false)
+	blocker.modified_stats.append({
+		"stat": Enums.StatType.MAGIC_DEFENSE,
+		"modifier": mag_bonus,
+		"turns": 1,
+		"is_negative": false,
+		"damage_per_turn": 0,
+	})
+	var mp_restore: int = maxi(1, floori(blocker.magic_attack / 7))
+	blocker.mana = mini(blocker.mana + mp_restore, blocker.max_mana)
+	if not sim_mode:
+		combat_message.emit("%s braces for impact." % blocker.character_name)
+		combat_event.emit(blocker, mp_restore, "block")
+
+
+func perform_rest(unit: FighterData) -> void:
+	var mp_restore: int = maxi(2, floori(unit.magic_attack / 7) * 2)
+	unit.mana = mini(unit.mana + mp_restore, unit.max_mana)
+	var hp_restore: int = maxi(1, floori(unit.max_health * 0.1))
+	unit.health = mini(unit.health + hp_restore, unit.max_health)
+	if sim_mode:
+		sim_stats[unit].heals += hp_restore
+	else:
+		combat_message.emit("%s takes a moment to rest." % unit.character_name)
+		combat_event.emit(unit, mp_restore, "rest")
+
+
+func _has_defense_buff(fighter: FighterData) -> bool:
+	for mod: Dictionary in fighter.modified_stats:
+		if mod["stat"] == Enums.StatType.PHYSICAL_DEFENSE and not mod["is_negative"]:
+			return true
+	return false
 
 
 # =============================================================================
@@ -224,9 +344,12 @@ func reset_modified_stat(fighter: FighterData) -> void:
 
 		if mod.get("damage_per_turn", 0) > 0:
 			fighter.health -= mod["damage_per_turn"]
-			combat_message.emit("%s takes %d damage from a lingering effect." % [
-				fighter.character_name, mod["damage_per_turn"]])
-			combat_event.emit(fighter, mod["damage_per_turn"], "damage")
+			if sim_mode:
+				sim_stats[fighter].dmg_taken += mod["damage_per_turn"]
+			else:
+				combat_message.emit("%s takes %d damage from a lingering effect." % [
+					fighter.character_name, mod["damage_per_turn"]])
+				combat_event.emit(fighter, mod["damage_per_turn"], "damage")
 
 		if mod["turns"] == 0:
 			if mod.get("damage_per_turn", 0) == 0:
@@ -249,16 +372,20 @@ func check_for_death() -> void:
 
 	for i: int in units.size():
 		if units[i].health <= 0:
-			combat_message.emit("%s the %s has been knocked out." % [
-				units[i].character_name, units[i].character_type])
-			fighter_died.emit(units[i])
+			if sim_mode:
+				sim_stats[units[i]].died = true
+			else:
+				combat_message.emit("%s the %s has been knocked out." % [
+					units[i].character_name, units[i].character_type])
+				fighter_died.emit(units[i])
 			unit_deaths.append(i)
 
 	for i: int in enemies.size():
 		if enemies[i].health <= 0:
-			combat_message.emit("%s the %s has been knocked out." % [
-				enemies[i].character_name, enemies[i].character_type])
-			fighter_died.emit(enemies[i])
+			if not sim_mode:
+				combat_message.emit("%s the %s has been knocked out." % [
+					enemies[i].character_name, enemies[i].character_type])
+				fighter_died.emit(enemies[i])
 			enemy_deaths.append(i)
 
 	for offset: int in unit_deaths.size():
@@ -283,28 +410,11 @@ func finish_battle() -> void:
 	if did_player_win():
 		units.append_array(dead_units)
 		dead_units.clear()
-		battle_won.emit()
+		if not sim_mode:
+			battle_won.emit()
 	else:
-		battle_lost.emit()
-
-
-# =============================================================================
-# Cooldown
-# =============================================================================
-
-func tick_cooldowns(fighter: FighterData) -> void:
-	var expired: Array[String] = []
-	for ability_name: String in fighter.ability_cooldowns:
-		fighter.ability_cooldowns[ability_name] -= 1
-		if fighter.ability_cooldowns[ability_name] <= 0:
-			expired.append(ability_name)
-	for ability_name: String in expired:
-		fighter.ability_cooldowns.erase(ability_name)
-
-
-func _set_cooldown(fighter: FighterData, ability: AbilityData) -> void:
-	if ability.cooldown > 0:
-		fighter.ability_cooldowns[ability.ability_name] = ability.cooldown
+		if not sim_mode:
+			battle_lost.emit()
 
 
 # =============================================================================
@@ -360,8 +470,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 	for a: AbilityData in unit.abilities:
 		if a.mana_cost > unit.mana:
 			continue
-		if unit.ability_cooldowns.get(a.ability_name, 0) > 0:
-			continue
 		affordable.append(a)
 
 		if a.use_on_enemy:
@@ -386,11 +494,11 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 				if wounded == null or ally.health < wounded.health:
 					wounded = ally
 		if wounded != null:
-			var heal: AbilityData = heal_abilities[randi_range(0, heal_abilities.size() - 1)]
+			var heal: AbilityData = _weighted_pick(heal_abilities)
 			unit.mana -= heal.mana_cost
-			_set_cooldown(unit, heal)
 			if heal.target_all:
-				combat_message.emit(heal.flavor_text)
+				if not sim_mode:
+					combat_message.emit(heal.flavor_text)
 				for ally: FighterData in allies:
 					if ally.health > 0:
 						use_ability_on_teammate(unit, ally, heal, true)
@@ -406,7 +514,6 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var taunt_chance: float = tank_ratio * (targets.size() / 3.0)
 		if randf() < taunt_chance:
 			unit.mana -= taunt_ability.mana_cost
-			_set_cooldown(unit, taunt_ability)
 			use_ability_on_teammate(unit, unit, taunt_ability)
 			return
 
@@ -415,7 +522,7 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var buff_roll: int = randi_range(0, 4)
 		var try_buff: bool = buff_roll == 0 or (buff_roll <= 1 and has_aoe_buff)
 		if try_buff:
-			var buff: AbilityData = buff_abilities[randi_range(0, buff_abilities.size() - 1)]
+			var buff: AbilityData = _weighted_pick(buff_abilities)
 			if buff.target_all:
 				var any_unbuffed: bool = false
 				for ally: FighterData in allies:
@@ -424,8 +531,8 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 						break
 				if any_unbuffed:
 					unit.mana -= buff.mana_cost
-					_set_cooldown(unit, buff)
-					combat_message.emit(buff.flavor_text)
+					if not sim_mode:
+						combat_message.emit(buff.flavor_text)
 					for ally: FighterData in allies:
 						if ally.health > 0:
 							use_ability_on_teammate(unit, ally, buff, true)
@@ -441,9 +548,32 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 							buff_target = ally
 				if buff_target != null and not _has_modifier(buff_target, buff.modified_stat, false):
 					unit.mana -= buff.mana_cost
-					_set_cooldown(unit, buff)
 					use_ability_on_teammate(unit, buff_target, buff)
 					return
+
+	# Priority 2.5: Block or Rest (basic actions)
+	var hp_pct: float = float(unit.health) / float(unit.max_health)
+	var mp_pct: float = float(unit.mana) / float(unit.max_mana) if unit.max_mana > 0 else 1.0
+
+	if hp_pct < 0.35 and not _has_defense_buff(unit):
+		if unit.is_user_controlled:
+			# Player auto-battle: always block when low HP
+			perform_block(unit)
+			return
+		else:
+			# Enemy: 25% chance to block, never consecutively
+			if randf() < 0.25:
+				perform_block(unit)
+				return
+
+	if mp_pct < 0.3 and hp_pct >= 0.35:
+		if unit.is_user_controlled:
+			perform_rest(unit)
+			return
+		else:
+			if randf() < 0.25:
+				perform_rest(unit)
+				return
 
 	# Priority 3: Offensive ability vs physical attack
 	var ability_chance: float = magic_ratio
@@ -460,10 +590,10 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		var ability: AbilityData = _choose_offensive_ability(
 			unit, offensive_abilities, magic_ratio)
 		unit.mana -= ability.mana_cost
-		_set_cooldown(unit, ability)
 		if ability.target_all:
-			combat_message.emit(ability.flavor_text)
-			for target: FighterData in targets.duplicate():
+			if not sim_mode:
+				combat_message.emit(ability.flavor_text)
+			for target: FighterData in targets:
 				use_ability_on_enemy(unit, target, ability, true)
 		else:
 			var target: FighterData = _choose_target(unit, targets, magic_ratio)
@@ -504,6 +634,19 @@ func _find_max_health(targets: Array) -> FighterData:
 	return best
 
 
+func _weighted_pick(abilities: Array[AbilityData]) -> AbilityData:
+	## Pick an ability weighted by mana cost (higher cost = stronger = preferred).
+	var total: float = 0.0
+	for a: AbilityData in abilities:
+		total += 1.0 + a.mana_cost
+	var roll: float = randf() * total
+	for a: AbilityData in abilities:
+		roll -= 1.0 + a.mana_cost
+		if roll <= 0.0:
+			return a
+	return abilities[abilities.size() - 1]
+
+
 func _choose_offensive_ability(unit: FighterData,
 		offensive_abilities: Array[AbilityData], magic_ratio: float) -> AbilityData:
 	var preferred: Enums.StatType = Enums.StatType.MAGIC_ATTACK \
@@ -515,5 +658,5 @@ func _choose_offensive_ability(unit: FighterData,
 			preferred_list.append(a)
 
 	if not preferred_list.is_empty():
-		return preferred_list[randi_range(0, preferred_list.size() - 1)]
-	return offensive_abilities[randi_range(0, offensive_abilities.size() - 1)]
+		return _weighted_pick(preferred_list)
+	return _weighted_pick(offensive_abilities)

@@ -1,0 +1,5 @@
+{
+  "type": "skill",
+  "description": "Export Godot build with clean cache. Use before sending builds to testers or when assets aren't updating correctly in exports. Clears .godot cache, re-imports all assets, and exports specified platform(s).",
+  "tags": ["godot", "export", "build", "cache"]
+}

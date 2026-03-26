@@ -30,13 +30,23 @@ func unlock(key: String) -> void:
 	match key:
 		"story_1_complete":
 			SteamManager.set_achievement("STORY_1_COMPLETE")
+			SteamManager.set_achievement("WANDERER_UNLOCKED")
 		"story_2_complete":
 			SteamManager.set_achievement("STORY_2_COMPLETE")
 		"story_3_complete":
 			SteamManager.set_achievement("STORY_3_COMPLETE")
+		"story_3_path_a":
+			SteamManager.set_achievement("STORY_3_PATH_A")
+		"story_3_path_b":
+			SteamManager.set_achievement("STORY_3_PATH_B")
+		"story_3_path_c":
+			SteamManager.set_achievement("STORY_3_PATH_C")
 	if is_unlocked("story_1_complete") and is_unlocked("story_2_complete") \
 			and is_unlocked("story_3_complete"):
 		SteamManager.set_achievement("ALL_STORIES_COMPLETE")
+	if is_unlocked("story_3_path_a") and is_unlocked("story_3_path_b") \
+			and is_unlocked("story_3_path_c"):
+		SteamManager.set_achievement("STORY_3_ALL_PATHS")
 
 
 func _save_unlocks() -> void:

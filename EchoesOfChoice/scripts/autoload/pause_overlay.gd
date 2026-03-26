@@ -8,8 +8,10 @@ const StoryDB := preload("res://scripts/data/story_db.gd")
 const SettingsPanel := preload("res://scripts/ui/settings_panel.gd")
 const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
-const CompendiumPanel := preload("res://scripts/ui/compendium_panel.gd")
+const CompendiumPanelNew := preload("res://scripts/ui/compendium/compendium_panel.gd")
 const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
+const PauseSaveSlots_C := preload("res://scripts/autoload/pause_save_slots.gd")
 
 enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS, WAITING_MP, FIGHTER_PICK }
 
@@ -18,7 +20,7 @@ var _panel: Control
 var _main_vbox: VBoxContainer
 var _save_vbox: VBoxContainer
 var _settings_panel: SettingsPanel
-var _compendium_panel: CompendiumPanel
+var _compendium_panel: CompendiumPanelNew
 var _remap_panel: InputRemapPanel
 var _resume_btn: Button
 var _save_btn: Button
@@ -27,12 +29,19 @@ var _feedback_label: Label
 var _confirm_dialog: ConfirmDialog
 var _open_mp_btn: Button
 var _fighter_picker: FighterPicker
+var _tip_overlay: TipOverlay
+var _center_panel: PanelContainer
+var _pause_title: Label
+var _pause_sep: HSeparator
+var _panel_expanded: bool = false
 var _pending_save_slot: int = -1
+var _save_slots: PauseSaveSlots_C
 
 
 func _ready() -> void:
 	layer = 99  # Below SceneManager fader (100)
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_save_slots = PauseSaveSlots_C.new(self)
 	_build_ui()
 	_panel.visible = false
 
@@ -53,35 +62,35 @@ func _build_ui() -> void:
 	_panel.add_child(bg)
 
 	# Center panel container
-	var center := PanelContainer.new()
-	center.set_anchors_preset(Control.PRESET_CENTER)
-	center.offset_left = -200.0
-	center.offset_top = -280.0
-	center.offset_right = 200.0
-	center.offset_bottom = 280.0
-	_panel.add_child(center)
+	_center_panel = PanelContainer.new()
+	_center_panel.set_anchors_preset(Control.PRESET_CENTER)
+	_center_panel.offset_left = -200.0
+	_center_panel.offset_top = -280.0
+	_center_panel.offset_right = 200.0
+	_center_panel.offset_bottom = 280.0
+	_panel.add_child(_center_panel)
 
 	var margin := MarginContainer.new()
 	margin.add_theme_constant_override("margin_left", 20)
 	margin.add_theme_constant_override("margin_top", 16)
 	margin.add_theme_constant_override("margin_right", 20)
 	margin.add_theme_constant_override("margin_bottom", 16)
-	center.add_child(margin)
+	_center_panel.add_child(margin)
 
 	var root_vbox := VBoxContainer.new()
 	root_vbox.add_theme_constant_override("separation", 10)
 	margin.add_child(root_vbox)
 
 	# Title
-	var title := Label.new()
-	title.text = "PAUSED"
-	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 26)
-	title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
-	root_vbox.add_child(title)
+	_pause_title = Label.new()
+	_pause_title.text = "PAUSED"
+	_pause_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_pause_title.add_theme_font_size_override("font_size", 26)
+	_pause_title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	root_vbox.add_child(_pause_title)
 
-	var sep := HSeparator.new()
-	root_vbox.add_child(sep)
+	_pause_sep = HSeparator.new()
+	root_vbox.add_child(_pause_sep)
 
 	# Main menu buttons
 	_main_vbox = VBoxContainer.new()
@@ -142,11 +151,14 @@ func _build_ui() -> void:
 	_settings_panel.key_bindings_pressed.connect(_show_key_bindings)
 	root_vbox.add_child(_settings_panel)
 
-	# Compendium panel (hidden by default)
-	_compendium_panel = CompendiumPanel.new()
+	# Compendium panel (hidden by default, global context like title screen)
+	_compendium_panel = CompendiumPanelNew.new()
 	_compendium_panel.visible = false
 	_compendium_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_compendium_panel.back_pressed.connect(_back_to_main)
+	_compendium_panel.grid_columns = 5
+	_compendium_panel.items_per_page = 10
+	_compendium_panel.set_context(CompendiumPanelNew.Context.GLOBAL)
+	_compendium_panel.close_requested.connect(_back_to_main)
 	root_vbox.add_child(_compendium_panel)
 
 	# Key bindings panel (hidden by default)
@@ -160,6 +172,9 @@ func _build_ui() -> void:
 	_confirm_dialog = ConfirmDialog.new()
 	_panel.add_child(_confirm_dialog)
 
+	_tip_overlay = TipOverlay.new()
+	_panel.add_child(_tip_overlay)
+
 
 func _make_button(text: String) -> Button:
 	var btn := Button.new()
@@ -168,7 +183,18 @@ func _make_button(text: String) -> Button:
 	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_apply_focus_style(btn)
 	return btn
+
+
+static func _apply_focus_style(btn: Button) -> void:
+	var focus_sb := StyleBoxFlat.new()
+	focus_sb.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+	focus_sb.border_color = Color.WHITE
+	focus_sb.set_border_width_all(3)
+	focus_sb.set_corner_radius_all(4)
+	focus_sb.set_content_margin_all(6)
+	btn.add_theme_stylebox_override("focus", focus_sb)
 
 
 # =============================================================================
@@ -362,13 +388,27 @@ func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_main_vbox.visible = false
 	_settings_panel.visible = true
+	_settings_panel.focus_first()
 
 
 func _show_compendium() -> void:
 	_mode = Mode.COMPENDIUM
 	_main_vbox.visible = false
+	_pause_title.visible = false
+	_pause_sep.visible = false
+	# Use most of the screen for compendium (narrower for 5-col grid)
+	_panel_expanded = true
+	_center_panel.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_center_panel.offset_left = 180.0
+	_center_panel.offset_top = 30.0
+	_center_panel.offset_right = -180.0
+	_center_panel.offset_bottom = -30.0
 	_compendium_panel.visible = true
-	_compendium_panel._refresh()
+	_compendium_panel.refresh_data()
+	_tip_overlay.show_tip_once("compendium",
+		"The compendium tracks enemies, classes, and battles you've " +
+		"encountered in this playthrough.\n\n" +
+		"Click cards for detailed information and stats!")
 
 
 func _show_key_bindings() -> void:
@@ -376,6 +416,7 @@ func _show_key_bindings() -> void:
 	_main_vbox.visible = false
 	_settings_panel.visible = false
 	_remap_panel.visible = true
+	_remap_panel.focus_first()
 
 
 # =============================================================================
@@ -383,98 +424,27 @@ func _show_key_bindings() -> void:
 # =============================================================================
 
 func _show_save_slots() -> void:
-	_mode = Mode.SAVE_SLOTS
-	_main_vbox.visible = false
-
-	# Clear old slot buttons
-	for child: Node in _save_vbox.get_children():
-		child.queue_free()
-
-	# Build slot buttons with summaries
-	for i: int in SaveManager.MAX_SAVE_SLOTS:
-		var summary: Dictionary = SaveManager.get_save_summary(i)
-		var label: String
-		if summary.get("exists", false):
-			var story_title: String = StoryDB.get_story(
-				summary.get("story_id", "story_1")).get("title", "")
-			var secs: float = summary.get("play_seconds", 0.0)
-			var h: int = int(secs) / 3600
-			var m: int = (int(secs) % 3600) / 60
-			label = "Slot %d: %s the %s - Lv %d (%s) [%dh %dm]" % [
-				i + 1,
-				summary.get("lead_name", "???"),
-				summary.get("lead_class", "???"),
-				summary.get("level", 1),
-				story_title,
-				h, m,
-			]
-		else:
-			label = "Slot %d: Empty" % [i + 1]
-		var btn := _make_button(label)
-		var slot: int = i  # Capture for lambda
-		btn.pressed.connect(_on_save_slot_selected.bind(slot))
-		_save_vbox.add_child(btn)
-
-		# Delete button for occupied slots
-		if summary.get("exists", false):
-			var del_btn := _make_button("  Delete Slot %d" % [i + 1])
-			del_btn.add_theme_color_override("font_color", Color(0.8, 0.4, 0.4))
-			del_btn.custom_minimum_size.y = 28
-			del_btn.pressed.connect(_on_delete_slot_selected.bind(slot))
-			_save_vbox.add_child(del_btn)
-
-	# Back button
-	var back_btn := _make_button("Back")
-	back_btn.pressed.connect(_back_to_main)
-	_save_vbox.add_child(back_btn)
-
-	_save_vbox.visible = true
-
-	# Focus first slot after frame so buttons are ready
-	await get_tree().process_frame
-	if _save_vbox.get_child_count() > 0:
-		var first: Button = _save_vbox.get_child(0) as Button
-		if first:
-			first.grab_focus()
+	_save_slots.show_save_slots()
 
 
 func _on_save_slot_selected(slot: int) -> void:
-	if SaveManager.has_save(slot):
-		_pending_save_slot = slot
-		_confirm_dialog.confirmed.connect(_on_overwrite_confirmed, CONNECT_ONE_SHOT)
-		_confirm_dialog.show_confirm("Overwrite this save?")
-	else:
-		_do_save(slot)
+	_save_slots.on_save_slot_selected(slot)
 
 
 func _on_overwrite_confirmed(accepted: bool) -> void:
-	if accepted and _pending_save_slot >= 0:
-		_do_save(_pending_save_slot)
-	_pending_save_slot = -1
+	_save_slots.on_overwrite_confirmed(accepted)
 
 
 func _do_save(slot: int) -> void:
-	SaveManager.save_to_slot(slot)
-	for i: int in _save_vbox.get_child_count():
-		var btn: Button = _save_vbox.get_child(i) as Button
-		if btn and i == slot:
-			btn.text = "Slot %d: Saved!" % [slot + 1]
-	await get_tree().create_timer(0.6).timeout
-	if _mode == Mode.SAVE_SLOTS:
-		_back_to_main()
+	_save_slots.do_save(slot)
 
 
 func _on_delete_slot_selected(slot: int) -> void:
-	_pending_save_slot = slot
-	_confirm_dialog.confirmed.connect(_on_delete_confirmed, CONNECT_ONE_SHOT)
-	_confirm_dialog.show_confirm("Delete this save? This cannot be undone.")
+	_save_slots.on_delete_slot_selected(slot)
 
 
 func _on_delete_confirmed(accepted: bool) -> void:
-	if accepted and _pending_save_slot >= 0:
-		SaveManager.delete_save(_pending_save_slot)
-		_show_save_slots()  # Refresh the slot list
-	_pending_save_slot = -1
+	_save_slots.on_delete_confirmed(accepted)
 
 
 func _back_to_main() -> void:
@@ -483,6 +453,16 @@ func _back_to_main() -> void:
 	_settings_panel.visible = false
 	_compendium_panel.visible = false
 	_remap_panel.visible = false
+	_pause_title.visible = true
+	_pause_sep.visible = true
+	# Restore default center panel size only if it was expanded
+	if _panel_expanded:
+		_panel_expanded = false
+		_center_panel.set_anchors_preset(Control.PRESET_CENTER)
+		_center_panel.offset_left = -200.0
+		_center_panel.offset_top = -280.0
+		_center_panel.offset_right = 200.0
+		_center_panel.offset_bottom = 280.0
 	_main_vbox.visible = true
 	_resume_btn.grab_focus()
 

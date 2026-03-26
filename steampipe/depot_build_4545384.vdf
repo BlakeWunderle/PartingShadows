@@ -1,0 +1,12 @@
+"DepotBuildConfig"
+{
+	"DepotID" "4545384"
+	"ContentRoot" "C:\Projects\EchoesOfChoice\build\macos"
+	"FileMapping"
+	{
+		"LocalPath" "*"
+		"DepotPath" "."
+		"Recursive" "1"
+	}
+	"FileExclusion" "*.zip"
+}

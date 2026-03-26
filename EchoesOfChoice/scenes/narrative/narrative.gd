@@ -8,12 +8,15 @@ const DialoguePanel := preload("res://scripts/ui/dialogue_panel.gd")
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
 const VotePanel := preload("res://scripts/ui/vote_panel.gd")
+const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const _StoryDB := preload("res://scripts/data/story_db.gd")
+const Endings := preload("res://scenes/narrative/narrative_endings.gd")
 
 var _dialogue: DialoguePanel
 var _choice_menu: ChoiceMenu
 var _ready_gate: ReadyGate
 var _vote_panel: VotePanel
+var _tip_overlay: TipOverlay
 var _scene_image: TextureRect
 var _pending_advance: Callable  ## What to do after all players ready up
 
@@ -76,6 +79,9 @@ func _build_ui() -> void:
 	_vote_panel.vote_resolved.connect(_on_vote_resolved)
 	vbox.add_child(_vote_panel)
 
+	_tip_overlay = TipOverlay.new()
+	add_child(_tip_overlay)
+
 
 func _show_narrative() -> void:
 	var battle = GameState.current_battle
@@ -117,107 +123,37 @@ func _show_ending() -> void:
 		if not completion_key.is_empty():
 			is_first_completion = not UnlockManager.is_unlocked(completion_key)
 			UnlockManager.unlock(completion_key)
+		# Track Story 3 path completion for Path C gating
+		if GameState.current_story_id == "story_3":
+			match GameState.current_battle_id:
+				"S3_DreamNexus":
+					UnlockManager.unlock("story_3_path_a")
+				"S3_B_DreamNexus":
+					UnlockManager.unlock("story_3_path_b")
+				"S3_C_DreamNexus":
+					UnlockManager.unlock("story_3_path_c")
 		MusicManager.play_music("res://assets/audio/music/victory/SHORT Action #5 LOOP.wav")
 	else:
 		MusicManager.play_music("res://assets/audio/music/game_over/Sad Despair 03.wav")
 	var lines: Array[String]
 	match GameState.current_story_id:
 		"story_2":
-			lines = _ending_text_story_2()
+			lines = Endings.get_ending_text_story_2(GameState.game_won, GameState.current_battle_id)
 		"story_3":
-			lines = _ending_text_story_3()
+			lines = Endings.get_ending_text_story_3(GameState.game_won, GameState.current_battle_id)
 		_:
-			lines = _ending_text_story_1()
+			lines = Endings.get_ending_text_story_1(GameState.game_won, GameState.current_battle_id)
 	if _is_defeat:
 		lines.append("")
 		lines.append("Battles won: %d" % GameState.battles_won)
 	if is_first_completion:
-		lines.append_array(_unlock_notification_lines())
+		lines.append_array(Endings.get_unlock_notification_lines(GameState.current_story_id))
+		_tip_overlay.show_tip_once("story_unlock",
+			"Each story features different enemies, environments, and " +
+			"challenges. Completing stories also unlocks new base classes " +
+			"for your party.\n\n" +
+			"Try the new content from the title screen!")
 	_dialogue.show_text(lines)
-
-
-func _ending_text_story_1() -> Array[String]:
-	if GameState.game_won:
-		return [
-			"The stranger is gone and with them, the shadow that covered the land.",
-			"The sky clears. The city stirs. People emerge from hiding.",
-			"It will take time, but the world will heal.",
-			"Our heroes stand in the light, bruised and exhausted and alive.",
-			"Every choice left an echo, and theirs will ring through the ages.",
-			"",
-			"Thank you for playing Echoes of Choice.",
-		]
-	else:
-		return [
-			"Our heroes fall and the darkness grows a little stronger.",
-			"This journey may be over, but every great story deserves another telling.",
-		]
-
-
-func _ending_text_story_2() -> Array[String]:
-	if GameState.game_won:
-		return [
-			"The Eye closes for the last time. The crystallized memories shatter, and light rises from the depths like a thousand lanterns set free.",
-			"Across the coast, people stop mid-sentence. A name they forgot. A face they lost. A moment that was taken, returned without explanation.",
-			"The old woman in the fishing village remembers the dinner. The blacksmith remembers why the sword was urgent. The barkeep remembers the conversations.",
-			"Deep below, in the place where the Eye once watched, the party stands in silence. The machinery is dark. The crystals are empty.",
-			"A voice, faint as breath, echoes through the chamber. Sera's voice, carried on the last of the light.",
-			"'Thank you.'",
-			"They carry her memory with them. Not because they have to. Because they choose to.",
-			"",
-			"Thank you for playing Echoes of Choice.",
-		]
-	else:
-		return [
-			"The Eye remains open. The memories do not return.",
-			"In the darkness below the world, something watches. Something waits. Something remembers everything it has taken.",
-			"This journey may be over, but every great story deserves another telling.",
-		]
-
-
-func _ending_text_story_3() -> Array[String]:
-	if GameState.game_won:
-		return [
-			"The Loom is broken. The threads dissolve into the morning light, carrying with them every stolen dream, every pilfered night of rest.",
-			"Across the town, people wake feeling something they cannot name. A lightness. A clarity. As if a weight they never knew they carried has been lifted.",
-			"Where the innkeeper stood, there is nothing. No body, no trace. She was never real. Just another thread in the Loom, a familiar face woven from stolen dreams to lure the weary inside.",
-			"The travelers stand in the street as the sun rises. For the first time in days, they are not tired. The weariness is gone, truly gone, and the road ahead feels possible again.",
-			"'The Weary Traveler,' one of them reads aloud from the sign, shaking their head. 'She named the inn after what she was doing to people.'",
-			"They leave the town behind. Their dreams that night are their own.",
-			"",
-			"Thank you for playing Echoes of Choice.",
-		]
-	else:
-		return [
-			"The Loom holds. The threads tighten. The dream does not end.",
-			"Somewhere in a quiet town, a kind face smiles and pours ale for the next weary traveler. She was never real, but no one will ever know.",
-			"This journey may be over, but every great story deserves another telling.",
-		]
-
-
-func _unlock_notification_lines() -> Array[String]:
-	match GameState.current_story_id:
-		"story_1":
-			return [
-				"",
-				"New content unlocked!",
-				"A new story awaits: \"Echoes in the Dark.\" Three strangers wake in a cave with no memory.",
-				"A new class has emerged: the Wanderer. A wilderness fighter who learned to endure the land's magic.",
-			]
-		"story_2":
-			return [
-				"",
-				"New content unlocked!",
-				"A new story awaits: \"The Woven Night.\" Three travelers rest at a quiet inn. Their dreams are not their own.",
-			]
-		"story_3":
-			return [
-				"",
-				"New content unlocked!",
-				"You have completed all available stories. More adventures may follow.",
-			]
-		_:
-			return []
 
 
 func _on_text_finished() -> void:
@@ -302,6 +238,11 @@ func _get_peer_index(peer_id: int) -> int:
 
 
 func _show_defeat_choices() -> void:
+	_tip_overlay.show_tip_once("first_defeat",
+		"The game autosaves after every battle. You can load your " +
+		"last save and try again with a different strategy.\n\n" +
+		"Consider adjusting your party composition or class upgrades " +
+		"at the next town stop.")
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	if SaveManager.has_any_save():
@@ -334,6 +275,10 @@ func _on_defeat_choice(index: int) -> void:
 
 
 func _show_branch_choices() -> void:
+	_tip_overlay.show_tip_once("first_branch",
+		"Your choices shape the story. Different paths lead to " +
+		"different battles, enemies, and endings.\n\n" +
+		"Choose carefully. There is no going back!")
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	for choice: Dictionary in GameState.current_battle.choices:

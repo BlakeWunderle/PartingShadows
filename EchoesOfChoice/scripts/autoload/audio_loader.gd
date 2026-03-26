@@ -5,6 +5,14 @@ static func load_stream(res_path: String) -> AudioStream:
 	if is_headless():
 		return null
 
+	# In exported builds, use ResourceLoader to load from .pck
+	# In development, try ResourceLoader first, then fall back to filesystem
+	if ResourceLoader.exists(res_path):
+		var stream: AudioStream = load(res_path)
+		if stream != null:
+			return stream
+
+	# Fallback for runtime-loaded files not in .pck (development mode)
 	var abs_path: String = ProjectSettings.globalize_path(res_path)
 	var lower := abs_path.to_lower()
 
