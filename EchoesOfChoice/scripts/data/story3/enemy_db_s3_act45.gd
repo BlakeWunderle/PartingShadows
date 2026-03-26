@@ -19,7 +19,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 # Prog 14 -- mage acolyte (level 15)
 static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Cult Acolyte", lvl)
-	f.health = EH.es(570, 656, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(616, 708, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(38, 47, 2, 3, lvl, 15)
@@ -35,7 +35,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 # Prog 14 -- physical enforcer (level 15)
 static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Cult Enforcer", lvl)
-	f.health = EH.es(679, 777, 6, 9, lvl, 15); f.max_health = f.health
+	f.health = EH.es(733, 839, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 124, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 15)
@@ -51,7 +51,7 @@ static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 # Prog 14 -- glass cannon hexer (level 15)
 static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Cult Hexer", lvl)
-	f.health = EH.es(495, 572, 4, 7, lvl, 15); f.max_health = f.health
+	f.health = EH.es(535, 617, 4, 7, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(32, 40, 1, 3, lvl, 15)
@@ -202,7 +202,7 @@ static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 # Prog 17 boss minion -- fast magic DPS (level 18)
 static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Shadow Fragment", lvl)
-	f.health = EH.es(446, 513, 5, 8, lvl, 18); f.max_health = f.health
+	f.health = EH.es(468, 539, 5, 8, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 18)
@@ -218,7 +218,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 # Prog 17 boss -- The Threadmaster (level 18)
 static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "The Threadmaster", lvl)
-	f.health = EH.es(786, 888, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = EH.es(825, 932, 8, 12, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(92, 107, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)

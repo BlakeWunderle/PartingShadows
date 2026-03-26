@@ -261,7 +261,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 
 static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Cellar Watcher", lvl)
-	f.health = EH.es(417, 480, 4, 7, lvl, 11); f.max_health = f.health
+	f.health = EH.es(434, 499, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(10, 12, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(58, 69, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 11)
@@ -276,7 +276,7 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 
 static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Thread Construct", lvl)
-	f.health = EH.es(489, 560, 5, 8, lvl, 11); f.max_health = f.health
+	f.health = EH.es(509, 582, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(65, 79, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(41, 49, 2, 3, lvl, 11)
@@ -291,7 +291,7 @@ static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 
 static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Ink Shade", lvl)
-	f.health = EH.es(356, 413, 4, 7, lvl, 11); f.max_health = f.health
+	f.health = EH.es(370, 430, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
 	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 11)

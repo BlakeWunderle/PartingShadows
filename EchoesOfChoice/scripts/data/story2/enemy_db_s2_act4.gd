@@ -13,7 +13,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Gaze Stalker", lvl)
-	f.health = EH.es(473, 537, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = EH.es(492, 558, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(76, 89, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 14)
@@ -28,7 +28,7 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 
 static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Memory Harvester", lvl)
-	f.health = EH.es(501, 567, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = EH.es(521, 590, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(31, 40, 2, 3, lvl, 14)
@@ -73,7 +73,7 @@ static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 
 static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Void Iris", lvl)
-	f.health = EH.es(308, 351, 4, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(345, 393, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(21, 30, 1, 3, lvl, 14)
@@ -107,7 +107,7 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 
 static func create_the_iris(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "The Iris", lvl)
-	f.health = EH.es(698, 796, 8, 11, lvl, 15); f.max_health = f.health
+	f.health = EH.es(782, 892, 8, 11, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(26, 31, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(27, 36, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(61, 72, 3, 5, lvl, 15)
@@ -122,7 +122,7 @@ static func create_the_iris(n: String, lvl: int = 15) -> FighterData:
 
 static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "The Lidless Eye", lvl)
-	f.health = EH.es(912, 1037, 9, 13, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1012, 1151, 9, 13, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(31, 36, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(22, 30, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(64, 76, 3, 5, lvl, 15)

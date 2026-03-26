@@ -15,7 +15,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Cellar Sentinel", lvl)
-	f.health = EH.es(513, 587, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = EH.es(549, 628, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(82, 94, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 12)
@@ -30,7 +30,7 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 
 static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Bound Stalker", lvl)
-	f.health = EH.es(397, 457, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = EH.es(425, 489, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(79, 90, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 12)
@@ -303,7 +303,7 @@ static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 
 static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Lira, the Threadmaster", lvl)
-	f.health = EH.es(880, 994, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = EH.es(960, 1083, 8, 12, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(102, 118, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
@@ -318,7 +318,7 @@ static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 
 static func create_tattered_deception(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Tattered Deception", lvl)
-	f.health = EH.es(505, 581, 5, 8, lvl, 18); f.max_health = f.health
+	f.health = EH.es(550, 634, 5, 8, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 18)
@@ -333,7 +333,7 @@ static func create_tattered_deception(n: String, lvl: int = 18) -> FighterData:
 
 static func create_dream_bastion(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Dream Bastion", lvl)
-	f.health = EH.es(645, 740, 6, 9, lvl, 18); f.max_health = f.health
+	f.health = EH.es(703, 807, 6, 9, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(122, 140, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(57, 65, 2, 4, lvl, 18)

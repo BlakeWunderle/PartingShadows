@@ -64,7 +64,7 @@ static func probability() -> AbilityData:
 # Alchemist
 static func transmute() -> AbilityData:
 	return _make("Transmute", "Transform matter into pure energy.",
-		Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 12, 0, true, 4, false, 0, 0.0)
 
 static func corrosive_acid() -> AbilityData:
 	return _make("Corrosive Acid", "Acid that burns over time.",
@@ -72,7 +72,7 @@ static func corrosive_acid() -> AbilityData:
 
 static func elixir() -> AbilityData:
 	return _make("Elixir", "A carefully brewed healing potion.",
-		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 14, 0, false, 4, false, 0, 0.0)
 
 # Bombardier
 static func cluster_bomb() -> AbilityData:
@@ -252,20 +252,20 @@ static func spirit_mend() -> AbilityData:
 # Falconer
 static func falcon_strike() -> AbilityData:
 	return _make("Falcon Strike", "A raptor dives from above.",
-		Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func talon_rend() -> AbilityData:
 	return _make("Talon Rend", "The falcon rakes razor talons across the enemy, lacerations bleeding long after the strike.",
-		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 3, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 3, false, 3, 0.0)
 
 static func aerial_strike() -> AbilityData:
 	return _make("Aerial Strike", "The falcon sweeps low, raking talons across all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 # Shapeshifter
 static func savage_maul() -> AbilityData:
 	return _make("Savage Maul", "Transform and maul the enemy.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func frenzy() -> AbilityData:
 	return _make("Frenzy", "Enter a bestial rage.",
@@ -273,7 +273,7 @@ static func frenzy() -> AbilityData:
 
 static func rampage() -> AbilityData:
 	return _make("Rampage", "Unleash the beast within, tearing through all enemies with primal fury.",
-		Enums.StatType.MIXED_ATTACK, 5, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 12, 0, true, 5, true, 0, 0.0)
 
 
 # =============================================================================
@@ -326,7 +326,7 @@ static func ironclad_challenge() -> AbilityData:
 # Aegis - support tank with party buffs and healing
 static func guardians_blessing() -> AbilityData:
 	return _make("Guardian's Blessing", "Channel protective energy to mend a wounded ally.",
-		Enums.StatType.HEALTH, 6, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.HEALTH, 10, 0, false, 5, false, 0, 0.0)
 
 static func protective_ward() -> AbilityData:
 	return _make("Protective Ward", "Extend a shield of protection to all nearby allies.",
@@ -334,7 +334,7 @@ static func protective_ward() -> AbilityData:
 
 static func spell_counter() -> AbilityData:
 	return _make("Spell Counter", "Turn the enemy's magic back upon them.",
-		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 # Trailblazer
 static func blaze_trail() -> AbilityData:

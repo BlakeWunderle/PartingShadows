@@ -15,7 +15,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Royal Guard", lvl)
-	f.health = EH.es(330, 373, 9, 13, lvl, 10); f.max_health = f.health
+	f.health = EH.es(347, 392, 9, 13, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(44, 51, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(33, 38, 3, 4, lvl, 10)
@@ -29,7 +29,7 @@ static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 
 static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Sergeant", lvl)
-	f.health = EH.es(338, 385, 9, 13, lvl, 10); f.max_health = f.health
+	f.health = EH.es(355, 404, 9, 13, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(47, 56, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(23, 30, 2, 3, lvl, 10)
@@ -43,7 +43,7 @@ static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 
 static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Archer", lvl)
-	f.health = EH.es(285, 330, 7, 11, lvl, 10); f.max_health = f.health
+	f.health = EH.es(299, 347, 7, 11, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(46, 52, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(17, 23, 1, 3, lvl, 10)
@@ -57,7 +57,7 @@ static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 
 static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Stranger", lvl)
-	f.health = EH.es(818, 910, 16, 22, lvl, 11); f.max_health = f.health
+	f.health = EH.es(851, 946, 16, 22, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(30, 35, 2, 3, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(64, 73, 4, 6, lvl, 11)
 	f.physical_defense = EH.es(37, 43, 2, 4, lvl, 11)
@@ -76,7 +76,7 @@ static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 
 static func create_lich(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Lich", lvl)
-	f.health = EH.es(363, 408, 8, 12, lvl, 12); f.max_health = f.health
+	f.health = EH.es(399, 449, 8, 12, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(26, 31, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(25, 30, 2, 3, lvl, 12)
@@ -90,7 +90,7 @@ static func create_lich(n: String, lvl: int = 12) -> FighterData:
 
 static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Ghast", lvl)
-	f.health = EH.es(317, 359, 7, 10, lvl, 12); f.max_health = f.health
+	f.health = EH.es(349, 395, 7, 10, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(13, 17, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(57, 64, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
@@ -104,7 +104,7 @@ static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 
 static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Demon", lvl)
-	f.health = EH.es(503, 559, 9, 13, lvl, 12); f.max_health = f.health
+	f.health = EH.es(538, 598, 9, 13, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(29, 34, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 30, 1, 3, lvl, 12)
 	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
@@ -118,7 +118,7 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 
 static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Corrupted Treant", lvl)
-	f.health = EH.es(411, 458, 9, 13, lvl, 12); f.max_health = f.health
+	f.health = EH.es(440, 490, 9, 13, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(52, 60, 4, 6, lvl, 12)
 	f.physical_defense = EH.es(42, 48, 3, 5, lvl, 12)
@@ -180,7 +180,7 @@ static func create_blighted_stag(n: String, lvl: int = 17) -> FighterData:
 
 static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Dark Knight", lvl)
-	f.health = EH.es(470, 520, 8, 12, lvl, 14); f.max_health = f.health
+	f.health = EH.es(503, 556, 8, 12, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 23, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(70, 78, 4, 6, lvl, 14)
 	f.physical_defense = EH.es(39, 48, 3, 5, lvl, 14)
@@ -194,7 +194,7 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 
 static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Fell Hound", lvl)
-	f.health = EH.es(393, 440, 7, 10, lvl, 14); f.max_health = f.health
+	f.health = EH.es(421, 471, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 23, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(23, 28, 1, 3, lvl, 14)
 	f.physical_defense = EH.es(27, 33, 2, 3, lvl, 14)
@@ -208,7 +208,7 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 
 static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Sigil Wretch", lvl)
-	f.health = EH.es(369, 412, 7, 10, lvl, 13); f.max_health = f.health
+	f.health = EH.es(384, 428, 7, 10, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(24, 29, 2, 3, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(13, 16, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(26, 33, 1, 3, lvl, 13)
@@ -222,7 +222,7 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 
 static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Tunnel Lurker", lvl)
-	f.health = EH.es(472, 516, 10, 14, lvl, 13); f.max_health = f.health
+	f.health = EH.es(491, 537, 10, 14, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(69, 78, 5, 7, lvl, 13)
 	f.physical_defense = EH.es(36, 42, 2, 4, lvl, 13)
@@ -237,7 +237,7 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Stranger", lvl)
 	f.class_id = "StrangerFinal"
-	f.health = EH.es(1240, 1360, 17, 23, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1327, 1455, 17, 23, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(42, 48, 3, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(78, 88, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(55, 62, 3, 5, lvl, 15)

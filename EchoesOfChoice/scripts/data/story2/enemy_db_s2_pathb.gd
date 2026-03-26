@@ -13,7 +13,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Fractured Scholar", lvl)
-	f.health = EH.es(680, 770, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(734, 832, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(98, 112, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(43, 52, 2, 3, lvl, 13)
@@ -28,7 +28,7 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 
 static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Archive Sentinel", lvl)
-	f.health = EH.es(600, 678, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(648, 733, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(104, 119, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(53, 62, 2, 4, lvl, 13)
@@ -47,7 +47,7 @@ static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 
 static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pipeline Warden", lvl)
-	f.health = EH.es(619, 703, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(675, 766, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 125, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(61, 72, 3, 4, lvl, 14)
@@ -62,7 +62,7 @@ static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 
 static func create_maintenance_drone(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Maintenance Drone", lvl)
-	f.health = EH.es(449, 514, 5, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(490, 561, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(60, 69, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(35, 44, 2, 3, lvl, 14)
@@ -77,7 +77,7 @@ static func create_maintenance_drone(n: String, lvl: int = 14) -> FighterData:
 
 static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Resonance Node", lvl)
-	f.health = EH.es(427, 488, 4, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(466, 532, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(22, 26, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 14)
@@ -96,7 +96,7 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 
 static func create_eyes_fist(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Eye's Fist", lvl)
-	f.health = EH.es(724, 824, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(804, 915, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(134, 154, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(65, 76, 3, 5, lvl, 14)
@@ -111,7 +111,7 @@ static func create_eyes_fist(n: String, lvl: int = 14) -> FighterData:
 
 static func create_null_sentinel(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Null Sentinel", lvl)
-	f.health = EH.es(540, 614, 5, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(599, 682, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(21, 25, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 14)
@@ -126,7 +126,7 @@ static func create_null_sentinel(n: String, lvl: int = 14) -> FighterData:
 
 static func create_overload_spark(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Overload Spark", lvl)
-	f.health = EH.es(444, 504, 4, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(493, 559, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(62, 72, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(32, 41, 2, 3, lvl, 14)
@@ -145,7 +145,7 @@ static func create_overload_spark(n: String, lvl: int = 14) -> FighterData:
 
 static func create_memory_torrent(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Memory Torrent", lvl)
-	f.health = EH.es(410, 468, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(447, 510, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(24, 28, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 15)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 15)
@@ -160,7 +160,7 @@ static func create_memory_torrent(n: String, lvl: int = 15) -> FighterData:
 
 static func create_unleashed_recollection(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Unleashed Recollection", lvl)
-	f.health = EH.es(433, 495, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(472, 539, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 124, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(46, 55, 2, 4, lvl, 15)
@@ -175,7 +175,7 @@ static func create_unleashed_recollection(n: String, lvl: int = 15) -> FighterDa
 
 static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Rage Fragment", lvl)
-	f.health = EH.es(371, 423, 5, 7, lvl, 15); f.max_health = f.health
+	f.health = EH.es(404, 461, 5, 7, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(79, 91, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 15)
@@ -194,7 +194,7 @@ static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 
 static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "The Unblinking Eye", lvl)
-	f.health = EH.es(1116, 1268, 10, 14, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1261, 1433, 10, 14, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(36, 42, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(26, 34, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(56, 66, 3, 5, lvl, 15)

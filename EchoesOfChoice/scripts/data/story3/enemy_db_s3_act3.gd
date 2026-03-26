@@ -50,7 +50,7 @@ static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 # Prog 12 DreamTemple only -- physical tank
 static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Loom Sentinel", lvl)
-	f.health = EH.es(583, 667, 6, 9, lvl, 13); f.max_health = f.health
+	f.health = EH.es(612, 700, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(87, 100, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(48, 57, 2, 3, lvl, 13)
@@ -83,7 +83,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 # Prog 12 (DreamTemple) only -- hybrid fighter
 static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Dream Warden", lvl)
-	f.health = EH.es(501, 575, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(526, 604, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(77, 88, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(37, 44, 2, 3, lvl, 13)
@@ -99,7 +99,7 @@ static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 # Prog 12 DreamTemple only -- magic DPS
 static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Thought Leech", lvl)
-	f.health = EH.es(438, 504, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(460, 529, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(28, 36, 1, 3, lvl, 13)

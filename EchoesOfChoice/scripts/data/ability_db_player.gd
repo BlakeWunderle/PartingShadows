@@ -63,28 +63,28 @@ static func inner_focus() -> AbilityData:
 # Cavalry
 static func lance() -> AbilityData:
 	return _make("Lance", "A devastating mounted charge.",
-		Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 22, 0, true, 4, false, 0, 0.0)
 
 static func cavalry_charge() -> AbilityData:
 	return _make("Cavalry Charge", "Crash into the enemy with unstoppable momentum.",
-		Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 5, false, 0, 0.3)
+		Enums.StatType.PHYSICAL_ATTACK, 17, 0, true, 5, false, 0, 0.3)
 
 static func trample() -> AbilityData:
 	return _make("Trample", "Charge through the enemy lines, crushing body and spirit alike.",
-		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 13, 0, true, 4, true, 0, 0.0)
 
 # Dragoon
 static func jump() -> AbilityData:
 	return _make("Jump", "Leap high and crash down on all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
-		Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 3, 0.0)
+		Enums.StatType.MIXED_ATTACK, 14, 0, true, 4, false, 3, 0.0)
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
-		Enums.StatType.MIXED_ATTACK, 14, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 22, 0, true, 5, false, 0, 0.0)
 
 # Mercenary
 static func gun_shot() -> AbilityData:
@@ -298,7 +298,7 @@ static func rebuke() -> AbilityData:
 # Warcrier
 static func battle_cry() -> AbilityData:
 	return _make("Battle Cry", "A thunderous shout that devastates.",
-		Enums.StatType.MIXED_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func war_chant() -> AbilityData:
 	return _make("War Chant", "A fierce war chant that ignites an ally's fighting spirit.",
@@ -306,7 +306,7 @@ static func war_chant() -> AbilityData:
 
 static func rally_cry() -> AbilityData:
 	return _make("Rally Cry", "A rallying shout that mends wounds.",
-		Enums.StatType.MIXED_ATTACK, 6, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 9, 0, false, 5, false, 0, 0.0)
 
 # Minstrel
 static func dissonance() -> AbilityData:
@@ -337,11 +337,11 @@ static func bewilderment() -> AbilityData:
 # Mime
 static func invisible_wall() -> AbilityData:
 	return _make("Invisible Wall", "Nothing can get through.",
-		Enums.StatType.DEFENSE, 5, 2, false, 3, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 7, 2, false, 3, true, 0, 0.0)
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 16, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 20, 0, true, 4, false, 0, 0.0)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",
