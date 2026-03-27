@@ -515,7 +515,15 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 				if wounded == null or ally.health < wounded.health:
 					wounded = ally
 		if wounded != null:
-			var heal: AbilityData = _weighted_pick(heal_abilities)
+			var hp_frac: float = float(wounded.health) / float(wounded.max_health)
+			var eligible: Array[AbilityData] = heal_abilities.filter(
+				func(h: AbilityData) -> bool: return hp_frac < h.heal_threshold)
+			if eligible.is_empty():
+				wounded = null
+		if wounded != null:
+			var heal: AbilityData = _weighted_pick(
+				heal_abilities.filter(func(h: AbilityData) -> bool:
+					return float(wounded.health) / float(wounded.max_health) < h.heal_threshold))
 			unit.mana -= heal.mana_cost
 			if heal.target_all:
 				if not sim_mode:

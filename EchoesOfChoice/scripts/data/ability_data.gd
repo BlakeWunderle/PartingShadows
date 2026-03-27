@@ -14,6 +14,9 @@ const Enums := preload("res://scripts/data/enums.gd")
 @export var target_all: bool = false
 @export var damage_per_turn: int = 0
 @export var life_steal_percent: float = 0.0
+## Heal fires at Priority 1 only when wounded ally is below this fraction of max HP.
+## Default 0.5 (50%). Set lower (e.g. 0.25) for heals that should be last resort.
+@export var heal_threshold: float = 0.5
 
 
 func get_description() -> String:

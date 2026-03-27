@@ -60,7 +60,9 @@ static func calibration_beam() -> AbilityData:
 	return _make("Calibration Beam", "A precise beam of resonance energy meant for machinery but lethal to flesh.", Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.0)
 
 static func repair_pulse() -> AbilityData:
-	return _make("Repair Pulse", "A restorative pulse designed to mend extraction equipment.", Enums.StatType.HEALTH, 12, 0, false, 3, false, 0, 0.0)
+	var a := _make("Repair Pulse", "A restorative pulse designed to mend extraction equipment.", Enums.StatType.HEALTH, 12, 0, false, 3, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 
 # =============================================================================

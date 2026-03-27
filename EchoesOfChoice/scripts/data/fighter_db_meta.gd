@@ -145,8 +145,8 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Blighter": return [PAB_B.blight(), PAB_B.plague(), PAB_B.poison_sting()]
 		"GroveKeeper": return [PAB_B.thorn_burst(), PAB_B.natures_mend(), PAB_B.vine_wall()]
 		"WitchDoctor": return [PAB_B.voodoo_bolt(), PAB_B.dark_hex(), PAB_B.creeping_rot()]
-		"Spiritwalker": return [PAB_B.spirit_shield(), PAB_B.ancestral_blessing(), PAB_B.spirit_mend()]
-		"Falconer": return [PAB_B.falcon_strike(), PAB_B.talon_rend(), PAB_B.aerial_strike()]
+		"Spiritwalker": return [PAB_B.soul_strike(), PAB_B.spirit_shield(), PAB_B.spirit_mend()]
+		"Falconer": return [PAB_B.falcon_strike(), PAB_B.rending_talon(), PAB_B.aerial_strike()]
 		"Shapeshifter": return [PAB_B.savage_maul(), PAB_B.frenzy(), PAB_B.rampage()]
 		# T2:Wanderer
 		"Bulwark": return [PAB_B.spell_ward(), PAB_B.iron_fist(), PAB_B.ironclad_challenge()]

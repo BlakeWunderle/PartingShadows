@@ -135,8 +135,10 @@ static func precise_strike() -> AbilityData:
 		Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 5, false, 0, 0.0)
 
 static func inner_peace() -> AbilityData:
-	return _make("Inner Peace", "Channel spiritual harmony to mend an ally's wounds.",
+	var a := _make("Inner Peace", "Channel spiritual harmony to mend an ally's wounds.",
 		Enums.StatType.HEALTH, 7, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 
 # =============================================================================
@@ -188,8 +190,10 @@ static func conflagration() -> AbilityData:
 
 # Tidecaller
 static func purify() -> AbilityData:
-	return _make("Purify", "Cleansing waters restore vitality.",
+	var a := _make("Purify", "Cleansing waters restore vitality.",
 		Enums.StatType.HEALTH, 10, 0, false, 5, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 static func tsunami() -> AbilityData:
 	return _make("Tsunami", "A towering wave crashes down on all enemies.",
@@ -214,8 +218,10 @@ static func storm_surge() -> AbilityData:
 
 # Paladin
 static func lay_on_hands() -> AbilityData:
-	return _make("Lay on Hands", "Channel divine grace through your touch to mend wounds.",
+	var a := _make("Lay on Hands", "Channel divine grace through your touch to mend wounds.",
 		Enums.StatType.HEALTH, 14, 0, false, 5, false, 0, 0.0)
+	a.heal_threshold = 0.25
+	return a
 
 static func holy_strike() -> AbilityData:
 	return _make("Holy Strike", "A blow charged with divine wrath.",
@@ -318,8 +324,10 @@ static func ballad() -> AbilityData:
 		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0)
 
 static func serenade() -> AbilityData:
-	return _make("Serenade", "A soothing song that mends wounds.",
+	var a := _make("Serenade", "A soothing song that mends wounds.",
 		Enums.StatType.HEALTH, 5, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 # Illusionist
 static func phantom_strike() -> AbilityData:

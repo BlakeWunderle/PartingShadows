@@ -28,8 +28,10 @@ static func volatile_flask() -> AbilityData:
 
 
 static func healing_draught() -> AbilityData:
-	return _make("Healing Draught", "A carefully brewed potion that mends wounds.",
+	var a := _make("Healing Draught", "A carefully brewed potion that mends wounds.",
 		Enums.StatType.HEALTH, 4, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.25
+	return a
 
 # Cosmologist (Philosopher)
 static func time_warp() -> AbilityData:
@@ -64,15 +66,17 @@ static func probability() -> AbilityData:
 # Alchemist
 static func transmute() -> AbilityData:
 	return _make("Transmute", "Transform matter into pure energy.",
-		Enums.StatType.MIXED_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 22, 0, true, 4, false, 0, 0.0)
 
 static func corrosive_acid() -> AbilityData:
 	return _make("Corrosive Acid", "Acid that burns over time.",
-		Enums.StatType.HEALTH, 5, 3, true, 4, false, 4, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 10, 3, true, 4, false, 5, 0.0)
 
 static func elixir() -> AbilityData:
-	return _make("Elixir", "A carefully brewed healing potion.",
+	var a := _make("Elixir", "A carefully brewed healing potion.",
 		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.25
+	return a
 
 # Bombardier
 static func cluster_bomb() -> AbilityData:
@@ -84,8 +88,10 @@ static func explosion() -> AbilityData:
 		Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func field_repair() -> AbilityData:
-	return _make("Field Repair", "Patch wounds with salvaged materials.",
+	var a := _make("Field Repair", "Patch wounds with salvaged materials.",
 		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.25
+	return a
 
 # Chronomancer
 static func warp_speed() -> AbilityData:
@@ -123,8 +129,10 @@ static func discharge() -> AbilityData:
 		Enums.StatType.MAGIC_ATTACK, 5, 0, true, 5, true, 0, 0.0)
 
 static func self_repair() -> AbilityData:
-	return _make("Self-Repair", "Reroute power to internal repair systems.",
+	var a := _make("Self-Repair", "Reroute power to internal repair systems.",
 		Enums.StatType.HEALTH, 7, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.25
+	return a
 
 # Technomancer
 static func circuit_blast() -> AbilityData:
@@ -212,8 +220,10 @@ static func poison_sting() -> AbilityData:
 
 # Grove Keeper
 static func natures_mend() -> AbilityData:
-	return _make("Nature's Mend", "Channel the forest's restorative power to heal an ally's wounds.",
+	var a := _make("Nature's Mend", "Channel the forest's restorative power to heal an ally's wounds.",
 		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 static func thorn_burst() -> AbilityData:
 	return _make("Thorn Burst", "A violent eruption of razor-sharp thorns.",
@@ -241,26 +251,28 @@ static func spirit_shield() -> AbilityData:
 	return _make("Spirit Shield", "Ancestral spirits protect an ally.",
 		Enums.StatType.DEFENSE, 2, 2, false, 3, false, 0, 0.0)
 
-static func ancestral_blessing() -> AbilityData:
-	return _make("Ancestral Blessing", "The ancestors empower an ally.",
-		Enums.StatType.ATTACK, 2, 2, false, 4, false, 0, 0.0)
+static func soul_strike() -> AbilityData:
+	return _make("Soul Strike", "A burst of spirit energy tears through the veil.",
+		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func spirit_mend() -> AbilityData:
-	return _make("Spirit Mend", "Healing energy from the spirit world.",
+	var a := _make("Spirit Mend", "Healing energy from the spirit world.",
 		Enums.StatType.HEALTH, 5, 0, false, 5, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 # Falconer
 static func falcon_strike() -> AbilityData:
 	return _make("Falcon Strike", "A raptor dives from above.",
 		Enums.StatType.PHYSICAL_ATTACK, 20, 0, true, 4, false, 0, 0.0)
 
-static func talon_rend() -> AbilityData:
-	return _make("Talon Rend", "The falcon rakes razor talons across the enemy, lacerations bleeding long after the strike.",
-		Enums.StatType.PHYSICAL_ATTACK, 13, 0, true, 3, false, 3, 0.0)
+static func rending_talon() -> AbilityData:
+	return _make("Rending Talon", "The falcon's talons tear through the enemy's guard, leaving them exposed.",
+		Enums.StatType.PHYSICAL_DEFENSE, 6, 3, true, 3, false, 0, 0.0)
 
 static func aerial_strike() -> AbilityData:
 	return _make("Aerial Strike", "The falcon sweeps low, raking talons across all enemies.",
-		Enums.StatType.MIXED_ATTACK, 16, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 16, 0, true, 4, true, 0, 0.0)
 
 # Shapeshifter
 static func savage_maul() -> AbilityData:
@@ -351,8 +363,10 @@ static func expose() -> AbilityData:
 
 # Survivalist
 static func endure() -> AbilityData:
-	return _make("Endure", "Dig deep and restore your body through sheer willpower.",
+	var a := _make("Endure", "Dig deep and restore your body through sheer willpower.",
 		Enums.StatType.HEALTH, 9, 0, false, 5, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 static func resourceful_strike() -> AbilityData:
 	return _make("Resourceful Strike",
