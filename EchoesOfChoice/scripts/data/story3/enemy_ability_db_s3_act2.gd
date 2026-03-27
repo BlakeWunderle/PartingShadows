@@ -73,10 +73,10 @@ static func latch() -> AbilityData:
 # --- Fragment Golem ---
 
 static func dream_crush() -> AbilityData:
-	return _make("Dream Crush", "A fist assembled from a hundred stolen moments.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+	return _make("Dream Crush", "A fist assembled from a hundred stolen moments.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func fragment_shield() -> AbilityData:
-	return _make("Fragment Shield", "Broken dreams rearrange into a wall.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Fragment Shield", "Broken dreams rearrange into a wall.", Enums.StatType.DEFENSE, 3, 2, false, 3, false, 0, 0.0)
 
 # --- Memory Wisp ---
 
@@ -84,12 +84,12 @@ static func stolen_thought() -> AbilityData:
 	return _make("Stolen Thought", "A flash of someone else's fear used as a weapon.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0)
 
 static func blur() -> AbilityData:
-	return _make("Blur", "Everything moves too fast to follow.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Blur", "The wisp accelerates beyond all tracking, a flickering light impossible to follow.", Enums.StatType.SPEED, 4, 2, false, 4, false, 0, 0.0)
 
 # --- Gallery Shade ---
 
 static func gallery_bolt() -> AbilityData:
-	return _make("Gallery Bolt", "A jagged shard of frame and canvas hurled with spectral force.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Gallery Bolt", "A jagged shard of frame and canvas hurled with spectral force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func shatter_ward() -> AbilityData:
 	return _make("Shatter Ward", "The shade peels away defenses like old paint.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)

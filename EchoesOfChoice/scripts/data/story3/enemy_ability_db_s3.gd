@@ -121,7 +121,7 @@ static func vanish_strike() -> AbilityData:
 # --- Dusk Sentinel ---
 
 static func iron_stance() -> AbilityData:
-	return _make("Iron Stance", "An immovable silhouette braces against all harm.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Iron Stance", "An immovable silhouette braces against all harm.", Enums.StatType.DEFENSE, 3, 2, false, 3, false, 0, 0.0)
 
 static func shield_bash() -> AbilityData:
 	return _make("Shield Bash", "A wall of shadow slams forward.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
@@ -145,7 +145,7 @@ static func terror_wave() -> AbilityData:
 # --- Clock Specter ---
 
 static func time_rend() -> AbilityData:
-	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func stasis_touch() -> AbilityData:
 	return _make("Stasis Touch", "Time stops for just a heartbeat too long.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
