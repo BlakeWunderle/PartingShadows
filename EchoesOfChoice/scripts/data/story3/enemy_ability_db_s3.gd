@@ -148,7 +148,7 @@ static func time_rend() -> AbilityData:
 	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func stasis_touch() -> AbilityData:
-	return _make("Stasis Touch", "Time stops for just a heartbeat too long.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Stasis Touch", "Time stops for just a heartbeat too long.", Enums.StatType.SPEED, 5, 1, true, 3, false, 0, 0.0)
 
 # --- The Nightmare (boss) ---
 

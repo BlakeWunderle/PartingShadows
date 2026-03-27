@@ -255,7 +255,7 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(27, 32, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(19, 23, 1, 2, lvl, 8)
 	f.speed = EH.es(38, 43, 1, 3, lvl, 8)
-	f.crit_chance = 26; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 29; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.time_rend(), EAB.stasis_touch()]
 	f.flavor_text = "A spectral figure bound to a shattered clock face, its limbs moving in fractured time. It tears at the flow of moments, freezing enemies in temporal stasis."
 	return f

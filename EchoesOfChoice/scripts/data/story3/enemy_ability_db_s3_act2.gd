@@ -75,8 +75,8 @@ static func latch() -> AbilityData:
 static func dream_crush() -> AbilityData:
 	return _make("Dream Crush", "A fist assembled from a hundred stolen moments.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
-static func fragment_shield() -> AbilityData:
-	return _make("Fragment Shield", "Broken dreams rearrange into a wall.", Enums.StatType.DEFENSE, 3, 2, false, 3, false, 0, 0.0)
+static func fragment_surge() -> AbilityData:
+	return _make("Fragment Surge", "A mass of shards carrying remembered pain slams forward.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 # --- Memory Wisp ---
 

@@ -120,7 +120,7 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 6)
 	f.speed = EH.es(23, 28, 1, 2, lvl, 6)
 	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 15
-	f.abilities = [EAB.dream_crush(), EAB.fragment_shield()]
+	f.abilities = [EAB.dream_crush(), EAB.fragment_surge()]
 	f.flavor_text = "A hulking construct assembled from shattered dream-fragments. Each piece remembers a different sleeper, and the golem fights with their collective, fractured will."
 	return f
 
@@ -131,10 +131,10 @@ static func create_memory_wisp(n: String, lvl: int = 6) -> FighterData:
 	f.mana = EH.es(8, 10, 1, 2, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = EH.es(11, 14, 0, 2, lvl, 6)
 	f.physical_defense = EH.es(10, 13, 0, 1, lvl, 6)
-	f.magic_attack = EH.es(21, 25, 1, 3, lvl, 6)
+	f.magic_attack = EH.es(23, 27, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 6)
 	f.speed = EH.es(34, 39, 1, 3, lvl, 6)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 24
+	f.crit_chance = 24; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.stolen_thought(), EAB.blur()]
 	f.flavor_text = "A tiny, darting light that feeds on stray thoughts left behind in the dream. It is almost impossible to pin down, flickering away the instant attention falls on it."
 	return f
