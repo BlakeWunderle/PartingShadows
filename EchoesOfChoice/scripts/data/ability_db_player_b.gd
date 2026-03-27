@@ -70,7 +70,7 @@ static func transmute() -> AbilityData:
 
 static func corrosive_acid() -> AbilityData:
 	return _make("Corrosive Acid", "Acid that burns over time.",
-		Enums.StatType.MAGIC_ATTACK, 10, 3, true, 4, false, 5, 0.0)
+		Enums.StatType.HEALTH, 0, 3, true, 4, false, 12, 0.0)
 
 static func elixir() -> AbilityData:
 	var a := _make("Elixir", "A carefully brewed healing potion.",
@@ -216,7 +216,7 @@ static func plague() -> AbilityData:
 
 static func poison_sting() -> AbilityData:
 	return _make("Poison Sting", "A venomous barb that festers.",
-		Enums.StatType.MAGIC_DEFENSE, 5, 3, true, 3, false, 7, 0.0)
+		Enums.StatType.HEALTH, 0, 3, true, 3, false, 10, 0.0)
 
 # Grove Keeper
 static func natures_mend() -> AbilityData:

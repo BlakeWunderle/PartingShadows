@@ -182,7 +182,7 @@ static func fire_ball() -> AbilityData:
 
 static func burning_brand() -> AbilityData:
 	return _make("Burning Brand", "Sear the enemy with lasting flames.",
-		Enums.StatType.MAGIC_ATTACK, 7, 3, true, 4, false, 7, 0.0)
+		Enums.StatType.HEALTH, 0, 3, true, 4, false, 10, 0.0)
 
 static func conflagration() -> AbilityData:
 	return _make("Conflagration", "Unleash a wave of fire that engulfs all enemies.",
