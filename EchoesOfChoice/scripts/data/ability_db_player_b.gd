@@ -66,7 +66,7 @@ static func probability() -> AbilityData:
 # Alchemist
 static func transmute() -> AbilityData:
 	return _make("Transmute", "Transform matter into pure energy.",
-		Enums.StatType.MIXED_ATTACK, 28, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func corrosive_acid() -> AbilityData:
 	return _make("Corrosive Acid", "Acid that burns over time.",
@@ -81,11 +81,11 @@ static func elixir() -> AbilityData:
 # Bombardier
 static func cluster_bomb() -> AbilityData:
 	return _make("Cluster Bomb", "A salvo of explosive charges scatters across the battlefield.",
-		Enums.StatType.MIXED_ATTACK, 14, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 5, true, 0, 0.0)
 
 static func explosion() -> AbilityData:
 	return _make("Explosion", "A massive detonation.",
-		Enums.StatType.MIXED_ATTACK, 20, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
 static func field_repair() -> AbilityData:
 	var a := _make("Field Repair", "Patch wounds with salvaged materials.",

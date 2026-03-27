@@ -23,7 +23,7 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
 	f.health += 8; f.max_health += 8; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 8; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 4
+	f.physical_attack += 10; f.physical_defense += 2; f.magic_attack += 6; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_dive()]
 	f.upgrade_items = []
@@ -42,8 +42,8 @@ static func _lu_dragoon(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(14, 16); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(4, 6)
+	f.physical_attack += randi_range(6, 8); f.physical_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
@@ -195,7 +195,7 @@ static func _lu_tempest(f: FighterData) -> void:
 static func upgrade_to_paladin(f: FighterData) -> void:
 	f.class_id = "Paladin"; f.character_type = "Paladin"
 	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 8; f.physical_defense += 3; f.magic_attack += 3; f.magic_defense += 2
+	f.physical_attack += 7; f.physical_defense += 3; f.magic_attack += 9; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.lay_on_hands(), PAB.holy_strike(), PAB.smite()]
 	f.upgrade_items = []
@@ -221,7 +221,7 @@ static func _lu_paladin(f: FighterData) -> void:
 	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(5, 6); f.magic_defense += randi_range(3, 5)
+	f.magic_attack += randi_range(6, 8); f.magic_defense += randi_range(3, 5)
 	f.speed += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
