@@ -64,7 +64,7 @@ static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(69, 80, 4, 7, lvl, 11)
 	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 11)
 	f.speed = EH.es(44, 50, 2, 4, lvl, 11)
-	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 21
+	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 23
 	f.abilities = [EABL.shadow_strike(), EABL.dark_pulse(), EABL.void_shield(), EABL.drain()]
 	f.flavor_text = "A cloaked figure radiating dark power. His true nature remains hidden beneath layers of shadow."
 	return f
@@ -111,7 +111,7 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(66, 77, 5, 7, lvl, 12)
 	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 12)
 	f.speed = EH.es(39, 45, 2, 4, lvl, 12)
-	f.crit_chance = 28; f.crit_damage = 4; f.dodge_chance = 24
+	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
 	f.flavor_text = "A fiend born from brimstone and fury. Its mere presence fills the air with dread."
 	return f
@@ -187,7 +187,7 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(37, 46, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(38, 46, 2, 4, lvl, 14)
 	f.speed = EH.es(40, 47, 2, 4, lvl, 14)
-	f.crit_chance = 29; f.crit_damage = 5; f.dodge_chance = 24
+	f.crit_chance = 32; f.crit_damage = 5; f.dodge_chance = 24
 	f.abilities = [EABL.dark_blade(), EABL.shadow_guard(), EAB.cleave()]
 	f.flavor_text = "A fallen champion clad in shadowed plate. Dark magic courses through every strike of his blade."
 	return f
@@ -201,7 +201,7 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(59, 67, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(36, 42, 2, 4, lvl, 14)
 	f.speed = EH.es(46, 52, 3, 5, lvl, 14)
-	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 23
+	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 25
 	f.abilities = [EABL.shadow_bite(), EABL.howl_of_dread(), EABL.corruption_fang()]
 	f.flavor_text = "Spectral hounds that hunt in packs across the corrupted wastes. Their howls freeze the blood."
 	return f
@@ -215,7 +215,7 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(65, 75, 5, 7, lvl, 13)
 	f.magic_defense = EH.es(39, 45, 2, 4, lvl, 13)
 	f.speed = EH.es(44, 51, 3, 5, lvl, 13)
-	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 25
+	f.crit_chance = 34; f.crit_damage = 4; f.dodge_chance = 27
 	f.abilities = [EABL.sigil_flare(), EABL.glyph_burn(), EABL.ward_break()]
 	f.flavor_text = "Twisted creatures bound to arcane sigils. They detonate glyphs of searing light at will."
 	return f
@@ -229,7 +229,7 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(14, 20, 1, 2, lvl, 13)
 	f.magic_defense = EH.es(38, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(41, 48, 3, 5, lvl, 13)
-	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 24
+	f.crit_chance = 35; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EABL.venomous_bite(), EABL.web(), EABL.poison_cloud()]
 	f.flavor_text = "Massive burrowing predators that ambush from below, ensnaring prey in venomous webs."
 	return f
