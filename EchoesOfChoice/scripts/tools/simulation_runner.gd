@@ -127,7 +127,8 @@ static func _clone_fighters(template: Array) -> Array:
 
 static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		sample_size: int = 0,
-		combo_worker_index: int = -1, combo_worker_count: int = 0) -> Dictionary:
+		combo_worker_index: int = -1, combo_worker_count: int = 0,
+		exclude_combos: Array[String] = []) -> Dictionary:
 	var parties := _get_parties(stage)
 	if sample_size > 0:
 		parties = PC.sample_parties(parties, sample_size)
@@ -137,6 +138,12 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 			if pi % combo_worker_count == combo_worker_index:
 				my_parties.append(parties[pi])
 		parties = my_parties
+	if not exclude_combos.is_empty():
+		var exclude_set := {}
+		for e: String in exclude_combos:
+			exclude_set[e] = true
+		parties = parties.filter(func(p: Dictionary) -> bool:
+			return not exclude_set.has(PC.get_party_description(p)))
 
 	var combo_results := []
 	var class_diag := {}

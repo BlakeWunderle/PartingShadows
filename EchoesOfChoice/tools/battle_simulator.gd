@@ -20,6 +20,7 @@ var _combo_worker_count := 0
 var _combo_worker_mode := false
 var _all_results: Array = []
 var _all_stages: Array = []
+var _exclude_combos: Array[String] = []
 
 
 func _init() -> void:
@@ -114,6 +115,13 @@ func _init() -> void:
 						var trimmed := bname.strip_edges()
 						if trimmed != "":
 							battle_names.append(trimmed)
+					i += 1
+			"--exclude-combos":
+				if i + 1 < args.size():
+					for combo: String in args[i + 1].split("|"):
+						var trimmed := combo.strip_edges()
+						if trimmed != "":
+							_exclude_combos.append(trimmed)
 					i += 1
 			"--sentinel-path":
 				i += 1  # already handled above; skip value argument
@@ -257,7 +265,7 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 		print("\nRunning %d sims/combo for %s..." % [sims_per_combo, stage.name])
 	var sw := Time.get_ticks_msec()
 	var result := SR.simulate_stage(stage, sims_per_combo, sample_size,
-		_combo_worker_index, _combo_worker_count)
+		_combo_worker_index, _combo_worker_count, _exclude_combos)
 	var elapsed := (Time.get_ticks_msec() - sw) / 1000.0
 
 	_all_results.append(result)
@@ -287,6 +295,12 @@ func _run_stages(stages: Array, sims_per_combo: int,
 	if not quiet and not _compact:
 		for stage: Dictionary in stages:
 			var parties := SR._get_parties(stage)
+			if not _exclude_combos.is_empty():
+				var excl := {}
+				for e: String in _exclude_combos:
+					excl[e] = true
+				parties = parties.filter(func(p: Dictionary) -> bool:
+					return not excl.has(PC.get_party_description(p)))
 			var count: int = mini(sample_size, parties.size()) if sample_size > 0 else parties.size()
 			var sims: int = SR.calculate_sims_for_party_count(count) if auto_sims else sims_per_combo
 			var sample_note: String = " (sampled from %d)" % parties.size() \
@@ -322,7 +336,7 @@ func _run_stages(stages: Array, sims_per_combo: int,
 					result.overall_win_rate * 100, SR.get_status(result)])
 		else:
 			result = SR.simulate_stage(stage, sims, sample_size,
-				_combo_worker_index, _combo_worker_count)
+				_combo_worker_index, _combo_worker_count, _exclude_combos)
 			if _use_cache:
 				SC.store(stage.name, stage.get("story", 1),
 					sims, sample_size, result, stage)
