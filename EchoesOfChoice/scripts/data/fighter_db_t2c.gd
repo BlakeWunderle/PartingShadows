@@ -144,7 +144,7 @@ static func upgrade_to_survivalist(f: FighterData) -> void:
 	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 6
-	f.abilities = [PAB_B.endure(), PAB_B.resourceful_strike(), PAB_B.adapt()]
+	f.abilities = [PAB_B.wild_sweep(), PAB_B.resourceful_strike(), PAB_B.adapt()]
 	f.upgrade_items = []
 
 static func _lu_trailblazer(f: FighterData) -> void:

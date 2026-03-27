@@ -371,7 +371,12 @@ static func endure() -> AbilityData:
 static func resourceful_strike() -> AbilityData:
 	return _make("Resourceful Strike",
 		"Strike with practiced efficiency, draining the foe's vitality.",
-		Enums.StatType.PHYSICAL_ATTACK, 13, 0, true, 4, false, 0, 0.3)
+		Enums.StatType.PHYSICAL_ATTACK, 17, 0, true, 4, false, 0, 0.5)
+
+static func wild_sweep() -> AbilityData:
+	return _make("Wild Sweep",
+		"A desperate sweeping attack that strikes all nearby enemies.",
+		Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, true, 0, 0.0)
 
 static func adapt() -> AbilityData:
 	return _make("Adapt", "Heighten your senses and reflexes to the battlefield.",
