@@ -101,7 +101,7 @@ static func upgrade_to_falconer(f: FighterData) -> void:
 static func upgrade_to_shapeshifter(f: FighterData) -> void:
 	f.class_id = "Shapeshifter"; f.character_type = "Shapeshifter"
 	f.health += 16; f.max_health += 16; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 12; f.physical_defense += 5; f.magic_attack += 2; f.magic_defense += 2
+	f.physical_attack += 12; f.physical_defense += 5; f.magic_attack += 2; f.magic_defense += 4
 	f.speed += 6; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 4
 	f.abilities = [PAB_B.savage_maul(), PAB_B.frenzy(), PAB_B.rampage()]
 	f.upgrade_items = []

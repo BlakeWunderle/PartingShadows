@@ -121,8 +121,8 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Ninja": return [PAB.shadow_strike(), PAB.smoke_bomb(), PAB.blade_flurry()]
 		"Monk": return [PAB.spirit_attack(), PAB.precise_strike(), PAB.inner_peace()]
 		# T2:Mage
-		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]
-		"Tidecaller": return [PAB.purify(), PAB.tsunami(), PAB.undertow()]
+		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.conflagration()]
+		"Tidecaller": return [PAB.purify(), PAB.tsunami(), PAB.water_whip()]
 		"Tempest": return [PAB.hurricane(), PAB.tornado(), PAB.storm_surge()]
 		"Paladin": return [PAB.lay_on_hands(), PAB.holy_strike(), PAB.smite()]
 		"Priest": return [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]

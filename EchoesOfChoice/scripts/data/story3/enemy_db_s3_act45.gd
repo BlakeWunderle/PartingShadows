@@ -209,7 +209,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(99, 114, 3, 6, lvl, 18)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
 	f.speed = EH.es(38, 44, 3, 4, lvl, 18)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 27
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 31
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
 	f.flavor_text = "A splinter of the Threadmaster's own shadow, given independent will. It devours light and hope in equal measure, weakening enemies before the final confrontation."
 	return f
@@ -225,7 +225,7 @@ static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(113, 129, 4, 6, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(36, 42, 3, 4, lvl, 18)
-	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 22
+	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 25
 	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion()]
 	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."
 	return f

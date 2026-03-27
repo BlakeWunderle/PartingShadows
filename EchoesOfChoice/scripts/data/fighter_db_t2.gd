@@ -22,7 +22,7 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
-	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
+	f.health += 8; f.max_health += 8; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 8; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_dive()]
@@ -41,7 +41,7 @@ static func _lu_cavalry(f: FighterData) -> void:
 static func _lu_dragoon(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(14, 16); f.health += hp; f.max_health += hp
-	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
+	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(1, 2)
@@ -137,9 +137,9 @@ static func _lu_monk(f: FighterData) -> void:
 static func upgrade_to_infernalist(f: FighterData) -> void:
 	f.class_id = "Infernalist"; f.character_type = "Infernalist"
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 2
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 4
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.fire_ball(), PAB.burning_brand(), PAB.cauterize()]
+	f.abilities = [PAB.fire_ball(), PAB.burning_brand(), PAB.conflagration()]
 	f.upgrade_items = []
 
 static func upgrade_to_tidecaller(f: FighterData) -> void:
@@ -147,7 +147,7 @@ static func upgrade_to_tidecaller(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 4; f.magic_defense += 4
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.purify(), PAB.tsunami(), PAB.undertow()]
+	f.abilities = [PAB.purify(), PAB.tsunami(), PAB.water_whip()]
 	f.upgrade_items = []
 
 static func upgrade_to_tempest(f: FighterData) -> void:
@@ -163,7 +163,7 @@ static func _lu_infernalist(f: FighterData) -> void:
 	var hp := randi_range(7, 9); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
