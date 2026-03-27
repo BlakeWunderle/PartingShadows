@@ -48,15 +48,15 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 
 # Story 1 T2 -- full tier with class breakdown in one pass
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story 1 --tier tier2 --auto --all --diagnostics --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --story 1 --tier tier2 --auto --all --diagnostics --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Story 2 T2
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story 2 --tier tier2 --auto --all --diagnostics --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --story 2 --tier tier2 --auto --all --diagnostics --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Story 3 T2
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story 3 --tier tier2 --auto --all --diagnostics --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --story 3 --tier tier2 --auto --all --diagnostics --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 Each run produces:
@@ -69,7 +69,7 @@ Each run produces:
 **Enemy tuning iteration** (changed battles only — much faster):
 ```bash
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles BattleA,BattleB --diagnostics --auto --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --battles BattleA,BattleB --diagnostics --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 ---
@@ -87,15 +87,15 @@ JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/cla
 
 # Tier validation with class data in one pass (recommended)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story <N> --tier <TIER> --auto --all --diagnostics --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --story <N> --tier <TIER> --auto --all --diagnostics --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Targeted battles (specific changed battles only)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --auto --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 
 # Full story validation (all tiers, all battles)
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story <N> --auto --all --diagnostics --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --story <N> --auto --all --diagnostics --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 ### Parallel Sim Behavior
@@ -106,9 +106,9 @@ The parallel coordinator (`battle_sim_parallel.gd`) auto-detects the best split 
 - **Combo-split** (auto): when fewer stages than workers (e.g. 3 battles, 8 workers), all workers share party combos. Single-stage and small-batch runs use all workers automatically.
 
 **Worker count guidance:**
-- Default on Windows: **8 workers** (sentinel-based serialization makes this safe)
-- Full tier validation: `--jobs 8` recommended (~7x speedup)
-- Maximum: `--jobs 32` (hard cap); diminishing returns above 8 for most runs
+- Default on Windows: **15 workers** (benchmarked sweet spot — good speedup, minimal contention)
+- Full tier validation: `--jobs 15` recommended (~11x speedup)
+- Maximum: `--jobs 32` (hard cap); diminishing returns above 15 for most runs
 - Sentinel mechanism serializes Godot startup automatically — no manual stagger tuning needed
 
 **IMPORTANT: Never run two sim processes at the same time.** Running two parallel sims simultaneously causes CPU contention (10x+ slower, unreliable results). Always wait for one sim to complete before launching the next.
@@ -207,7 +207,7 @@ Every battle after the first must have **at least 3 enemies**, unless it is a bo
 ```bash
 # Tune one battle at a time
 "$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles <BattleName> --diagnostics --auto --jobs 8 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+  --battles <BattleName> --diagnostics --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 - **PASS** -> move to the next battle in this progression
