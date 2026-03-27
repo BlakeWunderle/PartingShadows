@@ -9,6 +9,14 @@ const FighterData := preload("res://scripts/data/fighter_data.gd")
 const LEVELS_AS_BASE := 3
 const LEVELS_AS_TIER1 := 5
 
+## T1 items that produce low-damage support/tank classes (Acolyte, Artificer, Sentinel, Herbalist).
+## Parties with 2+ of these produce degenerate low-DPS compositions that pollute balance signal.
+const T1_SLOG_ITEMS: Array[String] = ["WhiteStone", "Crystal", "Shield", "Herbs"]
+
+## T2 items that produce low-damage support/tank classes (Priest, Warcrier, Bulwark, Aegis, Minstrel).
+## Items are unique across all upgrade paths so t2_item alone identifies the class.
+const T2_SLOG_ITEMS: Array[String] = ["HolyBook", "WarHorn", "Fortress", "Mirror", "Hat"]
+
 const BASE_TYPES: Array[String] = [
 	"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer"]
 
@@ -143,7 +151,15 @@ static func get_tier1_parties() -> Array:
 								"t1_items": [u_a[ai], u_b[bi], u_c[ci]],
 								"t2_items": ["", "", ""],
 							})
-	return parties
+	var t1_slog := {}
+	for s: String in T1_SLOG_ITEMS:
+		t1_slog[s] = true
+	return parties.filter(func(p: Dictionary) -> bool:
+		var c := 0
+		for item: String in p.t1_items:
+			if t1_slog.has(item):
+				c += 1
+		return c < 2)
 
 
 static func get_tier2_parties() -> Array:
@@ -182,6 +198,15 @@ static func get_tier2_parties() -> Array:
 								"t2_items": [c_a[ai][1], c_b[bi][1], c_c[ci][1]],
 							})
 
+	var t2_slog := {}
+	for s: String in T2_SLOG_ITEMS:
+		t2_slog[s] = true
+	parties = parties.filter(func(p: Dictionary) -> bool:
+		var c := 0
+		for item: String in p.t2_items:
+			if t2_slog.has(item):
+				c += 1
+		return c < 2)
 	_cached_t2_parties = parties
 	return parties
 
