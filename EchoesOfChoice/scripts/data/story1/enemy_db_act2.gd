@@ -197,10 +197,10 @@ static func create_ringmaster(n: String) -> FighterData:
 	var f := EH.base(n, "Ringmaster", 6)
 	f.health = EH.fixed(136, 152); f.max_health = f.health
 	f.mana = EH.fixed(17, 20); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(23, 27); f.physical_defense = EH.fixed(19, 23)
-	f.magic_attack = EH.fixed(26, 30); f.magic_defense = EH.fixed(19, 23)
+	f.physical_attack = EH.fixed(28, 34); f.physical_defense = EH.fixed(12, 16)
+	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(12, 16)
 	f.speed = EH.fixed(31, 36)
-	f.crit_chance = 28; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 34; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
@@ -209,10 +209,10 @@ static func create_harlequin(n: String) -> FighterData:
 	var f := EH.base(n, "Harlequin", 6)
 	f.health = EH.fixed(143, 160); f.max_health = f.health
 	f.mana = EH.fixed(20, 23); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(20, 24); f.physical_defense = EH.fixed(17, 21)
-	f.magic_attack = EH.fixed(32, 36); f.magic_defense = EH.fixed(20, 24)
+	f.physical_attack = EH.fixed(20, 24); f.physical_defense = EH.fixed(11, 15)
+	f.magic_attack = EH.fixed(40, 46); f.magic_defense = EH.fixed(13, 17)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 29; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f
@@ -221,10 +221,10 @@ static func create_chanteuse(n: String) -> FighterData:
 	var f := EH.base(n, "Chanteuse", 6)
 	f.health = EH.fixed(110, 123); f.max_health = f.health
 	f.mana = EH.fixed(21, 23); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(20, 25); f.physical_defense = EH.fixed(19, 23)
-	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(20, 24)
+	f.physical_attack = EH.fixed(20, 25); f.physical_defense = EH.fixed(13, 17)
+	f.magic_attack = EH.fixed(30, 35); f.magic_defense = EH.fixed(13, 17)
 	f.speed = EH.fixed(36, 41)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
 	f.flavor_text = "Her voice carries both beauty and ruin. Each note can heal allies or shatter resolve."
 	return f
@@ -236,7 +236,7 @@ static func create_android(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(23, 27); f.physical_defense = EH.fixed(21, 25)
 	f.magic_attack = EH.fixed(24, 28); f.magic_defense = EH.fixed(23, 27)
 	f.speed = EH.fixed(35, 40)
-	f.crit_chance = 26; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 26; f.crit_damage = 2; f.dodge_chance = 4
 	f.abilities = [EAB.circuit_burst(), EAB.firewall(), EAB.overdrive()]
 	f.flavor_text = "A mechanical soldier powered by arcane circuitry. It feels neither pain nor mercy."
 	return f
@@ -245,10 +245,10 @@ static func create_machinist(n: String) -> FighterData:
 	var f := EH.base(n, "Machinist", 6)
 	f.health = EH.fixed(147, 164); f.max_health = f.health
 	f.mana = EH.fixed(13, 16); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(24, 28); f.physical_defense = EH.fixed(25, 30)
+	f.physical_attack = EH.fixed(25, 29); f.physical_defense = EH.fixed(25, 30)
 	f.magic_attack = EH.fixed(22, 26); f.magic_defense = EH.fixed(23, 27)
 	f.speed = EH.fixed(33, 38)
-	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.seismic_charge(), EAB.reinforce(), EAB.dismantle()]
 	f.flavor_text = "An engineer of war who deploys explosive charges and reinforced plating in equal measure."
 	return f
@@ -257,10 +257,10 @@ static func create_ironclad(n: String) -> FighterData:
 	var f := EH.base(n, "Ironclad", 6)
 	f.health = EH.fixed(146, 162); f.max_health = f.health
 	f.mana = EH.fixed(13, 16); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(22, 25); f.physical_defense = EH.fixed(25, 29)
+	f.physical_attack = EH.fixed(23, 26); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(16, 20); f.magic_defense = EH.fixed(27, 31)
 	f.speed = EH.fixed(27, 32)
-	f.crit_chance = 20; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 20; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.hammer_blow(), EAB.temper(), EAB.seismic_charge()]
 	f.flavor_text = "A walking fortress of hammered steel. Each blow of its hammer rings like a forge bell."
 	return f
@@ -269,10 +269,10 @@ static func create_commander(n: String) -> FighterData:
 	var f := EH.base(n, "Commander", 6)
 	f.health = EH.fixed(157, 174); f.max_health = f.health
 	f.mana = EH.fixed(14, 16); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(26, 31); f.physical_defense = EH.fixed(25, 29)
+	f.physical_attack = EH.fixed(27, 32); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(12, 16); f.magic_defense = EH.fixed(22, 27)
 	f.speed = EH.fixed(32, 37)
-	f.crit_chance = 32; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 36; f.crit_damage = 2; f.dodge_chance = 6
 	f.abilities = [EAB.shield_wall(), EAB.rally_strike(), EAB.war_ward()]
 	f.flavor_text = "A veteran field officer whose presence steadies the ranks and turns the tide of battle."
 	return f
@@ -294,9 +294,9 @@ static func create_chaplain(n: String) -> FighterData:
 	f.health = EH.fixed(126, 141); f.max_health = f.health
 	f.mana = EH.fixed(20, 22); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(16, 20); f.physical_defense = EH.fixed(23, 27)
-	f.magic_attack = EH.fixed(26, 30); f.magic_defense = EH.fixed(25, 29)
+	f.magic_attack = EH.fixed(27, 32); f.magic_defense = EH.fixed(25, 29)
 	f.speed = EH.fixed(27, 32)
-	f.crit_chance = 18; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 23; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.blessing(), EAB.mace_strike(), EAB.enemy_consecrate()]
 	f.flavor_text = "A battle priest who bolsters allies with holy rites while swinging a heavy mace."
 	return f
