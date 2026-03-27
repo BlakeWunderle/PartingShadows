@@ -192,7 +192,7 @@ static func create_shadow_innkeeper(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(83, 95, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(44, 52, 2, 4, lvl, 15)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.borrowed_face(), EAB.thread_drain()]
 	f.flavor_text = "The innkeeper's shadow given terrible purpose, wearing a stolen face that shifts between hospitality and menace. It drains life through threads hidden beneath a veneer of warmth."
 	return f
@@ -207,7 +207,7 @@ static func create_astral_weaver(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(97, 111, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 16
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.astral_barrage(), EAB.cosmic_unraveling()]
 	f.flavor_text = "A weaver who has touched the astral plane beyond the dream and returned with terrible knowledge. Their barrages of cosmic energy unravel the fabric of reality itself."
 	return f
@@ -222,7 +222,7 @@ static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(91, 108, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(40, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 15)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.siphon_pulse(), EAB.constricting_weave()]
 	f.flavor_text = "A living extension of the great loom, a tendril of woven dream-stuff that lashes out at those who approach. It siphons energy and constricts with suffocating pressure."
 	return f
@@ -242,7 +242,7 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(108, 125, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
 	f.speed = EH.es(35, 42, 2, 3, lvl, 16)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 39
+	f.crit_chance = 27; f.crit_damage = 3; f.dodge_chance = 39
 	f.abilities = [EAB.consecrated_strike(), EAB.cathedrals_blessing()]
 	f.flavor_text = "A guardian consecrated to Lira's dream cathedral, sworn to protect the sacred space where the Thread cult weaves its deepest designs. It fights with holy zeal and unyielding faith."
 	return f
@@ -257,7 +257,7 @@ static func create_dream_binder(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(118, 137, 3, 6, lvl, 16)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 16)
 	f.speed = EH.es(40, 46, 2, 3, lvl, 16)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 42
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 42
 	f.abilities = [EAB.binding_chains(), EAB.dreamlock()]
 	f.flavor_text = "A specialist in containment, weaving chains of dream-thread that lock the mind in place. Those caught in its dreamlock cannot flee, attack, or even think of escape."
 	return f
@@ -272,7 +272,7 @@ static func create_thread_anchor(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(105, 121, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 16)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 33
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 33
 	f.abilities = [EAB.anchor_pulse(), EAB.fortifying_thread()]
 	f.flavor_text = "A massive knot of condensed dream-thread that anchors the cathedral to the waking world. It pulses with stabilizing energy and fortifies all nearby cult forces."
 	return f
@@ -290,7 +290,7 @@ static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(58, 70, 2, 4, lvl, 16)
 	f.magic_defense = EH.es(72, 82, 3, 5, lvl, 16)
 	f.speed = EH.es(48, 55, 3, 4, lvl, 16)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 28
+	f.crit_chance = 27; f.crit_damage = 3; f.dodge_chance = 28
 	f.abilities = [EAB.weft_lash(), EAB.stalk()]
 	f.flavor_text = "A predator woven from the weft threads of Lira's loom, designed to hunt. It moves with terrifying speed, lashing out in all directions and slowing anything it marks as prey. Magic sinks into the weave without effect."
 	return f

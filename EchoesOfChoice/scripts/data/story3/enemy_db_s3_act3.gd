@@ -179,7 +179,7 @@ static func create_sanctum_shade(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(78, 89, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.loom_blast(), EAB.nullify()]
 	f.flavor_text = "A shade bound to the sanctum's innermost chamber, woven into the loom's defenses since the cult's founding. It blasts intruders with raw loom-force and nullifies their protections before they can reach the core."
 	return f
@@ -211,7 +211,7 @@ static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(84, 97, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 14)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.loom_slam(), EAB.thread_storm(), EAB.guardians_veil()]
 	f.flavor_text = "The final ward of the dream sanctum, a colossal being of interwoven threads and crystallized will. It fights with the combined resolve of every cultist who has prayed at the loom."
 	return f

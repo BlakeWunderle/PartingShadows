@@ -197,8 +197,8 @@ static func create_ringmaster(n: String) -> FighterData:
 	var f := EH.base(n, "Ringmaster", 6)
 	f.health = EH.fixed(136, 152); f.max_health = f.health
 	f.mana = EH.fixed(17, 20); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(21, 25); f.physical_defense = EH.fixed(19, 23)
-	f.magic_attack = EH.fixed(24, 28); f.magic_defense = EH.fixed(19, 23)
+	f.physical_attack = EH.fixed(23, 27); f.physical_defense = EH.fixed(19, 23)
+	f.magic_attack = EH.fixed(26, 30); f.magic_defense = EH.fixed(19, 23)
 	f.speed = EH.fixed(31, 36)
 	f.crit_chance = 26; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
@@ -224,7 +224,7 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(20, 25); f.physical_defense = EH.fixed(19, 23)
 	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(20, 24)
 	f.speed = EH.fixed(36, 41)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 25
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
 	f.flavor_text = "Her voice carries both beauty and ruin. Each note can heal allies or shatter resolve."
 	return f

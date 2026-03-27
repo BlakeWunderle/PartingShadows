@@ -268,7 +268,7 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(58, 69, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 11)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 11)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.bound_strike(), EAB.tether_pull()]
 	f.flavor_text = "A guard stationed in the cellar beneath the inn, bound to the cult's hidden operations. It fights with the desperate fury of someone protecting a terrible secret."
 	return f
@@ -283,7 +283,7 @@ static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 11)
 	f.magic_defense = EH.es(35, 42, 1, 3, lvl, 11)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 11)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.woven_fist(), EAB.reinforced_threads()]
 	f.flavor_text = "A humanoid frame assembled entirely from braided dream-threads. It moves with mechanical precision, reinforcing itself with fresh strands torn from the surrounding weave."
 	return f

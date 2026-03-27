@@ -5,6 +5,28 @@ description: Full balance feedback loop for Echoes of Choice. Iterates enemy tun
 
 # Balance Feedback Loop
 
+## Quick Start (no arguments)
+
+If invoked with no arguments, output the following command templates for the user to fill in, then stop — do not proceed with the full workflow:
+
+```bash
+GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
+NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
+
+# Full tier validation
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+  --story <1|2|3> --tier <base|tier1|tier2> --auto --all --diagnostics --jobs 20 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+
+# Targeted battles (faster — use after enemy-only changes)
+"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+  --battles <BattleName1,BattleName2> --diagnostics --auto --jobs 20 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE"
+```
+
+If invoked with arguments (e.g. `s1 t2`, `s2 tier1`, `BattleName1,BattleName2`), parse them and run the sim directly without showing the template.
+
+---
+
 All paths relative to workspace root. Godot project at `EchoesOfChoice/`.
 
 **Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
@@ -127,10 +149,6 @@ FOR each progression 0 -> N, in order:
 
   All battles in progression PASS?
   -> LOCK this progression, move to next
-
-AFTER all progressions locked:
-  -> Final validation pass (--story <N> --tier <T> --auto --all --diagnostics --json "$JSON_PATH")
-  -> If any stage broke, restart FROM that progression forward
 ```
 
 ### Generic Cascade Scope
