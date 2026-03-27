@@ -35,7 +35,7 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(108, 124, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 14)
-	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 15
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EABL.harvest_thought(), EABL.mass_extraction()]
 	f.flavor_text = "A grotesque collector that reaps thoughts like grain. The memories it steals are fed directly to the Eye, fueling its terrible awareness."
 	return f
@@ -50,7 +50,7 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(103, 120, 3, 4, lvl, 14)
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 4, lvl, 14)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 26
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 27
 	f.abilities = [EABL.wave_of_oblivion(), EABL.nihil_bolt()]
 	f.flavor_text = "A wraith woven from pure forgetting. Where it passes, all sense of self dissolves, leaving only a hollow ache where identity once lived."
 	return f
@@ -58,14 +58,14 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 
 static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Memory Reaper", lvl)
-	f.health = EH.es(470, 530, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = EH.es(545, 615, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(31, 40, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(125, 144, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EABL.harvesting_scythe(), EABL.accumulated_toll()]
 	f.flavor_text = "A harvester that has gorged on the Eye's overflow of stolen memories. It reaps with terrible efficiency, each thought it claims adding to the Eye's power."
 	return f
@@ -95,7 +95,7 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
 	f.speed = EH.es(38, 46, 2, 4, lvl, 14)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EABL.memory_blade(), EABL.ironclad_will()]
 	f.flavor_text = "A warrior conjured from stolen memories of great knights. It fights with borrowed valor and an unshakable conviction that it is real."
 	return f

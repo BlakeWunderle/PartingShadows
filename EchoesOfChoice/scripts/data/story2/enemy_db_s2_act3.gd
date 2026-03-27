@@ -213,7 +213,7 @@ static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = EH.es(70, 81, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 10)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 10)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EABL.flicker_bolt(), EABL.dim_aura()]
 	f.flavor_text = "A dying wisp that gutters like a candle in the wind. Its fading light still carries enough spite to burn."
 	return f
@@ -228,7 +228,7 @@ static func create_dim_guardian(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
 	f.magic_defense = EH.es(36, 43, 1, 3, lvl, 10)
 	f.speed = EH.es(25, 32, 1, 2, lvl, 10)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 9
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EABL.fading_blow(), EABL.waning_ward()]
 	f.flavor_text = "A sentinel fading from existence, its form barely visible in the dim light. What strength it has left, it devotes entirely to defense."
 	return f
