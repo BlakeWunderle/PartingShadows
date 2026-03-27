@@ -202,7 +202,7 @@ static func undertow() -> AbilityData:
 # Tempest
 static func hurricane() -> AbilityData:
 	return _make("Hurricane", "A storm that strikes all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, true, 0, 0.0)
 
 static func tornado() -> AbilityData:
 	return _make("Tornado", "A focused vortex of destruction.",
@@ -215,7 +215,7 @@ static func storm_surge() -> AbilityData:
 # Paladin
 static func lay_on_hands() -> AbilityData:
 	return _make("Lay on Hands", "Channel divine grace through your touch to mend wounds.",
-		Enums.StatType.HEALTH, 10, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.HEALTH, 14, 0, false, 5, false, 0, 0.0)
 
 static func holy_strike() -> AbilityData:
 	return _make("Holy Strike", "A blow charged with divine wrath.",

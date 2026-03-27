@@ -239,7 +239,7 @@ static func creeping_rot() -> AbilityData:
 # Spiritwalker
 static func spirit_shield() -> AbilityData:
 	return _make("Spirit Shield", "Ancestral spirits protect an ally.",
-		Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0)
+		Enums.StatType.DEFENSE, 2, 2, false, 3, false, 0, 0.0)
 
 static func ancestral_blessing() -> AbilityData:
 	return _make("Ancestral Blessing", "The ancestors empower an ally.",
