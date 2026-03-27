@@ -22,7 +22,7 @@ static func create_raider(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(4, 8, 0, 2, lvl, 4)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 4)
 	f.speed = EH.es(27, 33, 1, 3, lvl, 4)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.cleave(), EAB.war_cry()]
 	f.flavor_text = "Hardened marauders who pillage the borderlands without mercy."
 	return f
@@ -36,7 +36,7 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 4)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 4)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 4)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 12
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.crush(), EAB.thick_skin()]
 	f.flavor_text = "Towering brutes whose raw strength can crack stone. Slow to think, quick to rage."
 	return f
@@ -50,7 +50,7 @@ static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(5, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 5)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 12
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.boulder_fist(), EAB.regenerate(), EAB.stomp()]
 	f.flavor_text = "Massive creatures whose wounds knit shut before your eyes. Best dealt with quickly."
 	return f
@@ -64,7 +64,7 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(9, 13, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(14, 18, 1, 2, lvl, 5)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 5)
-	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 25
+	f.crit_chance = 27; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EAB.talon_rake(), EAB.shriek()]
 	f.flavor_text = "Winged terrors that dive from above, raking with razor talons and piercing shrieks."
 	return f
@@ -200,7 +200,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(28, 34); f.physical_defense = EH.fixed(12, 16)
 	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(12, 16)
 	f.speed = EH.fixed(31, 36)
-	f.crit_chance = 34; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 38; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
@@ -212,7 +212,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(20, 24); f.physical_defense = EH.fixed(11, 15)
 	f.magic_attack = EH.fixed(40, 46); f.magic_defense = EH.fixed(13, 17)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 29; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 31; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f

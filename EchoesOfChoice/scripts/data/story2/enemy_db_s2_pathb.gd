@@ -13,14 +13,14 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Fractured Scholar", lvl)
-	f.health = EH.es(734, 832, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(748, 848, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(98, 112, 2, 4, lvl, 13)
+	f.physical_attack = EH.es(95, 109, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(43, 52, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(88, 101, 2, 4, lvl, 13)
+	f.magic_attack = EH.es(85, 98, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(47, 55, 2, 3, lvl, 13)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 13)
-	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.scholar_strike(), EAB.forgotten_knowledge(), EAB.archive_ward()]
 	f.flavor_text = "Sera, driven by instincts she cannot name. She guards the archive's deepest secrets with desperate ferocity, unaware of why they matter."
 	return f
@@ -28,14 +28,14 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 
 static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Archive Sentinel", lvl)
-	f.health = EH.es(648, 733, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(660, 745, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(104, 119, 3, 5, lvl, 13)
+	f.physical_attack = EH.es(101, 115, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(53, 62, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(12, 16, 0, 2, lvl, 13)
 	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 13)
 	f.speed = EH.es(31, 38, 1, 3, lvl, 13)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 10
+	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.tome_crush(), EAB.index_lock()]
 	f.flavor_text = "A massive automaton built from bound volumes and filing cabinets. It enforces the archive's silence with mechanical precision."
 	return f
@@ -96,14 +96,14 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 
 static func create_eyes_fist(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Eye's Fist", lvl)
-	f.health = EH.es(804, 915, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(798, 907, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(134, 154, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(133, 152, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(65, 76, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
 	f.speed = EH.es(30, 37, 1, 3, lvl, 14)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 16
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.crushing_will(), EAB.attention_lock()]
 	f.flavor_text = "The Eye's physical enforcement, a construct of compressed perception given crushing weight. It draws all aggression toward itself."
 	return f
@@ -115,7 +115,7 @@ static func create_null_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(21, 25, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(114, 131, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(113, 130, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(60, 70, 3, 4, lvl, 14)
 	f.speed = EH.es(38, 46, 2, 3, lvl, 14)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 21
@@ -152,7 +152,7 @@ static func create_memory_torrent(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(125, 143, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(55, 64, 3, 4, lvl, 15)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 15)
-	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.torrent_blast(), EAB.overwhelming_recall()]
 	f.flavor_text = "A raging current of unleashed memories, each one a stolen life surging with anguish and confusion."
 	return f
@@ -182,7 +182,7 @@ static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(81, 94, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(35, 43, 2, 3, lvl, 15)
 	f.speed = EH.es(42, 48, 3, 4, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 23
 	f.abilities = [EAB.fury_spike(), EAB.frenzied_pulse()]
 	f.flavor_text = "A shard of pure anger torn from the Eye's psyche. It lashes out at everything, unable to distinguish friend from foe."
 	return f
@@ -194,12 +194,12 @@ static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 
 static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "The Unblinking Eye", lvl)
-	f.health = EH.es(1261, 1433, 10, 14, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1245, 1415, 10, 14, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(36, 42, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(26, 34, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(56, 66, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(150, 171, 5, 8, lvl, 15)
-	f.magic_defense = EH.es(72, 82, 4, 6, lvl, 15)
+	f.magic_attack = EH.es(146, 167, 5, 8, lvl, 15)
+	f.magic_defense = EH.es(70, 79, 4, 6, lvl, 15)
 	f.speed = EH.es(40, 46, 2, 4, lvl, 15)
 	f.crit_chance = 21; f.crit_damage = 4; f.dodge_chance = 22
 	f.abilities = [EAB.gaze_of_annihilation(), EAB.memory_maelstrom(), EAB.will_of_ages(), EAB.devour_identity(), EAB.unblinking_focus()]

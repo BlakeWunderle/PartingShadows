@@ -88,7 +88,7 @@ static func create_astral_enforcer(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 16)
-	f.crit_chance = 26; f.crit_damage = 3; f.dodge_chance = 16
+	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.dream_blade(), EAB.astral_brace()]
 	f.flavor_text = "A warrior whose astral projection fights with the full force of their waking body. Their dream-forged blade cuts through defenses, and their braced stance absorbs punishment meant to banish them."
 	return f
@@ -103,7 +103,7 @@ static func create_oneiric_hexer(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(103, 119, 3, 6, lvl, 16)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 16)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 16)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 26
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 24
 	f.abilities = [EAB.dream_bolt(), EAB.nightmare_hex()]
 	f.flavor_text = "A hexer who draws power from the boundary between dreams and nightmares. Their bolts carry the sting of bad dreams, and their hexes twist perception into waking terror."
 	return f
@@ -123,7 +123,7 @@ static func create_memory_eater(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(108, 124, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(53, 61, 2, 4, lvl, 17)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 28
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 23
 	f.abilities = [EAB.devour_memory(), EAB.amnesia_fog()]
 	f.flavor_text = "A predator that feeds on memories, leaving its victims hollow and disoriented. It breathes a fog of amnesia that strips away skills, names, and the will to resist."
 	return f
@@ -138,7 +138,7 @@ static func create_nightmare_sentinel(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = EH.es(50, 59, 2, 3, lvl, 17)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 17)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 23
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.nightmare_blade(), EAB.terror_ward()]
 	f.flavor_text = "An armored sentinel forged from concentrated nightmare, standing guard at the Threadmaster's threshold. Its blade is edged with terror, and its ward repels all but the most resolute attackers."
 	return f

@@ -69,7 +69,7 @@ static func create_void_horror(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(78, 90, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(50, 58, 3, 5, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 4, lvl, 15)
-	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 21
+	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EAB.void_eruption(), EAB.terror_gaze()]
 	f.flavor_text = "A howling mass of void energy given terrible form. Its eruptions leave nothing but silence."
 	return f
@@ -99,7 +99,7 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(67, 77, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
 	f.speed = EH.es(42, 49, 2, 4, lvl, 15)
-	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 20
+	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 20
 	f.abilities = [EAB.fading_curse(), EAB.remnant_bolt(), EAB.dissolution()]
 	f.flavor_text = "The decaying afterimage of the Stranger's power. It weakens everything it touches, draining strength and resolve."
 	return f
@@ -112,14 +112,14 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Stranger Undone", lvl)
 	f.class_id = "StrangerUndone"
-	f.health = EH.es(1234, 1350, 13, 19, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1155, 1265, 13, 19, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(38, 44, 3, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(78, 89, 2, 4, lvl, 15)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(88, 100, 3, 6, lvl, 15)
 	f.magic_defense = EH.es(52, 62, 2, 4, lvl, 15)
 	f.speed = EH.es(67, 76, 3, 5, lvl, 15)
-	f.crit_chance = 36; f.crit_damage = 6; f.dodge_chance = 26
+	f.crit_chance = 31; f.crit_damage = 6; f.dodge_chance = 23
 	f.abilities = [EAB.desperate_strike(), EAB.unraveling(), EAB.last_refuge(), EAB.entropy_spike()]
 	f.flavor_text = "The Stranger, stripped of ritual power, smaller and more human than ever before. Desperate, fast, and unpredictable."
 	return f

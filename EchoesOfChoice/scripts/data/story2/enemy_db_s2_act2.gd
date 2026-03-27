@@ -167,7 +167,7 @@ static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 
 static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Tidecaller Revenant", lvl)
-	f.health = EH.es(411, 465, 7, 10, lvl, 10); f.max_health = f.health
+	f.health = EH.es(388, 439, 7, 10, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(14, 17, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(31, 37, 2, 3, lvl, 10)

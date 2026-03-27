@@ -218,7 +218,7 @@ static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 10)
 	f.speed = EH.es(28, 34, 2, 3, lvl, 10)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.hidden_blade(), EAB.merchant_guard()]
 	f.flavor_text = "A keen-eyed operative disguised among the market crowd. Behind a merchant's pleasant smile hides a blade and the Thread cult's unwavering loyalty."
 	return f
@@ -248,7 +248,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = EH.es(71, 81, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 23
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.tainted_salve(), EAB.numbing_dust()]
 	f.flavor_text = "A healer whose remedies conceal darker purposes. The herbs she grows are laced with thread-essence, and her salves cloud the mind as often as they mend the body."
 	return f

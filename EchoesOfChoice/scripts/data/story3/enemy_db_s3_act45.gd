@@ -26,7 +26,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(104, 120, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(47, 57, 2, 4, lvl, 15)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 15)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 34
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.thread_sear(), EAB.zealots_fervor()]
 	f.flavor_text = "A junior member of the Thread cult, burning with fanatical devotion. Their searing thread-magic is crude but powerful, fueled by unshakable belief in the Threadmaster's vision."
 	return f
@@ -42,7 +42,7 @@ static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(43, 51, 2, 3, lvl, 15)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 28
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EAB.thread_laced_fist(), EAB.threaded_sinew()]
 	f.flavor_text = "A heavily muscled enforcer whose body is laced with dream-threads that harden like steel beneath the skin. The cult sends them to silence anyone who asks too many questions."
 	return f
@@ -58,7 +58,7 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(108, 124, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(45, 55, 2, 4, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 38
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 26
 	f.abilities = [EAB.hex_bolt(), EAB.curse()]
 	f.flavor_text = "A spellcaster who has traded sanity for power, channeling hexes drawn from the darkest layers of the dream. Their curses linger long after the battle ends."
 	return f
@@ -122,7 +122,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(108, 124, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.thread_lash(), EAB.ritual_chant()]
 	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
 	return f
@@ -138,7 +138,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(112, 130, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 17)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 17)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 25
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.loom_blast(), EAB.unweave()]
 	f.flavor_text = "One of the Threadmaster's inner circle, a master of the loom's destructive potential. They can unweave the protections of their enemies with a gesture and blast them with raw dream-force."
 	return f

@@ -13,9 +13,10 @@ const LEVELS_AS_TIER1 := 5
 ## Parties with 2+ of these produce degenerate low-DPS compositions that pollute balance signal.
 const T1_SLOG_ITEMS: Array[String] = ["WhiteStone", "Crystal", "Shield", "Herbs"]
 
-## T2 items that produce low-damage support/tank classes (Priest, Warcrier, Bulwark, Aegis, Minstrel).
+## T2 items that produce low-damage support/tank classes
+## (Priest, Warcrier, Bulwark, Aegis, Minstrel, Grove Keeper, Spiritwalker).
 ## Items are unique across all upgrade paths so t2_item alone identifies the class.
-const T2_SLOG_ITEMS: Array[String] = ["HolyBook", "WarHorn", "Fortress", "Mirror", "Hat"]
+const T2_SLOG_ITEMS: Array[String] = ["HolyBook", "WarHorn", "Fortress", "Mirror", "Hat", "Seedling", "SpiritOrb"]
 
 const BASE_TYPES: Array[String] = [
 	"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer"]

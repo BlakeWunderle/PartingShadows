@@ -237,14 +237,14 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Stranger", lvl)
 	f.class_id = "StrangerFinal"
-	f.health = EH.es(1327, 1455, 17, 23, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1300, 1430, 17, 23, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(42, 48, 3, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(78, 88, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(55, 62, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(90, 100, 4, 6, lvl, 15)
+	f.magic_attack = EH.es(87, 97, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(58, 65, 3, 5, lvl, 15)
 	f.speed = EH.es(60, 67, 3, 5, lvl, 15)
-	f.crit_chance = 29; f.crit_damage = 5; f.dodge_chance = 22
+	f.crit_chance = 26; f.crit_damage = 5; f.dodge_chance = 20
 	f.abilities = [EABL.shadow_blast(), EABL.siphon(), EABL.dark_veil(), EABL.unmake(), EABL.entropy()]
 	f.flavor_text = "The Stranger revealed in full, terrible power. Reality itself bends around him as he prepares to unmake everything."
 	return f
