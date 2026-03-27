@@ -54,7 +54,7 @@ static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(47, 57, 2, 3, lvl, 14)
 	f.speed = EH.es(28, 35, 1, 3, lvl, 14)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.pipe_smash(), EAB.pressure_seal(), EAB.steam_burst()]
 	f.flavor_text = "A hulking construct of iron pipes and crystalline conduits. It patrols the lighthouse's deep machinery with tireless vigilance."
 	return f
@@ -84,7 +84,7 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(99, 114, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(53, 63, 2, 4, lvl, 14)
 	f.speed = EH.es(35, 42, 2, 3, lvl, 14)
-	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.resonance_bolt(), EAB.harmonic_disrupt()]
 	f.flavor_text = "A crystal amplifier that channels the lighthouse's resonance frequencies. It hums with barely contained power."
 	return f

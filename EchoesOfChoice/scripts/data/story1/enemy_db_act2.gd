@@ -272,7 +272,7 @@ static func create_commander(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(26, 31); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(12, 16); f.magic_defense = EH.fixed(22, 27)
 	f.speed = EH.fixed(32, 37)
-	f.crit_chance = 28; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 32; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.shield_wall(), EAB.rally_strike(), EAB.war_ward()]
 	f.flavor_text = "A veteran field officer whose presence steadies the ranks and turns the tide of battle."
 	return f
@@ -284,7 +284,7 @@ static func create_draconian(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(28, 32); f.physical_defense = EH.fixed(17, 21)
 	f.magic_attack = EH.fixed(30, 34); f.magic_defense = EH.fixed(20, 25)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 25
+	f.crit_chance = 29; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EAB.skewer(), EAB.drake_strike(), EAB.scale_guard()]
 	f.flavor_text = "Dragonblood warriors whose scaled hides and savage spears make them fearsome on any battlefield."
 	return f
