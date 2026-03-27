@@ -48,6 +48,7 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 		"spread": spread,
 		"best_combos": best_entries,
 		"worst_combos": worst_entries,
+		"turn_stats": result.get("turn_stats", {}),
 		"diagnostics": SD.to_json(SD.analyze(result, stage)),
 	}
 

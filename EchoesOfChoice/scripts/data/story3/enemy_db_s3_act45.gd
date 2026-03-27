@@ -69,7 +69,7 @@ static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Thread Guard", lvl)
 	f.health = EH.es(649, 742, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(109, 125, 3, 5, lvl, 16)
+	f.physical_attack = EH.es(111, 127, 3, 5, lvl, 16)
 	f.physical_defense = EH.es(55, 64, 2, 4, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
@@ -85,7 +85,7 @@ static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Hound", lvl)
 	f.health = EH.es(486, 560, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(100, 116, 3, 5, lvl, 16)
+	f.physical_attack = EH.es(102, 118, 3, 5, lvl, 16)
 	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 16)
@@ -119,7 +119,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.mana = EH.es(20, 24, 1, 2, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(44, 54, 2, 4, lvl, 17)
-	f.magic_attack = EH.es(107, 123, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(108, 124, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
@@ -135,7 +135,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	f.mana = EH.es(22, 25, 2, 3, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 17)
-	f.magic_attack = EH.es(111, 129, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(112, 130, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 17)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 17)
 	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 25
@@ -171,7 +171,7 @@ static func create_needle_wraith(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "NeedleWraith", lvl)
 	f.health = EH.es(547, 631, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(111, 128, 3, 5, lvl, 16)
+	f.physical_attack = EH.es(113, 130, 3, 5, lvl, 16)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(58, 68, 2, 4, lvl, 16)
@@ -188,7 +188,7 @@ static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 	var f := EH.base(n, "LoomCrusher", lvl)
 	f.health = EH.es(784, 903, 7, 10, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 17); f.max_mana = f.mana
-	f.physical_attack = EH.es(122, 141, 4, 6, lvl, 17)
+	f.physical_attack = EH.es(123, 142, 4, 6, lvl, 17)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = EH.es(72, 83, 3, 5, lvl, 17)
