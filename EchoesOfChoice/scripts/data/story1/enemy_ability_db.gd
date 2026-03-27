@@ -204,7 +204,7 @@ static func overdrive() -> AbilityData:
 	return _make("Overdrive", "Push beyond normal limits.", Enums.StatType.SPEED, 7, 2, false, 3, false, 0, 0.0)
 
 static func reinforce() -> AbilityData:
-	return _make("Reinforce", "Strengthen defenses.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Reinforce", "Strengthen defenses.", Enums.StatType.DEFENSE, 2, 2, false, 3, false, 0, 0.0)
 
 static func temper() -> AbilityData:
 	return _make("Temper", "Heat-treat weapons for all allies.", Enums.StatType.ATTACK, 5, 2, false, 3, true, 0, 0.0)
@@ -213,19 +213,19 @@ static func steel_plating() -> AbilityData:
 	return _make("Steel Plating", "Armor up all allies.", Enums.StatType.DEFENSE, 5, 2, false, 3, true, 0, 0.0)
 
 static func shield_wall() -> AbilityData:
-	return _make("Shield Wall", "Raise shields against attack.", Enums.StatType.DEFENSE, 4, 2, false, 2, false, 0, 0.0)
+	return _make("Shield Wall", "Raise shields against attack.", Enums.StatType.PHYSICAL_DEFENSE, 4, 2, false, 2, false, 0, 0.0)
 
 static func war_ward() -> AbilityData:
 	return _make("War Ward", "A ward against magic.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0)
 
 static func scale_guard() -> AbilityData:
-	return _make("Scale Guard", "Draconic scales harden.", Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0)
+	return _make("Scale Guard", "Draconic scales harden.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0)
 
 static func enemy_consecrate() -> AbilityData:
 	return _make("Consecrate", "Holy ground strengthens resistance.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0)
 
 static func pantomime_wall() -> AbilityData:
-	return _make("Pantomime Wall", "An invisible barrier.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Pantomime Wall", "An invisible barrier.", Enums.StatType.DEFENSE, 3, 2, false, 3, false, 0, 0.0)
 
 static func firewall() -> AbilityData:
 	var mod: int = randi_range(0, 9)

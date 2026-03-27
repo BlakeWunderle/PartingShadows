@@ -200,7 +200,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(23, 27); f.physical_defense = EH.fixed(19, 23)
 	f.magic_attack = EH.fixed(26, 30); f.magic_defense = EH.fixed(19, 23)
 	f.speed = EH.fixed(31, 36)
-	f.crit_chance = 26; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 28; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
