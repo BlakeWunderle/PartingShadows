@@ -212,7 +212,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(20, 24); f.physical_defense = EH.fixed(17, 21)
 	f.magic_attack = EH.fixed(32, 36); f.magic_defense = EH.fixed(20, 24)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 26
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f
@@ -222,7 +222,7 @@ static func create_chanteuse(n: String) -> FighterData:
 	f.health = EH.fixed(110, 123); f.max_health = f.health
 	f.mana = EH.fixed(21, 23); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(20, 25); f.physical_defense = EH.fixed(19, 23)
-	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(17, 21)
+	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(20, 24)
 	f.speed = EH.fixed(36, 41)
 	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EAB.aria(), EAB.crescendo(), EAB.cadence()]
@@ -231,7 +231,7 @@ static func create_chanteuse(n: String) -> FighterData:
 
 static func create_android(n: String) -> FighterData:
 	var f := EH.base(n, "Android", 6)
-	f.health = EH.fixed(163, 181); f.max_health = f.health
+	f.health = EH.fixed(151, 168); f.max_health = f.health
 	f.mana = EH.fixed(17, 20); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(23, 27); f.physical_defense = EH.fixed(21, 25)
 	f.magic_attack = EH.fixed(24, 28); f.magic_defense = EH.fixed(23, 27)
@@ -243,7 +243,7 @@ static func create_android(n: String) -> FighterData:
 
 static func create_machinist(n: String) -> FighterData:
 	var f := EH.base(n, "Machinist", 6)
-	f.health = EH.fixed(159, 177); f.max_health = f.health
+	f.health = EH.fixed(147, 164); f.max_health = f.health
 	f.mana = EH.fixed(13, 16); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(24, 28); f.physical_defense = EH.fixed(25, 30)
 	f.magic_attack = EH.fixed(22, 26); f.magic_defense = EH.fixed(23, 27)
@@ -255,13 +255,13 @@ static func create_machinist(n: String) -> FighterData:
 
 static func create_ironclad(n: String) -> FighterData:
 	var f := EH.base(n, "Ironclad", 6)
-	f.health = EH.fixed(157, 174); f.max_health = f.health
+	f.health = EH.fixed(146, 162); f.max_health = f.health
 	f.mana = EH.fixed(13, 16); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(22, 25); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(16, 20); f.magic_defense = EH.fixed(27, 31)
 	f.speed = EH.fixed(27, 32)
 	f.crit_chance = 20; f.crit_damage = 1; f.dodge_chance = 18
-	f.abilities = [EAB.hammer_blow(), EAB.temper(), EAB.steel_plating()]
+	f.abilities = [EAB.hammer_blow(), EAB.temper(), EAB.seismic_charge()]
 	f.flavor_text = "A walking fortress of hammered steel. Each blow of its hammer rings like a forge bell."
 	return f
 
@@ -281,10 +281,10 @@ static func create_draconian(n: String) -> FighterData:
 	var f := EH.base(n, "Draconian", 6)
 	f.health = EH.fixed(127, 140); f.max_health = f.health
 	f.mana = EH.fixed(16, 18); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(28, 32); f.physical_defense = EH.fixed(17, 21)
-	f.magic_attack = EH.fixed(30, 34); f.magic_defense = EH.fixed(20, 25)
+	f.physical_attack = EH.fixed(31, 36); f.physical_defense = EH.fixed(17, 21)
+	f.magic_attack = EH.fixed(33, 38); f.magic_defense = EH.fixed(20, 25)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 29; f.crit_damage = 2; f.dodge_chance = 25
+	f.crit_chance = 34; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.skewer(), EAB.drake_strike(), EAB.scale_guard()]
 	f.flavor_text = "Dragonblood warriors whose scaled hides and savage spears make them fearsome on any battlefield."
 	return f

@@ -172,10 +172,10 @@ static func regenerate() -> AbilityData:
 	return _make("Regenerate", "Flesh knits back together.", Enums.StatType.HEALTH, 15, 0, false, 4, false, 0, 0.0)
 
 static func blessing() -> AbilityData:
-	return _make("Blessing", "Divine favor mends wounds.", Enums.StatType.HEALTH, 8, 0, false, 3, false, 0, 0.0)
+	return _make("Blessing", "Divine favor mends wounds.", Enums.StatType.HEALTH, 5, 0, false, 3, false, 0, 0.0)
 
 static func aria() -> AbilityData:
-	return _make("Aria", "A healing melody.", Enums.StatType.HEALTH, 8, 0, false, 3, false, 0, 0.0)
+	return _make("Aria", "A healing melody.", Enums.StatType.HEALTH, 6, 0, false, 3, false, 0, 0.0)
 
 
 # =============================================================================
