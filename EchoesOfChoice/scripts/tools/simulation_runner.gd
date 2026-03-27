@@ -15,6 +15,13 @@ const TOLERANCE := 0.03
 const MAX_TICKS := 500
 const CLASS_BAND := {"base": 0.15, "tier1": 0.125, "tier2": 0.10}
 
+## Stalemate detection: if enemy HP doesn't decrease by STALEMATE_HP_THRESHOLD
+## of starting total per STALEMATE_CHECK_INTERVAL ticks for STALEMATE_MAX_PERIODS
+## consecutive periods, the battle ends as a loss.
+const STALEMATE_CHECK_INTERVAL := 40
+const STALEMATE_HP_THRESHOLD := 0.03
+const STALEMATE_MAX_PERIODS := 3
+
 static var _sim_engine: BattleEngine = null
 
 
@@ -48,6 +55,15 @@ static func run_single_battle(party: Array, enemies: Array,
 	var player_actions := 0
 	var all_actions := 0
 	var unit_actions: Dictionary = {}  # FighterData -> int
+
+	var enemy_start_hp := 0.0
+	for e: FighterData in enemies:
+		enemy_start_hp += e.max_health
+	var stale_threshold := enemy_start_hp * STALEMATE_HP_THRESHOLD
+	var stale_hp_snapshot := enemy_start_hp
+	var stale_interval_ticks := 0
+	var stale_count := 0
+
 	while not engine.is_battle_over() and ticks < MAX_TICKS:
 		ticks += 1
 		engine.tick_atb_fast()
@@ -67,6 +83,21 @@ static func run_single_battle(party: Array, enemies: Array,
 				player_actions += 1
 			engine.check_for_death()
 		engine.reset_turns()
+
+		stale_interval_ticks += 1
+		if stale_interval_ticks >= STALEMATE_CHECK_INTERVAL:
+			stale_interval_ticks = 0
+			var current_enemy_hp := 0.0
+			for e: FighterData in engine.enemies:
+				current_enemy_hp += e.health
+			if stale_hp_snapshot - current_enemy_hp < stale_threshold:
+				stale_count += 1
+				if stale_count >= STALEMATE_MAX_PERIODS:
+					break
+			else:
+				stale_count = 0
+			stale_hp_snapshot = current_enemy_hp
+
 	return {
 		"won": engine.did_player_win(),
 		"player_actions": player_actions,
