@@ -269,10 +269,10 @@ static func create_commander(n: String) -> FighterData:
 	var f := EH.base(n, "Commander", 6)
 	f.health = EH.fixed(157, 174); f.max_health = f.health
 	f.mana = EH.fixed(14, 16); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(27, 32); f.physical_defense = EH.fixed(25, 29)
+	f.physical_attack = EH.fixed(29, 34); f.physical_defense = EH.fixed(25, 29)
 	f.magic_attack = EH.fixed(12, 16); f.magic_defense = EH.fixed(22, 27)
 	f.speed = EH.fixed(32, 37)
-	f.crit_chance = 36; f.crit_damage = 2; f.dodge_chance = 6
+	f.crit_chance = 40; f.crit_damage = 2; f.dodge_chance = 6
 	f.abilities = [EAB.shield_wall(), EAB.rally_strike(), EAB.war_ward()]
 	f.flavor_text = "A veteran field officer whose presence steadies the ranks and turns the tide of battle."
 	return f
@@ -281,10 +281,10 @@ static func create_draconian(n: String) -> FighterData:
 	var f := EH.base(n, "Draconian", 6)
 	f.health = EH.fixed(127, 140); f.max_health = f.health
 	f.mana = EH.fixed(16, 18); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(31, 36); f.physical_defense = EH.fixed(17, 21)
-	f.magic_attack = EH.fixed(33, 38); f.magic_defense = EH.fixed(20, 25)
+	f.physical_attack = EH.fixed(31, 36); f.physical_defense = EH.fixed(20, 24)
+	f.magic_attack = EH.fixed(33, 38); f.magic_defense = EH.fixed(23, 28)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 34; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 40; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.skewer(), EAB.drake_strike(), EAB.scale_guard()]
 	f.flavor_text = "Dragonblood warriors whose scaled hides and savage spears make them fearsome on any battlefield."
 	return f
@@ -293,8 +293,8 @@ static func create_chaplain(n: String) -> FighterData:
 	var f := EH.base(n, "Chaplain", 6)
 	f.health = EH.fixed(126, 141); f.max_health = f.health
 	f.mana = EH.fixed(20, 22); f.max_mana = f.mana
-	f.physical_attack = EH.fixed(16, 20); f.physical_defense = EH.fixed(23, 27)
-	f.magic_attack = EH.fixed(27, 32); f.magic_defense = EH.fixed(25, 29)
+	f.physical_attack = EH.fixed(16, 20); f.physical_defense = EH.fixed(17, 21)
+	f.magic_attack = EH.fixed(27, 32); f.magic_defense = EH.fixed(19, 23)
 	f.speed = EH.fixed(27, 32)
 	f.crit_chance = 23; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.blessing(), EAB.mace_strike(), EAB.enemy_consecrate()]
