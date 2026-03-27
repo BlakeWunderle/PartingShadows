@@ -13,14 +13,14 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Sigil Colossus", lvl)
-	f.health = EH.es(622, 687, 8, 12, lvl, 14); f.max_health = f.health
+	f.health = EH.es(642, 707, 8, 12, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(82, 91, 4, 6, lvl, 14)
 	f.physical_defense = EH.es(50, 59, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 14)
 	f.speed = EH.es(34, 41, 1, 3, lvl, 14)
-	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 10
+	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 10
 	f.abilities = [EAB.sigil_crush(), EAB.anchor_pulse(), EAB.sigil_ward()]
 	f.flavor_text = "A massive construct of carved stone and living sigils. It guards the ritual pillars with relentless force."
 	return f
@@ -35,7 +35,7 @@ static func create_ritual_conduit(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(70, 79, 4, 6, lvl, 14)
 	f.magic_defense = EH.es(48, 56, 3, 5, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 4, lvl, 14)
-	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.conduit_beam(), EAB.mending_sigil(), EAB.ritual_shield()]
 	f.flavor_text = "A crystalline pillar that channels ritual energy. It mends damage to the anchors and shields its allies."
 	return f
@@ -49,8 +49,8 @@ static func create_void_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(38, 46, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(60, 68, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 14)
-	f.speed = EH.es(43, 50, 2, 4, lvl, 14)
-	f.crit_chance = 27; f.crit_damage = 4; f.dodge_chance = 19
+	f.speed = EH.es(45, 52, 2, 4, lvl, 14)
+	f.crit_chance = 31; f.crit_damage = 4; f.dodge_chance = 19
 	f.abilities = [EAB.void_slash(), EAB.nullfield()]
 	f.flavor_text = "A silent guardian of void energy. Its blade cuts through both armor and magic with equal ease."
 	return f

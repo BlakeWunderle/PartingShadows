@@ -15,28 +15,28 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Royal Guard", lvl)
-	f.health = EH.es(347, 392, 9, 13, lvl, 10); f.max_health = f.health
+	f.health = EH.es(362, 407, 9, 13, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(44, 51, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(33, 38, 3, 4, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 10)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 10)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 21
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EABL.bulwark_slam(), EABL.sword_strike(), EABL.defensive_formation()]
 	f.flavor_text = "Elite soldiers sworn to the crown. Their discipline and heavy armor make them formidable."
 	return f
 
 static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Guard Sergeant", lvl)
-	f.health = EH.es(355, 404, 9, 13, lvl, 10); f.max_health = f.health
+	f.health = EH.es(370, 419, 9, 13, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(47, 56, 3, 5, lvl, 10)
 	f.physical_defense = EH.es(23, 30, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(7, 11, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(26, 31, 1, 2, lvl, 10)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 10)
-	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 18
+	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 18
 	f.abilities = [EABL.sword_strike(), EABL.battle_command(), EABL.decisive_blow()]
 	f.flavor_text = "A hardened officer who leads from the front, rallying guards with sharp commands."
 	return f
@@ -50,7 +50,7 @@ static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(24, 31, 1, 3, lvl, 10)
 	f.speed = EH.es(37, 43, 3, 4, lvl, 10)
-	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 22
+	f.crit_chance = 33; f.crit_damage = 4; f.dodge_chance = 25
 	f.abilities = [EABL.arrow_shot(), EABL.volley(), EABL.pin_down()]
 	f.flavor_text = "Sharpshooters stationed on the city walls. They pin targets down with precise volleys."
 	return f
