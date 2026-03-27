@@ -185,14 +185,14 @@ static func create_warding_shadow(n: String, lvl: int = 14) -> FighterData:
 
 static func create_shadow_innkeeper(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Shadow Innkeeper", lvl)
-	f.health = EH.es(541, 622, 6, 9, lvl, 15); f.max_health = f.health
+	f.health = EH.es(549, 631, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(83, 95, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(84, 96, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(44, 52, 2, 4, lvl, 15)
-	f.magic_attack = EH.es(83, 95, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(84, 96, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(44, 52, 2, 4, lvl, 15)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 15)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 26; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.borrowed_face(), EAB.thread_drain()]
 	f.flavor_text = "The innkeeper's shadow given terrible purpose, wearing a stolen face that shifts between hospitality and menace. It drains life through threads hidden beneath a veneer of warmth."
 	return f
@@ -200,14 +200,14 @@ static func create_shadow_innkeeper(n: String, lvl: int = 15) -> FighterData:
 
 static func create_astral_weaver(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Astral Weaver", lvl)
-	f.health = EH.es(461, 531, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(468, 539, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(20, 24, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(97, 111, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(98, 112, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 15)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 16
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.astral_barrage(), EAB.cosmic_unraveling()]
 	f.flavor_text = "A weaver who has touched the astral plane beyond the dream and returned with terrible knowledge. Their barrages of cosmic energy unravel the fabric of reality itself."
 	return f
@@ -215,14 +215,14 @@ static func create_astral_weaver(n: String, lvl: int = 15) -> FighterData:
 
 static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Loom Tendril", lvl)
-	f.health = EH.es(421, 485, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(427, 492, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(91, 108, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(92, 109, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(40, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 15)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.siphon_pulse(), EAB.constricting_weave()]
 	f.flavor_text = "A living extension of the great loom, a tendril of woven dream-stuff that lashes out at those who approach. It siphons energy and constricts with suffocating pressure."
 	return f

@@ -18,14 +18,14 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 # Prog 11 (LucidDream) only -- mage phantom (fast magic DPS)
 static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Lucid Phantom", lvl)
-	f.health = EH.es(437, 503, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = EH.es(444, 511, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 12)
-	f.magic_attack = EH.es(85, 96, 3, 5, lvl, 12)
+	f.magic_attack = EH.es(86, 97, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 12)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 12)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
 	f.flavor_text = "A phantom born from a dreamer who achieved lucidity but lost themselves in it. It wields focused thought like a weapon, phasing through attacks with terrifying ease."
 	return f
@@ -34,11 +34,11 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 # Prog 11 (LucidDream) only -- support healer (mage support)
 static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Thread Spinner", lvl)
-	f.health = EH.es(491, 565, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = EH.es(498, 573, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(35, 43, 2, 3, lvl, 12)
-	f.magic_attack = EH.es(70, 84, 2, 4, lvl, 12)
+	f.magic_attack = EH.es(71, 85, 2, 4, lvl, 12)
 	f.magic_defense = EH.es(43, 51, 2, 3, lvl, 12)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 10
@@ -66,14 +66,14 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 # Prog 11 (LucidDream) only -- magic DPS (glass cannon caster)
 static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Cult Shade", lvl)
-	f.health = EH.es(360, 415, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = EH.es(366, 422, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 12)
-	f.magic_attack = EH.es(79, 90, 3, 5, lvl, 12)
+	f.magic_attack = EH.es(80, 91, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	f.flavor_text = "A hooded cultist who channels forbidden thread-magic through rituals of devotion. It unravels the minds of its enemies, leaving them confused and vulnerable."
 	return f
@@ -179,7 +179,7 @@ static func create_sanctum_shade(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(78, 89, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
-	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.loom_blast(), EAB.nullify()]
 	f.flavor_text = "A shade bound to the sanctum's innermost chamber, woven into the loom's defenses since the cult's founding. It blasts intruders with raw loom-force and nullifies their protections before they can reach the core."
 	return f
@@ -195,7 +195,7 @@ static func create_loom_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(77, 88, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
 	f.flavor_text = "A guardian woven directly into the sanctum's core, its existence inseparable from the loom itself. Its strikes carry the full weight of the loom's power, and its armor reforms from dream-thread with every blow it absorbs."
 	return f
@@ -211,7 +211,7 @@ static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(84, 97, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 14)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.loom_slam(), EAB.thread_storm(), EAB.guardians_veil()]
 	f.flavor_text = "The final ward of the dream sanctum, a colossal being of interwoven threads and crystallized will. It fights with the combined resolve of every cultist who has prayed at the loom."
 	return f

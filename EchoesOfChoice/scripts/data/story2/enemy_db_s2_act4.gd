@@ -20,7 +20,7 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(74, 85, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(33, 42, 2, 3, lvl, 14)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 14)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 19
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EABL.piercing_gaze_strike(), EABL.focus_break()]
 	f.flavor_text = "A swift predator that serves as the Eye's hunting hound. It locks onto its prey with an unblinking stare that shatters concentration."
 	return f
@@ -35,7 +35,7 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(108, 124, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 15
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EABL.harvest_thought(), EABL.mass_extraction()]
 	f.flavor_text = "A grotesque collector that reaps thoughts like grain. The memories it steals are fed directly to the Eye, fueling its terrible awareness."
 	return f
