@@ -152,7 +152,7 @@ static func create_memory_torrent(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(125, 143, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(55, 64, 3, 4, lvl, 15)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.torrent_blast(), EAB.overwhelming_recall()]
 	f.flavor_text = "A raging current of unleashed memories, each one a stolen life surging with anguish and confusion."
 	return f
@@ -167,7 +167,7 @@ static func create_unleashed_recollection(n: String, lvl: int = 15) -> FighterDa
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 15)
 	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 15)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 15)
-	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 11
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.memory_fist(), EAB.shatter_recall()]
 	f.flavor_text = "A solid mass of crystallized memory broken free from storage. It crashes through anything in its path with mindless fury."
 	return f
@@ -182,7 +182,7 @@ static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(81, 94, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(35, 43, 2, 3, lvl, 15)
 	f.speed = EH.es(42, 48, 3, 4, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 23
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 27
 	f.abilities = [EAB.fury_spike(), EAB.frenzied_pulse()]
 	f.flavor_text = "A shard of pure anger torn from the Eye's psyche. It lashes out at everything, unable to distinguish friend from foe."
 	return f

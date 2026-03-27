@@ -52,7 +52,7 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(9, 12, 0, 2, lvl, 1)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 1)
 	f.speed = EH.es(30, 36, 1, 3, lvl, 1)
-	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 12
+	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.dust_wing(), EAB.flit()]
 	f.flavor_text = "A dark-winged insect born from forgotten memories. Its scales scatter a soporific dust that clouds the senses."
 	return f
@@ -67,7 +67,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 0, 1, lvl, 2)
 	f.speed = EH.es(27, 33, 1, 3, lvl, 2)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	f.flavor_text = "A gaunt predator that prowls the border between waking and sleep. It hunts by sensing the fear of dreamers who linger too long."
 	return f
@@ -75,7 +75,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 
 static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Mirror Shade", lvl)
-	f.health = EH.es(45, 54, 2, 4, lvl, 2); f.max_health = f.health
+	f.health = EH.es(42, 51, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 1, 2, lvl, 2)
 	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
