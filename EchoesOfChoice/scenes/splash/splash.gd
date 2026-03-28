@@ -9,7 +9,7 @@ const _LOGO_PATH: String = "res://assets/art/ui/wunderelf_logo.png"
 const _INITIAL_DELAY: float = 0.5
 const _LOGO_FADE_IN: float = 1.0
 const _TEXT_FADE_IN: float = 0.5
-const _HOLD_DURATION: float = 1.5
+const _HOLD_DURATION: float = 30.0
 
 var _logo: TextureRect
 var _studio_label: Label
