@@ -220,7 +220,7 @@ static func storm_surge() -> AbilityData:
 static func lay_on_hands() -> AbilityData:
 	var a := _make("Lay on Hands", "Channel divine grace through your touch to mend wounds.",
 		Enums.StatType.HEALTH, 14, 0, false, 5, false, 0, 0.0)
-	a.heal_threshold = 0.25
+	a.heal_threshold = 0.35
 	return a
 
 static func holy_strike() -> AbilityData:
@@ -321,11 +321,11 @@ static func dissonance() -> AbilityData:
 
 static func ballad() -> AbilityData:
 	return _make("Ballad", "A sorrowful melody turned weapon.",
-		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
 
 static func serenade() -> AbilityData:
 	var a := _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 5, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 14, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 

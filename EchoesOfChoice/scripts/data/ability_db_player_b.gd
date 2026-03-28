@@ -69,8 +69,8 @@ static func transmute() -> AbilityData:
 		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func corrosive_acid() -> AbilityData:
-	return _make("Corrosive Acid", "Acid that burns over time.",
-		Enums.StatType.HEALTH, 0, 3, true, 4, false, 12, 0.0)
+	return _make("Acid Blast", "A corrosive wave of acid that sears all enemies.",
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 static func elixir() -> AbilityData:
 	var a := _make("Elixir", "A carefully brewed healing potion.",
