@@ -44,9 +44,10 @@ func _build_ui() -> void:
 		bg.texture = load(bg_path)
 	add_child(bg)
 
-	# Center container
+	# Center container — offset bottom so content sits in upper portion of screen
 	var center := CenterContainer.new()
 	center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	center.offset_bottom = -180
 	add_child(center)
 
 	_vbox = VBoxContainer.new()
@@ -56,7 +57,7 @@ func _build_ui() -> void:
 
 	# Title
 	_title_label = Label.new()
-	_title_label.text = "ECHOES OF CHOICE"
+	_title_label.text = "PARTING SHADOWS"
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_label.add_theme_font_size_override("font_size", 56)
 	_title_label.add_theme_constant_override("outline_size", 6)
