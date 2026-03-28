@@ -120,11 +120,14 @@ static func vanish_strike() -> AbilityData:
 
 # --- Dusk Sentinel ---
 
-static func iron_stance() -> AbilityData:
-	return _make("Iron Stance", "An immovable silhouette braces against all harm.", Enums.StatType.DEFENSE, 3, 2, false, 3, false, 0, 0.0)
-
 static func shield_bash() -> AbilityData:
 	return _make("Shield Bash", "A wall of shadow slams forward.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+
+static func dusk_toll() -> AbilityData:
+	return _make("Dusk Toll", "The sentinel's wrath sweeps across all who dare the threshold.", Enums.StatType.PHYSICAL_ATTACK, 0, 0, true, 4, true, 0, 0.0)
+
+static func sentinel_stasis() -> AbilityData:
+	return _make("Sentinel's Stasis", "The warden's gaze fixes a target in place, denying them their next moment.", Enums.StatType.SPEED, 6, 2, true, 3, false, 0, 0.0)
 
 # --- Hollow Echo ---
 
@@ -147,8 +150,8 @@ static func terror_wave() -> AbilityData:
 static func time_rend() -> AbilityData:
 	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
-static func stasis_touch() -> AbilityData:
-	return _make("Stasis Touch", "Time stops for just a heartbeat too long.", Enums.StatType.SPEED, 5, 1, true, 3, false, 0, 0.0)
+static func temporal_rupture() -> AbilityData:
+	return _make("Temporal Rupture", "Fractured time detonates across the battlefield, tearing at everyone at once.", Enums.StatType.MIXED_ATTACK, 0, 0, true, 4, true, 0, 0.0)
 
 # --- The Nightmare (boss) ---
 

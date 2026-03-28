@@ -233,15 +233,15 @@ static func create_waking_terror(n: String, lvl: int = 8) -> FighterData:
 # Prog 7 ClockTower enemies
 static func create_dusk_sentinel(n: String, lvl: int = 8) -> FighterData:
 	var f := EH.base(n, "Dusk Sentinel", lvl)
-	f.health = EH.es(395, 460, 6, 9, lvl, 8); f.max_health = f.health
+	f.health = EH.es(345, 400, 6, 9, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(33, 38, 1, 3, lvl, 8)
-	f.physical_defense = EH.es(25, 30, 1, 3, lvl, 8)
+	f.physical_defense = EH.es(19, 23, 1, 3, lvl, 8)
 	f.magic_attack = EH.es(11, 14, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(22, 26, 1, 2, lvl, 8)
 	f.speed = EH.es(34, 39, 1, 2, lvl, 8)
-	f.crit_chance = 22; f.crit_damage = 1; f.dodge_chance = 8
-	f.abilities = [EAB.shield_bash(), EAB.iron_stance()]
+	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 5
+	f.abilities = [EAB.shield_bash(), EAB.dusk_toll(), EAB.sentinel_stasis()]
 	f.flavor_text = "An armored guardian forged from the dying light of dusk. It stands vigil at the clock tower's threshold, unyielding and tireless in its purpose."
 	return f
 
@@ -252,11 +252,11 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	f.mana = EH.es(7, 10, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(25, 30, 1, 3, lvl, 8)
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 8)
-	f.magic_attack = EH.es(28, 33, 1, 3, lvl, 8)
+	f.magic_attack = EH.es(30, 35, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(19, 23, 1, 2, lvl, 8)
 	f.speed = EH.es(38, 43, 1, 3, lvl, 8)
-	f.crit_chance = 26; f.crit_damage = 1; f.dodge_chance = 15
-	f.abilities = [EAB.time_rend(), EAB.stasis_touch()]
+	f.crit_chance = 23; f.crit_damage = 1; f.dodge_chance = 12
+	f.abilities = [EAB.time_rend(), EAB.temporal_rupture()]
 	f.flavor_text = "A spectral figure bound to a shattered clock face, its limbs moving in fractured time. It tears at the flow of moments, freezing enemies in temporal stasis."
 	return f
 
