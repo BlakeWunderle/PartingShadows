@@ -9,7 +9,7 @@ const _LOGO_PATH: String = "res://assets/art/ui/wunderelf_logo.png"
 const _INITIAL_DELAY: float = 0.5
 const _LOGO_FADE_IN: float = 1.0
 const _TEXT_FADE_IN: float = 0.5
-const _HOLD_DURATION: float = 30.0
+const _HOLD_DURATION: float = 5.0
 
 var _logo: TextureRect
 var _studio_label: Label
@@ -71,15 +71,8 @@ func _play_sequence() -> void:
 		_go_to_title()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if _transitioning or not _skip_enabled:
-		return
-	if event is InputEventKey and event.pressed and not event.echo:
-		_go_to_title()
-	elif event is InputEventMouseButton and event.pressed:
-		_go_to_title()
-	elif event is InputEventJoypadButton and event.pressed:
-		_go_to_title()
+func _unhandled_input(_event: InputEvent) -> void:
+	pass  # Skip disabled for trailer recording
 
 
 func _go_to_title() -> void:

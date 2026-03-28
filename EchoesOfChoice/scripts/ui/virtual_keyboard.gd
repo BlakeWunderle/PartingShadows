@@ -42,7 +42,7 @@ func _build_ui() -> void:
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	margin.add_child(vbox)
 
-	# All rows centered like a real keyboard
+	# All rows centered
 	for row_str: String in ROWS:
 		var row_hbox := HBoxContainer.new()
 		row_hbox.add_theme_constant_override("separation", 3)
@@ -176,17 +176,19 @@ func _wire_focus() -> void:
 		else:
 			_char_buttons[i].focus_neighbor_top = _done_btn.get_path()
 
+	# Row 3 is 2 keys shorter and centered, so it sits 1 key-slot to the right of row 2.
+	# Offset by 1 so up/down navigation tracks the visual position rather than the array index.
 	for i: int in range(row2_start, row2_end + 1):
 		var col: int = i - row2_start
 		var r1_idx: int = row1_start + mini(col, row1_end - row1_start)
 		_char_buttons[i].focus_neighbor_top = _char_buttons[r1_idx].get_path()
-		var r3_idx: int = row3_start + mini(col, row3_end - row3_start)
-		_char_buttons[i].focus_neighbor_bottom = _char_buttons[r3_idx].get_path()
+		var r3_col: int = clampi(col - 1, 0, row3_end - row3_start)
+		_char_buttons[i].focus_neighbor_bottom = _char_buttons[row3_start + r3_col].get_path()
 
 	for i: int in range(row3_start, row3_end + 1):
 		var col: int = i - row3_start
-		var r2_idx: int = row2_start + mini(col, row2_end - row2_start)
-		_char_buttons[i].focus_neighbor_top = _char_buttons[r2_idx].get_path()
+		var r2_col: int = mini(col + 1, row2_end - row2_start)
+		_char_buttons[i].focus_neighbor_top = _char_buttons[row2_start + r2_col].get_path()
 		# Row 3 down → bottom buttons
 		if col < 2:
 			_char_buttons[i].focus_neighbor_bottom = _caps_btn.get_path()
