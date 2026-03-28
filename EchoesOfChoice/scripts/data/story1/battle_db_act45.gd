@@ -179,6 +179,7 @@ static func stranger_final_battle() -> BattleData:
 	b.battle_id = "StrangerFinalBattle"
 	b.scene_image = "res://assets/art/battles/void_cavern.png"
 	b.is_final_battle = true
+	b.is_boss = true
 	b.enemies = [
 		EnemyDB.create_stranger_final("The Stranger"),
 	]

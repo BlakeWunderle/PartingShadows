@@ -156,6 +156,7 @@ static func s3_c_dream_nexus() -> BattleData:
 	b.battle_id = "S3_C_DreamNexus"
 	b.scene_image = "res://assets/art/battles/dream_nexus.png"
 	b.is_final_battle = true
+	b.is_boss = true
 	b.enemies = [
 		EnemyDB.create_ancient_threadmaster("The Threadmaster"),
 		EnemyDB.create_dream_shackle("Binding of Ages"),

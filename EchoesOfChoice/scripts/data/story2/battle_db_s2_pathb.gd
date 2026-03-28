@@ -161,6 +161,7 @@ static func s2_b_eye_unblinking() -> BattleData:
 	b.battle_id = "S2_B_EyeUnblinking"
 	b.scene_image = "res://assets/art/battles/eye_of_oblivion.png"
 	b.is_final_battle = true
+	b.is_boss = true
 	b.enemies = [
 		EnemyDB.create_the_unblinking_eye("The Unblinking Eye"),
 	]

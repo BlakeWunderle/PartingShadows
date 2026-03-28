@@ -107,6 +107,7 @@ static func s3_dream_shattered_gallery() -> BattleData:
 static func s3_dream_shadow_chase() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_DreamShadowChase"
+	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/dream_shadow_chase.png"
 	b.enemies = [
 		EnemyDB.create_shadow_pursuer("The Hunter"),

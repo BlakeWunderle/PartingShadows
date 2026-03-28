@@ -8,6 +8,7 @@ var flavor_text: String = ""  ## Compendium flavor text (1-2 sentences)
 var pre_battle_text: Array[String] = []
 var post_battle_text: Array[String] = []
 var is_final_battle: bool = false
+var is_boss: bool = false  ## Named antagonist / boss encounter
 var is_town_stop: bool = false
 var next_battle_id: String = ""
 var choices: Array[Dictionary] = []  ## [{label: String, battle_id: String}] for branching

@@ -231,6 +231,7 @@ static func s2_forgotten_archive() -> BattleData:
 static func s2_the_reveal() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_TheReveal"
+	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/sanctum_core.png"
 	b.enemies = [
 		EnemyDBS2Act3.create_the_warden("The Warden"),

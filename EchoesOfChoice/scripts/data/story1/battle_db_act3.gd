@@ -68,6 +68,7 @@ static func return_to_city_street_battle() -> BattleData:
 static func stranger_tower_battle() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "StrangerTowerBattle"
+	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/stranger_tower.png"
 	b.escape_hp_pct = 0.3
 	b.enemies = [

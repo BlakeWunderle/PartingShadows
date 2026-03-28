@@ -75,6 +75,7 @@ static func s3_cult_catacombs() -> BattleData:
 static func s3_cult_ritual_chamber() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S3_CultRitualChamber"
+	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/cult_ritual_chamber.png"
 	b.enemies = [
 		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
@@ -114,6 +115,7 @@ static func s3_dream_nexus() -> BattleData:
 	b.battle_id = "S3_DreamNexus"
 	b.scene_image = "res://assets/art/battles/dream_nexus.png"
 	b.is_final_battle = true
+	b.is_boss = true
 	b.enemies = [
 		EnemyDB.create_the_threadmaster("The Threadmaster"),
 		EnemyDB.create_shadow_fragment("Tattered Shadow"),

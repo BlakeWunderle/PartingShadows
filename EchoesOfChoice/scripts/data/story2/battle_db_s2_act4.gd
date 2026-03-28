@@ -91,6 +91,7 @@ static func s2_maw_of_the_eye() -> BattleData:
 static func s2_eye_awakening() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "S2_EyeAwakening"
+	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/the_eye.png"
 	b.enemies = [
 		EnemyDBS2Act4.create_the_iris("The Iris"),
@@ -152,6 +153,7 @@ static func s2_eye_of_oblivion() -> BattleData:
 		"They carry her memory with them. Not because they have to. Because they choose to.",
 	]
 	b.is_final_battle = true
+	b.is_boss = true
 	b.music_track = "res://assets/audio/music/boss/The Battle of Ages_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#14.wav"
 	return b

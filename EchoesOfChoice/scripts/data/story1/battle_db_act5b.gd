@@ -89,6 +89,7 @@ static func stranger_undone_battle() -> BattleData:
 	b.battle_id = "StrangerUndoneBattle"
 	b.scene_image = "res://assets/art/battles/void_cavern.png"
 	b.is_final_battle = true
+	b.is_boss = true
 	b.enemies = [
 		EnemyDB.create_stranger_undone("The Stranger"),
 	]
