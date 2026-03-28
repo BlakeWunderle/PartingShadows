@@ -15,7 +15,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_raider(n: String, lvl: int = 4) -> FighterData:
 	var f := EH.base(n, "Raider", lvl)
-	f.health = EH.es(130, 149, 4, 7, lvl, 4); f.max_health = f.health
+	f.health = EH.es(140, 161, 4, 7, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = EH.es(21, 26, 2, 3, lvl, 4)
 	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 4)
@@ -29,7 +29,7 @@ static func create_raider(n: String, lvl: int = 4) -> FighterData:
 
 static func create_orc(n: String, lvl: int = 4) -> FighterData:
 	var f := EH.base(n, "Orc", lvl)
-	f.health = EH.es(158, 184, 5, 8, lvl, 4); f.max_health = f.health
+	f.health = EH.es(170, 198, 5, 8, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 2, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = EH.es(25, 29, 2, 4, lvl, 4)
 	f.physical_defense = EH.es(14, 18, 1, 3, lvl, 4)
