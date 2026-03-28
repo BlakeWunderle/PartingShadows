@@ -200,7 +200,7 @@ static func create_ringmaster(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(28, 34); f.physical_defense = EH.fixed(12, 16)
 	f.magic_attack = EH.fixed(29, 33); f.magic_defense = EH.fixed(12, 16)
 	f.speed = EH.fixed(31, 36)
-	f.crit_chance = 38; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 40; f.crit_damage = 2; f.dodge_chance = 22
 	f.abilities = [EAB.whip_crack(), EAB.showstopper(), EAB.center_ring()]
 	f.flavor_text = "The master of ceremonies commands the stage with a crack of his whip and a showman's grin."
 	return f
@@ -212,7 +212,7 @@ static func create_harlequin(n: String) -> FighterData:
 	f.physical_attack = EH.fixed(20, 24); f.physical_defense = EH.fixed(11, 15)
 	f.magic_attack = EH.fixed(40, 46); f.magic_defense = EH.fixed(13, 17)
 	f.speed = EH.fixed(30, 35)
-	f.crit_chance = 31; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 33; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.pantomime_wall(), EAB.prop_drop(), EAB.mime_trap()]
 	f.flavor_text = "A grinning performer whose silent antics mask deadly illusions."
 	return f

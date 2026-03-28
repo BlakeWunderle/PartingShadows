@@ -20,7 +20,7 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(74, 85, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(33, 42, 2, 3, lvl, 14)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 14)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 21
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 23
 	f.abilities = [EABL.piercing_gaze_strike(), EABL.focus_break()]
 	f.flavor_text = "A swift predator that serves as the Eye's hunting hound. It locks onto its prey with an unblinking stare that shatters concentration."
 	return f
@@ -50,7 +50,7 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(103, 120, 3, 4, lvl, 14)
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 4, lvl, 14)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 25
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 27
 	f.abilities = [EABL.wave_of_oblivion(), EABL.nihil_bolt()]
 	f.flavor_text = "A wraith woven from pure forgetting. Where it passes, all sense of self dissolves, leaving only a hollow ache where identity once lived."
 	return f
@@ -65,7 +65,7 @@ static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(125, 144, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 14)
-	f.crit_chance = 27; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 29; f.crit_damage = 3; f.dodge_chance = 24
 	f.abilities = [EABL.harvesting_scythe(), EABL.accumulated_toll()]
 	f.flavor_text = "A harvester that has gorged on the Eye's overflow of stolen memories. It reaps with terrible efficiency, each thought it claims adding to the Eye's power."
 	return f
@@ -80,7 +80,7 @@ static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(102, 119, 3, 4, lvl, 14)
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(44, 51, 2, 4, lvl, 14)
-	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EABL.void_gaze(), EABL.iris_flash()]
 	f.flavor_text = "A fragment of the Eye itself, torn loose and given independent hunger. An iridescent iris ring surrounds a void pupil that swallows light and will alike."
 	return f
@@ -95,7 +95,7 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
 	f.speed = EH.es(38, 46, 2, 4, lvl, 14)
-	f.crit_chance = 29; f.crit_damage = 3; f.dodge_chance = 25
+	f.crit_chance = 31; f.crit_damage = 3; f.dodge_chance = 27
 	f.abilities = [EABL.memory_blade(), EABL.ironclad_will()]
 	f.flavor_text = "A warrior conjured from stolen memories of great knights. It fights with borrowed valor and an unshakable conviction that it is real."
 	return f
@@ -114,7 +114,7 @@ static func create_the_iris(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(140, 160, 4, 7, lvl, 15)
 	f.magic_defense = EH.es(77, 87, 3, 5, lvl, 15)
 	f.speed = EH.es(33, 39, 1, 3, lvl, 15)
-	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EABL.prismatic_blast(), EABL.refraction_beam(), EABL.crystalline_ward()]
 	f.flavor_text = "The Eye's outer defense, a blazing lens of concentrated perception. Light bends and shatters around it in prismatic fury."
 	return f
@@ -129,7 +129,7 @@ static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(138, 158, 5, 8, lvl, 15)
 	f.magic_defense = EH.es(82, 96, 4, 6, lvl, 15)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 15)
-	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 15
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EABL.gaze_of_forgetting(), EABL.memory_devour(), EABL.final_blink()]
 	f.flavor_text = "The Eye of Oblivion itself, an ancient entity that has consumed countless minds across the ages. To meet its gaze is to forget you ever existed."
 	return f

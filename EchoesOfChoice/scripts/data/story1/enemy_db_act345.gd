@@ -215,7 +215,7 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(65, 75, 5, 7, lvl, 13)
 	f.magic_defense = EH.es(39, 45, 2, 4, lvl, 13)
 	f.speed = EH.es(44, 51, 3, 5, lvl, 13)
-	f.crit_chance = 34; f.crit_damage = 4; f.dodge_chance = 27
+	f.crit_chance = 37; f.crit_damage = 4; f.dodge_chance = 30
 	f.abilities = [EABL.sigil_flare(), EABL.glyph_burn(), EABL.ward_break()]
 	f.flavor_text = "Twisted creatures bound to arcane sigils. They detonate glyphs of searing light at will."
 	return f
@@ -229,7 +229,7 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(14, 20, 1, 2, lvl, 13)
 	f.magic_defense = EH.es(38, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(41, 48, 3, 5, lvl, 13)
-	f.crit_chance = 35; f.crit_damage = 4; f.dodge_chance = 24
+	f.crit_chance = 38; f.crit_damage = 4; f.dodge_chance = 27
 	f.abilities = [EABL.venomous_bite(), EABL.web(), EABL.poison_cloud()]
 	f.flavor_text = "Massive burrowing predators that ambush from below, ensnaring prey in venomous webs."
 	return f
@@ -244,7 +244,7 @@ static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(87, 97, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(58, 65, 3, 5, lvl, 15)
 	f.speed = EH.es(60, 67, 3, 5, lvl, 15)
-	f.crit_chance = 26; f.crit_damage = 5; f.dodge_chance = 20
+	f.crit_chance = 30; f.crit_damage = 5; f.dodge_chance = 24
 	f.abilities = [EABL.shadow_blast(), EABL.siphon(), EABL.dark_veil(), EABL.unmake(), EABL.entropy()]
 	f.flavor_text = "The Stranger revealed in full, terrible power. Reality itself bends around him as he prepares to unmake everything."
 	return f

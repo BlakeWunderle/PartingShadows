@@ -20,7 +20,7 @@ static func create_memory_wisp(n: String, lvl: int = 10) -> FighterData:
 	f.magic_attack = EH.es(68, 80, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 10)
-	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EABL.recall_bolt(), EABL.memory_drain()]
 	f.flavor_text = "A shimmering fragment of someone's forgotten recollection, given form and hunger. It feeds on the memories of the living."
 	return f
@@ -65,7 +65,7 @@ static func create_thought_eater(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(82, 95, 2, 5, lvl, 11)
 	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 11)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
-	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 15
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EABL.mind_rend(), EABL.psychic_leech()]
 	f.flavor_text = "A formless psychic predator that burrows into the mind to consume thoughts whole. Victims feel their knowledge dissolving like mist."
 	return f
@@ -80,7 +80,7 @@ static func create_grief_shade(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(66, 77, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 11)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
-	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 9
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EABL.sorrows_touch(), EABL.wail_of_loss()]
 	f.flavor_text = "A weeping shadow born from concentrated sorrow. Its touch carries the weight of every loss ever felt in this place."
 	return f
@@ -110,7 +110,7 @@ static func create_hollow_watcher(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(12, 16, 0, 2, lvl, 11)
 	f.magic_defense = EH.es(29, 36, 1, 3, lvl, 11)
 	f.speed = EH.es(29, 35, 1, 3, lvl, 11)
-	f.crit_chance = 5; f.crit_damage = 2; f.dodge_chance = 7
+	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EABL.blind_strike(), EABL.sense_intent()]
 	f.flavor_text = "A faceless guardian that perceives the world through stolen senses. It anticipates its enemies' movements before they act."
 	return f
@@ -178,7 +178,7 @@ static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(100, 114, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(47, 53, 2, 4, lvl, 13)
 	f.speed = EH.es(28, 33, 2, 3, lvl, 13)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 12
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EABL.sanctum_judgment(), EABL.barrier_of_ages(), EABL.decree_of_exile()]
 	f.flavor_text = "The sanctum's supreme guardian, an entity of crystallized law and ancient purpose. It judges all who enter and finds them wanting."
 	return f
@@ -193,7 +193,7 @@ static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(79, 91, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 13)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 13)
-	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 13
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EABL.desperate_strike(), EABL.memory_seal(), EABL.forgetting_touch()]
 	f.flavor_text = "Once a noble defender of the memory sanctum, now cracked and unstable. It lashes out with desperate fury, no longer certain what it protects."
 	return f
@@ -248,7 +248,7 @@ static func create_ward_construct(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 12)
 	f.speed = EH.es(21, 28, 1, 2, lvl, 12)
-	f.crit_chance = 9; f.crit_damage = 3; f.dodge_chance = 7
+	f.crit_chance = 11; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EABL.reinforced_strike(), EABL.warding_presence()]
 	f.flavor_text = "A massive stone construct bound by ancient wards. It was built to hold the threshold against any intrusion, and it has never failed."
 	return f
@@ -263,7 +263,7 @@ static func create_null_phantom(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(82, 95, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 12)
 	f.speed = EH.es(32, 39, 2, 3, lvl, 12)
-	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EABL.null_lance(), EABL.nullification()]
 	f.flavor_text = "A phantom of pure negation that erases whatever it touches. Magic withers in its presence, and even thoughts lose coherence."
 	return f

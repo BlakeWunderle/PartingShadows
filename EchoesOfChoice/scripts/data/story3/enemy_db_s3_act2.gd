@@ -21,7 +21,7 @@ static func create_thread_lurker(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 5)
 	f.speed = EH.es(31, 36, 1, 3, lvl, 5)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.thread_ambush(), EAB.web_snare()]
 	f.flavor_text = "A spindly predator that clings to the threads woven through the dream. It waits in stillness until prey draws near, then strikes from the tangled weave."
 	return f
@@ -36,7 +36,7 @@ static func create_dream_sentinel(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(11, 14, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(24, 29, 1, 2, lvl, 5)
-	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 15
 	f.abilities = [EAB.sentinel_strike(), EAB.woven_guard()]
 	f.flavor_text = "A towering guardian woven from layered dream-thread. It was placed here by the cult to keep the deeper passages sealed against intruders."
 	return f

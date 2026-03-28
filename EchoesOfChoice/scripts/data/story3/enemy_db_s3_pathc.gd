@@ -23,7 +23,7 @@ static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(88, 101, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.void_pulse(), EAB.deep_slumber()]
 	f.flavor_text = "A figure that drifts through the deepest layers of the dream, where light never reaches. Its void pulses drag victims into a slumber from which few return."
 	return f
@@ -38,7 +38,7 @@ static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 15)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 15)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.thread_bite(), EAB.unravel_ward()]
 	f.flavor_text = "A ravenous creature that feeds on dream-threads themselves, growing stronger with each strand it consumes. It tears apart protective wards with savage hunger."
 	return f
@@ -53,7 +53,7 @@ static func create_slumbering_colossus(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 15)
 	f.speed = EH.es(22, 27, 1, 2, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.crushing_dream(), EAB.ancient_yawn()]
 	f.flavor_text = "An ancient titan that has slumbered in the dream's foundations since before the cult existed. When roused, its crushing weight and tremendous yawns send waves of exhaustion through all who face it."
 	return f
@@ -123,7 +123,7 @@ static func create_memory_eater(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(108, 124, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(53, 61, 2, 4, lvl, 17)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 23
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.devour_memory(), EAB.amnesia_fog()]
 	f.flavor_text = "A predator that feeds on memories, leaving its victims hollow and disoriented. It breathes a fog of amnesia that strips away skills, names, and the will to resist."
 	return f
@@ -138,7 +138,7 @@ static func create_nightmare_sentinel(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = EH.es(50, 59, 2, 3, lvl, 17)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 17)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.nightmare_blade(), EAB.terror_ward()]
 	f.flavor_text = "An armored sentinel forged from concentrated nightmare, standing guard at the Threadmaster's threshold. Its blade is edged with terror, and its ward repels all but the most resolute attackers."
 	return f
@@ -173,7 +173,7 @@ static func create_ancient_threadmaster(n: String, lvl: int = 18) -> FighterData
 	f.magic_attack = EH.es(109, 126, 4, 6, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(36, 42, 3, 4, lvl, 18)
-	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 20
+	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 22
 	f.abilities = [EAB.primordial_dream(), EAB.loom_dominion(), EAB.chain_of_ages()]
 	f.flavor_text = "The original weaver, ancient beyond reckoning, who first discovered how to shape reality through dreams. Their power predates the cult itself, and their dominion over the loom is absolute."
 	return f
@@ -188,7 +188,7 @@ static func create_dream_shackle(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(99, 113, 3, 6, lvl, 18)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
 	f.speed = EH.es(38, 44, 3, 4, lvl, 18)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 24
 	f.abilities = [EAB.binding_lash(), EAB.reclaim()]
 	f.flavor_text = "A living restraint conjured by the Ancient Threadmaster, designed to bind intruders in place. It lashes out with threads that reclaim stolen dream-energy and return it to the loom."
 	return f
@@ -203,7 +203,7 @@ static func create_loom_heart(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(90, 104, 3, 5, lvl, 18)
 	f.magic_defense = EH.es(53, 61, 2, 4, lvl, 18)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 18)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.pulse_of_the_loom(), EAB.loom_storm()]
 	f.flavor_text = "The beating heart of the great loom itself, exposed and pulsing with raw dream-energy. Destroying it would sever the Threadmaster's connection to the woven night forever."
 	return f
