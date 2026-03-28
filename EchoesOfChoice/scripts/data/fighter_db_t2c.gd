@@ -142,7 +142,7 @@ static func upgrade_to_trailblazer(f: FighterData) -> void:
 static func upgrade_to_survivalist(f: FighterData) -> void:
 	f.class_id = "Survivalist"; f.character_type = "Survivalist"
 	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 3
+	f.physical_attack += 5; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 6
 	f.abilities = [PAB_B.wild_sweep(), PAB_B.resourceful_strike(), PAB_B.adapt()]
 	f.upgrade_items = []
@@ -160,7 +160,7 @@ static func _lu_survivalist(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(3, 5); f.physical_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(5, 7); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
