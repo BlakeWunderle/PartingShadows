@@ -48,7 +48,6 @@ func _build_ui() -> void:
 
 	_add_heading("Programming")
 	_add_line("Wunderelf Studios")
-	_add_line("with Claude (Anthropic)")
 	_add_spacer(30)
 
 	_add_heading("Built With")
@@ -57,14 +56,21 @@ func _build_ui() -> void:
 	_add_spacer(30)
 
 	_add_heading("Music")
-	_add_line("Orchestral Fantasy Music Pack")
-	_add_line("Sad Despair Music Pack")
-	_add_line("Action RPG Music Pack")
+	_add_line("Fantasy Tension Series")
+	_add_line("Sad Despair Series")
+	_add_line("Medieval & Town Tracks")
+	_add_line("Boss Tracks")
+	_add_line("Licensed via Humble Bundle")
+	_add_spacer(30)
+
+	_add_heading("Sound Effects")
+	_add_line("Combat & UI Sound Packs")
+	_add_line("Licensed via Humble Bundle")
 	_add_spacer(30)
 
 	_add_heading("Art")
-	_add_line("Battle backgrounds and UI art")
-	_add_line("created with AI image generation")
+	_add_line("Battle backgrounds and character portraits")
+	_add_line("created with Midjourney")
 	_add_spacer(30)
 
 	_add_heading("Font")
@@ -72,8 +78,13 @@ func _build_ui() -> void:
 	_add_spacer(30)
 
 	_add_heading("Special Thanks")
-	_add_line("The Godot community")
-	_add_line("Playtesters and early supporters")
+	_add_line("The Godot Community")
+	_add_line("Lauren Doss")
+	_add_line("Mandee Hamorsky")
+	_add_line("Jacque Long")
+	_add_line("Kelci Monzione")
+	_add_line("Jess Pereira")
+	_add_line("Josh Rollefson")
 	_add_spacer(40)
 
 	_add_heading("\"Some paths can't be retraced.\"")
