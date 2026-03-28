@@ -37,7 +37,7 @@ Flag them when they're too short (not just too long):
 BOSS_BATTLES = {
   "StrangerTowerBattle", "StrangerFinalBattle", "StrangerUndoneBattle",
   "S2_TheReveal", "S2_EyeAwakening", "S2_EyeOfOblivion", "S2_B_EyeUnblinking",
-  "S3_DreamShadowChase", "S3_CultRitualChamber",
+  "S3_DreamShadowChase",
   "S3_DreamNexus", "S3_B_DreamNexus", "S3_C_DreamNexus"
 }
 ```

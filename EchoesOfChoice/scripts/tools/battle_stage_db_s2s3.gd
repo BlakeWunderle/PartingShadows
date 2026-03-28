@@ -352,7 +352,7 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS3Act45.create_dream_hound("Bound Hound"),
 				EnemyDBS3Act45.create_dream_hound("Chain Fang")]
 		"S3_CultRitualChamber":
-			return [EnemyDBS3Act45.create_cult_ritualist("High Ritualist Sera"),
+			return [EnemyDBS3Act45.create_cult_ritualist("High Ritualist Thorne"),
 				EnemyDBS3Act45.create_high_weaver("Weaver Aldric"),
 				EnemyDBS3Act45.create_thread_guard("Loom Champion")]
 		"S3_DreamNexus":
