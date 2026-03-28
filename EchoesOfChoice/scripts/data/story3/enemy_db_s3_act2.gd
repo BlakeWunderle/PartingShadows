@@ -213,7 +213,7 @@ static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Market Watcher", lvl)
 	f.health = EH.es(438, 504, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(63, 75, 2, 4, lvl, 10)
+	f.physical_attack = EH.es(64, 76, 2, 4, lvl, 10)
 	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 10)
@@ -228,7 +228,7 @@ static func create_thread_smith(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Thread Smith", lvl)
 	f.health = EH.es(516, 594, 5, 8, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(64, 76, 2, 4, lvl, 10)
+	f.physical_attack = EH.es(65, 77, 2, 4, lvl, 10)
 	f.physical_defense = EH.es(26, 33, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
 	f.magic_defense = EH.es(34, 41, 1, 3, lvl, 10)
@@ -245,7 +245,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(21, 27, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(57, 66, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(58, 67, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 18
@@ -263,7 +263,7 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Cellar Watcher", lvl)
 	f.health = EH.es(434, 499, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(10, 12, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(58, 69, 2, 4, lvl, 11)
+	f.physical_attack = EH.es(59, 70, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(58, 69, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 11)
@@ -278,7 +278,7 @@ static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Thread Construct", lvl)
 	f.health = EH.es(509, 582, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(65, 79, 2, 4, lvl, 11)
+	f.physical_attack = EH.es(66, 80, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(41, 49, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 11)
 	f.magic_defense = EH.es(35, 42, 1, 3, lvl, 11)

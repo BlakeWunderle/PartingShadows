@@ -237,7 +237,7 @@ static func create_dusk_sentinel(n: String, lvl: int = 8) -> FighterData:
 	f.mana = EH.es(8, 11, 1, 1, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(33, 38, 1, 3, lvl, 8)
 	f.physical_defense = EH.es(19, 23, 1, 3, lvl, 8)
-	f.magic_attack = EH.es(11, 14, 0, 1, lvl, 8)
+	f.magic_attack = EH.es(12, 15, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(19, 23, 1, 2, lvl, 8)
 	f.speed = EH.es(34, 39, 1, 2, lvl, 8)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 5
@@ -266,7 +266,7 @@ static func create_the_nightmare(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "The Nightmare", lvl)
 	f.health = EH.es(555, 640, 5, 9, lvl, 9); f.max_health = f.health
 	f.mana = EH.es(13, 15, 1, 2, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = EH.es(38, 43, 2, 3, lvl, 9)
+	f.physical_attack = EH.es(39, 44, 2, 3, lvl, 9)
 	f.physical_defense = EH.es(23, 28, 2, 3, lvl, 9)
 	f.magic_attack = EH.es(37, 42, 2, 3, lvl, 9)
 	f.magic_defense = EH.es(23, 28, 2, 3, lvl, 9)
@@ -282,7 +282,7 @@ static func create_nightmare_guard(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "Nightmare Guard", lvl)
 	f.health = EH.es(143, 172, 4, 7, lvl, 9); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 1, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = EH.es(28, 34, 1, 3, lvl, 9)
+	f.physical_attack = EH.es(29, 35, 1, 3, lvl, 9)
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 9)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 9)
 	f.magic_defense = EH.es(16, 20, 1, 2, lvl, 9)
@@ -300,7 +300,7 @@ static func create_void_echo(n: String, lvl: int = 9) -> FighterData:
 	f.mana = EH.es(8, 11, 1, 2, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 9)
 	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 9)
-	f.magic_attack = EH.es(26, 32, 1, 3, lvl, 9)
+	f.magic_attack = EH.es(27, 33, 1, 3, lvl, 9)
 	f.magic_defense = EH.es(18, 22, 1, 2, lvl, 9)
 	f.speed = EH.es(29, 34, 1, 2, lvl, 9)
 	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 18

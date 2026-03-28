@@ -15,7 +15,7 @@ static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Gaze Stalker", lvl)
 	f.health = EH.es(492, 558, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(76, 89, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(78, 91, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(74, 85, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(33, 42, 2, 3, lvl, 14)
@@ -32,7 +32,7 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(31, 40, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(108, 124, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(109, 125, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 14)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 16
@@ -47,7 +47,7 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(17, 20, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(21, 30, 1, 3, lvl, 14)
-	f.magic_attack = EH.es(103, 120, 3, 4, lvl, 14)
+	f.magic_attack = EH.es(105, 122, 3, 4, lvl, 14)
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 4, lvl, 14)
 	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 29
@@ -62,7 +62,7 @@ static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(31, 40, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(125, 144, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(126, 145, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 14)
 	f.crit_chance = 29; f.crit_damage = 3; f.dodge_chance = 24
@@ -90,7 +90,7 @@ static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Thoughtform Knight", lvl)
 	f.health = EH.es(662, 755, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 17, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(130, 150, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(133, 153, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(64, 75, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(16, 23, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
@@ -126,10 +126,10 @@ static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(31, 36, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(22, 30, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(64, 76, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(138, 158, 5, 8, lvl, 15)
+	f.magic_attack = EH.es(141, 161, 5, 8, lvl, 15)
 	f.magic_defense = EH.es(82, 96, 4, 6, lvl, 15)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 15)
-	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 23
+	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 23
 	f.abilities = [EABL.dying_gaze(), EABL.desperate_surge(), EABL.retribution_blast(), EABL.collapse(), EABL.last_light()]
 	f.flavor_text = "The Eye of Oblivion, stripped bare by Sera's sacrifice. Its armor is gone, its reserves burned away. What remains is pure, desperate hunger. It has nothing left but the will to take everything with it."
 	return f

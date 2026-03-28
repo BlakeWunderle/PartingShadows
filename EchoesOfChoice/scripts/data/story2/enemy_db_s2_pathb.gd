@@ -15,7 +15,7 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Fractured Scholar", lvl)
 	f.health = EH.es(748, 848, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(95, 109, 2, 4, lvl, 13)
+	f.physical_attack = EH.es(98, 112, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(43, 52, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(85, 98, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(47, 55, 2, 3, lvl, 13)
@@ -30,7 +30,7 @@ static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Archive Sentinel", lvl)
 	f.health = EH.es(683, 771, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(101, 115, 3, 5, lvl, 13)
+	f.physical_attack = EH.es(104, 118, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(53, 62, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(12, 16, 0, 2, lvl, 13)
 	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 13)
@@ -49,7 +49,7 @@ static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pipeline Warden", lvl)
 	f.health = EH.es(840, 955, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(108, 125, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(111, 128, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(61, 72, 3, 4, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(47, 57, 2, 3, lvl, 14)
@@ -64,7 +64,7 @@ static func create_maintenance_drone(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Maintenance Drone", lvl)
 	f.health = EH.es(545, 623, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(60, 69, 2, 4, lvl, 14)
+	f.physical_attack = EH.es(61, 70, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(35, 44, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(62, 72, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(41, 50, 2, 3, lvl, 14)
@@ -81,7 +81,7 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(22, 26, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(99, 114, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(101, 116, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(53, 63, 2, 4, lvl, 14)
 	f.speed = EH.es(35, 42, 2, 3, lvl, 14)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 15
@@ -98,7 +98,7 @@ static func create_eyes_fist(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Eye's Fist", lvl)
 	f.health = EH.es(798, 907, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(133, 152, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(137, 156, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(65, 76, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
@@ -115,7 +115,7 @@ static func create_null_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(21, 25, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(113, 130, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(115, 132, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(60, 70, 3, 4, lvl, 14)
 	f.speed = EH.es(38, 46, 2, 3, lvl, 14)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 23
@@ -128,9 +128,9 @@ static func create_overload_spark(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Overload Spark", lvl)
 	f.health = EH.es(493, 559, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(62, 72, 2, 4, lvl, 14)
+	f.physical_attack = EH.es(63, 73, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(32, 41, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(65, 74, 2, 4, lvl, 14)
+	f.magic_attack = EH.es(66, 75, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(40, 48, 2, 3, lvl, 14)
 	f.speed = EH.es(46, 53, 2, 4, lvl, 14)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 25
@@ -149,7 +149,7 @@ static func create_memory_torrent(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(24, 28, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 15)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(125, 143, 4, 6, lvl, 15)
+	f.magic_attack = EH.es(128, 146, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(55, 64, 3, 4, lvl, 15)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 22
@@ -162,7 +162,7 @@ static func create_unleashed_recollection(n: String, lvl: int = 15) -> FighterDa
 	var f := EH.base(n, "Unleashed Recollection", lvl)
 	f.health = EH.es(472, 539, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(108, 124, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(110, 126, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(46, 55, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 15)
 	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 15)
@@ -177,9 +177,9 @@ static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Rage Fragment", lvl)
 	f.health = EH.es(404, 461, 5, 7, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(79, 91, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(80, 92, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(81, 94, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(82, 95, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(35, 43, 2, 3, lvl, 15)
 	f.speed = EH.es(42, 48, 3, 4, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 30

@@ -45,7 +45,7 @@ static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Troll", lvl)
 	f.health = EH.es(249, 278, 6, 10, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(8, 10, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(27, 32, 2, 4, lvl, 5)
+	f.physical_attack = EH.es(28, 33, 2, 4, lvl, 5)
 	f.physical_defense = EH.es(18, 22, 1, 3, lvl, 5)
 	f.magic_attack = EH.es(5, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
@@ -143,7 +143,7 @@ static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Captain", lvl)
 	f.health = EH.es(175, 213, 5, 11, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(14, 30, 1, 4, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(27, 34, 2, 5, lvl, 5)
+	f.physical_attack = EH.es(28, 35, 2, 5, lvl, 5)
 	f.physical_defense = EH.es(19, 27, 2, 5, lvl, 5)
 	f.magic_attack = EH.es(9, 17, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(11, 19, 1, 3, lvl, 5)
@@ -335,7 +335,7 @@ static func create_shade(n: String, lvl: int = 7) -> FighterData:
 	f.mana = EH.es(14, 19, 1, 3, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = EH.es(21, 27, 1, 3, lvl, 7)
 	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 7)
-	f.magic_attack = EH.es(33, 40, 3, 5, lvl, 7)
+	f.magic_attack = EH.es(34, 41, 3, 5, lvl, 7)
 	f.magic_defense = EH.es(16, 22, 2, 4, lvl, 7)
 	f.speed = EH.es(34, 40, 2, 4, lvl, 7)
 	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 23
