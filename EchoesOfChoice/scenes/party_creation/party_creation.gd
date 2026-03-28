@@ -48,6 +48,7 @@ var _portrait_preview_a: TextureRect
 var _portrait_preview_b: TextureRect
 var _portrait_btn_a: Button
 var _portrait_btn_b: Button
+var _portrait_back_btn: Button
 var _player_indicator: Label
 
 
@@ -192,11 +193,11 @@ func _build_ui() -> void:
 		pressed_style.border_color = Color(0.2, 0.9, 0.8, 0.8)
 		pressed_style.set_corner_radius_all(4)
 		btn.add_theme_stylebox_override("pressed", pressed_style)
-		# Focus: full teal border for keyboard/gamepad
+		# Focus: white border for keyboard/gamepad (consistent with rest of UI)
 		var focus_style := StyleBoxFlat.new()
 		focus_style.bg_color = Color(0, 0, 0, 0)
 		focus_style.set_border_width_all(3)
-		focus_style.border_color = Color(0.2, 0.9, 0.8, 1.0)
+		focus_style.border_color = Color(1.0, 1.0, 1.0, 1.0)
 		focus_style.set_corner_radius_all(4)
 		btn.add_theme_stylebox_override("focus", focus_style)
 		frame.add_child(btn)
@@ -209,6 +210,21 @@ func _build_ui() -> void:
 			_portrait_preview_b = tex_rect
 			_portrait_btn_b = btn
 			btn.pressed.connect(_on_portrait_clicked.bind(1))
+
+	_portrait_back_btn = Button.new()
+	_portrait_back_btn.text = "Back"
+	_portrait_back_btn.custom_minimum_size = Vector2(200, 48)
+	_portrait_back_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_portrait_back_btn.focus_mode = Control.FOCUS_ALL
+	_portrait_back_btn.visible = false
+	_portrait_back_btn.pressed.connect(_on_portrait_back)
+	var _back_focus_sb := StyleBoxFlat.new()
+	_back_focus_sb.bg_color = Color(0.1, 0.16, 0.22, 0.45)
+	_back_focus_sb.border_color = Color.WHITE
+	_back_focus_sb.set_border_width_all(3)
+	_back_focus_sb.set_corner_radius_all(6)
+	_portrait_back_btn.add_theme_stylebox_override("focus", _back_focus_sb)
+	_vbox.add_child(_portrait_back_btn)
 
 	_tip_overlay = TipOverlay.new()
 	add_child(_tip_overlay)
@@ -256,6 +272,7 @@ func _set_state(new_state: State) -> void:
 	_name_input.visible = false
 	_choice_menu.visible = false
 	_portrait_container.visible = false
+	_portrait_back_btn.visible = false
 	_waiting_overlay.hide_waiting()
 
 	var char_idx: int = _state_to_char_index(_state)
@@ -424,11 +441,38 @@ func _show_portrait_selection() -> void:
 		_portrait_preview_b.texture = load(path_b) as Texture2D
 
 	_portrait_container.visible = true
+	_portrait_back_btn.visible = true
+
+	# Wire focus: left/right between portraits, down to back button
+	_portrait_btn_a.focus_neighbor_right = _portrait_btn_b.get_path()
+	_portrait_btn_a.focus_neighbor_bottom = _portrait_back_btn.get_path()
+	_portrait_btn_b.focus_neighbor_left = _portrait_btn_a.get_path()
+	_portrait_btn_b.focus_neighbor_bottom = _portrait_back_btn.get_path()
+	_portrait_back_btn.focus_neighbor_top = _portrait_btn_a.get_path()
+
 	_portrait_btn_a.grab_focus()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _portrait_container.visible and event.is_action_pressed("ui_cancel"):
+		_on_portrait_back()
+		get_viewport().set_input_as_handled()
+
+
+func _on_portrait_back() -> void:
+	_portrait_container.visible = false
+	_portrait_back_btn.visible = false
+	# Roll state back so _on_class_selected sees CLASS_X, not PORTRAIT_X
+	match _state:
+		State.PORTRAIT_1: _state = State.CLASS_1
+		State.PORTRAIT_2: _state = State.CLASS_2
+		State.PORTRAIT_3: _state = State.CLASS_3
+	_choice_menu.show_choices(_class_options)
 
 
 func _on_portrait_clicked(index: int) -> void:
 	_portrait_container.visible = false
+	_portrait_back_btn.visible = false
 
 	var variant: String = "m" if index == 0 else "f"
 	var char_idx: int = _state_to_char_index(_state)
@@ -512,6 +556,7 @@ func _on_session_ended(reason: String) -> void:
 	_name_input.visible = false
 	_choice_menu.hide_menu()
 	_portrait_container.visible = false
+	_portrait_back_btn.visible = false
 	_waiting_overlay.hide_waiting()
 	_dialogue.visible = true
 	_dialogue.show_text([reason])

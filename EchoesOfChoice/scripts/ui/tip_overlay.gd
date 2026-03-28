@@ -11,6 +11,7 @@ var _panel: PanelContainer
 var _message_label: RichTextLabel
 var _dismiss_btn: Button
 var _seen_tips: Dictionary = {}
+var _prev_focus: Control = null
 
 
 func _init() -> void:
@@ -69,11 +70,15 @@ func show_tip(tip_id: String, text: String) -> void:
 	_message_label.clear()
 	_message_label.append_text(text)
 	visible = true
+	_prev_focus = get_viewport().gui_get_focus_owner()
 	_dismiss_btn.grab_focus()
 
 
 func _dismiss() -> void:
 	visible = false
+	if is_instance_valid(_prev_focus):
+		_prev_focus.grab_focus()
+	_prev_focus = null
 	dismissed.emit()
 
 
@@ -94,6 +99,7 @@ func show_tip_once(tip_id: String, text: String) -> void:
 	_message_label.clear()
 	_message_label.append_text(text)
 	visible = true
+	_prev_focus = get_viewport().gui_get_focus_owner()
 	_dismiss_btn.grab_focus()
 
 
@@ -118,6 +124,13 @@ func _save_seen() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not visible:
+		return
+	# Consume all navigation so focus can't escape the dismiss button
+	if event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down") \
+			or event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right") \
+			or event.is_action_pressed("move_up") or event.is_action_pressed("move_down") \
+			or event.is_action_pressed("move_left") or event.is_action_pressed("move_right"):
+		get_viewport().set_input_as_handled()
 		return
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()

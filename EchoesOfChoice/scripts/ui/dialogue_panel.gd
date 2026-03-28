@@ -58,10 +58,16 @@ func _build_ui() -> void:
 	vbox.add_child(_continue_label)
 
 
+func clear_history() -> void:
+	_label.clear()
+
+
 func show_text(lines: Array) -> void:
 	_lines = lines
 	_current_line = 0
-	_label.clear()
+	# Append separator between passages so history is scrollable
+	if _label.get_parsed_text().length() > 0:
+		_label.append_text("\n\n[color=#2a3550]───────────────────────────[/color]\n\n")
 	_continue_label.modulate.a = 0.0
 	visible = true
 	_accepting_input = false
@@ -115,11 +121,28 @@ func _start_pulse() -> void:
 	_pulse_tween.tween_property(_continue_label, "modulate:a", 1.0, 0.8)
 
 
+func _scroll_history(direction: int) -> void:
+	var bar: VScrollBar = _label.get_v_scroll_bar()
+	if bar and bar.max_value > bar.page:
+		bar.value = clampf(bar.value + direction * bar.page * 0.4, 0.0, bar.max_value - bar.page)
+
+
 func _input(event: InputEvent) -> void:
 	if not visible or not _accepting_input:
 		return
 	if LocalCoop.is_event_gated(event):
 		return
+
+	# Scroll history when continue prompt is showing and no choices yet
+	if _continue_label.modulate.a > 0 and not _typing:
+		if event.is_action_pressed("move_up") or event.is_action_pressed("ui_up"):
+			_scroll_history(-1)
+			get_viewport().set_input_as_handled()
+			return
+		elif event.is_action_pressed("move_down") or event.is_action_pressed("ui_down"):
+			_scroll_history(1)
+			get_viewport().set_input_as_handled()
+			return
 
 	var pressed: bool = false
 	if event.is_action_pressed("confirm"):

@@ -9,6 +9,7 @@ signal backspace_pressed
 signal confirmed
 
 const ROWS: Array[String] = ["QWERTYUIOP", "ASDFGHJKL-", "ZXCVBNM'"]
+const _BODY_FONT: FontFile = preload("res://assets/fonts/CormorantGaramond-SemiBold.ttf")
 ## Characters that are not affected by caps lock
 const _NON_ALPHA: Array[String] = ["-", "'"]
 
@@ -63,6 +64,9 @@ func _build_ui() -> void:
 	_caps_btn.text = "\u25b3"  # △ hollow up arrow (caps off)
 	_caps_btn.custom_minimum_size = Vector2(42, 34)
 	_caps_btn.focus_mode = Control.FOCUS_ALL
+	_caps_btn.add_theme_font_override("font", _BODY_FONT)
+	_caps_btn.add_theme_font_size_override("font_size", 18)
+	_apply_key_style(_caps_btn)
 	_apply_focus_style(_caps_btn)
 	_caps_btn.pressed.connect(_toggle_caps)
 	bottom.add_child(_caps_btn)
@@ -71,6 +75,9 @@ func _build_ui() -> void:
 	_space_btn.text = "Space"
 	_space_btn.custom_minimum_size = Vector2(100, 34)
 	_space_btn.focus_mode = Control.FOCUS_ALL
+	_space_btn.add_theme_font_override("font", _BODY_FONT)
+	_space_btn.add_theme_font_size_override("font_size", 18)
+	_apply_key_style(_space_btn)
 	_apply_focus_style(_space_btn)
 	_space_btn.pressed.connect(func() -> void: character_entered.emit(" "))
 	bottom.add_child(_space_btn)
@@ -79,6 +86,9 @@ func _build_ui() -> void:
 	_backspace_btn.text = "Backspace"
 	_backspace_btn.custom_minimum_size = Vector2(100, 34)
 	_backspace_btn.focus_mode = Control.FOCUS_ALL
+	_backspace_btn.add_theme_font_override("font", _BODY_FONT)
+	_backspace_btn.add_theme_font_size_override("font_size", 18)
+	_apply_key_style(_backspace_btn)
 	_apply_focus_style(_backspace_btn)
 	_backspace_btn.pressed.connect(func() -> void: backspace_pressed.emit())
 	bottom.add_child(_backspace_btn)
@@ -87,6 +97,9 @@ func _build_ui() -> void:
 	_done_btn.text = "Done"
 	_done_btn.custom_minimum_size = Vector2(100, 34)
 	_done_btn.focus_mode = Control.FOCUS_ALL
+	_done_btn.add_theme_font_override("font", _BODY_FONT)
+	_done_btn.add_theme_font_size_override("font_size", 18)
+	_apply_key_style(_done_btn)
 	_apply_focus_style(_done_btn)
 	_done_btn.pressed.connect(func() -> void: confirmed.emit())
 	bottom.add_child(_done_btn)
@@ -99,6 +112,9 @@ func _create_key_button(ch: String) -> Button:
 	btn.text = ch.to_lower()
 	btn.custom_minimum_size = Vector2(36, 34)
 	btn.focus_mode = Control.FOCUS_ALL
+	btn.add_theme_font_override("font", _BODY_FONT)
+	btn.add_theme_font_size_override("font_size", 18)
+	_apply_key_style(btn)
 	_apply_focus_style(btn)
 	btn.pressed.connect(func() -> void: _emit_char(ch))
 	return btn
@@ -237,6 +253,33 @@ func _input(event: InputEvent) -> void:
 func grab_first_focus() -> void:
 	if not _char_buttons.is_empty():
 		_char_buttons[0].grab_focus()
+
+
+static func _apply_key_style(btn: Button) -> void:
+	# Subtle dark style for keyboard keys — overrides the vivid theme blue
+	var normal_sb := StyleBoxFlat.new()
+	normal_sb.bg_color = Color(0.08, 0.12, 0.18, 0.7)
+	normal_sb.border_color = Color(0.2, 0.35, 0.55, 0.5)
+	normal_sb.set_border_width_all(1)
+	normal_sb.set_corner_radius_all(4)
+	normal_sb.set_content_margin_all(4)
+	btn.add_theme_stylebox_override("normal", normal_sb)
+
+	var hover_sb := StyleBoxFlat.new()
+	hover_sb.bg_color = Color(0.14, 0.22, 0.35, 0.85)
+	hover_sb.border_color = Color(0.3, 0.55, 0.85, 0.8)
+	hover_sb.set_border_width_all(2)
+	hover_sb.set_corner_radius_all(4)
+	hover_sb.set_content_margin_all(4)
+	btn.add_theme_stylebox_override("hover", hover_sb)
+
+	var pressed_sb := StyleBoxFlat.new()
+	pressed_sb.bg_color = Color(0.06, 0.1, 0.16, 0.9)
+	pressed_sb.border_color = Color(0.3, 0.55, 0.85, 0.8)
+	pressed_sb.set_border_width_all(2)
+	pressed_sb.set_corner_radius_all(4)
+	pressed_sb.set_content_margin_all(4)
+	btn.add_theme_stylebox_override("pressed", pressed_sb)
 
 
 static func _apply_focus_style(btn: Button) -> void:

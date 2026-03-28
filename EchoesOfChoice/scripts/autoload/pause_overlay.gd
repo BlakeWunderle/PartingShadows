@@ -36,6 +36,7 @@ var _pause_sep: HSeparator
 var _panel_expanded: bool = false
 var _pending_save_slot: int = -1
 var _save_slots: PauseSaveSlots_C
+var _prev_focus: Control = null
 
 
 func _ready() -> void:
@@ -236,6 +237,7 @@ func _show_pause() -> void:
 	if SceneManager.is_transitioning():
 		return
 
+	_prev_focus = get_viewport().gui_get_focus_owner()
 	_mode = Mode.MAIN_MENU
 	_panel.visible = true
 	_main_vbox.visible = true
@@ -265,6 +267,9 @@ func _resume() -> void:
 	_panel.visible = false
 	if not NetManager.is_multiplayer_active:
 		get_tree().paused = false
+	if is_instance_valid(_prev_focus):
+		_prev_focus.grab_focus()
+	_prev_focus = null
 
 
 func _quit_to_title() -> void:
