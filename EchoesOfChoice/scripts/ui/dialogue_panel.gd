@@ -58,16 +58,10 @@ func _build_ui() -> void:
 	vbox.add_child(_continue_label)
 
 
-func clear_history() -> void:
-	_label.clear()
-
-
 func show_text(lines: Array) -> void:
 	_lines = lines
 	_current_line = 0
-	# Append separator between passages so history is scrollable
-	if _label.get_parsed_text().length() > 0:
-		_label.append_text("\n\n[color=#2a3550]───────────────────────────[/color]\n\n")
+	_label.clear()
 	_continue_label.modulate.a = 0.0
 	visible = true
 	_accepting_input = false
