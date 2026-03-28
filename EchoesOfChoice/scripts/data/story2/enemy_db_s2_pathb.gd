@@ -20,7 +20,7 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(85, 98, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(47, 55, 2, 3, lvl, 13)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 13)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 16
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.scholar_strike(), EAB.forgotten_knowledge(), EAB.archive_ward()]
 	f.flavor_text = "Sera, driven by instincts she cannot name. She guards the archive's deepest secrets with desperate ferocity, unaware of why they matter."
 	return f
@@ -28,7 +28,7 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 
 static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Archive Sentinel", lvl)
-	f.health = EH.es(660, 745, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(683, 771, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(101, 115, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(53, 62, 2, 4, lvl, 13)
@@ -47,14 +47,14 @@ static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 
 static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pipeline Warden", lvl)
-	f.health = EH.es(675, 766, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(750, 852, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 125, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(61, 72, 3, 4, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(47, 57, 2, 3, lvl, 14)
 	f.speed = EH.es(28, 35, 1, 3, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 12
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.pipe_smash(), EAB.pressure_seal(), EAB.steam_burst()]
 	f.flavor_text = "A hulking construct of iron pipes and crystalline conduits. It patrols the lighthouse's deep machinery with tireless vigilance."
 	return f
@@ -62,14 +62,14 @@ static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 
 static func create_maintenance_drone(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Maintenance Drone", lvl)
-	f.health = EH.es(490, 561, 5, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(545, 623, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(60, 69, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(35, 44, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(62, 72, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(41, 50, 2, 3, lvl, 14)
 	f.speed = EH.es(38, 45, 2, 3, lvl, 14)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.calibration_beam(), EAB.repair_pulse()]
 	f.flavor_text = "A floating construct designed to maintain the Eye's extraction machinery. Its repair beams are equally effective as weapons."
 	return f
@@ -152,7 +152,7 @@ static func create_memory_torrent(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(125, 143, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(55, 64, 3, 4, lvl, 15)
 	f.speed = EH.es(36, 43, 2, 3, lvl, 15)
-	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.torrent_blast(), EAB.overwhelming_recall()]
 	f.flavor_text = "A raging current of unleashed memories, each one a stolen life surging with anguish and confusion."
 	return f
@@ -167,7 +167,7 @@ static func create_unleashed_recollection(n: String, lvl: int = 15) -> FighterDa
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 15)
 	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 15)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 15)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 17
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 19
 	f.abilities = [EAB.memory_fist(), EAB.shatter_recall()]
 	f.flavor_text = "A solid mass of crystallized memory broken free from storage. It crashes through anything in its path with mindless fury."
 	return f

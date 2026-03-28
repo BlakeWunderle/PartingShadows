@@ -242,7 +242,7 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(108, 125, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
 	f.speed = EH.es(35, 42, 2, 3, lvl, 16)
-	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 27
+	f.crit_chance = 27; f.crit_damage = 3; f.dodge_chance = 29
 	f.abilities = [EAB.consecrated_strike(), EAB.cathedrals_blessing()]
 	f.flavor_text = "A guardian consecrated to Lira's dream cathedral, sworn to protect the sacred space where the Thread cult weaves its deepest designs. It fights with holy zeal and unyielding faith."
 	return f
@@ -250,14 +250,14 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 
 static func create_dream_binder(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Binder", lvl)
-	f.health = EH.es(626, 720, 5, 8, lvl, 16); f.max_health = f.health
+	f.health = EH.es(663, 763, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
 	f.physical_defense = EH.es(42, 49, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(118, 137, 3, 6, lvl, 16)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 16)
 	f.speed = EH.es(40, 46, 2, 3, lvl, 16)
-	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 28
+	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 30
 	f.abilities = [EAB.binding_chains(), EAB.dreamlock()]
 	f.flavor_text = "A specialist in containment, weaving chains of dream-thread that lock the mind in place. Those caught in its dreamlock cannot flee, attack, or even think of escape."
 	return f
@@ -272,7 +272,7 @@ static func create_thread_anchor(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(105, 121, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
 	f.speed = EH.es(33, 40, 2, 3, lvl, 16)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 22
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 24
 	f.abilities = [EAB.anchor_pulse(), EAB.fortifying_thread()]
 	f.flavor_text = "A massive knot of condensed dream-thread that anchors the cathedral to the waking world. It pulses with stabilizing energy and fortifies all nearby cult forces."
 	return f
@@ -290,7 +290,7 @@ static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(58, 70, 2, 4, lvl, 16)
 	f.magic_defense = EH.es(72, 82, 3, 5, lvl, 16)
 	f.speed = EH.es(48, 55, 3, 4, lvl, 16)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 23
+	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.weft_lash(), EAB.stalk()]
 	f.flavor_text = "A predator woven from the weft threads of Lira's loom, designed to hunt. It moves with terrifying speed, lashing out in all directions and slowing anything it marks as prey. Magic sinks into the weave without effect."
 	return f

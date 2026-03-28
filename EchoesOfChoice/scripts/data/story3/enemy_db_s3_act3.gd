@@ -172,14 +172,14 @@ static func create_rift_mender(n: String, lvl: int = 12) -> FighterData:
 # Prog 13 DreamSanctum only -- magic DPS (sanctum glass cannon)
 static func create_sanctum_shade(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Sanctum Shade", lvl)
-	f.health = EH.es(356, 411, 4, 7, lvl, 12); f.max_health = f.health
+	f.health = EH.es(400, 460, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 12)
 	f.magic_attack = EH.es(78, 89, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.loom_blast(), EAB.nullify()]
 	f.flavor_text = "A shade bound to the sanctum's innermost chamber, woven into the loom's defenses since the cult's founding. It blasts intruders with raw loom-force and nullifies their protections before they can reach the core."
 	return f
@@ -195,7 +195,7 @@ static func create_loom_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(77, 88, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 11
+	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
 	f.flavor_text = "A guardian woven directly into the sanctum's core, its existence inseparable from the loom itself. Its strikes carry the full weight of the loom's power, and its armor reforms from dream-thread with every blow it absorbs."
 	return f
