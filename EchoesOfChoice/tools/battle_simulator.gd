@@ -185,7 +185,7 @@ func _init() -> void:
 		print("Warning: --auto overrides --sims. Using auto-calculated sim counts.\n")
 
 	if not _worker_mode:
-		print("=== Echoes of Choice Battle Simulator ===\n")
+		print("=== Parting Shadows Battle Simulator ===\n")
 
 	if run_progressive:
 		SP.run(stages, sims_per_combo, auto_sims, sample_size,

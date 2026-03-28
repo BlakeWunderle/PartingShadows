@@ -39,7 +39,7 @@ func _build_ui() -> void:
 	# Initial spacer to start credits below screen
 	_add_spacer(720)
 
-	_add_heading("ECHOES OF CHOICE")
+	_add_heading("PARTING SHADOWS")
 	_add_spacer(40)
 
 	_add_heading("Game Design & Development")

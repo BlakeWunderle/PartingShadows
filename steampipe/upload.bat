@@ -1,16 +1,16 @@
 @echo off
-echo === Echoes of Choice SteamPipe Upload ===
+echo === Parting Shadows SteamPipe Upload ===
 echo.
 
 REM Prepare macOS build: unzip and rename .app to remove spaces
 if exist "%~dp0..\build\macos\EchoesOfChoice.zip" (
     echo Preparing macOS build...
     if exist "%~dp0..\build\macos\EchoesOfChoice.app" rmdir /s /q "%~dp0..\build\macos\EchoesOfChoice.app"
-    if exist "%~dp0..\build\macos\Echoes of Choice.app" rmdir /s /q "%~dp0..\build\macos\Echoes of Choice.app"
+    if exist "%~dp0..\build\macos\Parting Shadows.app" rmdir /s /q "%~dp0..\build\macos\Parting Shadows.app"
     powershell -Command "Expand-Archive -Path '%~dp0..\build\macos\EchoesOfChoice.zip' -DestinationPath '%~dp0..\build\macos' -Force"
-    if exist "%~dp0..\build\macos\Echoes of Choice.app" (
-        ren "%~dp0..\build\macos\Echoes of Choice.app" "EchoesOfChoice.app"
-        echo   Renamed .app bundle to EchoesOfChoice.app
+    if exist "%~dp0..\build\macos\Parting Shadows.app" (
+        ren "%~dp0..\build\macos\Parting Shadows.app" "PartingShadows.app"
+        echo   Renamed .app bundle to PartingShadows.app
     )
 )
 

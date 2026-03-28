@@ -15,8 +15,6 @@ static func get_ending_text_story_1(game_won: bool, battle_id: String = "") -> A
 			"It will take time, but the world will heal.",
 			"Our heroes stand in the light, bruised and exhausted and alive.",
 			"Every choice left an echo, and theirs will ring through the ages.",
-			"",
-			"Thank you for playing Echoes of Choice.",
 		]
 	else:
 		return _get_defeat_text_story_1(battle_id)
@@ -202,8 +200,6 @@ static func _get_ending_text_story_1_path_b() -> Array[String]:
 		"People emerge from hiding. They do not cheer. They blink at the sky and hold each other and try to remember what normal felt like.",
 		"The barkeep pours cups at The Copper Mug. He does not ask what happened below. Some questions are better left in the dark.",
 		"The world will heal. The scars will remain. And somewhere in a collapsed tunnel beneath the city, a journal full of unanswered questions gathers dust.",
-		"",
-		"Thank you for playing Echoes of Choice.",
 	]
 
 
@@ -220,8 +216,6 @@ static func get_ending_text_story_2(game_won: bool, battle_id: String = "") -> A
 			"A voice, faint as breath, echoes through the chamber. Sera's voice, carried on the last of the light.",
 			"'Thank you.'",
 			"They carry her memory with them. Not because they have to. Because they choose to.",
-			"",
-			"Thank you for playing Echoes of Choice.",
 		]
 	else:
 		return _get_defeat_text_story_2(battle_id)
@@ -238,8 +232,6 @@ static func _get_ending_text_story_2_path_b() -> Array[String]:
 		"Someone hands her a cup of water from a well. She drinks it and laughs, short and startled, surprised that something so simple can still feel good.",
 		"She does not know what to do next. She has centuries of guilt to carry and a lifetime to figure out how. But she is alive, and that is more than she planned for.",
 		"Four of them walked in. Four of them walk out.",
-		"",
-		"Thank you for playing Echoes of Choice.",
 	]
 
 
@@ -265,8 +257,6 @@ static func _get_ending_text_story_3_path_a() -> Array[String]:
 		"'The Weary Traveler,' one of them reads aloud from the sign, shaking their head. 'She named the inn after what she was doing to people.'",
 		"Lira watches from the doorway as they leave. Her hand rests on the doorframe, fingers tracing a pattern they cannot see.",
 		"They leave the town behind. Their dreams that night are their own.",
-		"",
-		"Thank you for playing Echoes of Choice.",
 	]
 
 
@@ -277,8 +267,6 @@ static func _get_ending_text_story_3_path_b() -> Array[String]:
 		"There is no serving girl to pour the morning ale. No innkeeper to smile and ask if they slept well. The woman behind every face this town has ever known is gone, unraveled with the threads she wove.",
 		"Brother Callum stands in the town square as the sun rises. He does not look away from the questions.",
 		"The travelers leave by midmorning. Their dreams that night are quiet, and empty, and entirely their own.",
-		"",
-		"Thank you for playing Echoes of Choice.",
 	]
 
 
@@ -291,8 +279,6 @@ static func _get_ending_text_story_3_path_c() -> Array[String]:
 		"'I do not know what I am now,' she says. 'I have been the Threadmaster's prisoner for so long that I forgot what it felt like to just be a person.'",
 		"One of the travelers sets a cup of ale in front of her. 'Start with breakfast,' they say. 'Figure the rest out later.'",
 		"They leave the town by midmorning, truly rested. Their dreams that night are kind.",
-		"",
-		"Thank you for playing Echoes of Choice.",
 	]
 
 

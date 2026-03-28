@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Echoes of Choice"
-config/description="A visual RPG built on the Echoes of Choice universe."
+config/name="Parting Shadows"
+config/description="A visual RPG of branching paths and shadowed choices."
 config/version="1.0.0"
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"

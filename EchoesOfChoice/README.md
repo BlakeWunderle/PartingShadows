@@ -1,4 +1,4 @@
-# Echoes of Choice
+# Parting Shadows
 
 A visual RPG where a mysterious stranger in a tavern sets three warriors on a branching journey. Choose your class, upgrade your abilities, and fight your way through a world shaped by the choices you make.
 

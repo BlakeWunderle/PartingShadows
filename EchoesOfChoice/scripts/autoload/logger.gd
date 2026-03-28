@@ -52,7 +52,7 @@ func copy_to_clipboard(header_lines: Array[String] = []) -> void:
 
 func format_for_clipboard(header_lines: Array[String] = []) -> String:
 	var lines: Array[String] = []
-	lines.append("=== Echoes of Choice - Playtest Log ===")
+	lines.append("=== Parting Shadows - Playtest Log ===")
 	lines.append("Date: %s" % Time.get_datetime_string_from_system())
 	for h: String in header_lines:
 		lines.append(h)
