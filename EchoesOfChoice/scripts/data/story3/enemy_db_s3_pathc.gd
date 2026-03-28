@@ -6,6 +6,7 @@ class_name EnemyDBS3PathC
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3_pathc.gd")
+const EABS3 := preload("res://scripts/data/story3/enemy_ability_db_s3.gd")
 const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 
@@ -166,7 +167,7 @@ static func create_anchor_chain(n: String, lvl: int = 17) -> FighterData:
 
 static func create_ancient_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "The Ancient Threadmaster", lvl)
-	f.health = EH.es(826, 932, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = EH.es(1652, 1864, 16, 24, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(90, 104, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
@@ -174,14 +175,14 @@ static func create_ancient_threadmaster(n: String, lvl: int = 18) -> FighterData
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(36, 42, 3, 4, lvl, 18)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 22
-	f.abilities = [EAB.primordial_dream(), EAB.loom_dominion(), EAB.chain_of_ages()]
+	f.abilities = [EABS3.dream_shatter(), EABS3.loom_collapse(), EABS3.thread_of_oblivion(), EAB.reality_unravel(), EAB.ancient_hunger()]
 	f.flavor_text = "The original weaver, ancient beyond reckoning, who first discovered how to shape reality through dreams. Their power predates the cult itself, and their dominion over the loom is absolute."
 	return f
 
 
 static func create_dream_shackle(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Dream Shackle", lvl)
-	f.health = EH.es(478, 549, 5, 8, lvl, 18); f.max_health = f.health
+	f.health = EH.es(526, 604, 6, 9, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 18)
@@ -196,7 +197,7 @@ static func create_dream_shackle(n: String, lvl: int = 18) -> FighterData:
 
 static func create_loom_heart(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Loom Heart", lvl)
-	f.health = EH.es(564, 648, 5, 8, lvl, 18); f.max_health = f.health
+	f.health = EH.es(620, 713, 6, 9, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(20, 24, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
 	f.physical_defense = EH.es(48, 57, 2, 4, lvl, 18)

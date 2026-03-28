@@ -115,6 +115,12 @@ static func loom_dominion() -> AbilityData:
 static func chain_of_ages() -> AbilityData:
 	return _make("Chain of Ages", "Centuries of stolen power weigh down every limb.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
 
+static func reality_unravel() -> AbilityData:
+	return _make("Reality Unravel", "The Ancient Threadmaster reaches into the fabric of existence and tears. The damage is not metaphorical.", Enums.StatType.MAGIC_ATTACK, 17, 0, true, 5, false, 0, 0.0)
+
+static func ancient_hunger() -> AbilityData:
+	return _make("Ancient Hunger", "The original weaver has been feeding on dream-energy since before the cult existed. The habit is too old to break.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.45)
+
 # --- Dream Shackle ---
 
 static func binding_lash() -> AbilityData:

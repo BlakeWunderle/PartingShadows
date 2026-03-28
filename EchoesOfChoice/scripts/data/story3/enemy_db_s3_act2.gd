@@ -161,7 +161,7 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 
 static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	var f := EH.base(n, "Shadow Pursuer", lvl)
-	f.health = EH.es(225, 263, 3, 6, lvl, 7); f.max_health = f.health
+	f.health = EH.es(248, 289, 3, 7, lvl, 7); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 7); f.max_mana = f.mana
 	f.physical_attack = EH.es(31, 36, 1, 3, lvl, 7)
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 7)
@@ -169,8 +169,8 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 7)
 	f.speed = EH.es(34, 39, 1, 3, lvl, 7)
 	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 21
-	f.abilities = [EAB.shadow_strike(), EAB.relentless_hound()]
-	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. No matter how far you run, it always closes the distance."
+	f.abilities = [EAB.phantom_strike(), EAB.shadow_shroud(), EAB.dream_terror(), EAB.nightmare_lunge(), EAB.fading_grasp()]
+	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. It strikes from angles that should not exist and vanishes before you can react."
 	return f
 
 
@@ -184,8 +184,8 @@ static func create_dread_tendril(n: String, lvl: int = 7) -> FighterData:
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 7)
 	f.speed = EH.es(29, 34, 1, 2, lvl, 7)
 	f.crit_chance = 20; f.crit_damage = 1; f.dodge_chance = 19
-	f.abilities = [EAB.dread_lash(), EAB.terror_grip()]
-	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. Its grip paralyzes the will and leaves victims unable to move or cry out."
+	f.abilities = [EAB.constrict(), EAB.dread_lash(), EAB.thrash()]
+	f.flavor_text = "A writhing appendage of pure dread that reaches from the cracks in the dream. It binds the whole party in place while its companion closes in for the kill."
 	return f
 
 

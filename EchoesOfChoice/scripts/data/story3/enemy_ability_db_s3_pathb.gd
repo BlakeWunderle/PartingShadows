@@ -177,6 +177,9 @@ static func fortifying_thread() -> AbilityData:
 
 # --- Lira, the Threadmaster (boss) ---
 
+static func inn_keepers_embrace() -> AbilityData:
+	return _make("Innkeeper's Embrace", "She offers comfort, then takes everything. Warm hands, cold intent.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, false, 0, 0.35)
+
 static func thread_puppetry() -> AbilityData:
 	return _make("Thread Puppetry", "Lira pulls threads you cannot see.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
 

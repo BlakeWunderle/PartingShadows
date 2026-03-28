@@ -5,6 +5,7 @@ class_name EnemyDBS3PathB
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3_pathb.gd")
+const EABS3 := preload("res://scripts/data/story3/enemy_ability_db_s3.gd")
 const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 
@@ -303,7 +304,7 @@ static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 
 static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Lira, the Threadmaster", lvl)
-	f.health = EH.es(950, 1068, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = EH.es(1425, 1602, 12, 18, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(102, 118, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
@@ -311,7 +312,7 @@ static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(36, 42, 3, 4, lvl, 18)
 	f.crit_chance = 21; f.crit_damage = 4; f.dodge_chance = 24
-	f.abilities = [EAB.thread_puppetry(), EAB.dreamers_harvest(), EAB.liras_loom()]
+	f.abilities = [EAB.inn_keepers_embrace(), EABS3.dream_shatter(), EABS3.thread_of_oblivion(), EABS3.unravel(), EABS3.dream_feed()]
 	f.flavor_text = "Lira revealed as the true Threadmaster, her gentle demeanor shed to expose the master weaver beneath. She commands the loom with absolute authority, puppeting dreams and harvesting the sleeping minds of an entire town."
 	return f
 

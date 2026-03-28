@@ -123,7 +123,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
 	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 17
-	f.abilities = [EAB.thread_lash(), EAB.ritual_chant()]
+	f.abilities = [EAB.ritual_chant(), EAB.ancient_rite(), EAB.blood_weaving()]
 	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
 	return f
 
@@ -218,7 +218,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 # Prog 17 boss -- The Threadmaster (level 18)
 static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "The Threadmaster", lvl)
-	f.health = EH.es(825, 932, 8, 12, lvl, 18); f.max_health = f.health
+	f.health = EH.es(1695, 1915, 16, 25, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(92, 107, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
@@ -226,6 +226,6 @@ static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(36, 42, 3, 4, lvl, 18)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 27
-	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion()]
+	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion(), EAB.unravel(), EAB.dream_feed()]
 	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."
 	return f

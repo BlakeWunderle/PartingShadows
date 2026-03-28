@@ -341,10 +341,10 @@ static func dream_feed() -> AbilityData:
 # --- Cult Ritualist (boss additions) ---
 
 static func ancient_rite() -> AbilityData:
-	return _make("Ancient Rite", "He calls upon the full destructive power of the Thread cult's oldest ceremonies.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
+	return _make("Ancient Rite", "He calls upon the full destructive power of the Thread cult's oldest ceremonies.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
 
 static func blood_weaving() -> AbilityData:
-	return _make("Blood Weaving", "A ritual feeding that sustains the High Ritualist through stolen vitality.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.35)
+	return _make("Blood Weaving", "A ritual feeding that sustains the High Ritualist through stolen vitality.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func ritual_empowerment() -> AbilityData:
 	return _make("Ritual Empowerment", "A barked command fortifies the High Weaver's destructive output.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
@@ -361,7 +361,7 @@ static func weavers_haste() -> AbilityData:
 	return _make("Weaver's Haste", "He accelerates as his work intensifies, threading faster than the eye can follow.", Enums.StatType.SPEED, 6, 2, false, 3, false, 0, 0.0)
 
 static func fraying() -> AbilityData:
-	return _make("Fraying", "The weave comes apart across the whole party, weakening every magical defense.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
+	return _make("Fraying", "The weave comes apart around one target, weakening their magical defense.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, false, 0, 0.0)
 
 
 # =============================================================================
