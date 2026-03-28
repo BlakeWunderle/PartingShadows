@@ -98,8 +98,10 @@ static func run_single_battle(party: Array, enemies: Array,
 				stale_count = 0
 			stale_hp_snapshot = current_enemy_hp
 
+	var stalemate := not engine.is_battle_over()
 	return {
 		"won": engine.did_player_win(),
+		"stalemate": stalemate,
 		"player_actions": player_actions,
 		"all_actions": all_actions,
 		"unit_actions": unit_actions,
@@ -155,6 +157,7 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 	var turn_min := 999999
 	var turn_max := 0
 	var turn_battle_count := 0
+	var stalemate_count := 0
 	var party_size := 3
 
 	for pi in parties.size():
@@ -176,6 +179,8 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 			var br: Dictionary = run_single_battle(party_fighters, enemies, engine)
 			if br.won:
 				wins += 1
+			if br.get("stalemate", false):
+				stalemate_count += 1
 			turn_all_sum += br.all_actions
 			turn_player_sum += br.player_actions
 			turn_min = mini(turn_min, br.all_actions)
@@ -233,6 +238,8 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 			"avg_all_actions": avg_all,
 			"min_all_actions": turn_min if turn_battle_count > 0 else 0,
 			"max_all_actions": turn_max if turn_battle_count > 0 else 0,
+			"stalemate_rate": float(stalemate_count) / turn_battle_count if turn_battle_count > 0 else 0.0,
+			"stalemate_count": stalemate_count,
 		},
 	}
 
@@ -260,9 +267,12 @@ static func print_stage_result(result: Dictionary) -> void:
 		int(result.target_win_rate * 100), int(TOLERANCE * 100)])
 	var ts: Dictionary = result.get("turn_stats", {})
 	if not ts.is_empty():
-		print("  Battle length: %.1f turns/char  (%.1f total avg, min %d, max %d)" % [
+		var stale_str := ""
+		if ts.get("stalemate_rate", 0.0) > 0.0:
+			stale_str = "  stalemates %.2f%% (%d)" % [ts.stalemate_rate * 100, ts.get("stalemate_count", 0)]
+		print("  Battle length: %.1f turns/char  (%.1f total avg, min %d, max %d)%s" % [
 			ts.avg_player_per_char, ts.avg_all_actions,
-			ts.min_all_actions, ts.max_all_actions])
+			ts.min_all_actions, ts.max_all_actions, stale_str])
 	print_combo_extremes(result)
 	print_class_breakdown(result)
 	print("\n  STATUS: %s" % get_status(result))
@@ -425,6 +435,10 @@ static func print_stage_compact(result: Dictionary) -> void:
 		result.stage_name, result.overall_win_rate * 100,
 		int(result.target_win_rate * 100), status]
 	print(line)
+	var ts_c: Dictionary = result.get("turn_stats", {})
+	if ts_c.get("stalemate_rate", 0.0) > 0.0:
+		print("    Stalemates: %.2f%% (%d battles)" % [
+			ts_c.stalemate_rate * 100, ts_c.get("stalemate_count", 0)])
 	if status == "PASS":
 		return
 	# Show weak classes below the tier-specific band floor.
@@ -467,9 +481,12 @@ static func format_stage_verbose(result: Dictionary) -> PackedStringArray:
 		int(result.target_win_rate * 100), int(TOLERANCE * 100)])
 	var ts: Dictionary = result.get("turn_stats", {})
 	if not ts.is_empty():
-		lines.append("  Battle length: %.1f turns/char  (%.1f total avg, min %d, max %d)" % [
+		var stale_str := ""
+		if ts.get("stalemate_rate", 0.0) > 0.0:
+			stale_str = "  stalemates %.2f%% (%d)" % [ts.stalemate_rate * 100, ts.get("stalemate_count", 0)]
+		lines.append("  Battle length: %.1f turns/char  (%.1f total avg, min %d, max %d)%s" % [
 			ts.avg_player_per_char, ts.avg_all_actions,
-			ts.min_all_actions, ts.max_all_actions])
+			ts.min_all_actions, ts.max_all_actions, stale_str])
 
 	# Combo extremes.
 	var extremes := get_combo_extremes(result)
