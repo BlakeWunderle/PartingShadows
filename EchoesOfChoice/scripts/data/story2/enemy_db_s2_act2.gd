@@ -43,7 +43,7 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 
 static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Tide Warden", lvl)
-	f.health = EH.es(220, 250, 5, 8, lvl, 5); f.max_health = f.health
+	f.health = EH.es(198, 225, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(31, 38, 2, 3, lvl, 5)
 	f.physical_defense = EH.es(25, 30, 1, 3, lvl, 5)
@@ -217,14 +217,14 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 
 static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "Depth Horror", lvl)
-	f.health = EH.es(314, 359, 6, 9, lvl, 9); f.max_health = f.health
+	f.health = EH.es(298, 341, 5, 7, lvl, 9); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = EH.es(31, 38, 2, 3, lvl, 9)
 	f.physical_defense = EH.es(30, 36, 2, 3, lvl, 9)
 	f.magic_attack = EH.es(55, 63, 3, 5, lvl, 9)
 	f.magic_defense = EH.es(28, 34, 2, 3, lvl, 9)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 9)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.tentacle_crush(), EAB.abyssal_terror()]
 	f.flavor_text = "An ancient thing from the ocean floor, drawn to the surface by the Eye's growing influence. Its mere presence fills the mind with dread."
 	return f

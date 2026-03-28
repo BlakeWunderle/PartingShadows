@@ -175,7 +175,7 @@ static func harpoon_thrust() -> AbilityData:
 	return _make("Harpoon Thrust", "A barbed spear punches through armor.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func brace_formation() -> AbilityData:
-	return _make("Brace Formation", "Shields lock together against the storm.", Enums.StatType.DEFENSE, 5, 2, false, 4, true, 0, 0.0)
+	return _make("Net Throw", "A weighted net snares and punishes the enemy.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 # --- Blighted Gull ---
 

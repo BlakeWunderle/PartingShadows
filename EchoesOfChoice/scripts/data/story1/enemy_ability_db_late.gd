@@ -126,10 +126,10 @@ static func shadow_guard() -> AbilityData:
 	return _make("Shadow Guard", "Shadows form a protective barrier.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
 
 static func bark_shield() -> AbilityData:
-	return _make("Bark Shield", "Living bark hardens into armor.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Overgrown Slam", "Ancient roots snap forward in a crushing blow.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 static func defensive_formation() -> AbilityData:
-	return _make("Defensive Formation", "All allies take a defensive stance.", Enums.StatType.DEFENSE, 4, 2, false, 3, true, 0, 0.0)
+	return _make("Shield Charge", "A synchronized charge crashes into the enemy line.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -185,7 +185,7 @@ static func bulwark_slam() -> AbilityData:
 # --- Guard Sergeant ---
 
 static func battle_command() -> AbilityData:
-	return _make("Battle Command", "A barked order quickens allied movements.", Enums.StatType.SPEED, 5, 2, false, 3, true, 0, 0.0)
+	return _make("Press Forward!", "A bellowed order drives the charge. One ally surges with renewed force.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
 
 # --- Dragon (full kit, upgraded for late-game) ---
 

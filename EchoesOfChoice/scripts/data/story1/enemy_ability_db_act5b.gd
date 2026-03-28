@@ -35,7 +35,7 @@ static func conduit_beam() -> AbilityData:
 	return _make("Conduit Beam", "A focused beam of ritual energy.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func mending_sigil() -> AbilityData:
-	return _make("Mending Sigil", "A restorative glyph knits wounds closed.", Enums.StatType.HEALTH, 14, 0, false, 4, false, 0, 0.0)
+	return _make("Sigil Barrage", "Ritual glyphs detonate in a cascade of searing energy.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
 
 static func ritual_shield() -> AbilityData:
 	return _make("Ritual Shield", "A barrier of ritual light protects allies.", Enums.StatType.DEFENSE, 5, 2, false, 3, true, 0, 0.0)

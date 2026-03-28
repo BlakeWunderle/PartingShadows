@@ -13,7 +13,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Sigil Colossus", lvl)
-	f.health = EH.es(642, 707, 8, 12, lvl, 14); f.max_health = f.health
+	f.health = EH.es(628, 692, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(82, 91, 4, 6, lvl, 14)
 	f.physical_defense = EH.es(50, 59, 3, 5, lvl, 14)

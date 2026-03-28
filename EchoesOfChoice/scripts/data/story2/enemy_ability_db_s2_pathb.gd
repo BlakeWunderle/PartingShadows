@@ -46,10 +46,10 @@ static func pipe_smash() -> AbilityData:
 	return _make("Pipe Smash", "A heavy conduit pipe swings with industrial force.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func pressure_seal() -> AbilityData:
-	return _make("Pressure Seal", "High-pressure steam vents harden into a shield.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Pressure Vent", "Superheated steam erupts from every joint in a scalding burst.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 4, false, 0, 0.0)
 
 static func steam_burst() -> AbilityData:
-	return _make("Steam Burst", "Superheated steam erupts from ruptured pipes.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, true, 0, 0.0)
+	return _make("Steam Burst", "Superheated steam erupts from ruptured pipes.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, true, 0, 0.0)
 
 
 # =============================================================================
@@ -60,9 +60,7 @@ static func calibration_beam() -> AbilityData:
 	return _make("Calibration Beam", "A precise beam of resonance energy meant for machinery but lethal to flesh.", Enums.StatType.MIXED_ATTACK, 9, 0, true, 4, false, 0, 0.0)
 
 static func repair_pulse() -> AbilityData:
-	var a := _make("Repair Pulse", "A restorative pulse designed to mend extraction equipment.", Enums.StatType.HEALTH, 12, 0, false, 3, false, 0, 0.0)
-	a.heal_threshold = 0.35
-	return a
+	return _make("Surge Discharge", "Stored energy discharges in a violent mixed-element burst.", Enums.StatType.MIXED_ATTACK, 5, 0, true, 3, false, 0, 0.0)
 
 
 # =============================================================================

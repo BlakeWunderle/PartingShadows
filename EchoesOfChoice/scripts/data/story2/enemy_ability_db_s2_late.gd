@@ -31,7 +31,7 @@ static func grief_surge() -> AbilityData:
 	return _make("Grief Surge", "Crystallized sorrow launches itself at the target with shattering force.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func shattered_trust() -> AbilityData:
-	return _make("Shattered Trust", "The memory of betrayal crumbles all defensive conviction.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Despair Wave", "A wave of crystallized grief crashes over the target.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
 
 # --- Memory Reaper ---
 
@@ -79,7 +79,7 @@ static func sorrows_touch() -> AbilityData:
 	return _make("Sorrow's Touch", "A caress of pure sadness numbs the body.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func wail_of_loss() -> AbilityData:
-	return _make("Wail of Loss", "A cry that drains the will to fight from all who hear it.", Enums.StatType.ATTACK, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Echo Wail", "A resonant cry of pure anguish tears through all who hear it.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0)
 
 # --- Hollow Watcher ---
 

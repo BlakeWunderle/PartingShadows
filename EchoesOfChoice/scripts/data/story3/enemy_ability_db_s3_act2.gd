@@ -65,7 +65,7 @@ static func swift_current() -> AbilityData:
 # --- Depth Crawler ---
 
 static func thread_burn() -> AbilityData:
-	return _make("Thread Burn", "The threads beneath the surface brand the skin.", Enums.StatType.MIXED_ATTACK, 4, 3, true, 3, false, 2, 0.0)
+	return _make("Thread Burn", "The threads beneath the surface brand the skin.", Enums.StatType.MIXED_ATTACK, 0, 3, true, 3, false, 4, 0.0)
 
 static func latch() -> AbilityData:
 	return _make("Latch", "It clamps on and does not let go.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
@@ -84,7 +84,7 @@ static func stolen_thought() -> AbilityData:
 	return _make("Stolen Thought", "A flash of someone else's fear used as a weapon.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0)
 
 static func blur() -> AbilityData:
-	return _make("Blur", "The wisp accelerates beyond all tracking, a flickering light impossible to follow.", Enums.StatType.SPEED, 4, 2, false, 4, false, 0, 0.0)
+	return _make("Memory Flare", "The wisp ignites stolen thoughts in a blinding psychic burst.", Enums.StatType.MAGIC_ATTACK, 2, 0, true, 4, false, 0, 0.0)
 
 # --- Gallery Shade ---
 
@@ -163,15 +163,15 @@ static func hammer_blow() -> AbilityData:
 	return _make("Hammer Blow", "The smithing hammer was not meant for iron today.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func forge_hardened() -> AbilityData:
-	return _make("Forge Strike", "White-hot tools leave burns that keep smoldering.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 2, 0.0)
+	return _make("Forge Strike", "White-hot tools leave burns that keep smoldering.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 # --- Hex Herbalist ---
 
 static func tainted_salve() -> AbilityData:
-	return _make("Tainted Salve", "What was meant to heal now corrodes.", Enums.StatType.MAGIC_ATTACK, 6, 3, true, 3, false, 2, 0.0)
+	return _make("Tainted Salve", "What was meant to heal now corrodes.", Enums.StatType.MAGIC_ATTACK, 0, 3, true, 3, false, 5, 0.0)
 
 static func numbing_dust() -> AbilityData:
-	return _make("Numbing Dust", "Crushed herbs fill the air with paralytic spores.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Toxic Cloud", "Crushed herbs combust into a cloud of corrosive spores.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, false, 0, 0.0)
 
 
 # =============================================================================

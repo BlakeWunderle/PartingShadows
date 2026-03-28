@@ -158,7 +158,7 @@ static func cadence() -> AbilityData:
 	return _make("Cadence", "A rhythm that disrupts timing.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
 
 static func paralyze() -> AbilityData:
-	return _make("Paralyze", "Lock the enemy in place.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Carrion Strike", "Rotting claws tear through flesh with rabid hunger.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func terrify() -> AbilityData:
 	return _make("Terrify", "Overwhelm with dread.", Enums.StatType.ATTACK, 4, 2, true, 3, false, 0, 0.0)
@@ -172,7 +172,9 @@ static func regenerate() -> AbilityData:
 	return _make("Regenerate", "Flesh knits back together.", Enums.StatType.HEALTH, 15, 0, false, 4, false, 0, 0.0)
 
 static func blessing() -> AbilityData:
-	return _make("Blessing", "Divine favor mends wounds.", Enums.StatType.HEALTH, 5, 0, false, 3, false, 0, 0.0)
+	var a := _make("Blessing", "Divine favor mends wounds.", Enums.StatType.HEALTH, 5, 0, false, 3, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 static func aria() -> AbilityData:
 	return _make("Aria", "A healing melody.", Enums.StatType.HEALTH, 6, 0, false, 3, false, 0, 0.0)
@@ -204,7 +206,7 @@ static func overdrive() -> AbilityData:
 	return _make("Overdrive", "Push beyond normal limits.", Enums.StatType.SPEED, 7, 2, false, 3, false, 0, 0.0)
 
 static func reinforce() -> AbilityData:
-	return _make("Reinforce", "Strengthen defenses.", Enums.StatType.DEFENSE, 2, 2, false, 3, false, 0, 0.0)
+	return _make("Overclock", "Push weapon systems beyond normal limits.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
 
 static func temper() -> AbilityData:
 	return _make("Temper", "Heat-treat weapons for all allies.", Enums.StatType.ATTACK, 5, 2, false, 3, true, 0, 0.0)
@@ -225,12 +227,10 @@ static func enemy_consecrate() -> AbilityData:
 	return _make("Consecrate", "Holy ground strengthens resistance.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0)
 
 static func pantomime_wall() -> AbilityData:
-	return _make("Pantomime Wall", "An invisible barrier.", Enums.StatType.DEFENSE, 3, 2, false, 3, false, 0, 0.0)
+	return _make("Deadly Feint", "A performer's trick with a lethal edge.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0)
 
 static func firewall() -> AbilityData:
-	var mod: int = randi_range(0, 9)
-	var cost: int = randi_range(3, 6)
-	return _make("Firewall", "A digital barrier. Results vary.", Enums.StatType.DEFENSE, mod, 2, false, cost, false, 0, 0.0)
+	return _make("Firewall", "A hardened digital barrier deflects incoming attacks.", Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0)
 
 
 # =============================================================================

@@ -127,7 +127,7 @@ static func dusk_toll() -> AbilityData:
 	return _make("Dusk Toll", "The sentinel's wrath sweeps across all who dare the threshold.", Enums.StatType.PHYSICAL_ATTACK, 0, 0, true, 4, true, 0, 0.0)
 
 static func sentinel_stasis() -> AbilityData:
-	return _make("Sentinel's Stasis", "The warden's gaze fixes a target in place, denying them their next moment.", Enums.StatType.SPEED, 6, 2, true, 3, false, 0, 0.0)
+	return _make("Sentinel Slam", "The sentinel crashes forward with the full force of dusk behind it.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 # --- Hollow Echo ---
 
@@ -143,7 +143,7 @@ static func scream_blast() -> AbilityData:
 	return _make("Scream", "A sound that shouldn't be possible tears through the air.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0)
 
 static func terror_wave() -> AbilityData:
-	return _make("Terror Wave", "A pulse of raw fear washes over everyone.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Terror Strike", "The terror lunges, channeling raw panic into a single devastating blow.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0)
 
 # --- Clock Specter ---
 
@@ -170,12 +170,15 @@ static func dread_fang() -> AbilityData:
 	return _make("Dread Fang", "Corrupted jaws snap with the weight of stolen nightmares.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func guardian_howl() -> AbilityData:
-	return _make("Guardian Howl", "A rallying cry that hardens the resolve of the Nightmare's servants.", Enums.StatType.DEFENSE, 4, 2, false, 3, true, 0, 0.0)
+	return _make("Dread Howl", "A howl that carries the Nightmare's terror across the entire party.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, true, 0, 0.0)
 
 # --- Void Echo ---
 
 static func void_siphon() -> AbilityData:
 	return _make("Void Siphon", "It drinks the warmth from thought itself.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3)
+
+static func void_echo_drain() -> AbilityData:
+	return _make("Void Drain", "A hollow echo that tears at thought without sustaining the void.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func hollow_wail() -> AbilityData:
 	return _make("Hollow Wail", "A keening cry that strips away all defenses.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0)

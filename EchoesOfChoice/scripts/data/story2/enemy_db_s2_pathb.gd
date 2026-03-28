@@ -47,7 +47,7 @@ static func create_archive_sentinel(n: String, lvl: int = 13) -> FighterData:
 
 static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pipeline Warden", lvl)
-	f.health = EH.es(750, 852, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(840, 955, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 125, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(61, 72, 3, 4, lvl, 14)
