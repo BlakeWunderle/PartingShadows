@@ -39,15 +39,7 @@ static func harvesting_scythe() -> AbilityData:
 	return _make("Harvesting Scythe", "The scythe sweeps through memories and flesh at once.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func accumulated_toll() -> AbilityData:
-	return _make("Accumulated Toll", "Each memory claimed leaves a festering wound. The toll spreads.", Enums.StatType.HEALTH, 6, 3, true, 4, true, 3, 0.0)
-
-# --- Void Iris ---
-
-static func void_gaze() -> AbilityData:
-	return _make("Void Gaze", "The void at the Iris's center opens fully. To meet it is to lose yourself in darkness.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
-
-static func iris_flash() -> AbilityData:
-	return _make("Iris Flash", "The Iris flares open, flooding the chamber with blinding light that scrambles all reaction.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
+	return _make("Accumulated Toll", "Each memory claimed leaves a festering wound. The toll spreads.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 5, 0.0)
 
 # --- Memory Wisp ---
 
@@ -125,15 +117,6 @@ static func decree_of_exile() -> AbilityData:
 	return _make("Decree of Exile", "The sanctum's supreme authority strips away all protection. Intruders deserve none.", Enums.StatType.DEFENSE, 6, 2, true, 3, false, 0, 0.0)
 
 # --- Fractured Protector (boss) ---
-
-static func desperate_strike() -> AbilityData:
-	return _make("Desperate Strike", "A blow struck not in anger but in fear.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0)
-
-static func memory_seal() -> AbilityData:
-	return _make("Memory Seal", "A pulse that clouds the mind and slows all thought.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
-
-static func forgetting_touch() -> AbilityData:
-	return _make("Forgetting Touch", "One touch and something important slips away.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.3)
 
 # --- Fading Wisp (P9 variant) ---
 
@@ -257,15 +240,6 @@ static func crystalline_ward() -> AbilityData:
 
 # --- The Lidless Eye (Phase 2 final boss) ---
 
-static func gaze_of_forgetting() -> AbilityData:
-	return _make("Gaze of Forgetting", "Its stare peels away everything you are.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
-
-static func memory_devour() -> AbilityData:
-	return _make("Memory Devour", "It eats what makes you whole.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, false, 0, 0.35)
-
-static func final_blink() -> AbilityData:
-	return _make("Final Blink", "The last thing it sees, it destroys.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0)
-
 
 # =============================================================================
 # Boss kit expansions
@@ -275,9 +249,6 @@ static func final_blink() -> AbilityData:
 
 static func memory_verdict() -> AbilityData:
 	return _make("Memory Verdict", "The Warden channels its full authority into a single devastating judgment.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
-
-static func guardian_ward() -> AbilityData:
-	return _make("Guardian Ward", "The Warden fortifies its companion's defenses with layers of sanctum power.", Enums.StatType.MAGIC_DEFENSE, 6, 2, false, 4, false, 0, 0.0)
 
 # --- Fractured Protector / Sera (redesign -- healer using healing as weapon) ---
 

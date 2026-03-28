@@ -31,7 +31,7 @@ static func tethered_lunge() -> AbilityData:
 	return _make("Tethered Lunge", "It hurls itself forward to the full length of its chain.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func fraying_bite() -> AbilityData:
-	return _make("Fraying Bite", "Teeth find flesh and the wound keeps tearing.", Enums.StatType.PHYSICAL_ATTACK, 6, 3, true, 3, false, 2, 0.0)
+	return _make("Fraying Bite", "Teeth find flesh and the wound keeps tearing.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 4, 0.0)
 
 
 # =============================================================================
@@ -78,7 +78,7 @@ static func expose_weakness() -> AbilityData:
 # --- Pale Devotee "Brother Hale" (magic DoT, AoE defense debuffer) ---
 
 static func burning_devotion() -> AbilityData:
-	return _make("Burning Devotion", "Faith made manifest sears the skin and keeps smoldering.", Enums.StatType.MAGIC_ATTACK, 5, 3, true, 3, false, 3, 0.0)
+	return _make("Burning Devotion", "Faith made manifest sears the skin and keeps smoldering.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 5, 0.0)
 
 static func martyrs_gift() -> AbilityData:
 	return _make("Martyr's Gift", "His suffering strips the protection from every enemy, leaving them exposed.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
@@ -157,7 +157,7 @@ static func cathedrals_blessing() -> AbilityData:
 # --- Dream Binder "Thread Binder" (magic DoT, AoE attack debuffer) ---
 
 static func binding_chains() -> AbilityData:
-	return _make("Binding Chains", "Chains of dream-stuff lock on and keep burning.", Enums.StatType.MAGIC_ATTACK, 8, 3, true, 3, false, 2, 0.0)
+	return _make("Binding Chains", "Chains of dream-stuff lock on and keep burning.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 5, 0.0)
 
 static func dreamlock() -> AbilityData:
 	return _make("Dreamlock", "The binder freezes every muscle and thought.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)
@@ -179,15 +179,6 @@ static func fortifying_thread() -> AbilityData:
 
 static func inn_keepers_embrace() -> AbilityData:
 	return _make("Innkeeper's Embrace", "She offers comfort, then takes everything. Warm hands, cold intent.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, false, 0, 0.35)
-
-static func thread_puppetry() -> AbilityData:
-	return _make("Thread Puppetry", "Lira pulls threads you cannot see.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
-
-static func dreamers_harvest() -> AbilityData:
-	return _make("Dreamer's Harvest", "Every trust you gave her feeds her now.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, true, 0, 0.25)
-
-static func liras_loom() -> AbilityData:
-	return _make("Lira's Loom", "The dream itself strikes at her command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0)
 
 # --- Tattered Deception (mixed glass cannon, magic defense shredder) ---
 

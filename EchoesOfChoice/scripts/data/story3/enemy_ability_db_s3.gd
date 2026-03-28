@@ -76,7 +76,7 @@ static func mimic_stance() -> AbilityData:
 # --- Thorn Dreamer ---
 
 static func briar_lash() -> AbilityData:
-	return _make("Briar Lash", "Thorny vines lash out and keep cutting.", Enums.StatType.PHYSICAL_ATTACK, 3, 3, true, 3, false, 2, 0.0)
+	return _make("Briar Lash", "Thorny vines lash out and keep cutting.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 3, 0.0)
 
 static func spore_cloud() -> AbilityData:
 	return _make("Spore Cloud", "A cloud of numbing spores drifts over the field.", Enums.StatType.DEFENSE, 3, 2, true, 4, true, 0, 0.0)
@@ -105,7 +105,7 @@ static func woven_ward() -> AbilityData:
 # --- Somnolent Serpent ---
 
 static func venom_coil() -> AbilityData:
-	return _make("Venom Coil", "Fangs sink in and the poison keeps working.", Enums.StatType.PHYSICAL_ATTACK, 5, 3, true, 3, false, 3, 0.0)
+	return _make("Venom Coil", "Fangs sink in and the poison keeps working.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 5, 0.0)
 
 static func sleep_fang() -> AbilityData:
 	return _make("Sleep Fang", "A bite that numbs the limbs.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)
@@ -271,7 +271,7 @@ static func zealots_fervor() -> AbilityData:
 # --- Cult Enforcer (thread-augmented warrior, muscles laced with filament) ---
 
 static func thread_laced_fist() -> AbilityData:
-	return _make("Thread-Laced Fist", "Threads woven through the knuckles keep cutting after impact.", Enums.StatType.PHYSICAL_ATTACK, 7, 3, true, 3, false, 2, 0.0)
+	return _make("Thread-Laced Fist", "Threads woven through the knuckles keep cutting after impact.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 5, 0.0)
 
 static func threaded_sinew() -> AbilityData:
 	return _make("Threaded Sinew", "The enforcer's war-rhythm saps the fighting spirit of every opponent.", Enums.StatType.ATTACK, 4, 2, true, 4, true, 0, 0.0)
@@ -304,9 +304,6 @@ static func dream_howl() -> AbilityData:
 
 static func ritual_chant() -> AbilityData:
 	return _make("Ritual Chant", "An incantation that weakens every defense within earshot.", Enums.StatType.DEFENSE, 5, 2, true, 4, true, 0, 0.0)
-
-static func thread_lash() -> AbilityData:
-	return _make("Thread Lash", "A whip of woven dream-stuff cracks through the air.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 # --- High Weaver ---
 
@@ -348,23 +345,6 @@ static func ancient_rite() -> AbilityData:
 
 static func blood_weaving() -> AbilityData:
 	return _make("Blood Weaving", "A ritual feeding that sustains the High Ritualist through stolen vitality.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.0)
-
-static func ritual_empowerment() -> AbilityData:
-	return _make("Ritual Empowerment", "A barked command fortifies the High Weaver's destructive output.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
-
-static func loom_curse() -> AbilityData:
-	return _make("Loom Curse", "He unravels the target's magical defenses with a word of unmaking.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
-
-# --- High Weaver (boss additions) ---
-
-static func thread_cascade() -> AbilityData:
-	return _make("Thread Cascade", "Woven threads lash through every target simultaneously.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, true, 0, 0.0)
-
-static func weavers_haste() -> AbilityData:
-	return _make("Weaver's Haste", "He accelerates as his work intensifies, threading faster than the eye can follow.", Enums.StatType.SPEED, 6, 2, false, 3, false, 0, 0.0)
-
-static func fraying() -> AbilityData:
-	return _make("Fraying", "The weave comes apart around one target, weakening their magical defense.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, false, 0, 0.0)
 
 
 # =============================================================================

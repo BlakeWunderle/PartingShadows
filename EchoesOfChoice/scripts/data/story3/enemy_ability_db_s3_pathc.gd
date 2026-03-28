@@ -94,7 +94,7 @@ static func terror_ward() -> AbilityData:
 # --- Anchor Chain ---
 
 static func binding_pull() -> AbilityData:
-	return _make("Binding Pull", "The chain tightens and the blood slows.", Enums.StatType.SPEED, 4, 3, true, 3, false, 2, 0.0)
+	return _make("Binding Pull", "The chain tightens and the blood slows.", Enums.StatType.SPEED, 4, 3, true, 3, false, 0, 0.0)
 
 static func iron_link() -> AbilityData:
 	return _make("Chain Strike", "The chain whips outward and crashes into the nearest target.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
@@ -105,15 +105,6 @@ static func iron_link() -> AbilityData:
 # =============================================================================
 
 # --- The Ancient Threadmaster ---
-
-static func primordial_dream() -> AbilityData:
-	return _make("Primordial Dream", "The first dream ever dreamed crashes down like a wave.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0)
-
-static func loom_dominion() -> AbilityData:
-	return _make("Loom Dominion", "The Loom itself lashes out at the Threadmaster's command.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0)
-
-static func chain_of_ages() -> AbilityData:
-	return _make("Chain of Ages", "Centuries of stolen power weigh down every limb.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
 
 static func reality_unravel() -> AbilityData:
 	return _make("Reality Unravel", "The Ancient Threadmaster reaches into the fabric of existence and tears. The damage is not metaphorical.", Enums.StatType.MAGIC_ATTACK, 17, 0, true, 5, false, 0, 0.0)

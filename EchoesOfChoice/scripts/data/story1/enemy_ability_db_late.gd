@@ -83,13 +83,13 @@ static func shadow_strike() -> AbilityData:
 # =============================================================================
 
 static func venomous_bite() -> AbilityData:
-	return _make("Venomous Bite", "Fangs drip with poison.", Enums.StatType.PHYSICAL_ATTACK, 8, 3, true, 4, false, 4, 0.0)
+	return _make("Venomous Bite", "Fangs drip with poison.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 7, 0.0)
 
 static func poison_cloud() -> AbilityData:
-	return _make("Poison Cloud", "A toxic mist engulfs all enemies.", Enums.StatType.MIXED_ATTACK, 4, 3, true, 3, true, 5, 0.0)
+	return _make("Poison Cloud", "A toxic mist engulfs all enemies.", Enums.StatType.HEALTH, 0, 3, true, 3, true, 7, 0.0)
 
 static func rot_aura() -> AbilityData:
-	return _make("Rot Aura", "A wave of decay washes over all enemies.", Enums.StatType.MIXED_ATTACK, 3, 3, true, 3, true, 4, 0.0)
+	return _make("Rot Aura", "A wave of decay washes over all enemies.", Enums.StatType.HEALTH, 0, 3, true, 3, true, 5, 0.0)
 
 
 # =============================================================================

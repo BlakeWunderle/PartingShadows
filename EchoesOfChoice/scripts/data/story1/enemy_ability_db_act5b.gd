@@ -95,18 +95,6 @@ static func dissolution() -> AbilityData:
 # Stranger Undone (solo boss -- faster, crittier, weaker)
 # =============================================================================
 
-static func desperate_strike() -> AbilityData:
-	return _make("Desperate Strike", "A wild, uncontrolled swing of raw power.", Enums.StatType.MIXED_ATTACK, 12, 0, true, 3, false, 0, 0.0)
-
-static func unraveling() -> AbilityData:
-	return _make("Unraveling", "The Stranger's fading power lashes out at all enemies.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, true, 0, 0.0)
-
-static func last_refuge() -> AbilityData:
-	return _make("Last Refuge", "A thin barrier of shadow, barely holding.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
-
-static func entropy_spike() -> AbilityData:
-	return _make("Entropy Spike", "A concentrated lance of entropy pierces through.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
-
 # --- Stranger Undone boss kit (5-ability redesign) ---
 
 static func shadow_remnant_strike() -> AbilityData:

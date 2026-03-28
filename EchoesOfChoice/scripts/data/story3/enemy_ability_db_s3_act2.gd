@@ -101,12 +101,6 @@ static func shatter_ward() -> AbilityData:
 
 # --- Shadow Pursuer (boss 5-ability kit) ---
 
-static func shadow_strike() -> AbilityData:
-	return _make("Shadow Strike", "It closes the distance before you see it move.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
-
-static func relentless_hound() -> AbilityData:
-	return _make("Relentless", "The shadow accelerates with every failed attempt to flee.", Enums.StatType.SPEED, 5, 2, false, 3, false, 0, 0.0)
-
 static func phantom_strike() -> AbilityData:
 	return _make("Phantom Strike", "A crit-focused lunge from perfect darkness. You never see it coming.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
@@ -126,9 +120,6 @@ static func fading_grasp() -> AbilityData:
 
 static func dread_lash() -> AbilityData:
 	return _make("Dread Lash", "Tendrils of darkness sweep across the field.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, true, 0, 0.0)
-
-static func terror_grip() -> AbilityData:
-	return _make("Terror Grip", "Cold fingers close around the heart.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
 
 static func constrict() -> AbilityData:
 	return _make("Constrict", "Tendrils wind around every target at once, squeezing the speed from their limbs.", Enums.StatType.SPEED, 5, 2, true, 4, true, 0, 0.0)

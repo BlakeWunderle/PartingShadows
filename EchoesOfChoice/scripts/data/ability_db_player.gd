@@ -208,7 +208,7 @@ static func hurricane() -> AbilityData:
 	return _make("Hurricane", "A storm that strikes all enemies.",
 		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
-static func tornado() -> AbilityData:
+static func lightning_strike() -> AbilityData:
 	return _make("Lightning Strike", "A focused bolt of lightning that annihilates a single foe.",
 		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 

@@ -82,7 +82,7 @@ static func toxic_dart() -> AbilityData:
 	return _make("Toxic Dart", "A barb dripping with fungal venom.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 3, false, 0, 0.0)
 
 static func spore_burst() -> AbilityData:
-	return _make("Spore Burst", "A cloud of toxic spores settles over the target.", Enums.StatType.MAGIC_ATTACK, 3, 3, true, 3, false, 3, 0.0)
+	return _make("Spore Burst", "A cloud of toxic spores settles over the target.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 4, 0.0)
 
 # --- Fungal Hulk ---
 

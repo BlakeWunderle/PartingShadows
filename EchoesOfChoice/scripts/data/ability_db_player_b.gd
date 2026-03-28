@@ -244,7 +244,7 @@ static func dark_hex() -> AbilityData:
 
 static func creeping_rot() -> AbilityData:
 	return _make("Creeping Rot", "A slow decay that rots flesh and festers long after impact.",
-		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 4, 0.0)
+		Enums.StatType.HEALTH, 0, 3, true, 3, false, 7, 0.0)
 
 # Spiritwalker
 static func spirit_shield() -> AbilityData:

@@ -211,14 +211,8 @@ static func reinforce() -> AbilityData:
 static func temper() -> AbilityData:
 	return _make("Temper", "Heat-treat weapons for all allies.", Enums.StatType.ATTACK, 5, 2, false, 3, true, 0, 0.0)
 
-static func steel_plating() -> AbilityData:
-	return _make("Steel Plating", "Armor up all allies.", Enums.StatType.DEFENSE, 5, 2, false, 3, true, 0, 0.0)
-
 static func shield_wall() -> AbilityData:
 	return _make("Shield Wall", "Raise shields against attack.", Enums.StatType.PHYSICAL_DEFENSE, 4, 2, false, 2, false, 0, 0.0)
-
-static func war_ward() -> AbilityData:
-	return _make("War Ward", "A ward against magic.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0)
 
 static func scale_guard() -> AbilityData:
 	return _make("Scale Guard", "Draconic scales harden.", Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 3, false, 0, 0.0)

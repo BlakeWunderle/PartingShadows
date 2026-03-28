@@ -155,7 +155,7 @@ static func upgrade_to_tempest(f: FighterData) -> void:
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 3
 	f.speed += 7; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.hurricane(), PAB.tornado(), PAB.storm_surge()]
+	f.abilities = [PAB.hurricane(), PAB.lightning_strike(), PAB.storm_surge()]
 	f.upgrade_items = []
 
 static func _lu_infernalist(f: FighterData) -> void:
