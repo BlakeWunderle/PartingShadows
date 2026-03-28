@@ -73,7 +73,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(80, 91, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
-	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	f.flavor_text = "A hooded cultist who channels forbidden thread-magic through rituals of devotion. It unravels the minds of its enemies, leaving them confused and vulnerable."
 	return f
@@ -90,7 +90,7 @@ static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_attack = EH.es(77, 88, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
 	f.flavor_text = "An imposing guardian who patrols the border between the waking world and the cult's dream domain. It fights with both blade and binding light to repel all trespassers."
 	return f
@@ -211,7 +211,7 @@ static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(84, 97, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 14)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 9
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.loom_slam(), EAB.thread_storm(), EAB.guardians_veil()]
 	f.flavor_text = "The final ward of the dream sanctum, a colossal being of interwoven threads and crystallized will. It fights with the combined resolve of every cultist who has prayed at the loom."
 	return f
