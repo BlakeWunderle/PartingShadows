@@ -65,7 +65,7 @@ static func swift_current() -> AbilityData:
 # --- Depth Crawler ---
 
 static func thread_burn() -> AbilityData:
-	return _make("Thread Burn", "The threads beneath the surface brand the skin.", Enums.StatType.MIXED_ATTACK, 0, 3, true, 3, false, 4, 0.0)
+	return _make("Thread Burn", "The threads beneath the surface brand the skin.", Enums.StatType.MIXED_ATTACK, 0, 3, true, 3, false, 3, 0.0)
 
 static func latch() -> AbilityData:
 	return _make("Latch", "It clamps on and does not let go.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)

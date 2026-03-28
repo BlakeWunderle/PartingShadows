@@ -16,7 +16,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Cellar Sentinel", lvl)
-	f.health = EH.es(549, 628, 5, 8, lvl, 12); f.max_health = f.health
+	f.health = EH.es(566, 647, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(82, 94, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 12)
