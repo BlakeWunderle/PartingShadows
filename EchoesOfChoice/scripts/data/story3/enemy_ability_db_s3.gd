@@ -148,7 +148,7 @@ static func terror_wave() -> AbilityData:
 # --- Clock Specter ---
 
 static func time_rend() -> AbilityData:
-	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func temporal_rupture() -> AbilityData:
 	return _make("Temporal Rupture", "Fractured time detonates across the battlefield, tearing at everyone at once.", Enums.StatType.MIXED_ATTACK, 0, 0, true, 4, true, 0, 0.0)
@@ -331,6 +331,37 @@ static func loom_collapse() -> AbilityData:
 
 static func thread_of_oblivion() -> AbilityData:
 	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
+
+static func unravel() -> AbilityData:
+	return _make("Unravel", "The Threadmaster pulls a single thread loose from reality. What it touches comes undone.", Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+
+static func dream_feed() -> AbilityData:
+	return _make("Dream Feed", "The Threadmaster feeds on the dream-energy of those who oppose them, sustaining the weave with stolen life.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.4)
+
+# --- Cult Ritualist (boss additions) ---
+
+static func ancient_rite() -> AbilityData:
+	return _make("Ancient Rite", "He calls upon the full destructive power of the Thread cult's oldest ceremonies.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
+
+static func blood_weaving() -> AbilityData:
+	return _make("Blood Weaving", "A ritual feeding that sustains the High Ritualist through stolen vitality.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.35)
+
+static func ritual_empowerment() -> AbilityData:
+	return _make("Ritual Empowerment", "A barked command fortifies the High Weaver's destructive output.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
+
+static func loom_curse() -> AbilityData:
+	return _make("Loom Curse", "He unravels the target's magical defenses with a word of unmaking.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
+
+# --- High Weaver (boss additions) ---
+
+static func thread_cascade() -> AbilityData:
+	return _make("Thread Cascade", "Woven threads lash through every target simultaneously.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, true, 0, 0.0)
+
+static func weavers_haste() -> AbilityData:
+	return _make("Weaver's Haste", "He accelerates as his work intensifies, threading faster than the eye can follow.", Enums.StatType.SPEED, 6, 2, false, 3, false, 0, 0.0)
+
+static func fraying() -> AbilityData:
+	return _make("Fraying", "The weave comes apart across the whole party, weakening every magical defense.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
