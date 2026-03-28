@@ -159,6 +159,11 @@ func setup(fighter: FighterData, is_enemy: bool, portrait_tex: Texture2D) -> voi
 
 	if portrait_tex:
 		_portrait.texture = portrait_tex
+	if fighter.is_shadow:
+		var shader := load("res://resources/shaders/shadow_portrait.gdshader") as Shader
+		var mat := ShaderMaterial.new()
+		mat.shader = shader
+		_portrait.material = mat
 
 	_name_label.text = fighter.character_name
 	_update_bars(fighter, true)

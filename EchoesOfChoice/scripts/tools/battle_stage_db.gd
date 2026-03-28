@@ -46,8 +46,6 @@ static func _get_story1_stages() -> Array:
 		_s("CemeteryBattle", 6, "tier1", 0.79, 5),
 		# Prog 6: Tier 1, 7 total level ups
 		_s("OutpostDefenseBattle", 7, "tier1", 0.77, 6),
-		# Prog 7: Tier 1, 8 total level ups (mirror)
-		_s("MirrorBattle", 8, "tier1", 0.75, 7),
 		# Prog 8: Tier 2, 10 total level ups
 		_s("ReturnToCityStreetBattle", 10, "tier2", 0.80, 8),
 		# Prog 9: Tier 2, 11 total level ups
@@ -81,7 +79,7 @@ static func _s(n: String, lu: int, tier: String, target: float,
 # Enemy factories -- Story 1 stages + delegation to S2S3 for others
 # =============================================================================
 
-static func create_enemies(stage_name: String, party: Array = []) -> Array:
+static func create_enemies(stage_name: String) -> Array:
 	match stage_name:
 		"CityStreetBattle":
 			return [EnemyDB.create_thug("Alexander"),
@@ -138,8 +136,6 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 			return [EnemyDBAct2.create_shade("Umbra"),
 				EnemyDBAct2.create_wraith("Specter"),
 				EnemyDBAct2.create_boneguard("Osseus")]
-		"MirrorBattle":
-			return _mirror_enemies(party)
 		"ReturnToCityStreetBattle":
 			return [EnemyDBAct345.create_royal_guard("Aldric"),
 				EnemyDBAct345.create_guard_sergeant("Brennan"),
@@ -183,17 +179,3 @@ static func create_enemies(stage_name: String, party: Array = []) -> Array:
 			if result.is_empty():
 				push_error("Unknown stage: %s" % stage_name)
 			return result
-
-
-static func _mirror_enemies(party: Array) -> Array:
-	var enemies := []
-	for f: FighterData in party:
-		var c := f.clone()
-		c.character_name = "Shadow " + f.character_name
-		c.is_user_controlled = false
-		c.health = int(c.health * 0.98); c.max_health = c.health
-		c.physical_attack = int(c.physical_attack * 0.98)
-		c.magic_attack = int(c.magic_attack * 0.98)
-		c.speed = int(c.speed * 0.96)
-		enemies.append(c)
-	return enemies

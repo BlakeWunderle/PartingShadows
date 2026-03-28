@@ -150,7 +150,6 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 	var combo_results := []
 	var class_diag := {}
 	var start_ms := Time.get_ticks_msec()
-	var is_mirror: bool = stage.name == "MirrorBattle"
 	var engine := _get_sim_engine()
 	var turn_all_sum := 0
 	var turn_player_sum := 0
@@ -165,17 +164,11 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 		var wins := 0
 		# Create enemy template once per combo; clone per sim to avoid
 		# the full factory dispatch on every iteration.
-		var enemy_template: Array = []
-		if not is_mirror:
-			enemy_template = BSDB.create_enemies(stage.name)
+		var enemy_template: Array = BSDB.create_enemies(stage.name)
 		for si in sims_per_combo:
 			var party_fighters := PC.create_party(party_def, stage.level_ups)
 			party_size = party_fighters.size()  # capture before run_single_battle mutates via units ref
-			var enemies: Array
-			if is_mirror:
-				enemies = BSDB.create_enemies(stage.name, party_fighters)
-			else:
-				enemies = _clone_fighters(enemy_template)
+			var enemies: Array = _clone_fighters(enemy_template)
 			var br: Dictionary = run_single_battle(party_fighters, enemies, engine)
 			if br.won:
 				wins += 1

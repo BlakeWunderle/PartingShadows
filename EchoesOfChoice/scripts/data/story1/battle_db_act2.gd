@@ -379,16 +379,13 @@ static func mirror_battle() -> BattleData:
 	var b := BattleData.new()
 	b.battle_id = "MirrorBattle"
 	b.scene_image = "res://assets/art/battles/mirror_battle.png"
-	# Clone the player's party as shadow enemies at reduced stats
+	# Clone the player's party as exact shadow copies
 	var clones: Array = []
 	for fighter: FighterData in GameState.party:
 		var shadow: FighterData = fighter.clone()
 		shadow.character_name = "Shadow " + fighter.character_name
 		shadow.is_user_controlled = false
-		shadow.max_health = int(shadow.max_health * 0.99); shadow.health = shadow.max_health
-		shadow.physical_attack = int(shadow.physical_attack * 0.99)
-		shadow.magic_attack = int(shadow.magic_attack * 0.99)
-		shadow.speed = int(shadow.speed * 0.97)
+		shadow.is_shadow = true
 		clones.append(shadow)
 	b.enemies = clones
 	var observer_name: String = "the adventurer"
