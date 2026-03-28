@@ -60,8 +60,10 @@ func _build_ui() -> void:
 	_title_label.text = "PARTING SHADOWS"
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_label.add_theme_font_size_override("font_size", 56)
-	_title_label.add_theme_constant_override("outline_size", 6)
-	_title_label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.8))
+	_title_label.add_theme_constant_override("outline_size", 0)
+	_title_label.add_theme_constant_override("shadow_offset_x", 4)
+	_title_label.add_theme_constant_override("shadow_offset_y", 4)
+	_title_label.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.85))
 	_title_label.modulate.a = 0.0
 	_vbox.add_child(_title_label)
 
