@@ -265,3 +265,69 @@ static func memory_devour() -> AbilityData:
 
 static func final_blink() -> AbilityData:
 	return _make("Final Blink", "The last thing it sees, it destroys.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0)
+
+
+# =============================================================================
+# Boss kit expansions
+# =============================================================================
+
+# --- The Warden (2 new abilities) ---
+
+static func memory_verdict() -> AbilityData:
+	return _make("Memory Verdict", "The Warden channels its full authority into a single devastating judgment.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
+
+static func guardian_ward() -> AbilityData:
+	return _make("Guardian Ward", "The Warden fortifies its companion's defenses with layers of sanctum power.", Enums.StatType.MAGIC_DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+
+# --- Fractured Protector / Sera (redesign -- healer using healing as weapon) ---
+
+static func corrupted_mending() -> AbilityData:
+	return _make("Corrupted Mending", "She heals herself with life-force stolen from those she was meant to protect.", Enums.StatType.HEALTH, 18, 0, false, 4, false, 0, 0.0)
+
+static func eye_infused_strike() -> AbilityData:
+	return _make("Eye-Infused Strike", "The Eye's power courses through her healing touch, burning instead of mending.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
+
+static func drowned_light() -> AbilityData:
+	return _make("Drowned Light", "A wave of corrupted healing crashes outward, scalding every target it reaches.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
+
+static func memory_fracture() -> AbilityData:
+	return _make("Memory Fracture", "Her touch scatters thought and reflex, leaving all movement sluggish.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
+
+static func fractured_blessing() -> AbilityData:
+	return _make("Fractured Blessing", "She blesses her enemies with inverted mercy, drawing their vitality into herself.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, false, 0, 0.35)
+
+# --- The Iris (2 new abilities) ---
+
+static func eye_lance() -> AbilityData:
+	return _make("Eye Lance", "A focused beam that destroys what it sees, leaving only void where memory was.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
+
+static func memory_erosion() -> AbilityData:
+	return _make("Memory Erosion", "The Iris dissolves the magical protection from a single target, preparing the killing blow.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
+
+# --- Void Iris (boss support redesign) ---
+
+static func void_pulse() -> AbilityData:
+	return _make("Void Pulse", "A scattered burst of the Eye's light scours every target.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
+
+static func refraction_link() -> AbilityData:
+	return _make("Refraction Link", "The Void Iris amplifies its master's destructive potential through prismatic resonance.", Enums.StatType.MAGIC_ATTACK, 8, 2, false, 3, false, 0, 0.0)
+
+static func dispel_will() -> AbilityData:
+	return _make("Dispel Will", "A splinter of void cuts the resolve from a single target.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
+
+# --- Eye of Oblivion / Lidless Eye (dying monster kit -- all offense) ---
+
+static func dying_gaze() -> AbilityData:
+	return _make("Dying Gaze", "One last focused beam of absolute perception. It burns everything it sees.", Enums.StatType.MAGIC_ATTACK, 22, 0, true, 5, false, 0, 0.0)
+
+static func desperate_surge() -> AbilityData:
+	return _make("Desperate Surge", "Bleeding out its stolen power in a single savage blast.", Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
+
+static func retribution_blast() -> AbilityData:
+	return _make("Retribution Blast", "It scatters what remains of itself across every target. A dying curse.", Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, true, 0, 0.0)
+
+static func collapse() -> AbilityData:
+	return _make("Collapse", "The Eye burns from within, its stolen power turning to poison. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 15, 0.0)
+
+static func last_light() -> AbilityData:
+	return _make("Last Light", "The final flicker before extinction, faint but still lethal.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, true, 0, 0.0)

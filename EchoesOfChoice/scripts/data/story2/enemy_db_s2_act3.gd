@@ -171,7 +171,7 @@ static func create_mnemonic_golem(n: String, lvl: int = 12) -> FighterData:
 
 static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "The Warden", lvl)
-	f.health = EH.es(651, 736, 6, 9, lvl, 13); f.max_health = f.health
+	f.health = EH.es(1042, 1178, 10, 14, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(12, 16, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(38, 44, 2, 3, lvl, 13)
@@ -179,14 +179,14 @@ static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = EH.es(47, 53, 2, 4, lvl, 13)
 	f.speed = EH.es(28, 33, 2, 3, lvl, 13)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 15
-	f.abilities = [EABL.sanctum_judgment(), EABL.barrier_of_ages(), EABL.decree_of_exile()]
+	f.abilities = [EABL.sanctum_judgment(), EABL.barrier_of_ages(), EABL.decree_of_exile(), EABL.memory_verdict(), EABL.dispel_will()]
 	f.flavor_text = "The sanctum's supreme guardian, an entity of crystallized law and ancient purpose. It judges all who enter and finds them wanting."
 	return f
 
 
 static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Fractured Protector", lvl)
-	f.health = EH.es(611, 689, 5, 8, lvl, 13); f.max_health = f.health
+	f.health = EH.es(978, 1102, 8, 13, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(87, 99, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 13)
@@ -194,8 +194,8 @@ static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 13)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 13)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 16
-	f.abilities = [EABL.desperate_strike(), EABL.memory_seal(), EABL.forgetting_touch()]
-	f.flavor_text = "Once a noble defender of the memory sanctum, now cracked and unstable. It lashes out with desperate fury, no longer certain what it protects."
+	f.abilities = [EABL.corrupted_mending(), EABL.eye_infused_strike(), EABL.drowned_light(), EABL.memory_fracture(), EABL.fractured_blessing()]
+	f.flavor_text = "Once a noble defender of the memory sanctum, now cracked and unstable. Her healing magic has been inverted by the Eye's corruption, burning instead of mending, taking instead of giving."
 	return f
 
 

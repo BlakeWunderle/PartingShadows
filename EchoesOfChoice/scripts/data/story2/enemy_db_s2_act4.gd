@@ -81,8 +81,8 @@ static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(44, 51, 2, 4, lvl, 14)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 24
-	f.abilities = [EABL.void_gaze(), EABL.iris_flash()]
-	f.flavor_text = "A fragment of the Eye itself, torn loose and given independent hunger. An iridescent iris ring surrounds a void pupil that swallows light and will alike."
+	f.abilities = [EABL.void_pulse(), EABL.refraction_link(), EABL.dispel_will()]
+	f.flavor_text = "A fragment of the Eye itself, torn loose and given independent hunger. It amplifies its master's power and scatters void light across all who stand before the Eye."
 	return f
 
 
@@ -115,7 +115,7 @@ static func create_the_iris(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = EH.es(77, 87, 3, 5, lvl, 15)
 	f.speed = EH.es(33, 39, 1, 3, lvl, 15)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 19
-	f.abilities = [EABL.prismatic_blast(), EABL.refraction_beam(), EABL.crystalline_ward()]
+	f.abilities = [EABL.prismatic_blast(), EABL.refraction_beam(), EABL.crystalline_ward(), EABL.eye_lance(), EABL.memory_erosion()]
 	f.flavor_text = "The Eye's outer defense, a blazing lens of concentrated perception. Light bends and shatters around it in prismatic fury."
 	return f
 
@@ -130,6 +130,6 @@ static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = EH.es(82, 96, 4, 6, lvl, 15)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 15)
 	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 23
-	f.abilities = [EABL.gaze_of_forgetting(), EABL.memory_devour(), EABL.final_blink()]
-	f.flavor_text = "The Eye of Oblivion itself, an ancient entity that has consumed countless minds across the ages. To meet its gaze is to forget you ever existed."
+	f.abilities = [EABL.dying_gaze(), EABL.desperate_surge(), EABL.retribution_blast(), EABL.collapse(), EABL.last_light()]
+	f.flavor_text = "The Eye of Oblivion, stripped bare by Sera's sacrifice. Its armor is gone, its reserves burned away. What remains is pure, desperate hunger. It has nothing left but the will to take everything with it."
 	return f

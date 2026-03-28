@@ -106,3 +106,20 @@ static func last_refuge() -> AbilityData:
 
 static func entropy_spike() -> AbilityData:
 	return _make("Entropy Spike", "A concentrated lance of entropy pierces through.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
+
+# --- Stranger Undone boss kit (5-ability redesign) ---
+
+static func shadow_remnant_strike() -> AbilityData:
+	return _make("Shadow Remnant", "A weakened slash of the void, still carrying the Stranger's spite.", Enums.StatType.MIXED_ATTACK, 14, 0, true, 3, false, 0, 0.0)
+
+static func void_drain() -> AbilityData:
+	return _make("Void Drain", "He feeds on what little void power remains, desperately sustaining himself.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.4)
+
+static func crumbling_shield() -> AbilityData:
+	return _make("Crumbling Shield", "A thin wall of shadow rises around him, barely holding together.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+
+static func final_echo() -> AbilityData:
+	return _make("Final Echo", "A last desperate pulse of dark energy lashes out at everything.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
+
+static func desperation() -> AbilityData:
+	return _make("Desperation", "Cornered and undone, he accelerates beyond reason.", Enums.StatType.SPEED, 6, 2, false, 3, false, 0, 0.0)

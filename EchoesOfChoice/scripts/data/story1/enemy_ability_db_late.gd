@@ -202,3 +202,8 @@ static func draconic_terror() -> AbilityData:
 
 static func entropy() -> AbilityData:
 	return _make("Entropy", "Reality frays at the Stranger's touch.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+# --- Stranger Tower (boss) ---
+
+static func soul_siphon() -> AbilityData:
+	return _make("Soul Siphon", "The Stranger reaches into the party's essence and drains their fighting spirit.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)

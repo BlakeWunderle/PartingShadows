@@ -112,7 +112,7 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Stranger Undone", lvl)
 	f.class_id = "StrangerUndone"
-	f.health = EH.es(1155, 1265, 13, 19, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1090, 1194, 12, 18, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(38, 44, 3, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(78, 89, 2, 4, lvl, 15)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 15)
@@ -120,6 +120,6 @@ static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = EH.es(52, 62, 2, 4, lvl, 15)
 	f.speed = EH.es(67, 76, 3, 5, lvl, 15)
 	f.crit_chance = 35; f.crit_damage = 6; f.dodge_chance = 27
-	f.abilities = [EAB.desperate_strike(), EAB.unraveling(), EAB.last_refuge(), EAB.entropy_spike()]
+	f.abilities = [EAB.shadow_remnant_strike(), EAB.void_drain(), EAB.crumbling_shield(), EAB.final_echo(), EAB.desperation()]
 	f.flavor_text = "The Stranger, stripped of ritual power, smaller and more human than ever before. Desperate, fast, and unpredictable."
 	return f

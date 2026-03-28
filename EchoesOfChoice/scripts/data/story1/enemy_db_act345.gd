@@ -65,7 +65,7 @@ static func create_stranger(n: String, lvl: int = 11) -> FighterData:
 	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 11)
 	f.speed = EH.es(44, 50, 2, 4, lvl, 11)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 18
-	f.abilities = [EABL.shadow_strike(), EABL.dark_pulse(), EABL.void_shield(), EABL.drain()]
+	f.abilities = [EABL.shadow_strike(), EABL.dark_pulse(), EABL.void_shield(), EABL.drain(), EABL.soul_siphon()]
 	f.flavor_text = "A cloaked figure radiating dark power. His true nature remains hidden beneath layers of shadow."
 	return f
 
