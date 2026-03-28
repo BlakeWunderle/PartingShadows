@@ -35,7 +35,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 # Prog 14 -- physical enforcer (level 15)
 static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Cult Enforcer", lvl)
-	f.health = EH.es(733, 839, 6, 9, lvl, 15); f.max_health = f.health
+	f.health = EH.es(755, 864, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 124, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 15)

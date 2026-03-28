@@ -43,7 +43,7 @@ static func create_orc(n: String, lvl: int = 4) -> FighterData:
 
 static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Troll", lvl)
-	f.health = EH.es(242, 270, 6, 10, lvl, 5); f.max_health = f.health
+	f.health = EH.es(249, 278, 6, 10, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(8, 10, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(27, 32, 2, 4, lvl, 5)
 	f.physical_defense = EH.es(18, 22, 1, 3, lvl, 5)
@@ -141,7 +141,7 @@ static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 
 static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Captain", lvl)
-	f.health = EH.es(170, 207, 5, 11, lvl, 5); f.max_health = f.health
+	f.health = EH.es(175, 213, 5, 11, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(14, 30, 1, 4, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(27, 34, 2, 5, lvl, 5)
 	f.physical_defense = EH.es(19, 27, 2, 5, lvl, 5)
