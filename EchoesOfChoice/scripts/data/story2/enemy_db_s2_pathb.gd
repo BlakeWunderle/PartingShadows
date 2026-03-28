@@ -194,14 +194,14 @@ static func create_rage_fragment(n: String, lvl: int = 15) -> FighterData:
 
 static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "The Unblinking Eye", lvl)
-	f.health = EH.es(1245, 1415, 10, 14, lvl, 15); f.max_health = f.health
+	f.health = EH.es(1247, 1417, 10, 14, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(36, 42, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(26, 34, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(56, 66, 3, 5, lvl, 15)
 	f.magic_attack = EH.es(146, 167, 5, 8, lvl, 15)
 	f.magic_defense = EH.es(70, 79, 4, 6, lvl, 15)
 	f.speed = EH.es(40, 46, 2, 4, lvl, 15)
-	f.crit_chance = 21; f.crit_damage = 4; f.dodge_chance = 22
+	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EAB.gaze_of_annihilation(), EAB.memory_maelstrom(), EAB.will_of_ages(), EAB.devour_identity(), EAB.unblinking_focus()]
 	f.flavor_text = "The Eye of Oblivion at full, terrible power. Not weakened by sacrifice, not diminished by poison. It sees everything and forgets nothing."
 	return f

@@ -43,7 +43,7 @@ static func create_memory_harvester(n: String, lvl: int = 14) -> FighterData:
 
 static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Oblivion Shade", lvl)
-	f.health = EH.es(331, 375, 4, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(333, 377, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(21, 30, 1, 3, lvl, 14)
@@ -58,7 +58,7 @@ static func create_oblivion_shade(n: String, lvl: int = 14) -> FighterData:
 
 static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Memory Reaper", lvl)
-	f.health = EH.es(545, 615, 5, 8, lvl, 14); f.max_health = f.health
+	f.health = EH.es(551, 621, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(31, 40, 2, 3, lvl, 14)
@@ -88,7 +88,7 @@ static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 
 static func create_thoughtform_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Thoughtform Knight", lvl)
-	f.health = EH.es(652, 745, 7, 10, lvl, 14); f.max_health = f.health
+	f.health = EH.es(662, 755, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 17, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(130, 150, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(64, 75, 3, 5, lvl, 14)

@@ -208,7 +208,7 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 
 static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Sigil Wretch", lvl)
-	f.health = EH.es(384, 428, 7, 10, lvl, 13); f.max_health = f.health
+	f.health = EH.es(394, 438, 7, 10, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(24, 29, 2, 3, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(13, 16, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(26, 33, 1, 3, lvl, 13)
@@ -222,7 +222,7 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 
 static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Tunnel Lurker", lvl)
-	f.health = EH.es(491, 537, 10, 14, lvl, 13); f.max_health = f.health
+	f.health = EH.es(493, 539, 10, 14, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(69, 78, 5, 7, lvl, 13)
 	f.physical_defense = EH.es(36, 42, 2, 4, lvl, 13)

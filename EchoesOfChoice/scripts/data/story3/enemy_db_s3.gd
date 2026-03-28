@@ -91,7 +91,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 # Prog 1 FogGarden enemies
 static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Slumber Beast", lvl)
-	f.health = EH.es(53, 64, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = EH.es(55, 66, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(17, 21, 1, 3, lvl, 2)
 	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 2)

@@ -228,7 +228,7 @@ static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 
 static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Cave Maw", lvl)
-	f.health = EH.es(132, 152, 5, 8, lvl, 3); f.max_health = f.health
+	f.health = EH.es(134, 154, 5, 8, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 28, 2, 3, lvl, 3)
 	f.physical_defense = EH.es(15, 19, 1, 3, lvl, 3)

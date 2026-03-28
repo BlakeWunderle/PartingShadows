@@ -235,7 +235,7 @@ static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 
 static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Cathedral Warden", lvl)
-	f.health = EH.es(737, 842, 6, 9, lvl, 16); f.max_health = f.health
+	f.health = EH.es(743, 848, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(107, 124, 3, 5, lvl, 16)
 	f.physical_defense = EH.es(56, 65, 2, 4, lvl, 16)
@@ -250,7 +250,7 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 
 static func create_dream_binder(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Binder", lvl)
-	f.health = EH.es(624, 718, 5, 8, lvl, 16); f.max_health = f.health
+	f.health = EH.es(626, 720, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
 	f.physical_defense = EH.es(42, 49, 2, 3, lvl, 16)
