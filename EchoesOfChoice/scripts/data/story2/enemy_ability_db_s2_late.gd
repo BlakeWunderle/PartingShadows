@@ -315,6 +315,9 @@ static func refraction_link() -> AbilityData:
 static func dispel_will() -> AbilityData:
 	return _make("Dispel Will", "A splinter of void cuts the resolve from a single target.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
 
+static func null_mending() -> AbilityData:
+	return _make("Null Mending", "The Void Iris channels refracted void light into its allies, reversing wounds with stolen radiance.", Enums.StatType.HEALTH, 6, 0, false, 3, true, 0, 0.0)
+
 # --- Eye of Oblivion / Lidless Eye (dying monster kit -- all offense) ---
 
 static func dying_gaze() -> AbilityData:

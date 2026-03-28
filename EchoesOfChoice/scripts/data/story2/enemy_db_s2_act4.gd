@@ -73,7 +73,7 @@ static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 
 static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Void Iris", lvl)
-	f.health = EH.es(345, 393, 4, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(400, 445, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(21, 30, 1, 3, lvl, 14)
@@ -81,7 +81,7 @@ static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 	f.magic_defense = EH.es(45, 54, 2, 4, lvl, 14)
 	f.speed = EH.es(44, 51, 2, 4, lvl, 14)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 24
-	f.abilities = [EABL.void_pulse(), EABL.refraction_link(), EABL.dispel_will()]
+	f.abilities = [EABL.void_pulse(), EABL.refraction_link(), EABL.dispel_will(), EABL.null_mending()]
 	f.flavor_text = "A fragment of the Eye itself, torn loose and given independent hunger. It amplifies its master's power and scatters void light across all who stand before the Eye."
 	return f
 

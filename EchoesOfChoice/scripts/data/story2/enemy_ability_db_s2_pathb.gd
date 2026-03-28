@@ -151,10 +151,10 @@ static func memory_maelstrom() -> AbilityData:
 	return _make("Memory Maelstrom", "A storm of regurgitated memories bludgeons all enemies.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
 
 static func will_of_ages() -> AbilityData:
-	return _make("Will of Ages", "Centuries of accumulated power harden into impenetrable resolve.", Enums.StatType.DEFENSE, 7, 2, false, 4, false, 0, 0.0)
+	return _make("Will of Ages", "Centuries of accumulated power harden into impenetrable resolve.", Enums.StatType.DEFENSE, 11, 2, false, 4, false, 0, 0.0)
 
 static func devour_identity() -> AbilityData:
-	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 3, false, 0, 0.4)
+	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 3, false, 0, 0.65)
 
 static func unblinking_focus() -> AbilityData:
 	return _make("Unblinking Focus", "The Eye's gaze intensifies, stripping away all magical protection.", Enums.StatType.ATTACK, 6, 2, true, 3, true, 0, 0.0)
