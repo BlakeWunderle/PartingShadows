@@ -58,11 +58,29 @@ combo_count, elapsed_ms, status, class_breakdown, spread, best_combos, worst_com
 
 `combat_stats` is a dictionary keyed by class display name, each with `avg_dealt`, `avg_taken`, `avg_mitigated`, `avg_heals`, `death_rate` (per-battle averages).
 
+**Boss battle classification** — define this set and use it throughout Step 3 to split stages:
+
+```
+BOSS_BATTLES = {
+  # Story 1
+  "StrangerTowerBattle", "StrangerFinalBattle", "StrangerUndoneBattle",
+  # Story 2
+  "S2_LighthouseStorm", "S2_TheReveal", "S2_EyeAwakening",
+  "S2_EyeOfOblivion", "S2_B_EyeUnblinking",
+  # Story 3
+  "S3_DreamNightmare", "S3_DreamSanctum",
+  "S3_DreamNexus", "S3_B_DreamNexus", "S3_C_DreamNexus",
+}
+```
+
+Regular stages = stages where `stage_name` is NOT in `BOSS_BATTLES`.
+Boss stages = stages where `stage_name` IS in `BOSS_BATTLES`.
+
 ### Step 3: Generate the markdown report
 
 Write the report to: `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\class-balance.md`
 
-Use the format below. For each table, classes are rows and battles are columns.
+Use the format below. For each table, classes are rows and battles are columns. The tier tables (Base/T1/T2) include **only regular battles** (not in `BOSS_BATTLES`). Boss fights get their own section at the end.
 
 #### Report Format
 
@@ -133,12 +151,46 @@ Per-class averages across all battles the class appears in (averaged over stages
 
 ## Outlier Details
 
-[Only include classes that fall outside the tier-specific band (base +/- 15%, T1 +/- 12.5%, T2 +/- 10%) at any battle]
+[Only include classes that fall outside the tier-specific band (base +/- 15%, T1 +/- 12.5%, T2 +/- 10%) at any regular battle]
 
 ### ClassName (avg XX.X%)
 - Battle1: XX.X% (target YY%, **below floor**)
 - Best combo: A / B / C -- XX.X%
 - Worst combo: A / B / C -- XX.X%
+
+## Boss Battles
+
+Classes as rows, boss battles as columns. Only classes active at the boss's tier are shown.
+Same bold/italic outlier thresholds apply (base +/-15%, T1 +/-12.5%, T2 +/-10%).
+Column headers: short names (drop `Battle`, `S2_`, `S3_` prefixes; e.g. `StrangerFinal`, `LighthouseStorm`, `DreamNexus`).
+Only include story subsections present in the data.
+
+### Story 1
+[T2 bosses only — StrangerTowerBattle, StrangerFinalBattle, StrangerUndoneBattle]
+| Class | StrangerTower (P9, 78%) | StrangerFinal (P13, 65%) | StrangerUndone (P13, 65%) | Avg |
+|-------|------------------------|-------------------------|--------------------------|-----|
+| Aegis | XX.X% | XX.X% | XX.X% | XX.X% |
+[...all 34 T2 classes, sorted alphabetically]
+
+### Story 2
+[T2 bosses — S2_LighthouseStorm, S2_TheReveal, S2_EyeAwakening, S2_EyeOfOblivion, S2_B_EyeUnblinking]
+| Class | LighthouseStorm (P8, 73%) | TheReveal (P13, 63%) | EyeAwakening (P16, 57%) | EyeOfOblivion (P17, 55%) | EyeUnblinking (P17, 55%) | Avg |
+|-------|--------------------------|---------------------|------------------------|-------------------------|-------------------------|-----|
+[...all 34 T2 classes, sorted alphabetically]
+
+### Story 3
+[T1 boss S3_DreamNightmare shown with T1 classes; T2 bosses shown with T2 classes]
+
+#### Story 3 — T1 Boss
+| Class | DreamNightmare (P8, 60%) |
+|-------|--------------------------|
+[...all 16 T1 classes, sorted alphabetically]
+
+#### Story 3 — T2 Bosses
+[S3_DreamSanctum, S3_DreamNexus, S3_B_DreamNexus, S3_C_DreamNexus]
+| Class | DreamSanctum (P13, 50%) | DreamNexus (P17, 42%) | B_DreamNexus (P17, 42%) | C_DreamNexus (P17, 42%) | Avg |
+|-------|------------------------|-----------------------|------------------------|------------------------|-----|
+[...all 34 T2 classes, sorted alphabetically]
 ```
 
 #### Formatting Rules
