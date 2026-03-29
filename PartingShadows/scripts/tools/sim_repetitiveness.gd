@@ -67,10 +67,17 @@ static func _build_profiles(stages: Array) -> Array:
 		for e in enemies:
 			ids.append(e.class_id)
 		var profile := EnemyRoles.get_battle_profile(ids)
+		var boss_or_elite := false
+		for eid: String in ids:
+			var tier := EnemyRoles.get_tier(eid)
+			if tier == Enums.EnemyTier.BOSS or tier == Enums.EnemyTier.ELITE:
+				boss_or_elite = true
+				break
 		profiles.append({
 			"stage": s,
 			"profile": profile,
 			"enemy_count": enemies.size(),
+			"has_boss_or_elite": boss_or_elite,
 		})
 	return profiles
 
@@ -86,6 +93,10 @@ static func _find_similar_pairs(profiles: Array) -> Array:
 		var p_b: int = profiles[i + 1].stage.progression_stage
 		if p_b - p_a > 1:
 			continue  # Skip non-adjacent progressions
+		if p_a == p_b:
+			# Same prog boss/elite = alternate paths; player sees only one
+			if profiles[i].has_boss_or_elite or profiles[i + 1].has_boss_or_elite:
+				continue
 
 		var sim := _cosine_similarity(profiles[i].profile, profiles[i + 1].profile)
 		if sim >= SIMILARITY_THRESHOLD:
@@ -139,6 +150,12 @@ static func _find_damage_monotony(profiles: Array) -> Array:
 	var run_type := _dominant_damage(profiles[0].profile)
 
 	for i in range(1, profiles.size()):
+		# Same prog boss/elite = alternate path; skip without breaking run
+		var prev_prog: int = profiles[i - 1].stage.progression_stage
+		var curr_prog: int = profiles[i].stage.progression_stage
+		if curr_prog == prev_prog:
+			if profiles[i].has_boss_or_elite or profiles[i - 1].has_boss_or_elite:
+				continue
 		var dt := _dominant_damage(profiles[i].profile)
 		if dt == run_type:
 			continue
