@@ -105,19 +105,30 @@ static func _summary(entries: Array) -> PackedStringArray:
 
 static func _strongest_weakest(entries: Array) -> PackedStringArray:
 	var lines := PackedStringArray()
-	var avgs := _class_avg_wr(entries)
-	avgs.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		return a.avg > b.avg)
-	lines.append("### Strongest Classes (avg win rate across all battles they appear in)")
-	for i in mini(5, avgs.size()):
-		lines.append("%d. %s -- %.1f%%" % [i + 1, avgs[i].name, avgs[i].avg * 100])
-	lines.append("")
-	lines.append("### Weakest Classes")
-	var n := mini(5, avgs.size())
-	for i in n:
-		lines.append("%d. %s -- %.1f%%" % [
-			i + 1, avgs[avgs.size() - 1 - i].name,
-			avgs[avgs.size() - 1 - i].avg * 100])
+	for ti: Array in [["base", "Base", 3], ["tier1", "T1", 3],
+			["tier2", "T2", 5]]:
+		var tier: String = ti[0]
+		var label: String = ti[1]
+		var count: int = ti[2]
+		var tier_entries := entries.filter(
+			func(e: Dictionary) -> bool: return e.get("tier", "") == tier)
+		if tier_entries.is_empty():
+			continue
+		var avgs := _class_avg_wr(tier_entries)
+		avgs.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+			return a.avg > b.avg)
+		var top := mini(count, avgs.size())
+		var bot := mini(count, avgs.size())
+		var parts := PackedStringArray()
+		for i in top:
+			parts.append("%s %.1f%%" % [avgs[i].name, avgs[i].avg * 100])
+		lines.append("**%s strongest:** %s" % [label, ", ".join(parts)])
+		parts = PackedStringArray()
+		for i in bot:
+			parts.append("%s %.1f%%" % [
+				avgs[avgs.size() - 1 - i].name,
+				avgs[avgs.size() - 1 - i].avg * 100])
+		lines.append("**%s weakest:** %s" % [label, ", ".join(parts)])
 	lines.append("")
 	return lines
 
