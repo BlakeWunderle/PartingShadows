@@ -191,15 +191,15 @@ static func create_enemies(stage_name: String) -> Array:
 		"S2_FishingVillage":
 			return [EnemyDBS2Act2.create_driftwood_bandit("Scarhand"),
 				EnemyDBS2Act2.create_driftwood_bandit("Rust"),
-				EnemyDBS2Act2.create_saltrunner_smuggler("Quicksilver")]
+				EnemyDBS2Act2.create_tideside_channeler("Riptide")]
 		"S2_SmugglersBluff":
 			return [EnemyDBS2Act2.create_saltrunner_smuggler("Duskrunner"),
 				EnemyDBS2Act2.create_tide_warden("Breakwater"),
-				EnemyDBS2Act2.create_driftwood_bandit("Splinter")]
+				EnemyDBS2Act2.create_reef_shaman("Coralwhisper")]
 		"S2_WreckersCove":
 			return [EnemyDBS2Act2.create_blackwater_captain("Captain Korr"),
 				EnemyDBS2Act2.create_corsair_hexer("Saltweave"),
-				EnemyDBS2Act2.create_driftwood_bandit("Barnacle")]
+				EnemyDBS2Act2.create_bilge_rat("Scuttle")]
 		"S2_CoastalRuins":
 			return [EnemyDBS2Act2.create_abyssal_lurker("Depthcrawl"),
 				EnemyDBS2Act2.create_stormwrack_raptor("Voltwing"),

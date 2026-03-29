@@ -56,6 +56,36 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	return f
 
 
+static func create_tideside_channeler(n: String, lvl: int = 5) -> FighterData:
+	var f := EH.base(n, "Tideside Channeler", lvl)
+	f.health = EH.es(135, 156, 3, 5, lvl, 5); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 2, lvl, 5); f.max_mana = f.mana
+	f.physical_attack = EH.es(6, 9, 0, 1, lvl, 5)
+	f.physical_defense = EH.es(10, 14, 1, 2, lvl, 5)
+	f.magic_attack = EH.es(30, 36, 2, 3, lvl, 5)
+	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 5)
+	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
+	f.abilities = [EAB.tidewater_bolt(), EAB.tainted_spray()]
+	f.flavor_text = "A recluse who draws power from the corrupted tides. Seawater bends to their whispered commands, leaving sickness in its wake."
+	return f
+
+
+static func create_reef_shaman(n: String, lvl: int = 5) -> FighterData:
+	var f := EH.base(n, "Reef Shaman", lvl)
+	f.health = EH.es(160, 184, 3, 6, lvl, 5); f.max_health = f.health
+	f.mana = EH.es(10, 13, 1, 2, lvl, 5); f.max_mana = f.mana
+	f.physical_attack = EH.es(5, 8, 0, 1, lvl, 5)
+	f.physical_defense = EH.es(13, 17, 1, 2, lvl, 5)
+	f.magic_attack = EH.es(30, 36, 2, 3, lvl, 5)
+	f.magic_defense = EH.es(14, 18, 1, 2, lvl, 5)
+	f.speed = EH.es(29, 35, 2, 3, lvl, 5)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
+	f.abilities = [EAB.coral_blast(), EAB.coral_barrage()]
+	f.flavor_text = "A hermit who communes with the living reef. Coral answers their call, erupting as both blade and storm."
+	return f
+
+
 static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Blighted Gull", lvl)
 	f.health = EH.es(113, 134, 3, 5, lvl, 5); f.max_health = f.health
@@ -132,6 +162,21 @@ static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.brine_curse(), EAB.corrode_ward()]
 	f.flavor_text = "A sea-witch who sails with the corsair fleet, dealing in curses drawn from the deep. Saltwater itself bends to their hexes."
+	return f
+
+
+static func create_bilge_rat(n: String, lvl: int = 8) -> FighterData:
+	var f := EH.base(n, "Bilge Rat", lvl)
+	f.health = EH.es(235, 268, 4, 6, lvl, 8); f.max_health = f.health
+	f.mana = EH.es(7, 9, 1, 2, lvl, 8); f.max_mana = f.mana
+	f.physical_attack = EH.es(36, 43, 2, 3, lvl, 8)
+	f.physical_defense = EH.es(14, 19, 1, 2, lvl, 8)
+	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 8)
+	f.magic_defense = EH.es(12, 17, 1, 2, lvl, 8)
+	f.speed = EH.es(28, 34, 2, 3, lvl, 8)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
+	f.abilities = [EAB.filthy_shiv(), EAB.festering_wound()]
+	f.flavor_text = "A wiry scavenger who haunts the lower decks of wrecked ships. Their weapons are filthy and their cuts never heal clean."
 	return f
 
 

@@ -71,7 +71,7 @@ static func s2_fishing_village() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act2.create_driftwood_bandit("Scarhand"),
 		EnemyDBS2Act2.create_driftwood_bandit("Rust"),
-		EnemyDBS2Act2.create_saltrunner_smuggler("Quicksilver"),
+		EnemyDBS2Act2.create_tideside_channeler("Riptide"),
 	]
 	b.pre_battle_text = [
 		"A small fishing village. Nets hang drying between the houses. Smoke curls from a dozen chimneys.",
@@ -103,7 +103,7 @@ static func s2_smugglers_bluff() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act2.create_saltrunner_smuggler("Duskrunner"),
 		EnemyDBS2Act2.create_tide_warden("Breakwater"),
-		EnemyDBS2Act2.create_driftwood_bandit("Splinter"),
+		EnemyDBS2Act2.create_reef_shaman("Coralwhisper"),
 	]
 	b.pre_battle_text = [
 		"The bluff path descends to a hidden cove. Crates marked with unfamiliar symbols sit stacked behind camouflage netting.",
@@ -164,7 +164,7 @@ static func s2_wreckers_cove() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act2.create_blackwater_captain("Captain Korr"),
 		EnemyDBS2Act2.create_corsair_hexer("Saltweave"),
-		EnemyDBS2Act2.create_driftwood_bandit("Barnacle"),
+		EnemyDBS2Act2.create_bilge_rat("Scuttle"),
 	]
 	b.pre_battle_text = [
 		"The wreckers' cove is a graveyard of ships. Hulls stacked and broken, masts pointing at the sky like dead trees.",

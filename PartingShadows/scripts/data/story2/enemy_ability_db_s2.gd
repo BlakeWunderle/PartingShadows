@@ -177,6 +177,30 @@ static func harpoon_thrust() -> AbilityData:
 static func brace_formation() -> AbilityData:
 	return _make("Net Throw", "A weighted net snares and punishes the enemy.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
+# --- Tideside Channeler ---
+
+static func tidewater_bolt() -> AbilityData:
+	return _make("Tidewater Bolt", "Corrupted seawater surges forward in a crackling arc.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+static func tainted_spray() -> AbilityData:
+	return _make("Tainted Spray", "A mist of brackish water clings to skin, burning slowly.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 6, 0.0)
+
+# --- Reef Shaman ---
+
+static func coral_blast() -> AbilityData:
+	return _make("Coral Blast", "Shards of living coral burst from an outstretched hand.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+
+static func coral_barrage() -> AbilityData:
+	return _make("Coral Barrage", "A volley of razor-sharp coral fragments rakes across the battlefield.", Enums.StatType.MAGIC_ATTACK, 3, 0, true, 4, true, 0, 0.0)
+
+# --- Bilge Rat ---
+
+static func filthy_shiv() -> AbilityData:
+	return _make("Filthy Shiv", "A jagged blade caked in grime finds its mark.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
+
+static func festering_wound() -> AbilityData:
+	return _make("Festering Wound", "The cut festers, poison seeping deeper with every heartbeat.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 3, 0.0)
+
 # --- Blighted Gull ---
 
 static func peck_frenzy() -> AbilityData:
