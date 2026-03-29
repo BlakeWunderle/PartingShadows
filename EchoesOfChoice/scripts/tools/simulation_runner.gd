@@ -184,7 +184,8 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				var ct: String = f.character_type
 				if not class_diag.has(ct):
 					class_diag[ct] = {dmg_dealt = 0, dmg_taken = 0,
-						heals = 0, deaths = 0, battles = 0, actions = 0, dmg_mitigated = 0}
+						heals = 0, deaths = 0, battles = 0, actions = 0, dmg_mitigated = 0,
+					buffs_applied = 0, debuffs_applied = 0}
 				var ss: Dictionary = engine.sim_stats.get(f, {})
 				class_diag[ct].dmg_dealt += ss.get("dmg_dealt", 0)
 				class_diag[ct].dmg_taken += ss.get("dmg_taken", 0)
@@ -193,6 +194,8 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 				class_diag[ct].battles += 1
 				class_diag[ct].actions += br.unit_actions.get(f, 0)
 				class_diag[ct].dmg_mitigated += ss.get("dmg_mitigated", 0)
+				class_diag[ct].buffs_applied += ss.get("buffs_applied", 0)
+				class_diag[ct].debuffs_applied += ss.get("debuffs_applied", 0)
 
 		combo_results.append({
 			"description": PC.get_party_description(party_def),
@@ -233,6 +236,10 @@ static func simulate_stage(stage: Dictionary, sims_per_combo: int,
 			"max_all_actions": turn_max if turn_battle_count > 0 else 0,
 			"stalemate_rate": float(stalemate_count) / turn_battle_count if turn_battle_count > 0 else 0.0,
 			"stalemate_count": stalemate_count,
+			"_total_all_actions": turn_all_sum,
+			"_total_player_actions": turn_player_sum,
+			"_total_battle_count": turn_battle_count,
+			"_party_size": party_size,
 		},
 	}
 

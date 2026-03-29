@@ -44,9 +44,9 @@ func start_battle_sim(party: Array, enemy_list: Array) -> void:
 		f.reset_for_battle()
 	sim_stats.clear()
 	for f: FighterData in units:
-		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false, dmg_mitigated = 0}
+		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false, dmg_mitigated = 0, buffs_applied = 0, debuffs_applied = 0}
 	for f: FighterData in enemies:
-		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false, dmg_mitigated = 0}
+		sim_stats[f] = {dmg_dealt = 0, dmg_taken = 0, heals = 0, died = false, dmg_mitigated = 0, buffs_applied = 0, debuffs_applied = 0}
 
 
 ## Advance ATB timers by one tick. Returns true if any units can act.
@@ -213,6 +213,8 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"is_negative": true,
 				"damage_per_turn": ability.damage_per_turn,
 			})
+			if sim_mode:
+				sim_stats[attacker].debuffs_applied += 1
 			if not sim_mode:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
@@ -230,6 +232,8 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				"damage_per_turn": 0,
 			})
 			_modify_stats(defender, ability.modified_stat, ability.modifier, true)
+			if sim_mode:
+				sim_stats[attacker].debuffs_applied += 1
 			if not sim_mode and ability.damage_per_turn == 0:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
@@ -270,6 +274,8 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			"damage_per_turn": 0,
 		})
 		_modify_stats(target, ability.modified_stat, ability.modifier, false)
+		if sim_mode:
+			sim_stats[caster].buffs_applied += 1
 		if not sim_mode:
 			if not skip_flavor:
 				combat_message.emit(ability.flavor_text)

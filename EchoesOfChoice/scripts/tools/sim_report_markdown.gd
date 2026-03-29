@@ -172,14 +172,16 @@ static func _combat_effectiveness(entries: Array) -> PackedStringArray:
 			continue
 		lines.append("### %s" % ti[1])
 		lines.append(
-			"| Class | Avg Dealt | Avg Taken | Avg Mitigated | Avg Heals |")
+			"| Class | Avg Dealt | Avg Taken | Avg Mitigated | Avg Heals | Avg Buffs | Avg Debuffs |")
 		lines.append(
-			"|-------|-----------|-----------|---------------|-----------|")
+			"|-------|-----------|-----------|---------------|-----------|-----------|-------------|")
 		for cls: String in classes:
 			var d := 0.0
 			var t := 0.0
 			var m := 0.0
 			var h := 0.0
+			var bu := 0.0
+			var de := 0.0
 			var c := 0
 			for e: Dictionary in filtered:
 				var cs: Dictionary = e.get("combat_stats", {})
@@ -188,12 +190,14 @@ static func _combat_effectiveness(entries: Array) -> PackedStringArray:
 					t += cs[cls].get("avg_taken", 0.0)
 					m += cs[cls].get("avg_mitigated", 0.0)
 					h += cs[cls].get("avg_heals", 0.0)
+					bu += cs[cls].get("avg_buffs", 0.0)
+					de += cs[cls].get("avg_debuffs", 0.0)
 					c += 1
 			if c > 0:
-				lines.append("| %s | %.1f | %.1f | %.1f | %.1f |" % [
-					cls, d / c, t / c, m / c, h / c])
+				lines.append("| %s | %.1f | %.1f | %.1f | %.1f | %.1f | %.1f |" % [
+					cls, d / c, t / c, m / c, h / c, bu / c, de / c])
 			else:
-				lines.append("| %s | - | - | - | - |" % cls)
+				lines.append("| %s | - | - | - | - | - | - |" % cls)
 		lines.append("")
 	return lines
 

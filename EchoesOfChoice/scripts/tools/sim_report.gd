@@ -32,6 +32,8 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 			"avg_mitigated": float(cd.get("dmg_mitigated", 0)) / b,
 			"avg_heals": float(cd.get("heals", 0)) / b,
 			"death_rate": float(cd.get("deaths", 0)) / b,
+			"avg_buffs": float(cd.get("buffs_applied", 0)) / b,
+			"avg_debuffs": float(cd.get("debuffs_applied", 0)) / b,
 		}
 	return {
 		"stage_name": result.stage_name,
