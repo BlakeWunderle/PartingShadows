@@ -246,6 +246,21 @@ static func create_dusk_sentinel(n: String, lvl: int = 8) -> FighterData:
 	return f
 
 
+static func create_shattered_hourglass(n: String, lvl: int = 8) -> FighterData:
+	var f := EH.base(n, "Shattered Hourglass", lvl)
+	f.health = EH.es(250, 295, 4, 7, lvl, 8); f.max_health = f.health
+	f.mana = EH.es(10, 13, 1, 2, lvl, 8); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 8)
+	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 8)
+	f.magic_attack = EH.es(30, 35, 1, 3, lvl, 8)
+	f.magic_defense = EH.es(16, 20, 1, 2, lvl, 8)
+	f.speed = EH.es(32, 37, 1, 3, lvl, 8)
+	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 18
+	f.abilities = [EAB.grain_siphon(), EAB.eroding_sand()]
+	f.flavor_text = "A broken hourglass floating in the void, its glass cracked and splintered. The sand hangs suspended mid-spill, forming the faint suggestion of a face with hollow, glowing eyes. Every grain is a stolen second from a dreamer who slept too long."
+	return f
+
+
 static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	var f := EH.base(n, "Clock Specter", lvl)
 	f.health = EH.es(265, 320, 4, 7, lvl, 8); f.max_health = f.health

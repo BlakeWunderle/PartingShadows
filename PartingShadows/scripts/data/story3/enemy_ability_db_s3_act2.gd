@@ -78,13 +78,13 @@ static func dream_crush() -> AbilityData:
 static func fragment_surge() -> AbilityData:
 	return _make("Fragment Surge", "A mass of shards carrying remembered pain slams forward.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
-# --- Memory Wisp ---
+# --- Portrait Wight ---
 
-static func stolen_thought() -> AbilityData:
-	return _make("Stolen Thought", "A flash of someone else's fear used as a weapon.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.0)
+static func gilded_veil() -> AbilityData:
+	return _make("Gilded Veil", "The wight reaches through its frame, draping an ally in spectral canvas.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
 
-static func blur() -> AbilityData:
-	return _make("Memory Flare", "The wisp ignites stolen thoughts in a blinding psychic burst.", Enums.StatType.MAGIC_ATTACK, 2, 0, true, 4, false, 0, 0.0)
+static func faded_gaze() -> AbilityData:
+	return _make("Faded Gaze", "Dead eyes behind cracked glass focus, and the weight of forgotten grief strikes.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 # --- Gallery Shade ---
 
@@ -154,7 +154,7 @@ static func hammer_blow() -> AbilityData:
 	return _make("Hammer Blow", "The smithing hammer was not meant for iron today.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func forge_hardened() -> AbilityData:
-	return _make("Forge Strike", "White-hot tools leave burns that keep smoldering.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Forge Fury", "The smith's hammer rings with power, sharpening an ally's strikes.", Enums.StatType.PHYSICAL_ATTACK, 5, 2, false, 3, false, 0, 0.0)
 
 # --- Hex Herbalist ---
 

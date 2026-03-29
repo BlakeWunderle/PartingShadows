@@ -186,6 +186,9 @@ static func get_all_enemy_ids() -> Array:
 		{"class_id": "Dusk Sentinel", "story_id": s3},
 		{"class_id": "Clock Specter", "story_id": s3},
 		{"class_id": "The Nightmare", "story_id": s3},
+		{"class_id": "Nightmare Guard", "story_id": s3},
+		{"class_id": "Void Echo", "story_id": s3},
+		{"class_id": "Shattered Hourglass", "story_id": s3},
 		# Story 3 - Act II expansion
 		{"class_id": "Thread Lurker", "story_id": s3},
 		{"class_id": "Dream Sentinel", "story_id": s3},
@@ -194,6 +197,7 @@ static func get_all_enemy_ids() -> Array:
 		{"class_id": "Riptide Beast", "story_id": s3},
 		{"class_id": "Depth Crawler", "story_id": s3},
 		{"class_id": "Fragment Golem", "story_id": s3},
+		{"class_id": "Portrait Wight", "story_id": s3},
 		{"class_id": "Gallery Shade", "story_id": s3},
 		{"class_id": "Shadow Pursuer", "story_id": s3},
 		{"class_id": "Dread Tendril", "story_id": s3},

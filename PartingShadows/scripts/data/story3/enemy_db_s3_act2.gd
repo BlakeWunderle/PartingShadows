@@ -125,18 +125,18 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	return f
 
 
-static func create_memory_wisp(n: String, lvl: int = 6) -> FighterData:
-	var f := EH.base(n, "Memory Wisp", lvl)
-	f.health = EH.es(175, 209, 2, 5, lvl, 6); f.max_health = f.health
-	f.mana = EH.es(8, 10, 1, 2, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(11, 14, 0, 2, lvl, 6)
-	f.physical_defense = EH.es(10, 13, 0, 1, lvl, 6)
-	f.magic_attack = EH.es(24, 28, 1, 3, lvl, 6)
-	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 6)
-	f.speed = EH.es(34, 39, 1, 3, lvl, 6)
-	f.crit_chance = 22; f.crit_damage = 1; f.dodge_chance = 13
-	f.abilities = [EAB.stolen_thought(), EAB.blur()]
-	f.flavor_text = "A tiny, darting light that feeds on stray thoughts left behind in the dream. It is almost impossible to pin down, flickering away the instant attention falls on it."
+static func create_portrait_wight(n: String, lvl: int = 6) -> FighterData:
+	var f := EH.base(n, "Portrait Wight", lvl)
+	f.health = EH.es(230, 265, 3, 6, lvl, 6); f.max_health = f.health
+	f.mana = EH.es(10, 13, 1, 2, lvl, 6); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 13, 0, 1, lvl, 6)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 6)
+	f.magic_attack = EH.es(23, 27, 1, 3, lvl, 6)
+	f.magic_defense = EH.es(18, 22, 1, 3, lvl, 6)
+	f.speed = EH.es(26, 31, 1, 2, lvl, 6)
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
+	f.abilities = [EAB.gilded_veil(), EAB.faded_gaze()]
+	f.flavor_text = "The undead remnant of a dreamer who died in their sleep, now trapped inside a gilded portrait frame. It reaches through cracked canvas to shield the gallery's other creatures, guarding the stolen memories it can no longer reclaim."
 	return f
 
 

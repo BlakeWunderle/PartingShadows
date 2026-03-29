@@ -215,6 +215,9 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Dusk Sentinel": return S3.create_dusk_sentinel("")
 		"Clock Specter": return S3.create_clock_specter("")
 		"The Nightmare": return S3.create_the_nightmare("")
+		"Nightmare Guard": return S3.create_nightmare_guard("")
+		"Void Echo": return S3.create_void_echo("")
+		"Shattered Hourglass": return S3.create_shattered_hourglass("")
 
 		# =====================================================================
 		# Story 3 - Act II expansion
@@ -226,6 +229,7 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Riptide Beast": return S3A2.create_riptide_beast("")
 		"Depth Crawler": return S3A2.create_depth_crawler("")
 		"Fragment Golem": return S3A2.create_fragment_golem("")
+		"Portrait Wight": return S3A2.create_portrait_wight("")
 		"Gallery Shade": return S3A2.create_gallery_shade("")
 		"Shadow Pursuer": return S3A2.create_shadow_pursuer("")
 		"Dread Tendril": return S3A2.create_dread_tendril("")

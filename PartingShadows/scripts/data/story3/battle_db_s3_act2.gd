@@ -84,7 +84,7 @@ static func s3_dream_shattered_gallery() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_shattered_gallery.png"
 	b.enemies = [
 		EnemyDB.create_fragment_golem("Dream Husk"),
-		EnemyDB.create_memory_wisp("Stolen Moment"),
+		EnemyDB.create_portrait_wight("Faded Dreamer"),
 		EnemyDB.create_gallery_shade("Frame Shadow"),
 	]
 	b.pre_battle_text = [

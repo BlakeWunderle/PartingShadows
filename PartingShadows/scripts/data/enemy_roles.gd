@@ -129,7 +129,6 @@ const _DATA: Dictionary = {
 	# ==========================================================================
 	# Story 2 - Act III
 	# ==========================================================================
-	"Memory Wisp": { "s": [S.DEBUFFER], "d": D.MAGICAL },
 	"Echo Sentinel": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER] },
 	"Thought Eater": { "s": [S.DRAIN, S.EVASION], "d": D.MAGICAL },
 	"Grief Shade": { "s": [S.AOE], "d": D.MAGICAL },
@@ -199,6 +198,9 @@ const _DATA: Dictionary = {
 	"Dusk Sentinel": { "s": [S.AOE, S.CRIT] },
 	"Clock Specter": { "s": [S.AOE, S.CRIT], "d": D.MIXED },
 	"The Nightmare": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MIXED, "t": T.BOSS },
+	"Nightmare Guard": { "s": [S.GLASS_CANNON, S.AOE] },
+	"Void Echo": { "s": [S.GLASS_CANNON, S.AOE], "d": D.MAGICAL },
+	"Shattered Hourglass": { "s": [S.DOT, S.DRAIN], "d": D.MAGICAL },
 
 	# ==========================================================================
 	# Story 3 - Act II expansion
@@ -210,12 +212,13 @@ const _DATA: Dictionary = {
 	"Riptide Beast": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.CRIT] },
 	"Depth Crawler": { "s": [S.DOT], "d": D.MIXED },
 	"Fragment Golem": { "r": [R.TANK, R.FIGHTER], "s": [S.CRIT] },
+	"Portrait Wight": { "r": [R.SUPPORT, R.TANK], "s": [S.BUFFER], "d": D.MAGICAL },
 	"Gallery Shade": { "s": [S.DEBUFFER, S.CRIT] },
 	"Shadow Pursuer": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER, S.AOE, S.CRIT] },
 	"Dread Tendril": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Faded Voice": { "s": [S.DEBUFFER, S.AOE, S.CRIT] },
 	"Market Watcher": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.CRIT], "t": T.ELITE },
-	"Thread Smith": { "s": [S.CRIT] },
+	"Thread Smith": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER] },
 	"Hex Herbalist": { "s": [S.DOT, S.EVASION], "d": D.MAGICAL },
 	"Cellar Watcher": { "s": [S.DEBUFFER, S.CRIT], "d": D.MIXED },
 	"Thread Construct": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.CRIT] },

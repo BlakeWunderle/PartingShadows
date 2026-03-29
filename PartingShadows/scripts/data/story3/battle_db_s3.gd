@@ -208,7 +208,7 @@ static func s3_dream_clock_tower() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_clock_tower.png"
 	b.enemies = [
 		EnemyDB.create_clock_specter("Frozen Hand"),
-		EnemyDB.create_clock_specter("Still Pendulum"),
+		EnemyDB.create_shattered_hourglass("Broken Glass"),
 		EnemyDB.create_dusk_sentinel("Twilight Warden"),
 	]
 	b.pre_battle_text = [

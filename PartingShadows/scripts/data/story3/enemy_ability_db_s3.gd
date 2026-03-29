@@ -129,6 +129,14 @@ static func dusk_toll() -> AbilityData:
 static func sentinel_stasis() -> AbilityData:
 	return _make("Sentinel Slam", "The sentinel crashes forward with the full force of dusk behind it.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
+# --- Shattered Hourglass ---
+
+static func grain_siphon() -> AbilityData:
+	return _make("Grain Siphon", "Suspended sand streams toward the target, pulling stolen seconds from their veins.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.2)
+
+static func eroding_sand() -> AbilityData:
+	return _make("Eroding Sand", "Fine grains work beneath armor and skin, grinding away vitality grain by grain.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 4, 0.0)
+
 # --- Hollow Echo ---
 
 static func echo_drain() -> AbilityData:

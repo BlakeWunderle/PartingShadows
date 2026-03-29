@@ -301,7 +301,7 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS3Act2.create_depth_crawler("Thread Dredger")]
 		"S3_DreamShatteredGallery":
 			return [EnemyDBS3Act2.create_fragment_golem("Dream Husk"),
-				EnemyDBS3Act2.create_memory_wisp("Stolen Moment"),
+				EnemyDBS3Act2.create_portrait_wight("Faded Dreamer"),
 				EnemyDBS3Act2.create_gallery_shade("Frame Shadow")]
 		"S3_DreamShadowChase":
 			return [EnemyDBS3Act2.create_shadow_pursuer("The Hunter"),
@@ -321,7 +321,7 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS3.create_somnolent_serpent("Coilshadow")]
 		"S3_DreamClockTower":
 			return [EnemyDBS3.create_clock_specter("Frozen Hand"),
-				EnemyDBS3.create_clock_specter("Still Pendulum"),
+				EnemyDBS3.create_shattered_hourglass("Broken Glass"),
 				EnemyDBS3.create_dusk_sentinel("Twilight Warden")]
 		"S3_DreamNightmare":
 			return [EnemyDBS3.create_the_nightmare("The Nightmare"),
