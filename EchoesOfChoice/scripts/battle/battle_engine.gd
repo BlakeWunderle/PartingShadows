@@ -698,15 +698,15 @@ func _stat_relevance(fighter: FighterData, stat: Enums.StatType,
 			return float(fighter.physical_attack + fighter.magic_attack)
 		Enums.StatType.PHYSICAL_DEFENSE:
 			if is_buff:
-				return 1.0 - float(fighter.health) / float(fighter.max_health)
+				return 1.0 / float(maxi(fighter.physical_defense, 1))
 			return float(fighter.physical_defense)
 		Enums.StatType.MAGIC_DEFENSE:
 			if is_buff:
-				return 1.0 - float(fighter.health) / float(fighter.max_health)
+				return 1.0 / float(maxi(fighter.magic_defense, 1))
 			return float(fighter.magic_defense)
 		Enums.StatType.DEFENSE:
 			if is_buff:
-				return 1.0 - float(fighter.health) / float(fighter.max_health)
+				return 1.0 / float(maxi(fighter.physical_defense + fighter.magic_defense, 1))
 			return float(fighter.physical_defense + fighter.magic_defense)
 		Enums.StatType.ATTACK:
 			return float(fighter.physical_attack + fighter.magic_attack)
@@ -714,6 +714,10 @@ func _stat_relevance(fighter: FighterData, stat: Enums.StatType,
 			if is_buff:
 				return 100.0 / float(maxi(fighter.speed, 1))
 			return float(fighter.speed)
+		Enums.StatType.DODGE_CHANCE:
+			if is_buff:
+				return 1.0 / float(maxi(fighter.dodge_chance, 1))
+			return float(fighter.dodge_chance)
 		_:
 			return float(fighter.physical_attack + fighter.magic_attack)
 

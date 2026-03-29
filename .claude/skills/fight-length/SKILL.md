@@ -72,6 +72,9 @@ For each stage, extract:
 - `turn_stats.avg_all_actions`
 - `turn_stats.min_all_actions`
 - `turn_stats.max_all_actions`
+- `turn_stats.stalemate_count` (0 if missing)
+- `turn_stats.stalemate_rate` (0.0 if missing)
+- `turn_stats._total_battle_count` (for computing rate if needed)
 - Whether the stage name is in BOSS_BATTLES
 
 Sort by `avg_all_actions` descending.
@@ -90,9 +93,9 @@ Any regular battle exceeding **two or more** thresholds is a priority fix.
 ### Boss Battles (should be LONGER than regular)
 | Metric | Too Short | Healthy | Slog |
 |--------|-----------|---------|------|
-| `avg_all_actions` | < 60 | 60–150 | > 150 |
-| `max_all_actions` | < 100 | 100–400 | > 400 |
-| `avg_player_per_char` | < 8 | 8–18 | > 22 |
+| `avg_all_actions` | < 60 | 60–200 | > 200 |
+| `max_all_actions` | < 100 | 100–800 | > 800 |
+| `avg_player_per_char` | < 8 | 8–22 | > 22 |
 
 A boss fight is **too short** if avg_all_actions < 60 OR avg_player_per_char < 8.
 
@@ -100,41 +103,65 @@ High `max_all_actions` with moderate `avg_all_actions` means the fight is fine m
 the time but has catastrophic outlier runs — usually caused by a specific class combo
 that can't deal enough damage to close out.
 
+### Stalemate-Aware Slog Assessment
+
+A slog flag alone does not mean the battle needs fixing. Check the **stalemate rate**:
+
+- **stalemate_rate < 3%**: The slog outliers are caused by weak class combos that
+  can't close out. This is acceptable — the fight is fine for most parties. Flag as
+  `<<< SLOG (stalemate X.XX%)` to show the rate, but do NOT count it as a problem
+  in the summary.
+- **stalemate_rate >= 3%**: Too many parties are stalling out. The battle likely has
+  a fundamental sustain/defense problem that needs tuning. Flag as `<<< SLOG FIX`
+  and count it as a problem.
+- **No stalemate data**: If `stalemate_count` is missing or 0 and `_total_battle_count`
+  is also missing, the battle was simmed before stalemate tracking was added. Flag
+  normally as `<<< SLOG` and note "(no stalemate data)" in the summary.
+
 ## Output Format
 
 Print a table sorted by `avg_all_actions` descending:
 
 ```
-Battle                                          S  Tier    AvgPly/Char  AvgAll  MinAll  MaxAll
-----------------------------------------------------------------------------------------------
-ArmyBattle                                      1  tier1         22.28  129.07      41    1284  <<< SLOG
+Battle                                          S  Tier    AvgPly/Char  AvgAll  MinAll  MaxAll  Stale%
+-------------------------------------------------------------------------------------------------------
+CircusBattle                                    1  tier1         15.30   90.80      18     978   1.35%  <<< SLOG (1.35%)
+CorruptedWildsBattle                            1  tier2         19.25  114.01      31     585          <<< SLOG (no data)
 StrangerFinalBattle [BOSS]                      1  tier2         11.42   78.31      32     312
-S3_DreamShadowChase [BOSS]                      3  tier1          4.21   31.18      12      89  <<< SHORT
+S3_DreamShadowChase [BOSS]                      3  tier1          4.21   31.18      12      89          <<< SHORT
 ...
 ```
 
 Flag each row:
-- `<<< SLOG` — max > 400 (any battle, unless in EXCLUDED_BATTLES)
+- `<<< SLOG (X.XX%)` — max > 400 (regular) or > 800 (boss), stalemate rate < 3%. Acceptable; weak-combo noise.
+- `<<< SLOG FIX` — max > 400 (regular) or > 800 (boss), stalemate rate >= 3%. Needs tuning.
+- `<<< SLOG (no data)` — max over threshold but no stalemate data available. Needs re-sim with stalemate tracking.
 - `<<  long` — max 200–400 (regular battles only, unless in EXCLUDED_BATTLES)
 - `<<< SHORT` — boss fight where avg_all_actions < 60 or avg_player_per_char < 8 (unless in ACCEPTED_SHORT_BOSSES)
 - `[BOSS]` — label appended to battle name for boss battles
 - `[EXCLUDED]` — replaces slog/long flags for battles in EXCLUDED_BATTLES
 - `[OK SHORT]` — replaces SHORT flag for bosses in ACCEPTED_SHORT_BOSSES
 
+Show the `Stale%` column for all rows. Display the stalemate_rate as a percentage.
+If no stalemate data exists (missing key or `_total_battle_count` is 0/missing), show blank.
+
 After the table, print a summary:
 
 ```
 FIGHT LENGTH SUMMARY
   Regular battles: N total
-    Slogs (max > 400):      N  [list names]
-    Excluded:               N  [list names]
-    Elevated (max 200-400): N  [list names]
-    Healthy:                N
+    Slogs needing fix (>=3% stalemate): N  [list names]
+    Slogs acceptable (<3% stalemate):   N  [list names]
+    Slogs no data (need re-sim):        N  [list names]
+    Excluded:                           N  [list names]
+    Elevated (max 200-400):             N  [list names]
+    Healthy:                            N
   Boss battles: N total
     Too short (avg < 60):   N  [list names]
     Accepted short:         N  [list names]
     Healthy:                N
-    Slogs (max > 400):      N  [list names]
+    Slogs needing fix:      N  [list names]
+    Slogs acceptable:       N  [list names]
 ```
 
 ## Notes on Interpreting After a Class Rework
