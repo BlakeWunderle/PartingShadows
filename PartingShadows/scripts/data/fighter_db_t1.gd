@@ -104,7 +104,7 @@ static func _lu_acolyte(f: FighterData) -> void:
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(1, 2)
-	f.magic_attack += randi_range(2, 3); f.magic_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(3, 4); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 1)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -126,14 +126,14 @@ static func upgrade_to_dervish(f: FighterData) -> void:
 	f.class_id = "Dervish"; f.character_type = "Dervish"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 1; f.magic_defense += 2
-	f.speed += 4; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 2
+	f.speed += 3; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 2
 	f.abilities = [PAB.mesmerize(), PAB.dance(), PAB.whirling_step()]
 	f.upgrade_items = ["Light", "Paint"]
 
 static func upgrade_to_orator(f: FighterData) -> void:
 	f.class_id = "Orator"; f.character_type = "Orator"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 3; f.magic_defense += 3
+	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 4; f.magic_defense += 3
 	f.speed += 1; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
 	f.abilities = [PAB.oration(), PAB.encourage(), PAB.rebuke()]
 	f.upgrade_items = ["Medal", "Pen"]
