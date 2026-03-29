@@ -10,8 +10,11 @@ const SRep := preload("res://scripts/tools/sim_report.gd")
 const SC := preload("res://scripts/tools/sim_cache.gd")
 const SP := preload("res://scripts/tools/sim_progressive.gd")
 const SD := preload("res://scripts/tools/sim_diagnostics.gd")
+const SRepMD := preload("res://scripts/tools/sim_report_markdown.gd")
 
 var _json_path := ""
+var _markdown_path := ""
+var _from_json_path := ""
 var _use_cache := true
 var _diagnostics := false
 var _compact := false
@@ -95,6 +98,14 @@ func _init() -> void:
 				if i + 1 < args.size():
 					_json_path = args[i + 1]
 					i += 1
+			"--markdown":
+				if i + 1 < args.size():
+					_markdown_path = args[i + 1]
+					i += 1
+			"--from-json":
+				if i + 1 < args.size():
+					_from_json_path = args[i + 1]
+					i += 1
 			"--worker":
 				if i + 1 < args.size():
 					var parts := args[i + 1].split("/")
@@ -144,6 +155,15 @@ func _init() -> void:
 				if not args[i].begins_with("--"):
 					stage_name = args[i]
 		i += 1
+
+	# Convert existing JSON to markdown without simulating.
+	if _from_json_path != "":
+		if _markdown_path == "":
+			print("ERROR: --from-json requires --markdown <path>")
+		else:
+			_generate_from_json()
+		quit()
+		return
 
 	if story_filter > 0:
 		stages = stages.filter(
@@ -233,8 +253,8 @@ func _init() -> void:
 		if not _worker_mode:
 			_print_help()
 
-	if _json_path != "" and not _all_results.is_empty():
-		_write_json_report()
+	if not _all_results.is_empty():
+		_write_reports(auto_sims)
 
 	SC.save()
 	quit()
@@ -367,26 +387,45 @@ func _run_stages(stages: Array, sims_per_combo: int,
 			print("\n  Total time: %.1fs" % elapsed)
 
 
-func _write_json_report() -> void:
+func _write_reports(auto: bool) -> void:
 	if _combo_worker_mode:
 		## Write raw simulate_stage() results tagged with worker identity.
 		## The coordinator merges these partial_stages and calls build_entry() itself.
-		var raw := []
-		for idx in _all_results.size():
-			var entry: Dictionary = _all_results[idx].duplicate()
-			entry["combo_worker_index"] = _combo_worker_index
-			entry["combo_worker_count"] = _combo_worker_count
-			raw.append(entry)
-		var json_str := JSON.stringify({"partial_stages": raw}, "\t")
-		var file := FileAccess.open(_json_path, FileAccess.WRITE)
-		if file:
-			file.store_string(json_str)
-			file.close()
-	else:
-		var report := []
-		for idx in _all_results.size():
-			report.append(SRep.build_entry(_all_results[idx], _all_stages[idx]))
-		SRep.write_json(_json_path, report)
+		if _json_path != "":
+			var raw := []
+			for idx in _all_results.size():
+				var entry: Dictionary = _all_results[idx].duplicate()
+				entry["combo_worker_index"] = _combo_worker_index
+				entry["combo_worker_count"] = _combo_worker_count
+				raw.append(entry)
+			var json_str := JSON.stringify({"partial_stages": raw}, "\t")
+			var file := FileAccess.open(_json_path, FileAccess.WRITE)
+			if file:
+				file.store_string(json_str)
+				file.close()
+		return
+	var entries := []
+	for idx in _all_results.size():
+		entries.append(SRep.build_entry(_all_results[idx], _all_stages[idx]))
+	if _json_path != "":
+		SRep.write_json(_json_path, entries)
+	if _markdown_path != "":
+		SRepMD.write_markdown(_markdown_path, entries,
+			"full" if auto else "quick")
+
+
+func _generate_from_json() -> void:
+	var file := FileAccess.open(_from_json_path, FileAccess.READ)
+	if file == null:
+		print("ERROR: Could not read: %s" % _from_json_path)
+		return
+	var json := JSON.new()
+	if json.parse(file.get_as_text()) != OK or not json.data is Dictionary:
+		print("ERROR: Invalid JSON in: %s" % _from_json_path)
+		return
+	file.close()
+	SRepMD.write_markdown(
+		_markdown_path, json.data.get("stages", []), "cached")
 
 
 func _print_stage_list(stages: Array) -> void:
@@ -413,6 +452,8 @@ func _print_help() -> void:
 	print("  --all                Run all battles")
 	print("  --battles <a,b,...>   Run specific battles (comma-separated names)")
 	print("  --json <path>        Write structured JSON report to file")
+	print("  --markdown <path>    Write markdown class balance report to file")
+	print("  --from-json <path>   Read existing JSON, convert to markdown (requires --markdown)")
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
 	print("  --combo-worker <N/M> Combo-worker mode: run 1/M of party combos per stage (used by parallel coordinator)")
 	print("  --compact            Minimal output (1 line/PASS, details to file)")

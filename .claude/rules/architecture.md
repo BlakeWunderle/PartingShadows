@@ -145,7 +145,8 @@ All paths below are relative to `EchoesOfChoice/`.
 - `scripts/tools/sim_cache.gd` -- Simulation result caching with file-hash invalidation
 - `scripts/tools/sim_diagnostics.gd` -- Per-class offense/defense diagnostics for weak classes
 - `scripts/tools/sim_progressive.gd` -- Progressive stage validation for simulation
-- `scripts/tools/sim_report.gd` -- JSON/markdown report generation for simulation results
+- `scripts/tools/sim_report.gd` -- JSON/text report generation for simulation results
+- `scripts/tools/sim_report_markdown.gd` -- Markdown class balance report generator (tier tables, outliers, boss section)
 - `tools/battle_simulator.gd` -- Headless battle simulator entry point
 - `tools/battle_sim_parallel.gd` -- Parallel worker coordinator for batch simulation
 

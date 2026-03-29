@@ -18,6 +18,7 @@ const SC := preload("res://scripts/tools/sim_cache.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const SRep := preload("res://scripts/tools/sim_report.gd")
 const SD := preload("res://scripts/tools/sim_diagnostics.gd")
+const SRepMD := preload("res://scripts/tools/sim_report_markdown.gd")
 
 const DEFAULT_STAGGER_MS: int = 2000             ## fallback delay if sentinel not received
 const DEFAULT_TIMEOUT_SECONDS: int = 300         ## baseline timeout
@@ -27,6 +28,8 @@ const PROGRESS_DOT_INTERVAL_MS: int = 5000
 const IMPORT_SENTINEL_TIMEOUT_MS: int = 90000    ## max ms to wait for a worker import sentinel
 
 var _json_path := ""
+var _markdown_path := ""
+var _sim_mode := "quick"
 var _progressive := false
 var _from_prog := 0
 var _compact := false
@@ -62,6 +65,10 @@ func _init() -> void:
 				if i + 1 < args.size():
 					_json_path = args[i + 1]
 					i += 1
+			"--markdown":
+				if i + 1 < args.size():
+					_markdown_path = args[i + 1]
+					i += 1
 			"--progressive":
 				_progressive = true
 			"--compact":
@@ -79,6 +86,9 @@ func _init() -> void:
 					i += 1
 					passthrough.append(args[i])
 		i += 1
+
+	if "--auto" in passthrough:
+		_sim_mode = "full"
 
 	jobs = clampi(jobs, 1, 32)
 
@@ -199,7 +209,7 @@ func _init() -> void:
 				# build_entry pre-computes diagnostics — use it directly.
 				SD.print_diagnostics(s.get("diagnostics", []), s.stage_name)
 
-	_write_json(all_stages)
+	_write_outputs(all_stages)
 	quit()
 
 
@@ -321,7 +331,7 @@ func _run_progressive(jobs: int, passthrough: Array[String],
 
 	var elapsed := (Time.get_ticks_msec() - grand_sw) / 1000.0
 	_print_progressive_summary(all_stages, elapsed)
-	_write_json(all_stages)
+	_write_outputs(all_stages)
 	quit()
 
 
@@ -570,6 +580,40 @@ func _merge_partial_results(partials: Array) -> Dictionary:
 			else:
 				for key: String in ["dmg_dealt", "dmg_taken", "heals", "deaths", "battles"]:
 					merged.class_diag[cls][key] += partial.class_diag[cls].get(key, 0)
+	## Merge turn_stats from all partials.
+	var ts_all_sum := 0
+	var ts_player_sum := 0
+	var ts_battle_count := 0
+	var ts_stalemate_count := 0
+	var ts_min := 999999
+	var ts_max := 0
+	var ts_party_size := 3
+	for partial: Dictionary in partials:
+		var ts: Dictionary = partial.get("turn_stats", {})
+		ts_all_sum += int(ts.get("_total_all_actions", 0))
+		ts_player_sum += int(ts.get("_total_player_actions", 0))
+		ts_battle_count += int(ts.get("_total_battle_count", 0))
+		ts_stalemate_count += int(ts.get("stalemate_count", 0))
+		var pmin: int = int(ts.get("min_all_actions", 999999))
+		var pmax: int = int(ts.get("max_all_actions", 0))
+		if pmin < ts_min:
+			ts_min = pmin
+		if pmax > ts_max:
+			ts_max = pmax
+		ts_party_size = int(ts.get("_party_size", 3))
+	merged["turn_stats"] = {
+		"avg_player_per_char": float(ts_player_sum) / (ts_party_size * ts_battle_count) if ts_battle_count > 0 else 0.0,
+		"avg_all_actions": float(ts_all_sum) / ts_battle_count if ts_battle_count > 0 else 0.0,
+		"min_all_actions": ts_min if ts_battle_count > 0 else 0,
+		"max_all_actions": ts_max if ts_battle_count > 0 else 0,
+		"stalemate_rate": float(ts_stalemate_count) / ts_battle_count if ts_battle_count > 0 else 0.0,
+		"stalemate_count": ts_stalemate_count,
+		"_total_all_actions": ts_all_sum,
+		"_total_player_actions": ts_player_sum,
+		"_total_battle_count": ts_battle_count,
+		"_party_size": ts_party_size,
+	}
+
 	## Recalculate overall_win_rate as average of combo win_rates (matches simulate_stage).
 	var total_wr := 0.0
 	for combo: Dictionary in merged.combo_results:
@@ -600,29 +644,34 @@ func _print_progressive_summary(all_stages: Array, elapsed: float) -> void:
 	print("\n  Passed: %d/%d" % [pass_count, all_stages.size()])
 
 
-func _write_json(all_stages: Array) -> void:
-	if _json_path == "" or all_stages.is_empty():
+func _write_outputs(all_stages: Array) -> void:
+	if all_stages.is_empty():
 		return
-	# Merge with existing JSON: keep old stages, replace matching stage_names
-	var new_names := {}
-	for s in all_stages:
-		new_names[s.stage_name] = true
-	var existing_file := FileAccess.open(_json_path, FileAccess.READ)
-	if existing_file:
-		var json := JSON.new()
-		if json.parse(existing_file.get_as_text()) == OK and json.data is Dictionary:
-			var old_stages: Array = json.data.get("stages", [])
-			for old_s in old_stages:
-				if old_s is Dictionary and not new_names.has(old_s.get("stage_name", "")):
-					all_stages.append(old_s)
-		existing_file.close()
-	all_stages.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		return a.get("stage_name", "") < b.get("stage_name", ""))
-	var json_str := JSON.stringify({"stages": all_stages}, "\t")
-	var out_file := FileAccess.open(_json_path, FileAccess.WRITE)
-	if out_file:
-		out_file.store_string(json_str)
-		out_file.close()
-		print("\n  JSON report written to: %s" % _json_path)
-	else:
-		print("\n  ERROR: Could not write JSON report to: %s" % _json_path)
+	if _json_path != "":
+		# Merge with existing JSON: keep old stages, replace matching stage_names
+		var new_names := {}
+		for s in all_stages:
+			new_names[s.stage_name] = true
+		var existing_file := FileAccess.open(_json_path, FileAccess.READ)
+		if existing_file:
+			var json := JSON.new()
+			if json.parse(existing_file.get_as_text()) == OK \
+					and json.data is Dictionary:
+				var old_stages: Array = json.data.get("stages", [])
+				for old_s in old_stages:
+					if old_s is Dictionary \
+							and not new_names.has(old_s.get("stage_name", "")):
+						all_stages.append(old_s)
+			existing_file.close()
+		all_stages.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+			return a.get("stage_name", "") < b.get("stage_name", ""))
+		var json_str := JSON.stringify({"stages": all_stages}, "\t")
+		var out_file := FileAccess.open(_json_path, FileAccess.WRITE)
+		if out_file:
+			out_file.store_string(json_str)
+			out_file.close()
+			print("\n  JSON report written to: %s" % _json_path)
+		else:
+			print("\n  ERROR: Could not write JSON report to: %s" % _json_path)
+	if _markdown_path != "":
+		SRepMD.write_markdown(_markdown_path, all_stages, _sim_mode)
