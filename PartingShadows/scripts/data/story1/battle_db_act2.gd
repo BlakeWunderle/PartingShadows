@@ -46,7 +46,7 @@ static func deep_forest_battle() -> BattleData:
 		EnemyDB.create_sprite("Briar"),
 	]
 	b.pre_battle_text = [
-		"Pushing north, the forest grows denser. The trees here are older, thick-rooted and close-set, their canopy blocking out most of the sky. The path narrows to barely a trail.",
+		"Pushing deeper, the forest grows denser. The trees here are older, thick-rooted and close-set, their canopy blocking out most of the sky. The path narrows to barely a trail.",
 		"Everyone walks up on a circle of sticks, stones, and mud. Everything around them begins to shake and levitate.",
 		"The sticks catch fire and a strike of lightning flashes across the sky.",
 		"A cackle and two screeches fill the air as the adventurers prepare for battle.",
@@ -188,11 +188,11 @@ static func wilderness_outpost() -> BattleData:
 	# Variant text based on which branch the player came from
 	match prev:
 		"MountainPassBattle":
-			b.pre_battle_text.append("'South of here there's a military encampment. Big one. They showed up right when the fog did. East, the fog is thickest. There's a path through the hills that smells of old earth and something worse.'")
+			b.pre_battle_text.append("'Past the ridge there's a military encampment. Big one. They showed up right when the fog did. Further on, the fog is thickest. There's a path through the hills that smells of old earth and something worse.'")
 		"CaveBattle":
-			b.pre_battle_text.append("'East of here I keep hearing music and laughter through the trees. No one's set up any kind of camp out there. West, a building with lights that shouldn't be there. Neither one was here a month ago.'")
+			b.pre_battle_text.append("'Out that way I keep hearing music and laughter through the trees. No one's set up any kind of camp out there. Further on, a building with lights that shouldn't be there. Neither one was here a month ago.'")
 		"BeachBattle":
-			b.pre_battle_text.append("'Inland to the north the music's been getting louder. Something drawing people in. South the fog is thickest. There's a path through the hills that smells like old earth and something worse.'")
+			b.pre_battle_text.append("'Inland the music's been getting louder. Something drawing people in. Further on, the fog is thickest. There's a path through the hills that smells like old earth and something worse.'")
 	b.post_battle_text = [
 		"He looks toward the city in the distance. 'Whatever's happening, it's not starting out here. It's starting there. You're all just catching the edges of it.'",
 		"'City's that way. Whatever you find out here, if you make it back, make it count.'",
@@ -236,9 +236,9 @@ static func circus_battle() -> BattleData:
 	var intro: String
 	match prev:
 		"BeachBattle":
-			intro = "The trail leads north from the coast, winding through rolling hills with the sound of distant music growing louder. It seems peaceful enough until everyone suddenly hits something. An invisible wall."
+			intro = "The trail leads inland from the coast, winding through rolling hills with the sound of distant music growing louder. It seems peaceful enough until everyone suddenly hits something. An invisible wall."
 		"CaveBattle":
-			intro = "The path east from the cave threads through wooded hills. Quiet, unremarkable terrain, until everyone suddenly hits something. An invisible wall."
+			intro = "The path from the cave threads through wooded hills. Quiet, unremarkable terrain, until everyone suddenly hits something. An invisible wall."
 		_:
 			intro = "Following the sound of music through the trees, the party pushes deeper into unfamiliar territory. The laughter grows louder, until everyone suddenly hits something. An invisible wall."
 	b.pre_battle_text = [
@@ -268,9 +268,8 @@ static func lab_battle() -> BattleData:
 		EnemyDB.create_machinist("Ananiah"),
 		EnemyDB.create_ironclad("Acrid"),
 	]
-	var direction: String = "west" if GameState.previous_battle_id == "CaveBattle" else "north-east"
 	b.pre_battle_text = [
-		"Heading %s, the air changes. There's a faint charge to it, a prickling on the skin and a taste like iron. Not magic. Something else." % direction,
+		"Leaving the cave behind, the air changes. There's a faint charge to it, a prickling on the skin and a taste like iron. Not magic. Something else.",
 		"A large structure rises from the landscape, all clean angles and dark windows. No signs, no torches. Whatever it runs on, it isn't fire.",
 		"Inside, the hum is louder. Banks of machinery line the walls. On a central table, something large lies covered by a cloth, something roughly human-shaped.",
 		"The cloth drops on its own. A laser beam punches through the air and the party dives clear.",
@@ -297,7 +296,7 @@ static func army_battle() -> BattleData:
 		EnemyDB.create_chaplain("Cristole"),
 	]
 	b.pre_battle_text = [
-		"Heading south, the landscape opens up into a wide plain. It should be empty. It isn't.",
+		"Descending from the mountain pass, the landscape opens up into a wide plain. It should be empty. It isn't.",
 		"Rows of canvas tents stretch out ahead, fires burning in careful formation. A booming voice cuts through the air, barking orders. This is no bandit camp. It's a regiment, moving with discipline.",
 		"The scouts spot the party before they can pull back. A commander's voice rings out and the regiment wheels toward them.",
 	]
@@ -326,8 +325,15 @@ static func cemetery_battle() -> BattleData:
 		EnemyDB.create_ghoul("Rave--"),
 		EnemyDB.create_zombie("Dredg--"),
 	]
+	var prev: String = GameState.previous_battle_id
+	var intro: String
+	match prev:
+		"BeachBattle":
+			intro = "Leaving the coast behind, the party follows the fog-covered path into the mist."
+		_:
+			intro = "The path winds into rolling hills, fog thickening with every step."
 	b.pre_battle_text = [
-		"Leaving the coast behind, the party follows the fog-covered path to the south.",
+		intro,
 		"The mist thickens with every step until the adventurers can barely see each other.",
 		"When it finally thins they find themselves standing in a cemetery. The air smells of damp earth and something old.",
 		"Two graves have some writing on them and they read Mort-- and Rave--.",

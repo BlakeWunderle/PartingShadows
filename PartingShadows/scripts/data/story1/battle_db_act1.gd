@@ -56,7 +56,7 @@ static func wolf_forest_battle() -> BattleData:
 		"Inside the abandoned house the party finds the sigil they noticed earlier, a circle with a single slash through it, carved into the lid of a wooden chest.",
 		"The wood around it is still warm to the touch, as though someone traced it minutes ago.",
 		"The stranger glances at it but says nothing. If they recognize it, they aren't sharing.",
-		"The road continues north. According to the stranger, a waypoint inn lies not far ahead.",
+		"The road continues ahead. According to the stranger, a waypoint inn lies not far ahead.",
 	]
 	b.next_battle_id = "WaypointDefenseBattle"
 	b.music_track = "res://assets/audio/music/battle/Duel Drums Only LOOP.wav"
@@ -104,15 +104,15 @@ static func forest_waypoint() -> BattleData:
 	]
 	b.post_battle_text = [
 		"The innkeeper leans on the counter. 'Three roads lead out from here. None of them are safe.'",
-		"'West, the highlands. Raiders and worse up in those rocks.'",
-		"'North, the old growth forest. Witch work. Circles of stones and sticks. The trees don't feel right.'",
-		"'East, the rocky shore. The singing from the water isn't safe. Never was.'",
+		"'The highlands. Raiders and worse up in those rocks.'",
+		"'The old growth forest. Witch work. Circles of stones and sticks. The trees don't feel right.'",
+		"'The rocky shore. The singing from the water isn't safe. Never was.'",
 		"She refills her cup. 'A stranger passed through last week. Paid in gold that turned out to be blank on one side. Said the source of it all was out here somewhere.'",
 	]
 	b.choices = [
-		{"label": "West: The trail climbs into wind-battered highlands.", "battle_id": "HighlandBattle"},
-		{"label": "North: The trees grow older and darker.", "battle_id": "DeepForestBattle"},
-		{"label": "East: Salt in the air and the sound of surf.", "battle_id": "ShoreBattle"},
+		{"label": "Highlands: The trail climbs into wind-battered highlands.", "battle_id": "HighlandBattle"},
+		{"label": "Forest: The trees grow older and darker.", "battle_id": "DeepForestBattle"},
+		{"label": "Shore: Salt in the air and the sound of surf.", "battle_id": "ShoreBattle"},
 	]
 	b.music_track = "res://assets/audio/music/town/Medieval Celtic 01(L).wav"
 	return b
