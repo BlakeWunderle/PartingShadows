@@ -96,8 +96,8 @@ static func _lu_mime(f: FighterData) -> void:
 
 static func upgrade_to_laureate(f: FighterData) -> void:
 	f.class_id = "Laureate"; f.character_type = "Laureate"
-	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 5
+	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 12; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.ovation(), PAB.recite(), PAB.standing_ovation()]
 	f.upgrade_items = []
@@ -146,8 +146,8 @@ static func upgrade_to_alchemist(f: FighterData) -> void:
 static func upgrade_to_bombardier(f: FighterData) -> void:
 	f.class_id = "Bombardier"; f.character_type = "Bombardier"
 	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 8; f.magic_defense += 3
-	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
+	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 14; f.magic_defense += 3
+	f.speed += 3; f.crit_chance += 7; f.crit_damage += 5; f.dodge_chance += 2
 	f.abilities = [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.demolition_charge()]
 	f.upgrade_items = []
 

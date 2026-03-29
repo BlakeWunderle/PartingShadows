@@ -22,8 +22,8 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
-	f.health += 8; f.max_health += 8; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 12; f.physical_defense += 2; f.magic_attack += 6; f.magic_defense += 4
+	f.health += 15; f.max_health += 15; f.mana += 3; f.max_mana += 3
+	f.physical_attack += 12; f.physical_defense += 6; f.magic_attack += 6; f.magic_defense += 7
 	f.speed += 2; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_dive()]
 	f.upgrade_items = []

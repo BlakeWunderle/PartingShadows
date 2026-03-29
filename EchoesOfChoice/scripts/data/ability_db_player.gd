@@ -80,7 +80,7 @@ static func jump() -> AbilityData:
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
-		Enums.StatType.MIXED_ATTACK, 14, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 17, 0, true, 4, false, 0, 0.0)
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
@@ -358,15 +358,15 @@ static func invisible_box() -> AbilityData:
 # Laureate
 static func ovation() -> AbilityData:
 	return _make("Ovation", "A masterful speech that empowers all allies.",
-		Enums.StatType.ATTACK, 6, 2, false, 3, true, 0, 0.0)
+		Enums.StatType.ATTACK, 10, 3, false, 3, true, 0, 0.0)
 
 static func recite() -> AbilityData:
 	return _make("Recite", "Words of power that wound.",
-		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func standing_ovation() -> AbilityData:
 	return _make("Standing Ovation", "The audience erupts. All allies feel invincible.",
-		Enums.StatType.DEFENSE, 4, 2, false, 4, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 8, 3, false, 4, true, 0, 0.0)
 
 # Elegist
 static func requiem() -> AbilityData:

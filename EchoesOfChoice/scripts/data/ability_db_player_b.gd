@@ -81,15 +81,15 @@ static func elixir() -> AbilityData:
 # Bombardier
 static func cluster_bomb() -> AbilityData:
 	return _make("Cluster Bomb", "A salvo of explosive charges scatters across the battlefield.",
-		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 5, true, 0, 0.0)
 
 static func explosion() -> AbilityData:
 	return _make("Explosion", "A massive detonation.",
-		Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func demolition_charge() -> AbilityData:
 	return _make("Demolition Charge", "A shaped charge placed at the weakest point.",
-		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 6, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 22, 0, true, 6, false, 0, 0.0)
 
 # Chronomancer
 static func warp_speed() -> AbilityData:
@@ -206,11 +206,11 @@ static func stampede() -> AbilityData:
 # Blighter
 static func blight() -> AbilityData:
 	return _make("Blight", "Dark natural magic that corrupts.",
-		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.4)
 
 static func plague() -> AbilityData:
 	return _make("Plague", "Corruption spreads to everything it touches.",
-		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 static func poison_sting() -> AbilityData:
 	return _make("Poison Sting", "A venomous barb that festers.",

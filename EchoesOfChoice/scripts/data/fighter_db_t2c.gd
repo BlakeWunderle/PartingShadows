@@ -12,8 +12,8 @@ const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 
 static func upgrade_to_blighter(f: FighterData) -> void:
 	f.class_id = "Blighter"; f.character_type = "Blighter"
-	f.health += 14; f.max_health += 14; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 13; f.magic_defense += 5
+	f.health += 18; f.max_health += 18; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 13; f.magic_defense += 5
 	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.blight(), PAB_B.plague(), PAB_B.poison_sting()]
 	f.upgrade_items = []
@@ -28,7 +28,7 @@ static func upgrade_to_grove_keeper(f: FighterData) -> void:
 
 static func _lu_blighter(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
+	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(6, 8); f.magic_defense += randi_range(4, 5)
@@ -92,9 +92,9 @@ static func _lu_spiritwalker(f: FighterData) -> void:
 
 static func upgrade_to_falconer(f: FighterData) -> void:
 	f.class_id = "Falconer"; f.character_type = "Falconer"
-	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 7; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 5; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 12; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
+	f.speed += 5; f.crit_chance += 5; f.crit_damage += 5; f.dodge_chance += 2
 	f.abilities = [PAB_B.falcon_strike(), PAB_B.rending_talon(), PAB_B.aerial_strike()]
 	f.upgrade_items = []
 
