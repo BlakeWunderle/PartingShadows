@@ -15,7 +15,7 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Driftwood Bandit", lvl)
 	f.health = EH.es(196, 226, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(36, 41, 2, 3, lvl, 5)
+	f.physical_attack = EH.es(35, 40, 2, 3, lvl, 5)
 	f.physical_defense = EH.es(17, 21, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 5)
@@ -35,7 +35,7 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 5)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 5)
-	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 26
+	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.throwing_knife(), EAB.salt_blind()]
 	f.flavor_text = "A quick-handed smuggler who runs contraband through the coastal caves. They fight dirty and never hesitate to blind their foes with salt."
 	return f
@@ -109,7 +109,7 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	var f := EH.base(n, "Blackwater Captain", lvl)
 	f.health = EH.es(360, 411, 6, 9, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = EH.es(57, 65, 3, 5, lvl, 8)
+	f.physical_attack = EH.es(59, 67, 3, 5, lvl, 8)
 	f.physical_defense = EH.es(35, 41, 2, 3, lvl, 8)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(23, 28, 1, 2, lvl, 8)
@@ -141,7 +141,7 @@ static func create_abyssal_lurker(n: String, lvl: int = 9) -> FighterData:
 	f.mana = EH.es(14, 16, 1, 2, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 9)
 	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 9)
-	f.magic_attack = EH.es(55, 62, 3, 5, lvl, 9)
+	f.magic_attack = EH.es(57, 64, 3, 5, lvl, 9)
 	f.magic_defense = EH.es(28, 35, 2, 3, lvl, 9)
 	f.speed = EH.es(25, 32, 1, 3, lvl, 9)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 7
@@ -173,7 +173,7 @@ static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(31, 37, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(73, 82, 4, 6, lvl, 10)
 	f.magic_defense = EH.es(43, 50, 3, 5, lvl, 10)
-	f.speed = EH.es(33, 39, 2, 3, lvl, 10)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 10)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.storm_surge(), EAB.drowning_grasp(), EAB.mist_veil()]
 	f.flavor_text = "The restless spirit of a drowned tidecaller, still commanding the waves in death. Storm and sea answer its hollow voice."
@@ -204,7 +204,7 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "Drowned Sailor", lvl)
 	f.health = EH.es(309, 352, 5, 8, lvl, 9); f.max_health = f.health
 	f.mana = EH.es(10, 12, 1, 2, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = EH.es(44, 52, 2, 3, lvl, 9)
+	f.physical_attack = EH.es(45, 53, 2, 3, lvl, 9)
 	f.physical_defense = EH.es(20, 25, 1, 2, lvl, 9)
 	f.magic_attack = EH.es(48, 55, 2, 4, lvl, 9)
 	f.magic_defense = EH.es(33, 40, 2, 4, lvl, 9)
@@ -221,7 +221,7 @@ static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	f.mana = EH.es(10, 13, 1, 2, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = EH.es(31, 38, 2, 3, lvl, 9)
 	f.physical_defense = EH.es(30, 36, 2, 3, lvl, 9)
-	f.magic_attack = EH.es(56, 64, 3, 5, lvl, 9)
+	f.magic_attack = EH.es(57, 65, 3, 5, lvl, 9)
 	f.magic_defense = EH.es(28, 34, 2, 3, lvl, 9)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 9)
 	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 16

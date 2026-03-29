@@ -17,7 +17,7 @@ static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 	f.mana = EH.es(8, 11, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(9, 12, 0, 2, lvl, 1)
 	f.physical_defense = EH.es(5, 8, 0, 1, lvl, 1)
-	f.magic_attack = EH.es(16, 19, 1, 3, lvl, 1)
+	f.magic_attack = EH.es(15, 18, 1, 3, lvl, 1)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 1)
 	f.speed = EH.es(21, 26, 1, 3, lvl, 1)
 	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 6
@@ -30,7 +30,7 @@ static func create_crystal_spider(n: String, lvl: int = 1) -> FighterData:
 	var f := EH.base(n, "Crystal Spider", lvl)
 	f.health = EH.es(51, 61, 3, 6, lvl, 1); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 1, lvl, 1); f.max_mana = f.mana
-	f.physical_attack = EH.es(16, 19, 1, 3, lvl, 1)
+	f.physical_attack = EH.es(17, 20, 1, 3, lvl, 1)
 	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 1)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 1)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 1)
@@ -83,7 +83,7 @@ static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Spore Stalker", lvl)
 	f.health = EH.es(41, 49, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(15, 18, 1, 3, lvl, 2)
+	f.physical_attack = EH.es(14, 17, 1, 3, lvl, 2)
 	f.physical_defense = EH.es(7, 10, 0, 1, lvl, 2)
 	f.magic_attack = EH.es(11, 15, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 2)
@@ -132,7 +132,7 @@ static func create_cave_eel(n: String, lvl: int = 3) -> FighterData:
 	var f := EH.base(n, "Cave Eel", lvl)
 	f.health = EH.es(41, 49, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(9, 11, 1, 2, lvl, 3); f.max_mana = f.mana
-	f.physical_attack = EH.es(18, 21, 1, 3, lvl, 3)
+	f.physical_attack = EH.es(17, 20, 1, 3, lvl, 3)
 	f.physical_defense = EH.es(6, 9, 0, 1, lvl, 3)
 	f.magic_attack = EH.es(16, 19, 1, 2, lvl, 3)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 3)
@@ -181,7 +181,7 @@ static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 	var f := EH.base(n, "Cave Dweller", lvl)
 	f.health = EH.es(63, 78, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 3); f.max_mana = f.mana
-	f.physical_attack = EH.es(19, 23, 2, 3, lvl, 3)
+	f.physical_attack = EH.es(18, 22, 2, 3, lvl, 3)
 	f.physical_defense = EH.es(12, 16, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 3)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 3)

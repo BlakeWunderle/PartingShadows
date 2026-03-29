@@ -19,7 +19,7 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(43, 52, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(90, 103, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(47, 55, 2, 3, lvl, 13)
-	f.speed = EH.es(41, 47, 2, 3, lvl, 13)
+	f.speed = EH.es(43, 49, 2, 3, lvl, 13)
 	f.crit_chance = 24; f.crit_damage = 4; f.dodge_chance = 15
 	f.abilities = [EAB.scholar_strike(), EAB.forgotten_knowledge(), EAB.archive_ward()]
 	f.flavor_text = "Sera, driven by instincts she cannot name. She guards the archive's deepest secrets with desperate ferocity, unaware of why they matter."
@@ -49,7 +49,7 @@ static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pipeline Warden", lvl)
 	f.health = EH.es(840, 955, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(112, 127, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(114, 129, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(61, 72, 3, 4, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(47, 57, 2, 3, lvl, 14)
@@ -81,7 +81,7 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(22, 26, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(103, 117, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(104, 118, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(53, 63, 2, 4, lvl, 14)
 	f.speed = EH.es(37, 44, 2, 3, lvl, 14)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 14
@@ -98,7 +98,7 @@ static func create_eyes_fist(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Eye's Fist", lvl)
 	f.health = EH.es(798, 907, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(137, 156, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(139, 158, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(65, 76, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
@@ -115,9 +115,9 @@ static func create_null_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(21, 25, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(117, 133, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(119, 135, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(60, 70, 3, 4, lvl, 14)
-	f.speed = EH.es(40, 48, 2, 3, lvl, 14)
+	f.speed = EH.es(42, 50, 2, 3, lvl, 14)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EAB.erasure_beam(), EAB.void_shroud()]
 	f.flavor_text = "A sentinel woven from pure negation. It erases incoming attacks with the same ease it erases minds."
@@ -132,7 +132,7 @@ static func create_overload_spark(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(32, 41, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(69, 78, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(40, 48, 2, 3, lvl, 14)
-	f.speed = EH.es(47, 54, 2, 4, lvl, 14)
+	f.speed = EH.es(49, 56, 2, 4, lvl, 14)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.feedback_arc(), EAB.system_shock()]
 	f.flavor_text = "A crackling entity born from the resonance overload. It arcs between targets, leaving weakened defenses in its wake."

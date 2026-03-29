@@ -55,7 +55,7 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(32, 40, 1, 3, lvl, 15)
-	f.magic_attack = EH.es(110, 126, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(112, 128, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(45, 55, 2, 4, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 15)
 	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 26
@@ -89,7 +89,7 @@ static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 16)
-	f.speed = EH.es(41, 47, 3, 4, lvl, 16)
+	f.speed = EH.es(43, 49, 3, 4, lvl, 16)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
 	f.flavor_text = "A sleek beast bred in the cult's dream kennels, trained to hunt by scent of thought. It is blindingly fast and attacks with savage, coordinated ferocity."
@@ -135,7 +135,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	f.mana = EH.es(22, 25, 2, 3, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 17)
-	f.magic_attack = EH.es(115, 134, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(117, 136, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 17)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 17)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20

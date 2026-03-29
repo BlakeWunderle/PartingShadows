@@ -114,7 +114,7 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Fragment Golem", lvl)
 	f.health = EH.es(265, 304, 4, 7, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(30, 34, 1, 3, lvl, 6)
+	f.physical_attack = EH.es(29, 33, 1, 3, lvl, 6)
 	f.physical_defense = EH.es(18, 22, 1, 3, lvl, 6)
 	f.magic_attack = EH.es(9, 12, 0, 1, lvl, 6)
 	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 6)
@@ -134,7 +134,7 @@ static func create_memory_wisp(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(24, 28, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 6)
 	f.speed = EH.es(34, 39, 1, 3, lvl, 6)
-	f.crit_chance = 25; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 22; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.stolen_thought(), EAB.blur()]
 	f.flavor_text = "A tiny, darting light that feeds on stray thoughts left behind in the dream. It is almost impossible to pin down, flickering away the instant attention falls on it."
 	return f
@@ -149,7 +149,7 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
 	f.speed = EH.es(31, 36, 1, 3, lvl, 6)
-	f.crit_chance = 22; f.crit_damage = 1; f.dodge_chance = 17
+	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 17
 	f.abilities = [EAB.gallery_bolt(), EAB.shatter_ward()]
 	f.flavor_text = "A dark silhouette that steps out of painted portraits in the shattered gallery. It hurls splinters of broken frames and conjures wards from cracked canvas."
 	return f
@@ -168,7 +168,7 @@ static func create_shadow_pursuer(n: String, lvl: int = 7) -> FighterData:
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 7)
 	f.magic_defense = EH.es(14, 17, 1, 2, lvl, 7)
 	f.speed = EH.es(34, 39, 1, 3, lvl, 7)
-	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.phantom_strike(), EAB.shadow_shroud(), EAB.dream_terror(), EAB.nightmare_lunge(), EAB.fading_grasp()]
 	f.flavor_text = "A relentless shadow that gives chase through the dream's winding corridors. It strikes from angles that should not exist and vanishes before you can react."
 	return f
@@ -217,7 +217,7 @@ static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 10)
-	f.speed = EH.es(28, 34, 2, 3, lvl, 10)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.hidden_blade(), EAB.merchant_guard()]
 	f.flavor_text = "A keen-eyed operative disguised among the market crowd. Behind a merchant's pleasant smile hides a blade and the Thread cult's unwavering loyalty."
@@ -245,7 +245,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(21, 27, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(60, 69, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(62, 71, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 18
@@ -267,7 +267,7 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(59, 70, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 11)
-	f.speed = EH.es(29, 35, 2, 3, lvl, 11)
+	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
 	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.bound_strike(), EAB.tether_pull()]
 	f.flavor_text = "A guard stationed in the cellar beneath the inn, bound to the cult's hidden operations. It fights with the desperate fury of someone protecting a terrible secret."
@@ -295,7 +295,7 @@ static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	f.mana = EH.es(20, 23, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
 	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 11)
-	f.magic_attack = EH.es(77, 88, 2, 4, lvl, 11)
+	f.magic_attack = EH.es(79, 90, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 11)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
 	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 23

@@ -21,7 +21,7 @@ static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(92, 105, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(94, 107, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 15)
 	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 24
@@ -121,7 +121,7 @@ static func create_memory_eater(n: String, lvl: int = 17) -> FighterData:
 	f.mana = EH.es(20, 24, 1, 2, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 17)
-	f.magic_attack = EH.es(113, 129, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(115, 131, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(53, 61, 2, 4, lvl, 17)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 17)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 25
@@ -171,9 +171,9 @@ static func create_ancient_threadmaster(n: String, lvl: int = 18) -> FighterData
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(91, 105, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
-	f.magic_attack = EH.es(114, 131, 4, 6, lvl, 18)
+	f.magic_attack = EH.es(115, 132, 4, 6, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
-	f.speed = EH.es(37, 43, 3, 4, lvl, 18)
+	f.speed = EH.es(38, 44, 3, 4, lvl, 18)
 	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 23
 	f.abilities = [EABS3.dream_shatter(), EABS3.loom_collapse(), EABS3.thread_of_oblivion(), EAB.reality_unravel(), EAB.ancient_hunger()]
 	f.flavor_text = "The original weaver, ancient beyond reckoning, who first discovered how to shape reality through dreams. Their power predates the cult itself, and their dominion over the loom is absolute."

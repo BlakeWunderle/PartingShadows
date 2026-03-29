@@ -17,7 +17,7 @@ static func create_memory_wisp(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(21, 28, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(63, 75, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(65, 77, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 10)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 13
@@ -64,7 +64,7 @@ static func create_thought_eater(n: String, lvl: int = 11) -> FighterData:
 	f.physical_defense = EH.es(26, 32, 1, 3, lvl, 11)
 	f.magic_attack = EH.es(87, 100, 2, 5, lvl, 11)
 	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 11)
-	f.speed = EH.es(33, 39, 2, 3, lvl, 11)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 11)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EABL.mind_rend(), EABL.psychic_leech()]
 	f.flavor_text = "A formless psychic predator that burrows into the mind to consume thoughts whole. Victims feel their knowledge dissolving like mist."
@@ -175,9 +175,9 @@ static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(12, 16, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(38, 44, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(103, 117, 3, 5, lvl, 13)
+	f.magic_attack = EH.es(104, 118, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(47, 53, 2, 4, lvl, 13)
-	f.speed = EH.es(30, 36, 2, 3, lvl, 13)
+	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EABL.sanctum_judgment(), EABL.barrier_of_ages(), EABL.decree_of_exile(), EABL.memory_verdict(), EABL.dispel_will()]
 	f.flavor_text = "The sanctum's supreme guardian, an entity of crystallized law and ancient purpose. It judges all who enter and finds them wanting."
@@ -210,7 +210,7 @@ static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(22, 28, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(70, 81, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(72, 83, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 10)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 10)
 	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 21
@@ -243,7 +243,7 @@ static func create_ward_construct(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Ward Construct", lvl)
 	f.health = EH.es(540, 622, 6, 9, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(114, 130, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(116, 132, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(58, 67, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 12)
@@ -293,7 +293,7 @@ static func create_archive_keeper(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Archive Keeper", lvl)
 	f.health = EH.es(589, 675, 6, 9, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 10, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(114, 131, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(116, 133, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(59, 70, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(47, 56, 2, 3, lvl, 12)
@@ -325,7 +325,7 @@ static func create_lost_record(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 20, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(79, 93, 2, 5, lvl, 10)
+	f.magic_attack = EH.es(81, 95, 2, 5, lvl, 10)
 	f.magic_defense = EH.es(34, 42, 2, 3, lvl, 10)
 	f.speed = EH.es(34, 41, 2, 3, lvl, 10)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 16
