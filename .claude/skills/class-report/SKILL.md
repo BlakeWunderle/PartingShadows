@@ -23,25 +23,25 @@ Builds a persistent markdown report showing how every player class performs at e
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
-REPORT_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-balance.md"
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
+REPORT_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-balance.md"
 ```
 
 **If `refresh` was NOT provided AND `JSON_PATH` exists:** Convert existing JSON to markdown (no simulation):
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --from-json "$JSON_PATH" --markdown "$REPORT_PATH" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --from-json "$JSON_PATH" --markdown "$REPORT_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 **If `refresh` was provided OR `JSON_PATH` does not exist:** Run the simulator:
 
 **Quick mode** (default when refreshing): `--sample 150 --sims 80`
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --sample 150 --sims 80 [--story N] --all --json "$JSON_PATH" --markdown "$REPORT_PATH" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --sample 150 --sims 80 [--story N] --all --json "$JSON_PATH" --markdown "$REPORT_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 **Full mode**: `--auto`
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto [--story N] --all --json "$JSON_PATH" --markdown "$REPORT_PATH" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --auto [--story N] --all --json "$JSON_PATH" --markdown "$REPORT_PATH" 2>&1 | grep -v "$NOISE"
 ```
 
 Use a 600000ms timeout for full mode.
@@ -62,7 +62,7 @@ CLASS BALANCE REPORT GENERATED
   Mode: quick / full / cached
   Stages: N
   All passing: YES / NO (list failures)
-  Report: C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\class-balance.md
+  Report: C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\class-balance.md
 
   Base strongest: ..., weakest: ...
   T1 strongest: ..., weakest: ...
@@ -88,9 +88,9 @@ If the report shows failures or outliers, surface them to the user and wait for 
 
 | File | Purpose |
 |------|---------|
-| `EchoesOfChoice/tools/battle_simulator.gd` | CLI entry point (--json, --markdown, --from-json flags) |
-| `EchoesOfChoice/scripts/tools/sim_report_markdown.gd` | Markdown report generator (class tables, outliers, boss section) |
-| `EchoesOfChoice/scripts/tools/sim_report.gd` | JSON report builder (build_entry format) |
-| `EchoesOfChoice/scripts/tools/simulation_runner.gd` | Simulation engine with class breakdown |
-| `EchoesOfChoice/scripts/tools/battle_stage_db.gd` | Stage definitions with targets |
+| `PartingShadows/tools/battle_simulator.gd` | CLI entry point (--json, --markdown, --from-json flags) |
+| `PartingShadows/scripts/tools/sim_report_markdown.gd` | Markdown report generator (class tables, outliers, boss section) |
+| `PartingShadows/scripts/tools/sim_report.gd` | JSON report builder (build_entry format) |
+| `PartingShadows/scripts/tools/simulation_runner.gd` | Simulation engine with class breakdown |
+| `PartingShadows/scripts/tools/battle_stage_db.gd` | Stage definitions with targets |
 | `.claude/rules/class-trees.md` | Class upgrade tree structure |

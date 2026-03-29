@@ -1,7 +1,7 @@
 "DepotBuildConfig"
 {
 	"DepotID" "4545384"
-	"ContentRoot" "C:\Projects\EchoesOfChoice\build\macos"
+	"ContentRoot" "C:\Projects\PartingShadows\build\macos"
 	"FileMapping"
 	{
 		"LocalPath" "*"

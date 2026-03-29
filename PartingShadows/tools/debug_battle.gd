@@ -1,7 +1,7 @@
 extends Node
 
 ## Quick-launch a battle for testing UI changes.
-## Run via: Godot --path EchoesOfChoice --scene res://tools/debug_battle.tscn
+## Run via: Godot --path PartingShadows --scene res://tools/debug_battle.tscn
 
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 

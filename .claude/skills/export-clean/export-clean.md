@@ -9,7 +9,7 @@ Exports a fresh Godot build with cleared cache. Use this when assets aren't upda
 Remove cached imported assets and editor state:
 
 ```bash
-rm -rf EchoesOfChoice/.godot/imported/ EchoesOfChoice/.godot/editor/ EchoesOfChoice/.godot/global_script_class_cache.cfg
+rm -rf PartingShadows/.godot/imported/ PartingShadows/.godot/editor/ PartingShadows/.godot/global_script_class_cache.cfg
 ```
 
 This forces Godot to re-import all assets from source on the next run.
@@ -22,7 +22,7 @@ Run Godot in headless mode with the `--import` flag:
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
 
-"$GODOT" --path EchoesOfChoice --headless --import 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --import 2>&1 | grep -v "$NOISE"
 ```
 
 This rebuilds the `.godot/imported/` directory with fresh imports of all assets.
@@ -33,13 +33,13 @@ Export the platform build(s):
 
 ```bash
 # Windows (default)
-"$GODOT" --path EchoesOfChoice --headless --export-release "Windows Desktop" "../build/windows/EchoesOfChoice.exe" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --export-release "Windows Desktop" "../build/windows/PartingShadows.exe" 2>&1 | grep -v "$NOISE"
 
 # Linux (optional)
-"$GODOT" --path EchoesOfChoice --headless --export-release "Linux" "../build/linux/EchoesOfChoice.x86_64" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --export-release "Linux" "../build/linux/PartingShadows.x86_64" 2>&1 | grep -v "$NOISE"
 
 # macOS (optional)
-"$GODOT" --path EchoesOfChoice --headless --export-release "macOS" "../build/macos/EchoesOfChoice.zip" 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --export-release "macOS" "../build/macos/PartingShadows.zip" 2>&1 | grep -v "$NOISE"
 ```
 
 ### Step 4: Verify Build
@@ -51,8 +51,8 @@ Check the build directory to confirm files were created:
 ls -lh build/windows/ | head -10
 
 # Expected files:
-# - EchoesOfChoice.exe (~96 MB)
-# - EchoesOfChoice.pck (~450+ MB)
+# - PartingShadows.exe (~96 MB)
+# - PartingShadows.pck (~450+ MB)
 # - libgodotsteam.windows.template_debug.x86_64.dll
 # - steam_api64.dll
 ```
@@ -76,10 +76,10 @@ If not specified, default to Windows only.
 
 ## Build Locations
 
-Export presets are configured in `EchoesOfChoice/export_presets.cfg`:
-- Windows: `build/windows/EchoesOfChoice.exe`
-- Linux: `build/linux/EchoesOfChoice.x86_64`
-- macOS: `build/macos/EchoesOfChoice.zip`
+Export presets are configured in `PartingShadows/export_presets.cfg`:
+- Windows: `build/windows/PartingShadows.exe`
+- Linux: `build/linux/PartingShadows.x86_64`
+- macOS: `build/macos/PartingShadows.zip`
 
 All paths are relative to the workspace root.
 

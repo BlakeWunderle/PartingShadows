@@ -1,12 +1,12 @@
-# Echoes of Choice -- Design Reference
+# Parting Shadows -- Design Reference
 
-This file documents the design decisions for Echoes of Choice.
+This file documents the design decisions for Parting Shadows.
 
-The project is a visual RPG built in Godot 4 with GDScript at `EchoesOfChoice/`.
+The project is a visual RPG built in Godot 4 with GDScript at `PartingShadows/`.
 
 ## Class System
 
-56 player classes. 6 base (Tier 0) -> 16 Tier 1 -> 34 Tier 2. See `class-trees.md` for the full tree structure. The GDScript data layer at `EchoesOfChoice/scripts/data/` is the authoritative source for stat values and ability definitions.
+56 player classes. 6 base (Tier 0) -> 16 Tier 1 -> 34 Tier 2. See `class-trees.md` for the full tree structure. The GDScript data layer at `PartingShadows/scripts/data/` is the authoritative source for stat values and ability definitions.
 
 ## Combat Formulas
 

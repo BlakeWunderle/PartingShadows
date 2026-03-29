@@ -317,6 +317,6 @@ These abilities weaken enemies for a limited time.
 
 ## Running the Game
 
-Extract the zip file and run `EchoesOfChoice.exe`. Both the `.exe` and `.pck` files must be in the same folder.
+Extract the zip file and run `PartingShadows.exe`. Both the `.exe` and `.pck` files must be in the same folder.
 
 Requires Windows (64-bit).

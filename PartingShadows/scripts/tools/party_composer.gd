@@ -1,7 +1,7 @@
 class_name PartyComposer
 
 ## Generates all viable party combinations at T0/T1/T2 tiers.
-## Port of C# EchoesOfChoice/BattleSimulator/PartyComposer.cs.
+## Port of C# PartingShadows/BattleSimulator/PartyComposer.cs.
 
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")

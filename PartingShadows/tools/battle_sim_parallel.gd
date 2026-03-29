@@ -4,7 +4,7 @@ extends SceneTree
 ## Processes one battle at a time; all workers split the party combos for that battle,
 ## finish quickly, then the coordinator merges and moves to the next battle.
 ##
-## Usage: godot --path EchoesOfChoice --headless \
+## Usage: godot --path PartingShadows --headless \
 ##        --script res://tools/battle_sim_parallel.gd -- [options]
 ##
 ## Options:

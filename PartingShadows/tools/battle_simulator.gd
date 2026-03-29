@@ -1,7 +1,7 @@
 extends SceneTree
 
 ## CLI tool for running battle simulations.
-## Usage: godot --path EchoesOfChoiceGame --headless --script res://tools/battle_simulator.gd -- [args]
+## Usage: godot --path PartingShadowsGame --headless --script res://tools/battle_simulator.gd -- [args]
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
@@ -438,7 +438,7 @@ func _print_stage_list(stages: Array) -> void:
 
 
 func _print_help() -> void:
-	print("Usage: godot --path EchoesOfChoiceGame --headless \\")
+	print("Usage: godot --path PartingShadowsGame --headless \\")
 	print("       --script res://tools/battle_simulator.gd -- [options] [stage-name]\n")
 	print("Options:")
 	print("  --sims <n>           Simulations per combo (default: 1000)")

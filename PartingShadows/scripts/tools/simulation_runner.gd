@@ -1,7 +1,7 @@
 class_name SimulationRunner
 
 ## Runs automated battles and reports win rates for balance testing.
-## Port of C# EchoesOfChoice/BattleSimulator/SimulationRunner.cs.
+## Port of C# PartingShadows/BattleSimulator/SimulationRunner.cs.
 
 const BattleEngine := preload("res://scripts/battle/battle_engine.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")

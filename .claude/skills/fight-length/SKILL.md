@@ -11,7 +11,7 @@ fights that are too short. Does **not** run the simulator — reads existing dat
 ## Data Source
 
 ```
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
 ```
 
 The JSON has a `stages` array. Each entry contains:

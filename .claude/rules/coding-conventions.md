@@ -1,5 +1,5 @@
 ---
-description: GDScript coding conventions for the Echoes of Choice project
+description: GDScript coding conventions for the Parting Shadows project
 ---
 
 # GDScript Conventions

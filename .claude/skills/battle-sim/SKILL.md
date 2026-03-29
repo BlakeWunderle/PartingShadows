@@ -1,6 +1,6 @@
 ---
 name: battle-sim
-description: Full balance feedback loop for Echoes of Choice. Iterates enemy tuning, player power curve validation, and per-class win rate banding until all stages pass. Supports Story 1, 2, and 3 independently via --story flag.
+description: Full balance feedback loop for Parting Shadows. Iterates enemy tuning, player power curve validation, and per-class win rate banding until all stages pass. Supports Story 1, 2, and 3 independently via --story flag.
 ---
 
 # Balance Feedback Loop
@@ -12,15 +12,15 @@ If invoked with no arguments, output the following command templates for the use
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
-SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/sim_output.txt"
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
+SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_output.txt"
 
 # Full tier validation
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --story <1|2|3> --tier <base|tier1|tier2> --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Targeted battles (faster — use after enemy-only changes)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --battles <BattleName1,BattleName2> --diagnostics --compact --auto --jobs 20 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 
@@ -30,9 +30,9 @@ If invoked with arguments (e.g. `s1 t2`, `s2 tier1`, `BattleName1,BattleName2`),
 
 ---
 
-All paths relative to workspace root. Godot project at `EchoesOfChoice/`.
+All paths relative to workspace root. Godot project at `PartingShadows/`.
 
-**Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
+**Before starting:** Read `C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\balance-log.md` to pick up progress from previous sessions. Use `/balance-log` after each sim run to record results and changes.
 
 **Class data is built into every parallel sim run.** Pass `--diagnostics` to any parallel sim command and the coordinator prints the full per-class win rate breakdown after the summary table. No second sim needed.
 
@@ -47,19 +47,19 @@ For a full T2 enemy tuning pass across all three stories, run each story in sequ
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
-SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/sim_output.txt"
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
+SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_output.txt"
 
 # Story 1 T2 -- full tier with class breakdown in one pass
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --story 1 --tier tier2 --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Story 2 T2
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --story 2 --tier tier2 --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Story 3 T2
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --story 3 --tier tier2 --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 
@@ -74,7 +74,7 @@ Each run produces:
 
 **Enemy tuning iteration** (changed battles only — much faster):
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --battles BattleA,BattleB --diagnostics --compact --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 Then read `$SIM_OUT` with the Read tool.
@@ -86,23 +86,23 @@ Then read `$SIM_OUT` with the Read tool.
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json"
-SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/sim_output.txt"
+JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
+SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_output.txt"
 
 # Quick iteration (single prog)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- \
   --story <N> --sample 100 --sims 50 --progression <P> --compact 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Tier validation with class data in one pass (recommended)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --story <N> --tier <TIER> --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Targeted battles (specific changed battles only)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --compact --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Full story validation (all tiers, all battles)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --story <N> --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 
@@ -216,7 +216,7 @@ Every battle after the first must have **at least 3 enemies**, unless it is a bo
 
 ```bash
 # Tune one battle at a time
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- \
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
   --battles <BattleName> --diagnostics --compact --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 Then read `$SIM_OUT` with the Read tool to check the result.

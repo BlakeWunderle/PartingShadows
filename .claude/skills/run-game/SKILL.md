@@ -45,7 +45,7 @@ NOISE_FILTER='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static
 ### Headless build (verify no compile errors)
 
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --quit 2>&1 | grep -v "$NOISE_FILTER"
+"$GODOT" --path PartingShadows --headless --quit 2>&1 | grep -v "$NOISE_FILTER"
 ```
 
 Expected clean output: just the Godot version line.
@@ -55,7 +55,7 @@ Expected clean output: just the Godot version line.
 Run for N seconds, capture real errors only:
 
 ```bash
-"$GODOT" --path EchoesOfChoice 2>&1 &
+"$GODOT" --path PartingShadows 2>&1 &
 GODOT_PID=$!
 sleep 20
 kill $GODOT_PID 2>/dev/null
@@ -67,7 +67,7 @@ Then filter the output with `grep -v "$NOISE_FILTER"`.
 ### Run game in background
 
 ```bash
-"$GODOT" --path EchoesOfChoice 2>&1 &
+"$GODOT" --path PartingShadows 2>&1 &
 ```
 
 Check output later; stop with `kill %1`.
@@ -92,10 +92,10 @@ After filtering, real errors to watch for:
 ## Run Tool Script
 
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/<tool>.gd 2>&1 | grep -v "$NOISE_FILTER"
+"$GODOT" --path PartingShadows --headless --script res://tools/<tool>.gd 2>&1 | grep -v "$NOISE_FILTER"
 ```
 
 With arguments:
 ```bash
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/<tool>.gd -- <arg1> <arg2> 2>&1 | grep -v "$NOISE_FILTER"
+"$GODOT" --path PartingShadows --headless --script res://tools/<tool>.gd -- <arg1> <arg2> 2>&1 | grep -v "$NOISE_FILTER"
 ```

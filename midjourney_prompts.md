@@ -7,7 +7,7 @@ Style suffix used on all prompts:
 
 Tip: For style consistency across all classes, add `--sref https://www.midjourney.com/jobs/b2c17c96-fea8-4719-adea-17992f90ee17?index=1` to each prompt in Midjourney to use the Squire portrait as a style reference.
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/classes/`
+Save images as `{filename}` into `PartingShadows/assets/art/portraits/classes/`
 
 ---
 
@@ -637,7 +637,7 @@ Enemy portraits use the same style suffix but a different `--sref` from player p
 
 Enemy `--sref`: `https://cdn.midjourney.com/61ead23a-fd55-4629-ab06-9814fa21a16b/0_1.png`
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/enemies/`
+Save images as `{filename}` into `PartingShadows/assets/art/portraits/enemies/`
 
 ---
 
@@ -1373,7 +1373,7 @@ These backgrounds need regeneration to match the `city_streets.png` target style
 
 Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/battles/`
+Save images as `{filename}` into `PartingShadows/assets/art/battles/`
 
 ---
 
@@ -1457,7 +1457,7 @@ vast otherworldly void cavern, swirling purple and dark blue energy vortex overh
 
 Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/battles/`
+Save images as `{filename}` into `PartingShadows/assets/art/battles/`
 
 ---
 
@@ -1531,7 +1531,7 @@ the same medieval fantasy inn common room but at night, low dying firelight cast
 
 Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/battles/`
+Save images as `{filename}` into `PartingShadows/assets/art/battles/`
 
 ---
 
@@ -1600,7 +1600,7 @@ medieval town edge at dawn, dirt road leading away past stone cottages with red 
 
 Style reference: `--sref https://cdn.midjourney.com/2f828b47-d731-4b46-893f-73d2bcb7966c/0_2.png`
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/ui/`
+Save images as `{filename}` into `PartingShadows/assets/art/ui/`
 
 Note: Title backgrounds are wide format (16:9) to fill the screen.
 

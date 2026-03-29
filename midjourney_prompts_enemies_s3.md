@@ -19,7 +19,7 @@ dark fantasy RPG character portrait, full body, dark background with subtle teal
 - Atmospheric fog at ground level
 - More texture and grit than the clean player class portraits
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/enemies/`
+Save images as `{filename}` into `PartingShadows/assets/art/portraits/enemies/`
 
 ---
 

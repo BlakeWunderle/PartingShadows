@@ -1,10 +1,10 @@
 # Project Architecture
 
-Godot 4 project using GDScript at `EchoesOfChoice/`.
+Godot 4 project using GDScript at `PartingShadows/`.
 
 ## File Map
 
-All paths below are relative to `EchoesOfChoice/`.
+All paths below are relative to `PartingShadows/`.
 
 ### Core Data -- Shared (`scripts/data/`)
 - `ability_data.gd` -- Ability model (name, type, modifier, targets, flavor text)

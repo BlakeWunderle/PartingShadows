@@ -5,7 +5,7 @@ description: Record balance tuning progress to a persistent markdown log. Use du
 
 # Balance Tuning Log
 
-Maintains a persistent tuning journal at `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md` that tracks sim results and changes during balance passes.
+Maintains a persistent tuning journal at `C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\balance-log.md` that tracks sim results and changes during balance passes.
 
 ## Arguments
 
@@ -35,7 +35,7 @@ Read the log file. Print the Status table from it. If the file doesn't exist, pr
 
 #### Step 1: Read the existing log
 
-Read `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md`. If it doesn't exist or says "No active tuning pass", create a fresh log with the header and status table (see format below).
+Read `C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\balance-log.md`. If it doesn't exist or says "No active tuning pass", create a fresh log with the header and status table (see format below).
 
 #### Step 2: Determine what to record
 
@@ -56,7 +56,7 @@ Also look for any **changes made** since the last sim run:
 - Enemy count changes in battle configs
 - Player class changes (note cascade scope)
 
-**Class data source priority:** If a JSON report exists at the standard path (`C:/Users/blake/.claude/projects/c--Projects-EchoesOfChoice/memory/class-report-data.json`), read per-class win rates from it instead of requiring sim output in the conversation. Only fall back to conversation output if no JSON is available.
+**Class data source priority:** If a JSON report exists at the standard path (`C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json`), read per-class win rates from it instead of requiring sim output in the conversation. Only fall back to conversation output if no JSON is available.
 
 #### Step 3: Append to the log
 
@@ -132,7 +132,7 @@ BALANCE LOG UPDATED
   Story: N | Prog: N | Run: N
   Status: PASS / TOO HARD / TOO EASY
   Locked: X/Y progressions
-  Log: C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\balance-log.md
+  Log: C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\balance-log.md
 ```
 
 ## Log File Format (fresh log)
@@ -172,5 +172,5 @@ Story: N | Started: YYYY-MM-DD | Last updated: YYYY-MM-DD
 ## Key References
 
 - Battle-sim skill: `.claude/skills/battle-sim/skill.md` (difficulty gradients, battle mappings)
-- Battle stage DB: `EchoesOfChoice/scripts/tools/battle_stage_db.gd` (stage definitions)
-- Memory dir: `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\`
+- Battle stage DB: `PartingShadows/scripts/tools/battle_stage_db.gd` (stage definitions)
+- Memory dir: `C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\`

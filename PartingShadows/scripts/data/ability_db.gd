@@ -1,7 +1,7 @@
 class_name AbilityDB
 
 ## Static factory for all abilities. Each function returns a configured AbilityData.
-## C# source: EchoesOfChoice/CharacterClasses/Abilities/
+## C# source: PartingShadows/CharacterClasses/Abilities/
 
 const AbilityData := preload("res://scripts/data/ability_data.gd")
 const Enums := preload("res://scripts/data/enums.gd")

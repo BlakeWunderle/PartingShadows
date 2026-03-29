@@ -15,8 +15,8 @@ on:
 
 env:
   GODOT_VERSION: "4.6.1"
-  PROJECT_PATH: EchoesOfChoice
-  GAME_NAME: EchoesOfChoice
+  PROJECT_PATH: PartingShadows
+  GAME_NAME: PartingShadows
 
 jobs:
   export-windows:
@@ -212,7 +212,7 @@ jobs:
       - name: Extract and run smoke test
         run: |
           cd macos-artifact
-          unzip -q EchoesOfChoice-macos.zip
+          unzip -q PartingShadows-macos.zip
           APP=$(find . -maxdepth 1 -name "*.app" | head -1)
           echo "Testing: $APP"
           BINARY="$APP/Contents/MacOS/$(ls "$APP/Contents/MacOS/" | head -1)"

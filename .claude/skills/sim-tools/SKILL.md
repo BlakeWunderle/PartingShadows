@@ -22,10 +22,10 @@ Run specific battles by name with full `--auto` precision, without simming the e
 
 ```bash
 # Run 3 specific battles with auto sims
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare --compact 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare --compact 2>&1 | grep -v "$NOISE"
 
 # Combine with --json to persist class data for those battles
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --auto --battles CityStreetBattle,WolfForestBattle --json report.json 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --auto --battles CityStreetBattle,WolfForestBattle --json report.json 2>&1 | grep -v "$NOISE"
 ```
 
 ### When to Use
@@ -44,23 +44,23 @@ Runs battles grouped by progression stage (lowest to highest), stopping at the f
 
 ```bash
 # Run all Story 1 progressions, stop on first failure
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --progressive --story 1 --auto --sample 100 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --progressive --story 1 --auto --sample 100 2>&1 | grep -v "$NOISE"
 
 # Skip Progs 0-2, start from Prog 3
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --progressive --from 3 --story 1 --sims 50 --sample 100 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --progressive --from 3 --story 1 --sims 50 --sample 100 2>&1 | grep -v "$NOISE"
 
 # Specific tier within a story
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --progressive --story 2 --tier tier1 --sims 50 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --progressive --story 2 --tier tier1 --sims 50 2>&1 | grep -v "$NOISE"
 ```
 
 ### Parallel
 
 ```bash
 # Progressive with parallel workers (recommended for full validation)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --progressive --story 1 --auto --jobs 10 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- --progressive --story 1 --auto --jobs 10 2>&1 | grep -v "$NOISE"
 
 # Skip early progressions in parallel
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --progressive --from 5 --story 2 --sims 50 --jobs 10 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- --progressive --from 5 --story 2 --sims 50 --jobs 10 2>&1 | grep -v "$NOISE"
 ```
 
 ### Output
@@ -100,13 +100,13 @@ When a class is flagged WEAK (win rate < target * 60%), diagnostics explain *why
 
 ```bash
 # Single battle with diagnostics
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 CityStreetBattle 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 CityStreetBattle 2>&1 | grep -v "$NOISE"
 
 # All battles in a progression with diagnostics
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 --progression 3 --story 1 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 --progression 3 --story 1 2>&1 | grep -v "$NOISE"
 
 # Diagnostics in JSON output
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 --json report.json CityStreetBattle 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --diagnostics --sims 50 --json report.json CityStreetBattle 2>&1 | grep -v "$NOISE"
 ```
 
 ### Output
@@ -150,13 +150,13 @@ Reduces stdout to 1 line per PASS stage and 3-5 lines per FAIL stage, writing fu
 
 ```bash
 # Compact single progression
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --compact --story 1 --sims 50 --progression 0 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --compact --story 1 --sims 50 --progression 0 2>&1 | grep -v "$NOISE"
 
 # Compact full validation
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --compact --story 1 --auto --all 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --compact --story 1 --auto --all 2>&1 | grep -v "$NOISE"
 
 # Compact parallel
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_sim_parallel.gd -- --compact --story 1 --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- --compact --story 1 --auto --all --jobs 10 2>&1 | grep -v "$NOISE"
 ```
 
 ### Output
@@ -199,10 +199,10 @@ Simulation results are automatically cached based on MD5 hashes of all dependenc
 
 ```bash
 # Force re-simulation (ignore cache)
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --no-cache --sims 50 CityStreetBattle 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --no-cache --sims 50 CityStreetBattle 2>&1 | grep -v "$NOISE"
 
 # Clear all cached results
-"$GODOT" --path EchoesOfChoice --headless --script res://tools/battle_simulator.gd -- --clear-cache 2>&1 | grep -v "$NOISE"
+"$GODOT" --path PartingShadows --headless --script res://tools/battle_simulator.gd -- --clear-cache 2>&1 | grep -v "$NOISE"
 ```
 
 ### What Invalidates Cache
@@ -215,7 +215,7 @@ Any file change in the dependency chain:
 
 ### Cache File Location
 
-`C:\Users\blake\AppData\Roaming\Godot\app_userdata\Echoes of Choice\sim_cache.json`
+`C:\Users\blake\AppData\Roaming\Godot\app_userdata\Parting Shadows\sim_cache.json`
 
 ---
 
