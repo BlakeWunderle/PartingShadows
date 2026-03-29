@@ -5,6 +5,8 @@ class_name SimReport
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
 const SD := preload("res://scripts/tools/sim_diagnostics.gd")
+const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
+const EnemyRoles := preload("res://scripts/data/enemy_roles.gd")
 
 
 ## Build a JSON-ready report entry for one stage result.
@@ -35,6 +37,16 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 			"avg_buffs": float(cd.get("buffs_applied", 0)) / b,
 			"avg_debuffs": float(cd.get("debuffs_applied", 0)) / b,
 		}
+	# Compute enemy role profile for the stage.
+	var enemies: Array = BSDB.create_enemies(stage.name)
+	var enemy_ids: Array[String] = []
+	var has_boss := false
+	for e in enemies:
+		enemy_ids.append(e.class_id)
+		if EnemyRoles.is_boss(e.class_id):
+			has_boss = true
+	var enemy_profile := EnemyRoles.get_battle_profile(enemy_ids)
+
 	return {
 		"stage_name": result.stage_name,
 		"story": stage.get("story", 1),
@@ -45,6 +57,8 @@ static func build_entry(result: Dictionary, stage: Dictionary) -> Dictionary:
 		"combo_count": result.combo_results.size(),
 		"elapsed_ms": result.elapsed_ms,
 		"status": SR.get_status(result),
+		"has_boss": has_boss,
+		"enemy_roles": enemy_profile,
 		"class_breakdown": breakdown,
 		"combat_stats": combat_stats,
 		"spread": spread,

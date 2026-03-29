@@ -3,13 +3,7 @@ class_name SimReportMarkdown
 ## Generates a markdown class balance report from build_entry()-format stage data.
 ## Used by battle_simulator.gd via --markdown flag.
 
-const BOSS_BATTLES := [
-	"StrangerTowerBattle", "StrangerFinalBattle", "StrangerUndoneBattle",
-	"S2_LighthouseStorm", "S2_TheReveal", "S2_EyeAwakening",
-	"S2_EyeOfOblivion", "S2_B_EyeUnblinking",
-	"S3_DreamNightmare", "S3_DreamSanctum",
-	"S3_DreamNexus", "S3_B_DreamNexus", "S3_C_DreamNexus",
-]
+## Boss detection is now dynamic via has_boss field from EnemyRoles tier data.
 const BASE_CLASSES := [
 	"Entertainer", "Mage", "Squire", "Tinker", "Wanderer", "Wildling"]
 const T1_CLASSES := [
@@ -138,8 +132,7 @@ static func _tier_section(entries: Array, tier: String,
 	var lines := PackedStringArray()
 	var classes := _classes_for(tier)
 	var filtered := entries.filter(func(e: Dictionary) -> bool:
-		return e.get("tier", "") == tier \
-			and e.get("stage_name", "") not in BOSS_BATTLES)
+		return e.get("tier", "") == tier and not e.get("has_boss", false))
 	if filtered.is_empty():
 		return lines
 	lines.append("## %s" % heading)
@@ -230,7 +223,7 @@ static func _outlier_details(entries: Array) -> PackedStringArray:
 	lines.append("## Outlier Details")
 	lines.append("")
 	var regular := entries.filter(func(e: Dictionary) -> bool:
-		return e.get("stage_name", "") not in BOSS_BATTLES)
+		return not e.get("has_boss", false))
 	var outliers := {}
 	for e: Dictionary in regular:
 		var tier: String = e.get("tier", "base")
@@ -267,7 +260,7 @@ static func _outlier_details(entries: Array) -> PackedStringArray:
 static func _boss_section(entries: Array) -> PackedStringArray:
 	var lines := PackedStringArray()
 	var bosses := entries.filter(func(e: Dictionary) -> bool:
-		return e.get("stage_name", "") in BOSS_BATTLES)
+		return e.get("has_boss", false))
 	if bosses.is_empty():
 		return lines
 	lines.append("## Boss Battles")

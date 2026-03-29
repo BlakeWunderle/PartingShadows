@@ -6,6 +6,7 @@ class_name SimDiagnostics
 
 const SR := preload("res://scripts/tools/simulation_runner.gd")
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
+const FighterDBRoles := preload("res://scripts/data/fighter_db_roles.gd")
 
 
 ## Analyze WEAK classes in a stage result. Returns an array of diagnostic
@@ -53,10 +54,22 @@ static func analyze(result: Dictionary, stage: Dictionary) -> Array:
 		else:
 			category = "MARGINAL"
 
+		# Adjust category when weakness is expected from the class's role.
+		var class_id := FighterDBRoles.get_class_id_from_display_name(cname)
+		var role_label := FighterDBRoles.get_label(class_id) if class_id != "" else ""
+		if class_id != "":
+			var low_off := FighterDBRoles.is_low_offense_expected(class_id)
+			var high_taken := FighterDBRoles.is_high_damage_taken_expected(class_id)
+			if low_off and "LOW_OFFENSE" in category:
+				category = category.replace("LOW_OFFENSE", "ROLE_EXPECTED_LOW_OFFENSE")
+			if high_taken and "HIGH_DAMAGE_TAKEN" in category:
+				category = category.replace("HIGH_DAMAGE_TAKEN", "ROLE_EXPECTED_HIGH_TAKEN")
+
 		entries.append({
 			"class": cname,
 			"win_rate": breakdown[cname].win_rate,
 			"category": category,
+			"role_label": role_label,
 			"avg_dmg_dealt": avg_dealt,
 			"avg_dmg_taken": avg_taken,
 			"avg_heals": avg_heals,
@@ -135,8 +148,9 @@ static func print_diagnostics(diagnostics: Array, stage_name: String) -> void:
 	print("\n  WEAK CLASS DIAGNOSTICS for %s:" % stage_name)
 
 	for d: Dictionary in diagnostics:
-		print("\n    %s (win_rate: %.1f%%, category: %s)" % [
-			d["class"], d.win_rate * 100, d.category])
+		var role_suffix := "  [%s]" % d.role_label if d.get("role_label", "") != "" else ""
+		print("\n    %s (win_rate: %.1f%%, category: %s)%s" % [
+			d["class"], d.win_rate * 100, d.category, role_suffix])
 		print("      Offense: avg damage %.0f (stage avg %.0f, %.2fx)" % [
 			d.avg_dmg_dealt, d.stage_avg_dealt, d.offense_ratio])
 		print("      Defense: avg taken %.0f (stage avg %.0f, %.2fx)" % [

@@ -5,18 +5,10 @@ class_name PartyComposer
 
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
+const FighterDBRoles := preload("res://scripts/data/fighter_db_roles.gd")
 
 const LEVELS_AS_BASE := 3
 const LEVELS_AS_TIER1 := 5
-
-## T1 items that produce low-damage support/tank classes (Acolyte, Artificer, Sentinel, Herbalist).
-## Parties with 2+ of these produce degenerate low-DPS compositions that pollute balance signal.
-const T1_SLOG_ITEMS: Array[String] = ["WhiteStone", "Crystal", "Shield", "Herbs"]
-
-## T2 items that produce low-damage support/tank classes
-## (Priest, Warcrier, Bulwark, Aegis, Minstrel, Grove Keeper, Spiritwalker).
-## Items are unique across all upgrade paths so t2_item alone identifies the class.
-const T2_SLOG_ITEMS: Array[String] = ["HolyBook", "WarHorn", "Fortress", "Mirror", "Hat", "Seedling", "SpiritOrb"]
 
 const BASE_TYPES: Array[String] = [
 	"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer"]
@@ -50,6 +42,7 @@ const T2_UPGRADES := {
 }
 
 static var _class_name_cache := {}
+static var _class_id_cache := {}
 static var _cached_t2_parties: Array = []
 
 
@@ -88,9 +81,18 @@ static func resolve_class_name(base_type: String, t1_item: String,
 	if _class_name_cache.has(key):
 		return _class_name_cache[key]
 	var fighter := create_fighter(base_type, t1_item, t2_item, 0)
-	var cname: String = fighter.character_type
-	_class_name_cache[key] = cname
-	return cname
+	_class_name_cache[key] = fighter.character_type
+	_class_id_cache[key] = fighter.class_id
+	return fighter.character_type
+
+
+static func resolve_class_id(base_type: String, t1_item: String,
+		t2_item: String) -> String:
+	var key := base_type + ":" + t1_item + ":" + t2_item
+	if _class_id_cache.has(key):
+		return _class_id_cache[key]
+	resolve_class_name(base_type, t1_item, t2_item)
+	return _class_id_cache.get(key, "")
 
 
 static func get_party_description(party: Dictionary) -> String:
@@ -152,13 +154,12 @@ static func get_tier1_parties() -> Array:
 								"t1_items": [u_a[ai], u_b[bi], u_c[ci]],
 								"t2_items": ["", "", ""],
 							})
-	var t1_slog := {}
-	for s: String in T1_SLOG_ITEMS:
-		t1_slog[s] = true
+	# Filter parties with 2+ low-offense (pure support/tank) classes.
 	return parties.filter(func(p: Dictionary) -> bool:
 		var c := 0
-		for item: String in p.t1_items:
-			if t1_slog.has(item):
+		for i in 3:
+			var cid := resolve_class_id(p.base_types[i], p.t1_items[i], "")
+			if FighterDBRoles.is_low_offense_expected(cid):
 				c += 1
 		return c < 2)
 
@@ -199,13 +200,13 @@ static func get_tier2_parties() -> Array:
 								"t2_items": [c_a[ai][1], c_b[bi][1], c_c[ci][1]],
 							})
 
-	var t2_slog := {}
-	for s: String in T2_SLOG_ITEMS:
-		t2_slog[s] = true
+	# Filter parties with 2+ low-offense (pure support/tank) classes.
 	parties = parties.filter(func(p: Dictionary) -> bool:
 		var c := 0
-		for item: String in p.t2_items:
-			if t2_slog.has(item):
+		for i in 3:
+			var cid := resolve_class_id(
+				p.base_types[i], p.t1_items[i], p.t2_items[i])
+			if FighterDBRoles.is_low_offense_expected(cid):
 				c += 1
 		return c < 2)
 	_cached_t2_parties = parties

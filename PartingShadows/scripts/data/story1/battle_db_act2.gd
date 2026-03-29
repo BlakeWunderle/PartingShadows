@@ -331,7 +331,7 @@ static func cemetery_battle() -> BattleData:
 		"BeachBattle":
 			intro = "Leaving the coast behind, the party follows the fog-covered path into the mist."
 		_:
-			intro = "The path winds into rolling hills, fog thickening with every step."
+			intro = "Descending from the highlands, the fog thickens around the party with every step."
 	b.pre_battle_text = [
 		intro,
 		"The mist thickens with every step until the adventurers can barely see each other.",
