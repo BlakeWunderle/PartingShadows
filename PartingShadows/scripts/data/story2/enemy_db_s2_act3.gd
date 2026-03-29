@@ -289,18 +289,18 @@ static func create_threshold_echo(n: String, lvl: int = 12) -> FighterData:
 # Tank + taunt / magic + silence / magic + DoT / physical + defense debuff
 # =============================================================================
 
-static func create_archive_keeper(n: String, lvl: int = 12) -> FighterData:
-	var f := EH.base(n, "Archive Keeper", lvl)
-	f.health = EH.es(589, 675, 6, 9, lvl, 12); f.max_health = f.health
-	f.mana = EH.es(8, 10, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(116, 133, 3, 5, lvl, 12)
-	f.physical_defense = EH.es(59, 70, 2, 4, lvl, 12)
-	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
-	f.magic_defense = EH.es(47, 56, 2, 3, lvl, 12)
-	f.speed = EH.es(24, 31, 1, 2, lvl, 12)
-	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 9
-	f.abilities = [EABL.archive_slam(), EABL.guardian_oath()]
-	f.flavor_text = "An immense golem formed from compressed scrolls and petrified ink. It was sworn to protect the archive and will crush any who desecrate it."
+static func create_ink_devourer(n: String, lvl: int = 11) -> FighterData:
+	var f := EH.base(n, "Ink Devourer", lvl)
+	f.health = EH.es(420, 490, 4, 6, lvl, 11); f.max_health = f.health
+	f.mana = EH.es(16, 19, 1, 2, lvl, 11); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
+	f.physical_defense = EH.es(22, 28, 1, 2, lvl, 11)
+	f.magic_attack = EH.es(85, 98, 2, 5, lvl, 11)
+	f.magic_defense = EH.es(32, 40, 2, 3, lvl, 11)
+	f.speed = EH.es(37, 43, 2, 3, lvl, 11)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 18
+	f.abilities = [EABL.ink_lash(), EABL.devour_script()]
+	f.flavor_text = "A glistening predator of living ink that slithers between the shelves. It consumed the forbidden texts and now hunts with their stolen knowledge."
 	return f
 
 
@@ -334,16 +334,16 @@ static func create_lost_record(n: String, lvl: int = 10) -> FighterData:
 	return f
 
 
-static func create_faded_page(n: String, lvl: int = 10) -> FighterData:
-	var f := EH.base(n, "Faded Page", lvl)
-	f.health = EH.es(518, 593, 5, 8, lvl, 10); f.max_health = f.health
-	f.mana = EH.es(8, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(67, 78, 2, 4, lvl, 10)
-	f.physical_defense = EH.es(44, 52, 2, 3, lvl, 10)
-	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
-	f.magic_defense = EH.es(37, 45, 2, 3, lvl, 10)
-	f.speed = EH.es(30, 36, 1, 2, lvl, 10)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 8
-	f.abilities = [EABL.binding_press(), EABL.eroding_script()]
-	f.flavor_text = "A brittle construct of yellowed parchment and fading ink. Though its contents are nearly illegible, its binding grip remains strong."
+static func create_maw_codex(n: String, lvl: int = 11) -> FighterData:
+	var f := EH.base(n, "Maw Codex", lvl)
+	f.health = EH.es(490, 560, 5, 7, lvl, 11); f.max_health = f.health
+	f.mana = EH.es(7, 10, 1, 1, lvl, 11); f.max_mana = f.mana
+	f.physical_attack = EH.es(76, 88, 2, 4, lvl, 11)
+	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 11)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 11)
+	f.magic_defense = EH.es(28, 35, 1, 3, lvl, 11)
+	f.speed = EH.es(28, 34, 1, 3, lvl, 11)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 7
+	f.abilities = [EABL.tome_bite(), EABL.knowledge_storm()]
+	f.flavor_text = "A massive grimoire that has grown teeth and hunger. Its cover yawns open to reveal a gullet of razored pages that devour anything within reach."
 	return f

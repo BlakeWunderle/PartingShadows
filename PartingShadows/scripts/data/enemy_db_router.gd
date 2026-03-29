@@ -116,7 +116,8 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Cap Wisp": return S2.create_cap_wisp("")
 		"Cave Eel": return S2.create_cave_eel("")
 		"Blind Angler": return S2.create_blind_angler("")
-		"Pale Crayfish": return S2.create_pale_crayfish("")
+		"Cavern Snapper": return S2.create_cavern_snapper("")
+		"Silt Lurker": return S2.create_silt_lurker("")
 		"Cave Dweller": return S2.create_cave_dweller("")
 		"Tunnel Shaman": return S2.create_tunnel_shaman("")
 		"Burrow Scout": return S2.create_burrow_scout("")
@@ -160,16 +161,17 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Ward Construct": return S2A3.create_ward_construct("")
 		"Null Phantom": return S2A3.create_null_phantom("")
 		"Threshold Echo": return S2A3.create_threshold_echo("")
-		"Archive Keeper": return S2A3.create_archive_keeper("")
+		"Ink Devourer": return S2A3.create_ink_devourer("")
 		"Silent Archivist": return S2A3.create_silent_archivist("")
 		"Lost Record": return S2A3.create_lost_record("")
-		"Faded Page": return S2A3.create_faded_page("")
+		"Maw Codex": return S2A3.create_maw_codex("")
 		"Shattered Frame": return S2A3.create_shattered_frame("")
 		"Sorrow Shade": return S2A3.create_sorrow_shade("")
 
 		# =====================================================================
 		# Story 2 - Act IV
 		# =====================================================================
+		"Pupil Leech": return S2A4.create_pupil_leech("")
 		"Gaze Stalker": return S2A4.create_gaze_stalker("")
 		"Memory Harvester": return S2A4.create_memory_harvester("")
 		"Oblivion Shade": return S2A4.create_oblivion_shade("")

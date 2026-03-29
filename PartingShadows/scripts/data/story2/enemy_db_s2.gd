@@ -125,6 +125,25 @@ static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 
 
 # =============================================================================
+# Deep Cavern creatures - alt (Progression 1)
+# =============================================================================
+
+static func create_cavern_snapper(n: String, lvl: int = 2) -> FighterData:
+	var f := EH.base(n, "Cavern Snapper", lvl)
+	f.health = EH.es(56, 66, 3, 5, lvl, 2); f.max_health = f.health
+	f.mana = EH.es(3, 6, 0, 1, lvl, 2); f.max_mana = f.mana
+	f.physical_attack = EH.es(16, 20, 1, 3, lvl, 2)
+	f.physical_defense = EH.es(11, 14, 1, 2, lvl, 2)
+	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 2)
+	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 2)
+	f.speed = EH.es(17, 21, 1, 2, lvl, 2)
+	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 3
+	f.abilities = [EAB.jaw_clamp(), EAB.stone_shell()]
+	f.flavor_text = "An armored reptile the size of a barrel, half-buried in gravel. Its jaws are slow to open but impossible to pry apart once they close."
+	return f
+
+
+# =============================================================================
 # Tranquil Pool creatures (Progression 2, alt branch)
 # =============================================================================
 
@@ -158,18 +177,18 @@ static func create_blind_angler(n: String, lvl: int = 3) -> FighterData:
 	return f
 
 
-static func create_pale_crayfish(n: String, lvl: int = 3) -> FighterData:
-	var f := EH.base(n, "Pale Crayfish", lvl)
-	f.health = EH.es(78, 91, 4, 6, lvl, 3); f.max_health = f.health
+static func create_silt_lurker(n: String, lvl: int = 3) -> FighterData:
+	var f := EH.base(n, "Silt Lurker", lvl)
+	f.health = EH.es(58, 68, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(21, 25, 2, 3, lvl, 3)
-	f.physical_defense = EH.es(14, 18, 1, 3, lvl, 3)
+	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 3)
-	f.magic_defense = EH.es(10, 14, 1, 2, lvl, 3)
-	f.speed = EH.es(14, 20, 1, 2, lvl, 3)
-	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 4
-	f.abilities = [EAB.pincer_crush(), EAB.shell_up()]
-	f.flavor_text = "An albino crustacean the size of a hound, armored in thick calcified plates. Its claws can shear through stone."
+	f.magic_defense = EH.es(8, 11, 0, 1, lvl, 3)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 3)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 14
+	f.abilities = [EAB.ambush_bite(), EAB.murky_retreat()]
+	f.flavor_text = "A flat, mud-colored predator that lies motionless on the pool floor. When prey wades close, it strikes with terrifying speed and vanishes back into the silt."
 	return f
 
 

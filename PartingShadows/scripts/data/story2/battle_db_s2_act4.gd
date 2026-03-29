@@ -29,7 +29,7 @@ static func s2_depths_of_remembrance() -> BattleData:
 	b.scene_image = "res://assets/art/battles/memory_depths.png"
 	b.enemies = [
 		EnemyDBS2Act4.create_gaze_stalker("Lidwatch"),
-		EnemyDBS2Act4.create_gaze_stalker("Duskpupil"),
+		EnemyDBS2Act4.create_pupil_leech("Gorger"),
 		EnemyDBS2Act4.create_memory_harvester("The Gleaner"),
 	]
 	b.pre_battle_text = [

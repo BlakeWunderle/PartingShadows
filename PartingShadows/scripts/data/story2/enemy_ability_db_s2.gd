@@ -116,13 +116,21 @@ static func lure_light() -> AbilityData:
 static func abyssal_gaze() -> AbilityData:
 	return _make("Abyssal Gaze", "Empty eyes strip away defenses.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)
 
-# --- Pale Crayfish ---
+# --- Cavern Snapper ---
 
-static func pincer_crush() -> AbilityData:
-	return _make("Pincer Crush", "Armored claws close with terrible force.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+static func jaw_clamp() -> AbilityData:
+	return _make("Jaw Clamp", "Stone-hard jaws lock shut with bone-crushing force.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
-static func shell_up() -> AbilityData:
-	return _make("Shell Up", "The crayfish withdraws into its shell.", Enums.StatType.DEFENSE, 5, 2, false, 2, false, 0, 0.0)
+static func stone_shell() -> AbilityData:
+	return _make("Stone Shell", "The snapper withdraws into its mineral-encrusted carapace.", Enums.StatType.DEFENSE, 5, 2, false, 2, false, 0, 0.0)
+
+# --- Silt Lurker ---
+
+static func ambush_bite() -> AbilityData:
+	return _make("Ambush Bite", "Jaws erupt from the murk before the prey can react.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+static func murky_retreat() -> AbilityData:
+	return _make("Murky Retreat", "The lurker slips back into clouded water, nearly invisible.", Enums.StatType.DODGE_CHANCE, 14, 2, false, 2, false, 0, 0.0)
 
 # --- Cave Dweller ---
 

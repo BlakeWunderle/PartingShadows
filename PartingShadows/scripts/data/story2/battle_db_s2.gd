@@ -68,7 +68,7 @@ static func s2_deep_cavern() -> BattleData:
 	b.scene_image = "res://assets/art/battles/deep_cavern.png"
 	b.enemies = [
 		EnemyDBS2.create_shade_crawler("Umbral"),
-		EnemyDBS2.create_shade_crawler("Murk"),
+		EnemyDBS2.create_cavern_snapper("Ironjaw"),
 		EnemyDBS2.create_echo_wisp("Resonance"),
 	]
 	b.pre_battle_text = [
@@ -138,7 +138,7 @@ static func s2_tranquil_pool() -> BattleData:
 	b.enemies = [
 		EnemyDBS2.create_cave_eel("Voltfin"),
 		EnemyDBS2.create_blind_angler("The Lure"),
-		EnemyDBS2.create_pale_crayfish("Old Shell"),
+		EnemyDBS2.create_silt_lurker("Ambush"),
 	]
 	b.pre_battle_text = [
 		"The passage descends to a subterranean pool fed by a waterfall from a crack in the ceiling.",

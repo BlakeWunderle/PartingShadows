@@ -165,7 +165,7 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS2.create_crystal_spider("Prism")]
 		"S2_DeepCavern":
 			return [EnemyDBS2.create_shade_crawler("Umbral"),
-				EnemyDBS2.create_shade_crawler("Murk"),
+				EnemyDBS2.create_cavern_snapper("Ironjaw"),
 				EnemyDBS2.create_echo_wisp("Resonance")]
 		"S2_FungalHollow":
 			return [EnemyDBS2.create_spore_stalker("Creeper"),
@@ -174,7 +174,7 @@ static func create_enemies(stage_name: String) -> Array:
 		"S2_TranquilPool":
 			return [EnemyDBS2.create_cave_eel("Voltfin"),
 				EnemyDBS2.create_blind_angler("The Lure"),
-				EnemyDBS2.create_pale_crayfish("Old Shell")]
+				EnemyDBS2.create_silt_lurker("Ambush")]
 		"S2_TorchChamber":
 			return [EnemyDBS2.create_cave_dweller("Grimjaw"),
 				EnemyDBS2.create_tunnel_shaman("Ember Eye"),
@@ -234,17 +234,17 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS2Act3.create_null_phantom("Erasure"),
 				EnemyDBS2Act3.create_threshold_echo("Echo")]
 		"S2_ForgottenArchive":
-			return [EnemyDBS2Act3.create_archive_keeper("Archivist"),
+			return [EnemyDBS2Act3.create_ink_devourer("Blotch"),
 				EnemyDBS2Act3.create_silent_archivist("Cataloger"),
 				EnemyDBS2Act3.create_lost_record("Lost Entry"),
-				EnemyDBS2Act3.create_faded_page("Faded Page")]
+				EnemyDBS2Act3.create_maw_codex("Gnawledge")]
 		"S2_TheReveal":
 			return [EnemyDBS2Act3.create_the_warden("The Warden"),
 				EnemyDBS2Act3.create_fractured_protector("Sera")]
 		# Story 2 Act IV
 		"S2_DepthsOfRemembrance":
 			return [EnemyDBS2Act4.create_gaze_stalker("Lidwatch"),
-				EnemyDBS2Act4.create_gaze_stalker("Duskpupil"),
+				EnemyDBS2Act4.create_pupil_leech("Gorger"),
 				EnemyDBS2Act4.create_memory_harvester("The Gleaner")]
 		"S2_MawOfTheEye":
 			return [EnemyDBS2Act4.create_thoughtform_knight("Oathbound"),

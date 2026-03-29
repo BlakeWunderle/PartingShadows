@@ -11,6 +11,21 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 # The Eye's servants (level 14)
 # =============================================================================
 
+static func create_pupil_leech(n: String, lvl: int = 14) -> FighterData:
+	var f := EH.base(n, "Pupil Leech", lvl)
+	f.health = EH.es(620, 710, 5, 8, lvl, 14); f.max_health = f.health
+	f.mana = EH.es(16, 20, 1, 2, lvl, 14); f.max_mana = f.mana
+	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 14)
+	f.physical_defense = EH.es(48, 57, 2, 4, lvl, 14)
+	f.magic_attack = EH.es(88, 101, 3, 5, lvl, 14)
+	f.magic_defense = EH.es(46, 55, 2, 3, lvl, 14)
+	f.speed = EH.es(28, 35, 1, 3, lvl, 14)
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 8
+	f.abilities = [EABL.memory_siphon(), EABL.festering_gaze()]
+	f.flavor_text = "A bloated parasite that clings to the Eye's victims, feeding on their drained memories. A single stolen eye stares from its translucent body."
+	return f
+
+
 static func create_gaze_stalker(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Gaze Stalker", lvl)
 	f.health = EH.es(492, 558, 5, 8, lvl, 14); f.max_health = f.health

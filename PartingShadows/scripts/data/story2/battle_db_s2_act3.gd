@@ -197,10 +197,10 @@ static func s2_forgotten_archive() -> BattleData:
 	b.battle_id = "S2_ForgottenArchive"
 	b.scene_image = "res://assets/art/battles/forgotten_archive.png"
 	b.enemies = [
-		EnemyDBS2Act3.create_archive_keeper("Archivist"),
+		EnemyDBS2Act3.create_ink_devourer("Blotch"),
 		EnemyDBS2Act3.create_silent_archivist("Cataloger"),
 		EnemyDBS2Act3.create_lost_record("Lost Entry"),
-		EnemyDBS2Act3.create_faded_page("Faded Page"),
+		EnemyDBS2Act3.create_maw_codex("Gnawledge"),
 	]
 	b.pre_battle_text = [
 		"The archive stretches into shadow. Shelf after shelf of records, each one a life unmade. Hundreds of names. Hundreds of people who walked into the Eye's reach and walked out empty.",

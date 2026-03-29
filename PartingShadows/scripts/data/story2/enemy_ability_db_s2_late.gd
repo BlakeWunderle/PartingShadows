@@ -158,13 +158,13 @@ static func liminal_strike() -> AbilityData:
 static func threshold_bind() -> AbilityData:
 	return _make("Threshold Bind", "Crossing the boundary leaves the body sluggish, caught between here and there.", Enums.StatType.SPEED, 6, 2, true, 4, false, 0, 0.0)
 
-# --- Archive Keeper (P12 FA variant) ---
+# --- Ink Devourer (P12 FA variant) ---
 
-static func archive_slam() -> AbilityData:
-	return _make("Archive Slam", "Stone shelves topple forward, driven by the keeper's immense weight.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0)
+static func ink_lash() -> AbilityData:
+	return _make("Ink Lash", "A tendril of living ink whips forward, burning with absorbed knowledge.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
-static func guardian_oath() -> AbilityData:
-	return _make("Guardian Oath", "The keeper steps forward, its bulk filling the passage. Nothing gets past.", Enums.StatType.TAUNT, 1, 2, false, 3, false, 0, 0.0)
+static func devour_script() -> AbilityData:
+	return _make("Devour Script", "The ink drinks deep from living memory, replenishing itself.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.25)
 
 # --- Silent Archivist (P12 FA variant) ---
 
@@ -182,18 +182,26 @@ static func fragmented_blast() -> AbilityData:
 static func corrupted_text() -> AbilityData:
 	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 8, 3, true, 4, false, 4, 0.0)
 
-# --- Faded Page (P12 FA variant) ---
+# --- Maw Codex (P12 FA variant) ---
 
-static func binding_press() -> AbilityData:
-	return _make("Binding Press", "Pages snap shut with crushing force, edges sharp enough to draw blood.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
+static func tome_bite() -> AbilityData:
+	return _make("Tome Bite", "The grimoire snaps open, revealing rows of teeth that clamp down on flesh.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
-static func eroding_script() -> AbilityData:
-	return _make("Eroding Script", "Faded words crawl across the target's skin, dissolving wards and armor alike.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0)
+static func knowledge_storm() -> AbilityData:
+	return _make("Knowledge Storm", "Loose pages erupt outward in a razor-edged cyclone.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
 # Act IV: The Eye's domain abilities
 # =============================================================================
+
+# --- Pupil Leech ---
+
+static func memory_siphon() -> AbilityData:
+	return _make("Memory Siphon", "The leech latches onto thought itself, drinking deep.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.2)
+
+static func festering_gaze() -> AbilityData:
+	return _make("Festering Gaze", "The parasite's stolen eye leaves a wound that won't close.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 5, 0.0)
 
 # --- Gaze Stalker ---
 
