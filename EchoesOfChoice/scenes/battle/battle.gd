@@ -253,7 +253,7 @@ func _tick_loop() -> void:
 			else:
 				turn_text = "It is %s's turn." % actor.character_name
 			_add_log_separator()
-			_add_log("[color=yellow]%s[/color]" % turn_text)
+			_add_log("[color=#b3b3b3]%s[/color]" % turn_text)
 
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION

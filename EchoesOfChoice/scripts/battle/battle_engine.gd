@@ -135,7 +135,7 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 
 	if _check_for_dodge(defender):
 		if not sim_mode:
-			combat_message.emit("The attack from %s missed" % attacker.character_name)
+			combat_message.emit("[color=#b3b3b3]The attack from %s missed[/color]" % attacker.character_name)
 			combat_event.emit(defender, 0, "miss")
 		return
 
@@ -149,8 +149,9 @@ func physical_attack(attacker: FighterData, defender: FighterData) -> void:
 		var base_after_def: int = damage - (attacker.crit_damage if is_crit else 0)
 		sim_stats[defender].dmg_mitigated += maxi(raw_base - base_after_def, 0)
 	else:
-		combat_message.emit("%s did %d points of damage to %s." % [
-			attacker.character_name, damage, defender.character_name])
+		var crit_tag: String = " [color=#ffd933](Critical!)[/color]" if is_crit else ""
+		combat_message.emit("[color=#ff4d4d]%s did %d points of damage to %s.[/color]%s" % [
+			attacker.character_name, damage, defender.character_name, crit_tag])
 		combat_event.emit(defender, damage, "crit" if is_crit else "damage")
 
 	# Restore MP based on magic attack
@@ -164,7 +165,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		ability: AbilityData, skip_flavor: bool = false) -> void:
 	if _check_for_ability_dodge(defender):
 		if not sim_mode:
-			combat_message.emit("%s dodged %s's ability!" % [
+			combat_message.emit("[color=#b3b3b3]%s dodged %s's ability![/color]" % [
 				defender.character_name, attacker.character_name])
 			combat_event.emit(defender, 0, "miss")
 		return
@@ -188,8 +189,9 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 		else:
 			if not skip_flavor:
 				combat_message.emit(ability.flavor_text)
-			combat_message.emit("%s did %d points of damage to %s." % [
-				attacker.character_name, damage, defender.character_name])
+			var crit_tag: String = " [color=#ffd933](Critical!)[/color]" if is_crit else ""
+			combat_message.emit("[color=#9966ff]%s did %d points of damage to %s.[/color]%s" % [
+				attacker.character_name, damage, defender.character_name, crit_tag])
 			combat_event.emit(defender, damage, "spell_crit" if is_crit else "spell_damage")
 
 		if ability.life_steal_percent > 0.0 and damage > 0:
@@ -198,7 +200,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			if sim_mode:
 				sim_stats[attacker].heals += heal_amount
 			else:
-				combat_message.emit("%s absorbed %d health." % [
+				combat_message.emit("[color=#4dff66]%s absorbed %d health.[/color]" % [
 					attacker.character_name, heal_amount])
 				combat_event.emit(attacker, heal_amount, "heal")
 	else:
@@ -214,7 +216,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			if not sim_mode:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
-				combat_message.emit("%s will take %d damage per turn for %d turns." % [
+				combat_message.emit("[color=#cc4dcc]%s will take %d damage per turn for %d turns.[/color]" % [
 					defender.character_name, ability.damage_per_turn, ability.impacted_turns])
 				combat_event.emit(defender, ability.damage_per_turn, "debuff")
 
@@ -231,7 +233,7 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 			if not sim_mode and ability.damage_per_turn == 0:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
-				combat_message.emit("%s was hit with this ability." % defender.character_name)
+				combat_message.emit("[color=#cc4dcc]%s was hit with this ability.[/color]" % defender.character_name)
 				combat_event.emit(defender, ability.modifier, "debuff")
 
 
@@ -255,7 +257,7 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		else:
 			if not skip_flavor:
 				combat_message.emit(ability.flavor_text)
-			combat_message.emit("%s healed %d points of damage." % [
+			combat_message.emit("[color=#4dff66]%s healed %d points of damage.[/color]" % [
 				target.character_name, heal_amount])
 			combat_event.emit(target, heal_amount, "heal")
 	else:
@@ -271,7 +273,7 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 		if not sim_mode:
 			if not skip_flavor:
 				combat_message.emit(ability.flavor_text)
-			combat_message.emit("%s was impacted by the ability." % target.character_name)
+			combat_message.emit("[color=#66ccff]%s was impacted by the ability.[/color]" % target.character_name)
 			combat_event.emit(target, ability.modifier, "buff")
 
 
@@ -325,7 +327,7 @@ func perform_block(blocker: FighterData) -> void:
 	var mp_restore: int = maxi(1, floori(blocker.magic_attack / 7))
 	blocker.mana = mini(blocker.mana + mp_restore, blocker.max_mana)
 	if not sim_mode:
-		combat_message.emit("%s braces for impact." % blocker.character_name)
+		combat_message.emit("[color=#66b3ff]%s braces for impact.[/color]" % blocker.character_name)
 		combat_event.emit(blocker, mp_restore, "block")
 
 
@@ -337,7 +339,7 @@ func perform_rest(unit: FighterData) -> void:
 	if sim_mode:
 		sim_stats[unit].heals += hp_restore
 	else:
-		combat_message.emit("%s takes a moment to rest." % unit.character_name)
+		combat_message.emit("[color=#80cc66]%s takes a moment to rest.[/color]" % unit.character_name)
 		combat_event.emit(unit, mp_restore, "rest")
 
 
@@ -368,7 +370,7 @@ func reset_modified_stat(fighter: FighterData) -> void:
 			if sim_mode:
 				sim_stats[fighter].dmg_taken += mod["damage_per_turn"]
 			else:
-				combat_message.emit("%s takes %d damage from a lingering effect." % [
+				combat_message.emit("[color=#cc4dcc]%s takes %d damage from a lingering effect.[/color]" % [
 					fighter.character_name, mod["damage_per_turn"]])
 				combat_event.emit(fighter, mod["damage_per_turn"], "damage")
 
@@ -396,7 +398,7 @@ func check_for_death() -> void:
 			if sim_mode:
 				sim_stats[units[i]].died = true
 			else:
-				combat_message.emit("%s the %s has been knocked out." % [
+				combat_message.emit("[color=#ffcc00]%s the %s has been knocked out.[/color]" % [
 					units[i].character_name, units[i].character_type])
 				fighter_died.emit(units[i])
 			unit_deaths.append(i)
@@ -404,7 +406,7 @@ func check_for_death() -> void:
 	for i: int in enemies.size():
 		if enemies[i].health <= 0:
 			if not sim_mode:
-				combat_message.emit("%s the %s has been knocked out." % [
+				combat_message.emit("[color=#ffcc00]%s the %s has been knocked out.[/color]" % [
 					enemies[i].character_name, enemies[i].character_type])
 				fighter_died.emit(enemies[i])
 			enemy_deaths.append(i)
@@ -603,6 +605,19 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 			if randf() < 0.25:
 				perform_rest(unit)
 				return
+
+	# Priority 2.75: Prefer life steal when wounded
+	if hp_pct < 0.7 and not offensive_abilities.is_empty():
+		var steal_abilities: Array[AbilityData] = []
+		for a: AbilityData in offensive_abilities:
+			if a.life_steal_percent > 0:
+				steal_abilities.append(a)
+		if not steal_abilities.is_empty() and randf() < 0.6:
+			var ability: AbilityData = _weighted_pick(steal_abilities)
+			unit.mana -= ability.mana_cost
+			var target: FighterData = _choose_target(unit, targets, magic_ratio)
+			use_ability_on_enemy(unit, target, ability)
+			return
 
 	# Priority 3: Offensive ability vs physical attack
 	var ability_chance: float = magic_ratio
