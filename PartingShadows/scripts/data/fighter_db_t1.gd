@@ -293,7 +293,7 @@ static func _lu_beastcaller(f: FighterData) -> void:
 
 static func upgrade_to_sentinel(f: FighterData) -> void:
 	f.class_id = "Sentinel"; f.character_type = "Sentinel"
-	f.health += 4; f.max_health += 4; f.mana += 1; f.max_mana += 1
+	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 1; f.physical_defense += 2; f.magic_attack += 1; f.magic_defense += 4
 	f.speed += 1; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 2
 	f.abilities = [PAB_B.shield_bash(), PAB_B.barrier(), PAB_B.fortify()]
@@ -309,11 +309,11 @@ static func upgrade_to_pathfinder(f: FighterData) -> void:
 
 static func _lu_sentinel(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
+	var hp := randi_range(10, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(3, 5)
 	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(3, 5)
-	f.speed += randi_range(1, 1)
+	f.speed += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
 

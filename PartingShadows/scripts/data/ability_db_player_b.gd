@@ -293,15 +293,15 @@ static func rampage() -> AbilityData:
 # Sentinel
 static func shield_bash() -> AbilityData:
 	return _make("Shield Bash", "Drive your shield into the foe with crushing force.",
-		Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func barrier() -> AbilityData:
 	return _make("Barrier", "Raise a shimmering ward to protect an ally from magic.",
-		Enums.StatType.MAGIC_DEFENSE, 4, 2, false, 2, false, 0, 0.0)
+		Enums.StatType.MAGIC_DEFENSE, 6, 3, false, 2, false, 0, 0.0)
 
 static func fortify() -> AbilityData:
 	return _make("Fortify", "Strengthen the whole team's resolve against harm.",
-		Enums.StatType.DEFENSE, 2, 2, false, 4, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 3, 3, false, 4, true, 0, 0.0)
 
 # Pathfinder
 static func keen_strike() -> AbilityData:
