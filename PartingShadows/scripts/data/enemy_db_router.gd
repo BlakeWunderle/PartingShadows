@@ -261,6 +261,11 @@ static func create_enemy(class_id: String) -> FighterData:
 		"High Weaver": return S3A45.create_high_weaver("")
 		"Shadow Fragment": return S3A45.create_shadow_fragment("")
 		"The Threadmaster": return S3A45.create_the_threadmaster("")
+		"DreadTailor": return S3A45.create_dread_tailor("")
+		"NeedleWraith": return S3A45.create_needle_wraith("")
+		"LoomCrusher": return S3A45.create_loom_crusher("")
+		"Ritual Guardian": return S3A45.create_ritual_guardian("")
+		"Thread Stitcher": return S3A45.create_thread_stitcher("")
 
 		# =====================================================================
 		# Story 3 - Path B
@@ -284,6 +289,8 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Lira, the Threadmaster": return S3PB.create_lira_threadmaster("")
 		"Tattered Deception": return S3PB.create_tattered_deception("")
 		"Dream Bastion": return S3PB.create_dream_bastion("")
+		"WeftStalker": return S3PB.create_weft_stalker("")
+		"Loom Parasite": return S3PB.create_loom_parasite("")
 
 		# =====================================================================
 		# Story 3 - Path C
@@ -294,6 +301,7 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Dream Priest": return S3PC.create_dream_priest("")
 		"Astral Enforcer": return S3PC.create_astral_enforcer("")
 		"Oneiric Hexer": return S3PC.create_oneiric_hexer("")
+		"Oneiric Guardian": return S3PC.create_oneiric_guardian("")
 		"Memory Eater": return S3PC.create_memory_eater("")
 		"Nightmare Sentinel": return S3PC.create_nightmare_sentinel("")
 		"Anchor Chain": return S3PC.create_anchor_chain("")

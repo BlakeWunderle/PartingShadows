@@ -15,10 +15,12 @@ All paths below are relative to `PartingShadows/`.
 - `battle_db.gd` -- Battle router: dispatches battle_id to story1/, story2/, and story3/ act modules
 - `enemy_helpers.gd` -- Shared stat helpers (es, fixed, base) for all enemy DB factories
 - `enemy_db_router.gd` -- Enemy creation router for simulation
-- `enums.gd` -- Shared enums (ability types, targeting, etc.)
+- `enemy_roles.gd` -- Enemy combat role, subtype, damage type, and threat tier metadata for all 211 enemies
+- `enums.gd` -- Shared enums (ability types, targeting, roles, subtypes, damage types, enemy tiers)
 - `fighter_data.gd` -- Fighter stat model (HP, MP, ATK, DEF, SPD, abilities, buffs/debuffs)
 - `fighter_db.gd` -- Player class factory: base classes (T0), data-driven level-up, upgrade routing, preview
 - `fighter_db_meta.gd` -- Class metadata: display names, ability lookups, flavor text for all 56 classes
+- `fighter_db_roles.gd` -- Combat role, subtype, and damage type metadata for all 56 player classes
 - `fighter_db_t1.gd` -- Tier 1 class upgrades and level-up functions
 - `fighter_db_t2.gd` -- Tier 2 class upgrades: Squire, Mage, Wanderer-Sentinel trees
 - `fighter_db_t2b.gd` -- Tier 2 class upgrades: Entertainer, Tinker trees
@@ -143,10 +145,11 @@ All paths below are relative to `PartingShadows/`.
 - `scripts/tools/party_composer.gd` -- Party generation for simulation
 - `scripts/tools/simulation_runner.gd` -- Battle simulation engine
 - `scripts/tools/sim_cache.gd` -- Simulation result caching with file-hash invalidation
-- `scripts/tools/sim_diagnostics.gd` -- Per-class offense/defense diagnostics for weak classes
+- `scripts/tools/sim_diagnostics.gd` -- Per-class offense/defense diagnostics for weak classes (role-aware categories)
 - `scripts/tools/sim_progressive.gd` -- Progressive stage validation for simulation
 - `scripts/tools/sim_report.gd` -- JSON/text report generation for simulation results
 - `scripts/tools/sim_report_markdown.gd` -- Markdown class balance report generator (tier tables, outliers, boss section)
+- `scripts/tools/sim_repetitiveness.gd` -- Battle repetitiveness analysis: cosine similarity on role/subtype vectors, damage monotony detection
 - `tools/battle_simulator.gd` -- Headless battle simulator entry point
 - `tools/battle_sim_parallel.gd` -- Parallel worker coordinator for batch simulation
 

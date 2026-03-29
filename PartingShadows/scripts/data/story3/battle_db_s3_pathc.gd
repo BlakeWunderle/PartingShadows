@@ -95,7 +95,7 @@ static func s3_c_cult_interception() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_dream_priest("High Priest Thorne"),
 		EnemyDB.create_astral_enforcer("Astral Blade"),
-		EnemyDB.create_oneiric_hexer("Dream Hexer"),
+		EnemyDB.create_oneiric_guardian("Dream Wall"),
 	]
 	b.pre_battle_text = [
 		"A barrier of woven light blocks the path. Behind it, figures shimmer into existence. Not dream creatures. People. Cult members who have used the Loom's power to project themselves into the dream.",

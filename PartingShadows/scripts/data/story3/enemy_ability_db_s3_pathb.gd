@@ -208,3 +208,12 @@ static func weft_lash() -> AbilityData:
 
 static func stalk() -> AbilityData:
 	return _make("Stalk", "The creature circles its prey, hampering every move and slowing the quarry.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)
+
+
+# --- Loom Parasite (physical DoT + life steal creature) ---
+
+static func parasitic_bite() -> AbilityData:
+	return _make("Parasitic Bite", "The parasite latches on and drinks deep from the wound.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.2)
+
+static func infesting_spores() -> AbilityData:
+	return _make("Infesting Spores", "Spores burrow under the skin and feed on living tissue.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 5, 0.0)

@@ -127,3 +127,12 @@ static func pulse_of_the_loom() -> AbilityData:
 
 static func loom_storm() -> AbilityData:
 	return _make("Loom Storm", "Threads of raw energy lash outward in every direction.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
+
+
+# --- Oneiric Guardian (dream-projected cult tank, life steal) ---
+
+static func warden_strike() -> AbilityData:
+	return _make("Warden's Strike", "A massive fist crashes down with the weight of the dream behind it.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+static func dream_siphon() -> AbilityData:
+	return _make("Dream Siphon", "The guardian draws strength from the dreams of those it strikes.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.2)

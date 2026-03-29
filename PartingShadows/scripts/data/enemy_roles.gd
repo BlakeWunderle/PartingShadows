@@ -245,6 +245,11 @@ const _DATA: Dictionary = {
 	"High Weaver": { "s": [S.DEBUFFER, S.CRIT], "d": D.MAGICAL },
 	"Shadow Fragment": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.UNDERLING },
 	"The Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
+	"DreadTailor": { "s": [S.AOE, S.CRIT, S.EVASION] },
+	"NeedleWraith": { "s": [S.GLASS_CANNON, S.AOE, S.CRIT] },
+	"LoomCrusher": { "r": [R.TANK, R.FIGHTER], "s": [S.BUFFER] },
+	"Ritual Guardian": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.BUFFER] },
+	"Thread Stitcher": { "s": [S.DOT, S.CRIT], "d": D.MAGICAL },
 
 	# ==========================================================================
 	# Story 3 - Path B
@@ -268,6 +273,8 @@ const _DATA: Dictionary = {
 	"Lira, the Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
 	"Tattered Deception": { "s": [S.DEBUFFER, S.CRIT], "d": D.MAGICAL, "t": T.UNDERLING },
 	"Dream Bastion": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE, S.CRIT], "t": T.UNDERLING },
+	"WeftStalker": { "s": [S.DEBUFFER, S.AOE], "d": D.MIXED },
+	"Loom Parasite": { "s": [S.DOT, S.DRAIN, S.CRIT] },
 
 	# ==========================================================================
 	# Story 3 - Path C
@@ -278,6 +285,7 @@ const _DATA: Dictionary = {
 	"Dream Priest": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Astral Enforcer": { "r": [R.TANK, R.FIGHTER], "s": [S.CRIT] },
 	"Oneiric Hexer": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
+	"Oneiric Guardian": { "r": [R.TANK, R.FIGHTER], "s": [S.DRAIN] },
 	"Memory Eater": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Nightmare Sentinel": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT] },
 	"Anchor Chain": { "s": [S.DEBUFFER, S.CRIT], "d": D.MIXED },

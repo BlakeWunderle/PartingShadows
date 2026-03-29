@@ -55,7 +55,7 @@ static func s3_cult_catacombs() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_thread_guard("Loom Watcher"),
 		EnemyDB.create_dream_hound("Bound Hound"),
-		EnemyDB.create_needle_wraith("The Stitched"),
+		EnemyDB.create_thread_stitcher("Cult Mender"),
 	]
 	b.pre_battle_text = [
 		"Beneath the inn, the cellar gives way to something much older. Stone corridors stretch in directions that no building above could contain.",

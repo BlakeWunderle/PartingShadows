@@ -346,15 +346,15 @@ static func create_enemies(stage_name: String) -> Array:
 		"S3_CultUnderbelly":
 			return [EnemyDBS3Act45.create_cult_acolyte("Brother Voss"),
 				EnemyDBS3Act45.create_cult_enforcer("Sister Maren"),
-				EnemyDBS3Act45.create_cult_hexer("Brother Callum")]
+				EnemyDBS3Act45.create_dread_tailor("Loom's Seamstress")]
 		"S3_CultCatacombs":
 			return [EnemyDBS3Act45.create_thread_guard("Loom Watcher"),
 				EnemyDBS3Act45.create_dream_hound("Bound Hound"),
-				EnemyDBS3Act45.create_dream_hound("Chain Fang")]
+				EnemyDBS3Act45.create_thread_stitcher("Cult Mender")]
 		"S3_CultRitualChamber":
 			return [EnemyDBS3Act45.create_cult_ritualist("High Ritualist Thorne"),
 				EnemyDBS3Act45.create_high_weaver("Weaver Aldric"),
-				EnemyDBS3Act45.create_thread_guard("Loom Champion")]
+				EnemyDBS3Act45.create_loom_crusher("The Loom's Fist")]
 		"S3_DreamNexus":
 			return [EnemyDBS3Act45.create_the_threadmaster("The Threadmaster"),
 				EnemyDBS3Act45.create_shadow_fragment("Tattered Shadow"),
@@ -376,13 +376,13 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS3PathB.create_passage_guardian("Passage Ward"),
 				EnemyDBS3PathB.create_warding_shadow("Dark Ward")]
 		"S3_B_LoomHeart":
-			return [EnemyDBS3PathB.create_shadow_innkeeper("Shadow Aldric"),
-				EnemyDBS3PathB.create_astral_weaver("Loom Weaver"),
-				EnemyDBS3PathB.create_loom_tendril("Tendril")]
+			return [EnemyDBS3PathB.create_shadow_innkeeper("The Innkeeper"),
+				EnemyDBS3PathB.create_astral_weaver("Weaver Aldric"),
+				EnemyDBS3PathB.create_loom_parasite("Thread Leech")]
 		"S3_B_DreamInvasion":
-			return [EnemyDBS3PathB.create_cathedral_warden("Cathedral Guard"),
-				EnemyDBS3PathB.create_dream_binder("Dream Binder"),
-				EnemyDBS3PathB.create_thread_anchor("Thread Anchor")]
+			return [EnemyDBS3PathB.create_cathedral_warden("Loom Warden"),
+				EnemyDBS3PathB.create_dream_binder("Thread Binder"),
+				EnemyDBS3PathB.create_weft_stalker("The Weft Predator")]
 		"S3_B_DreamNexus":
 			return [EnemyDBS3PathB.create_lira_threadmaster("Lira, the Threadmaster"),
 				EnemyDBS3PathB.create_tattered_deception("Tattered Deception"),
@@ -393,9 +393,9 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS3PathC.create_thread_devourer("Thread Devourer"),
 				EnemyDBS3PathC.create_slumbering_colossus("Slumbering Colossus")]
 		"S3_C_CultInterception":
-			return [EnemyDBS3PathC.create_dream_priest("Dream Priest"),
-				EnemyDBS3PathC.create_astral_enforcer("Astral Enforcer"),
-				EnemyDBS3PathC.create_oneiric_hexer("Oneiric Hexer")]
+			return [EnemyDBS3PathC.create_dream_priest("High Priest Thorne"),
+				EnemyDBS3PathC.create_astral_enforcer("Astral Blade"),
+				EnemyDBS3PathC.create_oneiric_guardian("Dream Wall")]
 		"S3_C_ThreadmasterLair":
 			return [EnemyDBS3PathC.create_nightmare_sentinel("Nightmare Sentinel"),
 				EnemyDBS3PathC.create_memory_eater("Memory Eater"),

@@ -348,3 +348,30 @@ A guardian whose physical form has partially merged with the loom itself, thread
 ```
 A heavily armored cult guardian stationed at the ritual chamber's threshold, plate armor engraved with the Thread's ceremonial sigils that glow faintly during the rites. Its helmet is a full-face ceremonial visor shaped like a stylized loom-beater, imposing and ritualistic. It holds a long-hafted weapon in one hand while the other traces a slow chanting gesture at its side, lips moving behind the visor. Thread-sigils orbit its shoulders like slow satellites, empowered by proximity to the active ceremony. More than a fighter — a participant in the rite itself, its violence an act of devotion, dark fantasy RPG character portrait, full body, dark ritual chamber background with warm golden ceremony light, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
 ```
+
+---
+
+## P15 Repetitiveness Fixes (3 portraits)
+
+*Added 2026-03-29 to break role/damage monotony across the three P15 endgame battles.*
+
+### S3_CultCatacombs (Main Path)
+
+**thread_stitcher.png**
+```
+A gaunt cult operative in dark layered robes threaded with luminous filaments that pulse faintly along the seams. Their hands are wrapped in coils of hardened dream-thread that extend into long needle-like lances of solidified light, one in each fist. Their face is half-hidden by a cloth mask stitched with the Thread's sigils, hollow eyes glowing a cold teal above it. Thin scourging filaments trail from their forearms like whip-tendrils, each one barbed with tiny crystallized hooks that glint in the dark. Lean and surgical, a weaponizer of the same threads others use to mend, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+### S3_B_LoomHeart (Path B)
+
+**loom_parasite.png**
+```
+A grotesque creature spawned from the Loom's waste threads, crouched low on four misshapen limbs of knotted dark fiber. Its body is a compact mass of tangled thread-matter, organic yet wrong, with patches of translucent membrane stretched between thick cord-like muscles revealing a dim pulsing glow inside. A wide flat head with no visible eyes, just a circular lamprey-like mouth lined with rows of tiny hooked teeth designed to latch and drain. Clusters of pale spore-sacs cling to its back and flanks, some split open and trailing toxic green vapor. Short barbed tendrils extend from its sides twitching constantly, tasting the air. Low to the ground and predatory, a parasite that feeds on living energy and leaves ruin behind, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+### S3_C_CultInterception (Path C)
+
+**oneiric_guardian.png**
+```
+A hulking guardian conjured from raw dream-stuff by cult will, towering and broad-shouldered with a body of semi-translucent crystallized dream-matter in deep indigo and teal. Its form is humanoid but exaggerated, arms too long, fists too large, a brute shaped from imagination without restraint. Veins of stolen dream-light pulse through its body, growing brighter near fresh wounds as it absorbs energy from those it strikes. No face, just a smooth dome of dark crystal with a single horizontal crack that glows warm amber like a furnace slit. Heavy plated formations of hardened dream grow across its shoulders and forearms like natural armor. Where its massive fists have struck the ground, cracks radiate outward trailing faint luminescence. Immovable and self-sustaining, growing harder to kill the longer the fight continues, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```

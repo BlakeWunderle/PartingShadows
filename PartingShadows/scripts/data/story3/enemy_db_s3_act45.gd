@@ -119,9 +119,9 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.mana = EH.es(20, 24, 1, 2, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(44, 54, 2, 4, lvl, 17)
-	f.magic_attack = EH.es(111, 128, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(112, 129, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
-	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
+	f.speed = EH.es(37, 43, 2, 3, lvl, 17)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.ritual_chant(), EAB.ancient_rite(), EAB.blood_weaving()]
 	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
@@ -152,14 +152,14 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 # High pAtk + very high mDef, magic passes through the blades
 static func create_dread_tailor(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "DreadTailor", lvl)
-	f.health = EH.es(647, 741, 5, 8, lvl, 15); f.max_health = f.health
+	f.health = EH.es(575, 662, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(111, 128, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(98, 113, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(32, 40, 1, 3, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
-	f.magic_defense = EH.es(62, 72, 2, 4, lvl, 15)
-	f.speed = EH.es(38, 45, 2, 3, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 22
+	f.magic_defense = EH.es(50, 58, 2, 3, lvl, 15)
+	f.speed = EH.es(37, 43, 2, 3, lvl, 15)
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.shear(), EAB.snip_away()]
 	f.flavor_text = "A cultist who gave up her name and replaced it with a title. She fights with oversized dream-shears, each blade honed at the intersection of cloth and nightmare. Magic slides off the enchanted steel without leaving a mark."
 	return f
@@ -192,10 +192,26 @@ static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = EH.es(72, 83, 3, 5, lvl, 17)
-	f.speed = EH.es(18, 24, 1, 2, lvl, 17)
+	f.speed = EH.es(22, 28, 1, 2, lvl, 17)
 	f.crit_chance = 15; f.crit_damage = 4; f.dodge_chance = 8
 	f.abilities = [EAB.thread_crush(), EAB.weave_brace()]
 	f.flavor_text = "An enormous dream-construct whose body is formed from thousands of threads compressed so tightly they became solid matter. Magic passes through the weave harmlessly. It moves with ponderous, inevitable force."
+	return f
+
+
+# Prog 15 -- magical DoT specialist (level 16)
+static func create_thread_stitcher(n: String, lvl: int = 16) -> FighterData:
+	var f := EH.base(n, "Thread Stitcher", lvl)
+	f.health = EH.es(520, 598, 5, 8, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(18, 22, 1, 2, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
+	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(111, 126, 3, 5, lvl, 16)
+	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 16)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 16)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 18
+	f.abilities = [EAB.thread_lance(), EAB.thread_scourge()]
+	f.flavor_text = "A cult operative who weaponizes the same threads used to mend the Loom. Their lances of hardened dream-thread pierce through wards, and their scourging filaments burrow into flesh and keep cutting long after the initial strike."
 	return f
 
 

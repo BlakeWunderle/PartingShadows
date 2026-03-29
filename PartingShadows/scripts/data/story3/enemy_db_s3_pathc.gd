@@ -110,6 +110,22 @@ static func create_oneiric_hexer(n: String, lvl: int = 16) -> FighterData:
 	return f
 
 
+# Prog 15 -- physical tank with life steal (level 16)
+static func create_oneiric_guardian(n: String, lvl: int = 16) -> FighterData:
+	var f := EH.base(n, "Oneiric Guardian", lvl)
+	f.health = EH.es(650, 742, 6, 9, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(112, 128, 3, 5, lvl, 16)
+	f.physical_defense = EH.es(54, 62, 2, 4, lvl, 16)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
+	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 16)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 16)
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
+	f.abilities = [EAB.warden_strike(), EAB.dream_siphon()]
+	f.flavor_text = "A hulking guardian conjured from the dream by a cult enforcer's will. It sustains itself by draining the dream-essence of those it strikes, growing harder to kill the longer the fight continues."
+	return f
+
+
 # =============================================================================
 # Prog 16: Threadmaster's personal guardians (S3_C_ThreadmasterLair)
 # Target 44%, 17 level-ups

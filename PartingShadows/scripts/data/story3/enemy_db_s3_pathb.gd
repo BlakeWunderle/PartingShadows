@@ -229,6 +229,22 @@ static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 	return f
 
 
+# Prog 15 -- physical DoT/drain parasite (level 15)
+static func create_loom_parasite(n: String, lvl: int = 15) -> FighterData:
+	var f := EH.base(n, "Loom Parasite", lvl)
+	f.health = EH.es(440, 506, 5, 8, lvl, 15); f.max_health = f.health
+	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
+	f.physical_attack = EH.es(92, 106, 3, 5, lvl, 15)
+	f.physical_defense = EH.es(34, 41, 2, 3, lvl, 15)
+	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
+	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 15)
+	f.speed = EH.es(36, 42, 2, 3, lvl, 15)
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
+	f.abilities = [EAB.parasitic_bite(), EAB.infesting_spores()]
+	f.flavor_text = "A creature spawned from the Loom's waste threads, living off the energy of others. It latches onto victims, draining their life while planting spores that keep feeding long after it lets go."
+	return f
+
+
 # =============================================================================
 # Prog 16: Lira's dream cathedral guardians (S3_B_DreamInvasion)
 # Target 44%, 17 level-ups
@@ -236,14 +252,14 @@ static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 
 static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Cathedral Warden", lvl)
-	f.health = EH.es(743, 848, 6, 9, lvl, 16); f.max_health = f.health
+	f.health = EH.es(700, 800, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(113, 130, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(56, 65, 2, 4, lvl, 16)
-	f.magic_attack = EH.es(113, 130, 3, 5, lvl, 16)
-	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
-	f.speed = EH.es(38, 45, 2, 3, lvl, 16)
-	f.crit_chance = 28; f.crit_damage = 3; f.dodge_chance = 29
+	f.physical_attack = EH.es(105, 121, 3, 5, lvl, 16)
+	f.physical_defense = EH.es(52, 61, 2, 4, lvl, 16)
+	f.magic_attack = EH.es(105, 121, 3, 5, lvl, 16)
+	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 16)
+	f.speed = EH.es(36, 42, 2, 3, lvl, 16)
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.consecrated_strike(), EAB.cathedrals_blessing()]
 	f.flavor_text = "A guardian consecrated to Lira's dream cathedral, sworn to protect the sacred space where the Thread cult weaves its deepest designs. It fights with holy zeal and unyielding faith."
 	return f
@@ -251,14 +267,14 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 
 static func create_dream_binder(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Binder", lvl)
-	f.health = EH.es(663, 763, 5, 8, lvl, 16); f.max_health = f.health
+	f.health = EH.es(605, 696, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
-	f.physical_defense = EH.es(42, 49, 2, 3, lvl, 16)
-	f.magic_attack = EH.es(129, 148, 3, 6, lvl, 16)
-	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 16)
-	f.speed = EH.es(41, 47, 2, 3, lvl, 16)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 30
+	f.physical_defense = EH.es(40, 47, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(120, 138, 3, 5, lvl, 16)
+	f.magic_defense = EH.es(50, 58, 2, 4, lvl, 16)
+	f.speed = EH.es(39, 45, 2, 3, lvl, 16)
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.binding_chains(), EAB.dreamlock()]
 	f.flavor_text = "A specialist in containment, weaving chains of dream-thread that lock the mind in place. Those caught in its dreamlock cannot flee, attack, or even think of escape."
 	return f
@@ -284,14 +300,14 @@ static func create_thread_anchor(n: String, lvl: int = 16) -> FighterData:
 # Elevated mDef, high speed, MIXED AoE + speed debuff kit
 static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "WeftStalker", lvl)
-	f.health = EH.es(615, 708, 5, 8, lvl, 16); f.max_health = f.health
+	f.health = EH.es(580, 668, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(116, 133, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(44, 52, 2, 3, lvl, 16)
-	f.magic_attack = EH.es(58, 70, 2, 4, lvl, 16)
-	f.magic_defense = EH.es(72, 82, 3, 5, lvl, 16)
-	f.speed = EH.es(48, 55, 3, 4, lvl, 16)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 25
+	f.physical_attack = EH.es(108, 124, 3, 5, lvl, 16)
+	f.physical_defense = EH.es(42, 50, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(50, 60, 2, 3, lvl, 16)
+	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
+	f.speed = EH.es(44, 50, 2, 3, lvl, 16)
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.weft_lash(), EAB.stalk()]
 	f.flavor_text = "A predator woven from the weft threads of Lira's loom, designed to hunt. It moves with terrifying speed, lashing out in all directions and slowing anything it marks as prey. Magic sinks into the weave without effect."
 	return f

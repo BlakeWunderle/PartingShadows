@@ -176,7 +176,7 @@ static func s3_b_loom_heart() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_shadow_innkeeper("The Innkeeper"),
 		EnemyDB.create_astral_weaver("Weaver Aldric"),
-		EnemyDB.create_loom_tendril("Loom Tendril"),
+		EnemyDB.create_loom_parasite("Thread Leech"),
 	]
 	b.pre_battle_text = [
 		"The ritual chamber is enormous. The physical Loom stands at its center, threads of light spinning into patterns that hurt to look at directly.",

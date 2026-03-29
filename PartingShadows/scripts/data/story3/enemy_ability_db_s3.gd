@@ -375,3 +375,12 @@ static func thread_crush() -> AbilityData:
 static func weave_brace() -> AbilityData:
 	return _make("Weave Brace", "The construct draws its threads inward, coiling for a devastating follow-up strike.", Enums.StatType.ATTACK, 5, 1, false, 2, false, 0, 0.0)
 
+
+# --- Thread Stitcher (DoT specialist, magical damage) ---
+
+static func thread_lance() -> AbilityData:
+	return _make("Thread Lance", "A needle of hardened dream-thread pierces through armor and wards alike.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+static func thread_scourge() -> AbilityData:
+	return _make("Thread Scourge", "Razor-thin threads burrow into flesh and keep cutting.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 7, 0.0)
+
