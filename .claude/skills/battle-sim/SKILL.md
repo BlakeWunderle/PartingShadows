@@ -1,32 +1,19 @@
 ---
 name: battle-sim
-description: Full balance feedback loop for Parting Shadows. Iterates enemy tuning, player power curve validation, and per-class win rate banding until all stages pass. Supports Story 1, 2, and 3 independently via --story flag.
+description: Full balance feedback loop for Parting Shadows. Runs all 3 stories across all tiers by default. Tunes one battle at a time with 20 workers, diagnostics, JSON, and markdown output.
 ---
 
 # Balance Feedback Loop
 
-## Quick Start (no arguments)
+## Default Behavior
 
-If invoked with no arguments, output the following command templates for the user to fill in, then stop — do not proceed with the full workflow:
+When invoked with no arguments (or with `--story 1 --story 2 --story 3`), run the **full workflow automatically**:
 
-```bash
-GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
-NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
-SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_output.txt"
+1. Run all 3 stories sequentially (S1 → S2 → S3), each covering all tiers (base, tier1, tier2)
+2. Use standard flags: `--auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH"`
+3. After each story sim, read `$SIM_OUT` and tune any failing battles one at a time before moving to the next story
 
-# Full tier validation
-"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story <1|2|3> --tier <base|tier1|tier2> --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
-
-# Targeted battles (faster — use after enemy-only changes)
-"$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles <BattleName1,BattleName2> --diagnostics --compact --auto --jobs 20 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
-```
-
-**After every sim:** Read `$SIM_OUT` with the Read tool to check pass/fail results. With `--compact` the file is ~1 line per battle. For class breakdown data, read `$JSON_PATH` directly — do not re-run the sim.
-
-If invoked with arguments (e.g. `s1 t2`, `s2 tier1`, `BattleName1,BattleName2`), parse them and run the sim directly without showing the template.
+If invoked with specific arguments (e.g. `--story 1 --tier tier2`, `--battles BattleName1,BattleName2`), narrow scope accordingly but still use the standard flags (20 workers, diagnostics, JSON, markdown).
 
 ---
 
@@ -48,19 +35,20 @@ For a full T2 enemy tuning pass across all three stories, run each story in sequ
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
 JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
+MD_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-balance.md"
 SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_output.txt"
 
 # Story 1 T2 -- full tier with class breakdown in one pass
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story 1 --tier tier2 --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --story 1 --tier tier2 --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Story 2 T2
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story 2 --tier tier2 --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --story 2 --tier tier2 --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Story 3 T2
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story 3 --tier tier2 --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --story 3 --tier tier2 --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 
 **After each story sim:** Read `$SIM_OUT` with the Read tool to check pass/fail. For class breakdown, read `$JSON_PATH`.
@@ -75,7 +63,7 @@ Each run produces:
 **Enemy tuning iteration** (changed battles only — much faster):
 ```bash
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles BattleA,BattleB --diagnostics --compact --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --battles BattleA,BattleB --diagnostics --compact --auto --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 Then read `$SIM_OUT` with the Read tool.
 
@@ -87,6 +75,7 @@ Then read `$SIM_OUT` with the Read tool.
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
 JSON_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-report-data.json"
+MD_PATH="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/class-balance.md"
 SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_output.txt"
 
 # Quick iteration (single prog)
@@ -95,15 +84,15 @@ SIM_OUT="C:/Users/blake/.claude/projects/c--Projects-PartingShadows/memory/sim_o
 
 # Tier validation with class data in one pass (recommended)
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story <N> --tier <TIER> --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --story <N> --tier <TIER> --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Targeted battles (specific changed battles only)
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --compact --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --battles S3_DreamShadowChase,S3_DreamLabyrinth --diagnostics --compact --auto --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 
 # Full story validation (all tiers, all battles)
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --story <N> --auto --all --diagnostics --compact --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --story <N> --auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 
 **After every sim:** Read `$SIM_OUT` with the Read tool — with `--compact` it's ~1 line per battle. For class win rates or diagnostics, read `$JSON_PATH` directly.
@@ -116,9 +105,9 @@ The parallel coordinator (`battle_sim_parallel.gd`) auto-detects the best split 
 - **Combo-split** (auto): when fewer stages than workers (e.g. 3 battles, 8 workers), all workers share party combos. Single-stage and small-batch runs use all workers automatically.
 
 **Worker count guidance:**
-- Default on Windows: **15 workers** (benchmarked sweet spot — good speedup, minimal contention)
-- Full tier validation: `--jobs 15` recommended (~11x speedup)
-- Maximum: `--jobs 32` (hard cap); diminishing returns above 15 for most runs
+- Default on Windows: **20 workers**
+- Full tier validation: `--jobs 20` recommended
+- Maximum: `--jobs 32` (hard cap); diminishing returns above 20 for most runs
 - Sentinel mechanism serializes Godot startup automatically — no manual stagger tuning needed
 
 **IMPORTANT: Never run two sim processes at the same time.** Running two parallel sims simultaneously causes CPU contention (10x+ slower, unreliable results). Always wait for one sim to complete before launching the next.
@@ -217,7 +206,7 @@ Every battle after the first must have **at least 3 enemies**, unless it is a bo
 ```bash
 # Tune one battle at a time
 "$GODOT" --path PartingShadows --headless --script res://tools/battle_sim_parallel.gd -- \
-  --battles <BattleName> --diagnostics --compact --auto --jobs 15 --json "$JSON_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
+  --battles <BattleName> --diagnostics --compact --auto --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH" 2>&1 | grep -v "$NOISE" > "$SIM_OUT"
 ```
 Then read `$SIM_OUT` with the Read tool to check the result.
 
@@ -250,7 +239,8 @@ All battles show PASS. Power curve roughly correct. Every class within or near t
 | `--diagnostics` | Show per-class win rate breakdown and WEAK class analysis (works in parallel sim) |
 | `--compact` | Minimal stdout (1 line/PASS, 3-5 lines/FAIL) |
 | `--json <path>` | Write/merge JSON report |
-| `--jobs <n>` | Worker count (parallel only; default 8 on Windows) |
+| `--markdown <path>` | Write markdown class balance report |
+| `--jobs <n>` | Worker count (parallel only; default 20 on Windows) |
 | `--stagger <ms>` | Delay between worker spawns if sentinel fails (parallel only; default 2000) |
 | `--timeout <s>` | Kill workers after N seconds (parallel only; default max(300, jobs×120)) |
 | `--no-cache` | Force re-simulation |
