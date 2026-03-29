@@ -11,6 +11,7 @@ const SC := preload("res://scripts/tools/sim_cache.gd")
 const SP := preload("res://scripts/tools/sim_progressive.gd")
 const SD := preload("res://scripts/tools/sim_diagnostics.gd")
 const SRepMD := preload("res://scripts/tools/sim_report_markdown.gd")
+const SRpt := preload("res://scripts/tools/sim_repetitiveness.gd")
 
 var _json_path := ""
 var _markdown_path := ""
@@ -24,6 +25,7 @@ var _combo_worker_mode := false
 var _all_results: Array = []
 var _all_stages: Array = []
 var _exclude_combos: Array[String] = []
+var _repetitiveness := false
 
 
 func _init() -> void:
@@ -138,6 +140,8 @@ func _init() -> void:
 				i += 1  # already handled above; skip value argument
 			"--diagnostics":
 				_diagnostics = true
+			"--repetitiveness":
+				_repetitiveness = true
 			"--compact":
 				_compact = true
 			"--no-cache":
@@ -172,6 +176,11 @@ func _init() -> void:
 	if tier_filter != "":
 		stages = stages.filter(
 			func(s: Dictionary) -> bool: return s.tier == tier_filter)
+
+	if _repetitiveness:
+		SRpt.analyze(stages)
+		quit()
+		return
 
 	# Worker mode: take only this worker's slice of stages (round-robin).
 	var _worker_mode: bool = worker_index >= 0 and worker_count > 0
@@ -458,6 +467,7 @@ func _print_help() -> void:
 	print("  --combo-worker <N/M> Combo-worker mode: run 1/M of party combos per stage (used by parallel coordinator)")
 	print("  --compact            Minimal output (1 line/PASS, details to file)")
 	print("  --diagnostics        Show detailed analysis of WEAK classes")
+	print("  --repetitiveness     Analyze consecutive battles for archetype similarity")
 	print("  --no-cache           Skip cache lookups, force re-simulation")
 	print("  --clear-cache        Delete cached results and exit")
 	print("  --list               List available battle stages")
