@@ -19,8 +19,8 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	f.physical_defense = EH.es(17, 21, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 5)
-	f.speed = EH.es(25, 31, 1, 3, lvl, 5)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 21
+	f.speed = EH.es(26, 32, 1, 3, lvl, 5)
+	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.cutlass_slash(), EAB.pillage_strike()]
 	f.flavor_text = "A weathered scavenger who builds weapons from shipwreck debris. Desperate and violent, they prey on anyone who washes ashore."
 	return f
@@ -65,7 +65,7 @@ static func create_tideside_channeler(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(30, 36, 2, 3, lvl, 5)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 5)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 16
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.tidewater_bolt(), EAB.tainted_spray()]
 	f.flavor_text = "A recluse who draws power from the corrupted tides. Seawater bends to their whispered commands, leaving sickness in its wake."
 	return f
@@ -254,7 +254,7 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	f.magic_attack = EH.es(48, 55, 2, 4, lvl, 9)
 	f.magic_defense = EH.es(33, 40, 2, 4, lvl, 9)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 9)
-	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.spectral_cutlass(), EAB.waterlogged_grasp()]
 	f.flavor_text = "The waterlogged ghost of a sailor claimed by the bay. It fights with the remembered motions of a life spent at sea."
 	return f
@@ -268,8 +268,8 @@ static func create_depth_horror(n: String, lvl: int = 9) -> FighterData:
 	f.physical_defense = EH.es(30, 36, 2, 3, lvl, 9)
 	f.magic_attack = EH.es(57, 65, 3, 5, lvl, 9)
 	f.magic_defense = EH.es(28, 34, 2, 3, lvl, 9)
-	f.speed = EH.es(34, 40, 2, 3, lvl, 9)
-	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 16
+	f.speed = EH.es(36, 42, 2, 3, lvl, 9)
+	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.tentacle_crush(), EAB.abyssal_terror()]
 	f.flavor_text = "An ancient thing from the ocean floor, drawn to the surface by the Eye's growing influence. Its mere presence fills the mind with dread."
 	return f

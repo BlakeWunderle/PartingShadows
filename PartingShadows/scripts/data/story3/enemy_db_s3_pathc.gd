@@ -24,7 +24,7 @@ static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(94, 107, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 15)
-	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 24
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.void_pulse(), EAB.deep_slumber()]
 	f.flavor_text = "A figure that drifts through the deepest layers of the dream, where light never reaches. Its void pulses drag victims into a slumber from which few return."
 	return f
@@ -39,7 +39,7 @@ static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 15)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 15)
-	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.thread_bite(), EAB.unravel_ward()]
 	f.flavor_text = "A ravenous creature that feeds on dream-threads themselves, growing stronger with each strand it consumes. It tears apart protective wards with savage hunger."
 	return f
@@ -49,12 +49,12 @@ static func create_slumbering_colossus(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Slumbering Colossus", lvl)
 	f.health = EH.es(570, 653, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(97, 110, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(93, 106, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 15)
 	f.speed = EH.es(23, 28, 1, 2, lvl, 15)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.crushing_dream(), EAB.ancient_yawn()]
 	f.flavor_text = "An ancient titan that has slumbered in the dream's foundations since before the cult existed. When roused, its crushing weight and tremendous yawns send waves of exhaustion through all who face it."
 	return f

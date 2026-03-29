@@ -12,6 +12,7 @@ When invoked with no arguments (or with `--story 1 --story 2 --story 3`), run th
 1. Run all 3 stories sequentially (S1 → S2 → S3), each covering all tiers (base, tier1, tier2)
 2. Use standard flags: `--auto --all --diagnostics --compact --jobs 20 --json "$JSON_PATH" --markdown "$MD_PATH"`
 3. After each story sim, read `$SIM_OUT` and tune any failing battles one at a time before moving to the next story
+4. **No revalidation after tuning.** Once all failing battles in a story are individually tuned to PASS, move to the next story. Do NOT re-run the full story sim to revalidate — it wastes time and base-tier battles have ±3-5pp variance that causes false failures.
 
 If invoked with specific arguments (e.g. `--story 1 --tier tier2`, `--battles BattleName1,BattleName2`), narrow scope accordingly but still use the standard flags (20 workers, diagnostics, JSON, markdown).
 

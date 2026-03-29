@@ -50,7 +50,7 @@ static func create_troll(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(5, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(24, 29, 1, 2, lvl, 5)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.boulder_fist(), EAB.regenerate(), EAB.stomp()]
 	f.flavor_text = "Massive creatures whose wounds knit shut before your eyes. Best dealt with quickly."
 	return f
@@ -64,7 +64,7 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(9, 13, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(14, 18, 1, 2, lvl, 5)
 	f.speed = EH.es(29, 34, 2, 3, lvl, 5)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.talon_rake(), EAB.shriek()]
 	f.flavor_text = "Winged terrors that dive from above, raking with razor talons and piercing shrieks."
 	return f

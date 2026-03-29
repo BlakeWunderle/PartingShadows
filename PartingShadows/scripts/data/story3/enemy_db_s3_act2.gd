@@ -232,7 +232,7 @@ static func create_thread_smith(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(26, 33, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
 	f.magic_defense = EH.es(34, 41, 1, 3, lvl, 10)
-	f.speed = EH.es(23, 29, 1, 2, lvl, 10)
+	f.speed = EH.es(25, 31, 2, 3, lvl, 10)
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.hammer_blow(), EAB.forge_hardened()]
 	f.flavor_text = "A burly artisan who hammers dream-threads into weapons and armor for the cult. Years at the forge have tempered both body and resolve into unyielding steel."
@@ -245,7 +245,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(21, 27, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(62, 71, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(64, 73, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 10)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 18

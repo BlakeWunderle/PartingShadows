@@ -21,7 +21,7 @@ static func create_thug(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 1)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 1)
 	f.speed = EH.es(18, 24, 1, 2, lvl, 1)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 3
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [AbilityDB.haymaker()]
 	f.flavor_text = "Street toughs who prey on travelers after dark."
 	return f
@@ -35,7 +35,7 @@ static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(2, 5, 0, 1, lvl, 1)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 1)
 	f.speed = EH.es(16, 22, 1, 2, lvl, 1)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 2
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 2
 	f.abilities = [EAB.headbutt(), AbilityDB.intimidate()]
 	f.flavor_text = "Brawlers with more muscle than sense, spoiling for a fight."
 	return f
@@ -49,7 +49,7 @@ static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 1)
 	f.magic_defense = EH.es(6, 9, 0, 2, lvl, 1)
 	f.speed = EH.es(22, 28, 2, 3, lvl, 1)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 11; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [AbilityDB.quick_stab(), AbilityDB.pilfer()]
 	f.flavor_text = "Nimble thieves who strike fast and vanish into the crowd."
 	return f
@@ -96,7 +96,7 @@ static func create_goblin(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 2)
 	f.magic_defense = EH.es(6, 9, 0, 2, lvl, 2)
 	f.speed = EH.es(26, 32, 2, 4, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 19
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 19
 	f.abilities = [EAB.stab(), EAB.throw_rock(), EAB.scurry()]
 	f.flavor_text = "Small, vicious, and surprisingly quick. What they lack in strength they make up for in cunning."
 	return f
@@ -110,7 +110,7 @@ static func create_hound(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(6, 9, 0, 2, lvl, 2)
 	f.speed = EH.es(26, 32, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.snap(), EAB.tackle()]
 	f.flavor_text = "Wild dogs driven mad by hunger. They snap and lunge with desperate ferocity."
 	return f
@@ -124,7 +124,7 @@ static func create_bandit(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = EH.es(4, 7, 0, 2, lvl, 3)
 	f.magic_defense = EH.es(9, 13, 1, 2, lvl, 3)
 	f.speed = EH.es(22, 28, 1, 3, lvl, 3)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.bushwhack(), EAB.ambush()]
 	f.flavor_text = "Outlaws who lurk along forest roads, striking from the cover of the trees."
 	return f

@@ -88,7 +88,7 @@ static func create_spore_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(11, 15, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 2)
 	f.speed = EH.es(27, 33, 2, 3, lvl, 2)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 16
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 16
 	f.abilities = [EAB.toxic_dart(), EAB.spore_burst()]
 	f.flavor_text = "A gaunt, fungus-riddled creature that moves with unsettling precision. Poisonous barbs line its elongated limbs."
 	return f
@@ -102,8 +102,8 @@ static func create_fungal_hulk(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(5, 8, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 2)
-	f.speed = EH.es(17, 21, 1, 2, lvl, 2)
-	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 1
+	f.speed = EH.es(19, 23, 1, 2, lvl, 2)
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 1
 	f.abilities = [EAB.fungal_slam(), EAB.mycelium_shield()]
 	f.flavor_text = "A massive creature overgrown with shelf mushrooms and hardened mycelia. Each thundering step shakes loose clouds of spores."
 	return f
@@ -118,7 +118,7 @@ static func create_cap_wisp(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = EH.es(11, 14, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 2, 3, lvl, 2)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.hallucinate(), EAB.phantasmal_haze()]
 	f.flavor_text = "A drifting mushroom cap wreathed in hallucinogenic mist. Those who breathe its spores see things that were never there."
 	return f

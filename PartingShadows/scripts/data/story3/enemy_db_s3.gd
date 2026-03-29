@@ -66,8 +66,8 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 0, 1, lvl, 2)
-	f.speed = EH.es(27, 33, 1, 3, lvl, 2)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 8
+	f.speed = EH.es(29, 35, 1, 3, lvl, 2)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	f.flavor_text = "A gaunt predator that prowls the border between waking and sleep. It hunts by sensing the fear of dreamers who linger too long."
 	return f
@@ -82,7 +82,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(14, 18, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 1, 2, lvl, 2)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
 	f.flavor_text = "A distorted reflection that has stepped free of its mirror. It copies the movements of those it faces, turning their own strength against them."
 	return f
@@ -94,7 +94,7 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(55, 66, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 20, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(10, 14, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
 	f.speed = EH.es(21, 26, 1, 2, lvl, 2)
@@ -148,7 +148,7 @@ static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 4)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 4)
 	f.speed = EH.es(29, 34, 1, 3, lvl, 4)
-	f.crit_chance = 12; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.savage_bite(), EAB.howl()]
 	f.flavor_text = "A slavering beast shaped from primal terror, with eyes like smoldering coals. Its howl reverberates through the dreamscape and shakes the courage of all who hear it."
 	return f
@@ -163,7 +163,7 @@ static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(21, 26, 1, 3, lvl, 4)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 4)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 4)
-	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 9
 	f.abilities = [EAB.thread_bolt(), EAB.woven_ward()]
 	f.flavor_text = "A robed figure that pulls shimmering threads from the fabric of dreams. It weaves protective wards and hurls bolts of concentrated dream-stuff at intruders."
 	return f
@@ -178,7 +178,7 @@ static func create_hollow_echo(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 4)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 4)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 4)
-	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.echo_drain(), EAB.dissonance()]
 	f.flavor_text = "The empty husk of a dreamer who never woke. It repeats fragments of stolen voices and drains vitality from those who listen too closely."
 	return f
@@ -248,13 +248,13 @@ static func create_dusk_sentinel(n: String, lvl: int = 8) -> FighterData:
 
 static func create_shattered_hourglass(n: String, lvl: int = 8) -> FighterData:
 	var f := EH.base(n, "Shattered Hourglass", lvl)
-	f.health = EH.es(250, 295, 4, 7, lvl, 8); f.max_health = f.health
+	f.health = EH.es(265, 310, 4, 7, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 8)
 	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(30, 35, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(16, 20, 1, 2, lvl, 8)
-	f.speed = EH.es(32, 37, 1, 3, lvl, 8)
+	f.speed = EH.es(33, 38, 1, 3, lvl, 8)
 	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.grain_siphon(), EAB.eroding_sand()]
 	f.flavor_text = "A broken hourglass floating in the void, its glass cracked and splintered. The sand hangs suspended mid-spill, forming the faint suggestion of a face with hollow, glowing eyes. Every grain is a stolen second from a dreamer who slept too long."

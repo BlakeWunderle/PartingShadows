@@ -129,7 +129,7 @@ static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(141, 160, 5, 8, lvl, 15)
 	f.magic_defense = EH.es(82, 96, 4, 6, lvl, 15)
 	f.speed = EH.es(43, 49, 2, 3, lvl, 15)
-	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 22
+	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 18
 	f.abilities = [EABL.dying_gaze(), EABL.desperate_surge(), EABL.retribution_blast(), EABL.collapse(), EABL.last_light()]
 	f.flavor_text = "The Eye of Oblivion, stripped bare by Sera's sacrifice. Its armor is gone, its reserves burned away. What remains is pure, desperate hunger. It has nothing left but the will to take everything with it."
 	return f
