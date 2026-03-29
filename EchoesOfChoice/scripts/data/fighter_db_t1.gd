@@ -34,7 +34,7 @@ static func upgrade_to_martial_artist(f: FighterData) -> void:
 	f.class_id = "MartialArtist"; f.character_type = "Martial Artist"
 	f.health += 4; f.max_health += 4; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 1; f.magic_defense += 1
-	f.speed += 3; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 4
+	f.speed += 3; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 3
 	f.abilities = [PAB.punch(), PAB.topple(), PAB.inner_focus()]
 	f.upgrade_items = ["Sword", "Staff"]
 
@@ -126,7 +126,7 @@ static func upgrade_to_dervish(f: FighterData) -> void:
 	f.class_id = "Dervish"; f.character_type = "Dervish"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 1; f.magic_defense += 2
-	f.speed += 4; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 3
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 2
 	f.abilities = [PAB.mesmerize(), PAB.dance(), PAB.whirling_step()]
 	f.upgrade_items = ["Light", "Paint"]
 
@@ -152,7 +152,7 @@ static func _lu_dervish(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(3, 4); f.physical_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 2)
 	f.dodge_chance += randi_range(0, 1)
@@ -192,7 +192,7 @@ static func upgrade_to_cosmologist(f: FighterData) -> void:
 static func upgrade_to_arithmancer(f: FighterData) -> void:
 	f.class_id = "Arithmancer"; f.character_type = "Arithmancer"
 	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 3; f.magic_defense += 2
+	f.physical_attack += 1; f.physical_defense += 1; f.magic_attack += 4; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 1
 	f.abilities = [PAB_B.theorem(), PAB_B.calculate(), PAB_B.probability()]
 	f.upgrade_items = ["ClockworkCore", "Computer"]
@@ -222,7 +222,7 @@ static func _lu_arithmancer(f: FighterData) -> void:
 	var hp := randi_range(10, 12); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(2, 3)
+	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(2, 3)
 	f.speed += randi_range(1, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)

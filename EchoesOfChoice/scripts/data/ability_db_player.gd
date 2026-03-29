@@ -136,7 +136,7 @@ static func precise_strike() -> AbilityData:
 
 static func inner_peace() -> AbilityData:
 	var a := _make("Inner Peace", "Channel spiritual harmony to mend an ally's wounds.",
-		Enums.StatType.HEALTH, 7, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 5, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
@@ -197,20 +197,20 @@ static func purify() -> AbilityData:
 
 static func tsunami() -> AbilityData:
 	return _make("Tsunami", "A towering wave crashes down on all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, true, 0, 0.0)
 
 static func water_whip() -> AbilityData:
 	return _make("Water Whip", "A lash of pressurized water tears into a single foe.",
-		Enums.StatType.MAGIC_ATTACK, 22, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 16, 0, true, 4, false, 0, 0.0)
 
 # Tempest
 static func hurricane() -> AbilityData:
 	return _make("Hurricane", "A storm that strikes all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, true, 0, 0.0)
 
 static func lightning_strike() -> AbilityData:
 	return _make("Lightning Strike", "A focused bolt of lightning that annihilates a single foe.",
-		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
 
 static func storm_surge() -> AbilityData:
 	return _make("Storm Surge", "Harness the storm's fury to amplify magical power.",
@@ -321,11 +321,11 @@ static func dissonance() -> AbilityData:
 
 static func ballad() -> AbilityData:
 	return _make("Ballad", "A sorrowful melody turned weapon.",
-		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func serenade() -> AbilityData:
 	var a := _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 14, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
@@ -362,7 +362,7 @@ static func ovation() -> AbilityData:
 
 static func recite() -> AbilityData:
 	return _make("Recite", "Words of power that wound.",
-		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, false, 0, 0.0)
 
 static func standing_ovation() -> AbilityData:
 	return _make("Standing Ovation", "The audience erupts. All allies feel invincible.",

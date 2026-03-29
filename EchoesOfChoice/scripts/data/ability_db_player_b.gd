@@ -87,11 +87,9 @@ static func explosion() -> AbilityData:
 	return _make("Explosion", "A massive detonation.",
 		Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
-static func field_repair() -> AbilityData:
-	var a := _make("Field Repair", "Patch wounds with salvaged materials.",
-		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
-	a.heal_threshold = 0.25
-	return a
+static func demolition_charge() -> AbilityData:
+	return _make("Demolition Charge", "A shaped charge placed at the weakest point.",
+		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 6, false, 0, 0.0)
 
 # Chronomancer
 static func warp_speed() -> AbilityData:
@@ -122,11 +120,11 @@ static func eclipse() -> AbilityData:
 # Automaton
 static func servo_strike() -> AbilityData:
 	return _make("Servo Strike", "A pneumatic piston blow from mechanical limbs.",
-		Enums.StatType.MAGIC_ATTACK, 16, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, false, 0, 0.0)
 
 static func discharge() -> AbilityData:
 	return _make("Discharge", "Release a burst of stored energy that arcs through all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 10, 0, true, 5, true, 0, 0.0)
 
 static func self_repair() -> AbilityData:
 	var a := _make("Self-Repair", "Reroute power to internal repair systems.",
@@ -216,12 +214,12 @@ static func plague() -> AbilityData:
 
 static func poison_sting() -> AbilityData:
 	return _make("Poison Sting", "A venomous barb that festers.",
-		Enums.StatType.HEALTH, 0, 3, true, 3, false, 10, 0.0)
+		Enums.StatType.HEALTH, 0, 3, true, 3, false, 15, 0.0)
 
 # Grove Keeper
 static func natures_mend() -> AbilityData:
 	var a := _make("Nature's Mend", "Channel the forest's restorative power to heal an ally's wounds.",
-		Enums.StatType.HEALTH, 8, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
@@ -231,7 +229,7 @@ static func thorn_burst() -> AbilityData:
 
 static func vine_wall() -> AbilityData:
 	return _make("Vine Wall", "A living wall of thorned vines shields all allies.",
-		Enums.StatType.DEFENSE, 4, 2, false, 3, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 6, 2, false, 3, true, 0, 0.0)
 
 # Witch Doctor
 static func voodoo_bolt() -> AbilityData:
@@ -268,7 +266,7 @@ static func falcon_strike() -> AbilityData:
 
 static func rending_talon() -> AbilityData:
 	return _make("Rending Talon", "The falcon's talons tear through the enemy's guard, leaving them exposed.",
-		Enums.StatType.PHYSICAL_DEFENSE, 6, 3, true, 3, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_DEFENSE, 8, 3, true, 3, false, 0, 0.0)
 
 static func aerial_strike() -> AbilityData:
 	return _make("Aerial Strike", "The falcon sweeps low, raking talons across all enemies.",
@@ -351,15 +349,15 @@ static func spell_counter() -> AbilityData:
 # Trailblazer
 static func blaze_trail() -> AbilityData:
 	return _make("Blaze Trail", "Charge forward with reckless, blazing speed.",
-		Enums.StatType.MIXED_ATTACK, 8, 0, true, 5, false, 0, 0.4)
+		Enums.StatType.MIXED_ATTACK, 14, 0, true, 5, false, 0, 0.4)
 
 static func ambush() -> AbilityData:
 	return _make("Ambush", "Strike from an unexpected angle, hitting all foes.",
-		Enums.StatType.MIXED_ATTACK, 6, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 10, 0, true, 5, true, 0, 0.0)
 
 static func expose() -> AbilityData:
 	return _make("Expose", "Reveal the enemy's vulnerabilities for all to exploit.",
-		Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)
+		Enums.StatType.DEFENSE, 6, 2, true, 3, false, 0, 0.0)
 
 # Survivalist
 static func endure() -> AbilityData:

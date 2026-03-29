@@ -148,7 +148,7 @@ static func upgrade_to_bombardier(f: FighterData) -> void:
 	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 8; f.magic_defense += 3
 	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.field_repair()]
+	f.abilities = [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.demolition_charge()]
 	f.upgrade_items = []
 
 static func _lu_alchemist(f: FighterData) -> void:
@@ -219,8 +219,8 @@ static func _lu_astronomer(f: FighterData) -> void:
 
 static func upgrade_to_automaton(f: FighterData) -> void:
 	f.class_id = "Automaton"; f.character_type = "Automaton"
-	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 0; f.magic_attack += 3; f.magic_defense += 2
+	f.health += 12; f.max_health += 12; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 8; f.magic_defense += 2
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.self_repair()]
 	f.upgrade_items = []
@@ -238,7 +238,7 @@ static func _lu_automaton(f: FighterData) -> void:
 	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(3, 5)
-	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(3, 5)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 5)
 	f.speed += randi_range(1, 1)
 	f.crit_chance += randi_range(1, 2)
 

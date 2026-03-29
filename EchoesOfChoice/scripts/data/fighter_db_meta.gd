@@ -123,7 +123,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		# T2:Mage
 		"Infernalist": return [PAB.fire_ball(), PAB.burning_brand(), PAB.conflagration()]
 		"Tidecaller": return [PAB.purify(), PAB.tsunami(), PAB.water_whip()]
-		"Tempest": return [PAB.hurricane(), PAB.tornado(), PAB.storm_surge()]
+		"Tempest": return [PAB.hurricane(), PAB.lightning_strike(), PAB.storm_surge()]
 		"Paladin": return [PAB.lay_on_hands(), PAB.holy_strike(), PAB.smite()]
 		"Priest": return [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]
 		"Warlock": return [PAB.shadow_bolt(), PAB.dark_pact(), PAB.drain_life()]
@@ -136,7 +136,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Elegist": return [PAB.requiem(), PAB.lament(), PAB.dirge()]
 		# T2:Tinker
 		"Alchemist": return [PAB_B.transmute(), PAB_B.corrosive_acid(), PAB_B.elixir()]
-		"Bombardier": return [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.field_repair()]
+		"Bombardier": return [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.demolition_charge()]
 		"Chronomancer": return [PAB_B.warp_speed(), PAB_B.time_bomb(), PAB_B.time_freeze()]
 		"Astronomer": return [PAB_B.starfall(), PAB_B.meteor_shower(), PAB_B.eclipse()]
 		"Automaton": return [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.self_repair()]
