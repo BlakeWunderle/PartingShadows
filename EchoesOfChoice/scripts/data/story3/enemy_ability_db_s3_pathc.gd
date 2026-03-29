@@ -28,7 +28,7 @@ static func deep_slumber() -> AbilityData:
 # --- Thread Devourer ---
 
 static func thread_bite() -> AbilityData:
-	return _make("Thread Bite", "Jaws made of frayed dream-stuff tear and swallow.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.25)
+	return _make("Thread Bite", "Jaws made of frayed dream-stuff tear and swallow.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.2)
 
 static func unravel_ward() -> AbilityData:
 	return _make("Unravel Ward", "Defenses come apart at the seams.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0)
@@ -78,7 +78,7 @@ static func dream_bolt() -> AbilityData:
 # --- Memory Eater ---
 
 static func devour_memory() -> AbilityData:
-	return _make("Devour Memory", "It feeds on what you remember and grows stronger.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.3)
+	return _make("Devour Memory", "It feeds on what you remember and grows stronger.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.2)
 
 static func amnesia_fog() -> AbilityData:
 	return _make("Amnesia Fog", "A haze that strips away the knowledge of how to defend.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
@@ -110,7 +110,7 @@ static func reality_unravel() -> AbilityData:
 	return _make("Reality Unravel", "The Ancient Threadmaster reaches into the fabric of existence and tears. The damage is not metaphorical.", Enums.StatType.MAGIC_ATTACK, 17, 0, true, 5, false, 0, 0.0)
 
 static func ancient_hunger() -> AbilityData:
-	return _make("Ancient Hunger", "The original weaver has been feeding on dream-energy since before the cult existed. The habit is too old to break.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.45)
+	return _make("Ancient Hunger", "The original weaver has been feeding on dream-energy since before the cult existed. The habit is too old to break.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.2)
 
 # --- Dream Shackle ---
 

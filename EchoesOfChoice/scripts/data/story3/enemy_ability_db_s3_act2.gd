@@ -49,7 +49,7 @@ static func gloom_web() -> AbilityData:
 # --- Drowned Reverie ---
 
 static func memory_surge() -> AbilityData:
-	return _make("Memory Surge", "Someone else's memory crashes into your mind.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.25)
+	return _make("Memory Surge", "Someone else's memory crashes into your mind.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.2)
 
 static func deep_pulse() -> AbilityData:
 	return _make("Deep Pulse", "A wave rolls out from beneath the surface.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 4, true, 0, 0.0)
@@ -172,7 +172,7 @@ static func numbing_dust() -> AbilityData:
 # --- Cellar Watcher ---
 
 static func bound_strike() -> AbilityData:
-	return _make("Bound Strike", "It lunges to the end of its tether and strikes.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Bound Strike", "It lunges to the end of its tether and strikes.", Enums.StatType.MIXED_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func tether_pull() -> AbilityData:
 	return _make("Tether Pull", "The threads jerk the target off balance.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)
@@ -180,7 +180,7 @@ static func tether_pull() -> AbilityData:
 # --- Thread Construct ---
 
 static func woven_fist() -> AbilityData:
-	return _make("Woven Fist", "A fist of physical thread strikes with mechanical force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+	return _make("Woven Fist", "A fist of physical thread strikes with mechanical force.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func reinforced_threads() -> AbilityData:
 	return _make("Reinforced Threads", "Threads unwind the target's protections with mechanical precision.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0)
@@ -191,4 +191,4 @@ static func ink_bolt() -> AbilityData:
 	return _make("Ink Bolt", "A jet of liquid shadow burns on contact.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func ink_pool() -> AbilityData:
-	return _make("Ink Pool", "Black liquid spreads across the floor, slowing everything.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Shadow Bolt", "A concentrated shard of living darkness strikes with surgical precision.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)

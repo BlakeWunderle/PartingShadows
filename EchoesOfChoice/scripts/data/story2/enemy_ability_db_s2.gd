@@ -63,7 +63,7 @@ static func tremor() -> AbilityData:
 # --- Vein Leech ---
 
 static func latch() -> AbilityData:
-	return _make("Latch", "Barbed tendrils dig into flesh and drain.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.3)
+	return _make("Latch", "Barbed tendrils dig into flesh and drain.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.2)
 
 static func siphon_glow() -> AbilityData:
 	return _make("Siphon Glow", "Stolen light weakens the target's defenses.", Enums.StatType.DEFENSE, 3, 2, true, 2, false, 0, 0.0)
@@ -159,7 +159,7 @@ static func cutlass_slash() -> AbilityData:
 	return _make("Cutlass Slash", "A rusted blade bites deep.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
 
 static func pillage_strike() -> AbilityData:
-	return _make("Pillage Strike", "Take what you can, give nothing back.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.3)
+	return _make("Pillage Strike", "Take what you can, give nothing back.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.2)
 
 # --- Saltrunner Smuggler ---
 
@@ -220,15 +220,15 @@ static func corrode_ward() -> AbilityData:
 # --- Abyssal Lurker ---
 
 static func depth_pulse() -> AbilityData:
-	return _make("Depth Pulse", "A shockwave from the ocean floor.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+	return _make("Depth Pulse", "A shockwave from the ocean floor.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func tidal_drain() -> AbilityData:
-	return _make("Tidal Drain", "The sea takes back what it gave.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.4)
+	return _make("Tidal Drain", "The sea takes back what it gave.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.2)
 
 # --- Stormwrack Raptor ---
 
 static func lightning_dive() -> AbilityData:
-	return _make("Lightning Dive", "Thunder and talons strike as one.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+	return _make("Lightning Dive", "Thunder and talons strike as one.", Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func static_screech() -> AbilityData:
 	return _make("Static Screech", "Lightning crackles along nerve endings.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
@@ -239,7 +239,7 @@ static func storm_surge() -> AbilityData:
 	return _make("Storm Surge", "The sea rises in impossible fury.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0)
 
 static func drowning_grasp() -> AbilityData:
-	return _make("Drowning Grasp", "Spectral hands pull you under.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.3)
+	return _make("Drowning Grasp", "Spectral hands pull you under.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.2)
 
 static func mist_veil() -> AbilityData:
 	return _make("Mist Veil", "Sea fog wraps around the form.", Enums.StatType.DODGE_CHANCE, 15, 2, false, 3, false, 0, 0.0)

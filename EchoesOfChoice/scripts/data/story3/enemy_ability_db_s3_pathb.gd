@@ -44,7 +44,7 @@ static func unstable_channeling() -> AbilityData:
 	return _make("Unstable Channeling", "Raw power pours out without focus or restraint.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func siphon_faith() -> AbilityData:
-	return _make("Siphon Faith", "The disciple drains the target's essence to fuel their own.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.3)
+	return _make("Siphon Faith", "The disciple drains the target's essence to fuel their own.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, false, 0, 0.2)
 
 # --- Thread Warden "Sister Maren" (physical tank, taunt) ---
 
@@ -123,7 +123,7 @@ static func borrowed_face() -> AbilityData:
 	return _make("Borrowed Face", "The friendly smile cracks and something wrong looks through.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func thread_drain() -> AbilityData:
-	return _make("Thread Drain", "She feeds on the connection between waking and dreaming.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3)
+	return _make("Thread Drain", "She feeds on the connection between waking and dreaming.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.2)
 
 # --- Astral Weaver "Weaver Aldric" (magic AoE specialist) ---
 
@@ -136,7 +136,7 @@ static func cosmic_unraveling() -> AbilityData:
 # --- Loom Tendril (magic life-steal, constriction DoT) ---
 
 static func siphon_pulse() -> AbilityData:
-	return _make("Siphon Pulse", "The tendril latches on and drinks deep.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.3)
+	return _make("Siphon Pulse", "The tendril latches on and drinks deep.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.2)
 
 static func constricting_weave() -> AbilityData:
 	return _make("Constricting Weave", "Thread wraps tight and squeezes, turn after turn.", Enums.StatType.SPEED, 4, 3, true, 3, false, 2, 0.0)
@@ -178,7 +178,7 @@ static func fortifying_thread() -> AbilityData:
 # --- Lira, the Threadmaster (boss) ---
 
 static func inn_keepers_embrace() -> AbilityData:
-	return _make("Innkeeper's Embrace", "She offers comfort, then takes everything. Warm hands, cold intent.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, false, 0, 0.35)
+	return _make("Innkeeper's Embrace", "She offers comfort, then takes everything. Warm hands, cold intent.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, false, 0, 0.2)
 
 # --- Tattered Deception (mixed glass cannon, magic defense shredder) ---
 

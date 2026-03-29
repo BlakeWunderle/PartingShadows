@@ -42,6 +42,28 @@ BOSS_BATTLES = {
 }
 ```
 
+## Excluded Battles
+
+These battles are excluded from flagging (still shown in table, but no warning flags).
+They get an `[EXCLUDED]` label instead of `<<< SLOG` / `<<  long`.
+
+```
+EXCLUDED_BATTLES = {
+  "MirrorBattle"  -- mirror mechanic causes inherent outlier runs; not tunable
+}
+```
+
+## Accepted-Short Bosses
+
+These boss battles are intentionally short by narrative design. They skip the
+`<<< SHORT` flag and get `[OK SHORT]` instead.
+
+```
+ACCEPTED_SHORT_BOSSES = {
+  "S2_EyeOfOblivion"  -- intentionally short; Eye is dying after Sera's sacrifice
+}
+```
+
 ## What to Pull
 
 For each stage, extract:
@@ -92,10 +114,12 @@ S3_DreamShadowChase [BOSS]                      3  tier1          4.21   31.18  
 ```
 
 Flag each row:
-- `<<< SLOG` — max > 400 (any battle)
-- `<<  long` — max 200–400 (regular battles only)
-- `<<< SHORT` — boss fight where avg_all_actions < 60 or avg_player_per_char < 8
+- `<<< SLOG` — max > 400 (any battle, unless in EXCLUDED_BATTLES)
+- `<<  long` — max 200–400 (regular battles only, unless in EXCLUDED_BATTLES)
+- `<<< SHORT` — boss fight where avg_all_actions < 60 or avg_player_per_char < 8 (unless in ACCEPTED_SHORT_BOSSES)
 - `[BOSS]` — label appended to battle name for boss battles
+- `[EXCLUDED]` — replaces slog/long flags for battles in EXCLUDED_BATTLES
+- `[OK SHORT]` — replaces SHORT flag for bosses in ACCEPTED_SHORT_BOSSES
 
 After the table, print a summary:
 
@@ -103,10 +127,12 @@ After the table, print a summary:
 FIGHT LENGTH SUMMARY
   Regular battles: N total
     Slogs (max > 400):      N  [list names]
+    Excluded:               N  [list names]
     Elevated (max 200-400): N  [list names]
     Healthy:                N
   Boss battles: N total
     Too short (avg < 60):   N  [list names]
+    Accepted short:         N  [list names]
     Healthy:                N
     Slogs (max > 400):      N  [list names]
 ```

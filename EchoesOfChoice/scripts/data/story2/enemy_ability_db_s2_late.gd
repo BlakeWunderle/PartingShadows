@@ -28,7 +28,7 @@ static func dissonant_echo() -> AbilityData:
 # --- Sorrow Shade ---
 
 static func grief_surge() -> AbilityData:
-	return _make("Grief Surge", "Crystallized sorrow launches itself at the target with shattering force.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Grief Surge", "Crystallized sorrow launches itself at the target with shattering force.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func shattered_trust() -> AbilityData:
 	return _make("Despair Wave", "A wave of crystallized grief crashes over the target.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
@@ -63,7 +63,7 @@ static func mind_rend() -> AbilityData:
 	return _make("Mind Rend", "Psychic jaws tear through mental defenses.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
 
 static func psychic_leech() -> AbilityData:
-	return _make("Psychic Leech", "The eater feeds on consciousness itself.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3)
+	return _make("Psychic Leech", "The eater feeds on consciousness itself.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.2)
 
 # --- Grief Shade ---
 
@@ -84,15 +84,15 @@ static func sense_intent() -> AbilityData:
 # --- Mirror Self ---
 
 static func mirrored_slash() -> AbilityData:
-	return _make("Mirrored Slash", "Your own fighting style turned against you.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+	return _make("Mirrored Slash", "Your own fighting style turned against you.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func reflected_spell() -> AbilityData:
-	return _make("Reflected Spell", "A stolen incantation cast with hollow precision.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+	return _make("Reflected Spell", "A stolen incantation cast with hollow precision.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 # --- Void Weaver ---
 
 static func void_bolt() -> AbilityData:
-	return _make("Void Bolt", "A lance of nothingness tears through everything.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, true, 0, 0.0)
+	return _make("Void Bolt", "A lance of nothingness tears through everything.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, true, 0, 0.0)
 
 static func unravel() -> AbilityData:
 	return _make("Unravel", "Reality frays at the seams, weakening all defenses.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, false, 0, 0.0)
@@ -206,7 +206,7 @@ static func focus_break() -> AbilityData:
 # --- Memory Harvester ---
 
 static func harvest_thought() -> AbilityData:
-	return _make("Harvest Thought", "It plucks a memory and feeds.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.35)
+	return _make("Harvest Thought", "It plucks a memory and feeds.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.2)
 
 static func mass_extraction() -> AbilityData:
 	return _make("Mass Extraction", "A wave of hunger tears at every mind at once.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
@@ -230,7 +230,7 @@ static func ironclad_will() -> AbilityData:
 # --- The Iris (Phase 1 boss) ---
 
 static func prismatic_blast() -> AbilityData:
-	return _make("Prismatic Blast", "The Iris fractures light into a storm of burning color.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, true, 0, 0.0)
+	return _make("Prismatic Blast", "The Iris fractures light into a storm of burning color.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, true, 0, 0.0)
 
 static func refraction_beam() -> AbilityData:
 	return _make("Refraction Beam", "A focused beam that burns through all defenses.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
@@ -265,15 +265,15 @@ static func memory_fracture() -> AbilityData:
 	return _make("Memory Fracture", "Her touch scatters thought and reflex, leaving all movement sluggish.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
 
 static func fractured_blessing() -> AbilityData:
-	return _make("Fractured Blessing", "She blesses her enemies with inverted mercy, drawing their vitality into herself.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, false, 0, 0.35)
+	return _make("Fractured Blessing", "She blesses her enemies with inverted mercy, drawing their vitality into herself.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, false, 0, 0.2)
 
 # --- The Iris (2 new abilities) ---
 
 static func eye_lance() -> AbilityData:
-	return _make("Eye Lance", "A focused beam that destroys what it sees, leaving only void where memory was.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
+	return _make("Eye Lance", "A focused beam that destroys what it sees, leaving only void where memory was.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.0)
 
 static func memory_erosion() -> AbilityData:
-	return _make("Memory Erosion", "The Iris dissolves the magical protection from a single target, preparing the killing blow.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Memory Erosion", "The Iris dissolves the magical protection from a single target, preparing the killing blow.", Enums.StatType.MAGIC_DEFENSE, 7, 2, true, 3, false, 0, 0.0)
 
 # --- Void Iris (boss support redesign) ---
 
@@ -287,21 +287,21 @@ static func dispel_will() -> AbilityData:
 	return _make("Dispel Will", "A splinter of void cuts the resolve from a single target.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
 
 static func null_mending() -> AbilityData:
-	return _make("Null Mending", "The Void Iris channels refracted void light into its allies, reversing wounds with stolen radiance.", Enums.StatType.HEALTH, 6, 0, false, 3, true, 0, 0.0)
+	return _make("Null Mending", "The Void Iris channels refracted void light into its allies, reversing wounds with stolen radiance.", Enums.StatType.HEALTH, 9, 0, false, 3, true, 0, 0.0)
 
 # --- Eye of Oblivion / Lidless Eye (dying monster kit -- all offense) ---
 
 static func dying_gaze() -> AbilityData:
-	return _make("Dying Gaze", "One last focused beam of absolute perception. It burns everything it sees.", Enums.StatType.MAGIC_ATTACK, 22, 0, true, 5, false, 0, 0.0)
+	return _make("Dying Gaze", "One last focused beam of absolute perception. It burns everything it sees.", Enums.StatType.MAGIC_ATTACK, 20, 0, true, 4, false, 0, 0.0)
 
 static func desperate_surge() -> AbilityData:
-	return _make("Desperate Surge", "Bleeding out its stolen power in a single savage blast.", Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
+	return _make("Desperate Surge", "Bleeding out its stolen power in a single savage blast.", Enums.StatType.MAGIC_ATTACK, 17, 0, true, 4, false, 0, 0.0)
 
 static func retribution_blast() -> AbilityData:
-	return _make("Retribution Blast", "It scatters what remains of itself across every target. A dying curse.", Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, true, 0, 0.0)
+	return _make("Retribution Blast", "It scatters what remains of itself across every target. A dying curse.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 static func collapse() -> AbilityData:
-	return _make("Collapse", "The Eye burns from within, its stolen power turning to poison. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 15, 0.0)
+	return _make("Collapse", "The Eye burns from within, its stolen power turning to poison. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 14, 0.0)
 
 static func last_light() -> AbilityData:
-	return _make("Last Light", "The final flicker before extinction, faint but still lethal.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, true, 0, 0.0)
+	return _make("Last Light", "The final flicker before extinction, faint but still lethal.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, true, 0, 0.0)

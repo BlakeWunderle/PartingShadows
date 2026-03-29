@@ -132,7 +132,7 @@ static func sentinel_stasis() -> AbilityData:
 # --- Hollow Echo ---
 
 static func echo_drain() -> AbilityData:
-	return _make("Echo Drain", "A shockwave of stolen sound slams into flesh and bone.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.3)
+	return _make("Echo Drain", "A shockwave of stolen sound slams into flesh and bone.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.2)
 
 static func dissonance() -> AbilityData:
 	return _make("Dissonance", "Conflicting sounds shatter concentration.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)
@@ -156,7 +156,7 @@ static func temporal_rupture() -> AbilityData:
 # --- The Nightmare (boss) ---
 
 static func nightmare_crush() -> AbilityData:
-	return _make("Nightmare Crush", "The full weight of dread made physical.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+	return _make("Nightmare Crush", "The full weight of dread made physical.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func dream_rend() -> AbilityData:
 	return _make("Dream Rend", "The dreamscape tears apart around you.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
@@ -167,7 +167,7 @@ static func dread_aura() -> AbilityData:
 # --- Nightmare Guard ---
 
 static func dread_fang() -> AbilityData:
-	return _make("Dread Fang", "Corrupted jaws snap with the weight of stolen nightmares.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Dread Fang", "Corrupted jaws snap with the weight of stolen nightmares.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func guardian_howl() -> AbilityData:
 	return _make("Dread Howl", "A howl that carries the Nightmare's terror across the entire party.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 3, true, 0, 0.0)
@@ -175,13 +175,13 @@ static func guardian_howl() -> AbilityData:
 # --- Void Echo ---
 
 static func void_siphon() -> AbilityData:
-	return _make("Void Siphon", "It drinks the warmth from thought itself.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.3)
+	return _make("Void Siphon", "It drinks the warmth from thought itself.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.2)
 
 static func void_echo_drain() -> AbilityData:
 	return _make("Void Drain", "A hollow echo that tears at thought without sustaining the void.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func hollow_wail() -> AbilityData:
-	return _make("Hollow Wail", "A keening cry that strips away all defenses.", Enums.StatType.DEFENSE, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Void Shriek", "The echo tears itself apart in a wail that shreds everything nearby.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
@@ -231,7 +231,7 @@ static func binding_light() -> AbilityData:
 # --- Thought Leech ---
 
 static func psychic_siphon() -> AbilityData:
-	return _make("Psychic Siphon", "It drains thought and converts it to sustenance.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.3)
+	return _make("Psychic Siphon", "It drains thought and converts it to sustenance.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.2)
 
 static func mind_fog() -> AbilityData:
 	return _make("Mind Fog", "A haze settles over every mind on the field.", Enums.StatType.ATTACK, 4, 2, true, 4, true, 0, 0.0)

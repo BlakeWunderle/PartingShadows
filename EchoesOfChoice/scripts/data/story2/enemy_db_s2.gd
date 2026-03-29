@@ -17,10 +17,10 @@ static func create_glow_worm(n: String, lvl: int = 1) -> FighterData:
 	f.mana = EH.es(8, 11, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(9, 12, 0, 2, lvl, 1)
 	f.physical_defense = EH.es(5, 8, 0, 1, lvl, 1)
-	f.magic_attack = EH.es(15, 18, 1, 3, lvl, 1)
+	f.magic_attack = EH.es(16, 19, 1, 3, lvl, 1)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 1)
-	f.speed = EH.es(22, 28, 1, 3, lvl, 1)
-	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 6
+	f.speed = EH.es(21, 26, 1, 3, lvl, 1)
+	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 6
 	f.abilities = [EAB.luminous_pulse(), EAB.dazzle()]
 	f.flavor_text = "A blind, segmented worm that navigates by bioluminescence. Its pulsing glow disorients prey before it strikes."
 	return f
@@ -34,8 +34,8 @@ static func create_crystal_spider(n: String, lvl: int = 1) -> FighterData:
 	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 1)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 1)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 1)
-	f.speed = EH.es(20, 26, 1, 2, lvl, 1)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 5
+	f.speed = EH.es(19, 24, 1, 2, lvl, 1)
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.crystal_fang(), EAB.refract()]
 	f.flavor_text = "A translucent arachnid with mineral-encrusted legs. Light scatters through its crystalline body, making it hard to track."
 	return f
@@ -136,7 +136,7 @@ static func create_cave_eel(n: String, lvl: int = 3) -> FighterData:
 	f.physical_defense = EH.es(6, 9, 0, 1, lvl, 3)
 	f.magic_attack = EH.es(16, 19, 1, 2, lvl, 3)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 3)
-	f.speed = EH.es(29, 35, 2, 3, lvl, 3)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 3)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.jolt(), EAB.arc_flash()]
 	f.flavor_text = "A sinuous, eyeless fish that slithers through subterranean pools. Bioelectric organs along its flanks discharge painful jolts."
@@ -186,7 +186,7 @@ static func create_cave_dweller(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 3)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 3)
 	f.speed = EH.es(20, 26, 1, 2, lvl, 3)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 7
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.crude_axe(), EAB.rock_toss()]
 	f.flavor_text = "A hunched, pale humanoid adapted to perpetual darkness. It fashions crude weapons from bone and stone."
 	return f
@@ -216,7 +216,7 @@ static func create_burrow_scout(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = EH.es(5, 8, 0, 1, lvl, 3)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 3)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 3)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 22
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.dart_strike(), EAB.smoke_bomb()]
 	f.flavor_text = "A wiry, quick-footed cave dweller that patrols the outer tunnels. It strikes from the shadows and vanishes before retaliation."
 	return f
@@ -235,7 +235,7 @@ static func create_cave_maw(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(5, 8, 0, 2, lvl, 3)
 	f.magic_defense = EH.es(11, 15, 1, 2, lvl, 3)
 	f.speed = EH.es(19, 25, 1, 2, lvl, 3)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 12
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.gnash(), EAB.swallow(), EAB.tremor()]
 	f.flavor_text = "A gargantuan lamprey-like beast that lurks near the cave exit. Its circular jaws can swallow a person whole."
 	return f
@@ -245,12 +245,12 @@ static func create_vein_leech(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Vein Leech", lvl)
 	f.health = EH.es(90, 105, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 2, lvl, 3); f.max_mana = f.mana
-	f.physical_attack = EH.es(23, 27, 2, 3, lvl, 3)
+	f.physical_attack = EH.es(24, 28, 2, 3, lvl, 3)
 	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(6, 9, 0, 2, lvl, 3)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 3)
-	f.speed = EH.es(24, 30, 1, 3, lvl, 3)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 16
+	f.speed = EH.es(23, 29, 1, 3, lvl, 3)
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.latch(), EAB.siphon_glow()]
 	f.flavor_text = "A bloated parasitic worm that clings to mineral veins. It drains both blood and the faint luminescence from living things."
 	return f
@@ -262,10 +262,10 @@ static func create_stone_moth(n: String, lvl: int = 5) -> FighterData:
 	f.mana = EH.es(7, 9, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(9, 12, 0, 2, lvl, 3)
 	f.physical_defense = EH.es(7, 10, 0, 1, lvl, 3)
-	f.magic_attack = EH.es(22, 26, 1, 3, lvl, 3)
+	f.magic_attack = EH.es(23, 27, 1, 3, lvl, 3)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 3)
-	f.speed = EH.es(27, 33, 2, 3, lvl, 3)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 21
+	f.speed = EH.es(27, 32, 2, 3, lvl, 3)
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.petrify_pulse(), EAB.wing_dust()]
 	f.flavor_text = "A large moth with wings of calcite and granite dust. Its petrifying scales turn flesh to stone on contact."
 	return f

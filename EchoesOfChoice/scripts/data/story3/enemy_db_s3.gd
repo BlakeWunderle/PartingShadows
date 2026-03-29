@@ -93,11 +93,11 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Slumber Beast", lvl)
 	f.health = EH.es(55, 66, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(17, 21, 1, 3, lvl, 2)
+	f.physical_attack = EH.es(16, 20, 1, 3, lvl, 2)
 	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
-	f.speed = EH.es(20, 25, 1, 2, lvl, 2)
+	f.speed = EH.es(21, 26, 1, 2, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.heavy_paw(), EAB.drowsy_roar()]
 	f.flavor_text = "A massive creature wrapped in matted fur and the haze of deep sleep. Its roar carries the weight of oblivion, dragging listeners toward unconsciousness."
@@ -110,7 +110,7 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	f.mana = EH.es(7, 10, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(8, 11, 0, 2, lvl, 2)
 	f.physical_defense = EH.es(6, 9, 0, 1, lvl, 2)
-	f.magic_attack = EH.es(17, 21, 1, 3, lvl, 2)
+	f.magic_attack = EH.es(16, 20, 1, 3, lvl, 2)
 	f.magic_defense = EH.es(9, 14, 1, 2, lvl, 2)
 	f.speed = EH.es(24, 29, 1, 3, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 7
@@ -189,7 +189,7 @@ static func create_somnolent_serpent(n: String, lvl: int = 8) -> FighterData:
 	var f := EH.base(n, "Somnolent Serpent", lvl)
 	f.health = EH.es(293, 340, 4, 8, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = EH.es(29, 34, 1, 3, lvl, 8)
+	f.physical_attack = EH.es(30, 35, 1, 3, lvl, 8)
 	f.physical_defense = EH.es(21, 25, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(17, 21, 1, 2, lvl, 8)
 	f.magic_defense = EH.es(18, 22, 1, 2, lvl, 8)
@@ -204,7 +204,7 @@ static func create_twilight_stalker(n: String, lvl: int = 8) -> FighterData:
 	var f := EH.base(n, "Twilight Stalker", lvl)
 	f.health = EH.es(282, 329, 4, 8, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 1, lvl, 8); f.max_mana = f.mana
-	f.physical_attack = EH.es(33, 38, 1, 3, lvl, 8)
+	f.physical_attack = EH.es(34, 39, 1, 3, lvl, 8)
 	f.physical_defense = EH.es(17, 21, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(14, 17, 0, 2, lvl, 8)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 8)
@@ -221,7 +221,7 @@ static func create_waking_terror(n: String, lvl: int = 8) -> FighterData:
 	f.mana = EH.es(8, 11, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 19, 0, 2, lvl, 8)
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 8)
-	f.magic_attack = EH.es(30, 35, 1, 3, lvl, 8)
+	f.magic_attack = EH.es(31, 36, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(20, 24, 1, 2, lvl, 8)
 	f.speed = EH.es(30, 35, 1, 2, lvl, 8)
 	f.crit_chance = 24; f.crit_damage = 1; f.dodge_chance = 16
@@ -252,7 +252,7 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	f.mana = EH.es(7, 10, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(25, 30, 1, 3, lvl, 8)
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 8)
-	f.magic_attack = EH.es(30, 35, 1, 3, lvl, 8)
+	f.magic_attack = EH.es(31, 36, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 8)
 	f.speed = EH.es(38, 43, 1, 3, lvl, 8)
 	f.crit_chance = 30; f.crit_damage = 2; f.dodge_chance = 12
@@ -265,13 +265,13 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 static func create_the_nightmare(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "The Nightmare", lvl)
 	f.health = EH.es(555, 640, 5, 9, lvl, 9); f.max_health = f.health
-	f.mana = EH.es(13, 15, 1, 2, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = EH.es(39, 44, 2, 3, lvl, 9)
+	f.mana = EH.es(17, 19, 1, 2, lvl, 9); f.max_mana = f.mana
+	f.physical_attack = EH.es(38, 43, 2, 3, lvl, 9)
 	f.physical_defense = EH.es(23, 28, 2, 3, lvl, 9)
 	f.magic_attack = EH.es(37, 42, 2, 3, lvl, 9)
 	f.magic_defense = EH.es(23, 28, 2, 3, lvl, 9)
 	f.speed = EH.es(35, 40, 2, 3, lvl, 9)
-	f.crit_chance = 23; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.nightmare_crush(), EAB.dream_rend(), EAB.dread_aura()]
 	f.flavor_text = "The collective dread of an entire town given form and will. It is the dark heart of the shared dream, a shape that shifts with every fear it consumes."
 	return f
@@ -281,13 +281,13 @@ static func create_the_nightmare(n: String, lvl: int = 9) -> FighterData:
 static func create_nightmare_guard(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "Nightmare Guard", lvl)
 	f.health = EH.es(143, 172, 4, 7, lvl, 9); f.max_health = f.health
-	f.mana = EH.es(6, 8, 1, 1, lvl, 9); f.max_mana = f.mana
-	f.physical_attack = EH.es(29, 35, 1, 3, lvl, 9)
+	f.mana = EH.es(9, 11, 1, 1, lvl, 9); f.max_mana = f.mana
+	f.physical_attack = EH.es(28, 34, 1, 3, lvl, 9)
 	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 9)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 9)
 	f.magic_defense = EH.es(16, 20, 1, 2, lvl, 9)
 	f.speed = EH.es(31, 36, 1, 3, lvl, 9)
-	f.crit_chance = 19; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.dread_fang(), EAB.guardian_howl()]
 	f.flavor_text = "A corrupted sentinel twisted by the Nightmare's will. Once a dream's protector, it now guards the heart of terror with savage devotion."
 	return f
@@ -297,13 +297,13 @@ static func create_nightmare_guard(n: String, lvl: int = 9) -> FighterData:
 static func create_void_echo(n: String, lvl: int = 9) -> FighterData:
 	var f := EH.base(n, "Void Echo", lvl)
 	f.health = EH.es(116, 139, 3, 6, lvl, 9); f.max_health = f.health
-	f.mana = EH.es(8, 11, 1, 2, lvl, 9); f.max_mana = f.mana
+	f.mana = EH.es(11, 14, 1, 2, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 9)
 	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 9)
-	f.magic_attack = EH.es(27, 33, 1, 3, lvl, 9)
+	f.magic_attack = EH.es(26, 32, 1, 3, lvl, 9)
 	f.magic_defense = EH.es(18, 22, 1, 2, lvl, 9)
 	f.speed = EH.es(29, 34, 1, 2, lvl, 9)
-	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 18
+	f.crit_chance = 21; f.crit_damage = 1; f.dodge_chance = 17
 	f.abilities = [EAB.void_echo_drain(), EAB.hollow_wail()]
 	f.flavor_text = "The psychic residue left by the Nightmare's passage through the dreamscape. It repeats fragments of devoured thoughts and feeds on the vitality of the living."
 	return f

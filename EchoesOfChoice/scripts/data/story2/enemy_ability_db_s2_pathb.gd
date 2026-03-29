@@ -21,7 +21,7 @@ static func scholar_strike() -> AbilityData:
 	return _make("Scholar's Strike", "A precise blow guided by fractured instinct.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func forgotten_knowledge() -> AbilityData:
-	return _make("Forgotten Knowledge", "Fragments of lost expertise manifest as cutting insight.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.3)
+	return _make("Forgotten Knowledge", "Fragments of lost expertise manifest as cutting insight.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.2)
 
 static func archive_ward() -> AbilityData:
 	return _make("Archive Ward", "Shelves of records form a protective barrier.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
@@ -150,11 +150,11 @@ static func gaze_of_annihilation() -> AbilityData:
 static func memory_maelstrom() -> AbilityData:
 	return _make("Memory Maelstrom", "A storm of regurgitated memories bludgeons all enemies.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
 
-static func will_of_ages() -> AbilityData:
-	return _make("Will of Ages", "Centuries of accumulated power harden into impenetrable resolve.", Enums.StatType.DEFENSE, 11, 2, false, 4, false, 0, 0.0)
+static func ancient_fury() -> AbilityData:
+	return _make("Ancient Fury", "Eons of accumulated rage explode outward in a single devastating pulse.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
 
 static func devour_identity() -> AbilityData:
-	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 3, false, 0, 0.65)
+	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 3, false, 0, 0.62)
 
 static func unblinking_focus() -> AbilityData:
 	return _make("Unblinking Focus", "The Eye's gaze intensifies, stripping away all magical protection.", Enums.StatType.ATTACK, 6, 2, true, 3, true, 0, 0.0)
