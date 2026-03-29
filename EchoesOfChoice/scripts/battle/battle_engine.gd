@@ -575,15 +575,8 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 							use_ability_on_teammate(unit, ally, buff, true)
 					return
 			else:
-				var buff_target: FighterData = null
-				var best_total: int = -1
-				for ally: FighterData in allies:
-					if ally.health > 0:
-						var t: int = ally.physical_attack + ally.magic_attack
-						if t > best_total:
-							best_total = t
-							buff_target = ally
-				if buff_target != null and not _has_modifier(buff_target, buff.modified_stat, false):
+				var buff_target := _best_buff_target(allies, buff)
+				if buff_target != null:
 					unit.mana -= buff.mana_cost
 					use_ability_on_teammate(unit, buff_target, buff)
 					return
@@ -646,7 +639,11 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 			for target: FighterData in targets:
 				use_ability_on_enemy(unit, target, ability, true)
 		else:
-			var target: FighterData = _choose_target(unit, targets, magic_ratio)
+			var target: FighterData
+			if ability.impacted_turns > 0:
+				target = _best_debuff_target(targets, ability)
+			else:
+				target = _choose_target(unit, targets, magic_ratio)
 			use_ability_on_enemy(unit, target, ability)
 	else:
 		var target: FighterData = _choose_target(unit, targets, magic_ratio)
@@ -662,6 +659,63 @@ func _choose_target(unit: FighterData, targets: Array,
 	var pick_lowest: bool = magic_ratio > 0.6 \
 		or (magic_ratio >= 0.4 and randf() < 0.6)
 	return _find_min_health(targets) if pick_lowest else _find_max_health(targets)
+
+
+func _best_buff_target(allies: Array, buff: AbilityData) -> FighterData:
+	var best: FighterData = null
+	var best_score := -1.0
+	for ally: FighterData in allies:
+		if ally.health <= 0 or _has_modifier(ally, buff.modified_stat, false):
+			continue
+		var score := _stat_relevance(ally, buff.modified_stat, true)
+		if score > best_score:
+			best_score = score
+			best = ally
+	return best
+
+
+func _best_debuff_target(targets: Array, ability: AbilityData) -> FighterData:
+	if ability.damage_per_turn > 0:
+		return _find_max_health(targets)
+	var best: FighterData = null
+	var best_score := -1.0
+	for t: FighterData in targets:
+		var score := _stat_relevance(t, ability.modified_stat, false)
+		if score > best_score:
+			best_score = score
+			best = t
+	return best if best != null else targets[0]
+
+
+func _stat_relevance(fighter: FighterData, stat: Enums.StatType,
+		is_buff: bool) -> float:
+	match stat:
+		Enums.StatType.PHYSICAL_ATTACK:
+			return float(fighter.physical_attack)
+		Enums.StatType.MAGIC_ATTACK:
+			return float(fighter.magic_attack)
+		Enums.StatType.MIXED_ATTACK:
+			return float(fighter.physical_attack + fighter.magic_attack)
+		Enums.StatType.PHYSICAL_DEFENSE:
+			if is_buff:
+				return 1.0 - float(fighter.health) / float(fighter.max_health)
+			return float(fighter.physical_defense)
+		Enums.StatType.MAGIC_DEFENSE:
+			if is_buff:
+				return 1.0 - float(fighter.health) / float(fighter.max_health)
+			return float(fighter.magic_defense)
+		Enums.StatType.DEFENSE:
+			if is_buff:
+				return 1.0 - float(fighter.health) / float(fighter.max_health)
+			return float(fighter.physical_defense + fighter.magic_defense)
+		Enums.StatType.ATTACK:
+			return float(fighter.physical_attack + fighter.magic_attack)
+		Enums.StatType.SPEED:
+			if is_buff:
+				return 100.0 / float(maxi(fighter.speed, 1))
+			return float(fighter.speed)
+		_:
+			return float(fighter.physical_attack + fighter.magic_attack)
 
 
 func _find_min_health(targets: Array) -> FighterData:
