@@ -24,7 +24,7 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(92, 103, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 12)
-	f.speed = EH.es(33, 39, 2, 3, lvl, 12)
+	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
 	f.flavor_text = "A phantom born from a dreamer who achieved lucidity but lost themselves in it. It wields focused thought like a weapon, phasing through attacks with terrifying ease."
@@ -40,7 +40,7 @@ static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(35, 43, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(72, 86, 2, 4, lvl, 12)
 	f.magic_defense = EH.es(43, 51, 2, 3, lvl, 12)
-	f.speed = EH.es(32, 38, 2, 3, lvl, 12)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 12)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.woven_mend(), EAB.thread_snare()]
 	f.flavor_text = "A cult artisan who repairs the dream's fabric even as intruders tear through it. Its threads can mend allies or bind foes with equal skill."
@@ -56,7 +56,7 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(48, 57, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
 	f.magic_defense = EH.es(39, 46, 2, 3, lvl, 13)
-	f.speed = EH.es(24, 30, 1, 2, lvl, 13)
+	f.speed = EH.es(25, 31, 1, 2, lvl, 13)
 	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 7
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
 	f.flavor_text = "A towering automaton built around the skeleton of a great loom. Its strikes carry the weight of compacted dream-thread, and its woven armor turns aside all but the strongest blows."
@@ -72,7 +72,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 12)
 	f.magic_attack = EH.es(84, 95, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
-	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 12)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
 	f.flavor_text = "A hooded cultist who channels forbidden thread-magic through rituals of devotion. It unravels the minds of its enemies, leaving them confused and vulnerable."
@@ -89,7 +89,7 @@ static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(78, 89, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
-	f.speed = EH.es(32, 38, 2, 3, lvl, 13)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
 	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.ward_pulse(), EAB.binding_light()]
 	f.flavor_text = "An imposing guardian who patrols the border between the waking world and the cult's dream domain. It fights with both blade and binding light to repel all trespassers."
@@ -105,7 +105,7 @@ static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(28, 36, 1, 3, lvl, 13)
 	f.magic_attack = EH.es(87, 99, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(41, 48, 2, 3, lvl, 13)
-	f.speed = EH.es(32, 38, 2, 3, lvl, 13)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.psychic_siphon(), EAB.mind_fog()]
 	f.flavor_text = "A parasitic entity that attaches to the psyche and drains thought and willpower. Its victims stumble in a fog of confusion, unable to think clearly or act decisively."
