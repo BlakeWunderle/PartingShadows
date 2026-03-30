@@ -353,9 +353,16 @@ func _show_dialogue(lines: Array) -> void:
 
 
 func _on_text_finished() -> void:
-	# In multiplayer, only the host advances dialogue states
+	# In multiplayer, only the host advances dialogue states.
+	# Exception: guests can advance CLASS dialogue for their own characters
+	# so they see the class choice menu locally.
 	if NetManager.is_multiplayer_active and not NetManager.is_host:
-		return
+		var is_own_class: bool = (
+			_state in [State.CLASS_1, State.CLASS_2, State.CLASS_3]
+			and _is_my_character_state()
+		)
+		if not is_own_class:
+			return
 
 	match _state:
 		State.INTRO:

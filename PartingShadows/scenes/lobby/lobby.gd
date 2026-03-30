@@ -42,6 +42,7 @@ func _ready() -> void:
 	NetManager.session_ended.connect(_on_session_ended)
 	NetManager.steam_hosting_started.connect(_on_steam_hosting_started)
 	NetManager.steam_hosting_failed.connect(_on_steam_hosting_failed)
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	_build_ui()
 	# Auto-join if arriving from a Steam overlay invite
 	if NetManager.pending_join_lobby_id > 0:
@@ -533,11 +534,3 @@ func _on_cancel_confirmed(accepted: bool) -> void:
 # Called when guest successfully connects (via NetManager signal forwarding)
 func _on_connected_to_server() -> void:
 	_show_guest_lobby()
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_READY:
-		# If we're a guest who just connected, the connected_to_server signal
-		# may fire after _ready. Also connect directly.
-		if NetManager.is_multiplayer_active and not NetManager.is_host:
-			_show_guest_lobby()
