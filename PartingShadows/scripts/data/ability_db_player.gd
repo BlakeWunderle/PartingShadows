@@ -74,9 +74,9 @@ static func trample() -> AbilityData:
 		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, true, 0, 0.0)
 
 # Dragoon
-static func jump() -> AbilityData:
-	return _make("Jump", "Leap high and crash down on all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 4, true, 0, 0.0)
+static func dragon_scales() -> AbilityData:
+	return _make("Dragon Scales", "Draconic power hardens the party's armor.",
+		Enums.StatType.DEFENSE, 5, 3, false, 4, true, 0, 0.0)
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
@@ -84,7 +84,7 @@ static func wyvern_strike() -> AbilityData:
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
-		Enums.StatType.MIXED_ATTACK, 18, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 12, 0, true, 5, true, 0, 0.0)
 
 # Mercenary
 static func gun_shot() -> AbilityData:

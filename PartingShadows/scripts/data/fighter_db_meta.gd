@@ -115,7 +115,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Pathfinder": return [PAB_B.keen_strike(), PAB_B.exploit_weakness()]
 		# T2:Squire
 		"Cavalry": return [PAB.lance(), PAB.trample(), PAB.cavalry_charge()]
-		"Dragoon": return [PAB.jump(), PAB.wyvern_strike(), PAB.dragon_dive()]
+		"Dragoon": return [PAB.dragon_scales(), PAB.wyvern_strike(), PAB.dragon_dive()]
 		"Mercenary": return [PAB.gun_shot(), PAB.called_shot(), PAB.suppressing_fire()]
 		"Hunter": return [PAB.triple_arrow(), PAB.snare(), PAB.hunters_mark()]
 		"Ninja": return [PAB.shadow_strike(), PAB.smoke_bomb(), PAB.blade_flurry()]
@@ -191,7 +191,7 @@ static func get_flavor_text(class_id: String) -> String:
 		"Pathfinder": return "A tactical scout who reads the battlefield like a map, finding every advantage the terrain offers."
 		# T2: Squire tree
 		"Cavalry": return "A mounted lancer who charges through enemy lines with devastating momentum. Few can stand before the thundering hooves."
-		"Dragoon": return "A skyborne warrior who leaps to impossible heights, crashing down with the force of a falling star."
+		"Dragoon": return "A draconic warrior whose scales harden allies and whose strikes carry the fury of wyverns."
 		"Mercenary": return "A gun-wielding sellsword who lets coin decide their loyalty and a well-placed shot decide the battle."
 		"Hunter": return "A patient tracker who lays cunning traps and reads every broken twig. Their quarry never escapes."
 		"Ninja": return "A shadow that strikes without warning and vanishes without a trace. By the time you see them, it is already too late."
