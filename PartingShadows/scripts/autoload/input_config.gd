@@ -49,6 +49,8 @@ var _GAMEPAD_BINDINGS: Dictionary = {}
 var keyboard_bindings: Dictionary = {}
 ## True when a Nintendo controller is detected (A/B face buttons are swapped vs Xbox)
 var _nintendo_layout: bool = false
+## True when the last meaningful input came from a gamepad (used for cursor hiding)
+var _using_controller: bool = false
 
 
 func _ready() -> void:
@@ -58,6 +60,19 @@ func _ready() -> void:
 	_detect_nintendo_layout()
 	apply_bindings()
 	_log_connected_joypads()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		if _using_controller:
+			_using_controller = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		if event is InputEventJoypadMotion and absf(event.axis_value) < 0.5:
+			return  # Ignore stick drift
+		if not _using_controller:
+			_using_controller = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func apply_bindings() -> void:
