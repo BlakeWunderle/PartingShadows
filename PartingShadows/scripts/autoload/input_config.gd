@@ -51,9 +51,13 @@ var keyboard_bindings: Dictionary = {}
 var _nintendo_layout: bool = false
 ## True when the last meaningful input came from a gamepad (used for cursor hiding)
 var _using_controller: bool = false
+## Controller disconnect pause state
+var _controller_disconnect_paused: bool = false
+var _disconnect_layer: CanvasLayer = null
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	keyboard_bindings = DEFAULT_KEYBOARD_BINDINGS.duplicate(true)
 	_GAMEPAD_BINDINGS = DEFAULT_GAMEPAD_BINDINGS.duplicate(true)
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
@@ -241,6 +245,12 @@ func _on_joy_connection_changed(device: int, connected: bool) -> void:
 	# Re-detect layout and rebind in case controller type changed
 	_detect_nintendo_layout()
 	apply_bindings()
+	# Pause if the player was using a controller and it disconnected
+	if not connected and _using_controller:
+		_show_controller_disconnected()
+	# Auto-resume when controller reconnects while paused for disconnect
+	if connected and _controller_disconnect_paused:
+		_hide_controller_disconnected()
 
 
 func load_bindings(data: Dictionary) -> void:
@@ -251,3 +261,44 @@ func load_bindings(data: Dictionary) -> void:
 		if data.has(action):
 			keyboard_bindings[action] = data[action]
 	apply_bindings()
+
+
+# =============================================================================
+# Controller disconnect pause
+# =============================================================================
+
+func _show_controller_disconnected() -> void:
+	if GameState.game_phase == GameState.GamePhase.TITLE:
+		return
+	if GameState.game_phase == GameState.GamePhase.ENDING:
+		return
+	if NetManager.is_multiplayer_active:
+		return
+	_controller_disconnect_paused = true
+	get_tree().paused = true
+	if _disconnect_layer == null:
+		_disconnect_layer = CanvasLayer.new()
+		_disconnect_layer.layer = 98
+		_disconnect_layer.process_mode = Node.PROCESS_MODE_ALWAYS
+		var bg := ColorRect.new()
+		bg.color = Color(0, 0, 0, 0.75)
+		bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_disconnect_layer.add_child(bg)
+		var label := Label.new()
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.set_anchors_preset(Control.PRESET_FULL_RECT)
+		label.add_theme_font_size_override("font_size", 28)
+		label.add_theme_color_override("font_color", Color.WHITE)
+		label.text = "Controller disconnected.\nPlease reconnect to continue."
+		_disconnect_layer.add_child(label)
+		add_child(_disconnect_layer)
+	_disconnect_layer.visible = true
+
+
+func _hide_controller_disconnected() -> void:
+	_controller_disconnect_paused = false
+	if _disconnect_layer != null:
+		_disconnect_layer.visible = false
+	if PauseOverlay._panel and not PauseOverlay._panel.visible:
+		get_tree().paused = false

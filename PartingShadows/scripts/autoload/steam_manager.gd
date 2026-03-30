@@ -5,11 +5,13 @@ extends Node
 var is_steam_running: bool = false
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	var init_result: Dictionary = Steam.steamInitEx()
 	var status: int = init_result.get("status", -1)
 	if status == 0:
 		is_steam_running = true
 		Steam.join_requested.connect(_on_join_requested)
+		Steam.overlay_toggled.connect(_on_overlay_toggled)
 		GameLog.info("SteamManager: Steam initialized (user: %s)" % Steam.getPersonaName())
 	else:
 		GameLog.info("SteamManager: Steam not available (status %d), continuing offline" % status)
@@ -32,6 +34,23 @@ func _on_join_requested(lobby_id: int, _steam_id: int) -> void:
 		NetManager.leave_session()
 	NetManager.pending_join_lobby_id = lobby_id
 	SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
+
+
+## Pause the game when the Steam overlay opens during gameplay.
+func _on_overlay_toggled(is_active: bool) -> void:
+	if NetManager.is_multiplayer_active:
+		return  # Don't pause in multiplayer (breaks networking)
+	if is_active:
+		if GameState.game_phase in [
+				GameState.GamePhase.PARTY_CREATION,
+				GameState.GamePhase.NARRATIVE,
+				GameState.GamePhase.BATTLE,
+				GameState.GamePhase.TOWN_STOP]:
+			get_tree().paused = true
+	else:
+		# Don't unpause if the pause menu is showing
+		if PauseOverlay._panel and not PauseOverlay._panel.visible:
+			get_tree().paused = false
 
 
 # =============================================================================
