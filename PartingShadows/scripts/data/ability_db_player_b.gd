@@ -74,7 +74,7 @@ static func corrosive_acid() -> AbilityData:
 
 static func elixir() -> AbilityData:
 	var a := _make("Elixir", "A carefully brewed healing potion.",
-		Enums.StatType.HEALTH, 16, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 18, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.25
 	return a
 
@@ -219,13 +219,13 @@ static func poison_sting() -> AbilityData:
 # Grove Keeper
 static func natures_mend() -> AbilityData:
 	var a := _make("Nature's Mend", "Channel the forest's restorative power to heal an ally's wounds.",
-		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 16, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
 static func thorn_burst() -> AbilityData:
 	return _make("Thorn Burst", "A violent eruption of razor-sharp thorns.",
-		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 15, 0, true, 5, false, 0, 0.0)
 
 static func vine_wall() -> AbilityData:
 	return _make("Vine Wall", "A living wall of thorned vines shields all allies.",
@@ -266,11 +266,11 @@ static func falcon_strike() -> AbilityData:
 
 static func rending_talon() -> AbilityData:
 	return _make("Rending Talon", "The falcon's talons tear through the enemy's guard, leaving them exposed.",
-		Enums.StatType.PHYSICAL_DEFENSE, 8, 3, true, 3, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_DEFENSE, 9, 3, true, 3, false, 0, 0.0)
 
 static func aerial_strike() -> AbilityData:
 	return _make("Aerial Strike", "The falcon sweeps low, raking talons across all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 16, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, true, 0, 0.0)
 
 # Shapeshifter
 static func savage_maul() -> AbilityData:

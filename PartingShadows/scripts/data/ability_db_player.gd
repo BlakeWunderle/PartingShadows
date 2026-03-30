@@ -76,15 +76,15 @@ static func trample() -> AbilityData:
 # Dragoon
 static func dragon_scales() -> AbilityData:
 	return _make("Dragon Scales", "Draconic power hardens the party's armor.",
-		Enums.StatType.DEFENSE, 5, 3, false, 4, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 6, 3, false, 4, true, 0, 0.0)
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
-		Enums.StatType.MIXED_ATTACK, 17, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
-		Enums.StatType.MIXED_ATTACK, 12, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 13, 0, true, 5, true, 0, 0.0)
 
 # Mercenary
 static func gun_shot() -> AbilityData:
@@ -349,11 +349,11 @@ static func invisible_wall() -> AbilityData:
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 16, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",
-		Enums.StatType.SPEED, 6, 3, true, 2, false, 0, 0.0)
+		Enums.StatType.SPEED, 7, 3, true, 2, false, 0, 0.0)
 
 # Laureate
 static func ovation() -> AbilityData:
