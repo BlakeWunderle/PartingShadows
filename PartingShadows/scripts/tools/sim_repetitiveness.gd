@@ -1,8 +1,8 @@
 class_name SimRepetitiveness
 
 ## Analyzes sequential battles within each story for archetype similarity.
-## Flags consecutive fights that feel samey (similar role/subtype profiles)
-## and damage type monotony (3+ consecutive same-dominant-damage battles).
+## Flags consecutive fights that feel samey (similar role/subtype/damage/defense
+## profiles) and damage/defense type monotony (3+ consecutive same-dominant battles).
 
 const BSDB := preload("res://scripts/tools/battle_stage_db.gd")
 const EnemyRoles := preload("res://scripts/data/enemy_roles.gd")
@@ -20,6 +20,9 @@ const _SUBTYPE_KEYS: Array[int] = [
 	Enums.Subtype.DEBUFFER, Enums.Subtype.DOT, Enums.Subtype.DRAIN,
 	Enums.Subtype.AOE, Enums.Subtype.EVASION, Enums.Subtype.CRIT,
 ]
+const _TYPE_KEYS: Array[int] = [
+	Enums.DamageType.PHYSICAL, Enums.DamageType.MAGICAL, Enums.DamageType.MIXED,
+]
 
 
 static func analyze(stages: Array) -> void:
@@ -35,9 +38,10 @@ static func analyze(stages: Array) -> void:
 
 		var profiles := _build_profiles(story_stages)
 		var similar_pairs := _find_similar_pairs(profiles)
-		var monotony := _find_damage_monotony(profiles)
+		var dmg_monotony := _find_monotony(profiles, true)
+		var def_monotony := _find_monotony(profiles, false)
 
-		if similar_pairs.is_empty() and monotony.is_empty():
+		if similar_pairs.is_empty() and dmg_monotony.is_empty() and def_monotony.is_empty():
 			print("  No repetitiveness issues found.\n")
 			continue
 
@@ -46,9 +50,14 @@ static func analyze(stages: Array) -> void:
 				pair.similarity * 100, pair.a, pair.prog_a, pair.b, pair.prog_b])
 			_print_pair_profiles(pair)
 
-		for m: Dictionary in monotony:
+		for m: Dictionary in dmg_monotony:
 			print("  DAMAGE MONOTONY (%s, %d consecutive): %s" % [
-				m.damage_type, m.run_length,
+				m.type_name, m.run_length,
+				", ".join(PackedStringArray(m.battles))])
+
+		for m: Dictionary in def_monotony:
+			print("  DEFENSE MONOTONY (%s, %d consecutive): %s" % [
+				m.type_name, m.run_length,
 				", ".join(PackedStringArray(m.battles))])
 
 		print("")
@@ -62,11 +71,27 @@ static func analyze(stages: Array) -> void:
 static func _build_profiles(stages: Array) -> Array:
 	var profiles := []
 	for s: Dictionary in stages:
+		# Use fixed seed per stage for deterministic defense classification
+		seed(s.name.hash())
 		var enemies: Array = BSDB.create_enemies(s.name)
 		var ids: Array[String] = []
+		var def_types: Dictionary = {}
+		var hp_total := 0.0
 		for e in enemies:
 			ids.append(e.class_id)
+			var dt := EnemyRoles.compute_defense_type(
+				float(e.physical_defense), float(e.magic_defense))
+			def_types[dt] = def_types.get(dt, 0) + 1
+			hp_total += float(e.health)
 		var profile := EnemyRoles.get_battle_profile(ids)
+		profile["defense_types"] = def_types
+		var hp_avg := hp_total / maxf(enemies.size(), 1.0)
+		var hp_var := 0.0
+		for e in enemies:
+			var diff := float(e.health) - hp_avg
+			hp_var += diff * diff
+		profile["hp_avg"] = hp_avg
+		profile["hp_spread"] = sqrt(hp_var / maxf(enemies.size(), 1.0))
 		var boss_or_elite := false
 		for eid: String in ids:
 			var tier := EnemyRoles.get_tier(eid)
@@ -127,7 +152,8 @@ static func _cosine_similarity(a: Dictionary, b: Dictionary) -> float:
 	return dot / (sqrt(mag_a) * sqrt(mag_b))
 
 
-## Flatten a battle profile into a numeric vector: [role counts..., subtype counts...].
+## Flatten a battle profile into a numeric vector:
+## [roles..., subtypes..., damage types..., defense types..., hp_avg, hp_spread].
 static func _to_vector(profile: Dictionary) -> Array[float]:
 	var vec: Array[float] = []
 	var roles: Dictionary = profile.get("roles", {})
@@ -136,18 +162,37 @@ static func _to_vector(profile: Dictionary) -> Array[float]:
 	var subs: Dictionary = profile.get("subtypes", {})
 	for k: int in _SUBTYPE_KEYS:
 		vec.append(float(subs.get(k, 0)))
+	var dmg: Dictionary = profile.get("damage_types", {})
+	for k: int in _TYPE_KEYS:
+		vec.append(float(dmg.get(k, 0)))
+	var defs: Dictionary = profile.get("defense_types", {})
+	for k: int in _TYPE_KEYS:
+		vec.append(float(defs.get(k, 0)))
+	# Normalized HP stats (divided by 100 to match count magnitudes)
+	vec.append(profile.get("hp_avg", 0.0) / 100.0)
+	vec.append(profile.get("hp_spread", 0.0) / 100.0)
 	return vec
 
 
-# -- Damage monotony -----------------------------------------------------------
+# -- Monotony detection --------------------------------------------------------
 
-static func _find_damage_monotony(profiles: Array) -> Array:
+## Finds runs of 3+ consecutive battles with the same dominant type.
+## When is_damage is true, checks damage types; otherwise defense types.
+## For defense: battles with multiple defense types (diversity) break any run
+## and are excluded from runs -- only homogeneous battles contribute.
+static func _find_monotony(profiles: Array, is_damage: bool) -> Array:
 	var issues := []
 	if profiles.size() < MONOTONY_RUN_LENGTH:
 		return issues
 
-	var run_start := 0
-	var run_type := _dominant_damage(profiles[0].profile)
+	var run_start := -1
+	var run_type: Enums.DamageType = Enums.DamageType.MIXED
+	# Initialize from first battle (skip if diverse for defense)
+	if not is_damage and _has_defense_diversity(profiles[0].profile):
+		run_start = -1
+	else:
+		run_start = 0
+		run_type = _dominant_type(profiles[0].profile, is_damage)
 
 	for i in range(1, profiles.size()):
 		# Same prog boss/elite = alternate path; skip without breaking run
@@ -156,15 +201,29 @@ static func _find_damage_monotony(profiles: Array) -> Array:
 		if curr_prog == prev_prog:
 			if profiles[i].has_boss_or_elite and profiles[i - 1].has_boss_or_elite:
 				continue
-		var dt := _dominant_damage(profiles[i].profile)
-		if dt == run_type:
+		# For defense: diverse battles break and are excluded from monotony runs
+		if not is_damage and _has_defense_diversity(profiles[i].profile):
+			if run_start >= 0 and i - run_start >= MONOTONY_RUN_LENGTH:
+				var names := []
+				for j in range(run_start, i):
+					names.append(profiles[j].stage.name)
+				issues.append({
+					"type_name": _damage_name(run_type),
+					"run_length": i - run_start,
+					"battles": names,
+				})
+			run_start = -1  # No active run
 			continue
-		if i - run_start >= MONOTONY_RUN_LENGTH:
+		var dt := _dominant_type(profiles[i].profile, is_damage)
+		if run_start >= 0 and dt == run_type:
+			continue
+		# Type changed or no active run -- report previous run if long enough
+		if run_start >= 0 and i - run_start >= MONOTONY_RUN_LENGTH:
 			var names := []
 			for j in range(run_start, i):
 				names.append(profiles[j].stage.name)
 			issues.append({
-				"damage_type": _damage_name(run_type),
+				"type_name": _damage_name(run_type),
 				"run_length": i - run_start,
 				"battles": names,
 			})
@@ -172,28 +231,36 @@ static func _find_damage_monotony(profiles: Array) -> Array:
 		run_type = dt
 
 	# Check final run.
-	if profiles.size() - run_start >= MONOTONY_RUN_LENGTH:
+	if run_start >= 0 and profiles.size() - run_start >= MONOTONY_RUN_LENGTH:
 		var names := []
 		for j in range(run_start, profiles.size()):
 			names.append(profiles[j].stage.name)
 		issues.append({
-			"damage_type": _damage_name(run_type),
+			"type_name": _damage_name(run_type),
 			"run_length": profiles.size() - run_start,
 			"battles": names,
 		})
 	return issues
 
 
-## Returns the dominant damage type (highest count) in a battle profile.
-static func _dominant_damage(profile: Dictionary) -> Enums.DamageType:
-	var dt: Dictionary = profile.get("damage_types", {})
-	var best: Enums.DamageType = Enums.DamageType.PHYSICAL
+## Returns the dominant damage or defense type (highest count) in a battle profile.
+static func _dominant_type(profile: Dictionary, is_damage: bool) -> Enums.DamageType:
+	var key := "damage_types" if is_damage else "defense_types"
+	var dt: Dictionary = profile.get(key, {})
+	var best: Enums.DamageType = Enums.DamageType.PHYSICAL if is_damage else Enums.DamageType.MIXED
 	var best_count := 0
-	for key: Enums.DamageType in dt:
-		if dt[key] > best_count:
-			best = key
-			best_count = dt[key]
+	for k: Enums.DamageType in dt:
+		if dt[k] > best_count:
+			best = k
+			best_count = dt[k]
 	return best
+
+
+## Returns true if a battle has defense diversity (multiple defense types present).
+## A battle with [PHYS:1, MAG:1, MIXED:2] is diverse -- the player must adapt targeting.
+static func _has_defense_diversity(profile: Dictionary) -> bool:
+	var dt: Dictionary = profile.get("defense_types", {})
+	return dt.size() > 1
 
 
 static func _damage_name(dt: Enums.DamageType) -> String:
@@ -213,8 +280,14 @@ static func _print_pair_profiles(pair: Dictionary) -> void:
 	var b_subs := _format_counts(pair.profile_b.get("subtypes", {}), "subtype")
 	var a_dmg := _format_counts(pair.profile_a.get("damage_types", {}), "damage")
 	var b_dmg := _format_counts(pair.profile_b.get("damage_types", {}), "damage")
-	print("    %s: roles=[%s] subs=[%s] dmg=[%s]" % [pair.a, a_roles, a_subs, a_dmg])
-	print("    %s: roles=[%s] subs=[%s] dmg=[%s]" % [pair.b, b_roles, b_subs, b_dmg])
+	var a_def := _format_counts(pair.profile_a.get("defense_types", {}), "damage")
+	var b_def := _format_counts(pair.profile_b.get("defense_types", {}), "damage")
+	var a_hp := "avg=%.0f spread=%.0f" % [pair.profile_a.get("hp_avg", 0), pair.profile_a.get("hp_spread", 0)]
+	var b_hp := "avg=%.0f spread=%.0f" % [pair.profile_b.get("hp_avg", 0), pair.profile_b.get("hp_spread", 0)]
+	print("    %s: roles=[%s] subs=[%s] dmg=[%s] def=[%s] hp=[%s]" % [
+		pair.a, a_roles, a_subs, a_dmg, a_def, a_hp])
+	print("    %s: roles=[%s] subs=[%s] dmg=[%s] def=[%s] hp=[%s]" % [
+		pair.b, b_roles, b_subs, b_dmg, b_def, b_hp])
 
 
 static func _format_counts(counts: Dictionary, kind: String) -> String:

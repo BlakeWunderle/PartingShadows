@@ -333,6 +333,19 @@ static func is_boss(enemy_id: String) -> bool:
 	return get_tier(enemy_id) == T.BOSS
 
 
+## Compute defense type from physical and magic defense stats.
+## Uses 60/40 rule: >60% in one stat = that type, otherwise MIXED.
+static func compute_defense_type(phys_def: float, mag_def: float) -> Enums.DamageType:
+	var total := phys_def + mag_def
+	if total == 0.0:
+		return D.MIXED
+	if phys_def / total > 0.6:
+		return D.PHYSICAL
+	if phys_def / total < 0.4:
+		return D.MAGICAL
+	return D.MIXED
+
+
 ## Aggregate role/subtype/damage/tier profile for a battle's enemy group.
 static func get_battle_profile(enemy_ids: Array) -> Dictionary:
 	var role_counts := {}
