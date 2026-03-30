@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*ability*.gd"
+---
+
 # Ability Design Rules
 
 ## No mixing DoT and stat buff/debuff on the same ability

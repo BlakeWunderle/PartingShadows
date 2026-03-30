@@ -1,3 +1,10 @@
+---
+paths:
+  - "**/*audio*.gd"
+  - "**/*music*.gd"
+  - "**/*sfx*.gd"
+---
+
 # Audio Management
 
 ## Principle: No Orphans, No Missing References

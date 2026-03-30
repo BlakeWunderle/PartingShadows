@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*fighter*.gd"
+---
+
 # Class Upgrade Trees
 
 56 player classes: 6 base (Tier 0), 16 Tier 1, 34 Tier 2.

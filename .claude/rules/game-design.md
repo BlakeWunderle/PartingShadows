@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*.gd"
+---
+
 # Parting Shadows -- Design Reference
 
 This file documents the design decisions for Parting Shadows.

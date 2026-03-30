@@ -1,3 +1,9 @@
+---
+paths:
+  - "**/*.gd"
+  - "**/*.tscn"
+---
+
 # Project Architecture
 
 Godot 4 project using GDScript at `PartingShadows/`.

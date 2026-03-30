@@ -1,3 +1,9 @@
+---
+paths:
+  - "**/*battle_db*.gd"
+  - "**/*narrative*.gd"
+---
+
 # Writing Conventions
 
 ## Narrative Text

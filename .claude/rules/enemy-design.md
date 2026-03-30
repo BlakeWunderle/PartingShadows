@@ -1,3 +1,8 @@
+---
+paths:
+  - "**/*enemy*.gd"
+---
+
 # Enemy Design Rules
 
 ## Every battle gets unique enemies
