@@ -50,11 +50,11 @@ static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(50, 60, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(15, 19, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(13, 16, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(6, 9, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.shadow_lash(), EAB.dissolve()]
 	f.flavor_text = "A flat, many-legged predator that clings to cavern ceilings. It drops silently onto its prey from the darkness above."
 	return f
@@ -69,7 +69,7 @@ static func create_echo_wisp(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(17, 21, 1, 3, lvl, 2)
 	f.magic_defense = EH.es(11, 14, 1, 2, lvl, 2)
 	f.speed = EH.es(27, 33, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 13
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.resonance(), EAB.distortion()]
 	f.flavor_text = "A flickering orb of sound made visible. It mimics voices of the lost, luring travelers deeper into the caverns."
 	return f
@@ -133,7 +133,7 @@ static func create_cavern_snapper(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(56, 66, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(3, 6, 0, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 20, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(5, 8, 1, 2, lvl, 2)
 	f.speed = EH.es(17, 21, 1, 2, lvl, 2)

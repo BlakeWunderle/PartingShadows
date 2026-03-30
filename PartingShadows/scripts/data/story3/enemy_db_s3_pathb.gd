@@ -23,7 +23,7 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 14
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EAB.petrified_slam(), EAB.stagnant_chill()]
 	f.flavor_text = "A stone-like guardian that has stood watch in the cellar for so long it has calcified into the walls. It attacks with petrifying force and radiates an unnatural cold."
 	return f
@@ -38,7 +38,7 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 12)
-	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 20
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.tethered_lunge(), EAB.fraying_bite()]
 	f.flavor_text = "A lean creature bound by fraying threads to the cellar's hidden sanctum. It lunges at intruders with desperate speed, its bite unraveling both flesh and resolve."
 	return f
@@ -93,7 +93,7 @@ static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
 	f.magic_defense = EH.es(36, 44, 2, 3, lvl, 14)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 14)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 11
 	f.abilities = [EAB.chokepoint_crush(), EAB.passage_block()]
 	f.flavor_text = "A massive guard stationed at the tunnel's narrowest point. It uses the confined space to devastating effect, crushing those who try to force their way through."
 	return f
@@ -108,7 +108,7 @@ static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(101, 115, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(42, 50, 2, 4, lvl, 14)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 14)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 21
+	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 18
 	f.abilities = [EAB.piercing_thread(), EAB.expose_weakness()]
 	f.flavor_text = "A cult marksman who fires needles of hardened dream-thread from the shadows. Each piercing shot reveals weaknesses in the target's defenses for allies to exploit."
 	return f
@@ -123,7 +123,7 @@ static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(97, 111, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 4, lvl, 14)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 14)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 18
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.burning_devotion(), EAB.martyrs_gift()]
 	f.flavor_text = "A pale, gaunt cultist who has given everything to the Thread. Their devotion burns like a fever, and in death they offer their remaining life-force as a gift to their allies."
 	return f
@@ -327,7 +327,7 @@ static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(131, 150, 4, 6, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(39, 45, 3, 4, lvl, 18)
-	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 25
+	f.crit_chance = 19; f.crit_damage = 4; f.dodge_chance = 22
 	f.abilities = [EAB.inn_keepers_embrace(), EABS3.dream_shatter(), EABS3.thread_of_oblivion(), EABS3.unravel(), EABS3.dream_feed()]
 	f.flavor_text = "Lira revealed as the true Threadmaster, her gentle demeanor shed to expose the master weaver beneath. She commands the loom with absolute authority, puppeting dreams and harvesting the sleeping minds of an entire town."
 	return f
@@ -342,7 +342,7 @@ static func create_tattered_deception(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(115, 133, 3, 6, lvl, 18)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
 	f.speed = EH.es(40, 46, 3, 4, lvl, 18)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 25
+	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.mirrored_assault(), EAB.unraveling_touch()]
 	f.flavor_text = "A conjured illusion woven from stolen faces and borrowed memories. It mimics the party's own tactics with uncanny precision, unraveling defenses with every touch."
 	return f
@@ -357,7 +357,7 @@ static func create_dream_bastion(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 18)
 	f.magic_defense = EH.es(48, 57, 2, 4, lvl, 18)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 18)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 11
+	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.bastion_slam(), EAB.nexus_shield()]
 	f.flavor_text = "A fortress of solidified dream-thread that guards the nexus of Lira's power. It absorbs punishment meant for its master and retaliates with devastating force."
 	return f

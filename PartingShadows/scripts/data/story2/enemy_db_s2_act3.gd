@@ -80,7 +80,7 @@ static func create_grief_shade(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(63, 74, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 11)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EABL.sorrows_touch(), EABL.wail_of_loss()]
 	f.flavor_text = "A weeping shadow born from concentrated sorrow. Its touch carries the weight of every loss ever felt in this place."
 	return f
@@ -106,7 +106,7 @@ static func create_hollow_watcher(n: String, lvl: int = 11) -> FighterData:
 	f.health = EH.es(432, 493, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(39, 47, 2, 4, lvl, 11)
-	f.physical_defense = EH.es(35, 43, 2, 3, lvl, 11)
+	f.physical_defense = EH.es(32, 40, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(12, 16, 0, 2, lvl, 11)
 	f.magic_defense = EH.es(29, 36, 1, 3, lvl, 11)
 	f.speed = EH.es(30, 36, 1, 3, lvl, 11)

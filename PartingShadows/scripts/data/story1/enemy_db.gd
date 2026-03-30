@@ -20,7 +20,7 @@ static func create_thug(n: String, lvl: int = 1) -> FighterData:
 	f.physical_defense = EH.es(8, 11, 1, 2, lvl, 1)
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 1)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 1)
-	f.speed = EH.es(18, 24, 1, 2, lvl, 1)
+	f.speed = EH.es(20, 26, 1, 2, lvl, 1)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [AbilityDB.haymaker()]
 	f.flavor_text = "Street toughs who prey on travelers after dark."
@@ -34,7 +34,7 @@ static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 1)
 	f.magic_attack = EH.es(2, 5, 0, 1, lvl, 1)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 1)
-	f.speed = EH.es(16, 22, 1, 2, lvl, 1)
+	f.speed = EH.es(18, 24, 1, 2, lvl, 1)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 2
 	f.abilities = [EAB.headbutt(), AbilityDB.intimidate()]
 	f.flavor_text = "Brawlers with more muscle than sense, spoiling for a fight."
@@ -111,7 +111,7 @@ static func create_goblin(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 2)
 	f.magic_defense = EH.es(3, 6, 0, 2, lvl, 2)
 	f.speed = EH.es(26, 32, 2, 4, lvl, 2)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 19
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.stab(), EAB.throw_rock(), EAB.scurry()]
 	f.flavor_text = "Small, vicious, and surprisingly quick. What they lack in strength they make up for in cunning."
 	return f
@@ -122,10 +122,10 @@ static func create_hound(n: String, lvl: int = 2) -> FighterData:
 	f.mana = EH.es(5, 7, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(8, 11, 0, 2, lvl, 2)
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.magic_attack = EH.es(18, 22, 2, 3, lvl, 2)
+	f.magic_attack = EH.es(16, 20, 2, 3, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
-	f.speed = EH.es(26, 32, 2, 3, lvl, 2)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
+	f.speed = EH.es(26, 31, 2, 3, lvl, 2)
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.baleful_howl(), EAB.shadow_bite()]
 	f.flavor_text = "Not a stray. Something is wrong with this animal. Its eyes flicker with a pale light and its snarl reverberates in ways that have nothing to do with sound."
 	return f
@@ -139,7 +139,7 @@ static func create_bandit(n: String, lvl: int = 3) -> FighterData:
 	f.magic_attack = EH.es(4, 7, 0, 2, lvl, 3)
 	f.magic_defense = EH.es(5, 9, 1, 2, lvl, 3)
 	f.speed = EH.es(22, 28, 1, 3, lvl, 3)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.bushwhack(), EAB.ambush()]
 	f.flavor_text = "Outlaws who lurk along forest roads, striking from the cover of the trees."
 	return f

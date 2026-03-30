@@ -119,7 +119,7 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(9, 12, 0, 1, lvl, 6)
 	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 6)
 	f.speed = EH.es(23, 28, 1, 2, lvl, 6)
-	f.crit_chance = 17; f.crit_damage = 1; f.dodge_chance = 15
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.dream_crush(), EAB.fragment_surge()]
 	f.flavor_text = "A hulking construct assembled from shattered dream-fragments. Each piece remembers a different sleeper, and the golem fights with their collective, fractured will."
 	return f
@@ -134,7 +134,7 @@ static func create_portrait_wight(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(23, 27, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(18, 22, 1, 3, lvl, 6)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 6)
-	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.gilded_veil(), EAB.faded_gaze()]
 	f.flavor_text = "The undead remnant of a dreamer who died in their sleep, now trapped inside a gilded portrait frame. It reaches through cracked canvas to shield the gallery's other creatures, guarding the stolen memories it can no longer reclaim."
 	return f
@@ -149,7 +149,7 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
 	f.speed = EH.es(31, 36, 1, 3, lvl, 6)
-	f.crit_chance = 19; f.crit_damage = 1; f.dodge_chance = 17
+	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.gallery_bolt(), EAB.shatter_ward()]
 	f.flavor_text = "A dark silhouette that steps out of painted portraits in the shattered gallery. It hurls splinters of broken frames and conjures wards from cracked canvas."
 	return f
@@ -268,7 +268,7 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(59, 70, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 11)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
-	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.bound_strike(), EAB.tether_pull()]
 	f.flavor_text = "A guard stationed in the cellar beneath the inn, bound to the cult's hidden operations. It fights with the desperate fury of someone protecting a terrible secret."
 	return f
@@ -298,7 +298,7 @@ static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	f.magic_attack = EH.es(79, 90, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 11)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
-	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 23
+	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 19
 	f.abilities = [EAB.ink_bolt(), EAB.ink_pool()]
 	f.flavor_text = "A shadow that bleeds ink from the cult's hidden ledgers and forbidden texts. It pools darkness beneath its enemies and strikes with bolts of living blackness."
 	return f

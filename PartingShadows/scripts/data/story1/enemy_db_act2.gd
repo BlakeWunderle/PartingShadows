@@ -77,8 +77,8 @@ static func create_witch(n: String, lvl: int = 4) -> FighterData:
 	f.physical_defense = EH.es(8, 12, 1, 2, lvl, 4)
 	f.magic_attack = EH.es(28, 39, 3, 6, lvl, 4)
 	f.magic_defense = EH.es(18, 26, 2, 4, lvl, 4)
-	f.speed = EH.es(22, 30, 1, 2, lvl, 4)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
+	f.speed = EH.es(24, 32, 1, 2, lvl, 4)
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.enemy_hex(), EAB.bramble(), EAB.dark_blessing()]
 	f.flavor_text = "Reclusive casters who draw power from the deep woods. Their curses linger long after battle."
 	return f
@@ -92,7 +92,7 @@ static func create_wisp(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(25, 34, 3, 5, lvl, 4)
 	f.magic_defense = EH.es(14, 20, 1, 3, lvl, 4)
 	f.speed = EH.es(28, 38, 2, 3, lvl, 4)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.lure(), EAB.bewitch()]
 	f.flavor_text = "Flickering motes of pale light that drift through the marshes, leading the unwary astray."
 	return f
@@ -106,7 +106,7 @@ static func create_sprite(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(13, 19, 1, 2, lvl, 4)
 	f.magic_defense = EH.es(15, 21, 1, 2, lvl, 4)
 	f.speed = EH.es(25, 36, 1, 3, lvl, 4)
-	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 14
+	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 14
 	f.abilities = [EAB.thorn(), EAB.pollen()]
 	f.flavor_text = "Mischievous fey creatures born from old magic. They defend their groves with barbed thorns."
 	return f

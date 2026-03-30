@@ -15,12 +15,12 @@ static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Sigil Colossus", lvl)
 	f.health = EH.es(628, 692, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(85, 93, 4, 6, lvl, 14)
+	f.physical_attack = EH.es(83, 91, 4, 6, lvl, 14)
 	f.physical_defense = EH.es(55, 64, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(36, 43, 2, 4, lvl, 14)
 	f.speed = EH.es(40, 47, 1, 3, lvl, 14)
-	f.crit_chance = 28; f.crit_damage = 5; f.dodge_chance = 10
+	f.crit_chance = 26; f.crit_damage = 5; f.dodge_chance = 10
 	f.abilities = [EAB.sigil_crush(), EAB.anchor_pulse(), EAB.sigil_ward()]
 	f.flavor_text = "A massive construct of carved stone and living sigils. It guards the ritual pillars with relentless force."
 	return f
@@ -32,10 +32,10 @@ static func create_ritual_conduit(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(24, 29, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(75, 83, 4, 6, lvl, 14)
+	f.magic_attack = EH.es(73, 81, 4, 6, lvl, 14)
 	f.magic_defense = EH.es(49, 57, 3, 5, lvl, 14)
 	f.speed = EH.es(47, 54, 2, 4, lvl, 14)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 22
+	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.conduit_beam(), EAB.mending_sigil(), EAB.ritual_shield()]
 	f.flavor_text = "A crystalline pillar that channels ritual energy. It mends damage to the anchors and shields its allies."
 	return f
@@ -49,8 +49,8 @@ static func create_void_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(38, 46, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(61, 68, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 14)
-	f.speed = EH.es(51, 58, 2, 4, lvl, 14)
-	f.crit_chance = 29; f.crit_damage = 5; f.dodge_chance = 19
+	f.speed = EH.es(50, 57, 2, 4, lvl, 14)
+	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 17
 	f.abilities = [EAB.void_slash(), EAB.nullfield()]
 	f.flavor_text = "A silent guardian of void energy. Its blade cuts through both armor and magic with equal ease."
 	return f

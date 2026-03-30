@@ -24,7 +24,7 @@ static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(94, 107, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 15)
-	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.void_pulse(), EAB.deep_slumber()]
 	f.flavor_text = "A figure that drifts through the deepest layers of the dream, where light never reaches. Its void pulses drag victims into a slumber from which few return."
 	return f
@@ -39,7 +39,7 @@ static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 15)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 15)
-	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 18
+	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EAB.thread_bite(), EAB.unravel_ward()]
 	f.flavor_text = "A ravenous creature that feeds on dream-threads themselves, growing stronger with each strand it consumes. It tears apart protective wards with savage hunger."
 	return f
@@ -54,7 +54,7 @@ static func create_slumbering_colossus(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(35, 43, 2, 3, lvl, 15)
 	f.speed = EH.es(25, 30, 1, 2, lvl, 15)
-	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 10
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.crushing_dream(), EAB.ancient_yawn()]
 	f.flavor_text = "An ancient titan that has slumbered in the dream's foundations since before the cult existed. When roused, its crushing weight and tremendous yawns send waves of exhaustion through all who face it."
 	return f
@@ -74,7 +74,7 @@ static func create_dream_priest(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(106, 121, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(50, 59, 2, 4, lvl, 16)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 16)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 20
+	f.crit_chance = 21; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.sacred_thread(), EAB.loom_prayer()]
 	f.flavor_text = "A cult priest who projects their consciousness into the dream to intercept intruders. Their sacred threads and whispered prayers to the loom sustain the cult's hold on the sleeping world."
 	return f
@@ -89,7 +89,7 @@ static func create_astral_enforcer(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 16)
-	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 16
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EAB.dream_blade(), EAB.astral_brace()]
 	f.flavor_text = "A warrior whose astral projection fights with the full force of their waking body. Their dream-forged blade cuts through defenses, and their braced stance absorbs punishment meant to banish them."
 	return f
@@ -104,7 +104,7 @@ static func create_oneiric_hexer(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(107, 123, 3, 6, lvl, 16)
 	f.magic_defense = EH.es(50, 59, 2, 4, lvl, 16)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 16)
-	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 24
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EAB.dream_bolt(), EAB.nightmare_hex()]
 	f.flavor_text = "A hexer who draws power from the boundary between dreams and nightmares. Their bolts carry the sting of bad dreams, and their hexes twist perception into waking terror."
 	return f
@@ -120,7 +120,7 @@ static func create_oneiric_guardian(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 16)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 16)
-	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
+	f.crit_chance = 13; f.crit_damage = 3; f.dodge_chance = 11
 	f.abilities = [EAB.warden_strike(), EAB.dream_siphon()]
 	f.flavor_text = "A hulking guardian conjured from the dream by a cult enforcer's will. It sustains itself by draining the dream-essence of those it strikes, growing harder to kill the longer the fight continues."
 	return f

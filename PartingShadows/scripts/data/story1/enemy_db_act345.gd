@@ -187,7 +187,7 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(38, 47, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(38, 46, 2, 4, lvl, 14)
 	f.speed = EH.es(45, 52, 2, 4, lvl, 14)
-	f.crit_chance = 31; f.crit_damage = 5; f.dodge_chance = 23
+	f.crit_chance = 27; f.crit_damage = 5; f.dodge_chance = 19
 	f.abilities = [EABL.dark_blade(), EABL.shadow_guard(), EAB.cleave()]
 	f.flavor_text = "A fallen champion clad in shadowed plate. Dark magic courses through every strike of his blade."
 	return f
@@ -201,7 +201,7 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	f.magic_attack = EH.es(63, 71, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(36, 42, 2, 4, lvl, 14)
 	f.speed = EH.es(50, 56, 3, 5, lvl, 14)
-	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 23
+	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 19
 	f.abilities = [EABL.shadow_bite(), EABL.howl_of_dread(), EABL.corruption_fang()]
 	f.flavor_text = "Spectral hounds that hunt in packs across the corrupted wastes. Their howls freeze the blood."
 	return f
