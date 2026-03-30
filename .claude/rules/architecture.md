@@ -152,13 +152,20 @@ All paths below are relative to `PartingShadows/`.
 - `scripts/tools/sim_repetitiveness.gd` -- Battle repetitiveness analysis: cosine similarity on role/subtype vectors, damage monotony detection
 - `tools/battle_simulator.gd` -- Headless battle simulator entry point
 - `tools/battle_sim_parallel.gd` -- Parallel worker coordinator for batch simulation
+- `tools/debug_battle.gd` -- Quick-launch a battle for testing UI changes (with debug_battle.tscn)
+- `tools/repetitiveness.gd` -- Standalone repetitiveness analysis: per-story archetype similarity + damage monotony
 
 ### Resources (`resources/`)
 - `audio/default_bus_layout.tres` -- Audio bus layout: Master, Music (→Master), SFX (→Master)
+- `gui/game_theme.tres` -- Global UI theme (fonts, button/panel/scrollbar styles, colors)
+- `shaders/shadow_portrait.gdshader` -- Portrait shadow effect shader
 
 ### Assets (`assets/`)
 - `audio/music/` -- ~70 music tracks across contexts (menu, battle, battle_dark, battle_scifi, boss, town, cutscene, game_over, victory)
 - `audio/sfx/` -- ~1600 SFX files: combat subfolders (strike, impact, slash, spell, etc.) + ui/
 - `art/ui/` -- Title background, Wunderelf Studios logo
-- `art/battles/` -- 71 battle scene background images
-- `fonts/` -- Oswald-Bold.ttf for game theme
+- `art/battles/` -- 154 battle scene background images
+- `art/portraits/` -- 690 enemy and class portrait images
+- `fonts/Cinzel-Bold.ttf` -- Primary UI font (buttons, labels, menus) via game_theme.tres
+- `fonts/CormorantGaramond-SemiBold.ttf` -- Narrative/body text (RichTextLabel, LineEdit) via game_theme.tres
+- `fonts/Oswald-Bold.ttf` -- Available in project but not referenced by game_theme.tres
