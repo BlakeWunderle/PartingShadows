@@ -21,7 +21,7 @@ static func create_thug(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 1)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 1)
 	f.speed = EH.es(20, 26, 1, 2, lvl, 1)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 3
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 3
 	f.abilities = [AbilityDB.haymaker()]
 	f.flavor_text = "Street toughs who prey on travelers after dark."
 	return f
@@ -35,7 +35,7 @@ static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(2, 5, 0, 1, lvl, 1)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 1)
 	f.speed = EH.es(18, 24, 1, 2, lvl, 1)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 2
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 2
 	f.abilities = [EAB.headbutt(), AbilityDB.intimidate()]
 	f.flavor_text = "Brawlers with more muscle than sense, spoiling for a fight."
 	return f

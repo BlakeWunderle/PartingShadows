@@ -148,7 +148,7 @@ static func create_captain(n: String, lvl: int = 5) -> FighterData:
 	f.magic_attack = EH.es(9, 17, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(9, 17, 1, 3, lvl, 5)
 	f.speed = EH.es(20, 28, 1, 2, lvl, 5)
-	f.crit_chance = 27; f.crit_damage = 2; f.dodge_chance = 21
+	f.crit_chance = 30; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.flintlock(), EAB.cannon_barrage(), EAB.bravado()]
 	f.flavor_text = "A seasoned officer who commands through firepower and sheer bravado."
 	return f
@@ -162,7 +162,7 @@ static func create_pirate(n: String, lvl: int = 4) -> FighterData:
 	f.magic_attack = EH.es(9, 17, 1, 3, lvl, 4)
 	f.magic_defense = EH.es(8, 16, 1, 3, lvl, 4)
 	f.speed = EH.es(20, 29, 1, 3, lvl, 4)
-	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 25
+	f.crit_chance = 27; f.crit_damage = 3; f.dodge_chance = 27
 	f.abilities = [EAB.flintlock(), EAB.dirty_trick()]
 	f.flavor_text = "Sea rogues who fight without honor, armed with flintlocks and dirty tricks."
 	return f
@@ -235,8 +235,8 @@ static func create_android(n: String) -> FighterData:
 	f.mana = EH.fixed(12, 15); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(26, 30); f.physical_defense = EH.fixed(20, 24)
 	f.magic_attack = EH.fixed(27, 31); f.magic_defense = EH.fixed(11, 15)
-	f.speed = EH.fixed(37, 42)
-	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 5
+	f.speed = EH.fixed(36, 41)
+	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.circuit_burst(), EAB.firewall(), EAB.overdrive()]
 	f.flavor_text = "A mechanical soldier powered by arcane circuitry. It feels neither pain nor mercy."
 	return f
@@ -247,8 +247,8 @@ static func create_machinist(n: String) -> FighterData:
 	f.mana = EH.fixed(11, 14); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(28, 32); f.physical_defense = EH.fixed(19, 23)
 	f.magic_attack = EH.fixed(25, 29); f.magic_defense = EH.fixed(11, 15)
-	f.speed = EH.fixed(35, 40)
-	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 5
+	f.speed = EH.fixed(34, 39)
+	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.seismic_charge(), EAB.reinforce(), EAB.dismantle()]
 	f.flavor_text = "An engineer of war who deploys explosive charges and reinforced plating in equal measure."
 	return f
@@ -259,8 +259,8 @@ static func create_ironclad(n: String) -> FighterData:
 	f.mana = EH.fixed(11, 15); f.max_mana = f.mana
 	f.physical_attack = EH.fixed(26, 29); f.physical_defense = EH.fixed(23, 27)
 	f.magic_attack = EH.fixed(19, 23); f.magic_defense = EH.fixed(13, 17)
-	f.speed = EH.fixed(29, 34)
-	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 5
+	f.speed = EH.fixed(28, 33)
+	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 5
 	f.abilities = [EAB.hammer_blow(), EAB.temper(), EAB.seismic_charge()]
 	f.flavor_text = "A walking fortress of hammered steel. Each blow of its hammer rings like a forge bell."
 	return f
