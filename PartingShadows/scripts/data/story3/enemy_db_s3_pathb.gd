@@ -19,9 +19,9 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(566, 647, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(84, 96, 3, 5, lvl, 12)
-	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 12)
+	f.physical_defense = EH.es(47, 55, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
-	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 12)
+	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.petrified_slam(), EAB.stagnant_chill()]
@@ -89,9 +89,9 @@ static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(622, 711, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(104, 119, 3, 5, lvl, 14)
-	f.physical_defense = EH.es(50, 59, 2, 4, lvl, 14)
+	f.physical_defense = EH.es(56, 65, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
-	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 14)
+	f.magic_defense = EH.es(36, 44, 2, 3, lvl, 14)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 14)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.chokepoint_crush(), EAB.passage_block()]
@@ -303,9 +303,9 @@ static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(580, 668, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(108, 124, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(42, 50, 2, 3, lvl, 16)
+	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(50, 60, 2, 3, lvl, 16)
-	f.magic_defense = EH.es(56, 65, 2, 4, lvl, 16)
+	f.magic_defense = EH.es(60, 69, 2, 4, lvl, 16)
 	f.speed = EH.es(45, 51, 2, 3, lvl, 16)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.weft_lash(), EAB.stalk()]

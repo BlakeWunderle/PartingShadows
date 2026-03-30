@@ -50,9 +50,9 @@ static func create_shade_crawler(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(50, 60, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(15, 19, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(13, 16, 1, 2, lvl, 2)
-	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(6, 9, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.shadow_lash(), EAB.dissolve()]
@@ -133,9 +133,9 @@ static func create_cavern_snapper(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(56, 66, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(3, 6, 0, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 20, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(11, 14, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 2)
-	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(5, 8, 1, 2, lvl, 2)
 	f.speed = EH.es(17, 21, 1, 2, lvl, 2)
 	f.crit_chance = 8; f.crit_damage = 2; f.dodge_chance = 3
 	f.abilities = [EAB.jaw_clamp(), EAB.stone_shell()]
@@ -152,9 +152,9 @@ static func create_cave_eel(n: String, lvl: int = 3) -> FighterData:
 	f.health = EH.es(41, 49, 2, 4, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(9, 11, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(17, 20, 1, 3, lvl, 3)
-	f.physical_defense = EH.es(6, 9, 0, 1, lvl, 3)
+	f.physical_defense = EH.es(4, 7, 0, 1, lvl, 3)
 	f.magic_attack = EH.es(16, 19, 1, 2, lvl, 3)
-	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 3)
+	f.magic_defense = EH.es(11, 14, 1, 2, lvl, 3)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 3)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.jolt(), EAB.arc_flash()]
@@ -167,9 +167,9 @@ static func create_blind_angler(n: String, lvl: int = 3) -> FighterData:
 	f.health = EH.es(52, 63, 3, 5, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(9, 11, 0, 2, lvl, 3)
-	f.physical_defense = EH.es(8, 11, 1, 2, lvl, 3)
+	f.physical_defense = EH.es(6, 9, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(17, 21, 1, 3, lvl, 3)
-	f.magic_defense = EH.es(10, 14, 1, 2, lvl, 3)
+	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 3)
 	f.speed = EH.es(20, 26, 1, 2, lvl, 3)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 8
 	f.abilities = [EAB.lure_light(), EAB.abyssal_gaze()]

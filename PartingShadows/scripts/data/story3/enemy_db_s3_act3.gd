@@ -53,9 +53,9 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	f.health = EH.es(612, 700, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(91, 104, 3, 5, lvl, 13)
-	f.physical_defense = EH.es(48, 57, 2, 3, lvl, 13)
+	f.physical_defense = EH.es(54, 63, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
-	f.magic_defense = EH.es(39, 46, 2, 3, lvl, 13)
+	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 13)
 	f.speed = EH.es(25, 31, 1, 2, lvl, 13)
 	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 7
 	f.abilities = [EAB.loom_strike(), EAB.woven_armor()]
@@ -102,9 +102,9 @@ static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	f.health = EH.es(460, 529, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = EH.es(28, 36, 1, 3, lvl, 13)
+	f.physical_defense = EH.es(25, 33, 1, 3, lvl, 13)
 	f.magic_attack = EH.es(87, 99, 3, 5, lvl, 13)
-	f.magic_defense = EH.es(41, 48, 2, 3, lvl, 13)
+	f.magic_defense = EH.es(44, 51, 2, 3, lvl, 13)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.psychic_siphon(), EAB.mind_fog()]

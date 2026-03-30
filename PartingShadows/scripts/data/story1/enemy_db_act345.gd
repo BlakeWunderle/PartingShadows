@@ -79,9 +79,9 @@ static func create_lich(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(399, 449, 8, 12, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(26, 31, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 12)
-	f.physical_defense = EH.es(25, 30, 2, 3, lvl, 12)
+	f.physical_defense = EH.es(22, 27, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(64, 71, 4, 6, lvl, 12)
-	f.magic_defense = EH.es(41, 49, 3, 5, lvl, 12)
+	f.magic_defense = EH.es(44, 52, 3, 5, lvl, 12)
 	f.speed = EH.es(41, 47, 2, 4, lvl, 12)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EABL.death_bolt(), EABL.raise_dead(), EABL.soul_cage()]
@@ -93,9 +93,9 @@ static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(349, 395, 7, 10, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(13, 17, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(60, 66, 3, 5, lvl, 12)
-	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
+	f.physical_defense = EH.es(37, 43, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(18, 24, 1, 2, lvl, 12)
-	f.magic_defense = EH.es(26, 31, 1, 3, lvl, 12)
+	f.magic_defense = EH.es(22, 27, 1, 3, lvl, 12)
 	f.speed = EH.es(34, 41, 2, 3, lvl, 12)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EABL.slam(), EABL.poison_cloud(), EAB.rend()]
@@ -107,9 +107,9 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(538, 598, 7, 10, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(29, 34, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 30, 1, 3, lvl, 12)
-	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
+	f.physical_defense = EH.es(28, 34, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(69, 79, 5, 7, lvl, 12)
-	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 12)
+	f.magic_defense = EH.es(46, 52, 2, 4, lvl, 12)
 	f.speed = EH.es(41, 47, 2, 4, lvl, 12)
 	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
@@ -121,9 +121,9 @@ static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(440, 490, 8, 11, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(55, 62, 4, 6, lvl, 12)
-	f.physical_defense = EH.es(42, 48, 3, 5, lvl, 12)
+	f.physical_defense = EH.es(49, 55, 3, 5, lvl, 12)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 12)
-	f.magic_defense = EH.es(37, 43, 2, 4, lvl, 12)
+	f.magic_defense = EH.es(30, 36, 2, 4, lvl, 12)
 	f.speed = EH.es(33, 39, 1, 3, lvl, 12)
 	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 16
 	f.abilities = [EABL.vine_whip(), EABL.root_slam(), EABL.bark_shield()]

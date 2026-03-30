@@ -16,9 +16,9 @@ static func create_memory_wisp(n: String, lvl: int = 10) -> FighterData:
 	f.health = EH.es(392, 461, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
-	f.physical_defense = EH.es(21, 28, 1, 3, lvl, 10)
+	f.physical_defense = EH.es(19, 26, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(65, 77, 2, 4, lvl, 10)
-	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
+	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 10)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 10)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EABL.recall_bolt(), EABL.memory_drain()]
@@ -46,9 +46,9 @@ static func create_echo_sentinel(n: String, lvl: int = 10) -> FighterData:
 	f.health = EH.es(528, 601, 5, 8, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(60, 70, 2, 4, lvl, 10)
-	f.physical_defense = EH.es(42, 49, 2, 3, lvl, 10)
+	f.physical_defense = EH.es(48, 55, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
-	f.magic_defense = EH.es(35, 43, 1, 3, lvl, 10)
+	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 10)
 	f.speed = EH.es(27, 33, 1, 2, lvl, 10)
 	f.crit_chance = 9; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EABL.crystal_strike(), EABL.ward_of_echoes()]
@@ -61,9 +61,9 @@ static func create_thought_eater(n: String, lvl: int = 11) -> FighterData:
 	f.health = EH.es(467, 538, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
-	f.physical_defense = EH.es(26, 32, 1, 3, lvl, 11)
+	f.physical_defense = EH.es(25, 31, 1, 3, lvl, 11)
 	f.magic_attack = EH.es(87, 100, 2, 5, lvl, 11)
-	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 11)
+	f.magic_defense = EH.es(41, 48, 2, 3, lvl, 11)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 11)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EABL.mind_rend(), EABL.psychic_leech()]

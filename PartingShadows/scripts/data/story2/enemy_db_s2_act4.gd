@@ -76,9 +76,9 @@ static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(615, 690, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
-	f.physical_defense = EH.es(31, 40, 2, 3, lvl, 14)
+	f.physical_defense = EH.es(28, 37, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(126, 144, 3, 5, lvl, 14)
-	f.magic_defense = EH.es(49, 57, 2, 4, lvl, 14)
+	f.magic_defense = EH.es(52, 60, 2, 4, lvl, 14)
 	f.speed = EH.es(41, 48, 2, 3, lvl, 14)
 	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 22
 	f.abilities = [EABL.harvesting_scythe(), EABL.accumulated_toll()]

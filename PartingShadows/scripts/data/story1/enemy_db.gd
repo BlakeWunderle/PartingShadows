@@ -107,9 +107,9 @@ static func create_goblin(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(41, 53, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(15, 19, 2, 3, lvl, 2)
-	f.physical_defense = EH.es(6, 9, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 2)
-	f.magic_defense = EH.es(6, 9, 0, 2, lvl, 2)
+	f.magic_defense = EH.es(3, 6, 0, 2, lvl, 2)
 	f.speed = EH.es(26, 32, 2, 4, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 19
 	f.abilities = [EAB.stab(), EAB.throw_rock(), EAB.scurry()]
@@ -135,9 +135,9 @@ static func create_bandit(n: String, lvl: int = 3) -> FighterData:
 	f.health = EH.es(76, 89, 4, 7, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 2, lvl, 3); f.max_mana = f.mana
 	f.physical_attack = EH.es(22, 27, 2, 3, lvl, 3)
-	f.physical_defense = EH.es(11, 14, 1, 2, lvl, 3)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(4, 7, 0, 2, lvl, 3)
-	f.magic_defense = EH.es(9, 13, 1, 2, lvl, 3)
+	f.magic_defense = EH.es(5, 9, 1, 2, lvl, 3)
 	f.speed = EH.es(22, 28, 1, 3, lvl, 3)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.bushwhack(), EAB.ambush()]

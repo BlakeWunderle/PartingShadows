@@ -31,9 +31,9 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	f.health = EH.es(142, 164, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(30, 36, 2, 3, lvl, 5)
-	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 5)
+	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
-	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 5)
+	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 5)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 5)
 	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 23
 	f.abilities = [EAB.throwing_knife(), EAB.salt_blind()]
@@ -46,9 +46,9 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	f.health = EH.es(210, 238, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(32, 39, 2, 3, lvl, 5)
-	f.physical_defense = EH.es(25, 30, 1, 3, lvl, 5)
+	f.physical_defense = EH.es(27, 32, 1, 3, lvl, 5)
 	f.magic_attack = EH.es(6, 11, 0, 1, lvl, 5)
-	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 5)
+	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(25, 31, 1, 2, lvl, 5)
 	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.harpoon_thrust(), EAB.brace_formation()]
@@ -140,9 +140,9 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	f.health = EH.es(360, 411, 6, 9, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(59, 67, 3, 5, lvl, 8)
-	f.physical_defense = EH.es(35, 41, 2, 3, lvl, 8)
+	f.physical_defense = EH.es(39, 45, 2, 3, lvl, 8)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 8)
-	f.magic_defense = EH.es(23, 28, 1, 2, lvl, 8)
+	f.magic_defense = EH.es(19, 24, 1, 2, lvl, 8)
 	f.speed = EH.es(30, 37, 1, 3, lvl, 8)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.boarding_axe(), EAB.captains_orders()]
@@ -250,9 +250,9 @@ static func create_drowned_sailor(n: String, lvl: int = 9) -> FighterData:
 	f.health = EH.es(309, 352, 5, 8, lvl, 9); f.max_health = f.health
 	f.mana = EH.es(10, 12, 1, 2, lvl, 9); f.max_mana = f.mana
 	f.physical_attack = EH.es(45, 53, 2, 3, lvl, 9)
-	f.physical_defense = EH.es(20, 25, 1, 2, lvl, 9)
+	f.physical_defense = EH.es(18, 23, 1, 2, lvl, 9)
 	f.magic_attack = EH.es(48, 55, 2, 4, lvl, 9)
-	f.magic_defense = EH.es(33, 40, 2, 4, lvl, 9)
+	f.magic_defense = EH.es(35, 42, 2, 4, lvl, 9)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 9)
 	f.crit_chance = 21; f.crit_damage = 2; f.dodge_chance = 18
 	f.abilities = [EAB.spectral_cutlass(), EAB.waterlogged_grasp()]

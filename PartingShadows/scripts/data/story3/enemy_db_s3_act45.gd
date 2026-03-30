@@ -38,9 +38,9 @@ static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(755, 864, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(110, 126, 3, 5, lvl, 15)
-	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 15)
+	f.physical_defense = EH.es(59, 67, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
-	f.magic_defense = EH.es(43, 51, 2, 3, lvl, 15)
+	f.magic_defense = EH.es(37, 45, 2, 3, lvl, 15)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 15)
 	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EAB.thread_laced_fist(), EAB.threaded_sinew()]
@@ -54,9 +54,9 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(535, 617, 4, 7, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
-	f.physical_defense = EH.es(32, 40, 1, 3, lvl, 15)
+	f.physical_defense = EH.es(28, 36, 1, 3, lvl, 15)
 	f.magic_attack = EH.es(112, 128, 3, 5, lvl, 15)
-	f.magic_defense = EH.es(45, 55, 2, 4, lvl, 15)
+	f.magic_defense = EH.es(49, 59, 2, 4, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 15)
 	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 26
 	f.abilities = [EAB.hex_bolt(), EAB.curse()]

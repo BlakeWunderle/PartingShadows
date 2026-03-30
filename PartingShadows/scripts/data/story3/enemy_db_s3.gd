@@ -63,9 +63,9 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(49, 58, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(19, 23, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 2)
-	f.magic_defense = EH.es(8, 11, 0, 1, lvl, 2)
+	f.magic_defense = EH.es(5, 8, 0, 1, lvl, 2)
 	f.speed = EH.es(29, 35, 1, 3, lvl, 2)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 8
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
@@ -78,9 +78,9 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(42, 51, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 1, 2, lvl, 2)
-	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(14, 18, 1, 2, lvl, 2)
-	f.magic_defense = EH.es(10, 13, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 1, 2, lvl, 2)
 	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
@@ -94,9 +94,9 @@ static func create_slumber_beast(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(55, 66, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 20, 1, 3, lvl, 2)
-	f.physical_defense = EH.es(10, 14, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(13, 17, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 2)
-	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(5, 8, 1, 2, lvl, 2)
 	f.speed = EH.es(21, 26, 1, 2, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 6
 	f.abilities = [EAB.heavy_paw(), EAB.drowsy_roar()]
@@ -109,9 +109,9 @@ static func create_fog_wraith(n: String, lvl: int = 2) -> FighterData:
 	f.health = EH.es(33, 42, 2, 4, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(8, 11, 0, 2, lvl, 2)
-	f.physical_defense = EH.es(6, 9, 0, 1, lvl, 2)
+	f.physical_defense = EH.es(5, 8, 0, 1, lvl, 2)
 	f.magic_attack = EH.es(16, 20, 1, 3, lvl, 2)
-	f.magic_defense = EH.es(9, 14, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(10, 15, 1, 2, lvl, 2)
 	f.speed = EH.es(24, 29, 1, 3, lvl, 2)
 	f.crit_chance = 5; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.mist_tendril(), EAB.chill_fog()]
@@ -144,9 +144,9 @@ static func create_nightmare_hound(n: String, lvl: int = 4) -> FighterData:
 	f.health = EH.es(118, 139, 4, 7, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 1, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = EH.es(23, 28, 1, 3, lvl, 4)
-	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 4)
+	f.physical_defense = EH.es(16, 19, 1, 2, lvl, 4)
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 4)
-	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 4)
+	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 4)
 	f.speed = EH.es(29, 34, 1, 3, lvl, 4)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.savage_bite(), EAB.howl()]
@@ -159,9 +159,9 @@ static func create_dream_weaver(n: String, lvl: int = 4) -> FighterData:
 	f.health = EH.es(112, 134, 3, 6, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 13, 0, 2, lvl, 4)
-	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 4)
+	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 4)
 	f.magic_attack = EH.es(21, 26, 1, 3, lvl, 4)
-	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 4)
+	f.magic_defense = EH.es(19, 22, 1, 2, lvl, 4)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 4)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 9
 	f.abilities = [EAB.thread_bolt(), EAB.woven_ward()]
@@ -251,9 +251,9 @@ static func create_shattered_hourglass(n: String, lvl: int = 8) -> FighterData:
 	f.health = EH.es(265, 310, 4, 7, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 8)
-	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 8)
+	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(30, 35, 1, 3, lvl, 8)
-	f.magic_defense = EH.es(16, 20, 1, 2, lvl, 8)
+	f.magic_defense = EH.es(19, 23, 1, 2, lvl, 8)
 	f.speed = EH.es(33, 38, 1, 3, lvl, 8)
 	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.grain_siphon(), EAB.eroding_sand()]
@@ -266,9 +266,9 @@ static func create_clock_specter(n: String, lvl: int = 8) -> FighterData:
 	f.health = EH.es(265, 320, 4, 7, lvl, 8); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 2, lvl, 8); f.max_mana = f.mana
 	f.physical_attack = EH.es(25, 30, 1, 3, lvl, 8)
-	f.physical_defense = EH.es(18, 22, 1, 2, lvl, 8)
+	f.physical_defense = EH.es(13, 17, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(31, 36, 1, 3, lvl, 8)
-	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 8)
+	f.magic_defense = EH.es(22, 26, 1, 2, lvl, 8)
 	f.speed = EH.es(38, 43, 1, 3, lvl, 8)
 	f.crit_chance = 30; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.time_rend(), EAB.temporal_rupture()]

@@ -50,9 +50,9 @@ static func create_slumbering_colossus(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(570, 653, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(93, 106, 3, 5, lvl, 15)
-	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 15)
+	f.physical_defense = EH.es(57, 65, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
-	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 15)
+	f.magic_defense = EH.es(35, 43, 2, 3, lvl, 15)
 	f.speed = EH.es(25, 30, 1, 2, lvl, 15)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.crushing_dream(), EAB.ancient_yawn()]
@@ -100,9 +100,9 @@ static func create_oneiric_hexer(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(478, 550, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
-	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 16)
+	f.physical_defense = EH.es(32, 40, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(107, 123, 3, 6, lvl, 16)
-	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 16)
+	f.magic_defense = EH.es(50, 59, 2, 4, lvl, 16)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 16)
 	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 24
 	f.abilities = [EAB.dream_bolt(), EAB.nightmare_hex()]
@@ -116,9 +116,9 @@ static func create_oneiric_guardian(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(650, 742, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(112, 128, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(54, 62, 2, 4, lvl, 16)
+	f.physical_defense = EH.es(61, 69, 2, 4, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 16)
+	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 16)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 16)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.warden_strike(), EAB.dream_siphon()]
@@ -151,9 +151,9 @@ static func create_nightmare_sentinel(n: String, lvl: int = 17) -> FighterData:
 	f.health = EH.es(674, 773, 6, 9, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(114, 130, 3, 5, lvl, 17)
-	f.physical_defense = EH.es(57, 65, 2, 4, lvl, 17)
+	f.physical_defense = EH.es(66, 74, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
-	f.magic_defense = EH.es(50, 59, 2, 3, lvl, 17)
+	f.magic_defense = EH.es(41, 50, 2, 3, lvl, 17)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 17)
 	f.crit_chance = 24; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.nightmare_blade(), EAB.terror_ward()]

@@ -16,9 +16,9 @@ static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(628, 692, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(85, 93, 4, 6, lvl, 14)
-	f.physical_defense = EH.es(50, 59, 3, 5, lvl, 14)
+	f.physical_defense = EH.es(55, 64, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
-	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 14)
+	f.magic_defense = EH.es(36, 43, 2, 4, lvl, 14)
 	f.speed = EH.es(40, 47, 1, 3, lvl, 14)
 	f.crit_chance = 28; f.crit_damage = 5; f.dodge_chance = 10
 	f.abilities = [EAB.sigil_crush(), EAB.anchor_pulse(), EAB.sigil_ward()]
@@ -31,9 +31,9 @@ static func create_ritual_conduit(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(441, 499, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(24, 29, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 19, 0, 2, lvl, 14)
-	f.physical_defense = EH.es(31, 38, 2, 3, lvl, 14)
+	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(75, 83, 4, 6, lvl, 14)
-	f.magic_defense = EH.es(48, 56, 3, 5, lvl, 14)
+	f.magic_defense = EH.es(49, 57, 3, 5, lvl, 14)
 	f.speed = EH.es(47, 54, 2, 4, lvl, 14)
 	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.conduit_beam(), EAB.mending_sigil(), EAB.ritual_shield()]
