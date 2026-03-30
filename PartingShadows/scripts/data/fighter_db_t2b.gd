@@ -99,7 +99,7 @@ static func upgrade_to_laureate(f: FighterData) -> void:
 	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 5
 	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.ovation(), PAB.recite(), PAB.standing_ovation()]
+	f.abilities = [PAB.ovation(), PAB.recite(), PAB.magnum_opus()]
 	f.upgrade_items = []
 
 static func upgrade_to_elegist(f: FighterData) -> void:
@@ -115,7 +115,7 @@ static func _lu_laureate(f: FighterData) -> void:
 	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(3, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(4, 6)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(2, 3)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -167,7 +167,7 @@ static func _lu_bombardier(f: FighterData) -> void:
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(4, 6)
-	f.speed += randi_range(1, 1)
+	f.speed += randi_range(2, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
 

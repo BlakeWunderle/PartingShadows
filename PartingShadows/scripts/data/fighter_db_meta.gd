@@ -132,7 +132,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Minstrel": return [PAB.ballad(), PAB.dissonance(), PAB.serenade()]
 		"Illusionist": return [PAB.phantom_strike(), PAB.mirage(), PAB.bewilderment()]
 		"Mime": return [PAB.invisible_wall(), PAB.anvil(), PAB.invisible_box()]
-		"Laureate": return [PAB.ovation(), PAB.recite(), PAB.standing_ovation()]
+		"Laureate": return [PAB.ovation(), PAB.recite(), PAB.magnum_opus()]
 		"Elegist": return [PAB.requiem(), PAB.lament(), PAB.dirge()]
 		# T2:Tinker
 		"Alchemist": return [PAB_B.transmute(), PAB_B.corrosive_acid(), PAB_B.elixir()]
@@ -150,7 +150,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Shapeshifter": return [PAB_B.savage_maul(), PAB_B.frenzy(), PAB_B.rampage()]
 		# T2:Wanderer
 		"Bulwark": return [PAB_B.spell_ward(), PAB_B.iron_fist(), PAB_B.ironclad_challenge()]
-		"Aegis": return [PAB_B.guardians_blessing(), PAB_B.protective_ward(), PAB_B.spell_counter()]
+		"Aegis": return [PAB_B.arcane_edge(), PAB_B.ward_breaker(), PAB_B.spell_counter()]
 		"Trailblazer": return [PAB_B.blaze_trail(), PAB_B.ambush(), PAB_B.expose()]
 		"Survivalist": return [PAB_B.endure(), PAB_B.resourceful_strike(), PAB_B.adapt()]
 		_:

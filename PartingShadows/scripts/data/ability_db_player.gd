@@ -89,15 +89,15 @@ static func dragon_dive() -> AbilityData:
 # Mercenary
 static func gun_shot() -> AbilityData:
 	return _make("Gun Shot", "A reliable shot from a flintlock.",
-		Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0)
 
 static func called_shot() -> AbilityData:
 	return _make("Called Shot", "Take careful aim for a devastating hit.",
-		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
 static func suppressing_fire() -> AbilityData:
 	return _make("Suppressing Fire", "Lay down a hail of gunfire across all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 4, true, 0, 0.0)
 
 # Hunter
 static func triple_arrow() -> AbilityData:
@@ -345,28 +345,28 @@ static func bewilderment() -> AbilityData:
 # Mime
 static func invisible_wall() -> AbilityData:
 	return _make("Invisible Wall", "Nothing can get through.",
-		Enums.StatType.DEFENSE, 7, 2, false, 3, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 7, 3, false, 3, true, 0, 0.0)
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 20, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 22, 0, true, 4, false, 0, 0.0)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",
-		Enums.StatType.SPEED, 6, 2, true, 2, false, 0, 0.0)
+		Enums.StatType.SPEED, 6, 3, true, 2, false, 0, 0.0)
 
 # Laureate
 static func ovation() -> AbilityData:
 	return _make("Ovation", "A masterful speech that empowers all allies.",
-		Enums.StatType.ATTACK, 8, 3, false, 3, true, 0, 0.0)
+		Enums.StatType.ATTACK, 10, 3, false, 3, true, 0, 0.0)
 
 static func recite() -> AbilityData:
 	return _make("Recite", "Words of power that wound.",
-		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
-static func standing_ovation() -> AbilityData:
-	return _make("Standing Ovation", "The audience erupts. All allies feel invincible.",
-		Enums.StatType.DEFENSE, 6, 3, false, 4, true, 0, 0.0)
+static func magnum_opus() -> AbilityData:
+	return _make("Magnum Opus", "The poet's greatest work. All allies feel invincible.",
+		Enums.StatType.DEFENSE, 9, 3, false, 4, true, 0, 0.0)
 
 # Elegist
 static func requiem() -> AbilityData:
