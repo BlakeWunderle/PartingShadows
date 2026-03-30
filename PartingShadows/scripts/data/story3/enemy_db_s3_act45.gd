@@ -26,7 +26,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(105, 121, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(47, 57, 2, 4, lvl, 15)
 	f.speed = EH.es(44, 51, 2, 3, lvl, 15)
-	f.crit_chance = 33; f.crit_damage = 3; f.dodge_chance = 40
+	f.crit_chance = 39; f.crit_damage = 3; f.dodge_chance = 45
 	f.abilities = [EAB.thread_sear(), EAB.zealots_fervor()]
 	f.flavor_text = "A junior member of the Thread cult, burning with fanatical devotion. Their searing thread-magic is crude but powerful, fueled by unshakable belief in the Threadmaster's vision."
 	return f
@@ -42,7 +42,7 @@ static func create_cult_enforcer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(37, 45, 2, 3, lvl, 15)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 15)
-	f.crit_chance = 34; f.crit_damage = 3; f.dodge_chance = 36
+	f.crit_chance = 40; f.crit_damage = 3; f.dodge_chance = 41
 	f.abilities = [EAB.thread_laced_fist(), EAB.threaded_sinew()]
 	f.flavor_text = "A heavily muscled enforcer whose body is laced with dream-threads that harden like steel beneath the skin. The cult sends them to silence anyone who asks too many questions."
 	return f
@@ -58,7 +58,7 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(112, 128, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(49, 59, 2, 4, lvl, 15)
 	f.speed = EH.es(46, 52, 2, 3, lvl, 15)
-	f.crit_chance = 33; f.crit_damage = 3; f.dodge_chance = 41
+	f.crit_chance = 39; f.crit_damage = 3; f.dodge_chance = 46
 	f.abilities = [EAB.hex_bolt(), EAB.curse()]
 	f.flavor_text = "A spellcaster who has traded sanity for power, channeling hexes drawn from the darkest layers of the dream. Their curses linger long after the battle ends."
 	return f
@@ -74,7 +74,7 @@ static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
 	f.speed = EH.es(35, 41, 1, 2, lvl, 16)
-	f.crit_chance = 40; f.crit_damage = 3; f.dodge_chance = 29
+	f.crit_chance = 43; f.crit_damage = 3; f.dodge_chance = 31
 	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
 	f.flavor_text = "An elite warrior who wields a blade wrapped in shimmering dream-thread. Their woven shield can absorb tremendous punishment, making them the cult's frontline defender."
 	return f
@@ -90,7 +90,7 @@ static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 16)
 	f.speed = EH.es(52, 58, 3, 4, lvl, 16)
-	f.crit_chance = 38; f.crit_damage = 3; f.dodge_chance = 34
+	f.crit_chance = 40; f.crit_damage = 3; f.dodge_chance = 36
 	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
 	f.flavor_text = "A sleek beast bred in the cult's dream kennels, trained to hunt by scent of thought. It is blindingly fast and attacks with savage, coordinated ferocity."
 	return f
@@ -106,7 +106,7 @@ static func create_ritual_guardian(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
 	f.speed = EH.es(34, 40, 1, 2, lvl, 16)
-	f.crit_chance = 39; f.crit_damage = 3; f.dodge_chance = 29
+	f.crit_chance = 42; f.crit_damage = 3; f.dodge_chance = 31
 	f.abilities = [EAB.ritual_chant(), EAB.threaded_blade()]
 	f.flavor_text = "A guardian stationed specifically to protect the ritual chamber during the Loom's most sacred ceremonies. It chants as it fights, reinforcing the ceremony's power with every blow it lands against those who would defile the rite."
 	return f
@@ -122,7 +122,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(112, 129, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
 	f.speed = EH.es(46, 52, 2, 3, lvl, 17)
-	f.crit_chance = 37; f.crit_damage = 3; f.dodge_chance = 34
+	f.crit_chance = 40; f.crit_damage = 3; f.dodge_chance = 36
 	f.abilities = [EAB.ritual_chant(), EAB.ancient_rite(), EAB.blood_weaving()]
 	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
 	return f
@@ -138,7 +138,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(117, 136, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 17)
 	f.speed = EH.es(47, 53, 2, 3, lvl, 17)
-	f.crit_chance = 38; f.crit_damage = 3; f.dodge_chance = 37
+	f.crit_chance = 41; f.crit_damage = 3; f.dodge_chance = 39
 	f.abilities = [EAB.loom_blast(), EAB.unweave()]
 	f.flavor_text = "One of the Threadmaster's inner circle, a master of the loom's destructive potential. They can unweave the protections of their enemies with a gesture and blast them with raw dream-force."
 	return f
@@ -159,7 +159,7 @@ static func create_dread_tailor(n: String, lvl: int = 15) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(50, 58, 2, 3, lvl, 15)
 	f.speed = EH.es(45, 51, 2, 3, lvl, 15)
-	f.crit_chance = 34; f.crit_damage = 3; f.dodge_chance = 32
+	f.crit_chance = 40; f.crit_damage = 3; f.dodge_chance = 37
 	f.abilities = [EAB.shear(), EAB.snip_away()]
 	f.flavor_text = "A cultist who gave up her name and replaced it with a title. She fights with oversized dream-shears, each blade honed at the intersection of cloth and nightmare. Magic slides off the enchanted steel without leaving a mark."
 	return f
@@ -176,7 +176,7 @@ static func create_needle_wraith(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(58, 68, 2, 4, lvl, 16)
 	f.speed = EH.es(42, 48, 2, 3, lvl, 16)
-	f.crit_chance = 39; f.crit_damage = 3; f.dodge_chance = 34
+	f.crit_chance = 41; f.crit_damage = 3; f.dodge_chance = 36
 	f.abilities = [EAB.pin_barrage(), EAB.puncture()]
 	f.flavor_text = "A construct assembled from the bones of failed cult initiates, each shard sharpened to a point and animated by loom-thread. Every strike is a dozen tiny stabs. Magic passes between the gaps in its lattice form."
 	return f
@@ -193,7 +193,7 @@ static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
 	f.magic_defense = EH.es(72, 83, 3, 5, lvl, 17)
 	f.speed = EH.es(31, 37, 1, 2, lvl, 17)
-	f.crit_chance = 36; f.crit_damage = 4; f.dodge_chance = 25
+	f.crit_chance = 39; f.crit_damage = 4; f.dodge_chance = 27
 	f.abilities = [EAB.thread_crush(), EAB.weave_brace()]
 	f.flavor_text = "An enormous dream-construct whose body is formed from thousands of threads compressed so tightly they became solid matter. Magic passes through the weave harmlessly. It moves with ponderous, inevitable force."
 	return f
@@ -209,7 +209,7 @@ static func create_thread_stitcher(n: String, lvl: int = 16) -> FighterData:
 	f.magic_attack = EH.es(111, 126, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 16)
 	f.speed = EH.es(44, 50, 2, 3, lvl, 16)
-	f.crit_chance = 36; f.crit_damage = 3; f.dodge_chance = 34
+	f.crit_chance = 38; f.crit_damage = 3; f.dodge_chance = 36
 	f.abilities = [EAB.thread_lance(), EAB.thread_scourge()]
 	f.flavor_text = "A cult operative who weaponizes the same threads used to mend the Loom. Their lances of hardened dream-thread pierce through wards, and their scourging filaments burrow into flesh and keep cutting long after the initial strike."
 	return f
@@ -225,7 +225,7 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(103, 118, 3, 6, lvl, 18)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
 	f.speed = EH.es(48, 54, 3, 4, lvl, 18)
-	f.crit_chance = 45; f.crit_damage = 3; f.dodge_chance = 51
+	f.crit_chance = 49; f.crit_damage = 3; f.dodge_chance = 54
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]
 	f.flavor_text = "A splinter of the Threadmaster's own shadow, given independent will. It devours light and hope in equal measure, weakening enemies before the final confrontation."
 	return f
@@ -241,7 +241,7 @@ static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_attack = EH.es(92, 107, 3, 5, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(46, 52, 3, 4, lvl, 18)
-	f.crit_chance = 48; f.crit_damage = 4; f.dodge_chance = 45
+	f.crit_chance = 52; f.crit_damage = 4; f.dodge_chance = 48
 	f.abilities = [EAB.thread_lash(), EAB.loom_crush(), EAB.sever(), EAB.thread_bind(), EAB.puppets_drain()]
 	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."
 	return f
