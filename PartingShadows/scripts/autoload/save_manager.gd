@@ -36,7 +36,6 @@ func save_to_slot(slot: int) -> void:
 		var err: int = DirAccess.rename_absolute(tmp_path, path)
 		if err != OK:
 			GameLog.error("Save rename failed for slot %d (error %d)" % [slot, err])
-	SteamManager.cloud_write("save_%d.json" % slot, json_str)
 	if slot != AUTOSAVE_SLOT:
 		_write_save_meta(slot)
 
@@ -111,19 +110,7 @@ func load_from_slot(slot: int) -> bool:
 func _read_save(slot: int) -> Dictionary:
 	var path: String = _save_path(slot)
 	if not FileAccess.file_exists(path):
-		# Try cloud fallback
-		var cloud_data: String = SteamManager.cloud_read("save_%d.json" % slot)
-		if cloud_data.is_empty():
-			return {}
-		var json_cloud := JSON.new()
-		if json_cloud.parse(cloud_data) != OK:
-			return {}
-		# Write cloud data locally for next time
-		var f := FileAccess.open(path, FileAccess.WRITE)
-		if f:
-			f.store_string(cloud_data)
-			f.close()
-		return json_cloud.data
+		return {}
 	var file := FileAccess.open(path, FileAccess.READ)
 	if not file:
 		return {}
@@ -139,9 +126,7 @@ func _read_save(slot: int) -> Dictionary:
 # =============================================================================
 
 func has_save(slot: int) -> bool:
-	if FileAccess.file_exists(_save_path(slot)):
-		return true
-	return SteamManager.cloud_exists("save_%d.json" % slot)
+	return FileAccess.file_exists(_save_path(slot))
 
 
 func has_any_save() -> bool:
@@ -205,7 +190,6 @@ func delete_save(slot: int) -> void:
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(path)
 		GameLog.info("Deleted save slot %d" % slot)
-	SteamManager.cloud_delete("save_%d.json" % slot)
 	# Clear last-used metadata if this was the last-used slot
 	if get_last_used_slot() == slot:
 		if FileAccess.file_exists(SAVE_META_PATH):
