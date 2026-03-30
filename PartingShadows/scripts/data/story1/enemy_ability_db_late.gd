@@ -83,13 +83,13 @@ static func shadow_strike() -> AbilityData:
 # =============================================================================
 
 static func venomous_bite() -> AbilityData:
-	return _make("Venomous Bite", "Fangs drip with poison.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 7, 0.0)
+	return _make("Venomous Bite", "Fangs drip with poison.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 3, 0.0)
 
 static func poison_cloud() -> AbilityData:
-	return _make("Poison Cloud", "A toxic mist engulfs all enemies.", Enums.StatType.HEALTH, 0, 3, true, 3, true, 7, 0.0)
+	return _make("Poison Cloud", "A toxic mist engulfs all enemies.", Enums.StatType.HEALTH, 0, 3, true, 3, true, 3, 0.0)
 
 static func rot_aura() -> AbilityData:
-	return _make("Rot Aura", "A wave of decay washes over all enemies.", Enums.StatType.HEALTH, 0, 3, true, 3, true, 5, 0.0)
+	return _make("Rot Aura", "A wave of decay washes over all enemies.", Enums.StatType.HEALTH, 0, 3, true, 3, true, 2, 0.0)
 
 
 # =============================================================================
@@ -97,16 +97,16 @@ static func rot_aura() -> AbilityData:
 # =============================================================================
 
 static func pin_down() -> AbilityData:
-	return _make("Pin Down", "An arrow pins the enemy's cloak.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)
+	return _make("Pin Down", "An arrow pins the enemy's cloak.", Enums.StatType.SPEED, 6, 2, true, 3, false, 0, 0.0)
 
 static func dread() -> AbilityData:
-	return _make("Dread", "Creeping fear weakens magic.", Enums.StatType.MAGIC_ATTACK, 7, 2, true, 3, false, 0, 0.0)
+	return _make("Dread", "Creeping fear weakens magic.", Enums.StatType.MAGIC_ATTACK, 15, 2, true, 3, false, 0, 0.0)
 
 static func web() -> AbilityData:
-	return _make("Web", "Sticky strands slow the target.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Web", "Sticky strands slow the target.", Enums.StatType.SPEED, 8, 2, true, 3, false, 0, 0.0)
 
 static func howl_of_dread() -> AbilityData:
-	return _make("Howl of Dread", "A howl that saps all enemies' will.", Enums.StatType.ATTACK, 5, 2, true, 3, true, 0, 0.0)
+	return _make("Howl of Dread", "A howl that saps all enemies' will.", Enums.StatType.ATTACK, 11, 2, true, 3, true, 0, 0.0)
 
 
 # =============================================================================
@@ -114,16 +114,16 @@ static func howl_of_dread() -> AbilityData:
 # =============================================================================
 
 static func void_shield() -> AbilityData:
-	return _make("Void Shield", "A shield of pure darkness.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Void Shield", "A shield of pure darkness.", Enums.StatType.DEFENSE, 12, 2, false, 4, false, 0, 0.0)
 
 static func dark_veil() -> AbilityData:
-	return _make("Dark Veil", "Shadow cloaks the body.", Enums.StatType.DEFENSE, 8, 2, false, 3, false, 0, 0.0)
+	return _make("Dark Veil", "Shadow cloaks the body.", Enums.StatType.DEFENSE, 16, 2, false, 3, false, 0, 0.0)
 
 static func raise_dead() -> AbilityData:
-	return _make("Raise Dead", "The dead empower the living.", Enums.StatType.ATTACK, 5, 2, false, 3, true, 0, 0.0)
+	return _make("Raise Dead", "The dead empower the living.", Enums.StatType.ATTACK, 11, 2, false, 3, true, 0, 0.0)
 
 static func shadow_guard() -> AbilityData:
-	return _make("Shadow Guard", "Shadows form a protective barrier.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Shadow Guard", "Shadows form a protective barrier.", Enums.StatType.DEFENSE, 12, 2, false, 4, false, 0, 0.0)
 
 static func bark_shield() -> AbilityData:
 	return _make("Overgrown Slam", "Ancient roots snap forward in a crushing blow.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0)
@@ -145,7 +145,7 @@ static func glyph_burn() -> AbilityData:
 	return _make("Glyph Burn", "Ancient glyphs sear the target's flesh.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 static func ward_break() -> AbilityData:
-	return _make("Ward Break", "A counter-sigil shatters magical protections.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Ward Break", "A counter-sigil shatters magical protections.", Enums.StatType.DEFENSE, 8, 2, true, 2, false, 0, 0.0)
 
 # --- Hellion ---
 
@@ -156,7 +156,7 @@ static func chaos_rend() -> AbilityData:
 	return _make("Chaos Rend", "Unhinged fury rips through armor and spirit.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 static func manic_howl() -> AbilityData:
-	return _make("Manic Howl", "A deranged scream rattles defenses.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Manic Howl", "A deranged scream rattles defenses.", Enums.StatType.DEFENSE, 8, 2, true, 2, false, 0, 0.0)
 
 # --- Fiendling ---
 
@@ -164,10 +164,10 @@ static func hellspark() -> AbilityData:
 	return _make("Hellspark", "A crackling ember from the pit.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
 
 static func imp_curse() -> AbilityData:
-	return _make("Imp Curse", "A spiteful hex saps magical power.", Enums.StatType.MAGIC_ATTACK, 7, 2, true, 3, false, 0, 0.0)
+	return _make("Imp Curse", "A spiteful hex saps magical power.", Enums.StatType.MAGIC_ATTACK, 15, 2, true, 3, false, 0, 0.0)
 
 static func fiend_mark() -> AbilityData:
-	return _make("Fiend Mark", "A burning brand weakens the target's guard.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Fiend Mark", "A burning brand weakens the target's guard.", Enums.StatType.DEFENSE, 8, 2, true, 2, false, 0, 0.0)
 
 # --- Blight variants ---
 
@@ -185,7 +185,7 @@ static func bulwark_slam() -> AbilityData:
 # --- Guard Sergeant ---
 
 static func battle_command() -> AbilityData:
-	return _make("Press Forward!", "A bellowed order drives the charge. One ally surges with renewed force.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Press Forward!", "A bellowed order drives the charge. One ally surges with renewed force.", Enums.StatType.ATTACK, 11, 2, false, 3, false, 0, 0.0)
 
 # --- Dragon (full kit, upgraded for late-game) ---
 
@@ -196,7 +196,7 @@ static func rending_talons() -> AbilityData:
 	return _make("Rending Talons", "Massive claws tear through armor like parchment.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func draconic_terror() -> AbilityData:
-	return _make("Draconic Terror", "The dragon's presence alone crushes the will to fight.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Draconic Terror", "The dragon's presence alone crushes the will to fight.", Enums.StatType.ATTACK, 11, 2, true, 3, false, 0, 0.0)
 
 # --- Stranger Final ---
 
@@ -206,4 +206,4 @@ static func entropy() -> AbilityData:
 # --- Stranger Tower (boss) ---
 
 static func soul_siphon() -> AbilityData:
-	return _make("Soul Siphon", "The Stranger reaches into the party's essence and drains their fighting spirit.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)
+	return _make("Soul Siphon", "The Stranger reaches into the party's essence and drains their fighting spirit.", Enums.StatType.ATTACK, 11, 2, true, 4, true, 0, 0.0)

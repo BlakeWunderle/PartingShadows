@@ -120,7 +120,7 @@ static func soul_drain() -> AbilityData:
 	return _make("Soul Drain", "Rip the life force away.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.2)
 
 static func whip_crack() -> AbilityData:
-	return _make("Whip Crack", "The ringmaster empowers allies.", Enums.StatType.ATTACK, 7, 2, false, 3, false, 0, 0.0)
+	return _make("Whip Crack", "The ringmaster empowers allies.", Enums.StatType.ATTACK, 15, 2, false, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -128,34 +128,34 @@ static func whip_crack() -> AbilityData:
 # =============================================================================
 
 static func siren_song() -> AbilityData:
-	return _make("Siren Song", "An enchanting melody that slows.", Enums.StatType.SPEED, 5, 2, true, 2, false, 0, 0.0)
+	return _make("Siren Song", "An enchanting melody that slows.", Enums.StatType.SPEED, 8, 2, true, 2, false, 0, 0.0)
 
 static func enemy_hex() -> AbilityData:
-	return _make("Hex", "A curse that weakens defenses.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Hex", "A curse that weakens defenses.", Enums.StatType.DEFENSE, 8, 2, true, 2, false, 0, 0.0)
 
 static func bewitch() -> AbilityData:
-	return _make("Bewitch", "Daze the enemy's mind.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Bewitch", "Daze the enemy's mind.", Enums.StatType.SPEED, 6, 2, true, 2, false, 0, 0.0)
 
 static func pollen() -> AbilityData:
-	return _make("Pollen", "Blinding pollen lowers magic resistance.", Enums.StatType.MAGIC_DEFENSE, 3, 2, true, 2, false, 0, 0.0)
+	return _make("Pollen", "Blinding pollen lowers magic resistance.", Enums.StatType.MAGIC_DEFENSE, 8, 2, true, 2, false, 0, 0.0)
 
 static func shriek() -> AbilityData:
-	return _make("Shriek", "A piercing scream slows all enemies.", Enums.StatType.SPEED, 4, 2, true, 4, true, 0, 0.0)
+	return _make("Shriek", "A piercing scream slows all enemies.", Enums.StatType.SPEED, 6, 2, true, 4, true, 0, 0.0)
 
 static func dirty_trick() -> AbilityData:
-	return _make("Dirty Trick", "Throw sand in their eyes.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Dirty Trick", "Throw sand in their eyes.", Enums.StatType.SPEED, 6, 2, true, 2, false, 0, 0.0)
 
 static func center_ring() -> AbilityData:
-	return _make("Center Ring", "Force the enemy into the spotlight.", Enums.StatType.DEFENSE, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Center Ring", "Force the enemy into the spotlight.", Enums.StatType.DEFENSE, 8, 2, true, 2, false, 0, 0.0)
 
 static func dismantle() -> AbilityData:
-	return _make("Dismantle", "Take the enemy apart piece by piece.", Enums.StatType.DEFENSE, 6, 2, true, 3, false, 0, 0.0)
+	return _make("Dismantle", "Take the enemy apart piece by piece.", Enums.StatType.DEFENSE, 12, 2, true, 3, false, 0, 0.0)
 
 static func mime_trap() -> AbilityData:
-	return _make("Mime Trap", "Trapped in an invisible box.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Mime Trap", "Trapped in an invisible box.", Enums.StatType.SPEED, 6, 2, true, 2, false, 0, 0.0)
 
 static func cadence() -> AbilityData:
-	return _make("Cadence", "A rhythm that disrupts timing.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
+	return _make("Cadence", "A rhythm that disrupts timing.", Enums.StatType.SPEED, 6, 2, true, 2, false, 0, 0.0)
 
 static func paralyze() -> AbilityData:
 	return _make("Carrion Strike", "Rotting claws tear through flesh with unnatural hunger.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
@@ -187,31 +187,31 @@ static func aria() -> AbilityData:
 # =============================================================================
 
 static func howl() -> AbilityData:
-	return _make("Howl", "A rallying howl speeds all allies.", Enums.StatType.SPEED, 3, 2, false, 3, true, 0, 0.0)
+	return _make("Howl", "A rallying howl speeds all allies.", Enums.StatType.SPEED, 5, 2, false, 3, true, 0, 0.0)
 
 static func scurry() -> AbilityData:
 	return _make("Scurry", "Dart and weave to avoid attacks.", Enums.StatType.DODGE_CHANCE, 15, 2, false, 2, false, 0, 0.0)
 
 static func thick_skin() -> AbilityData:
-	return _make("Thick Skin", "Toughen up against attacks.", Enums.StatType.DEFENSE, 4, 2, false, 3, false, 0, 0.0)
+	return _make("Thick Skin", "Toughen up against attacks.", Enums.StatType.DEFENSE, 8, 2, false, 3, false, 0, 0.0)
 
 static func dark_blessing() -> AbilityData:
-	return _make("Dark Blessing", "Unholy power shields the body.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Dark Blessing", "Unholy power shields the body.", Enums.StatType.DEFENSE, 10, 2, false, 3, false, 0, 0.0)
 
 static func war_cry() -> AbilityData:
-	return _make("War Cry", "A battle shout empowers allies.", Enums.StatType.ATTACK, 3, 2, false, 3, true, 0, 0.0)
+	return _make("War Cry", "A battle shout empowers allies.", Enums.StatType.ATTACK, 7, 2, false, 3, true, 0, 0.0)
 
 static func bravado() -> AbilityData:
-	return _make("Bravado", "Bold confidence boosts attack.", Enums.StatType.ATTACK, 4, 2, false, 2, false, 0, 0.0)
+	return _make("Bravado", "Bold confidence boosts attack.", Enums.StatType.ATTACK, 9, 2, false, 2, false, 0, 0.0)
 
 static func overdrive() -> AbilityData:
-	return _make("Overdrive", "Push beyond normal limits.", Enums.StatType.SPEED, 7, 2, false, 3, false, 0, 0.0)
+	return _make("Overdrive", "Push beyond normal limits.", Enums.StatType.SPEED, 11, 2, false, 3, false, 0, 0.0)
 
 static func reinforce() -> AbilityData:
-	return _make("Overclock", "Push weapon systems beyond normal limits.", Enums.StatType.ATTACK, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Overclock", "Push weapon systems beyond normal limits.", Enums.StatType.ATTACK, 11, 2, false, 3, false, 0, 0.0)
 
 static func temper() -> AbilityData:
-	return _make("Temper", "Heat-treat weapons for all allies.", Enums.StatType.ATTACK, 5, 2, false, 3, true, 0, 0.0)
+	return _make("Temper", "Heat-treat weapons for all allies.", Enums.StatType.ATTACK, 11, 2, false, 3, true, 0, 0.0)
 
 static func shield_wall() -> AbilityData:
 	return _make("Commander's Strike", "A precise, brutal thrust that breaks through any guard.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0)
@@ -236,7 +236,7 @@ static func firewall() -> AbilityData:
 # --- Frost Wyrmling (replaces riptide) ---
 
 static func frost_chains() -> AbilityData:
-	return _make("Frost Chains", "Ice crystallizes around the enemy's limbs.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Frost Chains", "Ice crystallizes around the enemy's limbs.", Enums.StatType.SPEED, 8, 2, true, 3, false, 0, 0.0)
 
 # --- Blight variants (replaces enemy_blight per creature) ---
 
@@ -296,7 +296,7 @@ static func umbral_lash() -> AbilityData:
 	return _make("Umbral Lash", "A tendril of living shadow strikes.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func dread_whisper() -> AbilityData:
-	return _make("Dread Whisper", "A voice from the void saps the will to fight.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Dread Whisper", "A voice from the void saps the will to fight.", Enums.StatType.ATTACK, 11, 2, true, 3, false, 0, 0.0)
 
 # --- Fire Wyrmling (replaces roar) ---
 
