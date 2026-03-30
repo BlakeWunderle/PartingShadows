@@ -13,16 +13,16 @@ const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 static func upgrade_to_blighter(f: FighterData) -> void:
 	f.class_id = "Blighter"; f.character_type = "Blighter"
 	f.health += 18; f.max_health += 18; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 13; f.magic_defense += 5
-	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 13; f.magic_defense += 5
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.blight(), PAB_B.plague(), PAB_B.poison_sting()]
 	f.upgrade_items = []
 
 static func upgrade_to_grove_keeper(f: FighterData) -> void:
 	f.class_id = "GroveKeeper"; f.character_type = "Grove Keeper"
-	f.health += 15; f.max_health += 15; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 11; f.magic_defense += 3
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 4
+	f.health += 18; f.max_health += 18; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 14; f.magic_defense += 5
+	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 4
 	f.abilities = [PAB_B.thorn_burst(), PAB_B.natures_mend(), PAB_B.vine_wall()]
 	f.upgrade_items = []
 
@@ -52,17 +52,17 @@ static func _lu_grove_keeper(f: FighterData) -> void:
 
 static func upgrade_to_witch_doctor(f: FighterData) -> void:
 	f.class_id = "WitchDoctor"; f.character_type = "Witch Doctor"
-	f.health += 12; f.max_health += 12; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 9; f.magic_defense += 5
-	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 15; f.max_health += 15; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 13; f.magic_defense += 6
+	f.speed += 7; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.voodoo_bolt(), PAB_B.dark_hex(), PAB_B.creeping_rot()]
 	f.upgrade_items = []
 
 static func upgrade_to_spiritwalker(f: FighterData) -> void:
 	f.class_id = "Spiritwalker"; f.character_type = "Spiritwalker"
-	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 1; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 6
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 3; f.dodge_chance += 1
+	f.health += 13; f.max_health += 13; f.mana += 3; f.max_mana += 3
+	f.physical_attack += 1; f.physical_defense += 5; f.magic_attack += 13; f.magic_defense += 9
+	f.speed += 6; f.crit_chance += 2; f.crit_damage += 3; f.dodge_chance += 1
 	f.abilities = [PAB_B.soul_strike(), PAB_B.spirit_shield(), PAB_B.spirit_mend()]
 	f.upgrade_items = []
 
@@ -92,9 +92,9 @@ static func _lu_spiritwalker(f: FighterData) -> void:
 
 static func upgrade_to_falconer(f: FighterData) -> void:
 	f.class_id = "Falconer"; f.character_type = "Falconer"
-	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 12; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 5; f.crit_chance += 5; f.crit_damage += 5; f.dodge_chance += 2
+	f.health += 12; f.max_health += 12; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 17; f.physical_defense += 5; f.magic_attack += 2; f.magic_defense += 4
+	f.speed += 7; f.crit_chance += 5; f.crit_damage += 5; f.dodge_chance += 2
 	f.abilities = [PAB_B.falcon_strike(), PAB_B.rending_talon(), PAB_B.aerial_strike()]
 	f.upgrade_items = []
 
@@ -133,17 +133,17 @@ static func _lu_shapeshifter(f: FighterData) -> void:
 
 static func upgrade_to_trailblazer(f: FighterData) -> void:
 	f.class_id = "Trailblazer"; f.character_type = "Trailblazer"
-	f.health += 6; f.max_health += 6; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 4; f.physical_defense += 2; f.magic_attack += 3; f.magic_defense += 4
-	f.speed += 4; f.crit_chance += 4; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 14; f.max_health += 14; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 10; f.physical_defense += 5; f.magic_attack += 9; f.magic_defense += 7
+	f.speed += 8; f.crit_chance += 4; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.blaze_trail(), PAB_B.ambush(), PAB_B.expose()]
 	f.upgrade_items = []
 
 static func upgrade_to_survivalist(f: FighterData) -> void:
 	f.class_id = "Survivalist"; f.character_type = "Survivalist"
-	f.health += 5; f.max_health += 5; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 7; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 3
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 6
+	f.health += 15; f.max_health += 15; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 12; f.physical_defense += 6; f.magic_attack += 8; f.magic_defense += 7
+	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 6
 	f.abilities = [PAB_B.wild_sweep(), PAB_B.resourceful_strike(), PAB_B.adapt()]
 	f.upgrade_items = []
 
