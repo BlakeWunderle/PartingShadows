@@ -246,16 +246,16 @@ static func holy() -> AbilityData:
 
 # Warlock
 static func shadow_bolt() -> AbilityData:
-	return _make("Shadow Bolt", "A bolt of concentrated darkness.",
-		Enums.StatType.MAGIC_ATTACK, 20, 0, true, 4, false, 0, 0.0)
+	return _make("Shadow Bolt", "A bolt of concentrated darkness that feeds on what it destroys.",
+		Enums.StatType.MAGIC_ATTACK, 15, 0, true, 3, false, 0, 0.2)
 
-static func dark_pact() -> AbilityData:
-	return _make("Dark Pact", "Invoke forbidden rites that shatter the magical defenses of one enemy.",
-		Enums.StatType.MAGIC_DEFENSE, 8, 2, true, 4, false, 0, 0.0)
+static func hex() -> AbilityData:
+	return _make("Hex", "A lingering curse that eats away at the victim.",
+		Enums.StatType.HEALTH, 0, 3, true, 3, false, 8, 0.0)
 
 static func drain_life() -> AbilityData:
 	return _make("Drain Life", "Steal the enemy's life force.",
-		Enums.StatType.MAGIC_ATTACK, 17, 0, true, 5, false, 0, 0.5)
+		Enums.StatType.MAGIC_ATTACK, 17, 0, true, 5, false, 0, 0.35)
 
 
 # =============================================================================

@@ -213,7 +213,7 @@ static func upgrade_to_warlock(f: FighterData) -> void:
 	f.health += 12; f.max_health += 12; f.mana += 2; f.max_mana += 2
 	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 14; f.magic_defense += 4
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
-	f.abilities = [PAB.shadow_bolt(), PAB.dark_pact(), PAB.drain_life()]
+	f.abilities = [PAB.shadow_bolt(), PAB.hex(), PAB.drain_life()]
 	f.upgrade_items = []
 
 static func _lu_paladin(f: FighterData) -> void:
@@ -238,10 +238,10 @@ static func _lu_priest(f: FighterData) -> void:
 
 static func _lu_warlock(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
+	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(6, 8); f.magic_defense += randi_range(4, 5)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(2, 3)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)

@@ -126,7 +126,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Tempest": return [PAB.hurricane(), PAB.lightning_strike(), PAB.storm_surge()]
 		"Paladin": return [PAB.lay_on_hands(), PAB.holy_strike(), PAB.smite()]
 		"Priest": return [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]
-		"Warlock": return [PAB.shadow_bolt(), PAB.dark_pact(), PAB.drain_life()]
+		"Warlock": return [PAB.shadow_bolt(), PAB.hex(), PAB.drain_life()]
 		# T2:Entertainer
 		"Warcrier": return [PAB.battle_cry(), PAB.war_chant(), PAB.rally_cry()]
 		"Minstrel": return [PAB.ballad(), PAB.dissonance(), PAB.serenade()]
