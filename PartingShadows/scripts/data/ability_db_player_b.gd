@@ -139,7 +139,7 @@ static func circuit_blast() -> AbilityData:
 
 static func techno_drain() -> AbilityData:
 	return _make("Techno Drain", "Siphon the enemy's energy through crackling circuits.",
-		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.5)
+		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.25)
 
 static func emp_pulse() -> AbilityData:
 	return _make("EMP Pulse", "An electromagnetic burst disrupts all enemies' reactions.",

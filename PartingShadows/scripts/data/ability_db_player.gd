@@ -349,7 +349,7 @@ static func invisible_wall() -> AbilityData:
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 22, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 16, 0, true, 4, false, 0, 0.0)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",

@@ -217,7 +217,7 @@ static func get_damage_type(class_id: String) -> Enums.DamageType:
 		"Warcrier": return Enums.DamageType.PHYSICAL
 		"Minstrel": return Enums.DamageType.MAGICAL
 		"Illusionist": return Enums.DamageType.MAGICAL
-		"Mime": return Enums.DamageType.PHYSICAL
+		"Mime": return Enums.DamageType.MIXED
 		"Laureate": return Enums.DamageType.MAGICAL
 		"Elegist": return Enums.DamageType.MAGICAL
 		# T2: Tinker
@@ -225,7 +225,7 @@ static func get_damage_type(class_id: String) -> Enums.DamageType:
 		"Bombardier": return Enums.DamageType.MAGICAL
 		"Chronomancer": return Enums.DamageType.MAGICAL
 		"Astronomer": return Enums.DamageType.MAGICAL
-		"Automaton": return Enums.DamageType.PHYSICAL
+		"Automaton": return Enums.DamageType.MAGICAL
 		"Technomancer": return Enums.DamageType.MIXED
 		# T2: Wildling
 		"Blighter": return Enums.DamageType.MAGICAL
