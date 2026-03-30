@@ -96,9 +96,9 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 
 static func create_eyes_fist(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Eye's Fist", lvl)
-	f.health = EH.es(798, 907, 6, 9, lvl, 14); f.max_health = f.health
+	f.health = EH.es(794, 903, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(11, 14, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(139, 158, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(138, 157, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(65, 76, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 14)
@@ -115,7 +115,7 @@ static func create_null_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(21, 25, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(16, 22, 1, 2, lvl, 14)
 	f.physical_defense = EH.es(34, 42, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(119, 135, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(118, 134, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(62, 72, 3, 4, lvl, 14)
 	f.speed = EH.es(52, 60, 2, 3, lvl, 14)
 	f.crit_chance = 45; f.crit_damage = 3; f.dodge_chance = 43
@@ -128,9 +128,9 @@ static func create_overload_spark(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Overload Spark", lvl)
 	f.health = EH.es(493, 559, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(66, 75, 2, 4, lvl, 14)
+	f.physical_attack = EH.es(65, 74, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(32, 41, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(69, 78, 2, 4, lvl, 14)
+	f.magic_attack = EH.es(68, 77, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(40, 48, 2, 3, lvl, 14)
 	f.speed = EH.es(58, 65, 2, 4, lvl, 14)
 	f.crit_chance = 45; f.crit_damage = 3; f.dodge_chance = 43
@@ -198,9 +198,9 @@ static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(46, 53, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(26, 34, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(56, 66, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(145, 166, 5, 8, lvl, 15)
+	f.magic_attack = EH.es(142, 163, 5, 8, lvl, 15)
 	f.magic_defense = EH.es(70, 79, 4, 6, lvl, 15)
-	f.speed = EH.es(56, 62, 2, 4, lvl, 15)
+	f.speed = EH.es(55, 61, 2, 4, lvl, 15)
 	f.crit_chance = 42; f.crit_damage = 4; f.dodge_chance = 39
 	f.abilities = [EAB.gaze_of_annihilation(), EAB.memory_maelstrom(), EAB.ancient_fury(), EAB.devour_identity(), EAB.unblinking_focus()]
 	f.flavor_text = "The Eye of Oblivion at full, terrible power. Not weakened by sacrifice, not diminished by poison. It sees everything and forgets nothing."

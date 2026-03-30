@@ -171,28 +171,28 @@ f.health = _es(98, 113, 4, 7, 4, 1)
 
 Growth is applied **once at construction time**, not per-turn.
 
-### Tuning Levers (thematic first, then raw stats)
+### Tuning Levers (role-based)
 
-**Prefer thematic levers.** They preserve enemy identity and create matchup variance. Fall back to raw HP changes only when the gap is >5% off target.
+**Tune by enemy role.** Look up each enemy's role in `enemy_roles.gd` and buff the stat that matches their combat identity. **Do NOT touch crit chance or dodge chance** — those are already tuned. Speed is a lever for DPS and non-tank Supports only.
 
-**Tier 1 -- Thematic (try first):**
-1. **CritChance / DodgeChance** -- 2-4% changes have noticeable effects. Match enemy fantasy.
-2. **Abilities** -- swap abilities, change Modifiers. Changes tactical role.
-3. **Speed** -- affects turn order and action economy. A few points swing 2-3% WR.
-4. **Enemy count** -- add/remove from battle config (see 3-Enemy Rule).
+| Role | Primary Lever | Secondary Lever | Notes |
+|------|--------------|-----------------|-------|
+| **TANK** | Favored defensive stat (HP, phys_def, or mag_def) | — | Maintain the 60/40 defense ratio from `compute_defense_type()` |
+| **DPS** | Attack stat (phys or mag per damage type) | Speed | If CRIT subtype → buff `crit_damage` instead of attack |
+| **BURST** | MP (`max_mana`) for sustained casting | Attack stat | **Never touch speed** — they're meant to be slow and hit hard |
+| **FIGHTER** | Balanced (small bumps to attack + defense) | — | Well-rounded, don't skew in one direction |
+| **SUPPORT (tank-typed)** | Survivability (HP / favored DEF) | — | Tank supports need to live longer to keep casting |
+| **SUPPORT (non-tank)** | Speed | — | More turns = more heals/buffs/debuffs |
 
-**Tier 2 -- Raw stats (fallback):**
-5. **HP base ranges** (1st/2nd params of `_es()`)
-6. **Growth rates** (3rd/4th params) -- amplified by level
-7. **Level parameter** -- +1 level adds one growth roll to every stat
+**Do NOT touch:**
+- Crit chance (already tuned)
+- Dodge chance (already tuned)
+- Burst speed (intentionally slow)
 
-| Enemy | Identity | Thematic Levers | Avoid |
-|-------|----------|-----------------|-------|
-| Sorcerer boss | High magic, cunning | Ability modifiers, speed | High crit |
-| Brute/Troll | Tanky, slow, hits hard | HP, low speed, low dodge | High crit, high dodge |
-| Agile flier | Fast, evasive, fragile | High dodge, speed, low HP | High HP |
-| Android/Construct | Resilient, methodical | HP, abilities, low crit | High dodge |
-| Undead horde | Slow, numerous | HP, low speed, enemy count | High crit, high dodge |
+**Fallback levers** (only when role-based adjustments aren't enough, gap >5%):
+1. **Enemy count** — add/remove from battle config (see 3-Enemy Rule)
+2. **Abilities** — swap abilities or change Modifiers
+3. **Level parameter** — +1 level adds one growth roll to every stat
 
 ### 3-Enemy Rule
 
@@ -212,8 +212,8 @@ Every battle after the first must have **at least 3 enemies**, unless it is a bo
 Then read `$SIM_OUT` with the Read tool to check the result.
 
 - **PASS** -> move to the next battle in this progression
-- **TOO HARD** -> weaken enemies: lower crit/dodge, reduce ability Modifiers, lower speed, remove an enemy (if >3), then fallback to HP ranges
-- **TOO EASY** -> strengthen enemies: add crit/dodge, increase ability Modifiers, raise speed, add a thematic enemy, then fallback to HP ranges
+- **TOO HARD** -> weaken enemies by role: reduce TANK def/HP, lower DPS attack, reduce BURST MP, slow down non-tank SUPPORTs. Fallback: remove an enemy (if >3), reduce ability Modifiers
+- **TOO EASY** -> strengthen enemies by role: buff TANK favored DEF (maintain 60/40), buff DPS attack (or crit_damage for CRIT subtype), buff BURST MP, speed up DPS/non-tank SUPPORTs, buff FIGHTER attack+defense. Fallback: add enemy, increase ability Modifiers
 
 Once the battle PASSes, move to the next battle. Once all battles in the progression PASS, LOCK it and move on.
 
