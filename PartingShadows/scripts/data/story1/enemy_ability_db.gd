@@ -254,10 +254,21 @@ static func death_wither() -> AbilityData:
 static func headbutt() -> AbilityData:
 	return _make("Headbutt", "A brutal crack of skull against skull.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0)
 
-# --- Hound (replaces shared bite) ---
+# --- Thornviper ---
 
-static func snap() -> AbilityData:
-	return _make("Snap", "Jaws clamp shut with trained precision.", Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 2, false, 0, 0.0)
+static func fang_strike() -> AbilityData:
+	return _make("Fang Strike", "Venom-slicked fangs sink in and the poison does the rest.", Enums.StatType.MIXED_ATTACK, 3, 0, true, 2, false, 0, 0.0)
+
+static func venom() -> AbilityData:
+	return _make("Venom", "Poison seeps into the wound, burning from within.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 4, 0.0)
+
+# --- Hound (magic attacker, something unnatural) ---
+
+static func baleful_howl() -> AbilityData:
+	return _make("Baleful Howl", "A howl that reverberates through bone and thought alike.", Enums.StatType.MAGIC_ATTACK, 4, 0, true, 2, false, 0, 0.0)
+
+static func shadow_bite() -> AbilityData:
+	return _make("Shadow Bite", "Its jaws close on something deeper than flesh.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 # --- Bandit (replaces slash) ---
 

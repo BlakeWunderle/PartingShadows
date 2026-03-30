@@ -87,7 +87,8 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDB.create_pickpocket("Ella")]
 		"WolfForestBattle":
 			return [EnemyDB.create_wolf("Greyfang"),
-				EnemyDB.create_boar("Tusker")]
+				EnemyDB.create_boar("Tusker"),
+				EnemyDB.create_thornviper("Needlefang")]
 		"WaypointDefenseBattle":
 			return [EnemyDB.create_bandit("Riggs"),
 				EnemyDB.create_goblin("Snitch"),

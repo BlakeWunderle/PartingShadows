@@ -40,6 +40,7 @@ static func get_all_enemy_ids() -> Array:
 		{"class_id": "Pickpocket", "story_id": s1},
 		{"class_id": "Wolf", "story_id": s1},
 		{"class_id": "Boar", "story_id": s1},
+		{"class_id": "Thornviper", "story_id": s1},
 		{"class_id": "Goblin", "story_id": s1},
 		{"class_id": "Hound", "story_id": s1},
 		{"class_id": "Bandit", "story_id": s1},

@@ -38,6 +38,7 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Pickpocket": return S1.create_pickpocket("")
 		"Wolf": return S1.create_wolf("")
 		"Boar": return S1.create_boar("")
+		"Thornviper": return S1.create_thornviper("")
 		"Goblin": return S1.create_goblin("")
 		"Hound": return S1.create_hound("")
 		"Bandit": return S1.create_bandit("")

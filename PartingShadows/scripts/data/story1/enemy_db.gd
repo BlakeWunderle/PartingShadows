@@ -61,31 +61,46 @@ static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
 
 static func create_wolf(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Wolf", lvl)
-	f.health = EH.es(55, 65, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = EH.es(52, 62, 3, 5, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(19, 22, 2, 3, lvl, 2)
+	f.physical_attack = EH.es(18, 21, 2, 3, lvl, 2)
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
-	f.magic_defense = EH.es(7, 11, 1, 2, lvl, 2)
-	f.speed = EH.es(24, 30, 2, 3, lvl, 2)
-	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 12
+	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
+	f.speed = EH.es(24, 29, 2, 3, lvl, 2)
+	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.bite(), EAB.howl()]
 	f.flavor_text = "Forest predators that hunt in packs, emboldened by moonlight."
 	return f
 
 static func create_boar(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Boar", lvl)
-	f.health = EH.es(72, 80, 4, 7, lvl, 2); f.max_health = f.health
+	f.health = EH.es(65, 74, 4, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(21, 24, 2, 3, lvl, 2)
-	f.physical_defense = EH.es(10, 14, 1, 2, lvl, 2)
+	f.physical_attack = EH.es(20, 23, 2, 3, lvl, 2)
+	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
-	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 2)
-	f.speed = EH.es(18, 24, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
+	f.speed = EH.es(18, 23, 1, 2, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 2; f.dodge_chance = 3
 	f.abilities = [EAB.gore(), EAB.charge()]
 	f.flavor_text = "Thick-skinned beasts that charge without warning. Their tusks can shatter bone."
 	return f
+
+static func create_thornviper(n: String, lvl: int = 2) -> FighterData:
+	var f := EH.base(n, "Thornviper", lvl)
+	f.health = EH.es(35, 42, 2, 4, lvl, 2); f.max_health = f.health
+	f.mana = EH.es(6, 8, 1, 2, lvl, 2); f.max_mana = f.mana
+	f.physical_attack = EH.es(13, 16, 1, 2, lvl, 2)
+	f.physical_defense = EH.es(5, 8, 0, 1, lvl, 2)
+	f.magic_attack = EH.es(13, 16, 1, 2, lvl, 2)
+	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
+	f.speed = EH.es(26, 32, 2, 3, lvl, 2)
+	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 13
+	f.abilities = [EAB.fang_strike(), EAB.venom()]
+	f.flavor_text = "A sleek forest serpent with barbed scales and venom that burns like fire. It strikes from the undergrowth without warning."
+	return f
+
 
 static func create_goblin(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Goblin", lvl)
@@ -104,15 +119,15 @@ static func create_goblin(n: String, lvl: int = 2) -> FighterData:
 static func create_hound(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Hound", lvl)
 	f.health = EH.es(49, 57, 3, 5, lvl, 2); f.max_health = f.health
-	f.mana = EH.es(2, 5, 1, 1, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(17, 21, 2, 3, lvl, 2)
+	f.mana = EH.es(5, 7, 1, 2, lvl, 2); f.max_mana = f.mana
+	f.physical_attack = EH.es(8, 11, 0, 2, lvl, 2)
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
-	f.magic_defense = EH.es(6, 9, 0, 2, lvl, 2)
+	f.magic_attack = EH.es(18, 22, 2, 3, lvl, 2)
+	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
 	f.speed = EH.es(26, 32, 2, 3, lvl, 2)
-	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 11
-	f.abilities = [EAB.snap(), EAB.tackle()]
-	f.flavor_text = "Wild dogs driven mad by hunger. They snap and lunge with desperate ferocity."
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
+	f.abilities = [EAB.baleful_howl(), EAB.shadow_bite()]
+	f.flavor_text = "Not a stray. Something is wrong with this animal. Its eyes flicker with a pale light and its snarl reverberates in ways that have nothing to do with sound."
 	return f
 
 static func create_bandit(n: String, lvl: int = 3) -> FighterData:

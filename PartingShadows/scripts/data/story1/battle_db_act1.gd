@@ -43,12 +43,13 @@ static func wolf_forest_battle() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_wolf("Greyfang"),
 		EnemyDB.create_boar("Tusker"),
+		EnemyDB.create_thornviper("Needlefang"),
 	]
 	b.pre_battle_text = [
 		"The party follows the road deeper into the forest. The canopy thickens overhead until only slivers of moonlight reach the ground.",
 		"As night falls they make camp near an abandoned house set back from the road. The door hangs open, the inside dark and still.",
 		"Someone notices a strange sigil carved into a chest inside, a circle with a slash through it, but there's no time to investigate.",
-		"During the night, growling and snorting wake the camp. A wolf and a boar emerge from the treeline, territorial and aggressive.",
+		"During the night, growling and snorting wake the camp. A wolf and a boar emerge from the treeline, territorial and aggressive. Something else slithers through the undergrowth, scales catching the firelight with an oily sheen.",
 		"No choice but to fight.",
 	]
 	b.post_battle_text = [
@@ -76,11 +77,11 @@ static func waypoint_defense_battle() -> BattleData:
 	b.pre_battle_text = [
 		"The party reaches a waypoint inn called 'The Wanderer's Rest' but something is wrong.",
 		"The front door is smashed open. Inside, a bandit has the innkeeper cornered behind the counter while his goblin accomplice rifles through the shelves.",
-		"A hound snarls at the doorway, hackles raised, blocking the exit.",
+		"A hound snarls at the doorway, hackles raised, eyes flickering with a pale light that has nothing to do with the lanterns. It blocks the exit.",
 		"The party draws weapons. Time to clear the inn.",
 	]
 	b.post_battle_text = [
-		"The bandit scrambles out the back window and his goblin accomplice follows. The hound whimpers and bolts after them.",
+		"The bandit scrambles out the back window and his goblin accomplice follows. The hound whimpers and bolts after them, its eyes flickering once more before it vanishes into the dark.",
 		"The innkeeper steps out from behind the counter, shaken but unhurt. She thanks the party profusely.",
 		"'You saved my life. Least I can do is open the storeroom.'",
 		"Inside are supplies that seem almost too useful. Rations, bandages, a few weapons in good condition, as though someone knew help would arrive.",

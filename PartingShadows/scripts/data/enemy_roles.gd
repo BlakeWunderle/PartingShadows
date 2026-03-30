@@ -19,8 +19,9 @@ const _DATA: Dictionary = {
 	"Pickpocket": { "s": [S.DEBUFFER] },
 	"Wolf": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER] },
 	"Boar": {},
+	"Thornviper": { "s": [S.DOT, S.GLASS_CANNON], "d": D.MIXED },
 	"Goblin": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.EVASION] },
-	"Hound": {},
+	"Hound": { "d": D.MAGICAL },
 	"Bandit": {},
 
 	# ==========================================================================
