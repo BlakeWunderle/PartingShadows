@@ -94,8 +94,8 @@ static func _find_similar_pairs(profiles: Array) -> Array:
 		if p_b - p_a > 1:
 			continue  # Skip non-adjacent progressions
 		if p_a == p_b:
-			# Same prog boss/elite = alternate paths; player sees only one
-			if profiles[i].has_boss_or_elite or profiles[i + 1].has_boss_or_elite:
+			# Both boss/elite at same prog = alternate paths; player sees only one
+			if profiles[i].has_boss_or_elite and profiles[i + 1].has_boss_or_elite:
 				continue
 
 		var sim := _cosine_similarity(profiles[i].profile, profiles[i + 1].profile)
@@ -154,7 +154,7 @@ static func _find_damage_monotony(profiles: Array) -> Array:
 		var prev_prog: int = profiles[i - 1].stage.progression_stage
 		var curr_prog: int = profiles[i].stage.progression_stage
 		if curr_prog == prev_prog:
-			if profiles[i].has_boss_or_elite or profiles[i - 1].has_boss_or_elite:
+			if profiles[i].has_boss_or_elite and profiles[i - 1].has_boss_or_elite:
 				continue
 		var dt := _dominant_damage(profiles[i].profile)
 		if dt == run_type:

@@ -47,7 +47,8 @@ enum DamageType {
 ## Enemy threat tier within a battle encounter.
 enum EnemyTier {
 	BOSS,      ## Named antagonist (Stranger, Threadmaster, etc.)
-	ELITE,     ## Tougher-than-normal, mini-boss
+	ELITE,     ## Story-significant enemy (Sera, mid-game Stranger appearance)
+	LEADER,    ## Strongest enemy in a regular pack (captain, commander, troll)
 	UNDERLING, ## Companion/add that appears alongside a boss
 	STANDARD,  ## Regular enemy (default)
 }

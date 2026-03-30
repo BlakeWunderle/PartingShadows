@@ -59,14 +59,14 @@ static func create_harpy(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Harpy", lvl)
 	f.health = EH.es(142, 161, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(25, 29, 2, 3, lvl, 5)
+	f.physical_attack = EH.es(20, 24, 2, 3, lvl, 5)
 	f.physical_defense = EH.es(11, 15, 1, 2, lvl, 5)
-	f.magic_attack = EH.es(9, 13, 0, 2, lvl, 5)
+	f.magic_attack = EH.es(22, 26, 2, 3, lvl, 5)
 	f.magic_defense = EH.es(14, 18, 1, 2, lvl, 5)
 	f.speed = EH.es(29, 34, 2, 3, lvl, 5)
 	f.crit_chance = 16; f.crit_damage = 2; f.dodge_chance = 20
-	f.abilities = [EAB.talon_rake(), EAB.shriek()]
-	f.flavor_text = "Winged terrors that dive from above, raking with razor talons and piercing shrieks."
+	f.abilities = [EAB.talon_rake(), EAB.gale_buffet(), EAB.shriek()]
+	f.flavor_text = "Winged terrors that dive from above, raking with razor talons and hurling cutting wind."
 	return f
 
 static func create_witch(n: String, lvl: int = 4) -> FighterData:
@@ -129,9 +129,9 @@ static func create_merfolk(n: String, lvl: int = 4) -> FighterData:
 	var f := EH.base(n, "Merfolk", lvl)
 	f.health = EH.es(106, 127, 4, 7, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 2, lvl, 4); f.max_mana = f.mana
-	f.physical_attack = EH.es(24, 28, 2, 3, lvl, 4)
+	f.physical_attack = EH.es(23, 27, 2, 3, lvl, 4)
 	f.physical_defense = EH.es(11, 16, 1, 2, lvl, 4)
-	f.magic_attack = EH.es(17, 22, 1, 3, lvl, 4)
+	f.magic_attack = EH.es(23, 27, 2, 3, lvl, 4)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 4)
 	f.speed = EH.es(23, 28, 1, 3, lvl, 4)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 9
@@ -319,9 +319,9 @@ static func create_ghoul(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Ghoul", lvl)
 	f.health = EH.es(142, 161, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(22, 26, 2, 3, lvl, 6)
+	f.physical_attack = EH.es(19, 23, 2, 3, lvl, 6)
 	f.physical_defense = EH.es(16, 21, 1, 2, lvl, 6)
-	f.magic_attack = EH.es(14, 19, 1, 2, lvl, 6)
+	f.magic_attack = EH.es(22, 26, 2, 3, lvl, 6)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 6)
 	f.speed = EH.es(29, 34, 2, 3, lvl, 6)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 20

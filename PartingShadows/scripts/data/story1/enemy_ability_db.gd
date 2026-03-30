@@ -39,7 +39,7 @@ static func ambush() -> AbilityData:
 	return _make("Ambush", "Strike from hiding.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 4, false, 0, 0.0)
 
 static func trident_thrust() -> AbilityData:
-	return _make("Trident Thrust", "A powerful three-pronged strike.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+	return _make("Trident Thrust", "A powerful three-pronged strike crackling with sea magic.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func tidal_splash() -> AbilityData:
 	return _make("Tidal Splash", "A wave crashes over all enemies.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0)
@@ -63,7 +63,7 @@ static func stomp() -> AbilityData:
 	return _make("Stomp", "The ground shakes.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 4, true, 0, 0.0)
 
 static func talon_rake() -> AbilityData:
-	return _make("Talon Rake", "Razor talons rake the target.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Talon Rake", "Razor talons rake the target in a gust of unnatural wind.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func flintlock() -> AbilityData:
 	return _make("Flintlock", "A blast from a sea-worn pistol.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0)
@@ -158,7 +158,7 @@ static func cadence() -> AbilityData:
 	return _make("Cadence", "A rhythm that disrupts timing.", Enums.StatType.SPEED, 4, 2, true, 2, false, 0, 0.0)
 
 static func paralyze() -> AbilityData:
-	return _make("Carrion Strike", "Rotting claws tear through flesh with rabid hunger.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+	return _make("Carrion Strike", "Rotting claws tear through flesh with unnatural hunger.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func terrify() -> AbilityData:
 	return _make("Spectral Rend", "The wraith tears through flesh with ghostly claws.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
@@ -274,6 +274,11 @@ static func shadow_bite() -> AbilityData:
 
 static func bushwhack() -> AbilityData:
 	return _make("Bushwhack", "A crude swing from the treeline.", Enums.StatType.PHYSICAL_ATTACK, 4, 0, true, 2, false, 0, 0.0)
+
+# --- Harpy ---
+
+static func gale_buffet() -> AbilityData:
+	return _make("Gale Buffet", "Wings beat with supernatural force, hurling cutting wind at all enemies.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0)
 
 # --- Troll (replaces smash) ---
 
