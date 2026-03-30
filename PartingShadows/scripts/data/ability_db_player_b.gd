@@ -92,13 +92,13 @@ static func demolition_charge() -> AbilityData:
 		Enums.StatType.MAGIC_ATTACK, 22, 0, true, 5, false, 0, 0.0)
 
 # Chronomancer
-static func warp_speed() -> AbilityData:
-	return _make("Warp Speed", "Accelerate an ally through time.",
-		Enums.StatType.SPEED, 10, 2, false, 4, false, 0, 0.0)
+static func temporal_rift() -> AbilityData:
+	return _make("Temporal Rift", "Tear open a rift in time, bombarding all enemies with temporal energy.",
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 5, true, 0, 0.0)
 
 static func time_bomb() -> AbilityData:
 	return _make("Time Bomb", "A delayed temporal explosion.",
-		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
 
 static func time_freeze() -> AbilityData:
 	return _make("Time Freeze", "Stop the enemy in their tracks.",
@@ -247,7 +247,7 @@ static func creeping_rot() -> AbilityData:
 # Spiritwalker
 static func spirit_shield() -> AbilityData:
 	return _make("Spirit Shield", "Ancestral spirits protect an ally.",
-		Enums.StatType.DEFENSE, 2, 2, false, 3, false, 0, 0.0)
+		Enums.StatType.DEFENSE, 2, 2, false, 4, false, 0, 0.0)
 
 static func soul_strike() -> AbilityData:
 	return _make("Soul Strike", "A burst of spirit energy tears through the veil.",
@@ -262,7 +262,7 @@ static func spirit_mend() -> AbilityData:
 # Falconer
 static func falcon_strike() -> AbilityData:
 	return _make("Falcon Strike", "A raptor dives from above.",
-		Enums.StatType.PHYSICAL_ATTACK, 20, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 23, 0, true, 4, false, 0, 0.0)
 
 static func rending_talon() -> AbilityData:
 	return _make("Rending Talon", "The falcon's talons tear through the enemy's guard, leaving them exposed.",
@@ -270,20 +270,20 @@ static func rending_talon() -> AbilityData:
 
 static func aerial_strike() -> AbilityData:
 	return _make("Aerial Strike", "The falcon sweeps low, raking talons across all enemies.",
-		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 20, 0, true, 4, true, 0, 0.0)
 
 # Shapeshifter
 static func savage_maul() -> AbilityData:
 	return _make("Savage Maul", "Transform and maul the enemy.",
-		Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, false, 0, 0.2)
+		Enums.StatType.MIXED_ATTACK, 24, 0, true, 4, false, 0, 0.3)
 
 static func frenzy() -> AbilityData:
 	return _make("Frenzy", "Enter a bestial rage.",
-		Enums.StatType.ATTACK, 7, 3, false, 2, false, 0, 0.0)
+		Enums.StatType.ATTACK, 9, 3, false, 2, false, 0, 0.0)
 
 static func rampage() -> AbilityData:
 	return _make("Rampage", "Unleash the beast within, tearing through all enemies with primal fury.",
-		Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 20, 0, true, 4, true, 0, 0.0)
 
 
 # =============================================================================

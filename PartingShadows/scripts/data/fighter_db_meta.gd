@@ -137,7 +137,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		# T2:Tinker
 		"Alchemist": return [PAB_B.transmute(), PAB_B.corrosive_acid(), PAB_B.elixir()]
 		"Bombardier": return [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.demolition_charge()]
-		"Chronomancer": return [PAB_B.warp_speed(), PAB_B.time_bomb(), PAB_B.time_freeze()]
+		"Chronomancer": return [PAB_B.temporal_rift(), PAB_B.time_bomb(), PAB_B.time_freeze()]
 		"Astronomer": return [PAB_B.starfall(), PAB_B.meteor_shower(), PAB_B.eclipse()]
 		"Automaton": return [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.self_repair()]
 		"Technomancer": return [PAB_B.circuit_blast(), PAB_B.techno_drain(), PAB_B.emp_pulse()]

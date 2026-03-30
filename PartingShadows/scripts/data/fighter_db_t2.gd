@@ -23,8 +23,8 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 static func upgrade_to_dragoon(f: FighterData) -> void:
 	f.class_id = "Dragoon"; f.character_type = "Dragoon"
 	f.health += 17; f.max_health += 17; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 13; f.physical_defense += 6; f.magic_attack += 7; f.magic_defense += 7
-	f.speed += 3; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
+	f.physical_attack += 13; f.physical_defense += 6; f.magic_attack += 10; f.magic_defense += 7
+	f.speed += 4; f.crit_chance += 5; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.dragon_scales(), PAB.wyvern_strike(), PAB.dragon_dive()]
 	f.upgrade_items = []
 
@@ -145,7 +145,7 @@ static func upgrade_to_infernalist(f: FighterData) -> void:
 static func upgrade_to_tidecaller(f: FighterData) -> void:
 	f.class_id = "Tidecaller"; f.character_type = "Tidecaller"
 	f.health += 15; f.max_health += 15; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 15; f.magic_defense += 6
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 13; f.magic_defense += 6
 	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.purify(), PAB.tsunami(), PAB.water_whip()]
 	f.upgrade_items = []
@@ -202,7 +202,7 @@ static func upgrade_to_paladin(f: FighterData) -> void:
 
 static func upgrade_to_priest(f: FighterData) -> void:
 	f.class_id = "Priest"; f.character_type = "Priest"
-	f.health += 13; f.max_health += 13; f.mana += 5; f.max_mana += 5
+	f.health += 13; f.max_health += 13; f.mana += 3; f.max_mana += 3
 	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 15; f.magic_defense += 7
 	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]

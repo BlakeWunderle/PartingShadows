@@ -80,11 +80,11 @@ static func dragon_scales() -> AbilityData:
 
 static func wyvern_strike() -> AbilityData:
 	return _make("Wyvern Strike", "A strike infused with draconic power that burns long after impact.",
-		Enums.StatType.MIXED_ATTACK, 18, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 24, 0, true, 4, false, 0, 0.0)
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
-		Enums.StatType.MIXED_ATTACK, 13, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 19, 0, true, 5, true, 0, 0.0)
 
 # Mercenary
 static func gun_shot() -> AbilityData:
@@ -197,11 +197,11 @@ static func purify() -> AbilityData:
 
 static func tsunami() -> AbilityData:
 	return _make("Tsunami", "A towering wave crashes down on all enemies.",
-		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
 
 static func water_whip() -> AbilityData:
 	return _make("Water Whip", "A lash of pressurized water tears into a single foe.",
-		Enums.StatType.MAGIC_ATTACK, 16, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.0)
 
 # Tempest
 static func hurricane() -> AbilityData:
@@ -233,12 +233,14 @@ static func smite() -> AbilityData:
 
 # Priest
 static func restoration() -> AbilityData:
-	return _make("Restoration", "A powerful prayer of healing.",
-		Enums.StatType.HEALTH, 25, 0, false, 4, false, 0, 0.0)
+	var a := _make("Restoration", "A powerful prayer of healing.",
+		Enums.StatType.HEALTH, 18, 0, false, 5, false, 0, 0.0)
+	a.heal_threshold = 0.35
+	return a
 
 static func heavenly_body() -> AbilityData:
 	return _make("Heavenly Body", "Divine protection for all allies.",
-		Enums.StatType.DEFENSE, 3, 2, false, 5, true, 0, 0.0)
+		Enums.StatType.DEFENSE, 2, 2, false, 5, true, 0, 0.0)
 
 static func holy() -> AbilityData:
 	return _make("Holy", "A ray of pure divine energy.",
@@ -325,7 +327,7 @@ static func ballad() -> AbilityData:
 
 static func serenade() -> AbilityData:
 	var a := _make("Serenade", "A soothing song that mends wounds.",
-		Enums.StatType.HEALTH, 12, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 8, 0, false, 5, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
