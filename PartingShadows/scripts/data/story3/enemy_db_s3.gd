@@ -52,7 +52,7 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 	f.magic_attack = EH.es(9, 12, 0, 2, lvl, 1)
 	f.magic_defense = EH.es(7, 10, 0, 1, lvl, 1)
 	f.speed = EH.es(30, 36, 1, 3, lvl, 1)
-	f.crit_chance = 8; f.crit_damage = 1; f.dodge_chance = 9
+	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 10
 	f.abilities = [EAB.dust_wing(), EAB.flit()]
 	f.flavor_text = "A dark-winged insect born from forgotten memories. Its scales scatter a soporific dust that clouds the senses."
 	return f
@@ -67,7 +67,7 @@ static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(5, 8, 0, 1, lvl, 2)
 	f.speed = EH.es(29, 35, 1, 3, lvl, 2)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
+	f.crit_chance = 12; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EAB.dream_fang(), EAB.shadow_lunge()]
 	f.flavor_text = "A gaunt predator that prowls the border between waking and sleep. It hunts by sensing the fear of dreamers who linger too long."
 	return f
@@ -82,7 +82,7 @@ static func create_mirror_shade(n: String, lvl: int = 2) -> FighterData:
 	f.magic_attack = EH.es(14, 18, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
 	f.speed = EH.es(25, 31, 1, 2, lvl, 2)
-	f.crit_chance = 13; f.crit_damage = 1; f.dodge_chance = 6
+	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 7
 	f.abilities = [EAB.reflected_strike(), EAB.mimic_stance()]
 	f.flavor_text = "A distorted reflection that has stepped free of its mirror. It copies the movements of those it faces, turning their own strength against them."
 	return f
@@ -194,7 +194,7 @@ static func create_somnolent_serpent(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(17, 21, 1, 2, lvl, 8)
 	f.magic_defense = EH.es(18, 22, 1, 2, lvl, 8)
 	f.speed = EH.es(31, 36, 1, 3, lvl, 8)
-	f.crit_chance = 24; f.crit_damage = 1; f.dodge_chance = 17
+	f.crit_chance = 27; f.crit_damage = 1; f.dodge_chance = 19
 	f.abilities = [EAB.venom_coil(), EAB.sleep_fang()]
 	f.flavor_text = "A great serpent that glides through the labyrinth of slumber. Its venom induces a sleep within sleep, trapping victims in layers of dream they cannot escape."
 	return f
@@ -209,7 +209,7 @@ static func create_twilight_stalker(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(14, 17, 0, 2, lvl, 8)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 8)
 	f.speed = EH.es(35, 40, 1, 3, lvl, 8)
-	f.crit_chance = 24; f.crit_damage = 2; f.dodge_chance = 19
+	f.crit_chance = 27; f.crit_damage = 2; f.dodge_chance = 21
 	f.abilities = [EAB.dusk_blade(), EAB.vanish_strike()]
 	f.flavor_text = "A silent hunter cloaked in the half-light between dreams. It vanishes mid-stride and reappears behind its prey with lethal precision."
 	return f
@@ -224,7 +224,7 @@ static func create_waking_terror(n: String, lvl: int = 8) -> FighterData:
 	f.magic_attack = EH.es(31, 36, 1, 3, lvl, 8)
 	f.magic_defense = EH.es(20, 24, 1, 2, lvl, 8)
 	f.speed = EH.es(30, 35, 1, 2, lvl, 8)
-	f.crit_chance = 25; f.crit_damage = 1; f.dodge_chance = 16
+	f.crit_chance = 28; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.scream_blast(), EAB.terror_wave()]
 	f.flavor_text = "A towering horror that bleeds into the waking world, born where nightmares press too hard against reality. Its screams carry the force of raw, unfiltered panic."
 	return f
