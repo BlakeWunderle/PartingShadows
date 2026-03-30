@@ -78,7 +78,7 @@ static func get_roles(class_id: String) -> Array:
 		"Shapeshifter": return [Enums.Role.FIGHTER, Enums.Role.TANK]
 		# T2: Wanderer
 		"Bulwark": return [Enums.Role.TANK]
-		"Aegis": return [Enums.Role.TANK, Enums.Role.FIGHTER]
+		"Aegis": return [Enums.Role.FIGHTER, Enums.Role.TANK]
 		"Trailblazer": return [Enums.Role.FIGHTER]
 		"Survivalist": return [Enums.Role.TANK]
 		_:
@@ -240,6 +240,84 @@ static func get_damage_type(class_id: String) -> Enums.DamageType:
 		"Trailblazer": return Enums.DamageType.MIXED
 		"Survivalist": return Enums.DamageType.MIXED
 		_: return Enums.DamageType.PHYSICAL
+
+
+# =============================================================================
+# Defense type assignments (computed from phys_def/mag_def using 60/40 rule)
+# =============================================================================
+
+static func get_defense_type(class_id: String) -> Enums.DamageType:
+	match class_id:
+		# T0
+		"Squire": return Enums.DamageType.PHYSICAL
+		"Mage": return Enums.DamageType.MAGICAL
+		"Entertainer": return Enums.DamageType.MIXED
+		"Tinker": return Enums.DamageType.MAGICAL
+		"Wildling": return Enums.DamageType.MIXED
+		"Wanderer": return Enums.DamageType.MIXED
+		# T1: Squire
+		"Duelist": return Enums.DamageType.PHYSICAL
+		"Ranger": return Enums.DamageType.MIXED
+		"MartialArtist": return Enums.DamageType.PHYSICAL
+		# T1: Mage
+		"Invoker": return Enums.DamageType.MIXED
+		"Acolyte": return Enums.DamageType.MIXED
+		# T1: Entertainer
+		"Bard": return Enums.DamageType.MIXED
+		"Dervish": return Enums.DamageType.MIXED
+		"Orator": return Enums.DamageType.MIXED
+		# T1: Tinker
+		"Artificer": return Enums.DamageType.PHYSICAL
+		"Cosmologist": return Enums.DamageType.MIXED
+		"Arithmancer": return Enums.DamageType.MIXED
+		# T1: Wildling
+		"Herbalist": return Enums.DamageType.PHYSICAL
+		"Shaman": return Enums.DamageType.MIXED
+		"Beastcaller": return Enums.DamageType.MIXED
+		# T1: Wanderer
+		"Sentinel": return Enums.DamageType.MIXED
+		"Pathfinder": return Enums.DamageType.MIXED
+		# T2: Squire
+		"Cavalry": return Enums.DamageType.MIXED
+		"Dragoon": return Enums.DamageType.MIXED
+		"Mercenary": return Enums.DamageType.PHYSICAL
+		"Hunter": return Enums.DamageType.PHYSICAL
+		"Ninja": return Enums.DamageType.MIXED
+		"Monk": return Enums.DamageType.MIXED
+		# T2: Mage
+		"Infernalist": return Enums.DamageType.MIXED
+		"Tidecaller": return Enums.DamageType.PHYSICAL
+		"Tempest": return Enums.DamageType.MIXED
+		"Paladin": return Enums.DamageType.MIXED
+		"Priest": return Enums.DamageType.PHYSICAL
+		"Warlock": return Enums.DamageType.MIXED
+		# T2: Entertainer
+		"Warcrier": return Enums.DamageType.MIXED
+		"Minstrel": return Enums.DamageType.MIXED
+		"Illusionist": return Enums.DamageType.PHYSICAL
+		"Mime": return Enums.DamageType.MIXED
+		"Laureate": return Enums.DamageType.MIXED
+		"Elegist": return Enums.DamageType.MIXED
+		# T2: Tinker
+		"Alchemist": return Enums.DamageType.MIXED
+		"Bombardier": return Enums.DamageType.MIXED
+		"Chronomancer": return Enums.DamageType.MIXED
+		"Astronomer": return Enums.DamageType.MIXED
+		"Automaton": return Enums.DamageType.MIXED
+		"Technomancer": return Enums.DamageType.MIXED
+		# T2: Wildling
+		"Blighter": return Enums.DamageType.MIXED
+		"GroveKeeper": return Enums.DamageType.PHYSICAL
+		"WitchDoctor": return Enums.DamageType.PHYSICAL
+		"Spiritwalker": return Enums.DamageType.MIXED
+		"Falconer": return Enums.DamageType.PHYSICAL
+		"Shapeshifter": return Enums.DamageType.PHYSICAL
+		# T2: Wanderer
+		"Bulwark": return Enums.DamageType.MIXED
+		"Aegis": return Enums.DamageType.MIXED
+		"Trailblazer": return Enums.DamageType.MIXED
+		"Survivalist": return Enums.DamageType.MIXED
+		_: return Enums.DamageType.MIXED
 
 
 # =============================================================================
