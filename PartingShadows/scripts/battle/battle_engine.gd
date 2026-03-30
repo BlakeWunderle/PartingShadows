@@ -206,12 +206,14 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 	else:
 		# Over-time effect
 		if ability.damage_per_turn > 0:
+			var dot_flat: int = maxi(1, floori(
+				float(defender.max_health) * float(ability.damage_per_turn) / 100.0))
 			defender.modified_stats.append({
 				"stat": ability.modified_stat,
 				"modifier": 0,
 				"turns": ability.impacted_turns,
 				"is_negative": true,
-				"damage_per_turn": ability.damage_per_turn,
+				"damage_per_turn": dot_flat,
 			})
 			if sim_mode:
 				sim_stats[attacker].debuffs_applied += 1
@@ -219,26 +221,28 @@ func use_ability_on_enemy(attacker: FighterData, defender: FighterData,
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
 				combat_message.emit("[color=#cc4dcc]%s will take %d damage per turn for %d turns.[/color]" % [
-					defender.character_name, ability.damage_per_turn, ability.impacted_turns])
-				combat_event.emit(defender, ability.damage_per_turn, "debuff")
+					defender.character_name, dot_flat, ability.impacted_turns])
+				combat_event.emit(defender, dot_flat, "debuff")
 
 		if ability.modifier > 0 and (ability.damage_per_turn == 0 \
 				or ability.modified_stat != Enums.StatType.HEALTH):
+			var delta: int = _compute_buff_delta(
+				defender, ability.modified_stat, ability.modifier)
 			defender.modified_stats.append({
 				"stat": ability.modified_stat,
-				"modifier": ability.modifier,
+				"modifier": delta,
 				"turns": ability.impacted_turns,
 				"is_negative": true,
 				"damage_per_turn": 0,
 			})
-			_modify_stats(defender, ability.modified_stat, ability.modifier, true)
+			_modify_stats(defender, ability.modified_stat, delta, true)
 			if sim_mode:
 				sim_stats[attacker].debuffs_applied += 1
 			if not sim_mode and ability.damage_per_turn == 0:
 				if not skip_flavor:
 					combat_message.emit(ability.flavor_text)
 				combat_message.emit("[color=#cc4dcc]%s was hit with this ability.[/color]" % defender.character_name)
-				combat_event.emit(defender, ability.modifier, "debuff")
+				combat_event.emit(defender, delta, "debuff")
 
 
 func use_ability_on_teammate(caster: FighterData, target: FighterData,
@@ -266,21 +270,23 @@ func use_ability_on_teammate(caster: FighterData, target: FighterData,
 			combat_event.emit(target, heal_amount, "heal")
 	else:
 		# Buff
+		var delta: int = _compute_buff_delta(
+			target, ability.modified_stat, ability.modifier)
 		target.modified_stats.append({
 			"stat": ability.modified_stat,
-			"modifier": ability.modifier,
+			"modifier": delta,
 			"turns": ability.impacted_turns,
 			"is_negative": false,
 			"damage_per_turn": 0,
 		})
-		_modify_stats(target, ability.modified_stat, ability.modifier, false)
+		_modify_stats(target, ability.modified_stat, delta, false)
 		if sim_mode:
 			sim_stats[caster].buffs_applied += 1
 		if not sim_mode:
 			if not skip_flavor:
 				combat_message.emit(ability.flavor_text)
 			combat_message.emit("[color=#66ccff]%s was impacted by the ability.[/color]" % target.character_name)
-			combat_event.emit(target, ability.modifier, "buff")
+			combat_event.emit(target, delta, "buff")
 
 
 func _calc_ability_damage(attacker: FighterData, defender: FighterData,
@@ -359,6 +365,33 @@ func _has_defense_buff(fighter: FighterData) -> bool:
 # =============================================================================
 # Stat modification & reset
 # =============================================================================
+
+## Convert a percentage modifier into a flat delta for the given fighter and stat.
+## DODGE_CHANCE and TAUNT stay flat -- their modifiers are already absolute values.
+func _compute_buff_delta(fighter: FighterData, stat: Enums.StatType,
+		percent: int) -> int:
+	if stat == Enums.StatType.DODGE_CHANCE or stat == Enums.StatType.TAUNT:
+		return percent
+	var base_stat: int
+	match stat:
+		Enums.StatType.ATTACK, Enums.StatType.MIXED_ATTACK:
+			base_stat = (fighter.physical_attack + fighter.magic_attack) / 2
+		Enums.StatType.DEFENSE:
+			base_stat = (fighter.physical_defense + fighter.magic_defense) / 2
+		Enums.StatType.PHYSICAL_ATTACK:
+			base_stat = fighter.physical_attack
+		Enums.StatType.PHYSICAL_DEFENSE:
+			base_stat = fighter.physical_defense
+		Enums.StatType.MAGIC_ATTACK:
+			base_stat = fighter.magic_attack
+		Enums.StatType.MAGIC_DEFENSE:
+			base_stat = fighter.magic_defense
+		Enums.StatType.SPEED:
+			base_stat = fighter.speed
+		_:
+			return percent
+	return maxi(1, floori(float(base_stat) * float(percent) / 100.0))
+
 
 func _modify_stats(fighter: FighterData, stat: Enums.StatType,
 		modifier: int, negative: bool) -> void:
