@@ -299,17 +299,17 @@ static func null_mending() -> AbilityData:
 
 # --- Eye of Oblivion / Lidless Eye (dying monster kit -- all offense) ---
 
-static func dying_gaze() -> AbilityData:
-	return _make("Dying Gaze", "One last focused beam of absolute perception. It burns everything it sees.", Enums.StatType.MAGIC_ATTACK, 20, 0, true, 4, false, 0, 0.0)
+static func crushing_gaze() -> AbilityData:
+	return _make("Crushing Gaze", "One last focused stare. The weight of its dying perception breaks bone and will alike.", Enums.StatType.PHYSICAL_ATTACK, 18, 0, true, 4, false, 0, 0.0)
 
-static func desperate_surge() -> AbilityData:
-	return _make("Desperate Surge", "Bleeding out its stolen power in a single savage blast.", Enums.StatType.MAGIC_ATTACK, 17, 0, true, 4, false, 0, 0.0)
+static func desperate_lunge() -> AbilityData:
+	return _make("Desperate Lunge", "It throws its massive form forward, all pretense of control abandoned.", Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
-static func retribution_blast() -> AbilityData:
-	return _make("Retribution Blast", "It scatters what remains of itself across every target. A dying curse.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 4, true, 0, 0.0)
+static func death_throes() -> AbilityData:
+	return _make("Death Throes", "Everything left, physical and arcane, scattered in one convulsive blast.", Enums.StatType.MIXED_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 static func collapse() -> AbilityData:
-	return _make("Collapse", "The Eye burns from within, its stolen power turning to poison. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 14, 0.0)
+	return _make("Collapse", "The Eye burns from within. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 12, 0.0)
 
-static func last_light() -> AbilityData:
-	return _make("Last Light", "The final flicker before extinction, faint but still lethal.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, true, 0, 0.0)
+static func last_tremor() -> AbilityData:
+	return _make("Last Tremor", "The final shudder before extinction. Faint, but still crushing.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 3, true, 0, 0.0)

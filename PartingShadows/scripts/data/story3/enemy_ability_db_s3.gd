@@ -331,20 +331,20 @@ static func consume_light() -> AbilityData:
 
 # --- The Threadmaster (final boss) ---
 
-static func dream_shatter() -> AbilityData:
-	return _make("Dream Shatter", "The Loom convulses and everything breaks.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0)
+static func thread_lash() -> AbilityData:
+	return _make("Thread Lash", "A whip of braided dreamstuff cracks across flesh and armor.", Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
-static func loom_collapse() -> AbilityData:
-	return _make("Loom Collapse", "Pillars of woven reality crash down.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0)
+static func loom_crush() -> AbilityData:
+	return _make("Loom Crush", "Pillars of woven reality crash down on all who stand beneath.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, true, 0, 0.0)
 
-static func thread_of_oblivion() -> AbilityData:
-	return _make("Thread of Oblivion", "A single thread that unravels the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
+static func sever() -> AbilityData:
+	return _make("Sever", "A single clean cut through the threads that hold body together.", Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 3, false, 0, 0.0)
 
-static func unravel() -> AbilityData:
-	return _make("Unravel", "The Threadmaster pulls a single thread loose from reality. What it touches comes undone.", Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+static func thread_bind() -> AbilityData:
+	return _make("Thread Bind", "Threads tighten around the party, sapping the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
 
-static func dream_feed() -> AbilityData:
-	return _make("Dream Feed", "The Threadmaster feeds on the dream-energy of those who oppose them, sustaining the weave with stolen life.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.4)
+static func puppets_drain() -> AbilityData:
+	return _make("Puppet's Drain", "The construct feeds, sustaining its borrowed form with stolen vitality.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.3)
 
 # --- Cult Ritualist (boss additions) ---
 

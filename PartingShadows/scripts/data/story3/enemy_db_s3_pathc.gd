@@ -6,7 +6,6 @@ class_name EnemyDBS3PathC
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3_pathc.gd")
-const EABS3 := preload("res://scripts/data/story3/enemy_ability_db_s3.gd")
 const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 
@@ -185,13 +184,13 @@ static func create_ancient_threadmaster(n: String, lvl: int = 18) -> FighterData
 	var f := EH.base(n, "The Ancient Threadmaster", lvl)
 	f.health = EH.es(1652, 1864, 16, 24, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = EH.es(91, 105, 3, 5, lvl, 18)
+	f.physical_attack = EH.es(100, 115, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
-	f.magic_attack = EH.es(115, 132, 4, 6, lvl, 18)
+	f.magic_attack = EH.es(105, 120, 4, 6, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(38, 44, 3, 4, lvl, 18)
 	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 23
-	f.abilities = [EABS3.dream_shatter(), EABS3.loom_collapse(), EABS3.thread_of_oblivion(), EAB.reality_unravel(), EAB.ancient_hunger()]
+	f.abilities = [EAB.primordial_weave(), EAB.reality_tear(), EAB.ancient_lash(), EAB.forgotten_curse(), EAB.ageless_hunger()]
 	f.flavor_text = "The original weaver, ancient beyond reckoning, who first discovered how to shape reality through dreams. Their power predates the cult itself, and their dominion over the loom is absolute."
 	return f
 

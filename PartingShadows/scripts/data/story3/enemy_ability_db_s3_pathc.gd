@@ -106,11 +106,20 @@ static func iron_link() -> AbilityData:
 
 # --- The Ancient Threadmaster ---
 
-static func reality_unravel() -> AbilityData:
-	return _make("Reality Unravel", "The Ancient Threadmaster reaches into the fabric of existence and tears. The damage is not metaphorical.", Enums.StatType.MAGIC_ATTACK, 17, 0, true, 5, false, 0, 0.0)
+static func primordial_weave() -> AbilityData:
+	return _make("Primordial Weave", "Thread and dream, flesh and thought. The original weaver makes no distinction.", Enums.StatType.MIXED_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
-static func ancient_hunger() -> AbilityData:
-	return _make("Ancient Hunger", "The original weaver has been feeding on dream-energy since before the cult existed. The habit is too old to break.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.2)
+static func reality_tear() -> AbilityData:
+	return _make("Reality Tear", "The Ancient Threadmaster pulls reality apart at the seams.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, true, 0, 0.0)
+
+static func ancient_lash() -> AbilityData:
+	return _make("Ancient Lash", "A tendril of raw, pre-human thread strikes with the weight of aeons.", Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 3, false, 0, 0.0)
+
+static func forgotten_curse() -> AbilityData:
+	return _make("Forgotten Curse", "A hex older than language, weakening body and mind alike.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
+
+static func ageless_hunger() -> AbilityData:
+	return _make("Ageless Hunger", "It has been feeding on dream-energy since before the cult existed.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.2)
 
 # --- Dream Shackle ---
 

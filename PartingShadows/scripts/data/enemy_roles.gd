@@ -84,7 +84,7 @@ const _DATA: Dictionary = {
 	"Void Horror": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Fractured Shadow": { "s": [S.DEBUFFER, S.CRIT] },
 	"Shadow Remnant": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
-	"StrangerUndone": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
+	"StrangerUndone": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MIXED, "t": T.BOSS },
 
 	# ==========================================================================
 	# Story 2 - Act I
@@ -163,7 +163,7 @@ const _DATA: Dictionary = {
 	"Void Iris": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.HEALER, S.BUFFER, S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.UNDERLING },
 	"Thoughtform Knight": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.CRIT] },
 	"The Iris": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
-	"The Lidless Eye": { "r": [R.TANK, R.FIGHTER], "s": [S.DOT, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
+	"The Lidless Eye": { "r": [R.BURST], "s": [S.DOT, S.AOE, S.CRIT], "d": D.PHYSICAL, "t": T.BOSS },
 
 	# ==========================================================================
 	# Story 2 - Path B
@@ -250,7 +250,7 @@ const _DATA: Dictionary = {
 	"Cult Ritualist": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"High Weaver": { "s": [S.DEBUFFER, S.CRIT], "d": D.MAGICAL },
 	"Shadow Fragment": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.UNDERLING },
-	"The Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
+	"The Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.PHYSICAL, "t": T.BOSS },
 	"DreadTailor": { "s": [S.AOE, S.CRIT, S.EVASION] },
 	"NeedleWraith": { "s": [S.GLASS_CANNON, S.AOE, S.CRIT] },
 	"LoomCrusher": { "r": [R.TANK, R.FIGHTER], "s": [S.BUFFER] },
@@ -295,7 +295,7 @@ const _DATA: Dictionary = {
 	"Memory Eater": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Nightmare Sentinel": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT] },
 	"Anchor Chain": { "s": [S.DEBUFFER, S.CRIT], "d": D.MIXED },
-	"The Ancient Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
+	"The Ancient Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT], "d": D.MIXED, "t": T.BOSS },
 	"Dream Shackle": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.UNDERLING },
 	"Loom Heart": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.UNDERLING },
 }

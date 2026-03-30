@@ -236,12 +236,12 @@ static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "The Threadmaster", lvl)
 	f.health = EH.es(1695, 1915, 16, 25, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = EH.es(92, 107, 3, 5, lvl, 18)
+	f.physical_attack = EH.es(100, 115, 4, 6, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
-	f.magic_attack = EH.es(119, 135, 4, 6, lvl, 18)
+	f.magic_attack = EH.es(92, 107, 3, 5, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(37, 43, 3, 4, lvl, 18)
 	f.crit_chance = 26; f.crit_damage = 4; f.dodge_chance = 27
-	f.abilities = [EAB.dream_shatter(), EAB.loom_collapse(), EAB.thread_of_oblivion(), EAB.unravel(), EAB.dream_feed()]
+	f.abilities = [EAB.thread_lash(), EAB.loom_crush(), EAB.sever(), EAB.thread_bind(), EAB.puppets_drain()]
 	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."
 	return f

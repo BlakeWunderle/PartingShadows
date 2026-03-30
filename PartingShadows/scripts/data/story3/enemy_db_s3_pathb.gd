@@ -5,7 +5,6 @@ class_name EnemyDBS3PathB
 
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const EAB := preload("res://scripts/data/story3/enemy_ability_db_s3_pathb.gd")
-const EABS3 := preload("res://scripts/data/story3/enemy_ability_db_s3.gd")
 const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 
@@ -328,7 +327,7 @@ static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
 	f.speed = EH.es(39, 45, 3, 4, lvl, 18)
 	f.crit_chance = 19; f.crit_damage = 4; f.dodge_chance = 22
-	f.abilities = [EAB.inn_keepers_embrace(), EABS3.dream_shatter(), EABS3.thread_of_oblivion(), EABS3.unravel(), EABS3.dream_feed()]
+	f.abilities = [EAB.inn_keepers_embrace(), EAB.veil_of_lies(), EAB.shattered_trust(), EAB.charm_of_ages(), EAB.stolen_warmth()]
 	f.flavor_text = "Lira revealed as the true Threadmaster, her gentle demeanor shed to expose the master weaver beneath. She commands the loom with absolute authority, puppeting dreams and harvesting the sleeping minds of an entire town."
 	return f
 

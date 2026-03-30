@@ -180,6 +180,18 @@ static func fortifying_thread() -> AbilityData:
 static func inn_keepers_embrace() -> AbilityData:
 	return _make("Innkeeper's Embrace", "She offers comfort, then takes everything. Warm hands, cold intent.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, false, 0, 0.2)
 
+static func veil_of_lies() -> AbilityData:
+	return _make("Veil of Lies", "Centuries of deception coalesce into a single strike of pure malice.", Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+
+static func shattered_trust() -> AbilityData:
+	return _make("Shattered Trust", "Every kindness she ever showed was a weapon. Now the mask drops.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, true, 0, 0.0)
+
+static func charm_of_ages() -> AbilityData:
+	return _make("Charm of Ages", "Her voice drips with false warmth, sapping the will to fight.", Enums.StatType.ATTACK, 6, 2, true, 4, true, 0, 0.0)
+
+static func stolen_warmth() -> AbilityData:
+	return _make("Stolen Warmth", "She draws life as easily as she once poured tea. Old habits.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.3)
+
 # --- Tattered Deception (mixed glass cannon, magic defense shredder) ---
 
 static func mirrored_assault() -> AbilityData:
