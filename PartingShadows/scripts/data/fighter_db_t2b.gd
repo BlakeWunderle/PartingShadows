@@ -14,17 +14,17 @@ const PAB_B := preload("res://scripts/data/ability_db_player_b.gd")
 
 static func upgrade_to_warcrier(f: FighterData) -> void:
 	f.class_id = "Warcrier"; f.character_type = "Warcrier"
-	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 5; f.physical_defense += 3; f.magic_attack += 2; f.magic_defense += 4
-	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 16; f.max_health += 16; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 12; f.physical_defense += 6; f.magic_attack += 2; f.magic_defense += 7
+	f.speed += 4; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.battle_cry(), PAB.war_chant(), PAB.rally_cry()]
 	f.upgrade_items = []
 
 static func upgrade_to_minstrel(f: FighterData) -> void:
 	f.class_id = "Minstrel"; f.character_type = "Minstrel"
-	f.health += 3; f.max_health += 3; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 9; f.magic_defense += 5
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 11; f.max_health += 11; f.mana += 3; f.max_mana += 3
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 15; f.magic_defense += 8
+	f.speed += 6; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.ballad(), PAB.dissonance(), PAB.serenade()]
 	f.upgrade_items = []
 
@@ -55,17 +55,17 @@ static func _lu_minstrel(f: FighterData) -> void:
 
 static func upgrade_to_illusionist(f: FighterData) -> void:
 	f.class_id = "Illusionist"; f.character_type = "Illusionist"
-	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 7; f.magic_defense += 4
-	f.speed += 7; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 6
+	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 14; f.magic_defense += 7
+	f.speed += 9; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 6
 	f.abilities = [PAB.phantom_strike(), PAB.mirage(), PAB.bewilderment()]
 	f.upgrade_items = []
 
 static func upgrade_to_mime(f: FighterData) -> void:
 	f.class_id = "Mime"; f.character_type = "Mime"
-	f.health += 10; f.max_health += 10; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 12; f.magic_defense += 5
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
+	f.health += 16; f.max_health += 16; f.mana += 3; f.max_mana += 3
+	f.physical_attack += 6; f.physical_defense += 5; f.magic_attack += 16; f.magic_defense += 7
+	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 5
 	f.abilities = [PAB.invisible_wall(), PAB.anvil(), PAB.invisible_box()]
 	f.upgrade_items = []
 
@@ -96,17 +96,17 @@ static func _lu_mime(f: FighterData) -> void:
 
 static func upgrade_to_laureate(f: FighterData) -> void:
 	f.class_id = "Laureate"; f.character_type = "Laureate"
-	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 5
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 15; f.max_health += 15; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 13; f.magic_defense += 7
+	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.ovation(), PAB.recite(), PAB.magnum_opus()]
 	f.upgrade_items = []
 
 static func upgrade_to_elegist(f: FighterData) -> void:
 	f.class_id = "Elegist"; f.character_type = "Elegist"
-	f.health += 5; f.max_health += 5; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 5; f.magic_defense += 3
-	f.speed += 6; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 12; f.max_health += 12; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 13; f.magic_defense += 7
+	f.speed += 8; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.requiem(), PAB.lament(), PAB.dirge()]
 	f.upgrade_items = []
 
@@ -137,17 +137,17 @@ static func _lu_elegist(f: FighterData) -> void:
 
 static func upgrade_to_alchemist(f: FighterData) -> void:
 	f.class_id = "Alchemist"; f.character_type = "Alchemist"
-	f.health += 10; f.max_health += 10; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 3; f.physical_defense += 2; f.magic_attack += 12; f.magic_defense += 4
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 14; f.max_health += 14; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 3; f.physical_defense += 5; f.magic_attack += 15; f.magic_defense += 6
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.transmute(), PAB_B.corrosive_acid(), PAB_B.elixir()]
 	f.upgrade_items = []
 
 static func upgrade_to_bombardier(f: FighterData) -> void:
 	f.class_id = "Bombardier"; f.character_type = "Bombardier"
-	f.health += 12; f.max_health += 12; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 3; f.magic_attack += 14; f.magic_defense += 3
-	f.speed += 3; f.crit_chance += 7; f.crit_damage += 5; f.dodge_chance += 2
+	f.health += 14; f.max_health += 14; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 18; f.magic_defense += 5
+	f.speed += 4; f.crit_chance += 7; f.crit_damage += 5; f.dodge_chance += 2
 	f.abilities = [PAB_B.cluster_bomb(), PAB_B.explosion(), PAB_B.demolition_charge()]
 	f.upgrade_items = []
 
@@ -178,17 +178,17 @@ static func _lu_bombardier(f: FighterData) -> void:
 
 static func upgrade_to_chronomancer(f: FighterData) -> void:
 	f.class_id = "Chronomancer"; f.character_type = "Chronomancer"
-	f.health += 8; f.max_health += 8; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 10; f.magic_defense += 3
-	f.speed += 7; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 12; f.max_health += 12; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 14; f.magic_defense += 6
+	f.speed += 8; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.warp_speed(), PAB_B.time_bomb(), PAB_B.time_freeze()]
 	f.upgrade_items = []
 
 static func upgrade_to_astronomer(f: FighterData) -> void:
 	f.class_id = "Astronomer"; f.character_type = "Astronomer"
-	f.health += 3; f.max_health += 3; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 8; f.magic_defense += 3
-	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 9; f.max_health += 9; f.mana += 2; f.max_mana += 2
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 18; f.magic_defense += 7
+	f.speed += 6; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.starfall(), PAB_B.meteor_shower(), PAB_B.eclipse()]
 	f.upgrade_items = []
 
@@ -219,17 +219,17 @@ static func _lu_astronomer(f: FighterData) -> void:
 
 static func upgrade_to_automaton(f: FighterData) -> void:
 	f.class_id = "Automaton"; f.character_type = "Automaton"
-	f.health += 8; f.max_health += 8; f.mana += 1; f.max_mana += 1
-	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 8; f.magic_defense += 2
-	f.speed += 2; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
+	f.health += 16; f.max_health += 16; f.mana += 1; f.max_mana += 1
+	f.physical_attack += 2; f.physical_defense += 7; f.magic_attack += 12; f.magic_defense += 6
+	f.speed += 4; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 3
 	f.abilities = [PAB_B.servo_strike(), PAB_B.discharge(), PAB_B.self_repair()]
 	f.upgrade_items = []
 
 static func upgrade_to_technomancer(f: FighterData) -> void:
 	f.class_id = "Technomancer"; f.character_type = "Technomancer"
-	f.health += 5; f.max_health += 5; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 2; f.magic_attack += 2; f.magic_defense += 2
-	f.speed += 2; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
+	f.health += 15; f.max_health += 15; f.mana += 3; f.max_mana += 3
+	f.physical_attack += 9; f.physical_defense += 6; f.magic_attack += 10; f.magic_defense += 7
+	f.speed += 5; f.crit_chance += 3; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB_B.circuit_blast(), PAB_B.techno_drain(), PAB_B.emp_pulse()]
 	f.upgrade_items = []
 
