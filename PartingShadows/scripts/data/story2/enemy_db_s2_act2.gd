@@ -94,7 +94,7 @@ static func create_blighted_gull(n: String, lvl: int = 5) -> FighterData:
 	f.physical_defense = EH.es(9, 12, 0, 1, lvl, 5)
 	f.magic_attack = EH.es(20, 25, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(11, 14, 1, 2, lvl, 5)
-	f.speed = EH.es(31, 36, 2, 3, lvl, 5)
+	f.speed = EH.es(32, 37, 2, 3, lvl, 5)
 	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 23
 	f.abilities = [EAB.peck_frenzy(), EAB.dive_screech()]
 	f.flavor_text = "A seabird twisted by the dark influence bleeding from the lighthouse. Its feathers are matted with tar-like corruption."
@@ -143,7 +143,7 @@ static func create_blackwater_captain(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(35, 41, 2, 3, lvl, 8)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(23, 28, 1, 2, lvl, 8)
-	f.speed = EH.es(29, 36, 1, 3, lvl, 8)
+	f.speed = EH.es(30, 37, 1, 3, lvl, 8)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.boarding_axe(), EAB.captains_orders()]
 	f.flavor_text = "A ruthless pirate captain who commands the Blackwater fleet. Scars and sea salt have hardened both body and will."
@@ -158,7 +158,7 @@ static func create_corsair_hexer(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(15, 19, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(52, 60, 3, 5, lvl, 8)
 	f.magic_defense = EH.es(34, 40, 2, 3, lvl, 8)
-	f.speed = EH.es(30, 37, 2, 3, lvl, 8)
+	f.speed = EH.es(31, 38, 2, 3, lvl, 8)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 16
 	f.abilities = [EAB.brine_curse(), EAB.corrode_ward()]
 	f.flavor_text = "A sea-witch who sails with the corsair fleet, dealing in curses drawn from the deep. Saltwater itself bends to their hexes."
@@ -173,7 +173,7 @@ static func create_bilge_rat(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(14, 19, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 8)
 	f.magic_defense = EH.es(12, 17, 1, 2, lvl, 8)
-	f.speed = EH.es(28, 34, 2, 3, lvl, 8)
+	f.speed = EH.es(29, 35, 2, 3, lvl, 8)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EAB.filthy_shiv(), EAB.festering_wound()]
 	f.flavor_text = "A wiry scavenger who haunts the lower decks of wrecked ships. Their weapons are filthy and their cuts never heal clean."
@@ -188,7 +188,7 @@ static func create_abyssal_lurker(n: String, lvl: int = 9) -> FighterData:
 	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 9)
 	f.magic_attack = EH.es(57, 64, 3, 5, lvl, 9)
 	f.magic_defense = EH.es(28, 35, 2, 3, lvl, 9)
-	f.speed = EH.es(25, 32, 1, 3, lvl, 9)
+	f.speed = EH.es(26, 33, 1, 3, lvl, 9)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 7
 	f.abilities = [EAB.depth_pulse(), EAB.tidal_drain()]
 	f.flavor_text = "A deep-sea horror that surfaces near the coast when storms roll in. Its form is barely visible, a suggestion of tentacles and teeth in dark water."
@@ -203,7 +203,7 @@ static func create_stormwrack_raptor(n: String, lvl: int = 8) -> FighterData:
 	f.physical_defense = EH.es(20, 25, 1, 2, lvl, 8)
 	f.magic_attack = EH.es(36, 42, 2, 4, lvl, 8)
 	f.magic_defense = EH.es(20, 25, 1, 2, lvl, 8)
-	f.speed = EH.es(38, 44, 2, 4, lvl, 8)
+	f.speed = EH.es(39, 45, 2, 4, lvl, 8)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.lightning_dive(), EAB.static_screech()]
 	f.flavor_text = "A massive bird of prey that nests in storm clouds above the coast. Lightning crackles along its wingfeathers as it dives."
@@ -218,7 +218,7 @@ static func create_tidecaller_revenant(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(31, 37, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(73, 82, 4, 6, lvl, 10)
 	f.magic_defense = EH.es(43, 50, 3, 5, lvl, 10)
-	f.speed = EH.es(35, 41, 2, 3, lvl, 10)
+	f.speed = EH.es(36, 42, 2, 3, lvl, 10)
 	f.crit_chance = 16; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EAB.storm_surge(), EAB.drowning_grasp(), EAB.mist_veil()]
 	f.flavor_text = "The restless spirit of a drowned tidecaller, still commanding the waves in death. Storm and sea answer its hollow voice."
@@ -233,7 +233,7 @@ static func create_salt_phantom(n: String, lvl: int = 9) -> FighterData:
 	f.physical_defense = EH.es(18, 23, 1, 2, lvl, 9)
 	f.magic_attack = EH.es(60, 68, 3, 5, lvl, 9)
 	f.magic_defense = EH.es(32, 39, 2, 4, lvl, 9)
-	f.speed = EH.es(34, 40, 2, 3, lvl, 9)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 9)
 	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EAB.spectral_chill(), EAB.memory_fog()]
 	f.flavor_text = "A translucent specter formed from crystallized sea salt and lost grief. It drifts through fog, erasing the memories of those it touches."

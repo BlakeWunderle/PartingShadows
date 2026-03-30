@@ -21,7 +21,7 @@ static func create_royal_guard(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(33, 38, 3, 4, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 10)
-	f.speed = EH.es(36, 41, 2, 3, lvl, 10)
+	f.speed = EH.es(38, 43, 2, 3, lvl, 10)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 21
 	f.abilities = [EABL.bulwark_slam(), EABL.sword_strike(), EABL.defensive_formation()]
 	f.flavor_text = "Elite soldiers sworn to the crown. Their discipline and heavy armor make them formidable."
@@ -35,7 +35,7 @@ static func create_guard_sergeant(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(23, 30, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(7, 11, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(26, 31, 1, 2, lvl, 10)
-	f.speed = EH.es(37, 42, 2, 3, lvl, 10)
+	f.speed = EH.es(39, 44, 2, 3, lvl, 10)
 	f.crit_chance = 28; f.crit_damage = 4; f.dodge_chance = 18
 	f.abilities = [EABL.sword_strike(), EABL.battle_command(), EABL.decisive_blow()]
 	f.flavor_text = "A hardened officer who leads from the front, rallying guards with sharp commands."
@@ -49,7 +49,7 @@ static func create_guard_archer(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(17, 23, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(5, 9, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(24, 31, 1, 3, lvl, 10)
-	f.speed = EH.es(40, 45, 3, 4, lvl, 10)
+	f.speed = EH.es(42, 47, 3, 4, lvl, 10)
 	f.crit_chance = 32; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EABL.arrow_shot(), EABL.volley(), EABL.pin_down()]
 	f.flavor_text = "Sharpshooters stationed on the city walls. They pin targets down with precise volleys."
@@ -82,7 +82,7 @@ static func create_lich(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(25, 30, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(64, 71, 4, 6, lvl, 12)
 	f.magic_defense = EH.es(41, 49, 3, 5, lvl, 12)
-	f.speed = EH.es(40, 46, 2, 4, lvl, 12)
+	f.speed = EH.es(41, 47, 2, 4, lvl, 12)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 21
 	f.abilities = [EABL.death_bolt(), EABL.raise_dead(), EABL.soul_cage()]
 	f.flavor_text = "An undead sorcerer sustained by stolen souls. Death magic bends to its will."
@@ -96,7 +96,7 @@ static func create_ghast(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(18, 24, 1, 2, lvl, 12)
 	f.magic_defense = EH.es(26, 31, 1, 3, lvl, 12)
-	f.speed = EH.es(33, 40, 2, 3, lvl, 12)
+	f.speed = EH.es(34, 41, 2, 3, lvl, 12)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EABL.slam(), EABL.poison_cloud(), EAB.rend()]
 	f.flavor_text = "A bloated horror that reeks of decay. Its poisonous miasma chokes the air around it."
@@ -110,7 +110,7 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(33, 39, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(69, 79, 5, 7, lvl, 12)
 	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 12)
-	f.speed = EH.es(40, 46, 2, 4, lvl, 12)
+	f.speed = EH.es(41, 47, 2, 4, lvl, 12)
 	f.crit_chance = 30; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
 	f.flavor_text = "A fiend born from brimstone and fury. Its mere presence fills the air with dread."
@@ -124,7 +124,7 @@ static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(42, 48, 3, 5, lvl, 12)
 	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 12)
 	f.magic_defense = EH.es(37, 43, 2, 4, lvl, 12)
-	f.speed = EH.es(32, 38, 1, 3, lvl, 12)
+	f.speed = EH.es(33, 39, 1, 3, lvl, 12)
 	f.crit_chance = 23; f.crit_damage = 4; f.dodge_chance = 16
 	f.abilities = [EABL.vine_whip(), EABL.root_slam(), EABL.bark_shield()]
 	f.flavor_text = "Once a guardian of the ancient wood, now twisted by corruption into a weapon of ruin."
@@ -186,7 +186,7 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(38, 47, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(38, 47, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(38, 46, 2, 4, lvl, 14)
-	f.speed = EH.es(42, 49, 2, 4, lvl, 14)
+	f.speed = EH.es(45, 52, 2, 4, lvl, 14)
 	f.crit_chance = 31; f.crit_damage = 5; f.dodge_chance = 23
 	f.abilities = [EABL.dark_blade(), EABL.shadow_guard(), EAB.cleave()]
 	f.flavor_text = "A fallen champion clad in shadowed plate. Dark magic courses through every strike of his blade."
@@ -200,7 +200,7 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(26, 32, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(63, 71, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(36, 42, 2, 4, lvl, 14)
-	f.speed = EH.es(47, 53, 3, 5, lvl, 14)
+	f.speed = EH.es(50, 56, 3, 5, lvl, 14)
 	f.crit_chance = 29; f.crit_damage = 4; f.dodge_chance = 23
 	f.abilities = [EABL.shadow_bite(), EABL.howl_of_dread(), EABL.corruption_fang()]
 	f.flavor_text = "Spectral hounds that hunt in packs across the corrupted wastes. Their howls freeze the blood."
@@ -214,7 +214,7 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(26, 33, 1, 3, lvl, 13)
 	f.magic_attack = EH.es(71, 81, 5, 7, lvl, 13)
 	f.magic_defense = EH.es(39, 45, 2, 4, lvl, 13)
-	f.speed = EH.es(46, 53, 3, 5, lvl, 13)
+	f.speed = EH.es(48, 55, 3, 5, lvl, 13)
 	f.crit_chance = 37; f.crit_damage = 4; f.dodge_chance = 30
 	f.abilities = [EABL.sigil_flare(), EABL.glyph_burn(), EABL.ward_break()]
 	f.flavor_text = "Twisted creatures bound to arcane sigils. They detonate glyphs of searing light at will."
@@ -228,7 +228,7 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(36, 42, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(14, 20, 1, 2, lvl, 13)
 	f.magic_defense = EH.es(38, 44, 2, 3, lvl, 13)
-	f.speed = EH.es(43, 50, 3, 5, lvl, 13)
+	f.speed = EH.es(45, 52, 3, 5, lvl, 13)
 	f.crit_chance = 38; f.crit_damage = 4; f.dodge_chance = 27
 	f.abilities = [EABL.venomous_bite(), EABL.web(), EABL.poison_cloud()]
 	f.flavor_text = "Massive burrowing predators that ambush from below, ensnaring prey in venomous webs."

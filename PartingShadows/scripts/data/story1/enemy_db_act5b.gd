@@ -19,7 +19,7 @@ static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(50, 59, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 14)
-	f.speed = EH.es(37, 44, 1, 3, lvl, 14)
+	f.speed = EH.es(40, 47, 1, 3, lvl, 14)
 	f.crit_chance = 28; f.crit_damage = 5; f.dodge_chance = 10
 	f.abilities = [EAB.sigil_crush(), EAB.anchor_pulse(), EAB.sigil_ward()]
 	f.flavor_text = "A massive construct of carved stone and living sigils. It guards the ritual pillars with relentless force."
@@ -34,7 +34,7 @@ static func create_ritual_conduit(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(31, 38, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(75, 83, 4, 6, lvl, 14)
 	f.magic_defense = EH.es(48, 56, 3, 5, lvl, 14)
-	f.speed = EH.es(44, 51, 2, 4, lvl, 14)
+	f.speed = EH.es(47, 54, 2, 4, lvl, 14)
 	f.crit_chance = 19; f.crit_damage = 3; f.dodge_chance = 22
 	f.abilities = [EAB.conduit_beam(), EAB.mending_sigil(), EAB.ritual_shield()]
 	f.flavor_text = "A crystalline pillar that channels ritual energy. It mends damage to the anchors and shields its allies."
@@ -49,7 +49,7 @@ static func create_void_sentinel(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(38, 46, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(61, 68, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(40, 47, 2, 4, lvl, 14)
-	f.speed = EH.es(48, 55, 2, 4, lvl, 14)
+	f.speed = EH.es(51, 58, 2, 4, lvl, 14)
 	f.crit_chance = 29; f.crit_damage = 5; f.dodge_chance = 19
 	f.abilities = [EAB.void_slash(), EAB.nullfield()]
 	f.flavor_text = "A silent guardian of void energy. Its blade cuts through both armor and magic with equal ease."
@@ -68,7 +68,7 @@ static func create_void_horror(n: String, lvl: int = 15) -> FighterData:
 	f.physical_defense = EH.es(34, 41, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(83, 94, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(48, 56, 3, 5, lvl, 15)
-	f.speed = EH.es(40, 46, 2, 4, lvl, 15)
+	f.speed = EH.es(42, 48, 2, 4, lvl, 15)
 	f.crit_chance = 34; f.crit_damage = 4; f.dodge_chance = 26
 	f.abilities = [EAB.void_eruption(), EAB.terror_gaze()]
 	f.flavor_text = "A howling mass of void energy given terrible form. Its eruptions leave nothing but silence."
@@ -83,7 +83,7 @@ static func create_fractured_shadow(n: String, lvl: int = 15) -> FighterData:
 	f.physical_defense = EH.es(28, 35, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(14, 18, 0, 2, lvl, 15)
 	f.magic_defense = EH.es(31, 38, 2, 3, lvl, 15)
-	f.speed = EH.es(50, 58, 3, 5, lvl, 15)
+	f.speed = EH.es(52, 60, 3, 5, lvl, 15)
 	f.crit_chance = 34; f.crit_damage = 5; f.dodge_chance = 31
 	f.abilities = [EAB.shadow_rend(), EAB.flickerstrike(), EAB.speed_siphon()]
 	f.flavor_text = "A splintering fragment of the Stranger's essence. It moves faster than sight, striking from every angle."
@@ -98,7 +98,7 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(70, 79, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(44, 52, 2, 4, lvl, 15)
-	f.speed = EH.es(43, 50, 2, 4, lvl, 15)
+	f.speed = EH.es(45, 52, 2, 4, lvl, 15)
 	f.crit_chance = 33; f.crit_damage = 4; f.dodge_chance = 24
 	f.abilities = [EAB.fading_curse(), EAB.remnant_bolt(), EAB.dissolution()]
 	f.flavor_text = "The decaying afterimage of the Stranger's power. It weakens everything it touches, draining strength and resolve."
@@ -118,7 +118,7 @@ static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	f.physical_defense = EH.es(49, 57, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(94, 105, 3, 6, lvl, 15)
 	f.magic_defense = EH.es(51, 60, 2, 4, lvl, 15)
-	f.speed = EH.es(71, 80, 3, 5, lvl, 15)
+	f.speed = EH.es(73, 82, 3, 5, lvl, 15)
 	f.crit_chance = 33; f.crit_damage = 6; f.dodge_chance = 26
 	f.abilities = [EAB.shadow_remnant_strike(), EAB.void_drain(), EAB.crumbling_shield(), EAB.final_echo(), EAB.desperation()]
 	f.flavor_text = "The Stranger, stripped of ritual power, smaller and more human than ever before. Desperate, fast, and unpredictable."

@@ -34,7 +34,7 @@ static func create_shattered_frame(n: String, lvl: int = 10) -> FighterData:
 	f.physical_defense = EH.es(21, 28, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(74, 86, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
-	f.speed = EH.es(36, 42, 2, 3, lvl, 10)
+	f.speed = EH.es(38, 44, 2, 3, lvl, 10)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 7
 	f.abilities = [EABL.mirror_shard(), EABL.dissonant_echo()]
 	f.flavor_text = "An ornate mirror frame that has torn itself from the echo gallery's walls and learned to hunt. Its cracked glass shows scenes that never happened, or perhaps already did."
@@ -79,7 +79,7 @@ static func create_grief_shade(n: String, lvl: int = 11) -> FighterData:
 	f.physical_defense = EH.es(21, 28, 1, 2, lvl, 11)
 	f.magic_attack = EH.es(63, 74, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 11)
-	f.speed = EH.es(30, 36, 2, 3, lvl, 11)
+	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
 	f.crit_chance = 14; f.crit_damage = 2; f.dodge_chance = 11
 	f.abilities = [EABL.sorrows_touch(), EABL.wail_of_loss()]
 	f.flavor_text = "A weeping shadow born from concentrated sorrow. Its touch carries the weight of every loss ever felt in this place."
@@ -94,7 +94,7 @@ static func create_sorrow_shade(n: String, lvl: int = 11) -> FighterData:
 	f.physical_defense = EH.es(21, 28, 1, 2, lvl, 11)
 	f.magic_attack = EH.es(71, 82, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 11)
-	f.speed = EH.es(31, 37, 2, 3, lvl, 11)
+	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EABL.grief_surge(), EABL.shattered_trust()]
 	f.flavor_text = "A shadow crystallized from the sanctum's deepest sorrows. Unlike grief shades born elsewhere, this one carries the weight of shattered memories and broken trust."
@@ -109,7 +109,7 @@ static func create_hollow_watcher(n: String, lvl: int = 11) -> FighterData:
 	f.physical_defense = EH.es(35, 43, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(12, 16, 0, 2, lvl, 11)
 	f.magic_defense = EH.es(29, 36, 1, 3, lvl, 11)
-	f.speed = EH.es(28, 34, 1, 3, lvl, 11)
+	f.speed = EH.es(30, 36, 1, 3, lvl, 11)
 	f.crit_chance = 11; f.crit_damage = 2; f.dodge_chance = 9
 	f.abilities = [EABL.blind_strike(), EABL.sense_intent()]
 	f.flavor_text = "A faceless guardian that perceives the world through stolen senses. It anticipates its enemies' movements before they act."
@@ -128,7 +128,7 @@ static func create_mirror_self(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(34, 42, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(70, 81, 2, 4, lvl, 12)
 	f.magic_defense = EH.es(34, 42, 2, 3, lvl, 12)
-	f.speed = EH.es(32, 38, 2, 3, lvl, 12)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 12)
 	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 12
 	f.abilities = [EABL.mirrored_slash(), EABL.reflected_spell()]
 	f.flavor_text = "A perfect reflection of the one who gazes upon it. It fights with borrowed skill, turning your own strengths against you."
@@ -143,7 +143,7 @@ static func create_void_weaver(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(27, 34, 1, 3, lvl, 12)
 	f.magic_attack = EH.es(73, 87, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(35, 42, 2, 4, lvl, 12)
-	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
+	f.speed = EH.es(31, 37, 2, 3, lvl, 12)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 13
 	f.abilities = [EABL.void_bolt(), EABL.unravel()]
 	f.flavor_text = "A spindly entity that weaves threads of nothingness between its fingers. Where its threads fall, memory and meaning unravel."
@@ -177,7 +177,7 @@ static func create_the_warden(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(38, 44, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(104, 118, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(47, 53, 2, 4, lvl, 13)
-	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
+	f.speed = EH.es(32, 38, 2, 3, lvl, 13)
 	f.crit_chance = 22; f.crit_damage = 3; f.dodge_chance = 15
 	f.abilities = [EABL.sanctum_judgment(), EABL.barrier_of_ages(), EABL.decree_of_exile(), EABL.memory_verdict(), EABL.dispel_will()]
 	f.flavor_text = "The sanctum's supreme guardian, an entity of crystallized law and ancient purpose. It judges all who enter and finds them wanting."
@@ -192,7 +192,7 @@ static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(79, 91, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 13)
-	f.speed = EH.es(32, 38, 2, 3, lvl, 13)
+	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
 	f.crit_chance = 23; f.crit_damage = 3; f.dodge_chance = 16
 	f.abilities = [EABL.corrupted_mending(), EABL.eye_infused_strike(), EABL.drowned_light(), EABL.memory_fracture(), EABL.fractured_blessing()]
 	f.flavor_text = "Once a noble defender of the memory sanctum, now cracked and unstable. Her healing magic has been inverted by the Eye's corruption, burning instead of mending, taking instead of giving."
@@ -247,7 +247,7 @@ static func create_ward_construct(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(58, 67, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(46, 54, 2, 3, lvl, 12)
-	f.speed = EH.es(24, 31, 1, 2, lvl, 12)
+	f.speed = EH.es(25, 32, 1, 2, lvl, 12)
 	f.crit_chance = 15; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EABL.reinforced_strike(), EABL.warding_presence()]
 	f.flavor_text = "A massive stone construct bound by ancient wards. It was built to hold the threshold against any intrusion, and it has never failed."
@@ -262,7 +262,7 @@ static func create_null_phantom(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(29, 36, 1, 3, lvl, 12)
 	f.magic_attack = EH.es(86, 99, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 12)
-	f.speed = EH.es(33, 40, 2, 3, lvl, 12)
+	f.speed = EH.es(34, 41, 2, 3, lvl, 12)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 12
 	f.abilities = [EABL.null_lance(), EABL.nullification()]
 	f.flavor_text = "A phantom of pure negation that erases whatever it touches. Magic withers in its presence, and even thoughts lose coherence."
@@ -277,7 +277,7 @@ static func create_threshold_echo(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(36, 45, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(76, 88, 2, 4, lvl, 12)
 	f.magic_defense = EH.es(36, 45, 2, 3, lvl, 12)
-	f.speed = EH.es(34, 41, 2, 3, lvl, 12)
+	f.speed = EH.es(35, 42, 2, 3, lvl, 12)
 	f.crit_chance = 12; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EABL.liminal_strike(), EABL.threshold_bind()]
 	f.flavor_text = "A repeating impression left at the boundary between memory and void. It strikes with the force of a moment that refuses to be forgotten."

@@ -22,7 +22,7 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 12)
-	f.speed = EH.es(29, 35, 2, 3, lvl, 12)
+	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
 	f.crit_chance = 15; f.crit_damage = 2; f.dodge_chance = 14
 	f.abilities = [EAB.petrified_slam(), EAB.stagnant_chill()]
 	f.flavor_text = "A stone-like guardian that has stood watch in the cellar for so long it has calcified into the walls. It attacks with petrifying force and radiates an unnatural cold."
@@ -37,7 +37,7 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
-	f.speed = EH.es(37, 43, 2, 3, lvl, 12)
+	f.speed = EH.es(38, 44, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.tethered_lunge(), EAB.fraying_bite()]
 	f.flavor_text = "A lean creature bound by fraying threads to the cellar's hidden sanctum. It lunges at intruders with desperate speed, its bite unraveling both flesh and resolve."
@@ -57,7 +57,7 @@ static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(105, 120, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(44, 53, 2, 4, lvl, 13)
-	f.speed = EH.es(34, 40, 2, 3, lvl, 13)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 13)
 	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 14
 	f.abilities = [EAB.unstable_channeling(), EAB.siphon_faith()]
 	f.flavor_text = "A young cultist whose devotion outpaces their skill. Their channeling is unstable and volatile, but their faith in the Thread grants them power beyond their training."
@@ -72,7 +72,7 @@ static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	f.physical_defense = EH.es(52, 60, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
 	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 13)
-	f.speed = EH.es(28, 34, 2, 3, lvl, 13)
+	f.speed = EH.es(29, 35, 2, 3, lvl, 13)
 	f.crit_chance = 14; f.crit_damage = 3; f.dodge_chance = 9
 	f.abilities = [EAB.shielding_blow(), EAB.guardians_oath()]
 	f.flavor_text = "A seasoned warrior sworn to protect the Thread cult's sanctum. Bound by an oath woven into their very being, they fight with unwavering purpose and crushing strength."
