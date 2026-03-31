@@ -244,9 +244,9 @@ func _show_pause() -> void:
 	_save_vbox.visible = false
 	_settings_panel.visible = false
 
-	# In multiplayer: don't pause the tree (breaks networking), hide save, relabel quit
+	# In multiplayer: don't pause the tree (breaks networking), relabel quit
 	if NetManager.is_multiplayer_active:
-		_save_btn.visible = false
+		_save_btn.visible = NetManager.is_host
 		_open_mp_btn.visible = false
 		_title_btn.text = "Leave Session"
 		# Notify other players to also show pause overlay
