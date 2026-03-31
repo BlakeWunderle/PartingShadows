@@ -17,53 +17,53 @@ const EnemyDBS3PathC := preload("res://scripts/data/story3/enemy_db_s3_pathc.gd"
 
 static func get_story2_stages() -> Array:
 	return [
-		# --- Story 2: Echoes in the Dark (80% -> 55%, T1/T2 bumps) ---
+		# --- Story 2: Echoes in the Dark (85% -> 55%, -2pp/prog, breather at tier transitions) ---
 		# Prog 0: Base classes, no level ups
-		_s("S2_CaveAwakening", 0, "base", 0.80, 0, 2),
+		_s("S2_CaveAwakening", 0, "base", 0.85, 0, 2),
 		# Prog 1: Base classes, 1 level up (branch pair)
-		_s("S2_DeepCavern", 1, "base", 0.78, 1, 2),
-		_s("S2_FungalHollow", 1, "base", 0.78, 1, 2),
+		_s("S2_DeepCavern", 1, "base", 0.83, 1, 2),
+		_s("S2_FungalHollow", 1, "base", 0.83, 1, 2),
 		# Prog 2: Base classes, 2 level ups (branch pair)
-		_s("S2_TranquilPool", 2, "base", 0.75, 2, 2),
-		_s("S2_TorchChamber", 2, "base", 0.75, 2, 2),
-		# Prog 3: Tier 1, 4 level ups (T1 bump: 75% -> 79%)
-		_s("S2_CaveExit", 4, "tier1", 0.79, 3, 2),
+		_s("S2_TranquilPool", 2, "base", 0.81, 2, 2),
+		_s("S2_TorchChamber", 2, "base", 0.81, 2, 2),
+		# Prog 3: Tier 1 (breather — same as P2)
+		_s("S2_CaveExit", 4, "tier1", 0.81, 3, 2),
 		# --- Story 2 Act II: The Shore ---
-		# Prog 4: Tier 1, 5 level ups (first surface battle)
-		_s("S2_CoastalDescent", 5, "tier1", 0.76, 4, 2),
-		# Prog 5: Tier 1, 6 level ups (branch pair)
-		_s("S2_FishingVillage", 6, "tier1", 0.73, 5, 2),
-		_s("S2_SmugglersBluff", 6, "tier1", 0.73, 5, 2),
-		# Prog 6: Tier 2, 8 level ups (T2 bump: 73% -> 77%, branch pair)
+		# Prog 4: Tier 1, -2pp
+		_s("S2_CoastalDescent", 5, "tier1", 0.79, 4, 2),
+		# Prog 5: Tier 1, -2pp (branch pair)
+		_s("S2_FishingVillage", 6, "tier1", 0.77, 5, 2),
+		_s("S2_SmugglersBluff", 6, "tier1", 0.77, 5, 2),
+		# Prog 6: Tier 2 (breather — same as P5, branch pair)
 		_s("S2_WreckersCove", 8, "tier2", 0.77, 6, 2),
 		_s("S2_CoastalRuins", 8, "tier2", 0.77, 6, 2),
-		# Prog 7: Tier 2, 9 level ups (convergence)
+		# Prog 7: Tier 2, -2pp (convergence)
 		_s("S2_BlackwaterBay", 9, "tier2", 0.75, 7, 2),
-		# Prog 8: Tier 2, 10 level ups (Act II boss)
+		# Prog 8: Tier 2, -2pp (Act II boss)
 		_s("S2_LighthouseStorm", 10, "tier2", 0.73, 8, 2),
 		# --- Story 2 Act III: The Truth ---
-		# Prog 9: Tier 2, 11 level ups (beneath the lighthouse)
+		# Prog 9: Tier 2, -2pp
 		_s("S2_BeneathTheLighthouse", 11, "tier2", 0.71, 9, 2),
-		# Prog 10: Tier 2, 12 level ups (branch pair)
+		# Prog 10: Tier 2, -2pp (branch pair)
 		_s("S2_MemoryVault", 12, "tier2", 0.69, 10, 2),
 		_s("S2_EchoGallery", 12, "tier2", 0.69, 10, 2),
-		# Prog 11: Tier 2, 13 level ups (convergence + reveal)
+		# Prog 11: Tier 2, -2pp (convergence + reveal)
 		_s("S2_ShatteredSanctum", 13, "tier2", 0.67, 11, 2),
-		# Prog 12: Tier 2, 14 level ups (branch pair)
+		# Prog 12: Tier 2, -2pp (branch pair)
 		_s("S2_GuardiansThreshold", 14, "tier2", 0.65, 12, 2),
 		_s("S2_ForgottenArchive", 14, "tier2", 0.65, 12, 2),
-		# Prog 13: Tier 2, 15 level ups (Act III boss)
+		# Prog 13: Tier 2, -2pp (Act III boss)
 		_s("S2_TheReveal", 15, "tier2", 0.63, 13, 2),
 		# --- Story 2 Act IV: The Reckoning ---
-		# Prog 14: Tier 2, 16 level ups
+		# Prog 14: Tier 2, -2pp
 		_s("S2_DepthsOfRemembrance", 16, "tier2", 0.61, 14, 2),
-		# Prog 15: Tier 2, 17 level ups
+		# Prog 15: Tier 2, -2pp
 		_s("S2_MawOfTheEye", 17, "tier2", 0.59, 15, 2),
-		# Prog 16: Tier 2, 18 level ups (Phase 1 boss)
+		# Prog 16: Tier 2, -2pp (Phase 1 boss)
 		_s("S2_EyeAwakening", 18, "tier2", 0.57, 16, 2),
-		# Prog 17: Tier 2, 19 level ups (final boss)
+		# Prog 17: Tier 2, -2pp (final boss)
 		_s("S2_EyeOfOblivion", 19, "tier2", 0.55, 17, 2),
-		# --- Story 2 Path B: Save Sera (branches from ShatteredSanctum) ---
+		# --- Story 2 Path B: Save Sera (branches from ShatteredSanctum, same progs) ---
 		_s("S2_B_ArchiveAwakening", 15, "tier2", 0.63, 13, 2),
 		_s("S2_B_LighthouseCore", 16, "tier2", 0.61, 14, 2),
 		_s("S2_B_ResonanceChamber", 17, "tier2", 0.59, 15, 2),
@@ -74,72 +74,61 @@ static func get_story2_stages() -> Array:
 
 static func get_story3_stages() -> Array:
 	return [
-		# --- Story 3: The Woven Night (hardest story: 75% -> 50%) ---
+		# --- Story 3: The Woven Night (85% -> 55%, -2pp/prog, breather at tier transitions) ---
 		# Prog 0: Base classes, no level ups (first dream)
-		_s("S3_DreamMeadow", 0, "base", 0.75, 0, 3),
+		_s("S3_DreamMeadow", 0, "base", 0.85, 0, 3),
 		# Prog 1: Base classes, 1 level up (branch pair)
-		_s("S3_DreamMirrorHall", 1, "base", 0.73, 1, 3),
-		_s("S3_DreamFogGarden", 1, "base", 0.73, 1, 3),
-		# --- TownMorning: T0 -> T1 upgrade ---
-		# Prog 3: Tier 1, 3 level ups (second dream start)
-		_s("S3_DreamReturn", 3, "tier1", 0.70, 3, 3),
-		# Prog 4: Tier 1, 4 level ups (threads visible)
-		_s("S3_DreamThreads", 4, "tier1", 0.68, 4, 3),
-		# Prog 5: Tier 1, 5 level ups (branch pair)
-		_s("S3_DreamDrownedCorridor", 5, "tier1", 0.66, 5, 3),
-		_s("S3_DreamShatteredGallery", 5, "tier1", 0.66, 5, 3),
-		# Prog 6: Tier 1, 6 level ups (shadow chase convergence)
-		_s("S3_DreamShadowChase", 6, "tier1", 0.64, 6, 3),
-		# Prog 7: Tier 1, 7 level ups (branch pair)
-		_s("S3_DreamLabyrinth", 7, "tier1", 0.62, 7, 3),
-		_s("S3_DreamClockTower", 7, "tier1", 0.62, 7, 3),
-		# Prog 8: Tier 1, 8 level ups (Act II boss)
-		_s("S3_DreamNightmare", 8, "tier1", 0.60, 8, 3),
+		_s("S3_DreamMirrorHall", 1, "base", 0.83, 1, 3),
+		_s("S3_DreamFogGarden", 1, "base", 0.83, 1, 3),
+		# --- TownMorning: T0 -> T1 upgrade (implicit P2 drop to 81%, then breather) ---
+		# Prog 3: Tier 1 (breather — same as implicit P2 = 81%)
+		_s("S3_DreamReturn", 3, "tier1", 0.81, 3, 3),
+		# Prog 4: Tier 1, -2pp
+		_s("S3_DreamThreads", 4, "tier1", 0.79, 4, 3),
+		# Prog 5: Tier 1, -2pp (branch pair)
+		_s("S3_DreamDrownedCorridor", 5, "tier1", 0.77, 5, 3),
+		_s("S3_DreamShatteredGallery", 5, "tier1", 0.77, 5, 3),
+		# Prog 6: Tier 1, -2pp (shadow chase convergence)
+		_s("S3_DreamShadowChase", 6, "tier1", 0.75, 6, 3),
+		# Prog 7: Tier 1, -2pp (branch pair)
+		_s("S3_DreamLabyrinth", 7, "tier1", 0.73, 7, 3),
+		_s("S3_DreamClockTower", 7, "tier1", 0.73, 7, 3),
+		# Prog 8: Tier 1, -2pp (Act II boss)
+		_s("S3_DreamNightmare", 8, "tier1", 0.71, 8, 3),
 		# --- TownInvestigation: T1 -> T2 upgrade ---
-		# Prog 9: Tier 2, 10 level ups (waking market fight)
-		_s("S3_MarketConfrontation", 10, "tier2", 0.58, 9, 3),
-		# Prog 10: Tier 2, 11 level ups (cellar discovery)
-		_s("S3_CellarDiscovery", 11, "tier2", 0.56, 10, 3),
+		# Prog 9: Tier 2 (breather — same as P8 = 71%)
+		_s("S3_MarketConfrontation", 10, "tier2", 0.71, 9, 3),
+		# Prog 10: Tier 2, -2pp (cellar discovery)
+		_s("S3_CellarDiscovery", 11, "tier2", 0.69, 10, 3),
 		# --- TownRealization: Lira reveal, rest only ---
-		# Prog 11: Tier 2, 12 level ups (lucid dream)
-		_s("S3_LucidDream", 12, "tier2", 0.54, 11, 3),
-		# Prog 12: Tier 2, 13 level ups (branch pair)
-		_s("S3_DreamTemple", 13, "tier2", 0.52, 12, 3),
-		_s("S3_DreamVoid", 13, "tier2", 0.52, 12, 3),
-		# Prog 13: Tier 2, 14 level ups (Act III boss)
-		_s("S3_DreamSanctum", 14, "tier2", 0.50, 13, 3),
-		# Prog 14: Tier 2, 15 level ups (cult investigation)
-		_s("S3_CultUnderbelly", 15, "tier2", 0.48, 14, 3),
-		# Prog 15: Tier 2, 16 level ups
-		_s("S3_CultCatacombs", 16, "tier2", 0.46, 15, 3),
-		# Prog 16: Tier 2, 17 level ups
-		_s("S3_CultRitualChamber", 17, "tier2", 0.44, 16, 3),
-		# Prog 17: Tier 2, 18 level ups (final boss)
-		_s("S3_DreamNexus", 18, "tier2", 0.42, 17, 3),
-		# --- Story 3 Path B: Suspicion route (branches at prog 11) ---
-		# Prog 11: Tier 2, 12 level ups (inn cellar search)
-		_s("S3_B_InnSearch", 12, "tier2", 0.54, 11, 3),
-		# Prog 12: Tier 2, 13 level ups (cult confrontation)
-		_s("S3_B_CultConfrontation", 13, "tier2", 0.52, 12, 3),
-		# Prog 13: Tier 2, 14 level ups (tunnel breach)
-		_s("S3_B_TunnelBreach", 14, "tier2", 0.50, 13, 3),
-		# Prog 14: Tier 2, 15 level ups (Thorne's ward)
-		_s("S3_B_ThornesWard", 15, "tier2", 0.48, 14, 3),
-		# Prog 15: Tier 2, 16 level ups (physical loom)
-		_s("S3_B_LoomHeart", 16, "tier2", 0.46, 15, 3),
-		# Prog 16: Tier 2, 17 level ups (dream cathedral)
-		_s("S3_B_DreamInvasion", 17, "tier2", 0.44, 16, 3),
-		# Prog 17: Tier 2, 18 level ups (Path B final boss - Lira)
-		_s("S3_B_DreamNexus", 18, "tier2", 0.42, 17, 3),
+		# Prog 11: Tier 2, -2pp (lucid dream)
+		_s("S3_LucidDream", 12, "tier2", 0.67, 11, 3),
+		# Prog 12: Tier 2, -2pp (branch pair)
+		_s("S3_DreamTemple", 13, "tier2", 0.65, 12, 3),
+		_s("S3_DreamVoid", 13, "tier2", 0.65, 12, 3),
+		# Prog 13: Tier 2, -2pp (Act III boss)
+		_s("S3_DreamSanctum", 14, "tier2", 0.63, 13, 3),
+		# Prog 14: Tier 2, -2pp (cult investigation)
+		_s("S3_CultUnderbelly", 15, "tier2", 0.61, 14, 3),
+		# Prog 15: Tier 2, -2pp
+		_s("S3_CultCatacombs", 16, "tier2", 0.59, 15, 3),
+		# Prog 16: Tier 2, -2pp
+		_s("S3_CultRitualChamber", 17, "tier2", 0.57, 16, 3),
+		# Prog 17: Tier 2, -2pp (final boss)
+		_s("S3_DreamNexus", 18, "tier2", 0.55, 17, 3),
+		# --- Story 3 Path B: Suspicion route (branches at prog 11, same progs) ---
+		_s("S3_B_InnSearch", 12, "tier2", 0.67, 11, 3),
+		_s("S3_B_CultConfrontation", 13, "tier2", 0.65, 12, 3),
+		_s("S3_B_TunnelBreach", 14, "tier2", 0.63, 13, 3),
+		_s("S3_B_ThornesWard", 15, "tier2", 0.61, 14, 3),
+		_s("S3_B_LoomHeart", 16, "tier2", 0.59, 15, 3),
+		_s("S3_B_DreamInvasion", 17, "tier2", 0.57, 16, 3),
+		_s("S3_B_DreamNexus", 18, "tier2", 0.55, 17, 3),
 		# --- Story 3 Path C: Lira's confession route (branches at prog 14) ---
-		# Prog 14: Tier 2, 15 level ups (deep dream descent)
-		_s("S3_C_DreamDescent", 15, "tier2", 0.48, 14, 3),
-		# Prog 15: Tier 2, 16 level ups (cult interception)
-		_s("S3_C_CultInterception", 16, "tier2", 0.46, 15, 3),
-		# Prog 16: Tier 2, 17 level ups (Threadmaster lair)
-		_s("S3_C_ThreadmasterLair", 17, "tier2", 0.44, 16, 3),
-		# Prog 17: Tier 2, 18 level ups (Path C final boss - Ancient Threadmaster)
-		_s("S3_C_DreamNexus", 18, "tier2", 0.42, 17, 3),
+		_s("S3_C_DreamDescent", 15, "tier2", 0.61, 14, 3),
+		_s("S3_C_CultInterception", 16, "tier2", 0.59, 15, 3),
+		_s("S3_C_ThreadmasterLair", 17, "tier2", 0.57, 16, 3),
+		_s("S3_C_DreamNexus", 18, "tier2", 0.55, 17, 3),
 	]
 
 

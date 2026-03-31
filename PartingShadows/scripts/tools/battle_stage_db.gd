@@ -25,44 +25,47 @@ static func get_story_stages(story: int) -> Array:
 
 static func _get_story1_stages() -> Array:
 	return [
-		# Prog 0: Base classes, no level ups (targets adjusted for 6th T0 class Wanderer)
+		# Gradient: 85% start, -2pp/prog base+T1, -3pp/prog T2, breather at tier transitions
+		# Prog 0: Base classes, no level ups
 		_s("CityStreetBattle", 0, "base", 0.85, 0),
 		# Prog 1: Base classes, 1 level up
 		_s("WolfForestBattle", 1, "base", 0.83, 1),
 		# Prog 2: Base classes, 2 level ups
-		_s("WaypointDefenseBattle", 2, "base", 0.78, 2),
-		# Prog 3: Tier 1, 4 total level ups
-		_s("HighlandBattle", 4, "tier1", 0.83, 3),
-		_s("DeepForestBattle", 4, "tier1", 0.83, 3),
-		_s("ShoreBattle", 4, "tier1", 0.83, 3),
-		# Prog 4: Tier 1, 5 total level ups
-		_s("MountainPassBattle", 5, "tier1", 0.81, 4),
-		_s("CaveBattle", 5, "tier1", 0.81, 4),
-		_s("BeachBattle", 5, "tier1", 0.81, 4),
-		# Prog 5: Tier 1, 6 total level ups
-		_s("CircusBattle", 6, "tier1", 0.79, 5),
-		_s("LabBattle", 6, "tier1", 0.79, 5),
-		_s("ArmyBattle", 6, "tier1", 0.79, 5),
-		_s("CemeteryBattle", 6, "tier1", 0.79, 5),
-		# Prog 6: Tier 1, 7 total level ups
-		_s("OutpostDefenseBattle", 7, "tier1", 0.77, 6),
-		# Prog 8: Tier 2, 10 total level ups
-		_s("ReturnToCityStreetBattle", 10, "tier2", 0.80, 8),
-		# Prog 9: Tier 2, 11 total level ups
-		_s("StrangerTowerBattle", 11, "tier2", 0.78, 9),
-		# Prog 10: Tier 2, 12 total level ups
-		_s("CorruptedCityBattle", 12, "tier2", 0.75, 10),
-		_s("CorruptedWildsBattle", 12, "tier2", 0.75, 10),
-		# Prog 11: Tier 2, 13 total level ups (underground pursuit)
-		_s("DepthsBattle", 13, "tier2", 0.72, 11),
-		# Prog 12: Tier 2, 14 total level ups (last guardian)
-		_s("GateBattle", 14, "tier2", 0.69, 12),
-		# Prog 13: Tier 2, 15 total level ups (final boss)
-		_s("StrangerFinalBattle", 15, "tier2", 0.65, 13),
-		# Path B: Sever the Ritual (branches from GateBattle)
-		_s("RitualAnchorBattle", 14, "tier2", 0.69, 12),
-		_s("SanctumCollapseBattle", 15, "tier2", 0.67, 13),
-		_s("StrangerUndoneBattle", 15, "tier2", 0.65, 13),
+		_s("WaypointDefenseBattle", 2, "base", 0.81, 2),
+		# Prog 3: Tier 1 (breather — same as P2)
+		_s("HighlandBattle", 4, "tier1", 0.81, 3),
+		_s("DeepForestBattle", 4, "tier1", 0.81, 3),
+		_s("ShoreBattle", 4, "tier1", 0.81, 3),
+		# Prog 4: Tier 1, -2pp
+		_s("MountainPassBattle", 5, "tier1", 0.79, 4),
+		_s("CaveBattle", 5, "tier1", 0.79, 4),
+		_s("BeachBattle", 5, "tier1", 0.79, 4),
+		# Prog 5: Tier 1, -2pp
+		_s("CircusBattle", 6, "tier1", 0.77, 5),
+		_s("LabBattle", 6, "tier1", 0.77, 5),
+		_s("ArmyBattle", 6, "tier1", 0.77, 5),
+		_s("CemeteryBattle", 6, "tier1", 0.77, 5),
+		# Prog 6: Tier 1, -2pp
+		_s("OutpostDefenseBattle", 7, "tier1", 0.75, 6),
+		# Prog 7: Tier 1, -2pp
+		# (MirrorBattle at prog 7 = 73% — not in sim DB yet)
+		# Prog 8: Tier 2 (breather — same as P7 = 73%)
+		_s("ReturnToCityStreetBattle", 10, "tier2", 0.73, 8),
+		# Prog 9: Tier 2, -3pp
+		_s("StrangerTowerBattle", 11, "tier2", 0.70, 9),
+		# Prog 10: Tier 2, -3pp
+		_s("CorruptedCityBattle", 12, "tier2", 0.67, 10),
+		_s("CorruptedWildsBattle", 12, "tier2", 0.67, 10),
+		# Prog 11: Tier 2, -3pp
+		_s("DepthsBattle", 13, "tier2", 0.64, 11),
+		# Prog 12: Tier 2, -3pp
+		_s("GateBattle", 14, "tier2", 0.61, 12),
+		# Prog 13: Tier 2, -3pp (final boss)
+		_s("StrangerFinalBattle", 15, "tier2", 0.58, 13),
+		# Path B: Sever the Ritual (branches from GateBattle, same progs)
+		_s("RitualAnchorBattle", 14, "tier2", 0.61, 12),
+		_s("SanctumCollapseBattle", 15, "tier2", 0.58, 13),
+		_s("StrangerUndoneBattle", 15, "tier2", 0.58, 13),
 	]
 
 

@@ -47,7 +47,7 @@ static func create_mage(fighter_name: String) -> FighterData:
 	f.is_user_controlled = true
 	f.level = 1
 	f.health = randi_range(40, 46); f.max_health = f.health
-	f.mana = randi_range(6, 8); f.max_mana = f.mana
+	f.mana = randi_range(8, 10); f.max_mana = f.mana
 	f.physical_attack = randi_range(9, 12)
 	f.physical_defense = randi_range(7, 10)
 	f.magic_attack = randi_range(15, 19)

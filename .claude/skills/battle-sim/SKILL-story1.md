@@ -76,7 +76,7 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 | Battle | Prog | Enemies | Format |
 |--------|------|---------|--------|
 | CityStreetBattle | 0 | Thug, Ruffian, Pickpocket | 3v3 |
-| WolfForestBattle | 1 | Wolf, Boar | 3v2 |
+| WolfForestBattle | 1 | Wolf, Boar, Thornviper | 3v3 |
 | WaypointDefenseBattle | 2 | Bandit, Goblin, Hound | 3v3 |
 | HighlandBattle | 3 | 2x Raider, Orc | 3v3 |
 | DeepForestBattle | 3 | Witch, Wisp, Sprite | 3v3 |
