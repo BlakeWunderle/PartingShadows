@@ -68,9 +68,9 @@ static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	f.health = EH.es(698, 799, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(125, 141, 3, 5, lvl, 13)
-	f.physical_defense = EH.es(52, 60, 2, 4, lvl, 13)
+	f.physical_defense = EH.es(58, 66, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
-	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 13)
+	f.magic_defense = EH.es(36, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(29, 35, 2, 3, lvl, 13)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.shielding_blow(), EAB.guardians_oath()]
@@ -118,9 +118,9 @@ static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(502, 578, 5, 8, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 14)
+	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(115, 129, 3, 5, lvl, 14)
-	f.magic_defense = EH.es(44, 53, 2, 4, lvl, 14)
+	f.magic_defense = EH.es(49, 58, 2, 4, lvl, 14)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.burning_devotion(), EAB.martyrs_gift()]
@@ -153,9 +153,9 @@ static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(686, 785, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(129, 146, 3, 5, lvl, 14)
-	f.physical_defense = EH.es(56, 64, 2, 4, lvl, 14)
+	f.physical_defense = EH.es(63, 71, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
-	f.magic_defense = EH.es(46, 56, 2, 3, lvl, 14)
+	f.magic_defense = EH.es(39, 49, 2, 3, lvl, 14)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.champions_cleave(), EAB.loom_aegis()]
@@ -168,9 +168,9 @@ static func create_warding_shadow(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(508, 584, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
-	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 14)
+	f.physical_defense = EH.es(31, 38, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(121, 135, 3, 5, lvl, 14)
-	f.magic_defense = EH.es(44, 54, 2, 4, lvl, 14)
+	f.magic_defense = EH.es(49, 59, 2, 4, lvl, 14)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 20
 	f.abilities = [EAB.flickering_grasp(), EAB.shadow_veil()]
@@ -203,9 +203,9 @@ static func create_astral_weaver(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(468, 539, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(20, 24, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
-	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 15)
+	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(119, 134, 3, 5, lvl, 15)
-	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
+	f.magic_defense = EH.es(50, 58, 2, 4, lvl, 15)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.astral_barrage(), EAB.cosmic_unraveling()]
@@ -269,9 +269,9 @@ static func create_dream_binder(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(605, 696, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
-	f.physical_defense = EH.es(40, 47, 2, 3, lvl, 16)
+	f.physical_defense = EH.es(35, 42, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(142, 160, 3, 5, lvl, 16)
-	f.magic_defense = EH.es(50, 58, 2, 4, lvl, 16)
+	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 16)
 	f.speed = EH.es(43, 49, 2, 3, lvl, 16)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20
 	f.abilities = [EAB.binding_chains(), EAB.dreamlock()]
@@ -352,9 +352,9 @@ static func create_dream_bastion(n: String, lvl: int = 18) -> FighterData:
 	f.health = EH.es(676, 777, 6, 9, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(150, 169, 3, 5, lvl, 18)
-	f.physical_defense = EH.es(57, 65, 2, 4, lvl, 18)
+	f.physical_defense = EH.es(65, 73, 2, 4, lvl, 18)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 18)
-	f.magic_defense = EH.es(48, 57, 2, 4, lvl, 18)
+	f.magic_defense = EH.es(40, 49, 2, 4, lvl, 18)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 18)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.bastion_slam(), EAB.nexus_shield()]

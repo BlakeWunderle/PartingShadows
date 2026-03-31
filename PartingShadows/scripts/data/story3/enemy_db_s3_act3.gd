@@ -21,9 +21,9 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(444, 511, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 12)
+	f.physical_defense = EH.es(25, 33, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(106, 117, 3, 5, lvl, 12)
-	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 12)
+	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.mind_spike(), EAB.phase_shift()]
@@ -69,9 +69,9 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(348, 401, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 12)
+	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 12)
 	f.magic_attack = EH.es(98, 109, 3, 5, lvl, 12)
-	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
+	f.magic_defense = EH.es(38, 45, 2, 3, lvl, 12)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.dark_thread(), EAB.unravel_mind()]
@@ -119,9 +119,9 @@ static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 	f.health = EH.es(487, 560, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
-	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 13)
+	f.physical_defense = EH.es(29, 37, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(111, 124, 3, 5, lvl, 13)
-	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 13)
+	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 13)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 13)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.void_thread(), EAB.nullify()]
@@ -175,9 +175,9 @@ static func create_sanctum_shade(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(400, 460, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
-	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 12)
+	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 12)
 	f.magic_attack = EH.es(111, 122, 3, 5, lvl, 12)
-	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 12)
+	f.magic_defense = EH.es(38, 45, 2, 3, lvl, 12)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 12)
 	f.crit_chance = 25; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.loom_blast(), EAB.nullify()]

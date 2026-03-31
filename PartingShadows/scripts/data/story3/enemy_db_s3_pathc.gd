@@ -19,9 +19,9 @@ static func create_abyssal_dreamer(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(436, 504, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
-	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 15)
+	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(107, 120, 3, 5, lvl, 15)
-	f.magic_defense = EH.es(41, 48, 2, 4, lvl, 15)
+	f.magic_defense = EH.es(46, 53, 2, 4, lvl, 15)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 15)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.void_pulse(), EAB.deep_slumber()]
@@ -84,9 +84,9 @@ static func create_astral_enforcer(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(608, 695, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(126, 143, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 16)
+	f.physical_defense = EH.es(60, 68, 2, 4, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
+	f.magic_defense = EH.es(37, 46, 2, 3, lvl, 16)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 16)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.dream_blade(), EAB.astral_brace()]
@@ -135,9 +135,9 @@ static func create_memory_eater(n: String, lvl: int = 17) -> FighterData:
 	f.health = EH.es(570, 656, 5, 8, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(20, 24, 1, 2, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
-	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 17)
+	f.physical_defense = EH.es(37, 45, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(135, 151, 3, 6, lvl, 17)
-	f.magic_defense = EH.es(53, 61, 2, 4, lvl, 17)
+	f.magic_defense = EH.es(58, 66, 2, 4, lvl, 17)
 	f.speed = EH.es(40, 46, 2, 3, lvl, 17)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.devour_memory(), EAB.amnesia_fog()]
@@ -200,9 +200,9 @@ static func create_dream_shackle(n: String, lvl: int = 18) -> FighterData:
 	f.health = EH.es(526, 604, 6, 9, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
-	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 18)
+	f.physical_defense = EH.es(32, 40, 2, 3, lvl, 18)
 	f.magic_attack = EH.es(120, 135, 3, 6, lvl, 18)
-	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
+	f.magic_defense = EH.es(50, 59, 2, 4, lvl, 18)
 	f.speed = EH.es(41, 47, 3, 4, lvl, 18)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 25
 	f.abilities = [EAB.binding_lash(), EAB.reclaim()]

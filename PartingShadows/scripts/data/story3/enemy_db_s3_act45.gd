@@ -70,9 +70,9 @@ static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(649, 742, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(136, 152, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(55, 64, 2, 4, lvl, 16)
+	f.physical_defense = EH.es(61, 70, 2, 4, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
+	f.magic_defense = EH.es(38, 47, 2, 3, lvl, 16)
 	f.speed = EH.es(28, 34, 1, 2, lvl, 16)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
@@ -102,9 +102,9 @@ static func create_ritual_guardian(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(660, 754, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(130, 146, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(55, 64, 2, 4, lvl, 16)
+	f.physical_defense = EH.es(61, 70, 2, 4, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 16)
+	f.magic_defense = EH.es(38, 47, 2, 3, lvl, 16)
 	f.speed = EH.es(26, 32, 1, 2, lvl, 16)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.ritual_chant(), EAB.threaded_blade()]
@@ -155,9 +155,9 @@ static func create_dread_tailor(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(575, 662, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(115, 130, 3, 5, lvl, 15)
-	f.physical_defense = EH.es(32, 40, 1, 3, lvl, 15)
+	f.physical_defense = EH.es(31, 39, 1, 3, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
-	f.magic_defense = EH.es(50, 58, 2, 3, lvl, 15)
+	f.magic_defense = EH.es(51, 59, 2, 3, lvl, 15)
 	f.speed = EH.es(39, 45, 2, 3, lvl, 15)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.shear(), EAB.snip_away()]
@@ -172,9 +172,9 @@ static func create_needle_wraith(n: String, lvl: int = 16) -> FighterData:
 	f.health = EH.es(547, 631, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(132, 149, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 16)
+	f.physical_defense = EH.es(37, 45, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(58, 68, 2, 4, lvl, 16)
+	f.magic_defense = EH.es(59, 69, 2, 4, lvl, 16)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 16)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.pin_barrage(), EAB.puncture()]
@@ -189,9 +189,9 @@ static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 	f.health = EH.es(784, 903, 7, 10, lvl, 17); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(142, 161, 4, 6, lvl, 17)
-	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 17)
+	f.physical_defense = EH.es(47, 55, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 17)
-	f.magic_defense = EH.es(72, 83, 3, 5, lvl, 17)
+	f.magic_defense = EH.es(75, 86, 3, 5, lvl, 17)
 	f.speed = EH.es(23, 29, 1, 2, lvl, 17)
 	f.crit_chance = 10; f.crit_damage = 4; f.dodge_chance = 10
 	f.abilities = [EAB.thread_crush(), EAB.weave_brace()]
@@ -221,9 +221,9 @@ static func create_shadow_fragment(n: String, lvl: int = 18) -> FighterData:
 	f.health = EH.es(468, 539, 5, 8, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
-	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 18)
+	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 18)
 	f.magic_attack = EH.es(123, 138, 3, 6, lvl, 18)
-	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
+	f.magic_defense = EH.es(51, 60, 2, 4, lvl, 18)
 	f.speed = EH.es(41, 47, 3, 4, lvl, 18)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 30
 	f.abilities = [EAB.shadow_lash(), EAB.consume_light()]

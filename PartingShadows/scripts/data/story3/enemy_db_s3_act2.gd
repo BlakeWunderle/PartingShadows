@@ -66,9 +66,9 @@ static func create_drowned_reverie(n: String, lvl: int = 6) -> FighterData:
 	f.health = EH.es(190, 221, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(9, 11, 1, 2, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = EH.es(11, 14, 0, 2, lvl, 6)
-	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 6)
+	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(28, 32, 1, 3, lvl, 6)
-	f.magic_defense = EH.es(15, 18, 1, 2, lvl, 6)
+	f.magic_defense = EH.es(17, 20, 1, 2, lvl, 6)
 	f.speed = EH.es(27, 32, 1, 2, lvl, 6)
 	f.crit_chance = 14; f.crit_damage = 1; f.dodge_chance = 12
 	f.abilities = [EAB.memory_surge(), EAB.deep_pulse()]
@@ -81,9 +81,9 @@ static func create_riptide_beast(n: String, lvl: int = 6) -> FighterData:
 	f.health = EH.es(193, 224, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 1, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = EH.es(29, 33, 1, 3, lvl, 6)
-	f.physical_defense = EH.es(14, 17, 1, 2, lvl, 6)
+	f.physical_defense = EH.es(16, 19, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 6)
-	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
+	f.magic_defense = EH.es(10, 13, 1, 2, lvl, 6)
 	f.speed = EH.es(33, 38, 1, 3, lvl, 6)
 	f.crit_chance = 18; f.crit_damage = 2; f.dodge_chance = 13
 	f.abilities = [EAB.riptide_slash(), EAB.swift_current()]
@@ -115,9 +115,9 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	f.health = EH.es(265, 304, 4, 7, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = EH.es(29, 33, 1, 3, lvl, 6)
-	f.physical_defense = EH.es(18, 22, 1, 3, lvl, 6)
+	f.physical_defense = EH.es(22, 26, 1, 3, lvl, 6)
 	f.magic_attack = EH.es(9, 12, 0, 1, lvl, 6)
-	f.magic_defense = EH.es(17, 21, 1, 2, lvl, 6)
+	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 6)
 	f.speed = EH.es(23, 28, 1, 2, lvl, 6)
 	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 15
 	f.abilities = [EAB.dream_crush(), EAB.fragment_surge()]
@@ -130,9 +130,9 @@ static func create_portrait_wight(n: String, lvl: int = 6) -> FighterData:
 	f.health = EH.es(230, 265, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 13, 0, 1, lvl, 6)
-	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 6)
+	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(23, 27, 1, 3, lvl, 6)
-	f.magic_defense = EH.es(18, 22, 1, 3, lvl, 6)
+	f.magic_defense = EH.es(20, 24, 1, 3, lvl, 6)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 6)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.gilded_veil(), EAB.faded_gaze()]
@@ -214,9 +214,9 @@ static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 	f.health = EH.es(438, 504, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(78, 90, 2, 4, lvl, 10)
-	f.physical_defense = EH.es(36, 43, 2, 3, lvl, 10)
+	f.physical_defense = EH.es(41, 48, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 10)
-	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 10)
+	f.magic_defense = EH.es(24, 32, 1, 3, lvl, 10)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 10)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.hidden_blade(), EAB.merchant_guard()]
@@ -244,9 +244,9 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.health = EH.es(348, 408, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
-	f.physical_defense = EH.es(21, 27, 1, 3, lvl, 10)
+	f.physical_defense = EH.es(19, 25, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(75, 84, 2, 4, lvl, 10)
-	f.magic_defense = EH.es(32, 39, 2, 3, lvl, 10)
+	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 10)
 	f.speed = EH.es(31, 37, 2, 3, lvl, 10)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.tainted_salve(), EAB.numbing_dust()]
