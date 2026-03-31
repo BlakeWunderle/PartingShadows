@@ -14,7 +14,7 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_thug(n: String, lvl: int = 1) -> FighterData:
 	var f := EH.base(n, "Thug", lvl)
-	f.health = EH.es(53, 61, 3, 6, lvl, 1); f.max_health = f.health
+	f.health = EH.es(50, 58, 3, 6, lvl, 1); f.max_health = f.health
 	f.mana = EH.es(2, 5, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(15, 18, 1, 3, lvl, 1)
 	f.physical_defense = EH.es(8, 11, 1, 2, lvl, 1)
@@ -28,7 +28,7 @@ static func create_thug(n: String, lvl: int = 1) -> FighterData:
 
 static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 	var f := EH.base(n, "Ruffian", lvl)
-	f.health = EH.es(50, 59, 3, 5, lvl, 1); f.max_health = f.health
+	f.health = EH.es(47, 56, 3, 5, lvl, 1); f.max_health = f.health
 	f.mana = EH.es(2, 5, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(15, 19, 1, 3, lvl, 1)
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 1)
@@ -42,7 +42,7 @@ static func create_ruffian(n: String, lvl: int = 1) -> FighterData:
 
 static func create_pickpocket(n: String, lvl: int = 1) -> FighterData:
 	var f := EH.base(n, "Pickpocket", lvl)
-	f.health = EH.es(38, 46, 2, 4, lvl, 1); f.max_health = f.health
+	f.health = EH.es(35, 43, 2, 4, lvl, 1); f.max_health = f.health
 	f.mana = EH.es(3, 5, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(12, 15, 1, 3, lvl, 1)
 	f.physical_defense = EH.es(5, 7, 0, 2, lvl, 1)
