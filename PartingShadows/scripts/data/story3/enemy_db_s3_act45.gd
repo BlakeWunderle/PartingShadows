@@ -69,11 +69,11 @@ static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Thread Guard", lvl)
 	f.health = EH.es(480, 550, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(148, 168, 4, 6, lvl, 16)
+	f.physical_attack = EH.es(150, 170, 4, 6, lvl, 16)
 	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 16)
-	f.speed = EH.es(43, 49, 1, 2, lvl, 16)
+	f.speed = EH.es(44, 50, 1, 2, lvl, 16)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 10
 	f.abilities = [EAB.rending_weave(), EAB.thread_impale()]
 	f.flavor_text = "A hulking enforcer who channels the Loom's power into single, devastating strikes. What it lacks in resilience it makes up for in the sheer ruin of each blow."
@@ -85,11 +85,11 @@ static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Hound", lvl)
 	f.health = EH.es(486, 560, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(88, 100, 2, 4, lvl, 16)
-	f.magic_attack = EH.es(78, 88, 2, 4, lvl, 16)
+	f.physical_attack = EH.es(90, 102, 2, 4, lvl, 16)
+	f.magic_attack = EH.es(80, 90, 2, 4, lvl, 16)
 	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 16)
 	f.magic_defense = EH.es(28, 35, 2, 3, lvl, 16)
-	f.speed = EH.es(50, 56, 3, 4, lvl, 16)
+	f.speed = EH.es(51, 57, 3, 4, lvl, 16)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.dream_siphon(), EAB.spectral_lunge()]
 	f.flavor_text = "A sleek beast bred in the cult's dream kennels. It feeds on the boundary between waking and sleeping, draining life force with every bite."

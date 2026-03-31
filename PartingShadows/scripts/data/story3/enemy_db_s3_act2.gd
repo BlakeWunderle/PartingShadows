@@ -263,9 +263,9 @@ static func create_cellar_watcher(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Cellar Watcher", lvl)
 	f.health = EH.es(434, 499, 4, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(13, 15, 1, 2, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(65, 76, 2, 4, lvl, 11)
+	f.physical_attack = EH.es(66, 77, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 11)
-	f.magic_attack = EH.es(63, 74, 2, 4, lvl, 11)
+	f.magic_attack = EH.es(64, 75, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(29, 37, 1, 3, lvl, 11)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
@@ -278,7 +278,7 @@ static func create_thread_construct(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Thread Construct", lvl)
 	f.health = EH.es(509, 582, 5, 8, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 1, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(76, 90, 2, 4, lvl, 11)
+	f.physical_attack = EH.es(77, 91, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(37, 43, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 11)
 	f.magic_defense = EH.es(23, 29, 1, 3, lvl, 11)
@@ -295,7 +295,7 @@ static func create_ink_shade(n: String, lvl: int = 11) -> FighterData:
 	f.mana = EH.es(20, 23, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
 	f.physical_defense = EH.es(20, 26, 1, 3, lvl, 11)
-	f.magic_attack = EH.es(88, 99, 2, 4, lvl, 11)
+	f.magic_attack = EH.es(89, 100, 2, 4, lvl, 11)
 	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 11)
 	f.speed = EH.es(32, 38, 2, 3, lvl, 11)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 20
