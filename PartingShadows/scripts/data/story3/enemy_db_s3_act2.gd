@@ -14,9 +14,9 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 static func create_thread_lurker(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Thread Lurker", lvl)
-	f.health = EH.es(165, 193, 3, 6, lvl, 5); f.max_health = f.health
+	f.health = EH.es(140, 165, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 1, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(23, 27, 1, 3, lvl, 5)
+	f.physical_attack = EH.es(24, 28, 1, 3, lvl, 5)
 	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(10, 13, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 5)
@@ -29,9 +29,9 @@ static func create_thread_lurker(n: String, lvl: int = 5) -> FighterData:
 
 static func create_dream_sentinel(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Dream Sentinel", lvl)
-	f.health = EH.es(190, 222, 4, 7, lvl, 5); f.max_health = f.health
+	f.health = EH.es(160, 188, 3, 6, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(5, 8, 1, 1, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(21, 25, 1, 2, lvl, 5)
+	f.physical_attack = EH.es(22, 26, 1, 2, lvl, 5)
 	f.physical_defense = EH.es(21, 25, 1, 3, lvl, 5)
 	f.magic_attack = EH.es(11, 14, 0, 2, lvl, 5)
 	f.magic_defense = EH.es(13, 16, 1, 2, lvl, 5)
@@ -44,11 +44,11 @@ static func create_dream_sentinel(n: String, lvl: int = 5) -> FighterData:
 
 static func create_gloom_spinner(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Gloom Spinner", lvl)
-	f.health = EH.es(150, 177, 3, 5, lvl, 5); f.max_health = f.health
+	f.health = EH.es(130, 153, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 13, 0, 2, lvl, 5)
 	f.physical_defense = EH.es(8, 11, 1, 2, lvl, 5)
-	f.magic_attack = EH.es(23, 29, 1, 3, lvl, 5)
+	f.magic_attack = EH.es(24, 30, 1, 3, lvl, 5)
 	f.magic_defense = EH.es(16, 19, 1, 2, lvl, 5)
 	f.speed = EH.es(28, 33, 1, 2, lvl, 5)
 	f.crit_chance = 15; f.crit_damage = 1; f.dodge_chance = 17
@@ -112,9 +112,9 @@ static func create_depth_crawler(n: String, lvl: int = 6) -> FighterData:
 
 static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Fragment Golem", lvl)
-	f.health = EH.es(265, 304, 4, 7, lvl, 6); f.max_health = f.health
+	f.health = EH.es(220, 255, 3, 6, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(28, 32, 1, 3, lvl, 6)
+	f.physical_attack = EH.es(29, 33, 1, 3, lvl, 6)
 	f.physical_defense = EH.es(22, 26, 1, 3, lvl, 6)
 	f.magic_attack = EH.es(9, 12, 0, 1, lvl, 6)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 6)
@@ -127,11 +127,11 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 
 static func create_portrait_wight(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Portrait Wight", lvl)
-	f.health = EH.es(230, 265, 3, 6, lvl, 6); f.max_health = f.health
+	f.health = EH.es(195, 225, 3, 5, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 2, lvl, 6); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 13, 0, 1, lvl, 6)
 	f.physical_defense = EH.es(13, 16, 1, 2, lvl, 6)
-	f.magic_attack = EH.es(22, 26, 1, 3, lvl, 6)
+	f.magic_attack = EH.es(23, 27, 1, 3, lvl, 6)
 	f.magic_defense = EH.es(20, 24, 1, 3, lvl, 6)
 	f.speed = EH.es(26, 31, 1, 2, lvl, 6)
 	f.crit_chance = 13; f.crit_damage = 2; f.dodge_chance = 10
@@ -142,9 +142,9 @@ static func create_portrait_wight(n: String, lvl: int = 6) -> FighterData:
 
 static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Gallery Shade", lvl)
-	f.health = EH.es(215, 251, 3, 5, lvl, 6); f.max_health = f.health
+	f.health = EH.es(185, 215, 3, 5, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(28, 32, 1, 3, lvl, 6)
+	f.physical_attack = EH.es(29, 33, 1, 3, lvl, 6)
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)

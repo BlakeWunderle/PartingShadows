@@ -31,7 +31,7 @@ static func sentinel_strike() -> AbilityData:
 	return _make("Sentinel Strike", "A heavy blow from something that was standing very still.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
 
 static func woven_guard() -> AbilityData:
-	return _make("Woven Guard", "The sentinel wraps itself in a cocoon of threads.", Enums.StatType.DEFENSE, 10, 2, false, 2, false, 0, 0.0)
+	return _make("Woven Guard", "The sentinel wraps itself in a cocoon of threads.", Enums.StatType.DEFENSE, 7, 2, false, 2, false, 0, 0.0)
 
 # --- Gloom Spinner ---
 

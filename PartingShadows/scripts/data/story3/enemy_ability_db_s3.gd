@@ -124,7 +124,7 @@ static func shield_bash() -> AbilityData:
 	return _make("Shield Bash", "A wall of shadow slams forward.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.0)
 
 static func dusk_toll() -> AbilityData:
-	return _make("Dusk Toll", "The sentinel's wrath sweeps across all who dare the threshold.", Enums.StatType.PHYSICAL_ATTACK, 0, 0, true, 4, true, 0, 0.0)
+	return _make("Dusk Toll", "The sentinel's wrath sweeps across all who dare the threshold.", Enums.StatType.PHYSICAL_ATTACK, 3, 0, true, 4, true, 0, 0.0)
 
 static func sentinel_stasis() -> AbilityData:
 	return _make("Sentinel Slam", "The sentinel crashes forward with the full force of dusk behind it.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
@@ -148,7 +148,7 @@ static func dissonance() -> AbilityData:
 # --- Waking Terror ---
 
 static func scream_blast() -> AbilityData:
-	return _make("Scream", "A sound that shouldn't be possible tears through the air.", Enums.StatType.MAGIC_ATTACK, 5, 0, true, 4, true, 0, 0.0)
+	return _make("Scream", "A sound that shouldn't be possible tears through the air.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, true, 0, 0.0)
 
 static func terror_wave() -> AbilityData:
 	return _make("Terror Strike", "The terror lunges, channeling raw panic into a single devastating blow.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, false, 0, 0.0)
@@ -159,7 +159,7 @@ static func time_rend() -> AbilityData:
 	return _make("Time Rend", "The hands of the clock spin backward through flesh.", Enums.StatType.MIXED_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func temporal_rupture() -> AbilityData:
-	return _make("Temporal Rupture", "Fractured time detonates across the battlefield, tearing at everyone at once.", Enums.StatType.MIXED_ATTACK, 0, 0, true, 4, true, 0, 0.0)
+	return _make("Temporal Rupture", "Fractured time detonates across the battlefield, tearing at everyone at once.", Enums.StatType.MIXED_ATTACK, 3, 0, true, 4, true, 0, 0.0)
 
 # --- The Nightmare (boss) ---
 
