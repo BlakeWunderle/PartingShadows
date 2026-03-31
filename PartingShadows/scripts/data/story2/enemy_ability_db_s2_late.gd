@@ -23,7 +23,7 @@ static func mirror_shard() -> AbilityData:
 	return _make("Mirror Shard", "A razor-edged shard of enchanted glass tears free and hurls itself at the target.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func dissonant_echo() -> AbilityData:
-	return _make("Dissonant Echo", "Overlapping reflections of the target's own movements scramble their timing.", Enums.StatType.SPEED, 4, 2, true, 3, false, 0, 0.0)
+	return _make("Dissonant Echo", "Overlapping reflections of the target's own movements scramble their timing.", Enums.StatType.SPEED, 6, 2, true, 3, false, 0, 0.0)
 
 # --- Sorrow Shade ---
 
@@ -39,7 +39,7 @@ static func harvesting_scythe() -> AbilityData:
 	return _make("Harvesting Scythe", "The scythe sweeps through memories and flesh at once.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func accumulated_toll() -> AbilityData:
-	return _make("Accumulated Toll", "Each memory claimed leaves a festering wound. The toll spreads.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 5, 0.0)
+	return _make("Accumulated Toll", "Each memory claimed leaves a festering wound. The toll spreads.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 3, 0.0)
 
 # --- Memory Wisp ---
 
@@ -47,7 +47,7 @@ static func recall_bolt() -> AbilityData:
 	return _make("Recall Bolt", "A shard of stolen memory strikes like lightning.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func memory_drain() -> AbilityData:
-	return _make("Memory Drain", "The wisp pulls at the edges of thought.", Enums.StatType.MAGIC_DEFENSE, 4, 2, true, 3, false, 0, 0.0)
+	return _make("Memory Drain", "The wisp pulls at the edges of thought.", Enums.StatType.MAGIC_DEFENSE, 10, 2, true, 3, false, 0, 0.0)
 
 # --- Echo Sentinel ---
 
@@ -55,7 +55,7 @@ static func crystal_strike() -> AbilityData:
 	return _make("Crystal Strike", "A crystalline fist crashes down with resonant force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func ward_of_echoes() -> AbilityData:
-	return _make("Ward of Echoes", "Layered reverberations harden into a shield.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Ward of Echoes", "Layered reverberations harden into a shield.", Enums.StatType.DEFENSE, 10, 2, false, 3, false, 0, 0.0)
 
 # --- Thought Eater ---
 
@@ -79,7 +79,7 @@ static func blind_strike() -> AbilityData:
 	return _make("Blind Strike", "Eyeless, it strikes with unerring precision.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func sense_intent() -> AbilityData:
-	return _make("Sense Intent", "It reads your movements before you make them.", Enums.StatType.DEFENSE, 4, 2, true, 3, false, 0, 0.0)
+	return _make("Sense Intent", "It reads your movements before you make them.", Enums.StatType.DEFENSE, 10, 2, true, 3, false, 0, 0.0)
 
 # --- Mirror Self ---
 
@@ -95,7 +95,7 @@ static func void_bolt() -> AbilityData:
 	return _make("Void Bolt", "A lance of nothingness tears through everything.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, true, 0, 0.0)
 
 static func unravel() -> AbilityData:
-	return _make("Unravel", "Reality frays at the seams, weakening all defenses.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, false, 0, 0.0)
+	return _make("Unravel", "Reality frays at the seams, weakening all defenses.", Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 4, false, 0, 0.0)
 
 # --- Mnemonic Golem ---
 
@@ -103,7 +103,7 @@ static func memory_slam() -> AbilityData:
 	return _make("Memory Slam", "A fist of crystallized memories crashes down.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func crystallize() -> AbilityData:
-	return _make("Crystallize", "Memories harden into impenetrable armor.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Crystallize", "Memories harden into impenetrable armor.", Enums.StatType.DEFENSE, 12, 2, false, 4, false, 0, 0.0)
 
 # --- The Warden (boss) ---
 
@@ -111,10 +111,10 @@ static func sanctum_judgment() -> AbilityData:
 	return _make("Sanctum Judgment", "The sanctum itself passes sentence on intruders.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, true, 0, 0.0)
 
 static func barrier_of_ages() -> AbilityData:
-	return _make("Barrier of Ages", "Centuries of accumulated memory form an unbreakable wall.", Enums.StatType.MAGIC_DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Barrier of Ages", "Centuries of accumulated memory form an unbreakable wall.", Enums.StatType.MAGIC_DEFENSE, 15, 2, false, 4, false, 0, 0.0)
 
 static func decree_of_exile() -> AbilityData:
-	return _make("Decree of Exile", "The sanctum's supreme authority strips away all protection. Intruders deserve none.", Enums.StatType.DEFENSE, 6, 2, true, 3, false, 0, 0.0)
+	return _make("Decree of Exile", "The sanctum's supreme authority strips away all protection. Intruders deserve none.", Enums.StatType.DEFENSE, 12, 2, true, 3, false, 0, 0.0)
 
 # --- Fractured Protector (boss) ---
 
@@ -124,7 +124,7 @@ static func flicker_bolt() -> AbilityData:
 	return _make("Flicker Bolt", "A stuttering lance of dying light strikes with erratic force.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func dim_aura() -> AbilityData:
-	return _make("Dim Aura", "The fading light seeps into magical wards and unravels them from within.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 4, true, 0, 0.0)
+	return _make("Dim Aura", "The fading light seeps into magical wards and unravels them from within.", Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 4, true, 0, 0.0)
 
 # --- Dim Guardian (P9 variant) ---
 
@@ -132,7 +132,7 @@ static func fading_blow() -> AbilityData:
 	return _make("Fading Blow", "A heavy fist strikes with diminished but still dangerous force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func waning_ward() -> AbilityData:
-	return _make("Waning Ward", "A protective barrier flickers to life, weaker than it once was but still standing.", Enums.StatType.DEFENSE, 4, 2, false, 4, true, 0, 0.0)
+	return _make("Waning Ward", "A protective barrier flickers to life, weaker than it once was but still standing.", Enums.StatType.DEFENSE, 10, 2, false, 4, true, 0, 0.0)
 
 # --- Ward Construct (P12 GT variant) ---
 
@@ -148,7 +148,7 @@ static func null_lance() -> AbilityData:
 	return _make("Null Lance", "A beam of absolute nothing punches through matter and memory alike.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func nullification() -> AbilityData:
-	return _make("Nullification", "Everything the target knows about fighting simply ceases to exist.", Enums.StatType.ATTACK, 6, 2, true, 4, false, 0, 0.0)
+	return _make("Nullification", "Everything the target knows about fighting simply ceases to exist.", Enums.StatType.ATTACK, 13, 2, true, 4, false, 0, 0.0)
 
 # --- Threshold Echo (P12 GT variant) ---
 
@@ -156,7 +156,7 @@ static func liminal_strike() -> AbilityData:
 	return _make("Liminal Strike", "The blow lands in two worlds at once, physical and ethereal.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func threshold_bind() -> AbilityData:
-	return _make("Threshold Bind", "Crossing the boundary leaves the body sluggish, caught between here and there.", Enums.StatType.SPEED, 6, 2, true, 4, false, 0, 0.0)
+	return _make("Threshold Bind", "Crossing the boundary leaves the body sluggish, caught between here and there.", Enums.StatType.SPEED, 9, 2, true, 4, false, 0, 0.0)
 
 # --- Ink Devourer (P12 FA variant) ---
 
@@ -172,7 +172,7 @@ static func archived_spell() -> AbilityData:
 	return _make("Archived Spell", "Pages riffle open and words of power leap from the text in cold, precise order.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func silence() -> AbilityData:
-	return _make("Silence", "A finger to stone lips. The target's strength drains into quiet obedience.", Enums.StatType.ATTACK, 6, 2, true, 4, false, 0, 0.0)
+	return _make("Silence", "A finger to stone lips. The target's strength drains into quiet obedience.", Enums.StatType.ATTACK, 13, 2, true, 4, false, 0, 0.0)
 
 # --- Lost Record (P12 FA variant) ---
 
@@ -180,7 +180,7 @@ static func fragmented_blast() -> AbilityData:
 	return _make("Fragmented Blast", "Broken words and half-formed spells hurl outward in a jagged spray.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func corrupted_text() -> AbilityData:
-	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 8, 3, true, 4, false, 4, 0.0)
+	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 8, 3, true, 4, false, 2, 0.0)
 
 # --- Maw Codex (P12 FA variant) ---
 
@@ -201,7 +201,7 @@ static func memory_siphon() -> AbilityData:
 	return _make("Memory Siphon", "The leech latches onto thought itself, drinking deep.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.2)
 
 static func festering_gaze() -> AbilityData:
-	return _make("Festering Gaze", "The parasite's stolen eye leaves a wound that won't close.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 5, 0.0)
+	return _make("Festering Gaze", "The parasite's stolen eye leaves a wound that won't close.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 3, 0.0)
 
 # --- Gaze Stalker ---
 
@@ -209,7 +209,7 @@ static func piercing_gaze_strike() -> AbilityData:
 	return _make("Piercing Gaze", "Eyes that cut deeper than any blade.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func focus_break() -> AbilityData:
-	return _make("Focus Break", "A psychic jab that shatters concentration.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Focus Break", "A psychic jab that shatters concentration.", Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 3, false, 0, 0.0)
 
 # --- Memory Harvester ---
 
@@ -222,7 +222,7 @@ static func mass_extraction() -> AbilityData:
 # --- Oblivion Shade ---
 
 static func wave_of_oblivion() -> AbilityData:
-	return _make("Wave of Oblivion", "A tide of nothing that drains the will to fight.", Enums.StatType.ATTACK, 5, 2, true, 3, true, 0, 0.0)
+	return _make("Wave of Oblivion", "A tide of nothing that drains the will to fight.", Enums.StatType.ATTACK, 11, 2, true, 3, true, 0, 0.0)
 
 static func nihil_bolt() -> AbilityData:
 	return _make("Nihil Bolt", "A bolt of pure emptiness.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.0)
@@ -233,7 +233,7 @@ static func memory_blade() -> AbilityData:
 	return _make("Memory Blade", "A sword forged from ten thousand stolen recollections.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func ironclad_will() -> AbilityData:
-	return _make("Ironclad Will", "Thought hardens into unbreakable armor.", Enums.StatType.DEFENSE, 6, 2, false, 3, false, 0, 0.0)
+	return _make("Ironclad Will", "Thought hardens into unbreakable armor.", Enums.StatType.DEFENSE, 12, 2, false, 3, false, 0, 0.0)
 
 # --- The Iris (Phase 1 boss) ---
 
@@ -244,7 +244,7 @@ static func refraction_beam() -> AbilityData:
 	return _make("Refraction Beam", "A focused beam that burns through all defenses.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
 
 static func crystalline_ward() -> AbilityData:
-	return _make("Crystalline Ward", "The Iris wraps itself in layers of stolen light.", Enums.StatType.MAGIC_DEFENSE, 7, 2, false, 4, false, 0, 0.0)
+	return _make("Crystalline Ward", "The Iris wraps itself in layers of stolen light.", Enums.StatType.MAGIC_DEFENSE, 18, 2, false, 4, false, 0, 0.0)
 
 # --- The Lidless Eye (Phase 2 final boss) ---
 
@@ -270,7 +270,7 @@ static func drowned_light() -> AbilityData:
 	return _make("Drowned Light", "A wave of corrupted healing crashes outward, scalding every target it reaches.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
 
 static func memory_fracture() -> AbilityData:
-	return _make("Memory Fracture", "Her touch scatters thought and reflex, leaving all movement sluggish.", Enums.StatType.SPEED, 5, 2, true, 3, true, 0, 0.0)
+	return _make("Memory Fracture", "Her touch scatters thought and reflex, leaving all movement sluggish.", Enums.StatType.SPEED, 8, 2, true, 3, true, 0, 0.0)
 
 static func fractured_blessing() -> AbilityData:
 	return _make("Fractured Blessing", "She blesses her enemies with inverted mercy, drawing their vitality into herself.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, false, 0, 0.2)
@@ -281,7 +281,7 @@ static func eye_lance() -> AbilityData:
 	return _make("Eye Lance", "A focused beam that destroys what it sees, leaving only void where memory was.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.0)
 
 static func memory_erosion() -> AbilityData:
-	return _make("Memory Erosion", "The Iris dissolves the magical protection from a single target, preparing the killing blow.", Enums.StatType.MAGIC_DEFENSE, 7, 2, true, 3, false, 0, 0.0)
+	return _make("Memory Erosion", "The Iris dissolves the magical protection from a single target, preparing the killing blow.", Enums.StatType.MAGIC_DEFENSE, 18, 2, true, 3, false, 0, 0.0)
 
 # --- Void Iris (boss support redesign) ---
 
@@ -289,10 +289,10 @@ static func void_pulse() -> AbilityData:
 	return _make("Void Pulse", "A scattered burst of the Eye's light scours every target.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
 
 static func refraction_link() -> AbilityData:
-	return _make("Refraction Link", "The Void Iris amplifies its master's destructive potential through prismatic resonance.", Enums.StatType.MAGIC_ATTACK, 8, 2, false, 3, false, 0, 0.0)
+	return _make("Refraction Link", "The Void Iris amplifies its master's destructive potential through prismatic resonance.", Enums.StatType.MAGIC_ATTACK, 18, 2, false, 3, false, 0, 0.0)
 
 static func dispel_will() -> AbilityData:
-	return _make("Dispel Will", "A splinter of void cuts the resolve from a single target.", Enums.StatType.ATTACK, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Dispel Will", "A splinter of void cuts the resolve from a single target.", Enums.StatType.ATTACK, 11, 2, true, 3, false, 0, 0.0)
 
 static func null_mending() -> AbilityData:
 	return _make("Null Mending", "The Void Iris channels refracted void light into its allies, reversing wounds with stolen radiance.", Enums.StatType.HEALTH, 9, 0, false, 3, true, 0, 0.0)
@@ -309,7 +309,7 @@ static func death_throes() -> AbilityData:
 	return _make("Death Throes", "Everything left, physical and arcane, scattered in one convulsive blast.", Enums.StatType.MIXED_ATTACK, 14, 0, true, 4, true, 0, 0.0)
 
 static func collapse() -> AbilityData:
-	return _make("Collapse", "The Eye burns from within. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 12, 0.0)
+	return _make("Collapse", "The Eye burns from within. The light goes out in pieces.", Enums.StatType.HEALTH, 0, 3, true, 4, true, 3, 0.0)
 
 static func last_tremor() -> AbilityData:
 	return _make("Last Tremor", "The final shudder before extinction. Faint, but still crushing.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 3, true, 0, 0.0)

@@ -24,7 +24,7 @@ static func forgotten_knowledge() -> AbilityData:
 	return _make("Forgotten Knowledge", "Fragments of lost expertise manifest as cutting insight.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, false, 0, 0.2)
 
 static func archive_ward() -> AbilityData:
-	return _make("Archive Ward", "Shelves of records form a protective barrier.", Enums.StatType.DEFENSE, 5, 2, false, 3, false, 0, 0.0)
+	return _make("Archive Ward", "Shelves of records form a protective barrier.", Enums.StatType.DEFENSE, 10, 2, false, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -35,7 +35,7 @@ static func tome_crush() -> AbilityData:
 	return _make("Tome Crush", "A massive bound volume slams down with the weight of centuries.", Enums.StatType.PHYSICAL_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
 static func index_lock() -> AbilityData:
-	return _make("Index Lock", "The archive's cataloging system ensnares the target.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Index Lock", "The archive's cataloging system ensnares the target.", Enums.StatType.SPEED, 8, 2, true, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -71,7 +71,7 @@ static func resonance_bolt() -> AbilityData:
 	return _make("Resonance Bolt", "A focused pulse of harmonic energy.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func harmonic_disrupt() -> AbilityData:
-	return _make("Harmonic Disruption", "Dissonant frequencies weaken magical wards.", Enums.StatType.MAGIC_DEFENSE, 5, 2, true, 3, true, 0, 0.0)
+	return _make("Harmonic Disruption", "Dissonant frequencies weaken magical wards.", Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 3, true, 0, 0.0)
 
 
 # =============================================================================
@@ -93,7 +93,7 @@ static func erasure_beam() -> AbilityData:
 	return _make("Erasure Beam", "A beam that unmakes thought and memory alike.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func void_shroud() -> AbilityData:
-	return _make("Void Shroud", "A cloak of nonexistence absorbs incoming attacks.", Enums.StatType.DEFENSE, 6, 2, false, 4, false, 0, 0.0)
+	return _make("Void Shroud", "A cloak of nonexistence absorbs incoming attacks.", Enums.StatType.DEFENSE, 12, 2, false, 4, false, 0, 0.0)
 
 
 # =============================================================================
@@ -104,7 +104,7 @@ static func feedback_arc() -> AbilityData:
 	return _make("Feedback Arc", "Overloaded memory energy arcs between targets.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func system_shock() -> AbilityData:
-	return _make("System Shock", "A cascade failure that weakens all enemies.", Enums.StatType.ATTACK, 5, 2, true, 4, true, 0, 0.0)
+	return _make("System Shock", "A cascade failure that weakens all enemies.", Enums.StatType.ATTACK, 11, 2, true, 4, true, 0, 0.0)
 
 
 # =============================================================================
@@ -126,7 +126,7 @@ static func memory_fist() -> AbilityData:
 	return _make("Memory Fist", "A solid mass of crystallized recollection strikes with terrible force.", Enums.StatType.PHYSICAL_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 static func shatter_recall() -> AbilityData:
-	return _make("Shatter Recall", "The recollection explodes into fragments that tear through defenses.", Enums.StatType.DEFENSE, 5, 2, true, 3, false, 0, 0.0)
+	return _make("Shatter Recall", "The recollection explodes into fragments that tear through defenses.", Enums.StatType.DEFENSE, 10, 2, true, 3, false, 0, 0.0)
 
 
 # =============================================================================
@@ -157,4 +157,4 @@ static func devour_identity() -> AbilityData:
 	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 3, false, 0, 0.62)
 
 static func unblinking_focus() -> AbilityData:
-	return _make("Unblinking Focus", "The Eye's gaze intensifies, stripping away all magical protection.", Enums.StatType.ATTACK, 6, 2, true, 3, true, 0, 0.0)
+	return _make("Unblinking Focus", "The Eye's gaze intensifies, stripping away all magical protection.", Enums.StatType.ATTACK, 13, 2, true, 3, true, 0, 0.0)
