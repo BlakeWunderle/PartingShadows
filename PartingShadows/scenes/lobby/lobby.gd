@@ -367,15 +367,17 @@ func _start_multiplayer_game() -> void:
 	var story: Dictionary = _stories[_story_index]
 	var story_id: String = story.get("story_id", "story_1")
 
-	# Broadcast slot assignments to all peers
-	NetManager.broadcast_slot_assignments()
+	# Bundle slot data directly into the start RPC for atomic delivery
+	var slot_data: Dictionary = {}
+	for peer_id: int in NetManager.peer_slots:
+		slot_data[peer_id] = NetManager.peer_slots[peer_id]
 
-	# Start the game on all peers
-	_rpc_start_game.rpc(story_id)
+	_rpc_start_game.rpc(story_id, slot_data, NetManager.target_player_count)
 
 
 @rpc("authority", "call_local", "reliable")
-func _rpc_start_game(story_id: String) -> void:
+func _rpc_start_game(story_id: String, slot_data: Dictionary, p_count: int) -> void:
+	NetManager.apply_slot_data(slot_data, p_count)
 	GameState.start_new_game(story_id)
 	SceneManager.change_scene("res://scenes/party_creation/party_creation.tscn")
 
@@ -458,13 +460,15 @@ func _show_fighter_picker() -> void:
 func _on_fighter_pick_confirmed(_slot_owners: Dictionary) -> void:
 	_fighter_picker.queue_free()
 	_fighter_picker = null
-	NetManager.broadcast_slot_assignments()
-	# Serialize party and send to all peers
+	# Bundle slot data directly into the RPC for atomic delivery
+	var slot_data: Dictionary = {}
+	for peer_id: int in NetManager.peer_slots:
+		slot_data[peer_id] = NetManager.peer_slots[peer_id]
 	var party_data: Array[Dictionary] = []
 	for fighter: FighterData in GameState.party:
 		party_data.append(fighter.to_save_data())
 	_rpc_load_party_and_start.rpc(party_data, GameState.current_battle_id,
-		GameState.current_story_id)
+		GameState.current_story_id, slot_data, NetManager.target_player_count)
 
 
 func _on_fighter_pick_cancelled() -> void:
@@ -475,7 +479,9 @@ func _on_fighter_pick_cancelled() -> void:
 
 
 @rpc("authority", "call_local", "reliable")
-func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: String) -> void:
+func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: String,
+		slot_data: Dictionary, p_count: int) -> void:
+	NetManager.apply_slot_data(slot_data, p_count)
 	if not NetManager.is_host:
 		# Guest: reconstruct party from host data
 		GameState.party.clear()

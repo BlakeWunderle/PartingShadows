@@ -345,24 +345,34 @@ func _rpc_receive_player_name(peer_id: int, player_name: String) -> void:
 func broadcast_slot_assignments() -> void:
 	if not is_host:
 		return
-	# Convert peer_slots to a format safe for RPC (Dictionary with int keys)
 	var data: Dictionary = {}
 	for peer_id: int in peer_slots:
 		data[peer_id] = peer_slots[peer_id]
+	# Apply locally first — don't rely on call_local which can silently fail
+	apply_slot_data(data, target_player_count)
+	# Send to remote peers
 	_rpc_receive_slots.rpc(data, target_player_count)
 
 
-@rpc("authority", "call_local", "reliable")
+@rpc("authority", "call_remote", "reliable")
 func _rpc_receive_slots(slot_data: Dictionary, p_count: int) -> void:
+	apply_slot_data(slot_data, p_count)
+
+
+## Apply slot assignments directly. Safe to call from any RPC or locally.
+func apply_slot_data(slot_data: Dictionary, p_count: int) -> void:
 	peer_slots = slot_data
 	target_player_count = p_count
 	player_count = p_count
 	var my_id: int = multiplayer.get_unique_id()
-	if my_id in peer_slots:
-		my_slots = peer_slots[my_id]
-	else:
-		my_slots = []
-	GameLog.info("NetManager: Received slots -- my_slots=%s" % [str(my_slots)])
+	# Rebuild my_slots with explicit typed construction to avoid Array/Array[int] mismatch
+	my_slots.clear()
+	if my_id in slot_data:
+		var raw: Array = slot_data[my_id]
+		for s: int in raw:
+			my_slots.append(s)
+	GameLog.info("NetManager: Applied slots -- my_id=%d my_slots=%s peer_slots=%s" % [
+		my_id, str(my_slots), str(peer_slots)])
 
 
 # =============================================================================
