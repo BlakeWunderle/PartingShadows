@@ -55,7 +55,9 @@ func _build_ui() -> void:
 	title.text = "SETTINGS"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title.add_theme_font_size_override("font_size", 24)
-	title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	title.add_theme_color_override("font_color", Color.WHITE)
+	title.add_theme_constant_override("outline_size", 2)
+	title.add_theme_color_override("font_outline_color", Color.BLACK)
 	add_child(title)
 
 	var sep := HSeparator.new()

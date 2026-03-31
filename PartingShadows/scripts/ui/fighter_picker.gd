@@ -67,7 +67,9 @@ func _build_ui() -> void:
 	_title_label.text = "ASSIGN FIGHTERS"
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_label.add_theme_font_size_override("font_size", 24)
-	_title_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_title_label.add_theme_color_override("font_color", Color.WHITE)
+	_title_label.add_theme_constant_override("outline_size", 2)
+	_title_label.add_theme_color_override("font_outline_color", Color.BLACK)
 	vbox.add_child(_title_label)
 
 	var sep := HSeparator.new()

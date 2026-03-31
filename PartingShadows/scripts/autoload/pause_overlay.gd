@@ -87,7 +87,9 @@ func _build_ui() -> void:
 	_pause_title.text = "PAUSED"
 	_pause_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_pause_title.add_theme_font_size_override("font_size", 26)
-	_pause_title.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_pause_title.add_theme_color_override("font_color", Color.WHITE)
+	_pause_title.add_theme_constant_override("outline_size", 2)
+	_pause_title.add_theme_color_override("font_outline_color", Color.BLACK)
 	root_vbox.add_child(_pause_title)
 
 	_pause_sep = HSeparator.new()
