@@ -15,7 +15,7 @@ static func create_driftwood_bandit(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Driftwood Bandit", lvl)
 	f.health = EH.es(196, 226, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(35, 40, 2, 3, lvl, 5)
+	f.physical_attack = EH.es(34, 39, 2, 3, lvl, 5)
 	f.physical_defense = EH.es(17, 21, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(12, 16, 1, 2, lvl, 5)
@@ -30,7 +30,7 @@ static func create_saltrunner_smuggler(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Saltrunner Smuggler", lvl)
 	f.health = EH.es(142, 164, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(30, 36, 2, 3, lvl, 5)
+	f.physical_attack = EH.es(29, 35, 2, 3, lvl, 5)
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(9, 12, 1, 2, lvl, 5)
@@ -45,7 +45,7 @@ static func create_tide_warden(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Tide Warden", lvl)
 	f.health = EH.es(210, 238, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(32, 39, 2, 3, lvl, 5)
+	f.physical_attack = EH.es(31, 38, 2, 3, lvl, 5)
 	f.physical_defense = EH.es(27, 32, 1, 3, lvl, 5)
 	f.magic_attack = EH.es(6, 11, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(15, 19, 1, 2, lvl, 5)
@@ -105,7 +105,7 @@ static func create_shore_crawler(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Shore Crawler", lvl)
 	f.health = EH.es(157, 180, 4, 7, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 1, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(35, 40, 2, 4, lvl, 5)
+	f.physical_attack = EH.es(34, 39, 2, 4, lvl, 5)
 	f.physical_defense = EH.es(21, 26, 1, 3, lvl, 5)
 	f.magic_attack = EH.es(4, 7, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(14, 18, 1, 2, lvl, 5)
@@ -120,7 +120,7 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	var f := EH.base(n, "Warped Hound", lvl)
 	f.health = EH.es(131, 152, 3, 5, lvl, 5); f.max_health = f.health
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
-	f.physical_attack = EH.es(33, 38, 2, 4, lvl, 5)
+	f.physical_attack = EH.es(32, 37, 2, 4, lvl, 5)
 	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 5)
 	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
 	f.magic_defense = EH.es(9, 12, 0, 1, lvl, 5)
