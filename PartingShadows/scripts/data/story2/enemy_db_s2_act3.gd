@@ -208,29 +208,29 @@ static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Fading Wisp", lvl)
 	f.health = EH.es(306, 350, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
+	f.physical_attack = EH.es(55, 64, 2, 3, lvl, 10)
 	f.physical_defense = EH.es(22, 28, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(74, 85, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(60, 70, 2, 3, lvl, 10)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 10)
 	f.speed = EH.es(44, 50, 2, 3, lvl, 10)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 25
-	f.abilities = [EABL.flicker_bolt(), EABL.dim_aura()]
-	f.flavor_text = "A dying wisp that gutters like a candle in the wind. Its fading light still carries enough spite to burn."
+	f.abilities = [EABL.corrosive_flicker(), EABL.flickering_decay()]
+	f.flavor_text = "A dying wisp that gutters like a candle in the wind. Its corrupted light clings to flesh and slowly eats away from within."
 	return f
 
 
 static func create_dim_guardian(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Dim Guardian", lvl)
-	f.health = EH.es(391, 449, 4, 6, lvl, 10); f.max_health = f.health
+	f.health = EH.es(330, 380, 4, 6, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(59, 69, 2, 3, lvl, 10)
-	f.physical_defense = EH.es(42, 49, 2, 3, lvl, 10)
+	f.physical_attack = EH.es(80, 92, 2, 4, lvl, 10)
+	f.physical_defense = EH.es(28, 34, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
-	f.magic_defense = EH.es(36, 43, 1, 3, lvl, 10)
+	f.magic_defense = EH.es(24, 30, 1, 3, lvl, 10)
 	f.speed = EH.es(37, 44, 1, 2, lvl, 10)
-	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
-	f.abilities = [EABL.fading_blow(), EABL.waning_ward()]
-	f.flavor_text = "A sentinel fading from existence, its form barely visible in the dim light. What strength it has left, it devotes entirely to defense."
+	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
+	f.abilities = [EABL.fading_blow(), EABL.last_surge()]
+	f.flavor_text = "A sentinel fading from existence, channeling its final reserves into desperate, devastating strikes rather than the defense it once held."
 	return f
 
 

@@ -120,19 +120,19 @@ static func decree_of_exile() -> AbilityData:
 
 # --- Fading Wisp (P9 variant) ---
 
-static func flicker_bolt() -> AbilityData:
-	return _make("Flicker Bolt", "A stuttering lance of dying light strikes with erratic force.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+static func corrosive_flicker() -> AbilityData:
+	return _make("Corrosive Flicker", "A sputtering burst of corrupted light that strikes with physical and magical force.", Enums.StatType.MIXED_ATTACK, 10, 0, true, 3, false, 0, 0.0)
 
-static func dim_aura() -> AbilityData:
-	return _make("Dim Aura", "The fading light seeps into magical wards and unravels them from within.", Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 4, true, 0, 0.0)
+static func flickering_decay() -> AbilityData:
+	return _make("Flickering Decay", "The wisp's dying light clings to flesh and slowly burns from within.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 4, 0.0)
 
 # --- Dim Guardian (P9 variant) ---
 
 static func fading_blow() -> AbilityData:
 	return _make("Fading Blow", "A heavy fist strikes with diminished but still dangerous force.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
-static func waning_ward() -> AbilityData:
-	return _make("Waning Ward", "A protective barrier flickers to life, weaker than it once was but still standing.", Enums.StatType.DEFENSE, 10, 2, false, 4, true, 0, 0.0)
+static func last_surge() -> AbilityData:
+	return _make("Last Surge", "The guardian channels its remaining existence into one devastating strike.", Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 5, false, 0, 0.0)
 
 # --- Ward Construct (P12 GT variant) ---
 
