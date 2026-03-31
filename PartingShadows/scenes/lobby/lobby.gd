@@ -321,7 +321,7 @@ func _refresh_player_list() -> void:
 	list_header.text = "Players:"
 	list_header.add_theme_font_size_override("font_size", 20)
 	list_header.add_theme_color_override("font_color", Color(0.6, 0.75, 0.8))
-	list_header.add_theme_constant_override("outline_size", 2)
+	list_header.add_theme_constant_override("outline_size", 1)
 	list_header.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	_player_list.add_child(list_header)
 	_player_labels.append(list_header)
@@ -341,7 +341,7 @@ func _refresh_player_list() -> void:
 		lbl.text = "  %s%s%s" % [name, slot_str, " (Host)" if peer_id == 1 else ""]
 		lbl.add_theme_font_size_override("font_size", 18)
 		lbl.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
-		lbl.add_theme_constant_override("outline_size", 2)
+		lbl.add_theme_constant_override("outline_size", 1)
 		lbl.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 		_player_list.add_child(lbl)
 		_player_labels.append(lbl)
