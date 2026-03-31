@@ -157,10 +157,8 @@ func _show_ending() -> void:
 
 
 func _on_text_finished() -> void:
-	# In online multiplayer, only the host advances narrative (unless ready gate is active)
+	# Online multiplayer: host drives narrative, guest just waits for scene change RPC
 	if NetManager.is_multiplayer_active and not NetManager.is_host:
-		# Show ready gate for online guests
-		_show_ready_gate(_do_advance_text)
 		return
 
 	# Local co-op: show ready gate so all local players confirm

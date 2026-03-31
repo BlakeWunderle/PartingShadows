@@ -163,11 +163,11 @@ func _do_intro_advance() -> void:
 
 
 func _do_reveal_advance() -> void:
-	_dialogue.visible = false
 	if NetManager.is_multiplayer_active and not NetManager.is_host:
-		# Guest: wait for host's _rpc_advance_upgrade instead of advancing locally
-		# to avoid double-calling _show_next_upgrade().
+		# Guest: wait for host's _rpc_advance_upgrade instead of advancing locally.
+		# Don't hide dialogue — keep upgrade text visible until host advances.
 		return
+	_dialogue.visible = false
 	_upgrade_index += 1
 	if NetManager.is_multiplayer_active:
 		_rpc_advance_upgrade.rpc(_upgrade_index)
