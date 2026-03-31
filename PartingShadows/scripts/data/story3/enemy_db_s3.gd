@@ -18,9 +18,9 @@ static func create_dream_wisp(n: String, lvl: int = 1) -> FighterData:
 	f.mana = EH.es(7, 10, 1, 2, lvl, 1); f.max_mana = f.mana
 	f.physical_attack = EH.es(9, 13, 0, 2, lvl, 1)
 	f.physical_defense = EH.es(6, 9, 0, 1, lvl, 1)
-	f.magic_attack = EH.es(15, 18, 1, 3, lvl, 1)
+	f.magic_attack = EH.es(14, 17, 1, 3, lvl, 1)
 	f.magic_defense = EH.es(10, 14, 1, 2, lvl, 1)
-	f.speed = EH.es(26, 31, 1, 3, lvl, 1)
+	f.speed = EH.es(25, 30, 1, 3, lvl, 1)
 	f.crit_chance = 6; f.crit_damage = 1; f.dodge_chance = 4
 	f.abilities = [EAB.shimmer_bolt(), EAB.daze()]
 	f.flavor_text = "A flickering mote of dream-light that drifts through the sleeping mind. Its glow entrances the unwary before striking with bursts of raw thought."
@@ -60,9 +60,9 @@ static func create_shade_moth(n: String, lvl: int = 1) -> FighterData:
 
 static func create_sleep_stalker(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Sleep Stalker", lvl)
-	f.health = EH.es(49, 58, 3, 6, lvl, 2); f.max_health = f.health
+	f.health = EH.es(52, 61, 3, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 7, 1, 1, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(19, 23, 1, 3, lvl, 2)
+	f.physical_attack = EH.es(18, 22, 1, 3, lvl, 2)
 	f.physical_defense = EH.es(12, 15, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(7, 10, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(5, 8, 0, 1, lvl, 2)
