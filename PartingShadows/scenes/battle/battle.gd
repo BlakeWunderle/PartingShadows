@@ -47,6 +47,7 @@ var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_take
 var _auto_battle: bool = false
 var _auto_battle_unlocked: bool = false
 var _summary_waiting: bool = false
+var _summary_gate: RefCounted = null  ## ReadyGate for multiplayer summary sync
 var _auto_button: Button
 var _display: BattleDisplay
 var _mp: BattleMultiplayer
@@ -824,6 +825,37 @@ func _end_battle() -> void:
 
 func _show_battle_summary() -> void:
 	await _display.show_battle_summary()
+	# In online multiplayer, wait for both players to dismiss the summary
+	if NetManager.is_multiplayer_active:
+		await _wait_summary_ready()
+
+
+## Wait for all online players to dismiss the battle summary before advancing.
+func _wait_summary_ready() -> void:
+	const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
+	var gate := ReadyGate.new()
+	gate.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+	gate.offset_top = -40
+	gate.offset_bottom = -10
+	add_child(gate)
+	gate.start_online(NetManager.get_connected_peer_count())
+	# Mark self ready immediately (player already dismissed the summary)
+	if NetManager.is_host:
+		gate.mark_ready(0)
+		_rpc_summary_ready.rpc(0)
+	else:
+		var peers: Array[int] = []
+		for pid: int in NetManager.peer_names:
+			peers.append(pid)
+		peers.sort()
+		var my_idx: int = peers.find(multiplayer.get_unique_id())
+		gate.mark_ready(my_idx)
+		_rpc_summary_ready.rpc_id(1, my_idx)
+	# Store gate reference so RPCs can mark ready on it
+	_summary_gate = gate
+	await gate.all_ready
+	_summary_gate = null
+	gate.queue_free()
 
 
 func _on_fighter_died(fighter: FighterData) -> void:
@@ -909,6 +941,20 @@ func _serialize_battle_stats() -> Array:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_combat_log(text: String) -> void:
 	_mp.handle_combat_log(text)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_summary_ready(player_index: int) -> void:
+	if _summary_gate:
+		_summary_gate.mark_ready(player_index)
+	if NetManager.is_host:
+		_rpc_summary_ready_broadcast.rpc(player_index)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _rpc_summary_ready_broadcast(player_index: int) -> void:
+	if _summary_gate:
+		_summary_gate.mark_ready(player_index)
+
 
 func _on_peer_left_mid_battle(peer_id: int, player_name: String) -> void:
 	_mp.on_peer_left_mid_battle(peer_id, player_name)

@@ -123,13 +123,19 @@ func _start_town() -> void:
 	_phase = TownPhase.INTRO_TEXT
 	if not battle.pre_battle_text.is_empty():
 		_dialogue.show_text(battle.pre_battle_text)
+		_open_gate_early(_do_intro_advance)
 	else:
 		_begin_upgrades()
 
 
 func _on_text_finished() -> void:
-	# Multi-player: show ready gate so all players confirm
-	if LocalCoop.is_active or NetManager.is_multiplayer_active:
+	# Online multiplayer: gate was opened when text started; just mark ready now
+	if NetManager.is_multiplayer_active:
+		_mark_self_ready()
+		return
+
+	# Local co-op: show ready gate so all local players confirm
+	if LocalCoop.is_active:
 		match _phase:
 			TownPhase.INTRO_TEXT:
 				_show_ready_gate(_do_intro_advance)
@@ -198,6 +204,25 @@ func _show_ready_gate(callback: Callable) -> void:
 			var my_idx: int = _get_peer_index(multiplayer.get_unique_id())
 			_ready_gate.mark_ready(my_idx)
 			_rpc_town_ready.rpc_id(1, my_idx)
+
+
+## Pre-open the ready gate when text starts so incoming RPCs aren't lost.
+func _open_gate_early(callback: Callable) -> void:
+	if not NetManager.is_multiplayer_active:
+		return
+	_pending_advance = callback
+	_ready_gate.start_online(NetManager.get_connected_peer_count())
+
+
+## Mark local player as ready and notify peers (called when text finishes).
+func _mark_self_ready() -> void:
+	if NetManager.is_host:
+		_ready_gate.mark_ready(0)
+		_rpc_town_ready.rpc(0)
+	else:
+		var my_idx: int = _get_peer_index(multiplayer.get_unique_id())
+		_ready_gate.mark_ready(my_idx)
+		_rpc_town_ready.rpc_id(1, my_idx)
 
 
 func _on_all_ready() -> void:
@@ -350,6 +375,7 @@ func _on_upgrade_selected(index: int) -> void:
 		"%s takes the %s..." % [old_name, item],
 		"%s is now a %s!" % [old_name, new_class],
 	])
+	_open_gate_early(_do_reveal_advance)
 
 
 func _finish_upgrades() -> void:
@@ -362,6 +388,7 @@ func _finish_upgrades() -> void:
 		_phase = TownPhase.OUTRO_TEXT
 		_dialogue.visible = true
 		_dialogue.show_text(battle.post_battle_text)
+		_open_gate_early(_do_outro_advance)
 	else:
 		_check_branch_or_advance()
 
@@ -509,6 +536,7 @@ func _rpc_submit_upgrade(party_index: int, item: String) -> void:
 		"%s takes the %s..." % [old_name, item],
 		"%s is now a %s!" % [old_name, new_class],
 	])
+	_open_gate_early(_do_reveal_advance)
 
 
 func _deferred_broadcast_upgrade(party_index: int, item: String, old_name: String,
@@ -533,6 +561,7 @@ func _rpc_upgrade_applied(party_index: int, item: String, old_name: String,
 		"%s takes the %s..." % [old_name, item],
 		"%s is now a %s!" % [old_name, new_class],
 	])
+	_open_gate_early(_do_reveal_advance)
 
 
 ## Host -> All: Branch choice made by host.
