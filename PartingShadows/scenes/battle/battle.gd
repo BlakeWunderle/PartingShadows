@@ -299,7 +299,7 @@ func _tick_loop() -> void:
 			else:
 				# AI turn -- brief pause so player can read the turn announcement
 				_phase = Phase.AI_ACTING
-				await get_tree().create_timer(COMBAT_PAUSE * 0.5).timeout
+				await get_tree().create_timer(COMBAT_PAUSE * 0.5, false).timeout
 				var is_party: bool = _engine.units.has(actor)
 				var targets: Array = _engine.enemies if is_party else _engine.units
 				var allies: Array = _engine.units if is_party else _engine.enemies
@@ -768,7 +768,7 @@ func _drain_messages() -> void:
 		var msg: String = _message_queue.pop_front()
 		_add_log(msg)
 		_refresh_cards()
-		await get_tree().create_timer(pause).timeout
+		await get_tree().create_timer(pause, false).timeout
 	_refresh_cards()
 
 
@@ -809,14 +809,14 @@ func _end_battle() -> void:
 		else:
 			_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		SFXManager.play(SFXManager.Category.UI_FANFARE)
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0, false).timeout
 		await _show_battle_summary()
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
 		GameLog.info("Battle lost: %s" % GameState.current_battle_id)
 		_add_log("[color=red]The party has been defeated...[/color]")
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(2.0, false).timeout
 		GameState.go_to_ending(false)
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 

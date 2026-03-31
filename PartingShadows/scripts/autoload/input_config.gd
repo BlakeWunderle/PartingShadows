@@ -127,6 +127,13 @@ func apply_bindings() -> void:
 	_add_joypad_to_ui_action("ui_accept", _get_confirm_button())
 	_add_joypad_to_ui_action("ui_cancel", _get_cancel_button())
 	_add_joypad_nav_to_ui_actions()
+	# Strip Tab / Shift+Tab from focus actions to avoid stealing Steam overlay shortcut
+	for focus_action: String in ["ui_focus_next", "ui_focus_prev"]:
+		if not InputMap.has_action(focus_action):
+			continue
+		for existing: InputEvent in InputMap.action_get_events(focus_action).duplicate():
+			if existing is InputEventKey:
+				InputMap.action_erase_event(focus_action, existing)
 
 
 func _detect_nintendo_layout() -> void:

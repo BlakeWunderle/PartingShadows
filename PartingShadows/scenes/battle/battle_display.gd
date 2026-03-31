@@ -136,7 +136,7 @@ func show_battle_summary() -> void:
 	vbox.add_child(hint)
 
 	# Wait for confirm input or mouse click to dismiss
-	await _battle.get_tree().create_timer(0.5).timeout  # Brief delay to prevent accidental skip
+	await _battle.get_tree().create_timer(0.5, false).timeout  # Brief delay to prevent accidental skip
 	_battle._summary_waiting = true
 	while _battle._summary_waiting:
 		await _battle.get_tree().process_frame
