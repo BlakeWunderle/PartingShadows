@@ -206,11 +206,11 @@ static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Sanctum Guardian", lvl)
 	f.health = EH.es(694, 779, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(103, 116, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(101, 114, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(44, 53, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(102, 115, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(100, 113, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 14)
-	f.speed = EH.es(36, 42, 2, 3, lvl, 14)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 14)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.loom_slam(), EAB.thread_storm(), EAB.guardians_veil()]
 	f.flavor_text = "The final ward of the dream sanctum, a colossal being of interwoven threads and crystallized will. It fights with the combined resolve of every cultist who has prayed at the loom."

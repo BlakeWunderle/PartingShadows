@@ -182,11 +182,11 @@ static func create_dark_knight(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Dark Knight", lvl)
 	f.health = EH.es(528, 584, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 23, 2, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(80, 88, 4, 6, lvl, 14)
+	f.physical_attack = EH.es(82, 90, 4, 6, lvl, 14)
 	f.physical_defense = EH.es(40, 49, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(41, 50, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(40, 48, 2, 4, lvl, 14)
-	f.speed = EH.es(49, 56, 2, 4, lvl, 14)
+	f.speed = EH.es(50, 57, 2, 4, lvl, 14)
 	f.crit_chance = 30; f.crit_damage = 6; f.dodge_chance = 17
 	f.abilities = [EABL.dark_blade(), EABL.shadow_guard(), EAB.cleave()]
 	f.flavor_text = "A fallen champion clad in shadowed plate. Dark magic courses through every strike of his blade."
@@ -198,9 +198,9 @@ static func create_fell_hound(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(18, 23, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(22, 27, 1, 3, lvl, 14)
 	f.physical_defense = EH.es(27, 34, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(67, 76, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(69, 78, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(38, 44, 2, 4, lvl, 14)
-	f.speed = EH.es(54, 60, 3, 5, lvl, 14)
+	f.speed = EH.es(55, 61, 3, 5, lvl, 14)
 	f.crit_chance = 17; f.crit_damage = 5; f.dodge_chance = 30
 	f.abilities = [EABL.shadow_bite(), EABL.howl_of_dread(), EABL.corruption_fang()]
 	f.flavor_text = "Spectral hounds that hunt in packs across the corrupted wastes. Their howls freeze the blood."
@@ -212,9 +212,9 @@ static func create_sigil_wretch(n: String, lvl: int = 13) -> FighterData:
 	f.mana = EH.es(24, 29, 2, 3, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(13, 16, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(28, 35, 1, 3, lvl, 13)
-	f.magic_attack = EH.es(79, 89, 5, 7, lvl, 13)
+	f.magic_attack = EH.es(82, 92, 5, 7, lvl, 13)
 	f.magic_defense = EH.es(41, 47, 2, 4, lvl, 13)
-	f.speed = EH.es(52, 59, 3, 5, lvl, 13)
+	f.speed = EH.es(53, 60, 3, 5, lvl, 13)
 	f.crit_chance = 17; f.crit_damage = 5; f.dodge_chance = 17
 	f.abilities = [EABL.sigil_flare(), EABL.glyph_burn(), EABL.ward_break()]
 	f.flavor_text = "Twisted creatures bound to arcane sigils. They detonate glyphs of searing light at will."
@@ -224,11 +224,11 @@ static func create_tunnel_lurker(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Tunnel Lurker", lvl)
 	f.health = EH.es(531, 580, 10, 14, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(18, 21, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(84, 94, 5, 7, lvl, 13)
+	f.physical_attack = EH.es(86, 96, 5, 7, lvl, 13)
 	f.physical_defense = EH.es(38, 44, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(14, 20, 1, 2, lvl, 13)
 	f.magic_defense = EH.es(40, 46, 2, 3, lvl, 13)
-	f.speed = EH.es(48, 55, 3, 5, lvl, 13)
+	f.speed = EH.es(49, 56, 3, 5, lvl, 13)
 	f.crit_chance = 25; f.crit_damage = 5; f.dodge_chance = 20
 	f.abilities = [EABL.venomous_bite(), EABL.web(), EABL.poison_cloud()]
 	f.flavor_text = "Massive burrowing predators that ambush from below, ensnaring prey in venomous webs."
@@ -239,11 +239,11 @@ static func create_stranger_final(n: String, lvl: int = 15) -> FighterData:
 	f.class_id = "StrangerFinal"
 	f.health = EH.es(1300, 1430, 17, 23, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(45, 51, 3, 4, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(91, 101, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(93, 103, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(58, 66, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(99, 110, 4, 6, lvl, 15)
+	f.magic_attack = EH.es(101, 112, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(61, 69, 3, 5, lvl, 15)
-	f.speed = EH.es(69, 76, 3, 5, lvl, 15)
+	f.speed = EH.es(71, 78, 3, 5, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 6; f.dodge_chance = 20
 	f.abilities = [EABL.shadow_blast(), EABL.siphon(), EABL.dark_veil(), EABL.unmake(), EABL.entropy()]
 	f.flavor_text = "The Stranger revealed in full, terrible power. Reality itself bends around him as he prepares to unmake everything."

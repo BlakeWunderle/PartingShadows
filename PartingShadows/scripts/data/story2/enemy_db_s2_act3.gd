@@ -206,13 +206,13 @@ static func create_fractured_protector(n: String, lvl: int = 13) -> FighterData:
 
 static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Fading Wisp", lvl)
-	f.health = EH.es(306, 350, 4, 7, lvl, 10); f.max_health = f.health
+	f.health = EH.es(358, 408, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(55, 64, 2, 3, lvl, 10)
-	f.physical_defense = EH.es(22, 28, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(60, 70, 2, 3, lvl, 10)
-	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 10)
-	f.speed = EH.es(44, 50, 2, 3, lvl, 10)
+	f.physical_attack = EH.es(58, 67, 2, 3, lvl, 10)
+	f.physical_defense = EH.es(25, 31, 1, 3, lvl, 10)
+	f.magic_attack = EH.es(63, 73, 2, 3, lvl, 10)
+	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 10)
+	f.speed = EH.es(46, 52, 2, 3, lvl, 10)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 25
 	f.abilities = [EABL.corrosive_flicker(), EABL.flickering_decay()]
 	f.flavor_text = "A dying wisp that gutters like a candle in the wind. Its corrupted light clings to flesh and slowly eats away from within."
@@ -221,13 +221,13 @@ static func create_fading_wisp(n: String, lvl: int = 10) -> FighterData:
 
 static func create_dim_guardian(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Dim Guardian", lvl)
-	f.health = EH.es(330, 380, 4, 6, lvl, 10); f.max_health = f.health
+	f.health = EH.es(394, 454, 4, 6, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(80, 92, 2, 4, lvl, 10)
-	f.physical_defense = EH.es(28, 34, 1, 3, lvl, 10)
+	f.physical_attack = EH.es(83, 95, 2, 4, lvl, 10)
+	f.physical_defense = EH.es(33, 39, 1, 3, lvl, 10)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 10)
-	f.magic_defense = EH.es(24, 30, 1, 3, lvl, 10)
-	f.speed = EH.es(37, 44, 1, 2, lvl, 10)
+	f.magic_defense = EH.es(29, 35, 1, 3, lvl, 10)
+	f.speed = EH.es(40, 47, 1, 2, lvl, 10)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EABL.fading_blow(), EABL.last_surge()]
 	f.flavor_text = "A sentinel fading from existence, channeling its final reserves into desperate, devastating strikes rather than the defense it once held."
