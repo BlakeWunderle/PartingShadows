@@ -291,6 +291,7 @@ func _tick_loop() -> void:
 					NetManager.stop_turn_timeout()
 					_waiting_overlay.hide_waiting()
 					_execute_remote_action(actor, action)
+					_broadcast_state_sync()
 				else:
 					_show_action_menu(actor)
 					await _player_turn_done

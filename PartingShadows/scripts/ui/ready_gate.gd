@@ -9,6 +9,7 @@ var _player_count: int = 0
 var _ready_states: Array[bool] = []
 var _labels: Array[Label] = []
 var _is_online: bool = false
+var _pending_ready: Array[int] = []  ## Buffered ready signals that arrived before gate started
 
 
 func _init() -> void:
@@ -36,8 +37,15 @@ func start_online(peer_count: int) -> void:
 	_ready_states.clear()
 	for i: int in peer_count:
 		_ready_states.append(false)
+	# Apply any ready signals that arrived before the gate was started
+	for idx: int in _pending_ready:
+		if idx >= 0 and idx < peer_count:
+			_ready_states[idx] = true
+	_pending_ready.clear()
 	_build_labels()
 	visible = true
+	# If all players were already ready before the gate opened, fire immediately
+	_check_all_ready()
 
 
 func _build_labels() -> void:
@@ -115,6 +123,11 @@ func _input(event: InputEvent) -> void:
 
 ## Online MP: mark a specific player index as ready (called by scene RPCs).
 func mark_ready(player_index: int) -> void:
+	if _ready_states.is_empty():
+		# Gate not started yet — buffer for when it opens
+		if player_index not in _pending_ready:
+			_pending_ready.append(player_index)
+		return
 	if player_index >= 0 and player_index < _ready_states.size():
 		_ready_states[player_index] = true
 		_refresh_labels()
