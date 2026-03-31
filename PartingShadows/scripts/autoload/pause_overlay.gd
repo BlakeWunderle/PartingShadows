@@ -259,7 +259,7 @@ func _show_pause() -> void:
 			and not GameState.party.is_empty()
 		_open_mp_btn.visible = can_open_mp
 
-	_resume_btn.grab_focus()
+	_resume_btn.call_deferred("grab_focus")
 
 
 func _resume() -> void:
@@ -382,7 +382,7 @@ func _cancel_open_mp() -> void:
 	_main_vbox.visible = true
 	_feedback_label.visible = false
 	get_tree().paused = true
-	_resume_btn.grab_focus()
+	_resume_btn.call_deferred("grab_focus")
 
 
 # =============================================================================
@@ -469,7 +469,7 @@ func _back_to_main() -> void:
 		_center_panel.offset_right = 200.0
 		_center_panel.offset_bottom = 280.0
 	_main_vbox.visible = true
-	_resume_btn.grab_focus()
+	_resume_btn.call_deferred("grab_focus")
 
 
 func _phase_name() -> String:
