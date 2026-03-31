@@ -834,14 +834,19 @@ func _show_battle_summary() -> void:
 
 ## Wait for all online players to dismiss the battle summary before advancing.
 func _wait_summary_ready() -> void:
-	const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
 	var gate := ReadyGate.new()
 	gate.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	gate.offset_top = -40
 	gate.offset_bottom = -10
 	add_child(gate)
+	# Store reference early so incoming RPCs go directly to the gate
+	_summary_gate = gate
 	gate.start_online(NetManager.get_connected_peer_count())
-	# Mark self ready immediately (player already dismissed the summary)
+	# Apply any ready signals that arrived before the gate existed
+	for idx: int in _pending_summary_ready:
+		gate.mark_ready(idx)
+	_pending_summary_ready.clear()
+	# Mark self ready (player already dismissed the summary)
 	if NetManager.is_host:
 		gate.mark_ready(0)
 		_rpc_summary_ready.rpc(0)
@@ -853,12 +858,11 @@ func _wait_summary_ready() -> void:
 		var my_idx: int = peers.find(multiplayer.get_unique_id())
 		gate.mark_ready(my_idx)
 		_rpc_summary_ready.rpc_id(1, my_idx)
-	# Store gate reference so RPCs can mark ready on it
-	_summary_gate = gate
-	# Apply any ready signals that arrived before the gate was stored
-	for idx: int in _pending_summary_ready:
-		_summary_gate.mark_ready(idx)
-	_pending_summary_ready.clear()
+	# If all players were already ready, gate hid itself — skip await
+	if not gate.visible:
+		_summary_gate = null
+		gate.queue_free()
+		return
 	await gate.all_ready
 	_summary_gate = null
 	gate.queue_free()
