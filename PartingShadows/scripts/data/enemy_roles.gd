@@ -180,6 +180,8 @@ const _DATA: Dictionary = {
 	"Unleashed Recollection": { "r": [R.TANK, R.FIGHTER] },
 	"Rage Fragment": { "r": [R.BURST], "s": [S.AOE, S.GLASS_CANNON, S.CRIT, S.EVASION], "d": D.MIXED },
 	"The Unblinking Eye": { "r": [R.DPS], "s": [S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.BOSS },
+	"Perception Tendril": { "r": [R.SUPPORT], "s": [S.HEALER, S.BUFFER, S.AOE], "d": D.MAGICAL, "t": T.UNDERLING },
+	"Void Lens": { "r": [R.SUPPORT, R.DPS], "s": [S.DEBUFFER, S.AOE], "d": D.MAGICAL, "t": T.UNDERLING },
 
 	# ==========================================================================
 	# Story 3 - Acts I-II

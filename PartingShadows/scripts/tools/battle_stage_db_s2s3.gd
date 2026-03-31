@@ -261,7 +261,9 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS2PathB.create_unleashed_recollection("The Surge"),
 				EnemyDBS2PathB.create_rage_fragment("The Shard")]
 		"S2_B_EyeUnblinking":
-			return [EnemyDBS2PathB.create_the_unblinking_eye("The Unblinking Eye")]
+			return [EnemyDBS2PathB.create_the_unblinking_eye("The Unblinking Eye"),
+				EnemyDBS2PathB.create_perception_tendril("Perception Tendril"),
+				EnemyDBS2PathB.create_void_lens("Void Lens")]
 		# Story 3
 		"S3_DreamMeadow":
 			return [EnemyDBS3.create_dream_wisp("Glimmer"),

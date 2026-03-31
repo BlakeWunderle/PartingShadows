@@ -197,6 +197,8 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Unleashed Recollection": return S2PB.create_unleashed_recollection("")
 		"Rage Fragment": return S2PB.create_rage_fragment("")
 		"The Unblinking Eye": return S2PB.create_the_unblinking_eye("")
+		"Perception Tendril": return S2PB.create_perception_tendril("")
+		"Void Lens": return S2PB.create_void_lens("")
 
 		# =====================================================================
 		# Story 3 - Acts I-II

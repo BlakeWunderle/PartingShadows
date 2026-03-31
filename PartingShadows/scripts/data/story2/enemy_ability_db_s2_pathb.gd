@@ -158,3 +158,31 @@ static func devour_identity() -> AbilityData:
 
 static func unblinking_focus() -> AbilityData:
 	return _make("Unblinking Focus", "The Eye's gaze intensifies, stripping away all magical protection.", Enums.StatType.ATTACK, 13, 2, true, 3, true, 0, 0.0)
+
+
+# =============================================================================
+# Perception Tendril (buffer/healer support for Unblinking Eye)
+# =============================================================================
+
+static func focused_perception() -> AbilityData:
+	return _make("Focused Perception", "The tendril channels the Eye's awareness, sharpening its master's strikes.", Enums.StatType.MAGIC_ATTACK, 16, 2, false, 3, true, 0, 0.0)
+
+static func tendril_lash() -> AbilityData:
+	return _make("Tendril Lash", "A whip of concentrated perception rakes across all targets.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, true, 0, 0.0)
+
+static func perceptive_mending() -> AbilityData:
+	return _make("Perceptive Mending", "The tendril knits torn essence back together with threads of awareness.", Enums.StatType.HEALTH, 8, 0, false, 3, true, 0, 0.0)
+
+
+# =============================================================================
+# Void Lens (debuffer/offense support for Unblinking Eye)
+# =============================================================================
+
+static func refracted_gaze() -> AbilityData:
+	return _make("Refracted Gaze", "Light bends through the lens and strikes with searing precision.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.0)
+
+static func dissolve_will() -> AbilityData:
+	return _make("Dissolve Will", "The lens strips away magical resistance, leaving the target exposed.", Enums.StatType.MAGIC_DEFENSE, 14, 2, true, 3, false, 0, 0.0)
+
+static func null_pulse() -> AbilityData:
+	return _make("Null Pulse", "A wave of negation dulls the party's fighting edge.", Enums.StatType.ATTACK, 10, 2, true, 3, true, 0, 0.0)

@@ -164,6 +164,8 @@ static func s2_b_eye_unblinking() -> BattleData:
 	b.is_boss = true
 	b.enemies = [
 		EnemyDB.create_the_unblinking_eye("The Unblinking Eye"),
+		EnemyDB.create_perception_tendril("Perception Tendril"),
+		EnemyDB.create_void_lens("Void Lens"),
 	]
 	b.pre_battle_text = [
 		"The Eye. Not diminished. Not weakened by sacrifice. Gorged on its own harvest and furious.",
