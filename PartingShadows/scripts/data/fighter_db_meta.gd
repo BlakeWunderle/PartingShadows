@@ -85,34 +85,34 @@ static func get_display_name(class_id: String) -> String:
 static func get_abilities_for_class(class_id: String) -> Array:
 	match class_id:
 		# T0
-		"Squire": return [AbilityDB.slash(), AbilityDB.guard()]
-		"Mage": return [AbilityDB.arcane_bolt()]
-		"Entertainer": return [AbilityDB.mockery(), AbilityDB.demoralize()]
-		"Tinker": return [AbilityDB.proof(), AbilityDB.energy_blast()]
-		"Wildling": return [AbilityDB.thorn_whip(), AbilityDB.bark_skin()]
-		"Wanderer": return [AbilityDB.wild_strike(), AbilityDB.natures_ward()]
+		"Squire": return [AbilityDB.slash(), AbilityDB.guard(), AbilityDB.rush()]
+		"Mage": return [AbilityDB.arcane_bolt(), AbilityDB.arcane_shield(), AbilityDB.fire_dart()]
+		"Entertainer": return [AbilityDB.mockery(), AbilityDB.demoralize(), AbilityDB.inspire()]
+		"Tinker": return [AbilityDB.proof(), AbilityDB.energy_blast(), AbilityDB.spark_shot()]
+		"Wildling": return [AbilityDB.thorn_whip(), AbilityDB.bark_skin(), AbilityDB.primal_swipe()]
+		"Wanderer": return [AbilityDB.wild_strike(), AbilityDB.natures_ward(), AbilityDB.scout_slash()]
 		# T1:Squire
-		"Duelist": return [AbilityDB.slash(), PAB.feint()]
-		"Ranger": return [PAB.pierce(), PAB.double_arrow()]
-		"MartialArtist": return [PAB.punch(), PAB.topple()]
+		"Duelist": return [PAB.lunge(), PAB.feint(), PAB.riposte()]
+		"Ranger": return [PAB.pierce(), PAB.double_arrow(), PAB.mark_prey()]
+		"MartialArtist": return [PAB.punch(), PAB.topple(), PAB.inner_focus()]
 		# T1:Mage
-		"Invoker": return [AbilityDB.arcane_bolt(), PAB.elemental_surge()]
+		"Invoker": return [PAB.elemental_barrage(), PAB.elemental_surge(), PAB.elemental_focus()]
 		"Acolyte": return [PAB.cure(), PAB.protect(), PAB.radiance()]
 		# T1:Entertainer
 		"Bard": return [PAB.seduce(), PAB.melody(), PAB.encourage()]
-		"Dervish": return [PAB.mesmerize(), PAB.dance()]
-		"Orator": return [PAB.oration(), PAB.encourage()]
+		"Dervish": return [PAB.mesmerize(), PAB.dance(), PAB.whirling_step()]
+		"Orator": return [PAB.oration(), PAB.encourage(), PAB.rebuke()]
 		# T1:Tinker
-		"Artificer": return [AbilityDB.energy_blast(), PAB_B.magical_tinkering()]
+		"Artificer": return [PAB_B.volatile_flask(), PAB_B.magical_tinkering(), PAB_B.healing_draught()]
 		"Cosmologist": return [PAB_B.time_warp(), PAB_B.black_hole(), PAB_B.gravity()]
-		"Arithmancer": return [PAB_B.theorem(), PAB_B.calculate()]
+		"Arithmancer": return [PAB_B.theorem(), PAB_B.calculate(), PAB_B.probability()]
 		# T1:Wildling
-		"Herbalist": return [PAB_B.mending_herbs(), PAB_B.sapping_vine()]
-		"Shaman": return [PAB_B.spectral_lance(), PAB_B.player_hex()]
+		"Herbalist": return [PAB_B.mending_herbs(), PAB_B.sapping_vine(), PAB_B.thorn_spray()]
+		"Shaman": return [PAB_B.spirit_bolt(), PAB_B.ancestral_curse(), PAB_B.spirit_veil()]
 		"Beastcaller": return [PAB_B.feral_strike(), PAB_B.pack_howl(), PAB_B.stampede()]
 		# T1:Wanderer
 		"Sentinel": return [PAB_B.shield_bash(), PAB_B.barrier(), PAB_B.fortify()]
-		"Pathfinder": return [PAB_B.keen_strike(), PAB_B.exploit_weakness()]
+		"Pathfinder": return [PAB_B.keen_strike(), PAB_B.exploit_weakness(), PAB_B.adaptable_strike()]
 		# T2:Squire
 		"Cavalry": return [PAB.lance(), PAB.trample(), PAB.cavalry_charge()]
 		"Dragoon": return [PAB.dragon_scales(), PAB.wyvern_strike(), PAB.dragon_dive()]
@@ -152,7 +152,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Bulwark": return [PAB_B.spell_ward(), PAB_B.iron_fist(), PAB_B.ironclad_challenge()]
 		"Aegis": return [PAB_B.arcane_edge(), PAB_B.ward_breaker(), PAB_B.spell_counter()]
 		"Trailblazer": return [PAB_B.blaze_trail(), PAB_B.ambush(), PAB_B.expose()]
-		"Survivalist": return [PAB_B.endure(), PAB_B.resourceful_strike(), PAB_B.adapt()]
+		"Survivalist": return [PAB_B.wild_sweep(), PAB_B.resourceful_strike(), PAB_B.adapt()]
 		_:
 			push_error("Unknown class_id for abilities: %s" % class_id)
 			return []
