@@ -249,6 +249,10 @@ func _show_pause() -> void:
 		_save_btn.visible = false
 		_open_mp_btn.visible = false
 		_title_btn.text = "Leave Session"
+		# Notify other players to also show pause overlay
+		var my_name: String = NetManager.peer_names.get(
+			multiplayer.get_unique_id(), "Player")
+		_rpc_pause_sync.rpc(my_name)
 	else:
 		_save_btn.visible = true
 		_title_btn.text = "Quit to Title"
@@ -263,13 +267,9 @@ func _show_pause() -> void:
 
 
 func _resume() -> void:
-	_mode = Mode.HIDDEN
-	_panel.visible = false
-	if not NetManager.is_multiplayer_active:
-		get_tree().paused = false
-	if is_instance_valid(_prev_focus):
-		_prev_focus.grab_focus()
-	_prev_focus = null
+	if NetManager.is_multiplayer_active:
+		_rpc_resume_sync.rpc()
+	_do_resume_local()
 
 
 func _quit_to_title() -> void:
@@ -491,3 +491,47 @@ func _party_summary() -> String:
 		parts.append("%s the %s (Lv%d)" % [
 			fighter.character_name, fighter.character_type, fighter.level])
 	return ", ".join(parts)
+
+
+# =============================================================================
+# Multiplayer pause sync
+# =============================================================================
+
+func _do_resume_local() -> void:
+	# Reset sub-panels if open
+	if _mode in [Mode.SAVE_SLOTS, Mode.SETTINGS, Mode.COMPENDIUM, Mode.KEY_BINDINGS]:
+		_back_to_main()
+	_mode = Mode.HIDDEN
+	_panel.visible = false
+	_pause_title.text = "PAUSED"
+	if not NetManager.is_multiplayer_active:
+		get_tree().paused = false
+	if is_instance_valid(_prev_focus):
+		_prev_focus.grab_focus()
+	_prev_focus = null
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_pause_sync(pauser_name: String) -> void:
+	if _mode != Mode.HIDDEN:
+		# Already paused — just update title to show who paused
+		_pause_title.text = "PAUSED by %s" % pauser_name
+		return
+	_pause_title.text = "PAUSED by %s" % pauser_name
+	_prev_focus = get_viewport().gui_get_focus_owner()
+	_mode = Mode.MAIN_MENU
+	_panel.visible = true
+	_main_vbox.visible = true
+	_save_vbox.visible = false
+	_settings_panel.visible = false
+	_save_btn.visible = false
+	_open_mp_btn.visible = false
+	_title_btn.text = "Leave Session"
+	_resume_btn.call_deferred("grab_focus")
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_resume_sync() -> void:
+	if _mode == Mode.HIDDEN:
+		return
+	_do_resume_local()
