@@ -73,8 +73,9 @@ func _build_ui() -> void:
 	_add_line("created with Midjourney")
 	_add_spacer(30)
 
-	_add_heading("Font")
-	_add_line("Oswald Bold by Vernon Adams")
+	_add_heading("Fonts")
+	_add_line("Cinzel Bold by Natanael Gama")
+	_add_line("Cormorant Garamond by Christian Thalmann")
 	_add_spacer(30)
 
 	_add_heading("Special Thanks")
