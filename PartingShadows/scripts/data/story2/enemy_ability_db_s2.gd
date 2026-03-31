@@ -290,7 +290,7 @@ static func spectral_cutlass() -> AbilityData:
 	return _make("Spectral Cutlass", "A ghostly blade, still sharp despite centuries beneath the waves.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func waterlogged_grasp() -> AbilityData:
-	return _make("Waterlogged Grasp", "Cold, dead hands clamp down. Water fills the lungs where there should be air.", Enums.StatType.HEALTH, 5, 3, true, 4, false, 3, 0.0)
+	return _make("Waterlogged Grasp", "Cold, dead hands clamp down. Water fills the lungs where there should be air.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 5, 0.0)
 
 # --- Depth Horror ---
 

@@ -139,7 +139,10 @@ static func siphon_pulse() -> AbilityData:
 	return _make("Siphon Pulse", "The tendril latches on and drinks deep.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.2)
 
 static func constricting_weave() -> AbilityData:
-	return _make("Constricting Weave", "Thread wraps tight and squeezes, turn after turn.", Enums.StatType.SPEED, 6, 3, true, 3, false, 2, 0.0)
+	return _make("Constricting Weave", "Thread wraps tight, dragging movement to a crawl.", Enums.StatType.SPEED, 6, 3, true, 3, false, 0, 0.0)
+
+static func slow_crush() -> AbilityData:
+	return _make("Slow Crush", "The tendril squeezes, turn after turn.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 4, 0.0)
 
 
 # =============================================================================

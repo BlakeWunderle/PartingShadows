@@ -223,7 +223,7 @@ static func create_loom_tendril(n: String, lvl: int = 15) -> FighterData:
 	f.magic_defense = EH.es(40, 48, 2, 4, lvl, 15)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 15)
 	f.crit_chance = 20; f.crit_damage = 2; f.dodge_chance = 10
-	f.abilities = [EAB.siphon_pulse(), EAB.constricting_weave()]
+	f.abilities = [EAB.siphon_pulse(), EAB.constricting_weave(), EAB.slow_crush()]
 	f.flavor_text = "A living extension of the great loom, a tendril of woven dream-stuff that lashes out at those who approach. It siphons energy and constricts with suffocating pressure."
 	return f
 

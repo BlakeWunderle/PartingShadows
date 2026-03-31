@@ -180,7 +180,7 @@ static func fragmented_blast() -> AbilityData:
 	return _make("Fragmented Blast", "Broken words and half-formed spells hurl outward in a jagged spray.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
 static func corrupted_text() -> AbilityData:
-	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 8, 3, true, 4, false, 2, 0.0)
+	return _make("Corrupted Text", "Garbled information burrows into the mind, festering and wrong.", Enums.StatType.HEALTH, 0, 3, true, 4, false, 5, 0.0)
 
 # --- Maw Codex (P12 FA variant) ---
 
@@ -289,7 +289,7 @@ static func void_pulse() -> AbilityData:
 	return _make("Void Pulse", "A scattered burst of the Eye's light scours every target.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
 
 static func refraction_link() -> AbilityData:
-	return _make("Refraction Link", "The Void Iris amplifies its master's destructive potential through prismatic resonance.", Enums.StatType.MAGIC_ATTACK, 18, 2, false, 3, false, 0, 0.0)
+	return _make("Refraction Link", "The Void Iris amplifies its master's destructive potential through prismatic resonance.", Enums.StatType.ATTACK, 13, 2, false, 3, false, 0, 0.0)
 
 static func dispel_will() -> AbilityData:
 	return _make("Dispel Will", "A splinter of void cuts the resolve from a single target.", Enums.StatType.ATTACK, 11, 2, true, 3, false, 0, 0.0)

@@ -154,7 +154,7 @@ static func hammer_blow() -> AbilityData:
 	return _make("Hammer Blow", "The smithing hammer was not meant for iron today.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func forge_hardened() -> AbilityData:
-	return _make("Forge Fury", "The smith's hammer rings with power, sharpening an ally's strikes.", Enums.StatType.PHYSICAL_ATTACK, 11, 2, false, 3, false, 0, 0.0)
+	return _make("Forge Fury", "The smith's hammer rings with power, sharpening an ally's strikes.", Enums.StatType.ATTACK, 10, 2, false, 3, false, 0, 0.0)
 
 # --- Hex Herbalist ---
 
