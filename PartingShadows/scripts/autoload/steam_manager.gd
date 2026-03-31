@@ -17,9 +17,32 @@ func _ready() -> void:
 		GameLog.info("SteamManager: Steam not available (status %d), continuing offline" % status)
 
 
+var _was_focused: bool = true
+
 func _process(_delta: float) -> void:
 	if is_steam_running:
 		Steam.run_callbacks()
+	var focused: bool = DisplayServer.window_is_focused()
+	if focused != _was_focused:
+		_was_focused = focused
+		_on_focus_changed(focused)
+
+
+func _on_focus_changed(has_focus: bool) -> void:
+	if NetManager.is_multiplayer_active:
+		return
+	if not has_focus:
+		if GameState.game_phase in [
+				GameState.GamePhase.PARTY_CREATION,
+				GameState.GamePhase.NARRATIVE,
+				GameState.GamePhase.BATTLE,
+				GameState.GamePhase.TOWN_STOP]:
+			get_tree().paused = true
+			GameLog.info("SteamManager: paused (focus lost)")
+	else:
+		if PauseOverlay._panel and not PauseOverlay._panel.visible:
+			get_tree().paused = false
+			GameLog.info("SteamManager: resumed (focus gained)")
 
 
 # =============================================================================
@@ -36,21 +59,9 @@ func _on_join_requested(lobby_id: int, _steam_id: int) -> void:
 	SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
 
 
-## Pause the game when the Steam overlay opens during gameplay.
+## Pause via GodotSteam overlay callback (known to not fire in some versions).
 func _on_overlay_toggled(is_active: bool) -> void:
-	if NetManager.is_multiplayer_active:
-		return  # Don't pause in multiplayer (breaks networking)
-	if is_active:
-		if GameState.game_phase in [
-				GameState.GamePhase.PARTY_CREATION,
-				GameState.GamePhase.NARRATIVE,
-				GameState.GamePhase.BATTLE,
-				GameState.GamePhase.TOWN_STOP]:
-			get_tree().paused = true
-	else:
-		# Don't unpause if the pause menu is showing
-		if PauseOverlay._panel and not PauseOverlay._panel.visible:
-			get_tree().paused = false
+	_on_focus_changed(not is_active)
 
 
 # =============================================================================
