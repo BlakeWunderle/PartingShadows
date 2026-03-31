@@ -61,6 +61,8 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 		btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		btn.focus_mode = Control.FOCUS_ALL
 		btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+		btn.add_theme_constant_override("outline_size", 2)
+		btn.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 
 		if opt.has("description") and not opt["description"].is_empty():
 			btn.text = "%s\n  %s" % [opt["label"], opt["description"]]
