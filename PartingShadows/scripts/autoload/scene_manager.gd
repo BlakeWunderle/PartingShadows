@@ -5,6 +5,9 @@ var _spinner: Control
 var _tip_label: Label
 var _preload_requests: Dictionary = {}
 var _transitioning: bool = false
+var _queued_path: String = ""
+var _queued_fade: float = 0.4
+var _queued_keep_music: bool = false
 const _LOAD_TIMEOUT_MSEC: int = 30000
 
 const TIPS: Array[String] = [
@@ -26,6 +29,7 @@ const TIPS: Array[String] = [
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	layer = 100
 	_fader = ColorRect.new()
 	_fader.color = Color.BLACK
@@ -71,9 +75,15 @@ func preload_scene(path: String) -> void:
 
 func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = false) -> void:
 	if _transitioning:
+		GameLog.warn("SceneManager: QUEUED change_scene('%s') — already transitioning" % path)
+		_queued_path = path
+		_queued_fade = fade_duration
+		_queued_keep_music = keep_music
 		return
 	_transitioning = true
 	GameLog.info("Scene: %s" % path)
+	if get_tree().paused:
+		GameLog.warn("SceneManager: tree is PAUSED during change_scene")
 	_fader.mouse_filter = Control.MOUSE_FILTER_STOP
 	if not keep_music:
 		MusicManager.stop_music(fade_duration)
@@ -86,6 +96,7 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 	var tween := create_tween()
 	tween.tween_property(_fader, "modulate:a", 1.0, fade_duration)
 	await tween.finished
+	GameLog.info("SceneManager: fade-in done for '%s'" % path)
 
 	# Show spinner + loading tip
 	_spinner.visible = true
@@ -95,6 +106,7 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 	# Wait for threaded load to complete (likely already finished during fade)
 	var scene: PackedScene = await _await_threaded_load(path)
 	_preload_requests.erase(path)
+	GameLog.info("SceneManager: loaded '%s' (null=%s)" % [path, str(scene == null)])
 
 	_spinner.visible = false
 	_tip_label.visible = false
@@ -113,8 +125,14 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 	if old_scene:
 		old_scene.queue_free()
 	var new_scene := scene.instantiate()
+	if new_scene == null:
+		GameLog.error("SceneManager: instantiate() returned null for '%s'" % path)
+		_fader.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_transitioning = false
+		return
 	get_tree().root.add_child(new_scene)
 	get_tree().current_scene = new_scene
+	GameLog.info("SceneManager: swapped to '%s'" % path)
 
 	await get_tree().process_frame
 	var tween_out := create_tween()
@@ -122,6 +140,15 @@ func change_scene(path: String, fade_duration: float = 0.4, keep_music: bool = f
 	await tween_out.finished
 	_fader.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_transitioning = false
+	GameLog.info("SceneManager: fade-out done for '%s'" % path)
+
+	# Execute queued scene change if any
+	if not _queued_path.is_empty():
+		var qp := _queued_path
+		var qf := _queued_fade
+		var qm := _queued_keep_music
+		_queued_path = ""
+		change_scene(qp, qf, qm)
 
 
 func _await_threaded_load(path: String) -> PackedScene:

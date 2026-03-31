@@ -163,6 +163,7 @@ func _input(event: InputEvent) -> void:
 	elif _current_line >= _lines.size():
 		# All lines shown and player pressed continue
 		_continue_label.modulate.a = 0.0
+		_accepting_input = false  # Prevent double emissions on rapid clicks
 		all_text_finished.emit()
 
 
