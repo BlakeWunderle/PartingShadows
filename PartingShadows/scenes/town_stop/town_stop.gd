@@ -227,8 +227,9 @@ func _mark_self_ready() -> void:
 
 func _on_all_ready() -> void:
 	if _pending_advance.is_valid():
-		_pending_advance.call()
+		var cb := _pending_advance
 		_pending_advance = Callable()
+		cb.call_deferred()
 
 
 func _get_peer_index(peer_id: int) -> int:

@@ -248,8 +248,10 @@ func _show_ready_gate(callback: Callable) -> void:
 
 func _on_all_ready() -> void:
 	if _pending_advance.is_valid():
-		_pending_advance.call()
+		var cb := _pending_advance
 		_pending_advance = Callable()
+		# Defer so SceneManager.change_scene runs outside the mark_ready/RPC call stack
+		cb.call_deferred()
 
 
 func _get_peer_index(peer_id: int) -> int:

@@ -11,6 +11,7 @@ const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 const PortraitCard := preload("res://scripts/ui/portrait_card.gd")
 const StatsPanel := preload("res://scripts/ui/stats_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
+const ReadyGate := preload("res://scripts/ui/ready_gate.gd")
 const WaitingOverlay := preload("res://scripts/ui/waiting_overlay.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const AbilityData := preload("res://scripts/data/ability_data.gd")
@@ -47,7 +48,7 @@ var _battle_stats: Dictionary = {}  ## FighterData -> {damage_dealt, damage_take
 var _auto_battle: bool = false
 var _auto_battle_unlocked: bool = false
 var _summary_waiting: bool = false
-var _summary_gate: RefCounted = null  ## ReadyGate for multiplayer summary sync
+var _summary_gate: ReadyGate = null  ## ReadyGate for multiplayer summary sync
 var _auto_button: Button
 var _display: BattleDisplay
 var _mp: BattleMultiplayer
