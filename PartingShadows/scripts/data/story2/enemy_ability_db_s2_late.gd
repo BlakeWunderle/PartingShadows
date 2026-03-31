@@ -244,7 +244,7 @@ static func refraction_beam() -> AbilityData:
 	return _make("Refraction Beam", "A focused beam that burns through all defenses.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
 
 static func crystalline_ward() -> AbilityData:
-	return _make("Crystalline Ward", "The Iris wraps itself in layers of stolen light.", Enums.StatType.MAGIC_DEFENSE, 18, 2, false, 4, false, 0, 0.0)
+	return _make("Crystalline Ward", "The Iris wraps itself in layers of stolen light.", Enums.StatType.MAGIC_DEFENSE, 20, 2, false, 4, false, 0, 0.0)
 
 # --- The Lidless Eye (Phase 2 final boss) ---
 

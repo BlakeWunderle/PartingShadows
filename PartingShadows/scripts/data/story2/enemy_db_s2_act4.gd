@@ -88,10 +88,10 @@ static func create_memory_reaper(n: String, lvl: int = 14) -> FighterData:
 
 static func create_void_iris(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Void Iris", lvl)
-	f.health = EH.es(520, 580, 4, 7, lvl, 14); f.max_health = f.health
+	f.health = EH.es(545, 610, 4, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(20, 28, 1, 2, lvl, 14)
-	f.physical_defense = EH.es(21, 30, 1, 3, lvl, 14)
+	f.physical_defense = EH.es(25, 34, 1, 3, lvl, 14)
 	f.magic_attack = EH.es(106, 121, 3, 4, lvl, 14)
 	f.magic_defense = EH.es(55, 64, 2, 4, lvl, 14)
 	f.speed = EH.es(54, 61, 2, 4, lvl, 14)

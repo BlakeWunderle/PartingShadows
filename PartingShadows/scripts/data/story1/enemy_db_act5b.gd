@@ -115,9 +115,9 @@ static func create_stranger_undone(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(1090, 1194, 12, 18, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(42, 48, 3, 4, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(87, 98, 2, 4, lvl, 15)
-	f.physical_defense = EH.es(52, 60, 2, 4, lvl, 15)
+	f.physical_defense = EH.es(55, 64, 2, 4, lvl, 15)
 	f.magic_attack = EH.es(106, 118, 3, 6, lvl, 15)
-	f.magic_defense = EH.es(54, 63, 2, 4, lvl, 15)
+	f.magic_defense = EH.es(58, 67, 2, 4, lvl, 15)
 	f.speed = EH.es(81, 91, 3, 5, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 7; f.dodge_chance = 20
 	f.abilities = [EAB.shadow_remnant_strike(), EAB.void_drain(), EAB.crumbling_shield(), EAB.final_echo(), EAB.desperation()]
