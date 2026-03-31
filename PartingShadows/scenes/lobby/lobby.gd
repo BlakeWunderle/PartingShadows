@@ -12,7 +12,7 @@ const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
 
-enum Mode { ROLE_SELECT, HOSTING, JOIN_INPUT, CONNECTING, IN_LOBBY, LOAD_SAVE, FIGHTER_PICK }
+enum Mode { ROLE_SELECT, HOSTING, CONNECTING, IN_LOBBY, LOAD_SAVE, FIGHTER_PICK }
 
 var _mode: Mode = Mode.ROLE_SELECT
 var _vbox: VBoxContainer
@@ -132,11 +132,8 @@ func _show_role_select() -> void:
 	_player_list.visible = false
 	_address_input.visible = false
 
-	var join_desc: String = "Accept a Steam invite from the host" \
-		if SteamManager.is_steam_running else "Join a friend's game via IP"
 	_menu.show_choices([
 		{"label": "Host Game", "description": "Create a game and invite friends"},
-		{"label": "Join Game", "description": join_desc},
 		{"label": "Back"},
 	])
 
@@ -147,8 +144,6 @@ func _on_menu_choice(index: int) -> void:
 			_handle_role_choice(index)
 		Mode.HOSTING:
 			_handle_host_menu_choice(index)
-		Mode.JOIN_INPUT:
-			_handle_join_input_choice(index)
 		Mode.IN_LOBBY:
 			_handle_lobby_choice(index)
 		Mode.LOAD_SAVE:
@@ -159,9 +154,7 @@ func _handle_role_choice(index: int) -> void:
 	match index:
 		0:  # Host Game
 			_start_hosting()
-		1:  # Join Game
-			_show_join_input()
-		2:  # Back
+		1:  # Back
 			SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
@@ -191,8 +184,10 @@ func _on_steam_hosting_started(_lobby_id: int) -> void:
 	_address_input.visible = false
 	_show_host_menu()
 	_refresh_player_list()
-	_status_label.text = "Steam lobby ready. Press Shift+Tab to invite friends."
+	_status_label.text = "Lobby ready! Open the Steam overlay (Shift+Tab) to invite friends."
 	_status_label.visible = true
+	_status_label.add_theme_font_size_override("font_size", 22)
+	_status_label.add_theme_color_override("font_color", Color(0.95, 0.85, 0.4))
 
 
 func _on_steam_hosting_failed() -> void:
@@ -267,23 +262,8 @@ func _handle_host_menu_choice(index: int) -> void:
 
 
 # =============================================================================
-# Joining
+# Joining (via Steam invite only — no manual join UI)
 # =============================================================================
-
-func _show_join_input() -> void:
-	_mode = Mode.JOIN_INPUT
-	_header.text = "JOIN GAME"
-	_player_list.visible = false
-
-	_address_input.visible = false
-	_status_label.text = "Ask the host to invite you via Steam overlay (Shift+Tab)."
-	_status_label.visible = true
-	_menu.show_choices([{"label": "Back"}])
-
-
-func _handle_join_input_choice(_index: int) -> void:
-	_show_role_select()
-
 
 func _auto_join_steam_lobby(steam_lobby_id: int) -> void:
 	_mode = Mode.CONNECTING
