@@ -235,7 +235,6 @@ func _save() -> void:
 	if file:
 		file.store_string(json_str)
 		file.close()
-	SteamManager.cloud_write("settings.json", json_str)
 
 
 func _apply_all() -> void:

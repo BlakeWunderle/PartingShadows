@@ -55,7 +55,6 @@ func _save_unlocks() -> void:
 	if file:
 		file.store_string(json_str)
 		file.close()
-	SteamManager.cloud_write("unlocks.json", json_str)
 
 
 func _load_unlocks() -> void:
@@ -65,8 +64,6 @@ func _load_unlocks() -> void:
 		if file:
 			text = file.get_as_text()
 			file.close()
-	if text.is_empty():
-		text = SteamManager.cloud_read("unlocks.json")
 	if text.is_empty():
 		return
 	var json := JSON.new()

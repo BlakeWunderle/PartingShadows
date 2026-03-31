@@ -283,8 +283,6 @@ func _load() -> void:
 			text = file.get_as_text()
 			file.close()
 	if text.is_empty():
-		text = SteamManager.cloud_read("compendium.json")
-	if text.is_empty():
 		return
 	var json := JSON.new()
 	if json.parse(text) != OK:
@@ -309,4 +307,3 @@ func _save() -> void:
 		file.close()
 	else:
 		GameLog.warn("CompendiumManager: failed to write compendium.json")
-	SteamManager.cloud_write("compendium.json", json_str)
