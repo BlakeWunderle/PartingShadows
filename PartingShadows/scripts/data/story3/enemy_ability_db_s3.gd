@@ -292,21 +292,24 @@ static func hex_bolt() -> AbilityData:
 static func curse() -> AbilityData:
 	return _make("Curse", "Words that sap the strength from limbs.", Enums.StatType.ATTACK, 11, 2, true, 3, false, 0, 0.0)
 
-# --- Thread Guard ---
+# --- Thread Guard (P15 — slow BURST hitter) ---
 
 static func threaded_blade() -> AbilityData:
 	return _make("Threaded Blade", "A sword wrapped in strands of woven power.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
-static func woven_shield() -> AbilityData:
-	return _make("Woven Shield", "Dream-threads reach out and unravel every barrier at once.", Enums.StatType.DEFENSE, 10, 2, true, 4, true, 0, 0.0)
+static func rending_weave() -> AbilityData:
+	return _make("Rending Weave", "Dream-threads coil around the blade and rip through armor in a single devastating arc.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
-# --- Dream Hound ---
+static func thread_impale() -> AbilityData:
+	return _make("Thread Impale", "A spear of compressed dream-thread driven clean through the chest.", Enums.StatType.PHYSICAL_ATTACK, 15, 0, true, 5, false, 0, 0.0)
 
-static func feral_bite() -> AbilityData:
-	return _make("Feral Bite", "Teeth close with wild, desperate force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+# --- Dream Hound (P15 — MIXED drainer) ---
 
-static func dream_howl() -> AbilityData:
-	return _make("Dream Howl", "A howl that reverberates through waking and dreaming.", Enums.StatType.SPEED, 6, 2, true, 4, true, 0, 0.0)
+static func dream_siphon() -> AbilityData:
+	return _make("Dream Siphon", "Jaws latch on and drink the warmth from flesh and spirit alike.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.2)
+
+static func spectral_lunge() -> AbilityData:
+	return _make("Spectral Lunge", "The hound flickers between waking and dreaming mid-leap, striking body and mind at once.", Enums.StatType.MIXED_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 # --- Cult Ritualist ---
 
@@ -384,11 +387,11 @@ static func weave_brace() -> AbilityData:
 	return _make("Weave Brace", "The construct draws its threads inward, coiling for a devastating follow-up strike.", Enums.StatType.ATTACK, 11, 1, false, 2, false, 0, 0.0)
 
 
-# --- Thread Stitcher (DoT specialist, magical damage) ---
+# --- Thread Stitcher (P15 — SUPPORT healer) ---
 
-static func thread_lance() -> AbilityData:
-	return _make("Thread Lance", "A needle of hardened dream-thread pierces through armor and wards alike.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+static func thread_mend() -> AbilityData:
+	return _make("Thread Mend", "Dream-threads stitch torn flesh back together.", Enums.StatType.HEALTH, 18, 0, false, 4, false, 0, 0.0)
 
-static func thread_scourge() -> AbilityData:
-	return _make("Thread Scourge", "Razor-thin threads burrow into flesh and keep cutting.", Enums.StatType.HEALTH, 0, 3, true, 3, false, 3, 0.0)
+static func lacerating_thread() -> AbilityData:
+	return _make("Lacerating Thread", "A whip-thin strand of hardened dream-stuff lashes out with surgical spite.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 

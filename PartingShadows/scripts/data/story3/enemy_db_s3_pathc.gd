@@ -33,9 +33,9 @@ static func create_thread_devourer(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Thread Devourer", lvl)
 	f.health = EH.es(475, 549, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(107, 120, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(70, 80, 2, 4, lvl, 15)
 	f.physical_defense = EH.es(39, 46, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
+	f.magic_attack = EH.es(65, 75, 2, 4, lvl, 15)
 	f.magic_defense = EH.es(35, 41, 2, 3, lvl, 15)
 	f.speed = EH.es(38, 44, 2, 3, lvl, 15)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
@@ -66,31 +66,31 @@ static func create_slumbering_colossus(n: String, lvl: int = 15) -> FighterData:
 
 static func create_dream_priest(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Priest", lvl)
-	f.health = EH.es(545, 626, 5, 8, lvl, 16); f.max_health = f.health
-	f.mana = EH.es(20, 24, 1, 2, lvl, 16); f.max_mana = f.mana
+	f.health = EH.es(560, 644, 5, 8, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(22, 27, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
-	f.physical_defense = EH.es(42, 50, 2, 4, lvl, 16)
-	f.magic_attack = EH.es(123, 138, 3, 5, lvl, 16)
-	f.magic_defense = EH.es(50, 59, 2, 4, lvl, 16)
-	f.speed = EH.es(37, 43, 2, 3, lvl, 16)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 17
-	f.abilities = [EAB.sacred_thread(), EAB.loom_prayer()]
-	f.flavor_text = "A cult priest who projects their consciousness into the dream to intercept intruders. Their sacred threads and whispered prayers to the loom sustain the cult's hold on the sleeping world."
+	f.physical_defense = EH.es(32, 40, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(108, 122, 3, 5, lvl, 16)
+	f.magic_defense = EH.es(62, 72, 2, 4, lvl, 16)
+	f.speed = EH.es(40, 46, 2, 3, lvl, 16)
+	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
+	f.abilities = [EAB.dream_suture(), EAB.condemning_light()]
+	f.flavor_text = "A cult priest who projects their consciousness into the dream to intercept intruders. Their sacred sutures mend wounded allies while condemning light punishes the faithless."
 	return f
 
 
 static func create_astral_enforcer(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Astral Enforcer", lvl)
-	f.health = EH.es(608, 695, 6, 9, lvl, 16); f.max_health = f.health
-	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(126, 143, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(60, 68, 2, 4, lvl, 16)
+	f.health = EH.es(600, 690, 6, 9, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(142, 160, 3, 6, lvl, 16)
+	f.physical_defense = EH.es(32, 40, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(37, 46, 2, 3, lvl, 16)
-	f.speed = EH.es(33, 39, 2, 3, lvl, 16)
-	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
-	f.abilities = [EAB.dream_blade(), EAB.astral_brace()]
-	f.flavor_text = "A warrior whose astral projection fights with the full force of their waking body. Their dream-forged blade cuts through defenses, and their braced stance absorbs punishment meant to banish them."
+	f.magic_defense = EH.es(28, 36, 2, 3, lvl, 16)
+	f.speed = EH.es(28, 34, 1, 2, lvl, 16)
+	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 10
+	f.abilities = [EAB.astral_cleave(), EAB.star_fracture()]
+	f.flavor_text = "A hulking warrior whose astral form hits like a collapsing star. Slow and poorly armored, but each strike lands with devastating force."
 	return f
 
 
@@ -112,16 +112,16 @@ static func create_oneiric_hexer(n: String, lvl: int = 16) -> FighterData:
 # Prog 15 -- physical tank with life steal (level 16)
 static func create_oneiric_guardian(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Oneiric Guardian", lvl)
-	f.health = EH.es(650, 742, 6, 9, lvl, 16); f.max_health = f.health
+	f.health = EH.es(720, 824, 7, 10, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(129, 145, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(61, 69, 2, 4, lvl, 16)
+	f.physical_attack = EH.es(90, 102, 2, 4, lvl, 16)
+	f.physical_defense = EH.es(68, 78, 2, 4, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(39, 47, 2, 3, lvl, 16)
+	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 16)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 16)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.warden_strike(), EAB.dream_siphon()]
-	f.flavor_text = "A hulking guardian conjured from the dream by a cult enforcer's will. It sustains itself by draining the dream-essence of those it strikes, growing harder to kill the longer the fight continues."
+	f.flavor_text = "A hulking guardian conjured from the dream by a cult enforcer's will. Its stone-like hide shrugs off blades, though magic cuts deep. It sustains itself by draining the dream-essence of those it strikes."
 	return f
 
 

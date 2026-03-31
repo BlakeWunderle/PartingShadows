@@ -67,32 +67,32 @@ static func create_cult_hexer(n: String, lvl: int = 15) -> FighterData:
 # Prog 15 (CultCatacombs) only -- physical guard
 static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Thread Guard", lvl)
-	f.health = EH.es(649, 742, 6, 9, lvl, 16); f.max_health = f.health
-	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(136, 152, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(61, 70, 2, 4, lvl, 16)
+	f.health = EH.es(480, 550, 5, 8, lvl, 16); f.max_health = f.health
+	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(148, 168, 4, 6, lvl, 16)
+	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(38, 47, 2, 3, lvl, 16)
-	f.speed = EH.es(28, 34, 1, 2, lvl, 16)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 10
-	f.abilities = [EAB.threaded_blade(), EAB.woven_shield()]
-	f.flavor_text = "An elite warrior who wields a blade wrapped in shimmering dream-thread. Their woven shield can absorb tremendous punishment, making them the cult's frontline defender."
+	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 16)
+	f.speed = EH.es(26, 32, 1, 2, lvl, 16)
+	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 10
+	f.abilities = [EAB.rending_weave(), EAB.thread_impale()]
+	f.flavor_text = "A hulking enforcer who channels the Loom's power into single, devastating strikes. What it lacks in resilience it makes up for in the sheer ruin of each blow."
 	return f
 
 
-# Prog 15 -- fast agile hound (level 16)
+# Prog 15 -- MIXED life-draining hound (level 16)
 static func create_dream_hound(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Dream Hound", lvl)
 	f.health = EH.es(486, 560, 5, 8, lvl, 16); f.max_health = f.health
-	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(127, 143, 3, 5, lvl, 16)
-	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 16)
-	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
-	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 16)
+	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
+	f.physical_attack = EH.es(80, 92, 2, 4, lvl, 16)
+	f.magic_attack = EH.es(70, 80, 2, 4, lvl, 16)
+	f.physical_defense = EH.es(50, 58, 2, 4, lvl, 16)
+	f.magic_defense = EH.es(28, 35, 2, 3, lvl, 16)
 	f.speed = EH.es(45, 51, 3, 4, lvl, 16)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
-	f.abilities = [EAB.feral_bite(), EAB.dream_howl()]
-	f.flavor_text = "A sleek beast bred in the cult's dream kennels, trained to hunt by scent of thought. It is blindingly fast and attacks with savage, coordinated ferocity."
+	f.abilities = [EAB.dream_siphon(), EAB.spectral_lunge()]
+	f.flavor_text = "A sleek beast bred in the cult's dream kennels. It feeds on the boundary between waking and sleeping, draining life force with every bite."
 	return f
 
 
@@ -203,15 +203,15 @@ static func create_loom_crusher(n: String, lvl: int = 17) -> FighterData:
 static func create_thread_stitcher(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Thread Stitcher", lvl)
 	f.health = EH.es(520, 598, 5, 8, lvl, 16); f.max_health = f.health
-	f.mana = EH.es(18, 22, 1, 2, lvl, 16); f.max_mana = f.mana
+	f.mana = EH.es(20, 25, 1, 2, lvl, 16); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 16)
-	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 16)
-	f.magic_attack = EH.es(129, 144, 3, 5, lvl, 16)
-	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 16)
-	f.speed = EH.es(37, 43, 2, 3, lvl, 16)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
-	f.abilities = [EAB.thread_lance(), EAB.thread_scourge()]
-	f.flavor_text = "A cult operative who weaponizes the same threads used to mend the Loom. Their lances of hardened dream-thread pierce through wards, and their scourging filaments burrow into flesh and keep cutting long after the initial strike."
+	f.physical_defense = EH.es(45, 52, 2, 3, lvl, 16)
+	f.magic_attack = EH.es(110, 125, 3, 5, lvl, 16)
+	f.magic_defense = EH.es(52, 60, 2, 4, lvl, 16)
+	f.speed = EH.es(40, 46, 2, 3, lvl, 16)
+	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
+	f.abilities = [EAB.thread_mend(), EAB.lacerating_thread()]
+	f.flavor_text = "A cult mender who stitches torn dream-threads back together. In battle, those same mending skills sustain wounded allies — or lash out at those who threaten the weave."
 	return f
 
 

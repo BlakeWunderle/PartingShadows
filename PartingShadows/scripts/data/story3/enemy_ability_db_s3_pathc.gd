@@ -28,7 +28,7 @@ static func deep_slumber() -> AbilityData:
 # --- Thread Devourer ---
 
 static func thread_bite() -> AbilityData:
-	return _make("Thread Bite", "Jaws made of frayed dream-stuff tear and swallow.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.2)
+	return _make("Thread Bite", "Jaws made of frayed dream-stuff tear and swallow.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.2)
 
 static func unravel_ward() -> AbilityData:
 	return _make("Unravel Ward", "Defenses come apart at the seams.", Enums.StatType.DEFENSE, 10, 2, true, 3, false, 0, 0.0)
@@ -46,21 +46,21 @@ static func ancient_yawn() -> AbilityData:
 # Dream-projected cult members (S3_C_CultInterception)
 # =============================================================================
 
-# --- Dream Priest (Thorne's dream form) ---
+# --- Dream Priest (P15 — SUPPORT healer, Thorne's dream form) ---
 
-static func loom_prayer() -> AbilityData:
-	return _make("Loom Prayer", "A chant that strips away the defenses of the faithless.", Enums.StatType.DEFENSE, 10, 2, true, 4, true, 0, 0.0)
+static func dream_suture() -> AbilityData:
+	return _make("Dream Suture", "Threads of faith stitch wounds closed from within the dreaming.", Enums.StatType.HEALTH, 20, 0, false, 4, false, 0, 0.0)
 
-static func sacred_thread() -> AbilityData:
-	return _make("Sacred Thread", "A bolt of consecrated dream-stuff strikes with purpose.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+static func condemning_light() -> AbilityData:
+	return _make("Condemning Light", "Holy radiance sears those the priest deems heretical.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
-# --- Astral Enforcer ---
+# --- Astral Enforcer (P15 — fast crit DPS) ---
 
-static func dream_blade() -> AbilityData:
-	return _make("Dream Blade", "A sword forged from pure intent cuts deeper than steel.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
+static func astral_cleave() -> AbilityData:
+	return _make("Astral Cleave", "A shimmering blade carves through the boundary between thought and flesh.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
 
-static func astral_brace() -> AbilityData:
-	return _make("Astral Fist", "The enforcer channels astral force through a devastating punch.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+static func star_fracture() -> AbilityData:
+	return _make("Star Fracture", "The enforcer tears a seam in the dreamscape and drives a fist through the gap.", Enums.StatType.PHYSICAL_ATTACK, 13, 0, true, 5, false, 0, 0.0)
 
 # --- Oneiric Hexer ---
 

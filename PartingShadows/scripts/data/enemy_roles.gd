@@ -249,8 +249,8 @@ const _DATA: Dictionary = {
 	"Cult Acolyte": { "r": [R.DPS], "s": [S.EVASION], "d": D.MIXED },
 	"Cult Enforcer": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE, S.DOT] },
 	"Cult Hexer": { "r": [R.DPS], "s": [S.EVASION], "d": D.MAGICAL },
-	"Thread Guard": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE] },
-	"Dream Hound": { "r": [R.DPS], "s": [S.AOE] },
+	"Thread Guard": { "r": [R.BURST], "s": [S.CRIT] },
+	"Dream Hound": { "r": [R.DPS], "s": [S.DRAIN], "d": D.MIXED },
 	"Cult Ritualist": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.AOE], "d": D.MAGICAL },
 	"High Weaver": { "r": [R.DPS], "s": [S.EVASION, S.GLASS_CANNON], "d": D.MAGICAL },
 	"Shadow Fragment": { "s": [S.AOE, S.CRIT, S.EVASION], "d": D.MAGICAL, "t": T.UNDERLING },
@@ -259,7 +259,7 @@ const _DATA: Dictionary = {
 	"NeedleWraith": { "r": [R.DPS], "s": [S.AOE] },
 	"LoomCrusher": { "r": [R.TANK, R.FIGHTER] },
 	"Ritual Guardian": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE] },
-	"Thread Stitcher": { "r": [R.DPS], "s": [S.DOT], "d": D.MAGICAL },
+	"Thread Stitcher": { "r": [R.SUPPORT], "s": [S.HEALER], "d": D.MAGICAL },
 
 	# ==========================================================================
 	# Story 3 - Path B
@@ -290,12 +290,12 @@ const _DATA: Dictionary = {
 	# Story 3 - Path C
 	# ==========================================================================
 	"Abyssal Dreamer": { "r": [R.DPS], "s": [S.AOE, S.GLASS_CANNON], "d": D.MAGICAL },
-	"Thread Devourer": { "r": [R.DPS], "s": [S.DRAIN] },
+	"Thread Devourer": { "r": [R.DPS], "s": [S.DRAIN], "d": D.MIXED },
 	"Slumbering Colossus": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE] },
-	"Dream Priest": { "r": [R.DPS], "s": [S.AOE, S.CRIT], "d": D.MAGICAL },
-	"Astral Enforcer": { "r": [R.TANK, R.FIGHTER], "s": [S.CRIT] },
+	"Dream Priest": { "r": [R.SUPPORT], "s": [S.HEALER], "d": D.MAGICAL },
+	"Astral Enforcer": { "r": [R.BURST], "s": [S.CRIT] },
 	"Oneiric Hexer": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.AOE, S.CRIT, S.EVASION], "d": D.MAGICAL },
-	"Oneiric Guardian": { "r": [R.TANK, R.FIGHTER], "s": [S.DRAIN] },
+	"Oneiric Guardian": { "r": [R.TANK], "s": [S.DRAIN] },
 	"Memory Eater": { "r": [R.DPS], "s": [S.DRAIN, S.AOE, S.CRIT, S.EVASION], "d": D.MAGICAL },
 	"Nightmare Sentinel": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE, S.CRIT] },
 	"Anchor Chain": { "r": [R.TANK, R.FIGHTER], "s": [S.CRIT] },
