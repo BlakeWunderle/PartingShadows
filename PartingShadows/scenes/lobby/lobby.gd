@@ -187,7 +187,9 @@ func _on_steam_hosting_started(_lobby_id: int) -> void:
 	_status_label.text = "Lobby ready! Open the Steam overlay (Shift+Tab) to invite friends."
 	_status_label.visible = true
 	_status_label.add_theme_font_size_override("font_size", 22)
-	_status_label.add_theme_color_override("font_color", Color(0.95, 0.85, 0.4))
+	_status_label.add_theme_color_override("font_color", Color.WHITE)
+	_status_label.add_theme_constant_override("outline_size", 2)
+	_status_label.add_theme_color_override("font_outline_color", Color.BLACK)
 
 
 func _on_steam_hosting_failed() -> void:
