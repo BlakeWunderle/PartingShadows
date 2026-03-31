@@ -10,9 +10,9 @@ const EH := preload("res://scripts/data/enemy_helpers.gd")
 
 # =============================================================================
 # Act III: Cult dream guardians (Progression 11-13)
-# Prog 11 (S3_LucidDream): target 54%, 12 level-ups
-# Prog 12 (S3_DreamTemple/DreamVoid): target 52%, 13 level-ups
-# Prog 13 (S3_DreamSanctum): target 50%, 14 level-ups (boss)
+# Prog 11 (S3_LucidDream): target 67%, 12 level-ups
+# Prog 12 (S3_DreamTemple/DreamVoid): target 65%, 13 level-ups
+# Prog 13 (S3_DreamSanctum): target 63%, 14 level-ups (boss)
 # =============================================================================
 
 # Prog 11 (LucidDream) only -- mage phantom (fast magic DPS)
@@ -22,7 +22,7 @@ static func create_lucid_phantom(n: String, lvl: int = 12) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(25, 33, 2, 3, lvl, 12)
-	f.magic_attack = EH.es(106, 117, 3, 5, lvl, 12)
+	f.magic_attack = EH.es(100, 111, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(42, 50, 2, 3, lvl, 12)
 	f.speed = EH.es(34, 40, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
@@ -38,7 +38,7 @@ static func create_thread_spinner(n: String, lvl: int = 12) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(35, 43, 2, 3, lvl, 12)
-	f.magic_attack = EH.es(86, 100, 2, 4, lvl, 12)
+	f.magic_attack = EH.es(82, 96, 2, 4, lvl, 12)
 	f.magic_defense = EH.es(43, 51, 2, 3, lvl, 12)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 12)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
@@ -52,7 +52,7 @@ static func create_loom_sentinel(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Loom Sentinel", lvl)
 	f.health = EH.es(612, 700, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(107, 120, 3, 5, lvl, 13)
+	f.physical_attack = EH.es(102, 115, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(54, 63, 2, 3, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
 	f.magic_defense = EH.es(33, 40, 2, 3, lvl, 13)
@@ -70,7 +70,7 @@ static func create_cult_shade(n: String, lvl: int = 12) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(23, 29, 1, 3, lvl, 12)
-	f.magic_attack = EH.es(98, 109, 3, 5, lvl, 12)
+	f.magic_attack = EH.es(93, 104, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(38, 45, 2, 3, lvl, 12)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
@@ -85,9 +85,9 @@ static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Dream Warden", lvl)
 	f.health = EH.es(510, 585, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(91, 102, 2, 4, lvl, 13)
+	f.physical_attack = EH.es(87, 98, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(37, 44, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(86, 97, 2, 4, lvl, 13)
+	f.magic_attack = EH.es(82, 93, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
@@ -103,7 +103,7 @@ static func create_thought_leech(n: String, lvl: int = 13) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(25, 33, 1, 3, lvl, 13)
-	f.magic_attack = EH.es(103, 115, 3, 5, lvl, 13)
+	f.magic_attack = EH.es(98, 110, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(44, 51, 2, 3, lvl, 13)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
@@ -120,7 +120,7 @@ static func create_void_spinner(n: String, lvl: int = 13) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(29, 37, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(111, 124, 3, 5, lvl, 13)
+	f.magic_attack = EH.es(106, 119, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 13)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 13)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
