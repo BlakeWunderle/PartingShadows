@@ -197,9 +197,9 @@ static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 	f.health = EH.es(1247, 1417, 10, 14, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(46, 53, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(26, 34, 1, 3, lvl, 15)
-	f.physical_defense = EH.es(59, 69, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(152, 173, 5, 8, lvl, 15)
-	f.magic_defense = EH.es(73, 83, 4, 6, lvl, 15)
+	f.physical_defense = EH.es(56, 66, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(149, 170, 5, 8, lvl, 15)
+	f.magic_defense = EH.es(70, 79, 4, 6, lvl, 15)
 	f.speed = EH.es(59, 65, 2, 4, lvl, 15)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 17
 	f.abilities = [EAB.gaze_of_annihilation(), EAB.memory_maelstrom(), EAB.ancient_fury(), EAB.devour_identity(), EAB.unblinking_focus()]
@@ -213,16 +213,16 @@ static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 
 static func create_perception_tendril(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Perception Tendril", lvl)
-	f.health = EH.es(460, 520, 4, 7, lvl, 15); f.max_health = f.health
+	f.health = EH.es(250, 290, 2, 4, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(18, 24, 1, 2, lvl, 15)
-	f.physical_defense = EH.es(24, 32, 1, 3, lvl, 15)
-	f.magic_attack = EH.es(108, 124, 3, 5, lvl, 15)
-	f.magic_defense = EH.es(56, 66, 2, 4, lvl, 15)
+	f.physical_attack = EH.es(10, 16, 1, 2, lvl, 15)
+	f.physical_defense = EH.es(18, 24, 1, 2, lvl, 15)
+	f.magic_attack = EH.es(45, 55, 2, 3, lvl, 15)
+	f.magic_defense = EH.es(35, 42, 2, 3, lvl, 15)
 	f.speed = EH.es(56, 63, 2, 4, lvl, 15)
-	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
-	f.abilities = [EAB.focused_perception(), EAB.tendril_lash(), EAB.perceptive_mending()]
-	f.flavor_text = "A tendril of the Eye's vast awareness, given form. It amplifies its master's power and mends what the party tears away."
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
+	f.abilities = [EAB.tendril_ward(), EAB.tendril_lash(), EAB.perceptive_mending()]
+	f.flavor_text = "A tendril of the Eye's vast awareness, given form. It mends what the party tears away and shields its master."
 	return f
 
 
@@ -232,14 +232,14 @@ static func create_perception_tendril(n: String, lvl: int = 15) -> FighterData:
 
 static func create_void_lens(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Void Lens", lvl)
-	f.health = EH.es(430, 490, 4, 6, lvl, 15); f.max_health = f.health
+	f.health = EH.es(230, 270, 2, 4, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(20, 26, 1, 2, lvl, 15)
-	f.physical_defense = EH.es(22, 30, 1, 3, lvl, 15)
-	f.magic_attack = EH.es(115, 131, 3, 5, lvl, 15)
-	f.magic_defense = EH.es(52, 62, 2, 4, lvl, 15)
+	f.physical_attack = EH.es(12, 18, 1, 2, lvl, 15)
+	f.physical_defense = EH.es(16, 22, 1, 2, lvl, 15)
+	f.magic_attack = EH.es(50, 60, 2, 3, lvl, 15)
+	f.magic_defense = EH.es(32, 40, 2, 3, lvl, 15)
 	f.speed = EH.es(60, 67, 3, 4, lvl, 15)
-	f.crit_chance = 18; f.crit_damage = 3; f.dodge_chance = 17
-	f.abilities = [EAB.refracted_gaze(), EAB.dissolve_will(), EAB.null_pulse()]
+	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 8
+	f.abilities = [EAB.refracted_gaze(), EAB.null_pulse(), EAB.void_shimmer()]
 	f.flavor_text = "A lens of concentrated void light, broken free from the Eye's corona. It bends perception and strips away the will to resist."
 	return f

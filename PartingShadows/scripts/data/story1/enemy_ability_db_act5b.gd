@@ -104,7 +104,7 @@ static func void_drain() -> AbilityData:
 	return _make("Void Drain", "He feeds on what little void power remains, desperately sustaining himself.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, false, 0, 0.2)
 
 static func crumbling_shield() -> AbilityData:
-	return _make("Crumbling Shield", "A thin wall of shadow rises around him, barely holding together.", Enums.StatType.DEFENSE, 12, 2, false, 3, false, 0, 0.0)
+	return _make("Crumbling Shield", "A thin wall of shadow rises around him, barely holding together.", Enums.StatType.DEFENSE, 10, 2, false, 3, false, 0, 0.0)
 
 static func final_echo() -> AbilityData:
 	return _make("Final Echo", "A last desperate pulse of dark energy lashes out at everything.", Enums.StatType.MIXED_ATTACK, 12, 0, true, 4, true, 0, 0.0)

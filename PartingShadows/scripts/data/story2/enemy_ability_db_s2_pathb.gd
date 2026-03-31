@@ -145,44 +145,44 @@ static func frenzied_pulse() -> AbilityData:
 # =============================================================================
 
 static func gaze_of_annihilation() -> AbilityData:
-	return _make("Gaze of Annihilation", "The Eye turns its full, undiminished attention on one target.", Enums.StatType.MAGIC_ATTACK, 16, 0, true, 4, false, 0, 0.0)
+	return _make("Gaze of Annihilation", "The Eye turns its full, undiminished attention on one target.", Enums.StatType.MAGIC_ATTACK, 15, 0, true, 4, false, 0, 0.0)
 
 static func memory_maelstrom() -> AbilityData:
-	return _make("Memory Maelstrom", "A storm of regurgitated memories bludgeons all enemies.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, true, 0, 0.0)
+	return _make("Memory Maelstrom", "A storm of regurgitated memories bludgeons all enemies.", Enums.StatType.MAGIC_ATTACK, 9, 0, true, 4, true, 0, 0.0)
 
 static func ancient_fury() -> AbilityData:
-	return _make("Ancient Fury", "Eons of accumulated rage explode outward in a single devastating pulse.", Enums.StatType.MAGIC_ATTACK, 12, 0, true, 4, false, 0, 0.0)
+	return _make("Ancient Fury", "Eons of accumulated rage explode outward in a single devastating pulse.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.0)
 
 static func devour_identity() -> AbilityData:
-	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 3, false, 0, 0.62)
+	return _make("Devour Identity", "The Eye consumes what makes you you.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, false, 0, 0.50)
 
 static func unblinking_focus() -> AbilityData:
 	return _make("Unblinking Focus", "The Eye's gaze intensifies, stripping away all magical protection.", Enums.StatType.ATTACK, 13, 2, true, 3, true, 0, 0.0)
 
 
 # =============================================================================
-# Perception Tendril (buffer/healer support for Unblinking Eye)
+# Perception Tendril (sustain support for Unblinking Eye)
 # =============================================================================
 
-static func focused_perception() -> AbilityData:
-	return _make("Focused Perception", "The tendril channels the Eye's awareness, sharpening its master's strikes.", Enums.StatType.MAGIC_ATTACK, 16, 2, false, 3, true, 0, 0.0)
+static func tendril_ward() -> AbilityData:
+	return _make("Tendril Ward", "The tendril wraps protective awareness around its allies.", Enums.StatType.DEFENSE, 6, 2, false, 3, true, 0, 0.0)
 
 static func tendril_lash() -> AbilityData:
-	return _make("Tendril Lash", "A whip of concentrated perception rakes across all targets.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, true, 0, 0.0)
+	return _make("Tendril Lash", "A whip of concentrated perception rakes across all targets.", Enums.StatType.MAGIC_ATTACK, 2, 0, true, 3, true, 0, 0.0)
 
 static func perceptive_mending() -> AbilityData:
-	return _make("Perceptive Mending", "The tendril knits torn essence back together with threads of awareness.", Enums.StatType.HEALTH, 8, 0, false, 3, true, 0, 0.0)
+	return _make("Perceptive Mending", "The tendril knits torn essence back together with threads of awareness.", Enums.StatType.HEALTH, 4, 0, false, 3, true, 0, 0.0)
 
 
 # =============================================================================
-# Void Lens (debuffer/offense support for Unblinking Eye)
+# Void Lens (crowd control support for Unblinking Eye)
 # =============================================================================
 
 static func refracted_gaze() -> AbilityData:
-	return _make("Refracted Gaze", "Light bends through the lens and strikes with searing precision.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 3, false, 0, 0.0)
-
-static func dissolve_will() -> AbilityData:
-	return _make("Dissolve Will", "The lens strips away magical resistance, leaving the target exposed.", Enums.StatType.MAGIC_DEFENSE, 14, 2, true, 3, false, 0, 0.0)
+	return _make("Refracted Gaze", "Light bends through the lens and strikes with dim precision.", Enums.StatType.MAGIC_ATTACK, 3, 0, true, 3, false, 0, 0.0)
 
 static func null_pulse() -> AbilityData:
-	return _make("Null Pulse", "A wave of negation dulls the party's fighting edge.", Enums.StatType.ATTACK, 10, 2, true, 3, true, 0, 0.0)
+	return _make("Null Pulse", "A wave of negation dulls the party's fighting edge.", Enums.StatType.ATTACK, 5, 2, true, 3, true, 0, 0.0)
+
+static func void_shimmer() -> AbilityData:
+	return _make("Void Shimmer", "The lens warps time around a target, slowing their reactions.", Enums.StatType.SPEED, 5, 2, true, 3, false, 0, 0.0)
