@@ -16,7 +16,7 @@ static func create_sigil_colossus(n: String, lvl: int = 14) -> FighterData:
 	f.health = EH.es(677, 744, 7, 10, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(92, 100, 4, 6, lvl, 14)
-	f.physical_defense = EH.es(59, 69, 3, 5, lvl, 14)
+	f.physical_defense = EH.es(60, 70, 3, 5, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(37, 45, 2, 4, lvl, 14)
 	f.speed = EH.es(46, 53, 1, 3, lvl, 14)
@@ -34,7 +34,7 @@ static func create_ritual_conduit(n: String, lvl: int = 14) -> FighterData:
 	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 14)
 	f.magic_attack = EH.es(81, 90, 4, 6, lvl, 14)
 	f.magic_defense = EH.es(51, 59, 3, 5, lvl, 14)
-	f.speed = EH.es(53, 60, 2, 4, lvl, 14)
+	f.speed = EH.es(54, 61, 2, 4, lvl, 14)
 	f.crit_chance = 17; f.crit_damage = 4; f.dodge_chance = 17
 	f.abilities = [EAB.conduit_beam(), EAB.mending_sigil(), EAB.ritual_shield()]
 	f.flavor_text = "A crystalline pillar that channels ritual energy. It mends damage to the anchors and shields its allies."
@@ -45,9 +45,9 @@ static func create_void_sentinel(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Void Sentinel", lvl)
 	f.health = EH.es(554, 620, 8, 11, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 2, 3, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(66, 75, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(67, 76, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(40, 48, 2, 4, lvl, 14)
-	f.magic_attack = EH.es(69, 76, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(70, 77, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(42, 49, 2, 4, lvl, 14)
 	f.speed = EH.es(56, 63, 2, 4, lvl, 14)
 	f.crit_chance = 20; f.crit_damage = 6; f.dodge_chance = 17
@@ -66,9 +66,9 @@ static func create_void_horror(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(26, 31, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(35, 43, 2, 4, lvl, 15)
-	f.magic_attack = EH.es(90, 102, 4, 6, lvl, 15)
+	f.magic_attack = EH.es(91, 103, 4, 6, lvl, 15)
 	f.magic_defense = EH.es(50, 58, 3, 5, lvl, 15)
-	f.speed = EH.es(48, 54, 2, 4, lvl, 15)
+	f.speed = EH.es(49, 55, 2, 4, lvl, 15)
 	f.crit_chance = 20; f.crit_damage = 5; f.dodge_chance = 15
 	f.abilities = [EAB.void_eruption(), EAB.terror_gaze()]
 	f.flavor_text = "A howling mass of void energy given terrible form. Its eruptions leave nothing but silence."
@@ -79,11 +79,11 @@ static func create_fractured_shadow(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Fractured Shadow", lvl)
 	f.health = EH.es(425, 481, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(86, 96, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(87, 97, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(29, 36, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(14, 18, 0, 2, lvl, 15)
 	f.magic_defense = EH.es(32, 40, 2, 3, lvl, 15)
-	f.speed = EH.es(59, 67, 3, 5, lvl, 15)
+	f.speed = EH.es(60, 68, 3, 5, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 6; f.dodge_chance = 30
 	f.abilities = [EAB.shadow_rend(), EAB.flickerstrike(), EAB.speed_siphon()]
 	f.flavor_text = "A splintering fragment of the Stranger's essence. It moves faster than sight, striking from every angle."
@@ -96,9 +96,9 @@ static func create_shadow_remnant(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(22, 27, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 18, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(37, 45, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(77, 86, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(78, 87, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(46, 54, 2, 4, lvl, 15)
-	f.speed = EH.es(51, 58, 2, 4, lvl, 15)
+	f.speed = EH.es(52, 59, 2, 4, lvl, 15)
 	f.crit_chance = 20; f.crit_damage = 5; f.dodge_chance = 17
 	f.abilities = [EAB.fading_curse(), EAB.remnant_bolt(), EAB.dissolution()]
 	f.flavor_text = "The decaying afterimage of the Stranger's power. It weakens everything it touches, draining strength and resolve."

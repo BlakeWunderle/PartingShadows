@@ -67,7 +67,7 @@ static func create_wolf(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.speed = EH.es(24, 29, 2, 3, lvl, 2)
+	f.speed = EH.es(23, 28, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.bite(), EAB.howl()]
 	f.flavor_text = "Forest predators that hunt in packs, emboldened by moonlight."
@@ -77,7 +77,7 @@ static func create_boar(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Boar", lvl)
 	f.health = EH.es(65, 74, 4, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(20, 23, 2, 3, lvl, 2)
+	f.physical_attack = EH.es(19, 22, 2, 3, lvl, 2)
 	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
@@ -95,7 +95,7 @@ static func create_thornviper(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(5, 8, 0, 1, lvl, 2)
 	f.magic_attack = EH.es(13, 16, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.speed = EH.es(26, 32, 2, 3, lvl, 2)
+	f.speed = EH.es(25, 31, 2, 3, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.fang_strike(), EAB.venom()]
 	f.flavor_text = "A sleek forest serpent with barbed scales and venom that burns like fire. It strikes from the undergrowth without warning."
