@@ -119,7 +119,7 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not has_focus():
+	if not is_visible_in_tree() or not has_focus():
 		return
 	if event.is_action_pressed("ui_accept") or event.is_action_pressed("confirm"):
 		clicked.emit(item_data)

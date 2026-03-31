@@ -24,6 +24,7 @@ var _remap_panel: InputRemapPanel
 var _compendium_panel: CompendiumPanelNew
 var _confirm_dialog: ConfirmDialog
 var _pending_delete_slot: int = -1
+var _accepting_input: bool = false
 
 
 func _ready() -> void:
@@ -159,6 +160,11 @@ func _play_reveal() -> void:
 	tween.tween_interval(0.5)
 	await tween.finished
 	_show_main_menu()
+	# Release focus immediately so queued key events can't activate buttons
+	get_viewport().gui_release_focus()
+	await get_tree().create_timer(0.2).timeout
+	_menu.focus_first()
+	_accepting_input = true
 
 
 # =============================================================================
@@ -199,6 +205,8 @@ func _show_main_menu() -> void:
 
 
 func _on_menu_choice(index: int) -> void:
+	if not _accepting_input:
+		return
 	match _mode:
 		Mode.MAIN_MENU:
 			_handle_main_choice(index)

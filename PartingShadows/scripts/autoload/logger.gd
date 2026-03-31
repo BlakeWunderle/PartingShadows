@@ -8,12 +8,16 @@ enum Level { INFO, WARN, ERROR }
 
 const MAX_ENTRIES: int = 200
 
+const LOG_PATH := "user://game.log"
+
 var _entries: Array[Dictionary] = []
 var _start_time_msec: int = 0
+var _log_file: FileAccess
 
 
 func _ready() -> void:
 	_start_time_msec = Time.get_ticks_msec()
+	_log_file = FileAccess.open(LOG_PATH, FileAccess.WRITE)
 	info("Session started")
 
 
@@ -32,14 +36,19 @@ func error(message: String) -> void:
 
 
 func _add_entry(level: Level, message: String) -> void:
+	var timestamp: float = _elapsed_seconds()
 	var entry: Dictionary = {
-		"time": _elapsed_seconds(),
+		"time": timestamp,
 		"level": level,
 		"message": message,
 	}
 	_entries.append(entry)
 	if _entries.size() > MAX_ENTRIES:
 		_entries.pop_front()
+	if _log_file:
+		var prefix: String = ["INFO", "WARN", "ERR!"][level]
+		_log_file.store_line("[%.1fs] [%s] %s" % [timestamp, prefix, message])
+		_log_file.flush()
 
 
 func _elapsed_seconds() -> float:

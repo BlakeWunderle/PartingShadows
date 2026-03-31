@@ -112,6 +112,13 @@ func _clear_buttons() -> void:
 	_sp_last_nav_ms = 0
 
 
+func focus_first() -> void:
+	for btn: Button in _buttons:
+		if not btn.disabled:
+			btn.grab_focus()
+			break
+
+
 func hide_menu() -> void:
 	_clear_buttons()
 	visible = false

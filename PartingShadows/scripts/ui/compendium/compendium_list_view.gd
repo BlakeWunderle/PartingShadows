@@ -94,7 +94,7 @@ func _refresh_page() -> void:
 
 	_cards = cards
 	_wire_card_focus(cards)
-	if not cards.is_empty():
+	if not cards.is_empty() and is_visible_in_tree():
 		cards[0].grab_focus()
 
 
