@@ -154,12 +154,20 @@ func _do_text_advance() -> void:
 
 func _do_intro_advance() -> void:
 	if NetManager.is_multiplayer_active:
-		_rpc_begin_upgrades.rpc()
+		if NetManager.is_host:
+			_rpc_begin_upgrades.rpc()
+		else:
+			# Guest: wait for host's _rpc_begin_upgrades to drive the flow
+			return
 	_begin_upgrades()
 
 
 func _do_reveal_advance() -> void:
 	_dialogue.visible = false
+	if NetManager.is_multiplayer_active and not NetManager.is_host:
+		# Guest: wait for host's _rpc_advance_upgrade instead of advancing locally
+		# to avoid double-calling _show_next_upgrade().
+		return
 	_upgrade_index += 1
 	if NetManager.is_multiplayer_active:
 		_rpc_advance_upgrade.rpc(_upgrade_index)
@@ -167,6 +175,13 @@ func _do_reveal_advance() -> void:
 
 
 func _do_outro_advance() -> void:
+	if NetManager.is_multiplayer_active and not NetManager.is_host:
+		# Guest: host drives via _rpc_advance_next / _rpc_branch_chosen / _rpc_change_scene
+		# Exception: branch choices need the vote panel on both sides
+		var battle = GameState.current_battle
+		if not battle.choices.is_empty():
+			_check_branch_or_advance()
+		return
 	_check_branch_or_advance()
 
 

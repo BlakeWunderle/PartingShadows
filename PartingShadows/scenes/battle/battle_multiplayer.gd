@@ -215,20 +215,40 @@ func handle_submit_action(action: Dictionary) -> void:
 
 
 ## Host -> All: Battle ended.
-func handle_battle_ended(won: bool) -> void:
+func handle_battle_ended(won: bool, stats_data: Array = []) -> void:
 	_battle._phase = _battle.Phase.BATTLE_END
 	_battle._highlight_active_card(null)
 	if won:
 		_battle._add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
 	else:
 		_battle._add_log("[color=red]The party has been defeated...[/color]")
-	await _battle.get_tree().create_timer(2.0).timeout
+
+	# Restore battle stats from host data
+	_apply_battle_stats(stats_data)
+
 	if won:
+		SFXManager.play(SFXManager.Category.UI_FANFARE)
+		await _battle.get_tree().create_timer(1.0).timeout
+		await _battle._show_battle_summary()
 		GameState.advance_to_post_battle()
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
+		await _battle.get_tree().create_timer(2.0).timeout
 		GameState.go_to_ending(false)
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+
+
+func _apply_battle_stats(stats_data: Array) -> void:
+	for entry: Dictionary in stats_data:
+		var idx: int = entry.get("index", -1)
+		if idx >= 0 and idx < _battle._all_party.size():
+			var f: FighterData = _battle._all_party[idx]
+			_battle._battle_stats[f] = {
+				"damage_dealt": entry.get("damage_dealt", 0),
+				"damage_taken": entry.get("damage_taken", 0),
+				"healing_done": entry.get("healing_done", 0),
+				"kills": entry.get("kills", 0),
+			}
 
 
 ## Host -> All: Combat log line (for real-time log display).

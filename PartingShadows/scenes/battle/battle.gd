@@ -793,7 +793,8 @@ func _end_battle() -> void:
 	# Broadcast battle end to guests
 	if NetManager.is_multiplayer_active and NetManager.is_host:
 		_broadcast_state_sync()
-		_rpc_battle_ended.rpc(won)
+		var stats_data: Array = _serialize_battle_stats()
+		_rpc_battle_ended.rpc(won, stats_data)
 
 	if won:
 		GameLog.info("Battle won: %s" % GameState.current_battle_id)
@@ -880,8 +881,23 @@ func _rpc_submit_action(action: Dictionary) -> void:
 	_mp.handle_submit_action(action)
 
 @rpc("authority", "call_remote", "reliable")
-func _rpc_battle_ended(won: bool) -> void:
-	_mp.handle_battle_ended(won)
+func _rpc_battle_ended(won: bool, stats_data: Array = []) -> void:
+	_mp.handle_battle_ended(won, stats_data)
+
+
+func _serialize_battle_stats() -> Array:
+	var result: Array = []
+	for i: int in _all_party.size():
+		var f: FighterData = _all_party[i]
+		var s: Dictionary = _battle_stats.get(f, {})
+		result.append({
+			"index": i,
+			"damage_dealt": s.get("damage_dealt", 0),
+			"damage_taken": s.get("damage_taken", 0),
+			"healing_done": s.get("healing_done", 0),
+			"kills": s.get("kills", 0),
+		})
+	return result
 
 @rpc("authority", "call_remote", "reliable")
 func _rpc_combat_log(text: String) -> void:

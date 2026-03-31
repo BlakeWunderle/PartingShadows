@@ -11,6 +11,7 @@ var _lines: Array = []
 var _current_line: int = 0
 var _typing: bool = false
 var _full_text: String = ""
+var _gen: int = 0  ## Generation counter to cancel stale typewriter loops
 var _accepting_input: bool = false  ## Guard against stray clicks from scene transitions
 var _pulse_tween: Tween
 
@@ -59,6 +60,8 @@ func _build_ui() -> void:
 
 
 func show_text(lines: Array) -> void:
+	_gen += 1  # Invalidate any running typewriter loop
+	_typing = false
 	_lines = lines
 	_current_line = 0
 	_label.clear()
@@ -76,6 +79,7 @@ func _start_input_guard() -> void:
 
 
 func _type_next_line() -> void:
+	var gen: int = _gen
 	if _current_line >= _lines.size():
 		_show_continue()
 		return
@@ -88,6 +92,8 @@ func _type_next_line() -> void:
 
 	var chars_added: int = 0
 	for ch: String in _full_text:
+		if gen != _gen:
+			return  # A new show_text() was called; abort this stale loop
 		_label.append_text(ch)
 		chars_added += 1
 		if not _typing:
@@ -97,6 +103,8 @@ func _type_next_line() -> void:
 			break
 		await get_tree().create_timer(CHAR_DELAY, false).timeout
 
+	if gen != _gen:
+		return  # Cancelled while waiting on final timer
 	_typing = false
 	_current_line += 1
 	_type_next_line()
