@@ -37,25 +37,42 @@ static func analyze(stages: Array) -> void:
 		print("--- Story %d (%d stages) ---\n" % [story, story_stages.size()])
 
 		var profiles := _build_profiles(story_stages)
-		var similar_pairs := _find_similar_pairs(profiles)
-		var dmg_monotony := _find_monotony(profiles, true)
-		var def_monotony := _find_monotony(profiles, false)
+		var playthroughs := _build_playthroughs(profiles)
 
-		if similar_pairs.is_empty() and dmg_monotony.is_empty() and def_monotony.is_empty():
+		var seen_pairs: Dictionary = {}
+		var seen_dmg: Dictionary = {}
+		var seen_def: Dictionary = {}
+
+		for pt_id: String in playthroughs:
+			var pt_profiles: Array = playthroughs[pt_id]
+			for pair: Dictionary in _find_similar_pairs(pt_profiles):
+				var pkey: String = str(pair.a) + "|" + str(pair.b)
+				if not seen_pairs.has(pkey):
+					seen_pairs[pkey] = pair
+			for m: Dictionary in _find_monotony(pt_profiles, true):
+				var mkey: String = ",".join(PackedStringArray(m.battles))
+				if not seen_dmg.has(mkey):
+					seen_dmg[mkey] = m
+			for m: Dictionary in _find_monotony(pt_profiles, false):
+				var dkey: String = ",".join(PackedStringArray(m.battles))
+				if not seen_def.has(dkey):
+					seen_def[dkey] = m
+
+		if seen_pairs.is_empty() and seen_dmg.is_empty() and seen_def.is_empty():
 			print("  No repetitiveness issues found.\n")
 			continue
 
-		for pair: Dictionary in similar_pairs:
+		for pair: Dictionary in seen_pairs.values():
 			print("  HIGH SIMILARITY (%.0f%%): %s (P%d) -> %s (P%d)" % [
 				pair.similarity * 100, pair.a, pair.prog_a, pair.b, pair.prog_b])
 			_print_pair_profiles(pair)
 
-		for m: Dictionary in dmg_monotony:
+		for m: Dictionary in seen_dmg.values():
 			print("  DAMAGE MONOTONY (%s, %d consecutive): %s" % [
 				m.type_name, m.run_length,
 				", ".join(PackedStringArray(m.battles))])
 
-		for m: Dictionary in def_monotony:
+		for m: Dictionary in seen_def.values():
 			print("  DEFENSE MONOTONY (%s, %d consecutive): %s" % [
 				m.type_name, m.run_length,
 				", ".join(PackedStringArray(m.battles))])
@@ -325,6 +342,34 @@ static func _subtype_name(s: Enums.Subtype) -> String:
 		Enums.Subtype.EVASION: return "EVASION"
 		Enums.Subtype.CRIT: return "CRIT"
 	return "?"
+
+
+# -- Path-aware playthrough builder -------------------------------------------
+
+## Build per-playthrough profile sequences from path-tagged stages.
+## Path tags: "" = shared by all, "a"/"b"/"c" = exclusive, "ac" = shared by a+c.
+## Each playthrough includes all shared ("") stages plus stages whose path
+## contains that playthrough's letter.
+static func _build_playthroughs(profiles: Array) -> Dictionary:
+	var pt_ids: Dictionary = {}
+	for p: Dictionary in profiles:
+		var path: String = p.stage.get("path", "")
+		if path.is_empty():
+			continue
+		for ch_idx: int in range(path.length()):
+			var ch: String = path.substr(ch_idx, 1)
+			pt_ids[ch] = true
+	if pt_ids.is_empty():
+		return {"a": profiles}
+	var result: Dictionary = {}
+	for pt_id: String in pt_ids:
+		var filtered: Array = []
+		for p: Dictionary in profiles:
+			var path: String = p.stage.get("path", "")
+			if path.is_empty() or path.contains(pt_id):
+				filtered.append(p)
+		result[pt_id] = filtered
+	return result
 
 
 # -- Utilities -----------------------------------------------------------------

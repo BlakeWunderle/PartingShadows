@@ -59,22 +59,22 @@ static func _get_story1_stages() -> Array:
 		# Prog 11: Tier 2, -3pp
 		_s("DepthsBattle", 13, "tier2", 0.64, 11),
 		# Prog 12: Tier 2, -3pp
-		_s("GateBattle", 14, "tier2", 0.61, 12),
+		_s("GateBattle", 14, "tier2", 0.61, 12, 1, "a"),
 		# Prog 13: Tier 2, -3pp (final boss)
-		_s("StrangerFinalBattle", 15, "tier2", 0.58, 13),
+		_s("StrangerFinalBattle", 15, "tier2", 0.58, 13, 1, "a"),
 		# Path B: Sever the Ritual (branches from GateBattle, same progs)
-		_s("RitualAnchorBattle", 14, "tier2", 0.61, 12),
-		_s("SanctumCollapseBattle", 15, "tier2", 0.58, 13),
-		_s("StrangerUndoneBattle", 15, "tier2", 0.58, 13),
+		_s("RitualAnchorBattle", 14, "tier2", 0.61, 12, 1, "b"),
+		_s("SanctumCollapseBattle", 15, "tier2", 0.58, 13, 1, "b"),
+		_s("StrangerUndoneBattle", 15, "tier2", 0.58, 13, 1, "b"),
 	]
 
 
 static func _s(n: String, lu: int, tier: String, target: float,
-		prog: int, story: int = 1) -> Dictionary:
+		prog: int, story: int = 1, path: String = "") -> Dictionary:
 	return {
 		"name": n, "level_ups": lu, "tier": tier,
 		"target_win_rate": target, "progression_stage": prog,
-		"story": story,
+		"story": story, "path": path,
 	}
 
 
