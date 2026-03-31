@@ -62,7 +62,8 @@ func _build_ui() -> void:
 	_header_label.text = "CONTROLLER ASSIGNMENT"
 	_header_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_header_label.add_theme_font_size_override("font_size", 36)
-	_header_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	_header_label.add_theme_constant_override("outline_size", 2)
+	_header_label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	vbox.add_child(_header_label)
 
 	var sep := HSeparator.new()

@@ -44,6 +44,8 @@ func _build_ui() -> void:
 	header.text = "SELECT A STORY"
 	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	header.add_theme_font_size_override("font_size", 36)
+	header.add_theme_constant_override("outline_size", 2)
+	header.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	vbox.add_child(header)
 
 	# Spacer

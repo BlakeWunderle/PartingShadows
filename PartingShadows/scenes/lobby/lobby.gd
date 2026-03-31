@@ -80,6 +80,8 @@ func _build_ui() -> void:
 	_header = Label.new()
 	_header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_header.add_theme_font_size_override("font_size", 36)
+	_header.add_theme_constant_override("outline_size", 2)
+	_header.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	_vbox.add_child(_header)
 
 	# Spacer
