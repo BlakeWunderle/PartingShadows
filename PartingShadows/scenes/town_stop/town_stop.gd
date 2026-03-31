@@ -273,6 +273,10 @@ func _show_next_upgrade() -> void:
 			# Guest: always wait for host's _rpc_request_upgrade to avoid double-show
 			_upgrade_label.visible = false
 			_choice_menu.visible = false
+			if not NetManager.is_my_fighter(_upgrade_index):
+				# Not my character — show waiting for the owner while they pick
+				var owner_name: String = NetManager.get_fighter_owner_name(_upgrade_index)
+				_waiting_overlay.show_waiting(owner_name)
 		return
 
 	_upgrade_label.text = "%s the %s. Choose an upgrade:" % [
