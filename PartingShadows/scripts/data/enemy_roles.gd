@@ -225,7 +225,7 @@ const _DATA: Dictionary = {
 	"Hex Herbalist": { "s": [S.DOT], "d": D.MAGICAL },
 	"Cellar Watcher": { "s": [S.DEBUFFER], "d": D.MIXED },
 	"Thread Construct": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER] },
-	"Ink Shade": { "d": D.MAGICAL },
+	"Ink Shade": { "s": [S.EVASION], "d": D.MAGICAL },
 
 	# ==========================================================================
 	# Story 3 - Act III
@@ -234,7 +234,7 @@ const _DATA: Dictionary = {
 	"Thread Spinner": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER], "d": D.MAGICAL },
 	"Loom Sentinel": { "r": [R.TANK, R.FIGHTER] },
 	"Cult Shade": { "s": [S.DEBUFFER], "d": D.MAGICAL },
-	"Dream Warden": { "s": [S.DEBUFFER], "d": D.MIXED },
+	"Dream Warden": { "s": [S.DEBUFFER, S.CRIT], "d": D.MIXED },
 	"Thought Leech": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.DRAIN, S.AOE], "d": D.MAGICAL },
 	"Void Spinner": { "s": [S.DEBUFFER, S.AOE], "d": D.MAGICAL },
 	"Sanctum Guardian": { "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MIXED, "t": T.BOSS },
@@ -243,7 +243,7 @@ const _DATA: Dictionary = {
 	# Story 3 - Acts IV-V
 	# ==========================================================================
 	"Cult Acolyte": { "r": [R.DPS], "s": [S.EVASION], "d": D.MAGICAL },
-	"Cult Enforcer": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.DRAIN, S.AOE] },
+	"Cult Enforcer": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.DRAIN, S.AOE, S.DOT] },
 	"Cult Hexer": { "s": [S.DEBUFFER, S.EVASION], "d": D.MAGICAL },
 	"Thread Guard": { "s": [S.DEBUFFER, S.AOE] },
 	"Dream Hound": { "r": [R.DPS], "s": [S.DEBUFFER, S.AOE] },
@@ -269,15 +269,15 @@ const _DATA: Dictionary = {
 	"Pale Devotee": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.DOT, S.AOE], "d": D.MAGICAL },
 	"Thread Ritualist": { "s": [S.DEBUFFER, S.AOE], "d": D.MAGICAL },
 	"Passage Guardian": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER] },
-	"Warding Shadow": { "r": [R.SUPPORT], "s": [S.DEBUFFER], "d": D.MAGICAL },
+	"Warding Shadow": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.EVASION], "d": D.MAGICAL },
 	"Shadow Innkeeper": { "s": [S.DRAIN, S.CRIT], "d": D.MIXED },
 	"Astral Weaver": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
-	"Loom Tendril": { "s": [S.DEBUFFER, S.DOT, S.DRAIN], "d": D.MAGICAL },
-	"Cathedral Warden": { "r": [R.DPS], "s": [S.AOE], "d": D.MIXED },
-	"Dream Binder": { "s": [S.DEBUFFER, S.DOT, S.AOE], "d": D.MAGICAL },
+	"Loom Tendril": { "s": [S.DEBUFFER, S.DOT, S.DRAIN, S.CRIT], "d": D.MAGICAL },
+	"Cathedral Warden": { "r": [R.DPS], "s": [S.AOE, S.CRIT, S.EVASION], "d": D.MIXED },
+	"Dream Binder": { "s": [S.DEBUFFER, S.DOT, S.AOE, S.EVASION], "d": D.MAGICAL },
 	"Thread Anchor": { "r": [R.TANK, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.EVASION], "d": D.MAGICAL },
 	"Lira, the Threadmaster": { "s": [S.DEBUFFER, S.DRAIN, S.AOE], "d": D.MAGICAL, "t": T.BOSS },
-	"Tattered Deception": { "s": [S.DEBUFFER], "d": D.MAGICAL, "t": T.UNDERLING },
+	"Tattered Deception": { "s": [S.DEBUFFER, S.EVASION], "d": D.MAGICAL, "t": T.UNDERLING },
 	"Dream Bastion": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE], "t": T.UNDERLING },
 	"WeftStalker": { "s": [S.DEBUFFER, S.AOE, S.CRIT, S.EVASION] },
 	"Loom Parasite": { "r": [R.DPS], "s": [S.DOT, S.DRAIN] },
