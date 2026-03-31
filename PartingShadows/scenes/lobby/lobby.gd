@@ -455,8 +455,12 @@ func _on_fighter_pick_confirmed(_slot_owners: Dictionary) -> void:
 	var party_data: Array[Dictionary] = []
 	for fighter: FighterData in GameState.party:
 		party_data.append(fighter.to_save_data())
+	# Set up game state on all peers (call_local)
 	_rpc_load_party_and_start.rpc(party_data, GameState.current_battle_id,
 		GameState.current_story_id, slot_data, NetManager.target_player_count)
+	# Scene change routed through NetManager autoload for reliable delivery
+	NetManager.change_scene_for_peers("res://scenes/narrative/narrative.tscn")
+	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 
 func _on_fighter_pick_cancelled() -> void:
@@ -480,7 +484,7 @@ func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: S
 			GameState.party.append(fighter)
 		GameState.current_story_id = story_id
 		GameState.advance_to_battle(battle_id)
-	SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+	# Scene change is routed through NetManager separately (not here)
 
 
 # =============================================================================

@@ -839,33 +839,36 @@ func _wait_summary_ready() -> void:
 	gate.offset_top = -40
 	gate.offset_bottom = -10
 	add_child(gate)
-	# Store reference early so incoming RPCs go directly to the gate
 	_summary_gate = gate
 	gate.start_online(NetManager.get_connected_peer_count())
 	# Apply any ready signals that arrived before the gate existed
 	for idx: int in _pending_summary_ready:
 		gate.mark_ready(idx)
 	_pending_summary_ready.clear()
+	# Connect to NetManager relay for incoming ready signals
+	NetManager.peer_scene_ready.connect(_on_summary_peer_ready)
 	# Mark self ready (player already dismissed the summary)
-	if NetManager.is_host:
-		gate.mark_ready(0)
-		_rpc_summary_ready.rpc(0)
-	else:
-		var peers: Array[int] = []
-		for pid: int in NetManager.peer_names:
-			peers.append(pid)
-		peers.sort()
-		var my_idx: int = peers.find(multiplayer.get_unique_id())
-		gate.mark_ready(my_idx)
-		_rpc_summary_ready.rpc_id(1, my_idx)
+	var my_idx: int = NetManager.get_my_peer_index()
+	gate.mark_ready(my_idx)
+	NetManager.notify_scene_ready(my_idx)
 	# If all players were already ready, gate hid itself — skip await
 	if not gate.visible:
+		NetManager.peer_scene_ready.disconnect(_on_summary_peer_ready)
 		_summary_gate = null
 		gate.queue_free()
 		return
 	await gate.all_ready
+	NetManager.peer_scene_ready.disconnect(_on_summary_peer_ready)
 	_summary_gate = null
 	gate.queue_free()
+
+
+func _on_summary_peer_ready(player_index: int) -> void:
+	if _summary_gate:
+		_summary_gate.mark_ready(player_index)
+	else:
+		if player_index not in _pending_summary_ready:
+			_pending_summary_ready.append(player_index)
 
 
 func _on_fighter_died(fighter: FighterData) -> void:
@@ -951,25 +954,6 @@ func _serialize_battle_stats() -> Array:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_combat_log(text: String) -> void:
 	_mp.handle_combat_log(text)
-
-@rpc("any_peer", "call_remote", "reliable")
-func _rpc_summary_ready(player_index: int) -> void:
-	if _summary_gate:
-		_summary_gate.mark_ready(player_index)
-	else:
-		if player_index not in _pending_summary_ready:
-			_pending_summary_ready.append(player_index)
-	if NetManager.is_host:
-		_rpc_summary_ready_broadcast.rpc(player_index)
-
-
-@rpc("authority", "call_remote", "reliable")
-func _rpc_summary_ready_broadcast(player_index: int) -> void:
-	if _summary_gate:
-		_summary_gate.mark_ready(player_index)
-	else:
-		if player_index not in _pending_summary_ready:
-			_pending_summary_ready.append(player_index)
 
 
 func _on_peer_left_mid_battle(peer_id: int, player_name: String) -> void:

@@ -27,6 +27,7 @@ func _ready() -> void:
 	if NetManager.is_multiplayer_active:
 		NetManager.player_left.connect(_on_player_left)
 		NetManager.session_ended.connect(_on_session_ended)
+		NetManager.peer_scene_ready.connect(_on_peer_scene_ready)
 
 
 func _build_ui() -> void:
@@ -182,13 +183,14 @@ func _open_gate_early(callback: Callable) -> void:
 
 ## Mark local player as ready and notify peers (called when text finishes).
 func _mark_self_ready() -> void:
-	if NetManager.is_host:
-		_ready_gate.mark_ready(0)
-		_rpc_narrative_ready.rpc(0)
-	else:
-		var my_idx: int = _get_peer_index(multiplayer.get_unique_id())
-		_ready_gate.mark_ready(my_idx)
-		_rpc_narrative_ready.rpc_id(1, my_idx)
+	var my_idx: int = NetManager.get_my_peer_index()
+	_ready_gate.mark_ready(my_idx)
+	NetManager.notify_scene_ready(my_idx)
+
+
+## Received a ready signal from a remote peer via NetManager relay.
+func _on_peer_scene_ready(player_index: int) -> void:
+	_ready_gate.mark_ready(player_index)
 
 
 func _do_advance_text() -> void:
@@ -206,7 +208,7 @@ func _do_advance_text() -> void:
 					# Go to battle (keep music playing across transition)
 					GameState.game_phase = GameState.GamePhase.BATTLE
 					if NetManager.is_multiplayer_active:
-						_rpc_change_scene.rpc("res://scenes/battle/battle.tscn")
+						NetManager.change_scene_for_peers("res://scenes/battle/battle.tscn")
 					SceneManager.change_scene("res://scenes/battle/battle.tscn", 0.4, true)
 			else:
 				# Post-battle: level up first
@@ -221,11 +223,11 @@ func _do_advance_text() -> void:
 				_show_defeat_choices()
 			else:
 				if NetManager.is_multiplayer_active:
-					_rpc_change_scene.rpc("res://scenes/title/title.tscn")
+					NetManager.change_scene_for_peers("res://scenes/title/title.tscn")
 				SceneManager.change_scene("res://scenes/title/title.tscn")
 		_:
 			if NetManager.is_multiplayer_active:
-				_rpc_change_scene.rpc("res://scenes/title/title.tscn")
+				NetManager.change_scene_for_peers("res://scenes/title/title.tscn")
 			SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
@@ -235,15 +237,9 @@ func _show_ready_gate(callback: Callable) -> void:
 		_ready_gate.start_local(LocalCoop.player_count)
 	elif NetManager.is_multiplayer_active:
 		_ready_gate.start_online(NetManager.get_connected_peer_count())
-		# For online: local player is immediately ready
-		if NetManager.is_host:
-			_ready_gate.mark_ready(0)
-			_rpc_narrative_ready.rpc(0)
-		else:
-			# Find our index among connected peers
-			var my_idx: int = _get_peer_index(multiplayer.get_unique_id())
-			_ready_gate.mark_ready(my_idx)
-			_rpc_narrative_ready.rpc_id(1, my_idx)
+		var my_idx: int = NetManager.get_my_peer_index()
+		_ready_gate.mark_ready(my_idx)
+		NetManager.notify_scene_ready(my_idx)
 
 
 func _on_all_ready() -> void:
@@ -254,12 +250,6 @@ func _on_all_ready() -> void:
 		cb.call_deferred()
 
 
-func _get_peer_index(peer_id: int) -> int:
-	var peers: Array[int] = []
-	for pid: int in NetManager.peer_names:
-		peers.append(pid)
-	peers.sort()
-	return peers.find(peer_id)
 
 
 func _show_defeat_choices() -> void:
@@ -348,7 +338,7 @@ func _navigate_after_advance() -> void:
 	match GameState.game_phase:
 		GameState.GamePhase.TOWN_STOP:
 			if NetManager.is_multiplayer_active and NetManager.is_host:
-				_rpc_change_scene.rpc("res://scenes/town_stop/town_stop.tscn")
+				NetManager.change_scene_for_peers("res://scenes/town_stop/town_stop.tscn")
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		GameState.GamePhase.ENDING:
 			GameState.game_won = true
@@ -376,7 +366,7 @@ func _advance_after_battle() -> void:
 			_show_ending()
 		GameState.GamePhase.TOWN_STOP:
 			if NetManager.is_multiplayer_active and NetManager.is_host:
-				_rpc_change_scene.rpc("res://scenes/town_stop/town_stop.tscn")
+				NetManager.change_scene_for_peers("res://scenes/town_stop/town_stop.tscn")
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		_:
 			_show_narrative()
@@ -408,11 +398,6 @@ func _on_session_ended(reason: String) -> void:
 # Multiplayer RPCs
 # =============================================================================
 
-## Host -> All: Change scene on all peers.
-@rpc("authority", "call_remote", "reliable")
-func _rpc_change_scene(scene_path: String) -> void:
-	SceneManager.change_scene(scene_path, 0.4, true)
-
 
 ## Host -> All: Branch choice made by host.
 @rpc("authority", "call_remote", "reliable")
@@ -428,19 +413,6 @@ func _rpc_advance_to_battle(battle_id: String) -> void:
 		GameState.advance_to_battle(battle_id)
 
 
-## Any -> Host (or Host -> All): Player is ready to advance narrative.
-@rpc("any_peer", "call_remote", "reliable")
-func _rpc_narrative_ready(player_index: int) -> void:
-	_ready_gate.mark_ready(player_index)
-	# Host rebroadcasts to all peers so everyone sees the ready state
-	if NetManager.is_host:
-		_rpc_narrative_ready_broadcast.rpc(player_index)
-
-
-## Host -> All: Broadcast a player's ready state.
-@rpc("authority", "call_remote", "reliable")
-func _rpc_narrative_ready_broadcast(player_index: int) -> void:
-	_ready_gate.mark_ready(player_index)
 
 
 ## Any -> Host: Cast a vote for a branch choice.

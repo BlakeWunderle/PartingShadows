@@ -527,7 +527,17 @@ func _finish() -> void:
 		var party_data: Array[Dictionary] = []
 		for fighter: FighterData in _party:
 			party_data.append(fighter.to_save_data())
+		# Set up party + game state on all peers (call_local)
 		_rpc_party_finalized.rpc(party_data)
+		# Scene change routed through NetManager autoload for reliable delivery
+		var scene_path: String
+		match GameState.game_phase:
+			GameState.GamePhase.TOWN_STOP:
+				scene_path = "res://scenes/town_stop/town_stop.tscn"
+			_:
+				scene_path = "res://scenes/narrative/narrative.tscn"
+		NetManager.change_scene_for_peers(scene_path)
+		SceneManager.change_scene(scene_path)
 		return
 
 	_do_finish()
@@ -629,7 +639,7 @@ func _rpc_character_created(char_data: Dictionary) -> void:
 	_party.append(fighter)
 
 
-## Host -> All: Full party finalized, start the game.
+## Host -> All: Full party finalized — set up party + game state (no scene change).
 @rpc("authority", "call_local", "reliable")
 func _rpc_party_finalized(party_data: Array) -> void:
 	# Rebuild party from serialized data on all peers
@@ -641,4 +651,8 @@ func _rpc_party_finalized(party_data: Array) -> void:
 		var abilities: Array = FighterDB.get_abilities_for_class(fighter.class_id)
 		fighter.abilities = abilities
 		_party.append(fighter)
-	_do_finish()
+	# Set up game state (scene change is routed through NetManager separately)
+	GameState.set_party(_party)
+	for fighter: RefCounted in _party:
+		GameLog.info("Party: %s the %s" % [fighter.character_name, fighter.character_type])
+	GameState.advance_to_battle(GameState.get_first_battle_id())

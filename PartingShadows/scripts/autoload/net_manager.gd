@@ -17,6 +17,7 @@ signal lobby_ready  ## Enough players have joined to start
 signal session_ended(reason: String)
 signal steam_hosting_started(lobby_id: int)
 signal steam_hosting_failed
+signal peer_scene_ready(player_index: int)  ## Relayed ready signal for any scene
 
 ## Whether a multiplayer session is active (host or guest)
 var is_multiplayer_active: bool = false
@@ -427,6 +428,14 @@ func _rpc_sync_game_state(party_data: Array, battle_id: String, story_id: String
 	GameState.advance_to_battle(battle_id)
 
 
+## Tell all remote peers to change to a specific scene.
+func change_scene_for_peers(scene_path: String) -> void:
+	if not is_host:
+		return
+	GameLog.info("NetManager: change_scene_for_peers('%s')" % scene_path)
+	_rpc_change_scene_all.rpc(scene_path)
+
+
 ## Reload the current scene on all peers (host + guests).
 func reload_current_scene_all_peers() -> void:
 	if not is_host:
@@ -451,3 +460,41 @@ func _current_scene_path() -> String:
 @rpc("authority", "call_remote", "reliable")
 func _rpc_change_scene_all(scene_path: String) -> void:
 	SceneManager.change_scene(scene_path)
+
+
+# =============================================================================
+# Scene-ready relay (routed through autoload for reliable RPC paths)
+# =============================================================================
+
+## Get the local player's index in the sorted peer list.
+func get_my_peer_index() -> int:
+	if is_host:
+		return 0
+	var peers: Array[int] = []
+	for pid: int in peer_names:
+		peers.append(pid)
+	peers.sort()
+	return peers.find(multiplayer.get_unique_id())
+
+
+## Notify all peers that the local player is ready to advance.
+func notify_scene_ready(player_index: int) -> void:
+	GameLog.info("NetManager: notify_scene_ready(%d) from peer %d" % [player_index, multiplayer.get_unique_id()])
+	if is_host:
+		_rpc_scene_ready.rpc(player_index)
+	else:
+		_rpc_scene_ready.rpc_id(1, player_index)
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func _rpc_scene_ready(player_index: int) -> void:
+	GameLog.info("NetManager: _rpc_scene_ready(%d) received from peer %d" % [player_index, multiplayer.get_remote_sender_id()])
+	peer_scene_ready.emit(player_index)
+	if is_host:
+		_rpc_scene_ready_broadcast.rpc(player_index)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _rpc_scene_ready_broadcast(player_index: int) -> void:
+	GameLog.info("NetManager: _rpc_scene_ready_broadcast(%d)" % player_index)
+	peer_scene_ready.emit(player_index)
