@@ -82,7 +82,7 @@ static func _lu_spiritwalker(f: FighterData) -> void:
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(0, 1); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 5)
-	f.speed += randi_range(2, 3)
+	f.speed += randi_range(2, 2)
 	f.dodge_chance += randi_range(0, 1)
 
 

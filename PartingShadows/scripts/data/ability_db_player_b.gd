@@ -128,7 +128,7 @@ static func discharge() -> AbilityData:
 
 static func self_repair() -> AbilityData:
 	var a := _make("Self-Repair", "Reroute power to internal repair systems.",
-		Enums.StatType.HEALTH, 7, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 5, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.25
 	return a
 
@@ -251,7 +251,7 @@ static func spirit_shield() -> AbilityData:
 
 static func soul_strike() -> AbilityData:
 	return _make("Soul Strike", "A burst of spirit energy tears through the veil.",
-		Enums.StatType.MAGIC_ATTACK, 9, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func spirit_mend() -> AbilityData:
 	var a := _make("Spirit Mend", "Healing energy from the spirit world.",

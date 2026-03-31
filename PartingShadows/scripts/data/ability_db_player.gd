@@ -360,7 +360,7 @@ static func invisible_box() -> AbilityData:
 # Laureate
 static func ovation() -> AbilityData:
 	return _make("Ovation", "A masterful speech that empowers all allies.",
-		Enums.StatType.ATTACK, 18, 3, false, 3, true, 0, 0.0)
+		Enums.StatType.ATTACK, 15, 3, false, 3, true, 0, 0.0)
 
 static func recite() -> AbilityData:
 	return _make("Recite", "Words of power that wound.",

@@ -115,7 +115,7 @@ static func _lu_laureate(f: FighterData) -> void:
 	var hp := randi_range(12, 14); f.health += hp; f.max_health += hp
 	var mp := randi_range(3, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(0, 1); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 6)
+	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(2, 3)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -197,7 +197,7 @@ static func _lu_chronomancer(f: FighterData) -> void:
 	var hp := randi_range(11, 13); f.health += hp; f.max_health += hp
 	var mp := randi_range(3, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(0, 1); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(6, 7); f.magic_defense += randi_range(4, 6)
+	f.magic_attack += randi_range(5, 6); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(2, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -207,7 +207,7 @@ static func _lu_astronomer(f: FighterData) -> void:
 	var hp := randi_range(9, 11); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(0, 1); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(6, 8); f.magic_defense += randi_range(4, 6)
+	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(4, 6)
 	f.speed += randi_range(2, 2)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
@@ -238,7 +238,7 @@ static func _lu_automaton(f: FighterData) -> void:
 	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(5, 7); f.magic_defense += randi_range(3, 5)
+	f.magic_attack += randi_range(4, 6); f.magic_defense += randi_range(3, 5)
 	f.speed += randi_range(1, 2)
 	f.crit_chance += randi_range(1, 2)
 
