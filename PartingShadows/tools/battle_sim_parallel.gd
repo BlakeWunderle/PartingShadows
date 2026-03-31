@@ -338,15 +338,17 @@ func _run_progressive(jobs: int, passthrough: Array[String],
 func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		stagger_ms: int = DEFAULT_STAGGER_MS,
 		timeout_sec: int = DEFAULT_TIMEOUT_SECONDS) -> Array:
-	DirAccess.make_dir_recursive_absolute(OS.get_user_data_dir())
+	var sim_temp_dir := OS.get_user_data_dir().path_join("sim_temp")
+	DirAccess.make_dir_recursive_absolute(sim_temp_dir)
 
-	# Clean up stale sentinels from any previous crashed run.
-	var _da := DirAccess.open(OS.get_user_data_dir())
+	# Clean up ALL stale sentinels and worker JSON from previous crashed runs.
+	var _da := DirAccess.open(sim_temp_dir)
 	if _da:
 		_da.list_dir_begin()
 		var _fname := _da.get_next()
 		while _fname != "":
-			if _fname.begins_with("sim_ready_w%d_" % _run_id) and _fname.ends_with(".sentinel"):
+			if (_fname.begins_with("sim_ready_") and _fname.ends_with(".sentinel")) \
+					or (_fname.begins_with("sim_worker_") and _fname.ends_with(".json")):
 				_da.remove(_fname)
 			_fname = _da.get_next()
 		_da.list_dir_end()
@@ -369,7 +371,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 	var pids: Array[int] = []
 	var sentinel_paths: Array[String] = []
 	for wi in jobs:
-		var worker_json := "user://sim_worker_%d_%d.json" % [_run_id, wi]
+		var worker_json := "user://sim_temp/sim_worker_%d_%d.json" % [_run_id, wi]
 		if FileAccess.file_exists(worker_json):
 			DirAccess.remove_absolute(
 				ProjectSettings.globalize_path(worker_json))
@@ -377,7 +379,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 		# Coordinator-controlled sentinel path: avoids PID mismatch between
 		# OS.create_process() (wrapper PID) and OS.get_process_id() (engine PID)
 		# that occurs because godot_console.exe is a two-process wrapper on Windows.
-		var sentinel_path := OS.get_user_data_dir().path_join(
+		var sentinel_path := sim_temp_dir.path_join(
 			"sim_ready_w%d_%d.sentinel" % [_run_id, wi])
 		DirAccess.remove_absolute(sentinel_path)
 		sentinel_paths.append(sentinel_path)
@@ -453,7 +455,7 @@ func _spawn_and_collect(jobs: int, passthrough: Array[String],
 	var results: Array = []
 	var partials_by_stage: Dictionary = {}
 	for wi in jobs:
-		var worker_json := "user://sim_worker_%d_%d.json" % [_run_id, wi]
+		var worker_json := "user://sim_temp/sim_worker_%d_%d.json" % [_run_id, wi]
 		if not FileAccess.file_exists(worker_json):
 			print("  WARNING: Worker %d did not produce output (file missing)" % wi)
 			continue

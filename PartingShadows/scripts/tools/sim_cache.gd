@@ -6,7 +6,7 @@ class_name SimCache
 
 const SRep := preload("res://scripts/tools/sim_report.gd")
 
-const CACHE_PATH := "user://sim_cache.json"
+const CACHE_PATH := "user://sim_temp/sim_cache.json"
 
 const GLOBAL_FILES: Array[String] = [
 	"res://scripts/data/fighter_db.gd",
@@ -154,6 +154,8 @@ static func store(stage_name: String, story: int,
 static func save() -> void:
 	if _cache.is_empty():
 		return
+	DirAccess.make_dir_recursive_absolute(
+		ProjectSettings.globalize_path(CACHE_PATH.get_base_dir()))
 	var json_str := JSON.stringify(_cache, "\t")
 	var file := FileAccess.open(CACHE_PATH, FileAccess.WRITE)
 	if file:

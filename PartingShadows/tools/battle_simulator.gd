@@ -26,6 +26,10 @@ var _exclude_combos: Array[String] = []
 
 
 func _init() -> void:
+	# Ensure sim_temp directory exists for cache, reports, and worker files.
+	DirAccess.make_dir_recursive_absolute(
+		ProjectSettings.globalize_path("user://sim_temp"))
+
 	# Signal to coordinator that Godot initialization (import, class cache) is complete.
 	# The coordinator passes --sentinel-path so the file name is coordinator-controlled,
 	# avoiding the PID mismatch that occurs because godot_console.exe is a two-process
@@ -297,7 +301,7 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 		if _compact:
 			SR.print_stage_compact(result)
 			SR.print_summary_compact([result])
-			SRep.write_text_report("user://sim_report.txt",
+			SRep.write_text_report("user://sim_temp/sim_report.txt",
 				[result], [stage])
 		else:
 			SR.print_summary([result])
@@ -371,7 +375,7 @@ func _run_stages(stages: Array, sims_per_combo: int,
 	if not quiet:
 		if _compact:
 			SR.print_summary_compact(results)
-			SRep.write_text_report("user://sim_report.txt",
+			SRep.write_text_report("user://sim_temp/sim_report.txt",
 				results, stages)
 		else:
 			SR.print_summary(results)
