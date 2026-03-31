@@ -107,12 +107,12 @@ static func create_demon(n: String, lvl: int = 12) -> FighterData:
 	f.health = EH.es(581, 646, 8, 11, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(29, 34, 2, 3, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 30, 1, 3, lvl, 12)
-	f.physical_defense = EH.es(30, 37, 2, 4, lvl, 12)
-	f.magic_attack = EH.es(77, 87, 5, 7, lvl, 12)
-	f.magic_defense = EH.es(50, 56, 2, 4, lvl, 12)
-	f.speed = EH.es(42, 48, 2, 4, lvl, 12)
-	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 17
-	f.abilities = [EABL.brimstone(), EABL.infernal_strike(), EABL.dread()]
+	f.physical_defense = EH.es(22, 28, 1, 3, lvl, 12)
+	f.magic_attack = EH.es(90, 102, 5, 7, lvl, 12)
+	f.magic_defense = EH.es(38, 44, 2, 4, lvl, 12)
+	f.speed = EH.es(28, 34, 1, 3, lvl, 12)
+	f.crit_chance = 25; f.crit_damage = 5; f.dodge_chance = 17
+	f.abilities = [EABL.balefire(), EABL.hellfire_nova()]
 	f.flavor_text = "A fiend born from brimstone and fury. Its mere presence fills the air with dread."
 	return f
 
@@ -120,13 +120,13 @@ static func create_corrupted_treant(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Corrupted Treant", lvl)
 	f.health = EH.es(490, 544, 9, 12, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(14, 18, 1, 2, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(59, 67, 4, 6, lvl, 12)
+	f.physical_attack = EH.es(52, 60, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(55, 61, 3, 5, lvl, 12)
-	f.magic_attack = EH.es(16, 22, 1, 2, lvl, 12)
+	f.magic_attack = EH.es(42, 50, 2, 4, lvl, 12)
 	f.magic_defense = EH.es(32, 39, 2, 4, lvl, 12)
 	f.speed = EH.es(34, 40, 1, 3, lvl, 12)
 	f.crit_chance = 10; f.crit_damage = 4; f.dodge_chance = 10
-	f.abilities = [EABL.vine_whip(), EABL.root_slam(), EABL.bark_shield()]
+	f.abilities = [EABL.blighted_crush(), EABL.corruption_bloom()]
 	f.flavor_text = "Once a guardian of the ancient wood, now twisted by corruption into a weapon of ruin."
 	return f
 

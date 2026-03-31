@@ -50,17 +50,21 @@ static func death_bolt() -> AbilityData:
 static func soul_cage() -> AbilityData:
 	return _make("Soul Cage", "Trap the enemy's soul and drain it.", Enums.StatType.MAGIC_ATTACK, 10, 0, true, 4, false, 0, 0.2)
 
-static func infernal_strike() -> AbilityData:
-	return _make("Infernal Strike", "Hellfire and steel.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 4, false, 0, 0.0)
+# --- Demon (BURST nuker) ---
 
-static func brimstone() -> AbilityData:
-	return _make("Brimstone", "Sulfurous fire from below.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 4, false, 0, 0.0)
+static func balefire() -> AbilityData:
+	return _make("Balefire", "A slow-building inferno erupts from the demon's core.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
-static func vine_whip() -> AbilityData:
-	return _make("Vine Whip", "A thorny tendril lashes out.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
+static func hellfire_nova() -> AbilityData:
+	return _make("Hellfire Nova", "The demon channels all its fury into a single devastating eruption.", Enums.StatType.MAGIC_ATTACK, 14, 0, true, 5, false, 0, 0.0)
 
-static func root_slam() -> AbilityData:
-	return _make("Root Slam", "Massive roots erupt from the earth.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, true, 0, 0.0)
+# --- Corrupted Treant (MIXED tank) ---
+
+static func blighted_crush() -> AbilityData:
+	return _make("Blighted Crush", "Corrupted wood and dark magic crash down together.", Enums.StatType.MIXED_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+static func corruption_bloom() -> AbilityData:
+	return _make("Corruption Bloom", "Toxic spores and thorned roots erupt in all directions.", Enums.StatType.MIXED_ATTACK, 6, 0, true, 4, true, 0, 0.0)
 
 static func dark_blade() -> AbilityData:
 	return _make("Dark Blade", "A sword wreathed in shadow.", Enums.StatType.MIXED_ATTACK, 12, 0, true, 3, false, 0, 0.0)
@@ -99,9 +103,6 @@ static func rot_aura() -> AbilityData:
 static func pin_down() -> AbilityData:
 	return _make("Pin Down", "An arrow pins the enemy's cloak.", Enums.StatType.SPEED, 6, 2, true, 3, false, 0, 0.0)
 
-static func dread() -> AbilityData:
-	return _make("Dread", "Creeping fear weakens magic.", Enums.StatType.MAGIC_ATTACK, 15, 2, true, 3, false, 0, 0.0)
-
 static func web() -> AbilityData:
 	return _make("Web", "Sticky strands slow the target.", Enums.StatType.SPEED, 8, 2, true, 3, false, 0, 0.0)
 
@@ -124,9 +125,6 @@ static func raise_dead() -> AbilityData:
 
 static func shadow_guard() -> AbilityData:
 	return _make("Shadow Guard", "Shadows form a protective barrier.", Enums.StatType.DEFENSE, 12, 2, false, 4, false, 0, 0.0)
-
-static func bark_shield() -> AbilityData:
-	return _make("Overgrown Slam", "Ancient roots snap forward in a crushing blow.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 4, false, 0, 0.0)
 
 static func defensive_formation() -> AbilityData:
 	return _make("Shield Charge", "A synchronized charge crashes into the enemy line.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 3, false, 0, 0.0)

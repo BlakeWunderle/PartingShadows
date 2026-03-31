@@ -122,7 +122,7 @@ static func create_warped_hound(n: String, lvl: int = 5) -> FighterData:
 	f.mana = EH.es(6, 8, 1, 2, lvl, 5); f.max_mana = f.mana
 	f.physical_attack = EH.es(32, 37, 2, 4, lvl, 5)
 	f.physical_defense = EH.es(14, 18, 1, 2, lvl, 5)
-	f.magic_attack = EH.es(6, 9, 0, 1, lvl, 5)
+	f.magic_attack = EH.es(24, 29, 2, 3, lvl, 5)
 	f.magic_defense = EH.es(9, 12, 0, 1, lvl, 5)
 	f.speed = EH.es(31, 36, 2, 3, lvl, 5)
 	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 20

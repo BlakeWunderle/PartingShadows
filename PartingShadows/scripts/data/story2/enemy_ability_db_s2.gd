@@ -228,7 +228,7 @@ static func chitin_shell() -> AbilityData:
 # --- Warped Hound ---
 
 static func feral_lunge() -> AbilityData:
-	return _make("Feral Lunge", "A wild leap ends in tearing teeth.", Enums.StatType.PHYSICAL_ATTACK, 5, 0, true, 2, false, 0, 0.0)
+	return _make("Feral Lunge", "A wild leap ends in tearing teeth — corruption crackles where they land.", Enums.StatType.MIXED_ATTACK, 5, 0, true, 2, false, 0, 0.0)
 
 static func brackish_howl() -> AbilityData:
 	return _make("Brackish Howl", "A howl that echoes wrong, sapping courage.", Enums.StatType.ATTACK, 9, 2, true, 4, true, 0, 0.0)

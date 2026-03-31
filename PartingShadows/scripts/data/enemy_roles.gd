@@ -62,10 +62,10 @@ const _DATA: Dictionary = {
 	"Guard Archer": { "r": [R.DPS], "s": [S.AOE, S.CRIT, S.EVASION] },
 	"Stranger": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER, S.DRAIN, S.AOE, S.CRIT, S.EVASION], "d": D.MAGICAL, "t": T.BOSS },
 	"StrangerFinal": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DRAIN, S.AOE, S.CRIT, S.EVASION], "d": D.MAGICAL, "t": T.BOSS },
-	"Lich": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DRAIN], "d": D.MAGICAL },
-	"Ghast": { "s": [S.DOT, S.AOE, S.CRIT] },
-	"Demon": { "s": [S.CRIT], "d": D.MAGICAL },
-	"Corrupted Treant": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE] },
+	"Lich": { "r": [R.SUPPORT], "s": [S.BUFFER, S.DRAIN], "d": D.MAGICAL },
+	"Ghast": { "s": [S.DOT, S.AOE] },
+	"Demon": { "r": [R.BURST], "s": [S.CRIT], "d": D.MAGICAL },
+	"Corrupted Treant": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE], "d": D.MIXED },
 	"Hellion": { "s": [S.GLASS_CANNON, S.CRIT] },
 	"Fiendling": { "r": [R.DPS], "s": [S.CRIT], "d": D.MAGICAL },
 	"Dragon": { "s": [S.AOE, S.CRIT], "d": D.MAGICAL, "t": T.LEADER },
@@ -78,12 +78,12 @@ const _DATA: Dictionary = {
 	# ==========================================================================
 	# Story 1 - Act V Path B
 	# ==========================================================================
-	"Sigil Colossus": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER, S.AOE, S.CRIT, S.EVASION] },
-	"Ritual Conduit": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.AOE], "d": D.MAGICAL },
+	"Sigil Colossus": { "r": [R.TANK, R.FIGHTER], "s": [S.AOE] },
+	"Ritual Conduit": { "r": [R.SUPPORT], "s": [S.BUFFER], "d": D.MAGICAL },
 	"Void Sentinel": { "r": [R.DPS], "s": [S.AOE, S.CRIT], "d": D.MIXED },
 	"Void Horror": { "r": [R.DPS], "s": [S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Fractured Shadow": { "r": [R.DPS], "s": [S.CRIT, S.EVASION] },
-	"Shadow Remnant": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
+	"Shadow Remnant": { "r": [R.SUPPORT], "s": [S.DEBUFFER, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"StrangerUndone": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DRAIN, S.AOE, S.CRIT, S.EVASION], "d": D.MIXED, "t": T.BOSS },
 
 	# ==========================================================================
@@ -114,8 +114,8 @@ const _DATA: Dictionary = {
 	"Saltrunner Smuggler": { "r": [R.DPS], "s": [S.CRIT, S.EVASION] },
 	"Tide Warden": { "r": [R.TANK, R.FIGHTER], "s": [S.CRIT, S.EVASION] },
 	"Blighted Gull": { "r": [R.DPS], "s": [S.AOE, S.EVASION], "d": D.MAGICAL },
-	"Shore Crawler": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.CRIT] },
-	"Warped Hound": { "r": [R.DPS], "s": [S.AOE, S.CRIT, S.EVASION] },
+	"Shore Crawler": { "r": [R.TANK, R.FIGHTER], "s": [S.CRIT] },
+	"Warped Hound": { "r": [R.DPS], "s": [S.AOE, S.CRIT, S.EVASION], "d": D.MIXED },
 	"Tideside Channeler": { "r": [R.DPS], "s": [S.DOT, S.GLASS_CANNON], "d": D.MAGICAL },
 	"Reef Shaman": { "r": [R.DPS], "s": [S.GLASS_CANNON, S.AOE], "d": D.MAGICAL },
 	"Bilge Rat": { "r": [R.DPS], "s": [S.DOT] },
@@ -138,7 +138,7 @@ const _DATA: Dictionary = {
 	"Mirror Self": { "r": [R.DPS], "s": [S.CRIT], "d": D.MIXED },
 	"Void Weaver": { "r": [R.DPS], "s": [S.AOE], "d": D.MAGICAL },
 	"Mnemonic Golem": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER], "t": T.LEADER },
-	"The Warden": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER, S.AOE], "d": D.MAGICAL, "t": T.BOSS },
+	"The Warden": { "r": [R.SUPPORT], "s": [S.BUFFER, S.DEBUFFER, S.AOE], "d": D.MAGICAL, "t": T.BOSS },
 	"Fractured Protector": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.HEALER, S.DEBUFFER, S.DRAIN, S.AOE], "d": D.MIXED, "t": T.UNDERLING },
 	"Fading Wisp": { "r": [R.DPS], "s": [S.DOT, S.EVASION], "d": D.MIXED },
 	"Dim Guardian": { "r": [R.BURST], "s": [S.CRIT] },
@@ -155,13 +155,13 @@ const _DATA: Dictionary = {
 	# ==========================================================================
 	# Story 2 - Act IV
 	# ==========================================================================
-	"Pupil Leech": { "r": [R.TANK, R.FIGHTER], "s": [S.DOT, S.DRAIN], "d": D.MAGICAL },
-	"Gaze Stalker": { "r": [R.BURST], "s": [S.CRIT, S.EVASION], "d": D.MIXED },
-	"Memory Harvester": { "r": [R.DPS], "s": [S.DRAIN, S.AOE], "d": D.MAGICAL },
+	"Pupil Leech": { "r": [R.TANK], "s": [S.DOT, S.DRAIN], "d": D.MAGICAL },
+	"Gaze Stalker": { "r": [R.DPS], "s": [S.CRIT, S.EVASION], "d": D.MIXED },
+	"Memory Harvester": { "r": [R.DPS], "s": [S.DRAIN, S.AOE, S.CRIT], "d": D.MAGICAL },
 	"Oblivion Shade": { "r": [R.DPS], "s": [S.AOE, S.GLASS_CANNON, S.EVASION], "d": D.MAGICAL },
-	"Memory Reaper": { "r": [R.DPS], "s": [S.DOT, S.AOE], "d": D.MAGICAL },
+	"Memory Reaper": { "r": [R.DPS], "s": [S.DOT, S.AOE], "d": D.MIXED },
 	"Void Iris": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.HEALER, S.BUFFER, S.DEBUFFER, S.AOE], "d": D.MAGICAL, "t": T.UNDERLING },
-	"Thoughtform Knight": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER] },
+	"Thoughtform Knight": { "r": [R.TANK, R.FIGHTER] },
 	"The Iris": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER, S.AOE], "d": D.MAGICAL, "t": T.BOSS },
 	"The Lidless Eye": { "r": [R.BURST], "s": [S.DOT, S.AOE, S.CRIT], "d": D.PHYSICAL, "t": T.BOSS },
 
