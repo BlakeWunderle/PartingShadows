@@ -126,7 +126,7 @@ static func upgrade_to_dervish(f: FighterData) -> void:
 	f.class_id = "Dervish"; f.character_type = "Dervish"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 1; f.magic_defense += 2
-	f.speed += 3; f.crit_chance += 2; f.crit_damage += 1; f.dodge_chance += 2
+	f.speed += 2; f.crit_chance += 1; f.crit_damage += 1; f.dodge_chance += 2
 	f.abilities = [PAB.mesmerize(), PAB.dance(), PAB.whirling_step()]
 	f.upgrade_items = ["Light", "Paint"]
 
@@ -150,7 +150,7 @@ static func _lu_bard(f: FighterData) -> void:
 
 static func _lu_dervish(f: FighterData) -> void:
 	f.level += 1
-	var hp := randi_range(5, 7); f.health += hp; f.max_health += hp
+	var hp := randi_range(3, 5); f.health += hp; f.max_health += hp
 	var mp := randi_range(1, 2); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(2, 3); f.physical_defense += randi_range(2, 3)
 	f.magic_attack += randi_range(3, 5); f.magic_defense += randi_range(2, 3)
@@ -303,7 +303,7 @@ static func upgrade_to_pathfinder(f: FighterData) -> void:
 	f.class_id = "Pathfinder"; f.character_type = "Pathfinder"
 	f.health += 3; f.max_health += 3; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 2; f.physical_defense += 1; f.magic_attack += 2; f.magic_defense += 1
-	f.speed += 3; f.crit_chance += 3; f.crit_damage += 1; f.dodge_chance += 3
+	f.speed += 2; f.crit_chance += 3; f.crit_damage += 1; f.dodge_chance += 2
 	f.abilities = [PAB_B.keen_strike(), PAB_B.exploit_weakness(), PAB_B.adaptable_strike()]
 	f.upgrade_items = ["Torch", "Waterskin"]
 

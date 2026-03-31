@@ -314,7 +314,7 @@ static func exploit_weakness() -> AbilityData:
 
 static func adaptable_strike() -> AbilityData:
 	return _make("Adaptable Strike", "A versatile blow that siphons the enemy's vitality.",
-		Enums.StatType.MIXED_ATTACK, 7, 0, true, 2, false, 0, 0.25)
+		Enums.StatType.MIXED_ATTACK, 7, 0, true, 2, false, 0, 0.15)
 
 # =============================================================================
 # Wanderer tree:T2

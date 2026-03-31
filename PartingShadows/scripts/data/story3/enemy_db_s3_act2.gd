@@ -114,7 +114,7 @@ static func create_fragment_golem(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Fragment Golem", lvl)
 	f.health = EH.es(265, 304, 4, 7, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 1, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(27, 31, 1, 3, lvl, 6)
+	f.physical_attack = EH.es(28, 32, 1, 3, lvl, 6)
 	f.physical_defense = EH.es(22, 26, 1, 3, lvl, 6)
 	f.magic_attack = EH.es(9, 12, 0, 1, lvl, 6)
 	f.magic_defense = EH.es(13, 17, 1, 2, lvl, 6)
