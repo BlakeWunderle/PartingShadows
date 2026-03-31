@@ -98,11 +98,11 @@ static func temporal_rift() -> AbilityData:
 
 static func time_bomb() -> AbilityData:
 	return _make("Time Bomb", "A delayed temporal explosion.",
-		Enums.StatType.MAGIC_ATTACK, 14, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 12, 0, true, 3, false, 0, 0.0)
 
 static func time_freeze() -> AbilityData:
 	return _make("Time Freeze", "Stop the enemy in their tracks.",
-		Enums.StatType.SPEED, 11, 2, true, 4, false, 0, 0.0)
+		Enums.StatType.SPEED, 9, 2, true, 4, false, 0, 0.0)
 
 # Astronomer
 static func starfall() -> AbilityData:
@@ -111,11 +111,11 @@ static func starfall() -> AbilityData:
 
 static func meteor_shower() -> AbilityData:
 	return _make("Meteor Shower", "A rain of cosmic debris.",
-		Enums.StatType.MAGIC_ATTACK, 4, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 3, 0, true, 5, true, 0, 0.0)
 
 static func eclipse() -> AbilityData:
 	return _make("Eclipse", "Blot out the enemy's magical senses.",
-		Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_DEFENSE, 10, 2, true, 3, false, 0, 0.0)
 
 # Automaton
 static func servo_strike() -> AbilityData:
@@ -234,11 +234,11 @@ static func vine_wall() -> AbilityData:
 # Witch Doctor
 static func voodoo_bolt() -> AbilityData:
 	return _make("Voodoo Bolt", "Dark spiritual energy strikes the enemy.",
-		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, false, 0, 0.4)
+		Enums.StatType.MAGIC_ATTACK, 7, 0, true, 5, false, 0, 0.3)
 
 static func dark_hex() -> AbilityData:
 	return _make("Dark Hex", "A potent curse that weakens magic resistance.",
-		Enums.StatType.MAGIC_DEFENSE, 13, 3, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_DEFENSE, 10, 3, true, 4, false, 0, 0.0)
 
 static func creeping_rot() -> AbilityData:
 	return _make("Creeping Rot", "A slow decay that rots flesh and festers long after impact.",
@@ -247,7 +247,7 @@ static func creeping_rot() -> AbilityData:
 # Spiritwalker
 static func spirit_shield() -> AbilityData:
 	return _make("Spirit Shield", "Ancestral spirits protect an ally.",
-		Enums.StatType.DEFENSE, 5, 2, false, 4, false, 0, 0.0)
+		Enums.StatType.DEFENSE, 4, 2, false, 4, false, 0, 0.0)
 
 static func soul_strike() -> AbilityData:
 	return _make("Soul Strike", "A burst of spirit energy tears through the veil.",
@@ -255,7 +255,7 @@ static func soul_strike() -> AbilityData:
 
 static func spirit_mend() -> AbilityData:
 	var a := _make("Spirit Mend", "Healing energy from the spirit world.",
-		Enums.StatType.HEALTH, 5, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.HEALTH, 3, 0, false, 5, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
@@ -275,7 +275,7 @@ static func aerial_strike() -> AbilityData:
 # Shapeshifter
 static func savage_maul() -> AbilityData:
 	return _make("Savage Maul", "Transform and maul the enemy.",
-		Enums.StatType.MIXED_ATTACK, 24, 0, true, 4, false, 0, 0.3)
+		Enums.StatType.MIXED_ATTACK, 24, 0, true, 4, false, 0, 0.4)
 
 static func frenzy() -> AbilityData:
 	return _make("Frenzy", "Enter a bestial rage.",
@@ -336,7 +336,7 @@ static func ironclad_challenge() -> AbilityData:
 # Aegis - tanky fighter with magic-physical hybrid offense
 static func arcane_edge() -> AbilityData:
 	return _make("Arcane Edge", "Channel magic through your blade in a single devastating strike.",
-		Enums.StatType.MIXED_ATTACK, 17, 0, true, 4, false, 0, 0.25)
+		Enums.StatType.MIXED_ATTACK, 17, 0, true, 4, false, 0, 0.35)
 
 static func ward_breaker() -> AbilityData:
 	return _make("Ward Breaker", "Shatter enemy defenses with a surge of raw power.",
@@ -344,7 +344,7 @@ static func ward_breaker() -> AbilityData:
 
 static func spell_counter() -> AbilityData:
 	return _make("Spell Counter", "Turn the enemy's magic back upon them.",
-		Enums.StatType.MAGIC_ATTACK, 18, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 20, 0, true, 4, false, 0, 0.0)
 
 # Trailblazer
 static func blaze_trail() -> AbilityData:
@@ -369,7 +369,7 @@ static func endure() -> AbilityData:
 static func resourceful_strike() -> AbilityData:
 	return _make("Resourceful Strike",
 		"Strike with practiced efficiency, draining the foe's vitality.",
-		Enums.StatType.PHYSICAL_ATTACK, 17, 0, true, 4, false, 0, 0.5)
+		Enums.StatType.PHYSICAL_ATTACK, 17, 0, true, 4, false, 0, 0.4)
 
 static func wild_sweep() -> AbilityData:
 	return _make("Wild Sweep",
@@ -378,4 +378,4 @@ static func wild_sweep() -> AbilityData:
 
 static func adapt() -> AbilityData:
 	return _make("Adapt", "Heighten your senses and reflexes to the battlefield.",
-		Enums.StatType.SPEED, 7, 3, false, 3, false, 0, 0.0)
+		Enums.StatType.SPEED, 5, 3, false, 3, false, 0, 0.0)

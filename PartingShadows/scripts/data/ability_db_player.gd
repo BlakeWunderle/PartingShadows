@@ -84,7 +84,7 @@ static func wyvern_strike() -> AbilityData:
 
 static func dragon_dive() -> AbilityData:
 	return _make("Dragon Dive", "Soar skyward and plunge down wreathed in draconic flame.",
-		Enums.StatType.MIXED_ATTACK, 19, 0, true, 5, true, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 21, 0, true, 5, true, 0, 0.0)
 
 # Mercenary
 static func gun_shot() -> AbilityData:
@@ -132,11 +132,11 @@ static func spirit_attack() -> AbilityData:
 
 static func precise_strike() -> AbilityData:
 	return _make("Precise Strike", "Find the exact point of weakness.",
-		Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 5, false, 0, 0.0)
+		Enums.StatType.PHYSICAL_ATTACK, 12, 0, true, 5, false, 0, 0.0)
 
 static func inner_peace() -> AbilityData:
 	var a := _make("Inner Peace", "Channel spiritual harmony to mend an ally's wounds.",
-		Enums.StatType.HEALTH, 5, 0, false, 4, false, 0, 0.0)
+		Enums.StatType.HEALTH, 3, 0, false, 4, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
@@ -191,7 +191,7 @@ static func conflagration() -> AbilityData:
 # Tidecaller
 static func purify() -> AbilityData:
 	var a := _make("Purify", "Cleansing waters restore vitality.",
-		Enums.StatType.HEALTH, 10, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.HEALTH, 8, 0, false, 5, false, 0, 0.0)
 	a.heal_threshold = 0.35
 	return a
 
@@ -201,7 +201,7 @@ static func tsunami() -> AbilityData:
 
 static func water_whip() -> AbilityData:
 	return _make("Water Whip", "A lash of pressurized water tears into a single foe.",
-		Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 11, 0, true, 4, false, 0, 0.0)
 
 # Tempest
 static func hurricane() -> AbilityData:
@@ -225,7 +225,7 @@ static func lay_on_hands() -> AbilityData:
 
 static func holy_strike() -> AbilityData:
 	return _make("Holy Strike", "A blow charged with divine wrath.",
-		Enums.StatType.MIXED_ATTACK, 16, 0, true, 2, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 18, 0, true, 2, false, 0, 0.0)
 
 static func smite() -> AbilityData:
 	return _make("Smite", "Holy wrath made manifest.",
@@ -351,7 +351,7 @@ static func invisible_wall() -> AbilityData:
 
 static func anvil() -> AbilityData:
 	return _make("Anvil", "Drop something very heavy. From nowhere.",
-		Enums.StatType.MIXED_ATTACK, 18, 0, true, 4, false, 0, 0.0)
+		Enums.StatType.MIXED_ATTACK, 21, 0, true, 4, false, 0, 0.0)
 
 static func invisible_box() -> AbilityData:
 	return _make("Invisible Box", "Trap the enemy in an unseen prison.",
