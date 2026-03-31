@@ -51,9 +51,8 @@ var keyboard_bindings: Dictionary = {}
 var _nintendo_layout: bool = false
 ## True when the last meaningful input came from a gamepad (used for cursor hiding)
 var _using_controller: bool = false
-## Controller disconnect pause state
+## True when the pause menu was opened due to controller disconnect
 var _controller_disconnect_paused: bool = false
-var _disconnect_layer: CanvasLayer = null
 
 
 func _ready() -> void:
@@ -67,10 +66,22 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion or event is InputEventMouseButton:
+	if event is InputEventMouseButton:
 		if _using_controller:
 			_using_controller = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if _controller_disconnect_paused:
+			_controller_disconnect_paused = false
+			PauseOverlay._feedback_label.visible = false
+	elif event is InputEventMouseMotion:
+		# Only switch to mouse if there was real movement (ignore synthetic hover events)
+		if event.relative.length() > 1.0 and _using_controller:
+			_using_controller = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif event is InputEventKey:
+		if _controller_disconnect_paused:
+			_controller_disconnect_paused = false
+			PauseOverlay._feedback_label.visible = false
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if event is InputEventJoypadMotion and absf(event.axis_value) < 0.5:
 			return  # Ignore stick drift
@@ -245,12 +256,12 @@ func _on_joy_connection_changed(device: int, connected: bool) -> void:
 	# Re-detect layout and rebind in case controller type changed
 	_detect_nintendo_layout()
 	apply_bindings()
-	# Pause if the player was using a controller and it disconnected
-	if not connected and _using_controller:
-		_show_controller_disconnected()
-	# Auto-resume when controller reconnects while paused for disconnect
 	if connected and _controller_disconnect_paused:
-		_hide_controller_disconnected()
+		_controller_disconnect_paused = false
+		PauseOverlay._feedback_label.visible = false
+	# Open pause menu if the player was using a controller and it disconnected
+	elif not connected and _using_controller:
+		_show_controller_disconnected()
 
 
 func load_bindings(data: Dictionary) -> void:
@@ -264,7 +275,7 @@ func load_bindings(data: Dictionary) -> void:
 
 
 # =============================================================================
-# Controller disconnect pause
+# Controller disconnect -> pause menu with message
 # =============================================================================
 
 func _show_controller_disconnected() -> void:
@@ -274,31 +285,10 @@ func _show_controller_disconnected() -> void:
 		return
 	if NetManager.is_multiplayer_active:
 		return
+	if PauseOverlay._panel and PauseOverlay._panel.visible:
+		return  # Already paused
 	_controller_disconnect_paused = true
-	get_tree().paused = true
-	if _disconnect_layer == null:
-		_disconnect_layer = CanvasLayer.new()
-		_disconnect_layer.layer = 98
-		_disconnect_layer.process_mode = Node.PROCESS_MODE_ALWAYS
-		var bg := ColorRect.new()
-		bg.color = Color(0, 0, 0, 0.75)
-		bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-		_disconnect_layer.add_child(bg)
-		var label := Label.new()
-		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		label.set_anchors_preset(Control.PRESET_FULL_RECT)
-		label.add_theme_font_size_override("font_size", 28)
-		label.add_theme_color_override("font_color", Color.WHITE)
-		label.text = "Controller disconnected.\nPlease reconnect to continue."
-		_disconnect_layer.add_child(label)
-		add_child(_disconnect_layer)
-	_disconnect_layer.visible = true
-
-
-func _hide_controller_disconnected() -> void:
-	_controller_disconnect_paused = false
-	if _disconnect_layer != null:
-		_disconnect_layer.visible = false
-	if PauseOverlay._panel and not PauseOverlay._panel.visible:
-		get_tree().paused = false
+	PauseOverlay._show_pause()
+	PauseOverlay._feedback_label.text = "Controller disconnected"
+	PauseOverlay._feedback_label.add_theme_color_override("font_color", Color(0.9, 0.8, 0.5))
+	PauseOverlay._feedback_label.visible = true
