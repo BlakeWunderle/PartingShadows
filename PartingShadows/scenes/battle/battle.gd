@@ -49,6 +49,7 @@ var _auto_battle: bool = false
 var _auto_battle_unlocked: bool = false
 var _summary_waiting: bool = false
 var _summary_gate: ReadyGate = null  ## ReadyGate for multiplayer summary sync
+var _pending_summary_ready: Array[int] = []  ## Buffer for RPCs arriving before gate exists
 var _auto_button: Button
 var _display: BattleDisplay
 var _mp: BattleMultiplayer
@@ -854,6 +855,10 @@ func _wait_summary_ready() -> void:
 		_rpc_summary_ready.rpc_id(1, my_idx)
 	# Store gate reference so RPCs can mark ready on it
 	_summary_gate = gate
+	# Apply any ready signals that arrived before the gate was stored
+	for idx: int in _pending_summary_ready:
+		_summary_gate.mark_ready(idx)
+	_pending_summary_ready.clear()
 	await gate.all_ready
 	_summary_gate = null
 	gate.queue_free()
@@ -947,6 +952,9 @@ func _rpc_combat_log(text: String) -> void:
 func _rpc_summary_ready(player_index: int) -> void:
 	if _summary_gate:
 		_summary_gate.mark_ready(player_index)
+	else:
+		if player_index not in _pending_summary_ready:
+			_pending_summary_ready.append(player_index)
 	if NetManager.is_host:
 		_rpc_summary_ready_broadcast.rpc(player_index)
 
@@ -955,6 +963,9 @@ func _rpc_summary_ready(player_index: int) -> void:
 func _rpc_summary_ready_broadcast(player_index: int) -> void:
 	if _summary_gate:
 		_summary_gate.mark_ready(player_index)
+	else:
+		if player_index not in _pending_summary_ready:
+			_pending_summary_ready.append(player_index)
 
 
 func _on_peer_left_mid_battle(peer_id: int, player_name: String) -> void:
