@@ -191,14 +191,7 @@ func handle_request_action(actor_party_idx: int) -> void:
 	_battle._current_actor = actor
 	_battle._highlight_active_card(actor)
 
-	# Turn announcement
-	var turn_text: String
-	if actor.character_name.ends_with("s"):
-		turn_text = "It is %s' turn." % actor.character_name
-	else:
-		turn_text = "It is %s's turn." % actor.character_name
-	_battle._add_log_separator()
-	_battle._add_log("[color=yellow]%s[/color]" % turn_text)
+	# Turn announcement already sent by host via _rpc_combat_log
 
 	_battle._phase = _battle.Phase.PLAYER_ACTION
 	_battle._show_action_menu(actor)

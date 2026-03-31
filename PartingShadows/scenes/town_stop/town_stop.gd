@@ -249,18 +249,30 @@ func _show_next_upgrade() -> void:
 		_player_indicator.text = "Player %d" % (owner + 1)
 		_player_indicator.visible = true
 
-	# In multiplayer, check if this character belongs to a remote player
-	if NetManager.is_multiplayer_active and not NetManager.is_my_fighter(_upgrade_index):
-		var owner_name: String = NetManager.get_fighter_owner_name(_upgrade_index)
-		_upgrade_label.visible = false
-		_choice_menu.visible = false
-		_waiting_overlay.show_waiting(owner_name)
-		# Host sends upgrade request to the owning peer
+	# Multiplayer: host drives all upgrades via RPCs
+	if NetManager.is_multiplayer_active:
 		if NetManager.is_host:
-			var owner_peer: int = NetManager.get_fighter_owner_peer(_upgrade_index)
-			var items: Array[String] = fighter.upgrade_items.duplicate()
-			_rpc_request_upgrade.rpc_id(owner_peer, _upgrade_index, fighter.character_name,
-				fighter.character_type, items)
+			if NetManager.is_my_fighter(_upgrade_index):
+				# Host's own character — show choice menu locally
+				_upgrade_label.text = "%s the %s. Choose an upgrade:" % [
+					fighter.character_name, fighter.character_type]
+				_upgrade_label.visible = true
+				var options: Array[Dictionary] = _format_upgrade_options(fighter)
+				_choice_menu.show_choices(options)
+			else:
+				# Remote player's character — send request and wait
+				var owner_name: String = NetManager.get_fighter_owner_name(_upgrade_index)
+				_upgrade_label.visible = false
+				_choice_menu.visible = false
+				_waiting_overlay.show_waiting(owner_name)
+				var owner_peer: int = NetManager.get_fighter_owner_peer(_upgrade_index)
+				var items: Array[String] = fighter.upgrade_items.duplicate()
+				_rpc_request_upgrade.rpc_id(owner_peer, _upgrade_index, fighter.character_name,
+					fighter.character_type, items)
+		else:
+			# Guest: always wait for host's _rpc_request_upgrade to avoid double-show
+			_upgrade_label.visible = false
+			_choice_menu.visible = false
 		return
 
 	_upgrade_label.text = "%s the %s. Choose an upgrade:" % [
@@ -480,8 +492,10 @@ func _rpc_submit_upgrade(party_index: int, item: String) -> void:
 	var old_name: String = fighter.character_name
 	GameState.upgrade_party_member(fighter, item)
 	var new_class: String = fighter.character_type
+	CompendiumManager.record_class(fighter.class_id, new_class)
 	GameLog.info("Upgrade: %s -> %s (remote)" % [old_name, new_class])
-	_rpc_upgrade_applied.rpc(party_index, item, old_name, new_class)
+	# Defer broadcast to avoid nested RPC issues (called from within RPC handler)
+	_deferred_broadcast_upgrade.call_deferred(party_index, item, old_name, new_class)
 	_waiting_overlay.hide_waiting()
 	_choice_menu.hide_menu()
 	_upgrade_label.visible = false
@@ -491,6 +505,11 @@ func _rpc_submit_upgrade(party_index: int, item: String) -> void:
 		"%s takes the %s..." % [old_name, item],
 		"%s is now a %s!" % [old_name, new_class],
 	])
+
+
+func _deferred_broadcast_upgrade(party_index: int, item: String, old_name: String,
+		new_class: String) -> void:
+	_rpc_upgrade_applied.rpc(party_index, item, old_name, new_class)
 
 
 ## Host -> All: Broadcast upgrade result so all peers update their party.

@@ -253,7 +253,13 @@ func _tick_loop() -> void:
 			else:
 				turn_text = "It is %s's turn." % actor.character_name
 			_add_log_separator()
-			_add_log("[color=#b3b3b3]%s[/color]" % turn_text)
+			var colored_turn: String = "[color=#b3b3b3]%s[/color]" % turn_text
+			_add_log(colored_turn)
+			# Send turn announcement to guests (bypasses _message_queue to avoid
+			# double-display on host, since _add_log already showed it above)
+			if NetManager.is_multiplayer_active and NetManager.is_host:
+				_rpc_combat_log.rpc("\n[color=gray]───────────[/color]")
+				_rpc_combat_log.rpc(colored_turn)
 
 			if actor.is_user_controlled:
 				_phase = Phase.PLAYER_ACTION
