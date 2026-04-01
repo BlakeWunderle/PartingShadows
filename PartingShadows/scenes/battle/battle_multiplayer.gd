@@ -224,11 +224,13 @@ func handle_battle_ended(won: bool, stats_data: Array = []) -> void:
 		await _battle.get_tree().create_timer(1.0).timeout
 		await _battle._show_battle_summary()
 		GameState.advance_to_post_battle()
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
+		# Guest doesn't change scene — host sends change_scene_for_peers after
+		# its own summary gate resolves. Guest's ready signal was already sent
+		# inside _show_battle_summary() → _wait_summary_ready().
 	else:
 		await _battle.get_tree().create_timer(2.0).timeout
 		GameState.go_to_ending(false)
-		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+		# Guest waits for host's change_scene_for_peers
 
 
 func _apply_battle_stats(stats_data: Array) -> void:

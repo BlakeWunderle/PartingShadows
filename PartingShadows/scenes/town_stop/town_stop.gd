@@ -91,6 +91,7 @@ func _build_ui() -> void:
 	_vote_panel = VotePanel.new()
 	_vote_panel.visible = false
 	_vote_panel.vote_resolved.connect(_on_vote_resolved)
+	_vote_panel.vote_cast.connect(_on_vote_cast)
 	vbox.add_child(_vote_panel)
 
 	_tip_overlay = TipOverlay.new()
@@ -422,6 +423,10 @@ func _on_branch_selected(index: int) -> void:
 
 func _on_vote_resolved(winning_index: int) -> void:
 	_apply_branch_choice(winning_index)
+
+
+func _on_vote_cast(player_index: int, choice_index: int) -> void:
+	_rpc_cast_vote.rpc(player_index, choice_index)
 
 
 func _apply_branch_choice(index: int) -> void:

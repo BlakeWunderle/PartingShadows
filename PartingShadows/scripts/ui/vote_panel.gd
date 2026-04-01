@@ -5,6 +5,7 @@ class_name VotePanel extends VBoxContainer
 ## Majority wins; ties broken randomly.
 
 signal vote_resolved(winning_index: int)
+signal vote_cast(player_index: int, choice_index: int)
 
 const ChoiceMenu := preload("res://scripts/ui/choice_menu.gd")
 
@@ -129,6 +130,7 @@ func _on_local_vote(index: int) -> void:
 		var my_idx: int = _get_local_peer_index()
 		_votes[my_idx] = index
 		_refresh_vote_labels()
+		vote_cast.emit(my_idx, index)  # Notify scene to relay via RPC
 		_check_all_voted()
 		return
 

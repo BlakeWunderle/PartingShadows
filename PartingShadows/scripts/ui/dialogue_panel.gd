@@ -102,6 +102,9 @@ func _type_next_line() -> void:
 			_label.append_text(remaining)
 			break
 		await get_tree().create_timer(CHAR_DELAY, false).timeout
+		# In multiplayer the tree isn't paused, so wait while pause overlay is open
+		while PauseOverlay._panel and PauseOverlay._panel.visible:
+			await get_tree().create_timer(0.05).timeout
 
 	if gen != _gen:
 		return  # Cancelled while waiting on final timer
@@ -131,6 +134,9 @@ func _scroll_history(direction: int) -> void:
 
 func _input(event: InputEvent) -> void:
 	if not visible or not _accepting_input:
+		return
+	# In multiplayer the tree isn't paused; block input while pause overlay is open
+	if PauseOverlay._panel and PauseOverlay._panel.visible:
 		return
 	if LocalCoop.is_event_gated(event):
 		return

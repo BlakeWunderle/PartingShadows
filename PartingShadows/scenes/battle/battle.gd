@@ -92,6 +92,8 @@ func _ready() -> void:
 	_display = BattleDisplay_C.new(self)
 	_mp = BattleMultiplayer_C.new(self)
 	_build_ui()
+	if NetManager.is_multiplayer_active:
+		NetManager.peer_scene_ready.connect(_on_summary_peer_ready)
 	_start_battle()
 
 
@@ -816,24 +818,32 @@ func _end_battle() -> void:
 		await get_tree().create_timer(1.0, false).timeout
 		await _show_battle_summary()
 		GameState.advance_to_post_battle()
+		if NetManager.is_multiplayer_active and NetManager.is_host:
+			NetManager.change_scene_for_peers("res://scenes/narrative/narrative.tscn")
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn", 0.4, true)
 	else:
 		GameLog.info("Battle lost: %s" % GameState.current_battle_id)
 		_add_log("[color=red]The party has been defeated...[/color]")
 		await get_tree().create_timer(2.0, false).timeout
 		GameState.go_to_ending(false)
+		if NetManager.is_multiplayer_active and NetManager.is_host:
+			NetManager.change_scene_for_peers("res://scenes/narrative/narrative.tscn")
 		SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 
 
 func _show_battle_summary() -> void:
+	# Pre-open the ready gate so incoming signals are captured while summary displays
+	if NetManager.is_multiplayer_active:
+		_pre_open_summary_gate()
 	await _display.show_battle_summary()
-	# In online multiplayer, wait for both players to dismiss the summary
+	# In online multiplayer, mark self ready and (host only) wait for all
 	if NetManager.is_multiplayer_active:
 		await _wait_summary_ready()
 
 
-## Wait for all online players to dismiss the battle summary before advancing.
-func _wait_summary_ready() -> void:
+## Pre-open the summary ready gate so signals arriving while the summary
+## is displayed are captured immediately (not buffered then drained).
+func _pre_open_summary_gate() -> void:
 	var gate := ReadyGate.new()
 	gate.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 	gate.offset_top = -40
@@ -845,25 +855,37 @@ func _wait_summary_ready() -> void:
 	for idx: int in _pending_summary_ready:
 		gate.mark_ready(idx)
 	_pending_summary_ready.clear()
-	# Connect to NetManager relay for incoming ready signals
-	NetManager.peer_scene_ready.connect(_on_summary_peer_ready)
-	# Mark self ready (player already dismissed the summary)
+	GameLog.info("Summary gate: pre-opened (peer_count=%d)" % NetManager.get_connected_peer_count())
+
+
+## Mark self ready and (host only) wait for all peers.
+## Guests return immediately — host sends change_scene_for_peers.
+func _wait_summary_ready() -> void:
+	# Gate was already pre-opened in _pre_open_summary_gate
 	var my_idx: int = NetManager.get_my_peer_index()
-	gate.mark_ready(my_idx)
+	_summary_gate.mark_ready(my_idx)
 	NetManager.notify_scene_ready(my_idx)
-	# If all players were already ready, gate hid itself — skip await
-	if not gate.visible:
-		NetManager.peer_scene_ready.disconnect(_on_summary_peer_ready)
-		_summary_gate = null
-		gate.queue_free()
+	GameLog.info("Summary gate: marked self ready (idx=%d, is_host=%s)" % [my_idx, NetManager.is_host])
+	# Guests don't wait — host will send change_scene_for_peers
+	if not NetManager.is_host:
 		return
-	await gate.all_ready
-	NetManager.peer_scene_ready.disconnect(_on_summary_peer_ready)
+	# If all players were already ready, gate hid itself — skip await
+	if not _summary_gate.visible:
+		GameLog.info("Summary gate: all ready immediately (host)")
+		var g: ReadyGate = _summary_gate
+		_summary_gate = null
+		g.queue_free()
+		return
+	GameLog.info("Summary gate: host waiting for peers")
+	await _summary_gate.all_ready
+	GameLog.info("Summary gate: all ready (host)")
+	var g2: ReadyGate = _summary_gate
 	_summary_gate = null
-	gate.queue_free()
+	g2.queue_free()
 
 
 func _on_summary_peer_ready(player_index: int) -> void:
+	GameLog.info("Summary gate: peer_scene_ready(%d), gate_exists=%s" % [player_index, _summary_gate != null])
 	if _summary_gate:
 		_summary_gate.mark_ready(player_index)
 	else:
