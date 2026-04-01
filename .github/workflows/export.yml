@@ -157,7 +157,7 @@ jobs:
           /Applications/Godot.app/Contents/MacOS/Godot --headless --path $PROJECT_PATH \
             --export-release "macOS" "$(pwd)/build/macos/${GAME_NAME}.zip"
 
-      - name: Sign app
+      - name: Sign and rename app
         run: |
           cd build/macos
           unzip -q ${GAME_NAME}.zip
@@ -166,8 +166,13 @@ jobs:
           codesign --deep --force --options runtime \
             --sign "Developer ID Application" \
             "$APP_NAME"
+          # Rename to remove spaces (Steam launch config compatibility)
+          if [ "$APP_NAME" != "${GAME_NAME}.app" ]; then
+            mv "$APP_NAME" "${GAME_NAME}.app"
+            echo "Renamed '$APP_NAME' -> '${GAME_NAME}.app'"
+          fi
           rm ${GAME_NAME}.zip
-          zip -r -y ${GAME_NAME}.zip "$APP_NAME"
+          zip -r -y ${GAME_NAME}.zip "${GAME_NAME}.app"
 
       - name: Notarize app (non-blocking)
         env:
