@@ -6,8 +6,11 @@ extends RefCounted
 ## performing the save, and navigating back to the main pause menu.
 
 const StoryDB := preload("res://scripts/data/story_db.gd")
+const _SLOTS_PER_PAGE: int = 5
 
 var _overlay: CanvasLayer  # The PauseOverlay instance
+var _delete_mode: bool = false
+var _page: int = 0
 
 
 func _init(overlay: CanvasLayer) -> void:
@@ -19,6 +22,12 @@ func _init(overlay: CanvasLayer) -> void:
 # =============================================================================
 
 func show_save_slots() -> void:
+	_delete_mode = false
+	_page = 0
+	_build_slot_menu()
+
+
+func _build_slot_menu() -> void:
 	_overlay._mode = _overlay.Mode.SAVE_SLOTS
 	_overlay._main_vbox.visible = false
 
@@ -26,8 +35,20 @@ func show_save_slots() -> void:
 	for child: Node in _overlay._save_vbox.get_children():
 		child.queue_free()
 
-	# Build slot buttons with summaries
+	var has_any_save: bool = false
+	var total_pages: int = ceili(float(SaveManager.MAX_SAVE_SLOTS) / _SLOTS_PER_PAGE)
+	_page = clampi(_page, 0, total_pages - 1)
+	var page_start: int = _page * _SLOTS_PER_PAGE
+	var page_end: int = mini(page_start + _SLOTS_PER_PAGE, SaveManager.MAX_SAVE_SLOTS)
+
+	# Check if any saves exist
 	for i: int in SaveManager.MAX_SAVE_SLOTS:
+		if SaveManager.get_save_summary(i).get("exists", false):
+			has_any_save = true
+			break
+
+	# Build slot buttons for current page
+	for i: int in range(page_start, page_end):
 		var summary: Dictionary = SaveManager.get_save_summary(i)
 		var label: String
 		if summary.get("exists", false):
@@ -48,18 +69,37 @@ func show_save_slots() -> void:
 			label = "Slot %d: Empty" % [i + 1]
 		var btn: Button = _overlay._make_button(label)
 		var slot: int = i  # Capture for lambda
-		btn.pressed.connect(on_save_slot_selected.bind(slot))
+		if _delete_mode:
+			if summary.get("exists", false):
+				btn.pressed.connect(on_delete_slot_selected.bind(slot))
+			else:
+				btn.disabled = true
+		else:
+			btn.pressed.connect(on_save_slot_selected.bind(slot))
 		_overlay._save_vbox.add_child(btn)
 
-		# Delete button for occupied slots
-		if summary.get("exists", false):
-			var del_btn: Button = _overlay._make_button("  Delete Slot %d" % [i + 1])
-			del_btn.add_theme_color_override("font_color", Color(0.8, 0.4, 0.4))
-			del_btn.custom_minimum_size.y = 28
-			del_btn.pressed.connect(on_delete_slot_selected.bind(slot))
+	# Page navigation
+	if total_pages > 1:
+		if _page > 0:
+			var prev_btn: Button = _overlay._make_button("< Prev Page")
+			prev_btn.pressed.connect(_on_prev_page)
+			_overlay._save_vbox.add_child(prev_btn)
+		if _page < total_pages - 1:
+			var next_btn: Button = _overlay._make_button("Next Page >")
+			next_btn.pressed.connect(_on_next_page)
+			_overlay._save_vbox.add_child(next_btn)
+
+	# Mode toggle — Save / Delete
+	if has_any_save:
+		if _delete_mode:
+			var save_btn: Button = _overlay._make_button("Save Mode")
+			save_btn.pressed.connect(_on_switch_to_save)
+			_overlay._save_vbox.add_child(save_btn)
+		else:
+			var del_btn: Button = _overlay._make_button("Delete Mode")
+			del_btn.pressed.connect(_on_switch_to_delete)
 			_overlay._save_vbox.add_child(del_btn)
 
-	# Back button
 	var back_btn: Button = _overlay._make_button("Back")
 	back_btn.pressed.connect(_overlay._back_to_main)
 	_overlay._save_vbox.add_child(back_btn)
@@ -72,6 +112,26 @@ func show_save_slots() -> void:
 		var first: Button = _overlay._save_vbox.get_child(0) as Button
 		if first:
 			first.grab_focus()
+
+
+func _on_prev_page() -> void:
+	_page -= 1
+	_build_slot_menu()
+
+
+func _on_next_page() -> void:
+	_page += 1
+	_build_slot_menu()
+
+
+func _on_switch_to_save() -> void:
+	_delete_mode = false
+	_build_slot_menu()
+
+
+func _on_switch_to_delete() -> void:
+	_delete_mode = true
+	_build_slot_menu()
 
 
 # =============================================================================
@@ -99,9 +159,12 @@ func on_overwrite_confirmed(accepted: bool) -> void:
 
 func do_save(slot: int) -> void:
 	SaveManager.save_to_slot(slot)
-	for i: int in _overlay._save_vbox.get_child_count():
-		var btn: Button = _overlay._save_vbox.get_child(i) as Button
-		if btn and i == slot:
+	# Find the button for this slot on the current page and update its label
+	var page_start: int = _page * _SLOTS_PER_PAGE
+	var btn_index: int = slot - page_start
+	if btn_index >= 0 and btn_index < _overlay._save_vbox.get_child_count():
+		var btn: Button = _overlay._save_vbox.get_child(btn_index) as Button
+		if btn:
 			btn.text = "Slot %d: Saved!" % [slot + 1]
 	await _overlay.get_tree().create_timer(0.6).timeout
 	if _overlay._mode == _overlay.Mode.SAVE_SLOTS:
@@ -121,5 +184,5 @@ func on_delete_slot_selected(slot: int) -> void:
 func on_delete_confirmed(accepted: bool) -> void:
 	if accepted and _overlay._pending_save_slot >= 0:
 		SaveManager.delete_save(_overlay._pending_save_slot)
-		show_save_slots()  # Refresh the slot list
 	_overlay._pending_save_slot = -1
+	_build_slot_menu()  # Refresh in current mode

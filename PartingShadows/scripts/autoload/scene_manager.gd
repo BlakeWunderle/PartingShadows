@@ -19,7 +19,7 @@ const TIPS: Array[String] = [
 	"Your compendium tracks every enemy and class you encounter.",
 	"Speed determines turn order. Faster fighters act first.",
 	"AoE abilities hit all targets but are often weaker per hit.",
-	"Save often! You have three save slots plus autosave.",
+	"Save often! You have multiple save slots plus autosave.",
 	"Critical hits deal bonus damage based on your crit stat.",
 	"Dodge chance lets you completely avoid physical attacks.",
 	"Tier 2 classes have powerful specialized abilities.",

@@ -58,6 +58,9 @@ func _build_ui() -> void:
 	title.add_theme_color_override("font_color", Color.WHITE)
 	title.add_theme_constant_override("outline_size", 2)
 	title.add_theme_color_override("font_outline_color", Color.BLACK)
+	title.add_theme_constant_override("shadow_offset_x", 3)
+	title.add_theme_constant_override("shadow_offset_y", 3)
+	title.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.85))
 	add_child(title)
 
 	var sep := HSeparator.new()

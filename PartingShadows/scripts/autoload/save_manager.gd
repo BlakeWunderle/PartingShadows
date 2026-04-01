@@ -6,8 +6,8 @@ extends Node
 const FighterData = preload("res://scripts/data/fighter_data.gd")
 const FighterDB = preload("res://scripts/data/fighter_db.gd")
 
-const MAX_SAVE_SLOTS := 3
-const AUTOSAVE_SLOT := 3
+const MAX_SAVE_SLOTS := 15
+const AUTOSAVE_SLOT := 15
 const SAVE_META_PATH := "user://save_meta.json"
 const AUTOSAVE_PATH := "user://autosave.json"
 const SAVE_VERSION := 1

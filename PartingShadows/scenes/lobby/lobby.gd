@@ -60,7 +60,7 @@ func _build_ui() -> void:
 	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	bg.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	bg.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-	var bg_path := "res://assets/art/ui/title_background.png"
+	var bg_path := _pick_background()
 	if ResourceLoader.exists(bg_path):
 		bg.texture = load(bg_path)
 	add_child(bg)
@@ -80,8 +80,11 @@ func _build_ui() -> void:
 	_header = Label.new()
 	_header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_header.add_theme_font_size_override("font_size", 36)
-	_header.add_theme_constant_override("outline_size", 1)
+	_header.add_theme_constant_override("outline_size", 2)
 	_header.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
+	_header.add_theme_constant_override("shadow_offset_x", 3)
+	_header.add_theme_constant_override("shadow_offset_y", 3)
+	_header.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 0.85))
 	_vbox.add_child(_header)
 
 	# Spacer
@@ -190,7 +193,7 @@ func _on_steam_hosting_started(_lobby_id: int) -> void:
 	_status_label.visible = true
 	_status_label.add_theme_font_size_override("font_size", 22)
 	_status_label.add_theme_color_override("font_color", Color.WHITE)
-	_status_label.add_theme_constant_override("outline_size", 1)
+	_status_label.add_theme_constant_override("outline_size", 2)
 	_status_label.add_theme_color_override("font_outline_color", Color.BLACK)
 
 
@@ -321,7 +324,7 @@ func _refresh_player_list() -> void:
 	list_header.text = "Players:"
 	list_header.add_theme_font_size_override("font_size", 20)
 	list_header.add_theme_color_override("font_color", Color(0.6, 0.75, 0.8))
-	list_header.add_theme_constant_override("outline_size", 1)
+	list_header.add_theme_constant_override("outline_size", 2)
 	list_header.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	_player_list.add_child(list_header)
 	_player_labels.append(list_header)
@@ -341,7 +344,7 @@ func _refresh_player_list() -> void:
 		lbl.text = "  %s%s%s" % [name, slot_str, " (Host)" if peer_id == 1 else ""]
 		lbl.add_theme_font_size_override("font_size", 18)
 		lbl.add_theme_color_override("font_color", Color(0.85, 0.9, 0.95))
-		lbl.add_theme_constant_override("outline_size", 1)
+		lbl.add_theme_constant_override("outline_size", 2)
 		lbl.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 		_player_list.add_child(lbl)
 		_player_labels.append(lbl)
@@ -374,12 +377,25 @@ func _rpc_start_game(story_id: String, slot_data: Dictionary, p_count: int) -> v
 # Load Save
 # =============================================================================
 
+var _load_page: int = 0
+const _SLOTS_PER_PAGE: int = 5
+
 func _show_load_save_slots() -> void:
+	_load_page = 0
+	_build_load_save_menu()
+
+
+func _build_load_save_menu() -> void:
 	_mode = Mode.LOAD_SAVE
 	_load_slot_actions.clear()
 	var options: Array[Dictionary] = []
 
-	for i: int in SaveManager.MAX_SAVE_SLOTS:
+	var total_pages: int = ceili(float(SaveManager.MAX_SAVE_SLOTS) / _SLOTS_PER_PAGE)
+	_load_page = clampi(_load_page, 0, total_pages - 1)
+	var page_start: int = _load_page * _SLOTS_PER_PAGE
+	var page_end: int = mini(page_start + _SLOTS_PER_PAGE, SaveManager.MAX_SAVE_SLOTS)
+
+	for i: int in range(page_start, page_end):
 		var summary: Dictionary = SaveManager.get_save_summary(i)
 		if summary.get("exists", false):
 			var story_title: String = StoryDB.get_story(
@@ -396,21 +412,32 @@ func _show_load_save_slots() -> void:
 			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
 			_load_slot_actions.append({"action": "empty"})
 
-	var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
-	if auto_summary.get("exists", false):
-		var auto_story: String = StoryDB.get_story(
-			auto_summary.get("story_id", "story_1")).get("title", "")
-		var mp_tag: String = " [Co-op]" if auto_summary.get("is_multiplayer", false) else ""
-		var auto_secs: float = auto_summary.get("play_seconds", 0.0)
-		var auto_h: int = int(auto_secs) / 3600
-		var auto_m: int = (int(auto_secs) % 3600) / 60
-		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
-			auto_summary.get("lead_name", "???"), auto_summary.get("lead_class", "???"),
-			auto_summary.get("level", 1), auto_story, mp_tag, auto_h, auto_m]})
-		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
-	else:
-		options.append({"label": "Autosave: Empty", "disabled": true})
-		_load_slot_actions.append({"action": "empty"})
+	# Autosave on last page
+	if _load_page == total_pages - 1:
+		var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
+		if auto_summary.get("exists", false):
+			var auto_story: String = StoryDB.get_story(
+				auto_summary.get("story_id", "story_1")).get("title", "")
+			var mp_tag: String = " [Co-op]" if auto_summary.get("is_multiplayer", false) else ""
+			var auto_secs: float = auto_summary.get("play_seconds", 0.0)
+			var auto_h: int = int(auto_secs) / 3600
+			var auto_m: int = (int(auto_secs) % 3600) / 60
+			options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
+				auto_summary.get("lead_name", "???"), auto_summary.get("lead_class", "???"),
+				auto_summary.get("level", 1), auto_story, mp_tag, auto_h, auto_m]})
+			_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
+		else:
+			options.append({"label": "Autosave: Empty", "disabled": true})
+			_load_slot_actions.append({"action": "empty"})
+
+	# Page navigation
+	if total_pages > 1:
+		if _load_page > 0:
+			options.append({"label": "< Prev Page"})
+			_load_slot_actions.append({"action": "prev_page"})
+		if _load_page < total_pages - 1:
+			options.append({"label": "Next Page >"})
+			_load_slot_actions.append({"action": "next_page"})
 
 	options.append({"label": "Back"})
 	_load_slot_actions.append({"action": "back"})
@@ -425,6 +452,12 @@ func _handle_load_save_choice(index: int) -> void:
 		"back":
 			_mode = Mode.HOSTING
 			_show_host_menu()
+		"prev_page":
+			_load_page -= 1
+			_build_load_save_menu()
+		"next_page":
+			_load_page += 1
+			_build_load_save_menu()
 		"load":
 			var slot: int = int(entry["slot"])
 			if SaveManager.load_from_slot(slot):
@@ -490,6 +523,14 @@ func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: S
 # =============================================================================
 # Helpers
 # =============================================================================
+
+func _pick_background() -> String:
+	var options: Array[String] = ["res://assets/art/ui/title_background.png"]
+	if UnlockManager.is_unlocked("story_1_complete"):
+		options.append("res://assets/art/ui/title_background_s2.png")
+	if UnlockManager.is_unlocked("story_2_complete"):
+		options.append("res://assets/art/ui/title_background_s3.png")
+	return options[randi() % options.size()]
 
 
 # =============================================================================

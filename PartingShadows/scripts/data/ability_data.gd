@@ -22,36 +22,38 @@ const Enums := preload("res://scripts/data/enums.gd")
 func get_description() -> String:
 	var target: String
 	if target_all:
-		target = "All Enemies" if use_on_enemy else "All Allies"
+		target = "AoE" if use_on_enemy else "Party"
 	else:
-		target = "Enemy" if use_on_enemy else "Ally"
+		target = "" if use_on_enemy else "Ally"
 
 	var effect: String
 	if not use_on_enemy and impacted_turns == 0:
-		effect = "Heals"
+		effect = "Heal"
 	elif impacted_turns > 0:
-		var stat_name: String
+		var stat_abbrev: String
 		match modified_stat:
-			Enums.StatType.ATTACK: stat_name = "Attack"
-			Enums.StatType.DEFENSE: stat_name = "Defense"
-			Enums.StatType.PHYSICAL_ATTACK: stat_name = "Physical Attack"
-			Enums.StatType.PHYSICAL_DEFENSE: stat_name = "Physical Defense"
-			Enums.StatType.MAGIC_ATTACK: stat_name = "Magic Attack"
-			Enums.StatType.MAGIC_DEFENSE: stat_name = "Magic Defense"
-			Enums.StatType.SPEED: stat_name = "Speed"
-			Enums.StatType.DODGE_CHANCE: stat_name = "Dodge"
-			Enums.StatType.TAUNT: stat_name = "Taunt"
-			_: stat_name = "Stats"
-		var verb: String = "Reduces" if use_on_enemy else "Boosts"
-		effect = "%s %s for %d turn(s)" % [verb, stat_name, impacted_turns]
+			Enums.StatType.ATTACK: stat_abbrev = "ATK"
+			Enums.StatType.DEFENSE: stat_abbrev = "DEF"
+			Enums.StatType.PHYSICAL_ATTACK: stat_abbrev = "P.ATK"
+			Enums.StatType.PHYSICAL_DEFENSE: stat_abbrev = "P.DEF"
+			Enums.StatType.MAGIC_ATTACK: stat_abbrev = "M.ATK"
+			Enums.StatType.MAGIC_DEFENSE: stat_abbrev = "M.DEF"
+			Enums.StatType.SPEED: stat_abbrev = "SPD"
+			Enums.StatType.DODGE_CHANCE: stat_abbrev = "DODGE"
+			Enums.StatType.TAUNT: stat_abbrev = "TAUNT"
+			_: stat_abbrev = "STAT"
+		var arrow: String = "▼" if use_on_enemy else "▲"
+		effect = "%s%s %dt" % [arrow, stat_abbrev, impacted_turns]
 	else:
 		match modified_stat:
-			Enums.StatType.PHYSICAL_ATTACK: effect = "Physical damage"
-			Enums.StatType.MAGIC_ATTACK: effect = "Magic damage"
-			Enums.StatType.MIXED_ATTACK: effect = "Mixed damage"
-			_: effect = "Damage"
+			Enums.StatType.PHYSICAL_ATTACK: effect = "Phys"
+			Enums.StatType.MAGIC_ATTACK: effect = "Magic"
+			Enums.StatType.MIXED_ATTACK: effect = "Mixed"
+			_: effect = "DMG"
 
-	return "[%s] %s" % [target, effect]
+	if target.is_empty():
+		return effect
+	return "%s · %s" % [target, effect]
 
 
 func get_compendium_description() -> String:

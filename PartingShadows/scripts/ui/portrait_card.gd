@@ -22,6 +22,7 @@ var _mp_tween: Tween
 # Active highlight stylebox
 var _active_style: StyleBoxFlat
 var _default_style: StyleBoxFlat
+var _glow_tween: Tween
 
 # Bar fill styles
 var _hp_fill: StyleBoxFlat
@@ -176,18 +177,35 @@ func update_display(fighter: FighterData) -> void:
 
 
 func set_active(active: bool) -> void:
-	_frame.add_theme_stylebox_override("panel", _active_style if active else _default_style)
+	if _glow_tween and _glow_tween.is_valid():
+		_glow_tween.kill()
+		_glow_tween = null
+	if active:
+		_frame.add_theme_stylebox_override("panel", _active_style)
+		_active_style.border_color = Color(0.2, 0.9, 0.8, 1.0)
+		_glow_tween = create_tween().set_loops()
+		_glow_tween.tween_property(_active_style, "border_color",
+			Color(0.1, 0.55, 0.5, 0.7), 0.5).set_ease(Tween.EASE_IN_OUT)
+		_glow_tween.tween_property(_active_style, "border_color",
+			Color(0.2, 0.9, 0.8, 1.0), 0.5).set_ease(Tween.EASE_IN_OUT)
+	else:
+		_active_style.border_color = Color(0.2, 0.9, 0.8, 1.0)
+		_frame.add_theme_stylebox_override("panel", _default_style)
 
 
 func set_dead(dead: bool) -> void:
 	if dead:
 		if modulate == Color(1, 1, 1, 1) and is_inside_tree():
-			# First time dying -- animate
+			# Red flash on portrait, then dim to gray + shrink
+			_portrait.modulate = Color(2, 0.3, 0.3)
+			var flash_tw := create_tween()
+			flash_tw.tween_property(_portrait, "modulate", Color(1, 1, 1), 0.15)
 			var tw := create_tween().set_parallel(true)
 			tw.tween_property(self, "modulate", Color(0.4, 0.4, 0.4, 0.7), 0.4)
-			tw.tween_property(self, "scale", Vector2(0.95, 0.95), 0.3).set_ease(Tween.EASE_IN)
+			tw.tween_property(self, "scale", Vector2(0.85, 0.85), 0.3).set_ease(Tween.EASE_IN)
 		else:
 			modulate = Color(0.4, 0.4, 0.4, 0.7)
+			scale = Vector2(0.85, 0.85)
 		_status_label.clear()
 	else:
 		modulate = Color(1, 1, 1, 1)
@@ -198,14 +216,23 @@ func get_fighter() -> FighterData:
 	return _fighter_ref
 
 
+## Flash the portrait white briefly on any damage event.
+func flash_hit() -> void:
+	if not is_inside_tree():
+		return
+	_portrait.modulate = Color(3, 3, 3)
+	var tw := create_tween()
+	tw.tween_property(_portrait, "modulate", Color(1, 1, 1), 0.1)
+
+
 ## Spawn a floating number above the card that drifts up and fades out.
 ## Added to the scene root (not this VBoxContainer) to prevent layout bounce.
-func show_floating_text(text: String, color: Color) -> void:
+func show_floating_text(text: String, color: Color, font_size: int = 16) -> void:
 	if not is_inside_tree():
 		return
 	var label := Label.new()
 	label.text = text
-	label.add_theme_font_size_override("font_size", 16)
+	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
 	label.add_theme_constant_override("outline_size", 3)
 	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
@@ -217,7 +244,13 @@ func show_floating_text(text: String, color: Color) -> void:
 	var card_pos: Vector2 = global_position
 	label.global_position = Vector2(card_pos.x + size.x * 0.5 - 20, card_pos.y - 10)
 
+	# Pop effect: spawn at larger scale, shrink to 1.0x
+	var pop_scale: float = 1.6 if font_size > 16 else 1.4
+	label.pivot_offset = Vector2(20, 10)
+	label.scale = Vector2(pop_scale, pop_scale)
+
 	var tw := create_tween().set_parallel(true)
+	tw.tween_property(label, "scale", Vector2(1.0, 1.0), 0.15).set_ease(Tween.EASE_OUT)
 	tw.tween_property(label, "global_position:y", card_pos.y - 40.0, 0.8).set_ease(Tween.EASE_OUT)
 	tw.tween_property(label, "modulate:a", 0.0, 0.8).set_ease(Tween.EASE_IN).set_delay(0.3)
 	tw.chain().tween_callback(label.queue_free)

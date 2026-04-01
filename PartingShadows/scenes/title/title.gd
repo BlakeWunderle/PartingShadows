@@ -26,6 +26,14 @@ var _confirm_dialog: ConfirmDialog
 var _pending_delete_slot: int = -1
 var _accepting_input: bool = false
 
+# Load screen controls (created in _build_ui, shown only during LOAD_SLOTS)
+const PaginationControls := preload("res://scripts/ui/compendium/pagination_controls.gd")
+var _load_pagination: PaginationControls
+var _load_mode_box: HBoxContainer
+var _load_btn: Button
+var _delete_btn: Button
+var _load_back_btn: Button
+
 
 func _ready() -> void:
 	MusicManager.play_music("res://assets/audio/music/menu/Land of Heroes Alt LOOP.wav")
@@ -90,6 +98,54 @@ func _build_ui() -> void:
 	_menu.visible = false
 	_menu.choice_selected.connect(_on_menu_choice)
 	_vbox.add_child(_menu)
+
+	# Load screen controls (hidden by default, shown during LOAD_SLOTS)
+	_load_pagination = PaginationControls.new()
+	_load_pagination.visible = false
+	_load_pagination.page_changed.connect(_on_load_page_changed)
+	_vbox.add_child(_load_pagination)
+
+	_load_mode_box = HBoxContainer.new()
+	_load_mode_box.alignment = BoxContainer.ALIGNMENT_CENTER
+	_load_mode_box.add_theme_constant_override("separation", 12)
+	_load_mode_box.visible = false
+	_vbox.add_child(_load_mode_box)
+
+	_load_btn = Button.new()
+	_load_btn.text = "Load"
+	_load_btn.custom_minimum_size = Vector2(120, 40)
+	_load_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_load_btn.add_theme_constant_override("outline_size", 2)
+	_load_btn.add_theme_color_override("font_outline_color", Color.BLACK)
+	_load_btn.pressed.connect(_on_load_mode_pressed)
+	ChoiceMenu._apply_focus_style(_load_btn)
+	_load_mode_box.add_child(_load_btn)
+
+	_delete_btn = Button.new()
+	_delete_btn.text = "Delete"
+	_delete_btn.custom_minimum_size = Vector2(120, 40)
+	_delete_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_delete_btn.add_theme_constant_override("outline_size", 2)
+	_delete_btn.add_theme_color_override("font_outline_color", Color.BLACK)
+	_delete_btn.pressed.connect(_on_delete_mode_pressed)
+	ChoiceMenu._apply_focus_style(_delete_btn)
+	_load_mode_box.add_child(_delete_btn)
+
+	# Wire Load/Delete focus neighbors
+	_load_btn.focus_neighbor_right = _delete_btn.get_path()
+	_delete_btn.focus_neighbor_left = _load_btn.get_path()
+
+	_load_back_btn = Button.new()
+	_load_back_btn.text = "Back"
+	_load_back_btn.custom_minimum_size = Vector2(140, 40)
+	_load_back_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	_load_back_btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
+	_load_back_btn.add_theme_constant_override("outline_size", 2)
+	_load_back_btn.add_theme_color_override("font_outline_color", Color.BLACK)
+	_load_back_btn.pressed.connect(_show_main_menu)
+	_load_back_btn.visible = false
+	ChoiceMenu._apply_focus_style(_load_back_btn)
+	_vbox.add_child(_load_back_btn)
 
 	# Error label (hidden by default)
 	_error_label = Label.new()
@@ -185,6 +241,9 @@ func _show_main_menu() -> void:
 	_settings_panel.visible = false
 	_remap_panel.visible = false
 	_compendium_panel.visible = false
+	_load_pagination.visible = false
+	_load_mode_box.visible = false
+	_load_back_btn.visible = false
 	_title_label.visible = true
 	_subtitle_label.visible = true
 	_menu.visible = true
@@ -317,7 +376,7 @@ func _show_settings() -> void:
 	_title_label.visible = false
 	_subtitle_label.visible = false
 	_remap_panel.visible = false
-	_settings_panel.visible = true
+	_fade_in(_settings_panel)
 	_settings_panel.focus_first()
 
 
@@ -326,7 +385,7 @@ func _show_key_bindings() -> void:
 	_title_label.visible = false
 	_subtitle_label.visible = false
 	_settings_panel.visible = false
-	_remap_panel.visible = true
+	_fade_in(_remap_panel)
 	_remap_panel.focus_first()
 
 
@@ -335,8 +394,15 @@ func _show_compendium() -> void:
 	_menu.hide_menu()
 	_title_label.visible = false
 	_subtitle_label.visible = false
-	_compendium_panel.visible = true
+	_fade_in(_compendium_panel)
 	_compendium_panel.refresh_data()
+
+
+func _fade_in(node: Control) -> void:
+	node.modulate.a = 0.0
+	node.visible = true
+	var tw := create_tween()
+	tw.tween_property(node, "modulate:a", 1.0, 0.2)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -359,17 +425,44 @@ func _on_quit_confirmed(accepted: bool) -> void:
 # Load slot picker
 # =============================================================================
 
-var _load_slot_actions: Array[Dictionary] = []  # [{action: "load"/"delete"/"back", slot: int}]
+var _load_slot_actions: Array[Dictionary] = []
+var _load_delete_mode: bool = false
+var _load_page: int = 0
+const _SLOTS_PER_PAGE: int = 5
 
 
 func _show_load_slots() -> void:
+	_load_delete_mode = false
+	_load_page = 0
+	_build_load_menu()
+
+
+func _build_load_menu() -> void:
 	_mode = Mode.LOAD_SLOTS
 	_load_slot_actions.clear()
+	_title_label.visible = false
+	_subtitle_label.visible = false
 
 	var options: Array[Dictionary] = []
+	var has_any_save: bool = false
+	var action: String = "delete" if _load_delete_mode else "load"
 
-	# 3 manual slots
+	# Check if any saves exist (for mode toggle visibility)
 	for i: int in SaveManager.MAX_SAVE_SLOTS:
+		if SaveManager.get_save_summary(i).get("exists", false):
+			has_any_save = true
+			break
+	if not has_any_save and SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT).get("exists", false):
+		has_any_save = true
+
+	# Calculate page range (manual slots only; autosave is on last page)
+	var total_pages: int = ceili(float(SaveManager.MAX_SAVE_SLOTS) / _SLOTS_PER_PAGE)
+	_load_page = clampi(_load_page, 0, total_pages - 1)
+	var page_start: int = _load_page * _SLOTS_PER_PAGE
+	var page_end: int = mini(page_start + _SLOTS_PER_PAGE, SaveManager.MAX_SAVE_SLOTS)
+
+	# Slots for current page
+	for i: int in range(page_start, page_end):
 		var summary: Dictionary = SaveManager.get_save_summary(i)
 		if summary.get("exists", false):
 			var story_title: String = StoryDB.get_story(
@@ -391,44 +484,159 @@ func _show_load_slots() -> void:
 				mp_tag,
 				h, m,
 			]})
-			_load_slot_actions.append({"action": "load", "slot": i})
-			options.append({"label": "  Delete Slot %d" % [i + 1]})
-			_load_slot_actions.append({"action": "delete", "slot": i})
+			_load_slot_actions.append({"action": action, "slot": i})
 		else:
 			options.append({"label": "Slot %d: Empty" % [i + 1], "disabled": true})
-			_load_slot_actions.append({"action": "load", "slot": i})
+			_load_slot_actions.append({"action": "none", "slot": i})
 
-	# Autosave slot
-	var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
-	if auto_summary.get("exists", false):
-		var auto_story: String = StoryDB.get_story(
-			auto_summary.get("story_id", "story_1")).get("title", "")
-		var auto_mp_tag: String = ""
-		if auto_summary.get("is_local_coop", false):
-			auto_mp_tag = " [Co-op]"
-		elif auto_summary.get("is_multiplayer", false):
-			auto_mp_tag = " [Online]"
-		var auto_secs: float = auto_summary.get("play_seconds", 0.0)
-		var auto_h: int = int(auto_secs) / 3600
-		var auto_m: int = (int(auto_secs) % 3600) / 60
-		options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
-			auto_summary.get("lead_name", "???"),
-			auto_summary.get("lead_class", "???"),
-			auto_summary.get("level", 1),
-			auto_story,
-			auto_mp_tag,
-			auto_h, auto_m,
-		]})
-		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
-		options.append({"label": "  Delete Autosave"})
-		_load_slot_actions.append({"action": "delete", "slot": SaveManager.AUTOSAVE_SLOT})
-	else:
-		options.append({"label": "Autosave: Empty", "disabled": true})
-		_load_slot_actions.append({"action": "load", "slot": SaveManager.AUTOSAVE_SLOT})
+	# Autosave on the last page
+	if _load_page == total_pages - 1:
+		var auto_summary: Dictionary = SaveManager.get_save_summary(SaveManager.AUTOSAVE_SLOT)
+		if auto_summary.get("exists", false):
+			var auto_story: String = StoryDB.get_story(
+				auto_summary.get("story_id", "story_1")).get("title", "")
+			var auto_mp_tag: String = ""
+			if auto_summary.get("is_local_coop", false):
+				auto_mp_tag = " [Co-op]"
+			elif auto_summary.get("is_multiplayer", false):
+				auto_mp_tag = " [Online]"
+			var auto_secs: float = auto_summary.get("play_seconds", 0.0)
+			var auto_h: int = int(auto_secs) / 3600
+			var auto_m: int = (int(auto_secs) % 3600) / 60
+			options.append({"label": "Autosave: %s the %s - Lv %d (%s)%s [%dh %dm]" % [
+				auto_summary.get("lead_name", "???"),
+				auto_summary.get("lead_class", "???"),
+				auto_summary.get("level", 1),
+				auto_story,
+				auto_mp_tag,
+				auto_h, auto_m,
+			]})
+			_load_slot_actions.append({"action": action, "slot": SaveManager.AUTOSAVE_SLOT})
+		else:
+			options.append({"label": "Autosave: Empty", "disabled": true})
+			_load_slot_actions.append({"action": "none", "slot": SaveManager.AUTOSAVE_SLOT})
 
-	options.append({"label": "Back"})
-	_load_slot_actions.append({"action": "back", "slot": -1})
+	# Show slots in the ChoiceMenu (slots only — no nav or mode buttons)
 	_menu.show_choices(options)
+
+	# Show external controls
+	var total_p: int = ceili(float(SaveManager.MAX_SAVE_SLOTS) / _SLOTS_PER_PAGE)
+	_load_pagination.total_pages = total_p
+	_load_pagination.current_page = _load_page + 1  # PaginationControls is 1-based
+	_load_pagination.visible = total_p > 1
+
+	# Mode toggle — highlight active mode (compendium tab pattern)
+	if has_any_save:
+		_load_mode_box.visible = true
+		_load_btn.modulate = Color.WHITE if not _load_delete_mode else Color(0.6, 0.6, 0.6)
+		_delete_btn.modulate = Color.WHITE if _load_delete_mode else Color(0.6, 0.6, 0.6)
+	else:
+		_load_mode_box.visible = false
+
+	_load_back_btn.visible = true
+
+	# Focus wiring: ChoiceMenu bottom → pagination (or mode box) → back
+	await get_tree().process_frame
+	_wire_load_focus()
+	_menu.focus_first()
+
+
+func _wire_load_focus() -> void:
+	var last_slot_btn: Button = null
+	for i: int in range(_menu._buttons.size() - 1, -1, -1):
+		if not _menu._buttons[i].disabled:
+			last_slot_btn = _menu._buttons[i]
+			break
+	var first_slot_btn: Button = null
+	for btn: Button in _menu._buttons:
+		if not btn.disabled:
+			first_slot_btn = btn
+			break
+
+	# Build focus chain below the slot list: pagination → mode box → back
+	var below_chain: Array[Control] = []
+	if _load_pagination.visible:
+		below_chain.append(_load_pagination)
+	if _load_mode_box.visible:
+		below_chain.append(_load_mode_box)
+	below_chain.append(_load_back_btn)
+
+	# Wire all slot buttons → first item below
+	if last_slot_btn and below_chain.size() > 0:
+		var target: Control = below_chain[0]
+		var focus_btn: Button = _focus_entry(target)
+		for btn: Button in _menu._buttons:
+			btn.focus_neighbor_bottom = focus_btn.get_path()
+
+	# Wire slot buttons top → wrap to back
+	if first_slot_btn:
+		for btn: Button in _menu._buttons:
+			btn.focus_neighbor_top = _load_back_btn.get_path()
+
+	# Wire consecutive items in below_chain
+	for idx: int in below_chain.size():
+		var cur: Control = below_chain[idx]
+		# Top neighbor: previous item, or last slot button
+		var above_btn: Button = last_slot_btn if idx == 0 else _focus_exit(below_chain[idx - 1])
+		# Bottom neighbor: next item, or first slot button (wrap)
+		var below_btn: Button = first_slot_btn if idx == below_chain.size() - 1 else _focus_entry(below_chain[idx + 1])
+
+		if cur == _load_pagination:
+			if above_btn:
+				_load_pagination.set_top_neighbor(above_btn)
+			if below_btn:
+				_load_pagination.set_bottom_neighbor(below_btn)
+		elif cur == _load_mode_box:
+			if above_btn:
+				_load_btn.focus_neighbor_top = above_btn.get_path()
+				_delete_btn.focus_neighbor_top = above_btn.get_path()
+			if below_btn:
+				_load_btn.focus_neighbor_bottom = below_btn.get_path()
+				_delete_btn.focus_neighbor_bottom = below_btn.get_path()
+		elif cur == _load_back_btn:
+			if above_btn:
+				_load_back_btn.focus_neighbor_top = above_btn.get_path()
+			if below_btn:
+				_load_back_btn.focus_neighbor_bottom = below_btn.get_path()
+
+
+## First focusable button when entering a control group from above.
+func _focus_entry(ctrl: Control) -> Button:
+	if ctrl == _load_pagination:
+		return _load_pagination.get_focus_target()
+	if ctrl == _load_mode_box:
+		return _load_btn
+	if ctrl is Button:
+		return ctrl as Button
+	return null
+
+
+## Last focusable button when entering a control group from below.
+func _focus_exit(ctrl: Control) -> Button:
+	if ctrl == _load_pagination:
+		if not _load_pagination._next_btn.disabled:
+			return _load_pagination._next_btn
+		return _load_pagination._prev_btn
+	if ctrl == _load_mode_box:
+		return _delete_btn
+	if ctrl is Button:
+		return ctrl as Button
+	return null
+
+
+func _on_load_page_changed(new_page: int) -> void:
+	_load_page = new_page - 1  # PaginationControls is 1-based, our _load_page is 0-based
+	_build_load_menu()
+
+
+func _on_load_mode_pressed() -> void:
+	_load_delete_mode = false
+	_build_load_menu()
+
+
+func _on_delete_mode_pressed() -> void:
+	_load_delete_mode = true
+	_build_load_menu()
 
 
 func _handle_load_choice(index: int) -> void:
@@ -437,8 +645,8 @@ func _handle_load_choice(index: int) -> void:
 
 	var entry: Dictionary = _load_slot_actions[index]
 	match entry["action"]:
-		"back":
-			_show_main_menu()
+		"none":
+			return
 		"delete":
 			_pending_delete_slot = int(entry["slot"])
 			_confirm_dialog.confirmed.connect(_on_delete_save_confirmed, CONNECT_ONE_SHOT)
@@ -454,5 +662,5 @@ func _handle_load_choice(index: int) -> void:
 func _on_delete_save_confirmed(accepted: bool) -> void:
 	if accepted and _pending_delete_slot >= 0:
 		SaveManager.delete_save(_pending_delete_slot)
-		_show_load_slots()  # Refresh
 	_pending_delete_slot = -1
+	_build_load_menu()  # Refresh in current mode

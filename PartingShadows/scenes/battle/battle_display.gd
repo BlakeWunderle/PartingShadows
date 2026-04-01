@@ -32,16 +32,20 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 	match event_type:
 		"damage":
 			SFXManager.play(SFXManager.Category.STRIKE)
+			card.flash_hit()
 			card.show_floating_text("-%d" % amount, Color(1.0, 0.3, 0.3))
 		"crit":
 			SFXManager.play(SFXManager.Category.IMPACT)
-			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
+			card.flash_hit()
+			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2), 22)
 		"spell_damage":
 			SFXManager.play(SFXManager.Category.SPELL)
+			card.flash_hit()
 			card.show_floating_text("-%d" % amount, Color(0.6, 0.4, 1.0))
 		"spell_crit":
 			SFXManager.play(SFXManager.Category.IMPACT)
-			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2))
+			card.flash_hit()
+			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2), 22)
 		"heal":
 			SFXManager.play(SFXManager.Category.SHIMMER)
 			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
@@ -101,7 +105,15 @@ func show_battle_summary() -> void:
 	overlay.offset_top = -160.0
 	overlay.offset_right = 220.0
 	overlay.offset_bottom = 160.0
+	overlay.pivot_offset = Vector2(220, 160)
+	overlay.modulate.a = 0.0
+	overlay.scale = Vector2(0.95, 0.95)
 	_battle.add_child(overlay)
+
+	# Fade-in + scale animation
+	var intro_tw := _battle.create_tween().set_parallel(true)
+	intro_tw.tween_property(overlay, "modulate:a", 1.0, 0.3).set_ease(Tween.EASE_OUT)
+	intro_tw.tween_property(overlay, "scale", Vector2(1.0, 1.0), 0.3).set_ease(Tween.EASE_OUT)
 
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 8)
