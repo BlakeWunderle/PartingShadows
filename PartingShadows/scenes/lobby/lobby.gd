@@ -80,7 +80,7 @@ func _build_ui() -> void:
 	_header = Label.new()
 	_header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_header.add_theme_font_size_override("font_size", 36)
-	_header.add_theme_constant_override("outline_size", 2)
+	_header.add_theme_constant_override("outline_size", 1)
 	_header.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 	_vbox.add_child(_header)
 
@@ -190,7 +190,7 @@ func _on_steam_hosting_started(_lobby_id: int) -> void:
 	_status_label.visible = true
 	_status_label.add_theme_font_size_override("font_size", 22)
 	_status_label.add_theme_color_override("font_color", Color.WHITE)
-	_status_label.add_theme_constant_override("outline_size", 2)
+	_status_label.add_theme_constant_override("outline_size", 1)
 	_status_label.add_theme_color_override("font_outline_color", Color.BLACK)
 
 
