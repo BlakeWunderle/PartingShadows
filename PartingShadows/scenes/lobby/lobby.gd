@@ -189,7 +189,7 @@ func _on_steam_hosting_started(_lobby_id: int) -> void:
 	_address_input.visible = false
 	_show_host_menu()
 	_refresh_player_list()
-	_status_label.text = "Lobby ready! Open the Steam overlay (Shift+Tab) to invite friends."
+	_status_label.text = "Lobby created! Use 'Invite Friend' below to send an invite."
 	_status_label.visible = true
 	_status_label.add_theme_font_size_override("font_size", 22)
 	_status_label.add_theme_color_override("font_color", Color.WHITE)
@@ -213,6 +213,10 @@ func _show_host_menu() -> void:
 	var player_count_label: String = "%d Players" % NetManager.target_player_count
 	options.append({"label": player_count_label, "description": "Toggle between 2 and 3 players"})
 	_host_menu_actions.append("toggle_players")
+
+	# Invite friend
+	options.append({"label": "Invite Friend", "description": "Send a Steam invite to a friend"})
+	_host_menu_actions.append("invite")
 
 	# Story selection
 	_stories = StoryDB.get_all_stories()
@@ -246,6 +250,9 @@ func _handle_host_menu_choice(index: int) -> void:
 		"toggle_players":
 			NetManager.target_player_count = 3 if NetManager.target_player_count == 2 else 2
 			NetManager._assign_host_slots()
+			_show_host_menu()
+		"invite":
+			Steam.activateGameOverlayInviteDialog(NetManager.lobby_id)
 			_show_host_menu()
 		"toggle_story":
 			_story_index = (_story_index + 1) % _stories.size()
