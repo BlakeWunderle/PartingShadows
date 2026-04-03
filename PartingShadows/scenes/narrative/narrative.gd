@@ -287,6 +287,8 @@ func _on_defeat_choice(index: int) -> void:
 		if slot >= 0 and SaveManager.load_from_slot(slot):
 			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 			return
+	if NetManager.is_multiplayer_active:
+		NetManager.change_scene_for_peers("res://scenes/title/title.tscn")
 	SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
@@ -361,19 +363,20 @@ func _advance_after_battle() -> void:
 		SaveManager.auto_save()
 	GameState.advance_to_next_battle()
 
-	if NetManager.is_multiplayer_active and NetManager.is_host:
-		# Broadcast the next battle to all peers
-		_rpc_advance_to_battle.rpc(GameState.current_battle_id)
-
 	match GameState.game_phase:
 		GameState.GamePhase.ENDING:
 			GameState.game_won = true
+			if NetManager.is_multiplayer_active and NetManager.is_host:
+				_rpc_show_ending.rpc()
 			_show_ending()
 		GameState.GamePhase.TOWN_STOP:
 			if NetManager.is_multiplayer_active and NetManager.is_host:
+				_rpc_advance_to_battle.rpc(GameState.current_battle_id)
 				NetManager.change_scene_for_peers("res://scenes/town_stop/town_stop.tscn")
 			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		_:
+			if NetManager.is_multiplayer_active and NetManager.is_host:
+				_rpc_advance_to_battle.rpc(GameState.current_battle_id)
 			_show_narrative()
 
 
@@ -409,6 +412,14 @@ func _on_session_ended(reason: String) -> void:
 func _rpc_branch_chosen(battle_id: String) -> void:
 	GameState.advance_with_choice(battle_id)
 	_navigate_after_advance()
+
+
+## Host -> All: Show the ending screen (victory or defeat).
+@rpc("authority", "call_remote", "reliable")
+func _rpc_show_ending() -> void:
+	GameState.game_won = true
+	GameState.game_phase = GameState.GamePhase.ENDING
+	_show_ending()
 
 
 ## Host -> All: Advance to next battle.
