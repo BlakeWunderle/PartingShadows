@@ -94,6 +94,17 @@ func _refresh_page() -> void:
 
 	_cards = cards
 	_wire_card_focus(cards)
+
+	# Stagger-reveal cards
+	if not SettingsManager.reduced_motion:
+		for i: int in cards.size():
+			var card: CompendiumCard = cards[i]
+			card.modulate.a = 0.0
+			card.scale = Vector2(0.9, 0.9)
+			var tw := card.create_tween().set_parallel(true)
+			tw.tween_property(card, "modulate:a", 1.0, 0.15).set_delay(i * 0.03).set_ease(Tween.EASE_OUT)
+			tw.tween_property(card, "scale", Vector2(1.0, 1.0), 0.15).set_delay(i * 0.03).set_ease(Tween.EASE_OUT)
+
 	if not cards.is_empty() and is_visible_in_tree():
 		cards[0].grab_focus()
 
