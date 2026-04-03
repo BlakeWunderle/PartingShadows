@@ -13,7 +13,7 @@ const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
 const TipOverlay := preload("res://scripts/ui/tip_overlay.gd")
 const PauseSaveSlots_C := preload("res://scripts/autoload/pause_save_slots.gd")
 
-enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS, WAITING_MP, FIGHTER_PICK }
+enum Mode { HIDDEN, MAIN_MENU, SAVE_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS, MP_CHOICE, WAITING_MP, FIGHTER_PICK, LOCAL_ASSIGN }
 
 var _mode: Mode = Mode.HIDDEN
 var _panel: Control
@@ -37,6 +37,11 @@ var _panel_expanded: bool = false
 var _pending_save_slot: int = -1
 var _save_slots: PauseSaveSlots_C
 var _prev_focus: Control = null
+var _mp_choice_vbox: VBoxContainer
+var _local_assign_vbox: VBoxContainer
+var _local_device_labels: Array[Label] = []
+var _local_claimed: Array[int] = []  # device_id per slot (-2 = unclaimed)
+var _local_player_count: int = 2
 
 
 func _ready() -> void:
@@ -108,8 +113,8 @@ func _build_ui() -> void:
 	_save_btn.pressed.connect(_show_save_slots)
 	_main_vbox.add_child(_save_btn)
 
-	_open_mp_btn = _make_button("Open to Multiplayer")
-	_open_mp_btn.pressed.connect(_open_to_multiplayer)
+	_open_mp_btn = _make_button("Co-op")
+	_open_mp_btn.pressed.connect(_show_mp_choice)
 	_main_vbox.add_child(_open_mp_btn)
 
 	var settings_btn := _make_button("Settings")
@@ -145,6 +150,36 @@ func _build_ui() -> void:
 	_save_vbox.add_theme_constant_override("separation", 6)
 	_save_vbox.visible = false
 	root_vbox.add_child(_save_vbox)
+
+	# Co-op choice sub-menu (hidden by default)
+	_mp_choice_vbox = VBoxContainer.new()
+	_mp_choice_vbox.add_theme_constant_override("separation", 6)
+	_mp_choice_vbox.visible = false
+	root_vbox.add_child(_mp_choice_vbox)
+
+	var local_2p_btn := _make_button("Local Co-op (2 Players)")
+	local_2p_btn.pressed.connect(func() -> void: _start_local_coop(2))
+	_mp_choice_vbox.add_child(local_2p_btn)
+
+	var local_3p_btn := _make_button("Local Co-op (3 Players)")
+	local_3p_btn.pressed.connect(func() -> void: _start_local_coop(3))
+	_mp_choice_vbox.add_child(local_3p_btn)
+
+	if SteamManager.is_steam_running:
+		var online_btn := _make_button("Online")
+		online_btn.pressed.connect(_open_to_multiplayer)
+		_mp_choice_vbox.add_child(online_btn)
+
+	var mp_back_btn := _make_button("Back")
+	mp_back_btn.pressed.connect(_back_to_main)
+	_mp_choice_vbox.add_child(mp_back_btn)
+
+	# Local controller assignment (hidden by default)
+	_local_assign_vbox = VBoxContainer.new()
+	_local_assign_vbox.add_theme_constant_override("separation", 8)
+	_local_assign_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	_local_assign_vbox.visible = false
+	root_vbox.add_child(_local_assign_vbox)
 
 	# Settings panel (hidden by default)
 	_settings_panel = SettingsPanel.new()
@@ -219,10 +254,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				_back_to_main()
 			Mode.KEY_BINDINGS:
 				_back_to_main()
+			Mode.MP_CHOICE:
+				_back_to_main()
 			Mode.WAITING_MP:
 				_cancel_open_mp()
 			Mode.FIGHTER_PICK:
 				pass  # FighterPicker handles its own ESC
+			Mode.LOCAL_ASSIGN:
+				_cancel_local_assign()
 		get_viewport().set_input_as_handled()
 
 
@@ -259,10 +298,11 @@ func _show_pause() -> void:
 		_save_btn.visible = true
 		_title_btn.text = "Quit to Title"
 		get_tree().paused = true
-		# Show "Open to Multiplayer" only during narrative or town_stop with a party
+		# Show "Co-op" only during narrative or town_stop with a party, and not already in co-op
 		var can_open_mp: bool = GameState.game_phase in [
 			GameState.GamePhase.NARRATIVE, GameState.GamePhase.TOWN_STOP] \
-			and not GameState.party.is_empty()
+			and not GameState.party.is_empty() \
+			and not LocalCoop.is_active
 		_open_mp_btn.visible = can_open_mp
 
 	_resume_btn.call_deferred("grab_focus")
@@ -321,10 +361,22 @@ func _on_quit_game_confirmed(accepted: bool) -> void:
 
 
 # =============================================================================
-# Open to Multiplayer
+# Co-op sub-menu
+# =============================================================================
+
+func _show_mp_choice() -> void:
+	_mode = Mode.MP_CHOICE
+	_main_vbox.visible = false
+	_mp_choice_vbox.visible = true
+	_mp_choice_vbox.get_child(0).call_deferred("grab_focus")
+
+
+# =============================================================================
+# Online Multiplayer
 # =============================================================================
 
 func _open_to_multiplayer() -> void:
+	_mp_choice_vbox.visible = false
 	get_tree().paused = false
 	for fighter: RefCounted in GameState.party:
 		fighter.owner_peer_id = 1
@@ -340,6 +392,9 @@ func _open_to_multiplayer() -> void:
 	_feedback_label.text = "Waiting for a player to join..."
 	_feedback_label.visible = true
 	NetManager.player_joined.connect(_on_mp_player_joined)
+	# Open Steam invite dialog so the host can invite a friend
+	if NetManager.lobby_id > 0:
+		Steam.activateGameOverlayInviteDialog(NetManager.lobby_id)
 
 
 func _on_mp_player_joined(_peer_id: int, _player_name: String) -> void:
@@ -385,6 +440,124 @@ func _cancel_open_mp() -> void:
 	_feedback_label.visible = false
 	get_tree().paused = true
 	_resume_btn.call_deferred("grab_focus")
+
+
+# =============================================================================
+# Local Co-op (mid-game)
+# =============================================================================
+
+const _LOCAL_UNCLAIMED: int = -2
+
+
+func _start_local_coop(count: int) -> void:
+	_local_player_count = count
+	_mp_choice_vbox.visible = false
+	_mode = Mode.LOCAL_ASSIGN
+	get_tree().paused = false
+	_build_local_assign_ui(count)
+	_local_assign_vbox.visible = true
+
+
+func _build_local_assign_ui(count: int) -> void:
+	# Clear previous
+	for child: Node in _local_assign_vbox.get_children():
+		child.queue_free()
+	_local_device_labels.clear()
+	_local_claimed.clear()
+
+	var header := Label.new()
+	header.text = "ASSIGN CONTROLLERS"
+	header.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	header.add_theme_font_size_override("font_size", 22)
+	header.add_theme_color_override("font_color", Color.WHITE)
+	_local_assign_vbox.add_child(header)
+
+	var hint := Label.new()
+	hint.text = "Press A/Start or Enter to claim a slot"
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.add_theme_font_size_override("font_size", 14)
+	hint.add_theme_color_override("font_color", Color(0.6, 0.7, 0.8))
+	_local_assign_vbox.add_child(hint)
+
+	for i: int in count:
+		_local_claimed.append(_LOCAL_UNCLAIMED)
+		var row := HBoxContainer.new()
+		row.alignment = BoxContainer.ALIGNMENT_CENTER
+		row.add_theme_constant_override("separation", 12)
+		_local_assign_vbox.add_child(row)
+
+		var slot_lbl := Label.new()
+		slot_lbl.text = "Player %d:" % (i + 1)
+		slot_lbl.custom_minimum_size = Vector2(100, 0)
+		row.add_child(slot_lbl)
+
+		var device_lbl := Label.new()
+		device_lbl.text = "Waiting..."
+		device_lbl.add_theme_color_override("font_color", Color(0.8, 0.6, 0.3))
+		device_lbl.custom_minimum_size = Vector2(140, 0)
+		_local_device_labels.append(device_lbl)
+		row.add_child(device_lbl)
+
+	var cancel_btn := _make_button("Cancel")
+	cancel_btn.pressed.connect(_cancel_local_assign)
+	_local_assign_vbox.add_child(cancel_btn)
+
+
+func _input(event: InputEvent) -> void:
+	if _mode != Mode.LOCAL_ASSIGN:
+		return
+	# Detect confirm presses for controller assignment
+	if not event.is_pressed() or event.is_echo():
+		return
+	var is_confirm: bool = false
+	var device_id: int = -1
+	if event is InputEventKey and event.keycode in [KEY_ENTER, KEY_KP_ENTER, KEY_SPACE]:
+		is_confirm = true
+		device_id = -1  # keyboard
+	elif event is InputEventJoypadButton:
+		var btn_idx: int = (event as InputEventJoypadButton).button_index
+		if btn_idx in [JOY_BUTTON_A, JOY_BUTTON_START]:
+			is_confirm = true
+			device_id = event.device
+	if not is_confirm:
+		return
+	# Already claimed by someone?
+	if device_id in _local_claimed:
+		return
+	# Find next unclaimed slot
+	for i: int in _local_claimed.size():
+		if _local_claimed[i] == _LOCAL_UNCLAIMED:
+			_local_claimed[i] = device_id
+			var name: String = "Keyboard" if device_id == -1 else "Gamepad %d" % (device_id + 1)
+			_local_device_labels[i].text = name
+			_local_device_labels[i].remove_theme_color_override("font_color")
+			_local_device_labels[i].add_theme_color_override("font_color", Color(0.3, 1.0, 0.5))
+			break
+	# Check if all slots filled
+	var all_claimed: bool = true
+	for d: int in _local_claimed:
+		if d == _LOCAL_UNCLAIMED:
+			all_claimed = false
+			break
+	if all_claimed:
+		_finalize_local_coop()
+
+
+func _finalize_local_coop() -> void:
+	LocalCoop.start(_local_player_count)
+	LocalCoop.player_devices = _local_claimed.duplicate() as Array[int]
+	LocalCoop.assign_slots(GameState.party.size())
+	_local_assign_vbox.visible = false
+	_mode = Mode.HIDDEN
+	_panel.visible = false
+	# Reload current scene so local co-op input gating takes effect
+	SceneManager.change_scene(get_tree().current_scene.scene_file_path)
+
+
+func _cancel_local_assign() -> void:
+	_local_assign_vbox.visible = false
+	get_tree().paused = true
+	_back_to_main()
 
 
 # =============================================================================
@@ -476,6 +649,9 @@ func _back_to_main() -> void:
 	_settings_panel.visible = false
 	_compendium_panel.visible = false
 	_remap_panel.visible = false
+	_mp_choice_vbox.visible = false
+	_local_assign_vbox.visible = false
+	_feedback_label.visible = false
 	_pause_title.visible = true
 	_pause_sep.visible = true
 	# Restore default center panel size only if it was expanded
