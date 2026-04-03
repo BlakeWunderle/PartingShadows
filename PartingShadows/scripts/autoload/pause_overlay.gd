@@ -401,29 +401,49 @@ func _show_mp_choice() -> void:
 
 func _open_to_multiplayer() -> void:
 	_mp_choice_vbox.visible = false
-	get_tree().paused = false
 	for fighter: RefCounted in GameState.party:
 		fighter.owner_peer_id = 1
 	NetManager.target_player_count = 2
-	var err := NetManager.host_game()
-	if err != OK:
-		_feedback_label.text = "Failed to start server."
-		_feedback_label.visible = true
-		get_tree().paused = true
-		return
+	# Allow networking while tree is paused
+	NetManager.process_mode = Node.PROCESS_MODE_ALWAYS
+	# Use Steam lobby (async — lobby_id arrives via signal)
+	if SteamManager.is_steam_running:
+		NetManager.steam_hosting_started.connect(_on_steam_hosting_ready, CONNECT_ONE_SHOT)
+		NetManager.steam_hosting_failed.connect(_on_steam_hosting_fail, CONNECT_ONE_SHOT)
+		NetManager.host_game_steam()
+	else:
+		var err := NetManager.host_game()
+		if err != OK:
+			_feedback_label.text = "Failed to start server."
+			_feedback_label.visible = true
+			return
 	_mode = Mode.WAITING_MP
 	_main_vbox.visible = false
 	_waiting_mp_vbox.visible = true
 	_waiting_mp_vbox.get_child(1).call_deferred("grab_focus")
 	NetManager.player_joined.connect(_on_mp_player_joined)
-	# Open Steam invite dialog so the host can invite a friend
-	if NetManager.lobby_id > 0:
-		Steam.activateGameOverlayInviteDialog(NetManager.lobby_id)
+
+
+func _on_steam_hosting_ready(new_lobby_id: int) -> void:
+	if NetManager.steam_hosting_failed.is_connected(_on_steam_hosting_fail):
+		NetManager.steam_hosting_failed.disconnect(_on_steam_hosting_fail)
+	# Lobby is now created — open invite dialog
+	Steam.activateGameOverlayInviteDialog(new_lobby_id)
+
+
+func _on_steam_hosting_fail() -> void:
+	if NetManager.steam_hosting_started.is_connected(_on_steam_hosting_ready):
+		NetManager.steam_hosting_started.disconnect(_on_steam_hosting_ready)
+	_waiting_mp_vbox.visible = false
+	_feedback_label.text = "Failed to create Steam lobby."
+	_feedback_label.visible = true
+	_back_to_main()
 
 
 func _on_mp_player_joined(_peer_id: int, _player_name: String) -> void:
 	if NetManager.player_joined.is_connected(_on_mp_player_joined):
 		NetManager.player_joined.disconnect(_on_mp_player_joined)
+	get_tree().paused = false
 	NetManager.target_player_count = NetManager.get_connected_peer_count()
 	_show_fighter_picker_mp()
 
@@ -442,6 +462,8 @@ func _show_fighter_picker_mp() -> void:
 func _on_mp_fighter_confirmed(_slot_owners: Dictionary) -> void:
 	_fighter_picker.queue_free()
 	_fighter_picker = null
+	get_tree().paused = false
+	NetManager.process_mode = Node.PROCESS_MODE_INHERIT
 	NetManager.broadcast_slot_assignments()
 	NetManager.broadcast_game_state()
 	_mode = Mode.HIDDEN
@@ -458,12 +480,14 @@ func _on_mp_fighter_cancelled() -> void:
 func _cancel_open_mp() -> void:
 	if NetManager.player_joined.is_connected(_on_mp_player_joined):
 		NetManager.player_joined.disconnect(_on_mp_player_joined)
+	if NetManager.steam_hosting_started.is_connected(_on_steam_hosting_ready):
+		NetManager.steam_hosting_started.disconnect(_on_steam_hosting_ready)
+	if NetManager.steam_hosting_failed.is_connected(_on_steam_hosting_fail):
+		NetManager.steam_hosting_failed.disconnect(_on_steam_hosting_fail)
 	NetManager.leave_session()
+	NetManager.process_mode = Node.PROCESS_MODE_INHERIT
 	_waiting_mp_vbox.visible = false
-	_mode = Mode.MAIN_MENU
-	_main_vbox.visible = true
-	get_tree().paused = true
-	_resume_btn.call_deferred("grab_focus")
+	_back_to_main()
 
 
 # =============================================================================
