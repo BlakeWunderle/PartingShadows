@@ -42,6 +42,7 @@ var _local_assign_vbox: VBoxContainer
 var _local_device_labels: Array[Label] = []
 var _local_claimed: Array[int] = []  # device_id per slot (-2 = unclaimed)
 var _local_player_count: int = 2
+var _waiting_mp_vbox: VBoxContainer
 
 
 func _ready() -> void:
@@ -180,6 +181,29 @@ func _build_ui() -> void:
 	_local_assign_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	_local_assign_vbox.visible = false
 	root_vbox.add_child(_local_assign_vbox)
+
+	# Waiting for online player (hidden by default)
+	_waiting_mp_vbox = VBoxContainer.new()
+	_waiting_mp_vbox.add_theme_constant_override("separation", 10)
+	_waiting_mp_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	_waiting_mp_vbox.visible = false
+	root_vbox.add_child(_waiting_mp_vbox)
+
+	var waiting_lbl := Label.new()
+	waiting_lbl.text = "Waiting for a player to join..."
+	waiting_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	waiting_lbl.add_theme_color_override("font_color", Color(0.5, 1.0, 0.5))
+	_waiting_mp_vbox.add_child(waiting_lbl)
+
+	var invite_btn := _make_button("Invite Friend")
+	invite_btn.pressed.connect(func() -> void:
+		if NetManager.lobby_id > 0:
+			Steam.activateGameOverlayInviteDialog(NetManager.lobby_id))
+	_waiting_mp_vbox.add_child(invite_btn)
+
+	var cancel_mp_btn := _make_button("Cancel")
+	cancel_mp_btn.pressed.connect(_cancel_open_mp)
+	_waiting_mp_vbox.add_child(cancel_mp_btn)
 
 	# Settings panel (hidden by default)
 	_settings_panel = SettingsPanel.new()
@@ -389,8 +413,8 @@ func _open_to_multiplayer() -> void:
 		return
 	_mode = Mode.WAITING_MP
 	_main_vbox.visible = false
-	_feedback_label.text = "Waiting for a player to join..."
-	_feedback_label.visible = true
+	_waiting_mp_vbox.visible = true
+	_waiting_mp_vbox.get_child(1).call_deferred("grab_focus")
 	NetManager.player_joined.connect(_on_mp_player_joined)
 	# Open Steam invite dialog so the host can invite a friend
 	if NetManager.lobby_id > 0:
@@ -406,7 +430,7 @@ func _on_mp_player_joined(_peer_id: int, _player_name: String) -> void:
 
 func _show_fighter_picker_mp() -> void:
 	_mode = Mode.FIGHTER_PICK
-	_feedback_label.visible = false
+	_waiting_mp_vbox.visible = false
 	_fighter_picker = FighterPicker.new()
 	_fighter_picker.local_only = true
 	_panel.add_child(_fighter_picker)
@@ -435,9 +459,9 @@ func _cancel_open_mp() -> void:
 	if NetManager.player_joined.is_connected(_on_mp_player_joined):
 		NetManager.player_joined.disconnect(_on_mp_player_joined)
 	NetManager.leave_session()
+	_waiting_mp_vbox.visible = false
 	_mode = Mode.MAIN_MENU
 	_main_vbox.visible = true
-	_feedback_label.visible = false
 	get_tree().paused = true
 	_resume_btn.call_deferred("grab_focus")
 
@@ -651,6 +675,7 @@ func _back_to_main() -> void:
 	_remap_panel.visible = false
 	_mp_choice_vbox.visible = false
 	_local_assign_vbox.visible = false
+	_waiting_mp_vbox.visible = false
 	_feedback_label.visible = false
 	_pause_title.visible = true
 	_pause_sep.visible = true
