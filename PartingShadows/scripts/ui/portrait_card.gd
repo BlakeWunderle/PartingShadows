@@ -18,6 +18,7 @@ var _is_enemy: bool = false
 var _fighter_ref: FighterData
 var _hp_tween: Tween
 var _mp_tween: Tween
+var _low_hp_tween: Tween
 
 # Active highlight stylebox
 var _active_style: StyleBoxFlat
@@ -285,6 +286,17 @@ func _update_bars(fighter: FighterData, instant: bool = false) -> void:
 		_hp_fill.bg_color = palette["hp_mid"]
 	else:
 		_hp_fill.bg_color = palette["hp_low"]
+
+	# Low HP pulse when at or below 25% and alive
+	var should_pulse: bool = hp_pct <= 0.25 and hp_pct > 0.0 and not SettingsManager.reduced_motion
+	if should_pulse and (_low_hp_tween == null or not _low_hp_tween.is_valid()):
+		_low_hp_tween = create_tween().set_loops()
+		_low_hp_tween.tween_property(_hp_fill, "bg_color:a", 0.5, 0.3)
+		_low_hp_tween.tween_property(_hp_fill, "bg_color:a", 1.0, 0.3)
+	elif not should_pulse and _low_hp_tween != null and _low_hp_tween.is_valid():
+		_low_hp_tween.kill()
+		_low_hp_tween = null
+		_hp_fill.bg_color.a = 1.0
 
 	if not _is_enemy:
 		_mp_bar.max_value = fighter.max_mana
