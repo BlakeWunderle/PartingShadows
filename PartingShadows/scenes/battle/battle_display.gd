@@ -9,6 +9,7 @@ const AbilityData := preload("res://scripts/data/ability_data.gd")
 const PortraitCard := preload("res://scripts/ui/portrait_card.gd")
 
 var _battle: Control
+var _shake_tween: Tween
 
 
 func _init(battle: Control) -> void:
@@ -38,6 +39,7 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 			SFXManager.play(SFXManager.Category.IMPACT, 1.0, true)
 			card.flash_hit()
 			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2), 22)
+			screen_shake(4.0, 0.15)
 		"spell_damage":
 			SFXManager.play(SFXManager.Category.SPELL, 1.0, true)
 			card.flash_hit()
@@ -46,6 +48,7 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 			SFXManager.play(SFXManager.Category.IMPACT, 1.0, true)
 			card.flash_hit()
 			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2), 22)
+			screen_shake(4.0, 0.15)
 		"heal":
 			SFXManager.play(SFXManager.Category.SHIMMER, 1.0, true)
 			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
@@ -79,6 +82,23 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 			SFXManager.play(SFXManager.Category.SHIMMER, 1.0, true)
 			card.show_floating_text("REST +%d MP" % amount, Color(0.5, 0.8, 0.4))
 			card.update_display(target)
+
+
+func screen_shake(intensity: float, duration: float) -> void:
+	if SettingsManager.reduced_motion:
+		return
+	if not _battle.is_inside_tree():
+		return
+	if _shake_tween and _shake_tween.is_valid():
+		_shake_tween.kill()
+	_battle.position = Vector2.ZERO
+	_shake_tween = _battle.create_tween()
+	var steps: int = maxi(3, int(duration / 0.03))
+	for i: int in steps:
+		var decay: float = 1.0 - float(i) / float(steps)
+		var offset := Vector2(randf_range(-1, 1), randf_range(-1, 1)) * intensity * decay
+		_shake_tween.tween_property(_battle, "position", offset, duration / float(steps))
+	_shake_tween.tween_property(_battle, "position", Vector2.ZERO, 0.02)
 
 
 func find_card_for_fighter(fighter: FighterData) -> PortraitCard:
@@ -160,6 +180,7 @@ func on_fighter_died(fighter: FighterData) -> void:
 	if _battle._current_actor != null and _battle._battle_stats.has(_battle._current_actor) \
 			and not _battle._all_party.has(fighter):
 		_battle._battle_stats[_battle._current_actor]["kills"] += 1
+	screen_shake(6.0, 0.25)
 
 
 func rebuild_cards_if_needed() -> void:
