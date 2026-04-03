@@ -31,26 +31,26 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 		return
 	match event_type:
 		"damage":
-			SFXManager.play(SFXManager.Category.STRIKE)
+			SFXManager.play(SFXManager.Category.STRIKE, 1.0, true)
 			card.flash_hit()
 			card.show_floating_text("-%d" % amount, Color(1.0, 0.3, 0.3))
 		"crit":
-			SFXManager.play(SFXManager.Category.IMPACT)
+			SFXManager.play(SFXManager.Category.IMPACT, 1.0, true)
 			card.flash_hit()
 			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2), 22)
 		"spell_damage":
-			SFXManager.play(SFXManager.Category.SPELL)
+			SFXManager.play(SFXManager.Category.SPELL, 1.0, true)
 			card.flash_hit()
 			card.show_floating_text("-%d" % amount, Color(0.6, 0.4, 1.0))
 		"spell_crit":
-			SFXManager.play(SFXManager.Category.IMPACT)
+			SFXManager.play(SFXManager.Category.IMPACT, 1.0, true)
 			card.flash_hit()
 			card.show_floating_text("-%d!" % amount, Color(1.0, 0.85, 0.2), 22)
 		"heal":
-			SFXManager.play(SFXManager.Category.SHIMMER)
+			SFXManager.play(SFXManager.Category.SHIMMER, 1.0, true)
 			card.show_floating_text("+%d" % amount, Color(0.3, 1.0, 0.4))
 		"buff":
-			SFXManager.play(SFXManager.Category.BUFF)
+			SFXManager.play(SFXManager.Category.BUFF, 1.0, true)
 			card.show_floating_text("BUFF", Color(0.4, 0.8, 1.0))
 			_battle._tip_overlay.show_tip_once("status_effects",
 				"Buffs and debuffs modify a fighter's stats for several " +
@@ -58,7 +58,7 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 				"Select Stats during your turn to see exact effects on " +
 				"each party member.")
 		"debuff":
-			SFXManager.play(SFXManager.Category.DEBUFF)
+			SFXManager.play(SFXManager.Category.DEBUFF, 1.0, true)
 			card.show_floating_text("DEBUFF", Color(0.8, 0.3, 0.8))
 			_battle._tip_overlay.show_tip_once("status_effects",
 				"Buffs and debuffs modify a fighter's stats for several " +
@@ -66,17 +66,17 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 				"Select Stats during your turn to see exact effects on " +
 				"each party member.")
 		"miss":
-			SFXManager.play(SFXManager.Category.WHOOSH, 0.7)
+			SFXManager.play(SFXManager.Category.WHOOSH, 0.7, true)
 			card.show_floating_text("MISS", Color(0.7, 0.7, 0.7))
 		"mp_restore":
 			card.show_floating_text("+%d MP" % amount, Color(0.3, 0.6, 1.0))
 			card.update_display(target)
 		"block":
-			SFXManager.play(SFXManager.Category.BUFF)
+			SFXManager.play(SFXManager.Category.BUFF, 1.0, true)
 			card.show_floating_text("BLOCK +%d MP" % amount, Color(0.4, 0.7, 1.0))
 			card.update_display(target)
 		"rest":
-			SFXManager.play(SFXManager.Category.SHIMMER)
+			SFXManager.play(SFXManager.Category.SHIMMER, 1.0, true)
 			card.show_floating_text("REST +%d MP" % amount, Color(0.5, 0.8, 0.4))
 			card.update_display(target)
 

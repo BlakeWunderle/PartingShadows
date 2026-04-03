@@ -60,7 +60,7 @@ func _ready() -> void:
 	get_tree().node_added.connect(_on_node_added)
 
 
-func play(category: int, volume: float = 1.0, _pitch_shift: bool = false) -> void:
+func play(category: int, volume: float = 1.0, pitch_shift: bool = false) -> void:
 	if _headless:
 		return
 	var key: String = "cat:%d" % category
@@ -70,7 +70,7 @@ func play(category: int, volume: float = 1.0, _pitch_shift: bool = false) -> voi
 	if relative.is_empty():
 		return
 	var player := _get_available_player()
-	_play_on_player(player, _SFX_ROOT + relative, volume)
+	_play_on_player(player, _SFX_ROOT + relative, volume, pitch_shift)
 
 
 func play_at_path(path: String, volume: float = 1.0) -> void:
@@ -118,13 +118,13 @@ func _load_cached_stream(path: String) -> AudioStream:
 	return stream
 
 
-func _play_on_player(player: AudioStreamPlayer, path: String, volume: float) -> void:
+func _play_on_player(player: AudioStreamPlayer, path: String, volume: float, pitch_shift: bool = false) -> void:
 	var stream: AudioStream = _load_cached_stream(path)
 	if stream == null:
 		return
 	player.stream = stream
 	player.volume_db = linear_to_db(maxf(0.0001, volume))
-	player.pitch_scale = 1.0
+	player.pitch_scale = randf_range(0.9, 1.1) if pitch_shift else 1.0
 	player.play()
 	var idx: int = _players.find(player)
 	if idx >= 0:
