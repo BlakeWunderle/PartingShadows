@@ -68,6 +68,7 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 		var has_desc: bool = opt.has("description") and not opt["description"].is_empty()
 		if has_desc:
 			btn.text = ""
+			btn.custom_minimum_size.y = maxi(btn.custom_minimum_size.y, SettingsManager.font_size * 2 + 28)
 			var vbox := VBoxContainer.new()
 			vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 			vbox.alignment = BoxContainer.ALIGNMENT_CENTER

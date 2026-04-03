@@ -37,6 +37,7 @@ func _build_ui() -> void:
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 16)
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+	vbox.custom_minimum_size.x = 500
 	center.add_child(vbox)
 
 	# Header
