@@ -179,6 +179,62 @@ func show_battle_summary() -> void:
 	overlay.queue_free()
 
 
+func show_victory_flash() -> void:
+	if SettingsManager.reduced_motion:
+		return
+	# Flash surviving party cards gold
+	for card: PortraitCard in _battle._party_cards:
+		if card.get_fighter().health > 0 and card.is_inside_tree():
+			var tw := card.create_tween()
+			tw.tween_property(card, "modulate", Color(1.2, 1.1, 0.8), 0.15)
+			tw.tween_property(card, "modulate", Color(1, 1, 1), 0.15)
+	# Show centered VICTORY label
+	_show_battle_end_label("VICTORY", Color(1.0, 0.85, 0.3), true)
+
+
+func show_defeat_effect() -> void:
+	if SettingsManager.reduced_motion:
+		return
+	# Desaturate the scene
+	var tw := _battle.create_tween()
+	tw.tween_property(_battle, "modulate", Color(0.3, 0.3, 0.3), 1.5)
+	# Show centered DEFEAT label
+	_show_battle_end_label("DEFEAT", Color(0.9, 0.25, 0.25), false)
+
+
+func _show_battle_end_label(text: String, color: Color, bounce: bool) -> void:
+	var label := Label.new()
+	label.text = text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.set_anchors_preset(Control.PRESET_CENTER)
+	var fs: int = SettingsManager.font_size + 16
+	label.add_theme_font_size_override("font_size", fs)
+	label.add_theme_font_override("font", preload("res://assets/fonts/Cinzel-Bold.ttf"))
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_constant_override("outline_size", 4)
+	label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.9))
+	label.pivot_offset = Vector2(100, 20)
+	label.modulate.a = 0.0
+	_battle.add_child(label)
+	# Center the label properly once layout is ready
+	label.offset_left = -100
+	label.offset_right = 100
+	label.offset_top = -20
+	label.offset_bottom = 20
+
+	var tw := _battle.create_tween().set_parallel(true)
+	tw.tween_property(label, "modulate:a", 1.0, 0.3)
+	if bounce:
+		label.scale = Vector2(2.0, 2.0)
+		tw.tween_property(label, "scale", Vector2(1.0, 1.0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	else:
+		label.scale = Vector2(1.0, 1.0)
+	# Fade out after hold
+	tw.chain().tween_property(label, "modulate:a", 0.0, 0.4).set_delay(1.0)
+	tw.chain().tween_callback(label.queue_free)
+
+
 func on_fighter_died(fighter: FighterData) -> void:
 	# Track kills for party members
 	if _battle._current_actor != null and _battle._battle_stats.has(_battle._current_actor) \

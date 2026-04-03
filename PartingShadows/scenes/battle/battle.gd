@@ -824,7 +824,8 @@ func _end_battle() -> void:
 		else:
 			_add_log("[color=gold]Victory! The enemies have been vanquished.[/color]")
 		SFXManager.play(SFXManager.Category.UI_FANFARE)
-		await get_tree().create_timer(1.0, false).timeout
+		_display.show_victory_flash()
+		await get_tree().create_timer(2.0, false).timeout
 		await _show_battle_summary()
 		GameState.advance_to_post_battle()
 		if NetManager.is_multiplayer_active and NetManager.is_host:
@@ -833,7 +834,8 @@ func _end_battle() -> void:
 	else:
 		GameLog.info("Battle lost: %s" % GameState.current_battle_id)
 		_add_log("[color=red]The party has been defeated...[/color]")
-		await get_tree().create_timer(2.0, false).timeout
+		_display.show_defeat_effect()
+		await get_tree().create_timer(2.5, false).timeout
 		GameState.go_to_ending(false)
 		if NetManager.is_multiplayer_active and NetManager.is_host:
 			NetManager.change_scene_for_peers("res://scenes/narrative/narrative.tscn")
