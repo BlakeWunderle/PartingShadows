@@ -443,7 +443,6 @@ func _on_steam_hosting_fail() -> void:
 func _on_mp_player_joined(_peer_id: int, _player_name: String) -> void:
 	if NetManager.player_joined.is_connected(_on_mp_player_joined):
 		NetManager.player_joined.disconnect(_on_mp_player_joined)
-	get_tree().paused = false
 	NetManager.target_player_count = NetManager.get_connected_peer_count()
 	_show_fighter_picker_mp()
 
