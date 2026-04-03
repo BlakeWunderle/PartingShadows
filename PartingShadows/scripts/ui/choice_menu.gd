@@ -7,7 +7,7 @@ class_name ChoiceMenu extends VBoxContainer
 
 signal choice_selected(index: int)
 
-const BUTTON_MIN_SIZE := Vector2(320, 48)
+const BUTTON_MIN_SIZE := Vector2(420, 48)
 const GRID_BUTTON_MIN_SIZE := Vector2(180, 64)
 const _DESC_FONT := preload("res://assets/fonts/CormorantGaramond-SemiBold.ttf")
 ## Distinct cursor colors per player slot (P1 blue, P2 orange, P3 green)

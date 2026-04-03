@@ -37,7 +37,8 @@ func _build_ui() -> void:
 	var vbox := VBoxContainer.new()
 	vbox.add_theme_constant_override("separation", 16)
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	vbox.custom_minimum_size.x = 500
+	var vp_w: float = get_viewport().get_visible_rect().size.x
+	vbox.custom_minimum_size.x = clampf(vp_w * 0.55, 500, 900)
 	center.add_child(vbox)
 
 	# Header

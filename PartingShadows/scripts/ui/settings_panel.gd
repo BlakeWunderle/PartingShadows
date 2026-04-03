@@ -45,6 +45,7 @@ func _ready() -> void:
 
 
 func focus_first() -> void:
+	_sync_from_settings()
 	if _music_slider:
 		_music_slider.grab_focus()
 

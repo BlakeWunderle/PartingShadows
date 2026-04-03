@@ -183,7 +183,7 @@ func _make_button(text: String) -> Button:
 	var btn := Button.new()
 	btn.text = text
 	btn.custom_minimum_size = Vector2(280, 36)
-	btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	btn.focus_mode = Control.FOCUS_ALL
 	btn.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	_apply_focus_style(btn)
@@ -394,6 +394,14 @@ func _cancel_open_mp() -> void:
 func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_main_vbox.visible = false
+	_pause_title.visible = false
+	_pause_sep.visible = false
+	_panel_expanded = true
+	_center_panel.set_anchors_preset(Control.PRESET_CENTER)
+	_center_panel.offset_left = -240.0
+	_center_panel.offset_top = -320.0
+	_center_panel.offset_right = 240.0
+	_center_panel.offset_bottom = 320.0
 	_settings_panel.visible = true
 	_settings_panel.focus_first()
 
@@ -421,6 +429,14 @@ func _show_compendium() -> void:
 func _show_key_bindings() -> void:
 	_mode = Mode.KEY_BINDINGS
 	_main_vbox.visible = false
+	_pause_title.visible = false
+	_pause_sep.visible = false
+	_panel_expanded = true
+	_center_panel.set_anchors_preset(Control.PRESET_CENTER)
+	_center_panel.offset_left = -240.0
+	_center_panel.offset_top = -320.0
+	_center_panel.offset_right = 240.0
+	_center_panel.offset_bottom = 320.0
 	_settings_panel.visible = false
 	_remap_panel.visible = true
 	_remap_panel.focus_first()

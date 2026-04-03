@@ -12,10 +12,12 @@ var _mp_bar: ProgressBar
 var _mp_label: Label
 var _status_label: RichTextLabel
 var _is_enemy: bool = false
+var _fighter_ref: FighterData
 
 
 func _ready() -> void:
 	_build_ui()
+	SettingsManager.color_blind_mode_changed.connect(_on_palette_changed)
 
 
 func _build_ui() -> void:
@@ -78,6 +80,7 @@ func setup(fighter: FighterData, is_enemy: bool = false) -> void:
 
 
 func update_display(fighter: FighterData) -> void:
+	_fighter_ref = fighter
 	_name_label.text = "%s (%s)" % [fighter.character_name, fighter.character_type]
 
 	_hp_bar.max_value = fighter.max_health
@@ -194,3 +197,8 @@ static func _stat_abbrev(stat: Enums.StatType) -> String:
 		Enums.StatType.HEALTH: return "HP"
 		Enums.StatType.DODGE_CHANCE: return "DODGE"
 		_: return "BUFF"
+
+
+func _on_palette_changed(_mode: String) -> void:
+	if _fighter_ref:
+		update_display(_fighter_ref)

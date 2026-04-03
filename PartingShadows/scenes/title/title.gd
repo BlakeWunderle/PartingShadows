@@ -25,6 +25,9 @@ var _compendium_panel: CompendiumPanelNew
 var _confirm_dialog: ConfirmDialog
 var _pending_delete_slot: int = -1
 var _accepting_input: bool = false
+var _center: CenterContainer
+var _settings_margin: MarginContainer
+var _remap_margin: MarginContainer
 
 # Load screen controls (created in _build_ui, shown only during LOAD_SLOTS)
 const PaginationControls := preload("res://scripts/ui/compendium/pagination_controls.gd")
@@ -54,15 +57,15 @@ func _build_ui() -> void:
 	add_child(bg)
 
 	# Center container — offset bottom so content sits in upper portion of screen
-	var center := CenterContainer.new()
-	center.set_anchors_preset(Control.PRESET_FULL_RECT)
-	center.offset_bottom = -180
-	add_child(center)
+	_center = CenterContainer.new()
+	_center.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_center.offset_bottom = -180
+	add_child(_center)
 
 	_vbox = VBoxContainer.new()
 	_vbox.add_theme_constant_override("separation", 16)
 	_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
-	center.add_child(_vbox)
+	_center.add_child(_vbox)
 
 	# Title
 	_title_label = Label.new()
@@ -155,18 +158,34 @@ func _build_ui() -> void:
 	_error_label.visible = false
 	_vbox.add_child(_error_label)
 
-	# Settings panel (hidden by default)
+	# Settings panel (hidden by default) — outside CenterContainer so it uses full screen
+	_settings_margin = MarginContainer.new()
+	_settings_margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_settings_margin.add_theme_constant_override("margin_left", 200)
+	_settings_margin.add_theme_constant_override("margin_right", 200)
+	_settings_margin.add_theme_constant_override("margin_top", 40)
+	_settings_margin.add_theme_constant_override("margin_bottom", 40)
+	_settings_margin.visible = false
+	add_child(_settings_margin)
 	_settings_panel = SettingsPanel.new()
-	_settings_panel.visible = false
+	_settings_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_settings_panel.back_pressed.connect(_show_main_menu)
 	_settings_panel.key_bindings_pressed.connect(_show_key_bindings)
-	_vbox.add_child(_settings_panel)
+	_settings_margin.add_child(_settings_panel)
 
-	# Key bindings panel (hidden by default)
+	# Key bindings panel (hidden by default) — outside CenterContainer
+	_remap_margin = MarginContainer.new()
+	_remap_margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_remap_margin.add_theme_constant_override("margin_left", 200)
+	_remap_margin.add_theme_constant_override("margin_right", 200)
+	_remap_margin.add_theme_constant_override("margin_top", 40)
+	_remap_margin.add_theme_constant_override("margin_bottom", 40)
+	_remap_margin.visible = false
+	add_child(_remap_margin)
 	_remap_panel = InputRemapPanel.new()
-	_remap_panel.visible = false
+	_remap_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_remap_panel.back_pressed.connect(_show_settings)
-	_vbox.add_child(_remap_panel)
+	_remap_margin.add_child(_remap_panel)
 
 	# Compendium panel (hidden by default, global context)
 	_compendium_panel = CompendiumPanelNew.new()
@@ -238,14 +257,15 @@ func _show_load_error() -> void:
 func _show_main_menu() -> void:
 	_mode = Mode.MAIN_MENU
 	_has_saves = SaveManager.has_any_save()
-	_settings_panel.visible = false
-	_remap_panel.visible = false
+	_settings_margin.visible = false
+	_remap_margin.visible = false
 	_compendium_panel.visible = false
 	_load_pagination.visible = false
 	_load_mode_box.visible = false
 	_load_back_btn.visible = false
 	_title_label.visible = true
 	_subtitle_label.visible = true
+	_center.visible = true
 	_menu.visible = true
 
 	var options: Array[Dictionary] = []
@@ -373,19 +393,17 @@ func _handle_play_mode_choice(index: int) -> void:
 func _show_settings() -> void:
 	_mode = Mode.SETTINGS
 	_menu.hide_menu()
-	_title_label.visible = false
-	_subtitle_label.visible = false
-	_remap_panel.visible = false
-	_fade_in(_settings_panel)
+	_center.visible = false
+	_remap_margin.visible = false
+	_fade_in(_settings_margin)
 	_settings_panel.focus_first()
 
 
 func _show_key_bindings() -> void:
 	_mode = Mode.KEY_BINDINGS
-	_title_label.visible = false
-	_subtitle_label.visible = false
-	_settings_panel.visible = false
-	_fade_in(_remap_panel)
+	_center.visible = false
+	_settings_margin.visible = false
+	_fade_in(_remap_margin)
 	_remap_panel.focus_first()
 
 

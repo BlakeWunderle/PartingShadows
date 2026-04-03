@@ -33,6 +33,12 @@ var _mp_bg: StyleBoxFlat
 
 func _ready() -> void:
 	_build_ui()
+	SettingsManager.color_blind_mode_changed.connect(_on_palette_changed)
+
+
+func _on_palette_changed(_mode: String) -> void:
+	if _fighter_ref:
+		_update_bars(_fighter_ref, true)
 
 
 func _build_ui() -> void:

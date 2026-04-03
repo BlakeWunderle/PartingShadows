@@ -57,6 +57,7 @@ var master_volume: float = DEFAULT_MASTER_VOLUME:
 		if master_volume == v:
 			return
 		master_volume = v
+		AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, v)))
 		master_volume_changed.emit(v)
 		_save()
 
@@ -98,7 +99,9 @@ var font_size: int = DEFAULT_FONT_SIZE:
 	set(v):
 		if font_size == v:
 			return
+		var old_size: int = font_size
 		font_size = v
+		_apply_font_size(old_size, v)
 		font_size_changed.emit(v)
 		_save()
 
@@ -237,7 +240,43 @@ func _save() -> void:
 		file.close()
 
 
+var _game_theme: Theme = preload("res://resources/gui/game_theme.tres")
+
+
+func _apply_font_size(old_base: int, new_base: int) -> void:
+	# Update the project theme so un-overridden controls update automatically
+	_game_theme.default_font_size = new_base
+	_game_theme.set_font_size("font_size", "Button", new_base)
+	_game_theme.set_font_size("font_size", "Label", new_base)
+	_game_theme.set_font_size("font_size", "OptionButton", new_base)
+	_game_theme.set_font_size("normal_font_size", "RichTextLabel", new_base)
+	# Walk the scene tree and scale per-control font size overrides
+	if get_tree():
+		_update_font_overrides(get_tree().root, old_base, new_base)
+
+
+func _update_font_overrides(node: Node, old_base: int, new_base: int) -> void:
+	if node is Control:
+		var ctrl := node as Control
+		_scale_override(ctrl, "font_size", old_base, new_base)
+		_scale_override(ctrl, "normal_font_size", old_base, new_base)
+	for child: Node in node.get_children():
+		_update_font_overrides(child, old_base, new_base)
+
+
+func _scale_override(ctrl: Control, prop: String, old_base: int, new_base: int) -> void:
+	if not ctrl.has_theme_font_size_override(prop):
+		return
+	var current: int = ctrl.get_theme_font_size(prop)
+	if current < 16:
+		return  # Skip tiny compact UI elements (fighter bars, portrait cards)
+	var delta: int = current - old_base
+	ctrl.add_theme_font_size_override(prop, new_base + delta)
+
+
 func _apply_all() -> void:
+	# Apply font size to theme
+	_apply_font_size(font_size, font_size)
 	# Apply master volume to the Master audio bus
 	AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, master_volume)))
 	# Apply music volume
