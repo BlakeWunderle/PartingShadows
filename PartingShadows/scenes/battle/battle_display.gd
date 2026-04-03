@@ -10,6 +10,7 @@ const PortraitCard := preload("res://scripts/ui/portrait_card.gd")
 
 var _battle: Control
 var _shake_tween: Tween
+var had_crit: bool = false
 
 
 func _init(battle: Control) -> void:
@@ -26,6 +27,9 @@ func on_combat_event(target: FighterData, amount: int, event_type: String) -> vo
 	elif event_type == "heal":
 		if _battle._current_actor != null and _battle._battle_stats.has(_battle._current_actor):
 			_battle._battle_stats[_battle._current_actor]["healing_done"] += amount
+
+	if event_type in ["crit", "spell_crit"]:
+		had_crit = true
 
 	var card: PortraitCard = find_card_for_fighter(target)
 	if not card:

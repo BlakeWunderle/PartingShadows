@@ -779,6 +779,10 @@ func _drain_messages() -> void:
 		var msg: String = _message_queue.pop_front()
 		_add_log(msg)
 		_refresh_cards()
+		# Extra hit pause after crits for impact feel
+		if _display.had_crit and not SettingsManager.reduced_motion:
+			_display.had_crit = false
+			await get_tree().create_timer(0.08, false).timeout
 		await get_tree().create_timer(pause, false).timeout
 	_refresh_cards()
 
