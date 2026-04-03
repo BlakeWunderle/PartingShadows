@@ -173,6 +173,8 @@ func _start_battle() -> void:
 		"Buffs and debuffs last several turns.")
 
 	_phase = Phase.TICKING_ATB
+	if not SettingsManager.reduced_motion:
+		await get_tree().create_timer(0.5, false).timeout
 	if not _is_mp_guest():
 		_tick_loop()
 	# Guests wait for RPCs from host to drive the battle
@@ -203,6 +205,20 @@ func _build_portrait_cards() -> void:
 		var tex: Texture2D = _get_portrait_texture(f)
 		card.setup(f, true, tex)
 		_enemy_cards.append(card)
+
+	# Stagger-reveal cards if reduced motion is off
+	if not SettingsManager.reduced_motion:
+		var all_cards: Array = []
+		all_cards.append_array(_party_cards)
+		all_cards.append_array(_enemy_cards)
+		for card: PortraitCard in all_cards:
+			card.modulate.a = 0.0
+			card.position.y += 12
+		for i: int in all_cards.size():
+			var card: PortraitCard = all_cards[i]
+			var tw := card.create_tween().set_parallel(true)
+			tw.tween_property(card, "modulate:a", 1.0, 0.2).set_delay(i * 0.08).set_ease(Tween.EASE_OUT)
+			tw.tween_property(card, "position:y", card.position.y - 12, 0.2).set_delay(i * 0.08).set_ease(Tween.EASE_OUT)
 
 
 func _refresh_cards() -> void:
