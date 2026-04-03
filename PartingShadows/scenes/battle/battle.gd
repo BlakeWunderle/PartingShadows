@@ -563,8 +563,10 @@ func _on_actions_submenu_selected(index: int) -> void:
 func _show_target_menu(fighters: Array) -> void:
 	var options: Array[Dictionary] = []
 	for f: FighterData in fighters:
-		options.append({"label": "%s the %s (HP: %d/%d)" % [
-			f.character_name, f.character_type, f.health, f.max_health]})
+		options.append({
+			"label": f.character_name,
+			"description": "%s  |  HP: %d/%d" % [f.character_type, f.health, f.max_health],
+		})
 	options.append({"label": "Back"})
 	_action_menu.show_choices(options, true)
 	_action_menu.choice_selected.disconnect(_on_action_selected)

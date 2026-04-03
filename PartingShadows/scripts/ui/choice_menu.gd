@@ -8,7 +8,7 @@ class_name ChoiceMenu extends VBoxContainer
 signal choice_selected(index: int)
 
 const BUTTON_MIN_SIZE := Vector2(420, 48)
-const GRID_BUTTON_MIN_SIZE := Vector2(180, 64)
+const GRID_BUTTON_MIN_SIZE := Vector2(200, 64)
 const _DESC_FONT := preload("res://assets/fonts/CormorantGaramond-SemiBold.ttf")
 ## Distinct cursor colors per player slot (P1 blue, P2 orange, P3 green)
 const PLAYER_COLORS: Array[Color] = [
@@ -51,7 +51,8 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 		_grid.add_theme_constant_override("h_separation", 12)
 		_grid.add_theme_constant_override("v_separation", 8)
 		# Fixed height for 2 rows so grid never resizes between menus
-		_grid.custom_minimum_size.y = GRID_BUTTON_MIN_SIZE.y * 2 + 8
+		var row_h: int = maxi(GRID_BUTTON_MIN_SIZE.y, SettingsManager.font_size * 2 + 28)
+		_grid.custom_minimum_size.y = row_h * 2 + 8
 		add_child(_grid)
 		btn_parent = _grid
 
@@ -84,6 +85,7 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 			desc_lbl.add_theme_font_override("font", _DESC_FONT)
 			desc_lbl.add_theme_font_size_override("font_size", maxi(SettingsManager.font_size - 6, 12))
 			desc_lbl.add_theme_color_override("font_color", Color(0.7, 0.75, 0.8))
+			desc_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			desc_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			vbox.add_child(title_lbl)
 			vbox.add_child(desc_lbl)
