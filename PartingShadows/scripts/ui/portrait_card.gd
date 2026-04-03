@@ -84,11 +84,11 @@ func _build_ui() -> void:
 
 	# HP bar -- uses stylebox for distinct color
 	var hp_container := Control.new()
-	hp_container.custom_minimum_size = Vector2(0, 12)
+	hp_container.custom_minimum_size = Vector2(0, 20)
 	add_child(hp_container)
 
 	_hp_bar = ProgressBar.new()
-	_hp_bar.custom_minimum_size = Vector2(0, 12)
+	_hp_bar.custom_minimum_size = Vector2(0, 20)
 	_hp_bar.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_hp_bar.show_percentage = false
 
@@ -108,19 +108,19 @@ func _build_ui() -> void:
 	_hp_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hp_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_hp_label.add_theme_font_size_override("font_size", 9)
+	_hp_label.add_theme_font_size_override("font_size", 14)
 	_hp_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
-	_hp_label.add_theme_constant_override("outline_size", 2)
+	_hp_label.add_theme_constant_override("outline_size", 3)
 	_hp_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
 	hp_container.add_child(_hp_label)
 
 	# MP bar -- blue, hidden for enemies
 	var mp_container := Control.new()
-	mp_container.custom_minimum_size = Vector2(0, 10)
+	mp_container.custom_minimum_size = Vector2(0, 16)
 	add_child(mp_container)
 
 	_mp_bar = ProgressBar.new()
-	_mp_bar.custom_minimum_size = Vector2(0, 10)
+	_mp_bar.custom_minimum_size = Vector2(0, 16)
 	_mp_bar.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_mp_bar.show_percentage = false
 
@@ -140,9 +140,9 @@ func _build_ui() -> void:
 	_mp_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_mp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_mp_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_mp_label.add_theme_font_size_override("font_size", 8)
+	_mp_label.add_theme_font_size_override("font_size", 12)
 	_mp_label.add_theme_color_override("font_color", Color(1, 1, 1, 0.9))
-	_mp_label.add_theme_constant_override("outline_size", 2)
+	_mp_label.add_theme_constant_override("outline_size", 3)
 	_mp_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
 	mp_container.add_child(_mp_label)
 
