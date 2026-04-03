@@ -31,8 +31,8 @@ static func copper_mug_stop() -> BattleData:
 		"'Be careful. And come back. This place could use some good news.'",
 	]
 	b.choices = [
-		{"label": "City: The market square pulses with necrotic energy.", "battle_id": "CorruptedCityBattle"},
-		{"label": "Wilds: The stranger's mark is carved into every tree.", "battle_id": "CorruptedWildsBattle"},
+		{"label": "The Corrupted City", "description": "The market square pulses with necrotic energy.", "battle_id": "CorruptedCityBattle"},
+		{"label": "The Corrupted Wilds", "description": "The stranger's mark is carved into every tree.", "battle_id": "CorruptedWildsBattle"},
 	]
 	b.music_track = "res://assets/audio/music/town/Medieval Tavern 03.wav"
 	return b
@@ -162,8 +162,8 @@ static func gate_battle() -> BattleData:
 		"Two passages branch at the bottom of the stairs. One leads to a massive set of doors, the stranger's sanctum. The other is narrower, lined with pulsing sigils that feed energy upward through the stone.",
 	]
 	b.choices = [
-		{"label": "The sanctum doors. The Stranger waits beyond.", "battle_id": "StrangerFinalBattle"},
-		{"label": "The side passage. Sigils pulse along the walls, feeding power to something above.", "battle_id": "RitualAnchorBattle"},
+		{"label": "The Sanctum Doors", "description": "The Stranger waits beyond.", "battle_id": "StrangerFinalBattle"},
+		{"label": "The Side Passage", "description": "Sigils pulse along the walls, feeding power to something above.", "battle_id": "RitualAnchorBattle"},
 	]
 	b.music_track = "res://assets/audio/music/boss/Awakening of the Juggernaut_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#15 Dark Strings Swell.wav"

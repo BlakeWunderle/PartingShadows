@@ -203,18 +203,18 @@ static func wilderness_outpost() -> BattleData:
 	match prev:
 		"MountainPassBattle":
 			b.choices = [
-				{"label": "Camp: Marching boots and a barking voice echo across the plain.", "battle_id": "ArmyBattle"},
-				{"label": "Fog: A fog-covered path winds into rolling hills.", "battle_id": "CemeteryBattle"},
+				{"label": "The War Camp", "description": "Marching boots and a barking voice echo across the plain.", "battle_id": "ArmyBattle"},
+				{"label": "The Fogbound Hills", "description": "A fog-covered path winds into rolling hills.", "battle_id": "CemeteryBattle"},
 			]
 		"CaveBattle":
 			b.choices = [
-				{"label": "Laughter: Music drifts through the trees.", "battle_id": "CircusBattle"},
-				{"label": "Static: An unnatural energy pulses in the dark.", "battle_id": "LabBattle"},
+				{"label": "Distant Laughter", "description": "Music drifts through the trees.", "battle_id": "CircusBattle"},
+				{"label": "Strange Energy", "description": "An unnatural energy pulses in the dark.", "battle_id": "LabBattle"},
 			]
 		"BeachBattle":
 			b.choices = [
-				{"label": "Music: Laughter and music filter through the trees.", "battle_id": "CircusBattle"},
-				{"label": "Fog: A fog-covered path winds into rolling hills.", "battle_id": "CemeteryBattle"},
+				{"label": "Distant Music", "description": "Laughter and music filter through the trees.", "battle_id": "CircusBattle"},
+				{"label": "The Fogbound Hills", "description": "A fog-covered path winds into rolling hills.", "battle_id": "CemeteryBattle"},
 			]
 	return b
 

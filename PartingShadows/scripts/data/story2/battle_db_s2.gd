@@ -50,8 +50,8 @@ static func s2_cave_awakening() -> BattleData:
 		"The tunnel ahead splits in two.",
 	]
 	b.choices = [
-		{"label": "Left: The shadows deepen, and strange symbols line the walls.", "battle_id": "S2_DeepCavern"},
-		{"label": "Right: A faint glow pulses from somewhere deeper, warm and organic.", "battle_id": "S2_FungalHollow"},
+		{"label": "The Dark Passage", "description": "The shadows deepen, and strange symbols line the walls.", "battle_id": "S2_DeepCavern"},
+		{"label": "The Warm Glow", "description": "A faint glow pulses from somewhere deeper, warm and organic.", "battle_id": "S2_FungalHollow"},
 	]
 	b.music_track = "res://assets/audio/music/battle/Unknown Creatures LOOP.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#12 Cave Horn.wav"
@@ -85,8 +85,8 @@ static func s2_deep_cavern() -> BattleData:
 		"The tunnel widens into a chamber where several passages meet. Two ways lead onward.",
 	]
 	b.choices = [
-		{"label": "Follow the distant sound of running water.", "battle_id": "S2_TranquilPool"},
-		{"label": "Follow a flicker of warm firelight.", "battle_id": "S2_TorchChamber"},
+		{"label": "Running Water", "description": "The distant sound of water echoes ahead.", "battle_id": "S2_TranquilPool"},
+		{"label": "Warm Firelight", "description": "A flicker of firelight beckons from deeper in.", "battle_id": "S2_TorchChamber"},
 	]
 	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - The Tomb of Mystery.ogg"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#15 Dark Strings Swell.wav"
@@ -119,8 +119,8 @@ static func s2_fungal_hollow() -> BattleData:
 		"The tunnel widens into a chamber where several passages meet. Two ways lead onward.",
 	]
 	b.choices = [
-		{"label": "Follow the distant sound of running water.", "battle_id": "S2_TranquilPool"},
-		{"label": "Follow a flicker of warm firelight.", "battle_id": "S2_TorchChamber"},
+		{"label": "Running Water", "description": "The distant sound of water echoes ahead.", "battle_id": "S2_TranquilPool"},
+		{"label": "Warm Firelight", "description": "A flicker of firelight beckons from deeper in.", "battle_id": "S2_TorchChamber"},
 	]
 	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - Duskfall Requiem.ogg"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 04.wav"

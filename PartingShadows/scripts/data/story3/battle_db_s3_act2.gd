@@ -46,8 +46,8 @@ static func s3_dream_threads() -> BattleData:
 		"Ahead, the threads converge in two directions. One passage fills with dark water, its surface rippling with submerged light. The other opens into a vast space where frames hang in the void like paintings in an abandoned gallery.",
 	]
 	b.choices = [
-		{"label": "Left: A corridor fills with dark water, but threads of light run beneath the surface like veins.", "battle_id": "S3_DreamDrownedCorridor"},
-		{"label": "Right: A gallery of broken frames hangs in the void, each holding a fragment of someone's dream.", "battle_id": "S3_DreamShatteredGallery"},
+		{"label": "The Drowned Corridor", "description": "Dark water fills the passage, threads of light running beneath the surface like veins.", "battle_id": "S3_DreamDrownedCorridor"},
+		{"label": "The Shattered Gallery", "description": "Broken frames hang in the void, each holding a fragment of someone's dream.", "battle_id": "S3_DreamShatteredGallery"},
 	]
 	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - The Darkness.ogg"
 	return b
@@ -128,8 +128,8 @@ static func s3_dream_shadow_chase() -> BattleData:
 		"Two passages appear in the space below.",
 	]
 	b.choices = [
-		{"label": "Left: Walls of shifting stone form a labyrinth that breathes.", "battle_id": "S3_DreamLabyrinth"},
-		{"label": "Right: A clock tower rises, its hands frozen at midnight.", "battle_id": "S3_DreamClockTower"},
+		{"label": "The Living Labyrinth", "description": "Walls of shifting stone form a labyrinth that breathes.", "battle_id": "S3_DreamLabyrinth"},
+		{"label": "The Frozen Clock Tower", "description": "A clock tower rises, its hands frozen at midnight.", "battle_id": "S3_DreamClockTower"},
 	]
 	b.music_track = "res://assets/audio/music/battle/Demon's Lair LOOP.wav"
 	return b

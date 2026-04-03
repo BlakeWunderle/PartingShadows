@@ -66,8 +66,8 @@ static func s3_dream_meadow() -> BattleData:
 		"Behind it, something follows. A shape of pure darkness, ragged at the edges, moving with the deliberate speed of a predator. The dancer's pace quickens, and it vanishes into the grass just ahead of the shadow's reach.",
 	]
 	b.choices = [
-		{"label": "The meadow forks: left, a corridor of silver mirrors stretches into the distance.", "battle_id": "S3_DreamMirrorHall"},
-		{"label": "The meadow forks: right, a garden of pale flowers sways in a fog that breathes.", "battle_id": "S3_DreamFogGarden"},
+		{"label": "The Mirror Hall", "description": "A corridor of silver mirrors stretches into the distance.", "battle_id": "S3_DreamMirrorHall"},
+		{"label": "The Fog Garden", "description": "A garden of pale flowers sways in a fog that breathes.", "battle_id": "S3_DreamFogGarden"},
 	]
 	b.music_track = "res://assets/audio/music/battle_dark/MUSC_Secret_Garden_76BPM_Eminor_1644_Full_Loop.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#10.wav"

@@ -52,8 +52,8 @@ static func s2_coastal_descent() -> BattleData:
 		"Gone before it can be placed.",
 	]
 	b.choices = [
-		{"label": "South: Chimney smoke and distant voices.", "battle_id": "S2_FishingVillage"},
-		{"label": "North: Scuff marks and heavy cargo tracks along the bluff.", "battle_id": "S2_SmugglersBluff"},
+		{"label": "The Fishing Village", "description": "Chimney smoke and distant voices to the south.", "battle_id": "S2_FishingVillage"},
+		{"label": "The Smuggler's Bluff", "description": "Scuff marks and heavy cargo tracks along the bluff.", "battle_id": "S2_SmugglersBluff"},
 	]
 	b.music_track = "res://assets/audio/music/battle/Fantasy Tension - Cursed Kingdoms.ogg"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 05.wav"
@@ -146,8 +146,8 @@ static func s2_harbor_town() -> BattleData:
 		"Two threads emerge from the conversations in town. The smuggler's journal mentioned a meeting place. The blacksmith remembers which direction the party always arrived from.",
 	]
 	b.choices = [
-		{"label": "The smuggler's journal mentions a meeting at the wreckers' cove.", "battle_id": "S2_WreckersCove"},
-		{"label": "The blacksmith remembers you arriving from the old coastal ruins.", "battle_id": "S2_CoastalRuins"},
+		{"label": "The Wreckers' Cove", "description": "The smuggler's journal mentions a meeting here.", "battle_id": "S2_WreckersCove"},
+		{"label": "The Coastal Ruins", "description": "The blacksmith remembers you arriving from this direction.", "battle_id": "S2_CoastalRuins"},
 	]
 	b.music_track = "res://assets/audio/music/town/Town Village 02(L).wav"
 	return b

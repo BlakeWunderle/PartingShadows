@@ -49,8 +49,8 @@ static func s2_beneath_the_lighthouse() -> BattleData:
 		"A memory surfaces: walking these halls before, alone, late at night, carrying something important.",
 	]
 	b.choices = [
-		{"label": "Follow the crystallized light deeper into the sanctum.", "battle_id": "S2_MemoryVault"},
-		{"label": "Follow the echoing voices down the humming corridor.", "battle_id": "S2_EchoGallery"},
+		{"label": "Crystallized Light", "description": "Follow the light deeper into the sanctum.", "battle_id": "S2_MemoryVault"},
+		{"label": "Echoing Voices", "description": "Follow the voices down the humming corridor.", "battle_id": "S2_EchoGallery"},
 	]
 	b.music_track = "res://assets/audio/music/battle_dark/01_Static_Presence.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#12 Cave Horn.wav"
@@ -149,8 +149,8 @@ static func s2_shattered_sanctum() -> BattleData:
 		"Two passages lead deeper. One toward the inner ward, where the sanctum's guardians stand watch. The other toward a forgotten archive, where records of every extraction are kept.",
 	]
 	b.choices = [
-		{"label": "Press toward the inner ward.", "battle_id": "S2_GuardiansThreshold"},
-		{"label": "Search the forgotten archive.", "battle_id": "S2_ForgottenArchive"},
+		{"label": "The Inner Ward", "description": "Press forward to where the guardians stand watch.", "battle_id": "S2_GuardiansThreshold"},
+		{"label": "The Forgotten Archive", "description": "Search for records of every extraction.", "battle_id": "S2_ForgottenArchive"},
 	]
 	b.music_track = "res://assets/audio/music/battle_dark/MUSC_Black_Moon_52BPM_Eminor_1644_Full_Loop.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 10.wav"

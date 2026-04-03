@@ -111,9 +111,9 @@ static func forest_waypoint() -> BattleData:
 		"She refills her cup. 'A stranger passed through last week. Paid in gold that turned out to be blank on one side. Said the source of it all was out here somewhere.'",
 	]
 	b.choices = [
-		{"label": "Highlands: The trail climbs into wind-battered highlands.", "battle_id": "HighlandBattle"},
-		{"label": "Forest: The trees grow older and darker.", "battle_id": "DeepForestBattle"},
-		{"label": "Shore: Salt in the air and the sound of surf.", "battle_id": "ShoreBattle"},
+		{"label": "The Highlands", "description": "The trail climbs into wind-battered highlands.", "battle_id": "HighlandBattle"},
+		{"label": "The Old Forest", "description": "The trees grow older and darker.", "battle_id": "DeepForestBattle"},
+		{"label": "The Rocky Shore", "description": "Salt in the air and the sound of surf.", "battle_id": "ShoreBattle"},
 	]
 	b.music_track = "res://assets/audio/music/town/Medieval Celtic 01(L).wav"
 	return b

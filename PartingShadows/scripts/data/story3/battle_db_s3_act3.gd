@@ -38,8 +38,8 @@ static func s3_town_realization() -> BattleData:
 		"The travelers exchange a glance. They have a choice to make.",
 	]
 	b.choices = [
-		{"label": "Trust Lira. Step into the dream together, guided by her knowledge of the Loom.", "battle_id": "S3_LucidDream"},
-		{"label": "Something does not add up. Pretend to sleep, then search the inn.", "battle_id": "S3_B_InnSearch"},
+		{"label": "Trust Lira", "description": "Step into the dream together, guided by her knowledge of the Loom.", "battle_id": "S3_LucidDream"},
+		{"label": "Search the Inn", "description": "Something does not add up. Pretend to sleep, then investigate.", "battle_id": "S3_B_InnSearch"},
 	]
 	b.music_track = "res://assets/audio/music/town/Medieval Tavern 03.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#14.wav"
@@ -70,8 +70,8 @@ static func s3_lucid_dream() -> BattleData:
 		"Through one, the faint outline of a temple, ancient and deliberate. Through the other, nothing at all. A gap in the dream where the weaving has frayed.",
 	]
 	b.choices = [
-		{"label": "The temple: columns of woven light frame a doorway older than memory.", "battle_id": "S3_DreamTemple"},
-		{"label": "The void: the threads fray into darkness where something moves between dreams.", "battle_id": "S3_DreamVoid"},
+		{"label": "The Woven Temple", "description": "Columns of woven light frame a doorway older than memory.", "battle_id": "S3_DreamTemple"},
+		{"label": "The Fraying Void", "description": "The threads fray into darkness where something moves between dreams.", "battle_id": "S3_DreamVoid"},
 	]
 	b.music_track = "res://assets/audio/music/battle_dark/08_Rotten_Memories.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/#13a Horn Call.wav"
@@ -157,10 +157,10 @@ static func s3_dream_sanctum() -> BattleData:
 		"Lira opens her eyes. For a moment, something crosses her face. Not guilt. Not fear. Something older and deeper than either.",
 	]
 	b.choices = [
-		{"label": "The cult first. Go underneath the inn before they realize we know.", "battle_id": "S3_CultUnderbelly"},
+		{"label": "Confront the Cult", "description": "Go underneath the inn before they realize we know.", "battle_id": "S3_CultUnderbelly"},
 	]
 	if UnlockManager.is_unlocked("story_3_path_a") and UnlockManager.is_unlocked("story_3_path_b"):
-		b.choices.append({"label": "Lira, wait. In the dream, the Threadmaster's voice sounded like yours. Talk to us.", "battle_id": "S3_C_LirasConfession"})
+		b.choices.append({"label": "Confront Lira", "description": "The Threadmaster's voice in the dream sounded like hers. Talk to us.", "battle_id": "S3_C_LirasConfession"})
 	b.music_track = "res://assets/audio/music/boss/Awakening of the Juggernaut_FULL.wav"
 	b.cutscene_track = "res://assets/audio/music/cutscene/Sad Despair 09.wav"
 	return b
