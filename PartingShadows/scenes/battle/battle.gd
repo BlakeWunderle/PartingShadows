@@ -721,7 +721,10 @@ func _on_ability_selected(index: int) -> void:
 func _show_stats_pick() -> void:
 	var options: Array[Dictionary] = []
 	for f: FighterData in _engine.units:
-		options.append({"label": "%s the %s" % [f.character_name, f.character_type]})
+		options.append({
+			"label": f.character_name,
+			"description": f.character_type,
+		})
 	options.append({"label": "Back"})
 
 	_action_menu.show_choices(options, true)
