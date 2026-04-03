@@ -294,7 +294,18 @@ func _show_branch_choices() -> void:
 	_dialogue.visible = false
 	var options: Array[Dictionary] = []
 	for choice: Dictionary in GameState.current_battle.choices:
-		options.append({"label": choice["label"]})
+		var text: String = choice["label"]
+		var colon_pos: int = text.find(": ")
+		if colon_pos > 0 and colon_pos < 20:
+			# "Direction: Description" pattern — split at colon
+			options.append({"label": text.left(colon_pos), "description": text.substr(colon_pos + 2)})
+		else:
+			var dot_pos: int = text.find(". ")
+			if dot_pos > 0 and dot_pos < text.length() - 3:
+				# "Sentence. More detail." pattern — split at first period
+				options.append({"label": text.left(dot_pos + 1), "description": text.substr(dot_pos + 2)})
+			else:
+				options.append({"label": text})
 
 	# Multi-player: use voting panel
 	if LocalCoop.is_active:
