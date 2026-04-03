@@ -223,13 +223,9 @@ func _do_advance_text() -> void:
 			if _is_defeat:
 				_show_defeat_choices()
 			else:
-				if NetManager.is_multiplayer_active:
-					NetManager.change_scene_for_peers("res://scenes/title/title.tscn")
-				SceneManager.change_scene("res://scenes/title/title.tscn")
+				_return_to_menu()
 		_:
-			if NetManager.is_multiplayer_active:
-				NetManager.change_scene_for_peers("res://scenes/title/title.tscn")
-			SceneManager.change_scene("res://scenes/title/title.tscn")
+			_return_to_menu()
 
 
 func _show_ready_gate(callback: Callable) -> void:
@@ -287,9 +283,7 @@ func _on_defeat_choice(index: int) -> void:
 		if slot >= 0 and SaveManager.load_from_slot(slot):
 			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
 			return
-	if NetManager.is_multiplayer_active:
-		NetManager.change_scene_for_peers("res://scenes/title/title.tscn")
-	SceneManager.change_scene("res://scenes/title/title.tscn")
+	_return_to_menu()
 
 
 func _show_branch_choices() -> void:
@@ -378,6 +372,16 @@ func _advance_after_battle() -> void:
 			if NetManager.is_multiplayer_active and NetManager.is_host:
 				_rpc_advance_to_battle.rpc(GameState.current_battle_id)
 			_show_narrative()
+
+
+## Return to lobby (multiplayer) or title (single player).
+func _return_to_menu() -> void:
+	if NetManager.is_multiplayer_active:
+		var dest := "res://scenes/lobby/lobby.tscn"
+		NetManager.change_scene_for_peers(dest)
+		SceneManager.change_scene(dest)
+	else:
+		SceneManager.change_scene("res://scenes/title/title.tscn")
 
 
 # =============================================================================

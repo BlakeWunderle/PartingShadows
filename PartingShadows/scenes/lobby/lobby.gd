@@ -45,8 +45,14 @@ func _ready() -> void:
 	NetManager.steam_hosting_failed.connect(_on_steam_hosting_failed)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	_build_ui()
+	# Returning from a finished game with session still active
+	if NetManager.is_multiplayer_active:
+		if NetManager.is_host:
+			_on_steam_hosting_started(NetManager.lobby_id)
+		else:
+			_show_guest_lobby()
 	# Auto-join if arriving from a Steam overlay invite
-	if NetManager.pending_join_lobby_id > 0:
+	elif NetManager.pending_join_lobby_id > 0:
 		var lobby := NetManager.pending_join_lobby_id
 		NetManager.pending_join_lobby_id = 0
 		_auto_join_steam_lobby(lobby)
