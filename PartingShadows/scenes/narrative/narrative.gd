@@ -416,6 +416,10 @@ func _rpc_branch_chosen(battle_id: String) -> void:
 func _rpc_advance_to_battle(battle_id: String) -> void:
 	if not battle_id.is_empty():
 		GameState.advance_to_battle(battle_id)
+	# Re-render narrative if staying on this scene (host handles scene
+	# changes separately for town stop / ending transitions)
+	if GameState.game_phase == GameState.GamePhase.NARRATIVE:
+		_show_narrative()
 
 
 

@@ -11,6 +11,7 @@ const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const FighterPicker := preload("res://scripts/ui/fighter_picker.gd")
 const FighterData := preload("res://scripts/data/fighter_data.gd")
 const FighterDB := preload("res://scripts/data/fighter_db.gd")
+const Title := preload("res://scenes/title/title.gd")
 
 enum Mode { ROLE_SELECT, HOSTING, CONNECTING, IN_LOBBY, LOAD_SAVE, FIGHTER_PICK }
 
@@ -532,6 +533,8 @@ func _rpc_load_party_and_start(party_data: Array, battle_id: String, story_id: S
 # =============================================================================
 
 func _pick_background() -> String:
+	if not Title._cached_bg.is_empty():
+		return Title._cached_bg
 	var options: Array[String] = ["res://assets/art/ui/title_background.png"]
 	if UnlockManager.is_unlocked("story_1_complete"):
 		options.append("res://assets/art/ui/title_background_s2.png")

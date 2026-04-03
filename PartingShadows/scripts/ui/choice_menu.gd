@@ -9,6 +9,7 @@ signal choice_selected(index: int)
 
 const BUTTON_MIN_SIZE := Vector2(320, 48)
 const GRID_BUTTON_MIN_SIZE := Vector2(180, 64)
+const _DESC_FONT := preload("res://assets/fonts/CormorantGaramond-SemiBold.ttf")
 ## Distinct cursor colors per player slot (P1 blue, P2 orange, P3 green)
 const PLAYER_COLORS: Array[Color] = [
 	Color(0.3, 0.65, 1.0),
@@ -64,8 +65,28 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 		btn.add_theme_constant_override("outline_size", 2)
 		btn.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
 
-		if opt.has("description") and not opt["description"].is_empty():
-			btn.text = "%s\n  %s" % [opt["label"], opt["description"]]
+		var has_desc: bool = opt.has("description") and not opt["description"].is_empty()
+		if has_desc:
+			btn.text = ""
+			var vbox := VBoxContainer.new()
+			vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
+			vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+			vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			var title_lbl := Label.new()
+			title_lbl.text = opt["label"]
+			title_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			title_lbl.add_theme_font_size_override("font_size", SettingsManager.font_size)
+			title_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			var desc_lbl := Label.new()
+			desc_lbl.text = opt["description"]
+			desc_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			desc_lbl.add_theme_font_override("font", _DESC_FONT)
+			desc_lbl.add_theme_font_size_override("font_size", maxi(SettingsManager.font_size - 6, 12))
+			desc_lbl.add_theme_color_override("font_color", Color(0.7, 0.75, 0.8))
+			desc_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			vbox.add_child(title_lbl)
+			vbox.add_child(desc_lbl)
+			btn.add_child(vbox)
 		else:
 			btn.text = opt["label"]
 
