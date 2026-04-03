@@ -17,6 +17,8 @@ signal combat_pause_changed(seconds: float)
 signal font_size_changed(size: int)
 signal color_blind_mode_changed(mode: String)
 signal screen_reader_changed(enabled: bool)
+signal reduced_motion_changed(enabled: bool)
+signal dialog_blips_changed(enabled: bool)
 
 # -- Defaults ----------------------------------------------------------------
 
@@ -30,6 +32,8 @@ const DEFAULT_COMBAT_PAUSE := 1.2
 const DEFAULT_FONT_SIZE := 24
 const DEFAULT_COLOR_BLIND_MODE := "normal"
 const DEFAULT_SCREEN_READER := false
+const DEFAULT_REDUCED_MOTION := false
+const DEFAULT_DIALOG_BLIPS := true
 
 # -- State -------------------------------------------------------------------
 
@@ -121,6 +125,22 @@ var screen_reader: bool = DEFAULT_SCREEN_READER:
 		screen_reader_changed.emit(v)
 		_save()
 
+var reduced_motion: bool = DEFAULT_REDUCED_MOTION:
+	set(v):
+		if reduced_motion == v:
+			return
+		reduced_motion = v
+		reduced_motion_changed.emit(v)
+		_save()
+
+var dialog_blips: bool = DEFAULT_DIALOG_BLIPS:
+	set(v):
+		if dialog_blips == v:
+			return
+		dialog_blips = v
+		dialog_blips_changed.emit(v)
+		_save()
+
 # -- Color Blind Palettes ---------------------------------------------------
 
 # Each palette: { hp_high, hp_mid, hp_low, mp, buff, debuff }
@@ -182,6 +202,8 @@ func reset_defaults() -> void:
 	font_size = DEFAULT_FONT_SIZE
 	color_blind_mode = DEFAULT_COLOR_BLIND_MODE
 	screen_reader = DEFAULT_SCREEN_READER
+	reduced_motion = DEFAULT_REDUCED_MOTION
+	dialog_blips = DEFAULT_DIALOG_BLIPS
 
 
 # -- Persistence -------------------------------------------------------------
@@ -213,6 +235,8 @@ func _load() -> void:
 	font_size = int(data.get("font_size", DEFAULT_FONT_SIZE))
 	color_blind_mode = data.get("color_blind_mode", DEFAULT_COLOR_BLIND_MODE)
 	screen_reader = data.get("screen_reader", DEFAULT_SCREEN_READER)
+	reduced_motion = data.get("reduced_motion", DEFAULT_REDUCED_MOTION)
+	dialog_blips = data.get("dialog_blips", DEFAULT_DIALOG_BLIPS)
 	# Load custom key bindings into InputConfig
 	var bindings: Dictionary = data.get("key_bindings", {})
 	if not bindings.is_empty():
@@ -231,6 +255,8 @@ func _save() -> void:
 		"font_size": font_size,
 		"color_blind_mode": color_blind_mode,
 		"screen_reader": screen_reader,
+		"reduced_motion": reduced_motion,
+		"dialog_blips": dialog_blips,
 		"key_bindings": InputConfig.keyboard_bindings,
 	}
 	var json_str: String = JSON.stringify(data, "\t")
