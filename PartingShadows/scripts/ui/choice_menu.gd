@@ -69,7 +69,11 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 		var has_desc: bool = opt.has("description") and not opt["description"].is_empty()
 		if has_desc:
 			btn.text = ""
-			btn.custom_minimum_size.y = maxi(btn.custom_minimum_size.y, SettingsManager.font_size * 2 + 28)
+			var desc_text: String = opt.get("description", "")
+			var desc_lines: int = desc_text.count("\n") + 1
+			var desc_fs: int = maxi(SettingsManager.font_size - 2, 14)
+			var est_h: int = SettingsManager.font_size + desc_fs * desc_lines + 32
+			btn.custom_minimum_size.y = maxi(btn.custom_minimum_size.y, est_h)
 			var vbox := VBoxContainer.new()
 			vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
 			vbox.alignment = BoxContainer.ALIGNMENT_CENTER
@@ -83,7 +87,7 @@ func show_choices(options: Array, use_grid: bool = false) -> void:
 			desc_lbl.text = opt["description"]
 			desc_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			desc_lbl.add_theme_font_override("font", _DESC_FONT)
-			desc_lbl.add_theme_font_size_override("font_size", maxi(SettingsManager.font_size - 6, 12))
+			desc_lbl.add_theme_font_size_override("font_size", maxi(SettingsManager.font_size - 2, 14))
 			desc_lbl.add_theme_color_override("font_color", Color(0.7, 0.75, 0.8))
 			desc_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 			desc_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE

@@ -74,7 +74,7 @@ func _build_ui() -> void:
 
 	_upgrade_label = Label.new()
 	_upgrade_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_upgrade_label.add_theme_font_size_override("font_size", 20)
+	_upgrade_label.add_theme_font_size_override("font_size", 28)
 	_upgrade_label.visible = false
 	vbox.add_child(_upgrade_label)
 
