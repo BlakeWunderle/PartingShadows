@@ -107,10 +107,6 @@ func _show_narrative() -> void:
 			else:
 				_dialogue.show_text(GameState.current_battle.post_battle_text)
 			_open_gate_early(_do_advance_text)
-		GameState.GamePhase.TOWN_STOP:
-			if NetManager.is_multiplayer_active and NetManager.is_host:
-				NetManager.change_scene_for_peers("res://scenes/town_stop/town_stop.tscn")
-			SceneManager.change_scene("res://scenes/town_stop/town_stop.tscn")
 		GameState.GamePhase.ENDING:
 			_show_ending()
 		_:
@@ -285,7 +281,10 @@ func _on_defeat_choice(index: int) -> void:
 						slot = i
 						break
 		if slot >= 0 and SaveManager.load_from_slot(slot):
-			SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+			var target: String = "res://scenes/town_stop/town_stop.tscn" \
+				if GameState.game_phase == GameState.GamePhase.TOWN_STOP \
+				else "res://scenes/narrative/narrative.tscn"
+			SceneManager.change_scene(target)
 			return
 	_return_to_menu()
 

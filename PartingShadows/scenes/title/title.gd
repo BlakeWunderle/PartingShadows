@@ -316,7 +316,7 @@ func _handle_main_choice(index: int) -> void:
 		"Continue":
 			var slot: int = _find_best_continue_slot()
 			if slot >= 0 and SaveManager.load_from_slot(slot):
-				SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+				SceneManager.change_scene(_scene_for_phase())
 			else:
 				_show_load_error()
 		"New Game":
@@ -437,6 +437,12 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_quit_confirmed(accepted: bool) -> void:
 	if accepted:
 		get_tree().quit()
+
+
+func _scene_for_phase() -> String:
+	if GameState.game_phase == GameState.GamePhase.TOWN_STOP:
+		return "res://scenes/town_stop/town_stop.tscn"
+	return "res://scenes/narrative/narrative.tscn"
 
 
 # =============================================================================
@@ -670,7 +676,7 @@ func _handle_load_choice(index: int) -> void:
 		"load":
 			var slot: int = int(entry["slot"])
 			if SaveManager.load_from_slot(slot):
-				SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+				SceneManager.change_scene(_scene_for_phase())
 			else:
 				_show_load_error()
 

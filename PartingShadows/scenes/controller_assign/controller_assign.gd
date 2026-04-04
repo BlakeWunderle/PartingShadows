@@ -407,7 +407,10 @@ func _handle_load_choice(index: int) -> void:
 			var slot: int = int(entry["slot"])
 			if SaveManager.load_from_slot(slot):
 				LocalCoop.assign_slots(GameState.party.size())
-				SceneManager.change_scene("res://scenes/narrative/narrative.tscn")
+				var target: String = "res://scenes/town_stop/town_stop.tscn" \
+					if GameState.game_phase == GameState.GamePhase.TOWN_STOP \
+					else "res://scenes/narrative/narrative.tscn"
+				SceneManager.change_scene(target)
 
 
 func _on_delete_confirmed(accepted: bool) -> void:
