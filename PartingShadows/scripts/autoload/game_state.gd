@@ -73,17 +73,19 @@ func advance_to_battle(battle_id: String) -> void:
 
 func advance_to_post_battle() -> void:
 	battles_won += 1
-	if battles_won == 1:
-		SteamManager.set_achievement("FIRST_VICTORY")
-	elif battles_won == 10:
-		SteamManager.set_achievement("TEN_VICTORIES")
-	elif battles_won == 50:
-		SteamManager.set_achievement("FIFTY_VICTORIES")
-	elif battles_won == 100:
-		SteamManager.set_achievement("HUNDRED_VICTORIES")
-	# Track battle completion in compendium
+	# Track battle completion in compendium before achievement check
 	if current_battle:
 		CompendiumManager.mark_battle_complete(current_battle.battle_id)
+	# Check milestone achievements using persistent compendium count
+	var total: int = CompendiumManager.get_battles_completed().size()
+	if total == 1:
+		SteamManager.set_achievement("FIRST_VICTORY")
+	if total >= 10:
+		SteamManager.set_achievement("TEN_VICTORIES")
+	if total >= 50:
+		SteamManager.set_achievement("FIFTY_VICTORIES")
+	if total >= 100:
+		SteamManager.set_achievement("HUNDRED_VICTORIES")
 	narrative_mode = NarrativeMode.POST_BATTLE
 	game_phase = GamePhase.NARRATIVE
 	_update_presence()
