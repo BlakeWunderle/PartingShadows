@@ -84,8 +84,10 @@ func _build_ui() -> void:
 	_add_line("Mandee Hamorsky")
 	_add_line("Jacque Long")
 	_add_line("Kelci Monzione")
+	_add_line("John White")
 	_add_line("Jess Pereira")
 	_add_line("Josh Rollefson")
+	_add_line("Wayne Uyemura")
 	_add_spacer(40)
 
 	_add_heading("\"Some paths can't be retraced.\"")
