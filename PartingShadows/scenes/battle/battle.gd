@@ -314,6 +314,8 @@ func _tick_loop() -> void:
 					_broadcast_state_sync()
 
 			# Post-action (same for player and AI)
+			_engine.check_for_death()
+			_rebuild_cards_if_needed()
 			await _drain_messages()
 			_refresh_cards()
 
@@ -322,8 +324,6 @@ func _tick_loop() -> void:
 				_end_battle()
 				return
 
-			_engine.check_for_death()
-			_rebuild_cards_if_needed()
 			await _drain_messages()
 
 			if _engine.is_battle_over():
