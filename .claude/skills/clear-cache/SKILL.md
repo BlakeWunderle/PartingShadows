@@ -14,18 +14,18 @@ Clear stale Godot editor/engine caches and reimport the project. Use after addin
 
 1. Delete the script class cache:
 ```bash
-rm -f EchoesOfChoice/.godot/global_script_class_cache.cfg
+rm -f PartingShadows/.godot/global_script_class_cache.cfg
 ```
 
 2. Reimport the project:
 ```bash
-"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoice --headless --import 2>&1 | grep -i "error\|fail\|parse" | grep -v "BUG:\|RID\|Pages\|Paged\|ObjectDB\|Unreferenced"
+"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path PartingShadows --headless --import 2>&1 | grep -i "error\|fail\|parse" | grep -v "BUG:\|RID\|Pages\|Paged\|ObjectDB\|Unreferenced"
 ```
 
 3. Verify with a headless build:
 ```bash
 NOISE='No loader\|Oswald\|game_theme\|custom project\|Unreferenced static string\|RID allocations.*leaked\|Pages in use exist at exit\|PagedAllocator\|ObjectDB instances leaked\|resources still in use at exit\|OpenGL API\|NVIDIA\|WASAPI\|Cleanup\|Main::'
-"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path EchoesOfChoice --headless --quit 2>&1 | grep -v "$NOISE"
+"C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe" --path PartingShadows --headless --quit 2>&1 | grep -v "$NOISE"
 ```
 
 ## Note on CI

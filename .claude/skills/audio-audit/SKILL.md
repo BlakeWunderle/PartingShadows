@@ -14,15 +14,15 @@ Validates that the project's audio files and code references are in sync. Catche
 Search all `.gd` files for audio path references:
 
 ```bash
-cd c:/Projects/EchoesOfChoice
+cd c:/Projects/PartingShadows
 # Music paths in code (play_music calls + music_track assignments)
-grep -roh 'res://assets/audio/music/[^"]*' EchoesOfChoice/scripts/ EchoesOfChoice/scenes/ | sort -u
+grep -roh 'res://assets/audio/music/[^"]*' PartingShadows/scripts/ PartingShadows/scenes/ | sort -u
 ```
 
 ### Step 2: Collect all music files on disk
 
 ```bash
-find EchoesOfChoice/assets/audio/music/ -type f \( -name "*.wav" -o -name "*.ogg" -o -name "*.mp3" \) | sort
+find PartingShadows/assets/audio/music/ -type f \( -name "*.wav" -o -name "*.ogg" -o -name "*.mp3" \) | sort
 ```
 
 ### Step 3: Cross-reference music
@@ -64,7 +64,7 @@ RESULT: PASS / FAIL (N issues)
 
 ## Fix Actions
 
-- **Orphan music**: `rm "EchoesOfChoice/assets/audio/music/<path>"` and its `.import` file
+- **Orphan music**: `rm "PartingShadows/assets/audio/music/<path>"` and its `.import` file
 - **Missing music**: Copy from `assets_library/music/` or fix the code reference
 - **Unmapped SFX folder**: Delete the folder or add it to `CATEGORY_FOLDERS`
 - **Unused SFX category**: Remove from the `Category` enum and `CATEGORY_FOLDERS`
@@ -74,7 +74,7 @@ RESULT: PASS / FAIL (N issues)
 - Music paths defined in: `scripts/data/battle_config_prog_*.gd`, `scripts/data/battle_config.gd`, all scene `.gd` files, `scenes/town/Town.gd`
 - Music manager: `scripts/autoload/music_manager.gd`
 - SFX manager: `scripts/autoload/sfx_manager.gd`
-- Asset library backup: `c:\Projects\EchoesOfChoice\assets_library\music\`
+- Asset library backup: `c:\Projects\PartingShadows\assets_library\music\`
 
 ## Related
 

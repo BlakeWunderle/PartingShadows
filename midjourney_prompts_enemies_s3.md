@@ -19,7 +19,7 @@ dark fantasy RPG character portrait, full body, dark background with subtle teal
 - Atmospheric fog at ground level
 - More texture and grit than the clean player class portraits
 
-Save images as `{filename}` into `EchoesOfChoice/assets/art/portraits/enemies/`
+Save images as `{filename}` into `PartingShadows/assets/art/portraits/enemies/`
 
 ---
 
@@ -347,4 +347,31 @@ A guardian whose physical form has partially merged with the loom itself, thread
 **ritual_guardian.png**
 ```
 A heavily armored cult guardian stationed at the ritual chamber's threshold, plate armor engraved with the Thread's ceremonial sigils that glow faintly during the rites. Its helmet is a full-face ceremonial visor shaped like a stylized loom-beater, imposing and ritualistic. It holds a long-hafted weapon in one hand while the other traces a slow chanting gesture at its side, lips moving behind the visor. Thread-sigils orbit its shoulders like slow satellites, empowered by proximity to the active ceremony. More than a fighter — a participant in the rite itself, its violence an act of devotion, dark fantasy RPG character portrait, full body, dark ritual chamber background with warm golden ceremony light, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+---
+
+## P15 Repetitiveness Fixes (3 portraits)
+
+*Added 2026-03-29 to break role/damage monotony across the three P15 endgame battles.*
+
+### S3_CultCatacombs (Main Path)
+
+**thread_stitcher.png**
+```
+A gaunt cult operative in dark layered robes threaded with luminous filaments that pulse faintly along the seams. Their hands are wrapped in coils of hardened dream-thread that extend into long needle-like lances of solidified light, one in each fist. Their face is half-hidden by a cloth mask stitched with the Thread's sigils, hollow eyes glowing a cold teal above it. Thin scourging filaments trail from their forearms like whip-tendrils, each one barbed with tiny crystallized hooks that glint in the dark. Lean and surgical, a weaponizer of the same threads others use to mend, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+### S3_B_LoomHeart (Path B)
+
+**loom_parasite.png**
+```
+A low-slung crustacean-like parasite creature with no humanoid features whatsoever, built from knotted waste-threads of a magical loom. Six thick segmented legs of braided dark fiber splay outward from a compact oval body covered in matted tangled thread-matter. The front end has no face, just a wide circular lamprey mouth ringed with rows of tiny curved hook-teeth and dripping with luminous fluid. Pale bulbous spore-sacs cluster along its back ridge, two split open leaking sickly green vapor. Short barbed feeler-tendrils extend from its sides, twitching and tasting the air. Translucent membrane stretched between its leg joints reveals a dim pulsing glow inside its body cavity. Belly low to the ground in a predatory crouch, alien and repulsive, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
+```
+
+### S3_C_CultInterception (Path C)
+
+**oneiric_guardian.png**
+```
+A massive semi-translucent guardian entity conjured from raw dream-stuff, towering and top-heavy with exaggerated oversized fists and broad shoulders tapering to smaller legs. Its body is crystallized dream-matter in deep indigo and smoky teal, faceted like rough quartz with veins of stolen golden light pulsing beneath the surface. No face, just a smooth dome of dark crystal split by a single horizontal crack that glows furnace-amber, widening when it feeds. Its knuckles are cracked and leaking light where they have struck stone. Luminous threads trail from its back connecting it to an unseen dreamer, like an umbilical cord of pure will. Where fresh wounds mar its surface the crystal knits closed as golden energy flows inward from its victims. Imposing and wrong, a brute shaped from imagination without restraint, dark fantasy RPG character portrait, full body, dark background with subtle teal glow, painterly digital art style, stylized proportions, moody dramatic lighting, game asset --ar 3:4 --s 750 --sref https://s.mj.run/ByaKJIIouyQ https://s.mj.run/NWX9ZvY7VQM https://s.mj.run/hz2H61a3QLA
 ```

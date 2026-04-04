@@ -15,8 +15,8 @@ on:
 
 env:
   GODOT_VERSION: "4.6.1"
-  PROJECT_PATH: EchoesOfChoice
-  GAME_NAME: EchoesOfChoice
+  PROJECT_PATH: PartingShadows
+  GAME_NAME: PartingShadows
 
 jobs:
   export-windows:
@@ -157,7 +157,7 @@ jobs:
           /Applications/Godot.app/Contents/MacOS/Godot --headless --path $PROJECT_PATH \
             --export-release "macOS" "$(pwd)/build/macos/${GAME_NAME}.zip"
 
-      - name: Sign app
+      - name: Sign and rename app
         run: |
           cd build/macos
           unzip -q ${GAME_NAME}.zip
@@ -166,8 +166,13 @@ jobs:
           codesign --deep --force --options runtime \
             --sign "Developer ID Application" \
             "$APP_NAME"
+          # Rename to remove spaces (Steam launch config compatibility)
+          if [ "$APP_NAME" != "${GAME_NAME}.app" ]; then
+            mv "$APP_NAME" "${GAME_NAME}.app"
+            echo "Renamed '$APP_NAME' -> '${GAME_NAME}.app'"
+          fi
           rm ${GAME_NAME}.zip
-          zip -r -y ${GAME_NAME}.zip "$APP_NAME"
+          zip -r -y ${GAME_NAME}.zip "${GAME_NAME}.app"
 
       - name: Notarize app (non-blocking)
         env:
@@ -212,7 +217,7 @@ jobs:
       - name: Extract and run smoke test
         run: |
           cd macos-artifact
-          unzip -q EchoesOfChoice-macos.zip
+          unzip -q PartingShadows-macos.zip
           APP=$(find . -maxdepth 1 -name "*.app" | head -1)
           echo "Testing: $APP"
           BINARY="$APP/Contents/MacOS/$(ls "$APP/Contents/MacOS/" | head -1)"
@@ -267,7 +272,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "Echoes of Choice ${{ steps.version.outputs.tag }}"
+          name: "Parting Shadows ${{ steps.version.outputs.tag }}"
           draft: true
           generate_release_notes: true
           files: |

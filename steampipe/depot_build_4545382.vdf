@@ -1,7 +1,7 @@
 "DepotBuildConfig"
 {
 	"DepotID" "4545382"
-	"ContentRoot" "C:\Projects\EchoesOfChoice\build\windows"
+	"ContentRoot" "C:\Projects\PartingShadows\build\windows"
 	"FileMapping"
 	{
 		"LocalPath" "*"

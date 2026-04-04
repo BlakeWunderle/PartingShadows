@@ -1,0 +1,66 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Parting Shadows"
+config/description="A visual RPG of branching paths and shadowed choices."
+config/version="1.0.0"
+config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
+run/main_scene="res://scenes/splash/splash.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[autoload]
+
+GameLog="*res://scripts/autoload/logger.gd"
+SteamManager="*res://scripts/autoload/steam_manager.gd"
+NetManager="*res://scripts/autoload/net_manager.gd"
+InputConfig="*res://scripts/autoload/input_config.gd"
+LocalCoop="*res://scripts/autoload/local_coop.gd"
+SceneManager="*res://scripts/autoload/scene_manager.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+MusicManager="*res://scripts/autoload/music_manager.gd"
+SaveManager="*res://scripts/autoload/save_manager.gd"
+UnlockManager="*res://scripts/autoload/unlock_manager.gd"
+SettingsManager="*res://scripts/autoload/settings_manager.gd"
+SFXManager="*res://scripts/autoload/sfx_manager.gd"
+CompendiumManager="*res://scripts/autoload/compendium_manager.gd"
+PauseOverlay="*res://scripts/autoload/pause_overlay.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom="res://resources/gui/game_theme.tres"
+
+[audio]
+
+buses/default_bus_layout="res://resources/audio/default_bus_layout.tres"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.05, 0.05, 0.08, 1)
+
+[steam]
+
+initialization/app_id=4545380
+initialization/initialize_on_startup=false
+initialization/embed_callbacks=false

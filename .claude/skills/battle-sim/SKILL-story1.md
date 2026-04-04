@@ -25,12 +25,12 @@ Story 1 has 14 progressions (Prog 0-13), 22 battle stages, and uses all 6 base c
 | 5 | 79% | 76-82% | T1 | CircusBattle, LabBattle, ArmyBattle, CemeteryBattle |
 | 6 | 77% | 74-80% | T1 | OutpostDefenseBattle |
 | 7 | 75% | 72-78% | T1 | MirrorBattle |
-| 8 | 80% | 77-83% | T2 | ReturnToCityStreetBattle |
-| 9 | 78% | 75-81% | T2 | StrangerTowerBattle |
-| 10 | 75% | 72-78% | T2 | CorruptedCityBattle, CorruptedWildsBattle |
-| 11 | 72% | 69-75% | T2 | DepthsBattle |
-| 12 | 69% | 66-72% | T2 | GateBattle |
-| 13 | 65% | 62-68% | T2 | StrangerFinalBattle |
+| 8 | 73% | 70-76% | T2 | ReturnToCityStreetBattle |
+| 9 | 70% | 67-73% | T2 | StrangerTowerBattle |
+| 10 | 67% | 64-70% | T2 | CorruptedCityBattle, CorruptedWildsBattle |
+| 11 | 64% | 61-67% | T2 | DepthsBattle |
+| 12 | 61% | 58-64% | T2 | GateBattle, RitualAnchorBattle (Path B) |
+| 13 | 58% | 55-61% | T2 | StrangerFinalBattle, SanctumCollapseBattle (Path B), StrangerUndoneBattle (Path B) |
 
 ## Power Curve (6 Archetypes) -- Post-Combat-Rework
 
@@ -64,19 +64,19 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 | 5 | T1 | 79% | 66.5% | 91.5% |
 | 6 | T1 | 77% | 64.5% | 89.5% |
 | 7 | T1 | 75% | 62.5% | 87.5% |
-| 8 | T2 | 80% | 70% | 90% |
-| 9 | T2 | 78% | 68% | 88% |
-| 10 | T2 | 75% | 65% | 85% |
-| 11 | T2 | 72% | 62% | 82% |
-| 12 | T2 | 69% | 59% | 79% |
-| 13 | T2 | 65% | 55% | 75% |
+| 8 | T2 | 73% | 63% | 83% |
+| 9 | T2 | 70% | 60% | 80% |
+| 10 | T2 | 67% | 57% | 77% |
+| 11 | T2 | 64% | 54% | 74% |
+| 12 | T2 | 61% | 51% | 71% |
+| 13 | T2 | 58% | 48% | 68% |
 
 ## Battle -> Enemy Mapping
 
 | Battle | Prog | Enemies | Format |
 |--------|------|---------|--------|
 | CityStreetBattle | 0 | Thug, Ruffian, Pickpocket | 3v3 |
-| WolfForestBattle | 1 | Wolf, Boar | 3v2 |
+| WolfForestBattle | 1 | Wolf, Boar, Thornviper | 3v3 |
 | WaypointDefenseBattle | 2 | Bandit, Goblin, Hound | 3v3 |
 | HighlandBattle | 3 | 2x Raider, Orc | 3v3 |
 | DeepForestBattle | 3 | Witch, Wisp, Sprite | 3v3 |
@@ -97,6 +97,9 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 | DepthsBattle | 11 | SigilWretch, 2x TunnelLurker | 3v3 |
 | GateBattle | 12 | 2x DarkKnight, 2x FellHound | 3v4 |
 | StrangerFinalBattle | 13 | StrangerFinal | 3v1 (boss) |
+| RitualAnchorBattle | 12 | SigilColossus, RitualConduit, VoidSentinel | 3v3 (Path B) |
+| SanctumCollapseBattle | 13 | VoidHorror, FracturedShadow, ShadowRemnant | 3v3 (Path B) |
+| StrangerUndoneBattle | 13 | StrangerUndone | 3v1 (boss, Path B) |
 
 ## Key Files
 

@@ -1,10 +1,16 @@
+---
+paths:
+  - "**/*.gd"
+  - "**/*.tscn"
+---
+
 # Project Architecture
 
-Godot 4 project using GDScript at `EchoesOfChoice/`.
+Godot 4 project using GDScript at `PartingShadows/`.
 
 ## File Map
 
-All paths below are relative to `EchoesOfChoice/`.
+All paths below are relative to `PartingShadows/`.
 
 ### Core Data -- Shared (`scripts/data/`)
 - `ability_data.gd` -- Ability model (name, type, modifier, targets, flavor text)
@@ -15,10 +21,12 @@ All paths below are relative to `EchoesOfChoice/`.
 - `battle_db.gd` -- Battle router: dispatches battle_id to story1/, story2/, and story3/ act modules
 - `enemy_helpers.gd` -- Shared stat helpers (es, fixed, base) for all enemy DB factories
 - `enemy_db_router.gd` -- Enemy creation router for simulation
-- `enums.gd` -- Shared enums (ability types, targeting, etc.)
+- `enemy_roles.gd` -- Enemy combat role, subtype, damage type, and threat tier metadata for all 211 enemies
+- `enums.gd` -- Shared enums (ability types, targeting, roles, subtypes, damage types, enemy tiers)
 - `fighter_data.gd` -- Fighter stat model (HP, MP, ATK, DEF, SPD, abilities, buffs/debuffs)
 - `fighter_db.gd` -- Player class factory: base classes (T0), data-driven level-up, upgrade routing, preview
 - `fighter_db_meta.gd` -- Class metadata: display names, ability lookups, flavor text for all 56 classes
+- `fighter_db_roles.gd` -- Combat role, subtype, and damage type metadata for all 56 player classes
 - `fighter_db_t1.gd` -- Tier 1 class upgrades and level-up functions
 - `fighter_db_t2.gd` -- Tier 2 class upgrades: Squire, Mage, Wanderer-Sentinel trees
 - `fighter_db_t2b.gd` -- Tier 2 class upgrades: Entertainer, Tinker trees
@@ -143,18 +151,27 @@ All paths below are relative to `EchoesOfChoice/`.
 - `scripts/tools/party_composer.gd` -- Party generation for simulation
 - `scripts/tools/simulation_runner.gd` -- Battle simulation engine
 - `scripts/tools/sim_cache.gd` -- Simulation result caching with file-hash invalidation
-- `scripts/tools/sim_diagnostics.gd` -- Per-class offense/defense diagnostics for weak classes
+- `scripts/tools/sim_diagnostics.gd` -- Per-class offense/defense diagnostics for weak classes (role-aware categories)
 - `scripts/tools/sim_progressive.gd` -- Progressive stage validation for simulation
-- `scripts/tools/sim_report.gd` -- JSON/markdown report generation for simulation results
+- `scripts/tools/sim_report.gd` -- JSON/text report generation for simulation results
+- `scripts/tools/sim_report_markdown.gd` -- Markdown class balance report generator (tier tables, outliers, boss section)
+- `scripts/tools/sim_repetitiveness.gd` -- Battle repetitiveness analysis: cosine similarity on role/subtype vectors, damage monotony detection
 - `tools/battle_simulator.gd` -- Headless battle simulator entry point
 - `tools/battle_sim_parallel.gd` -- Parallel worker coordinator for batch simulation
+- `tools/debug_battle.gd` -- Quick-launch a battle for testing UI changes (with debug_battle.tscn)
+- `tools/repetitiveness.gd` -- Standalone repetitiveness analysis: per-story archetype similarity + damage monotony
 
 ### Resources (`resources/`)
 - `audio/default_bus_layout.tres` -- Audio bus layout: Master, Music (→Master), SFX (→Master)
+- `gui/game_theme.tres` -- Global UI theme (fonts, button/panel/scrollbar styles, colors)
+- `shaders/shadow_portrait.gdshader` -- Portrait shadow effect shader
 
 ### Assets (`assets/`)
 - `audio/music/` -- ~70 music tracks across contexts (menu, battle, battle_dark, battle_scifi, boss, town, cutscene, game_over, victory)
 - `audio/sfx/` -- ~1600 SFX files: combat subfolders (strike, impact, slash, spell, etc.) + ui/
 - `art/ui/` -- Title background, Wunderelf Studios logo
-- `art/battles/` -- 71 battle scene background images
-- `fonts/` -- Oswald-Bold.ttf for game theme
+- `art/battles/` -- 154 battle scene background images
+- `art/portraits/` -- 690 enemy and class portrait images
+- `fonts/Cinzel-Bold.ttf` -- Primary UI font (buttons, labels, menus) via game_theme.tres
+- `fonts/CormorantGaramond-SemiBold.ttf` -- Narrative/body text (RichTextLabel, LineEdit) via game_theme.tres
+- `fonts/Oswald-Bold.ttf` -- Available in project but not referenced by game_theme.tres

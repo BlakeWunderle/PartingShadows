@@ -1,6 +1,6 @@
 # Story 3 Balance Reference
 
-Story 3 ("The Woven Night") is the hardest story: 75% down to 42% across 18 progressions (Prog 0-17, Prog 2 skipped). T1 transition at Prog 3, T2 at Prog 9. Three branching paths (A/B/C) diverge at Prog 11-14, sharing the same prog targets.
+Story 3 ("The Woven Night") has 18 progressions (Prog 0-17, Prog 2 skipped). 85% down to 55% (-2pp/prog with breathers at tier transitions). T1 transition at Prog 3, T2 at Prog 9. Three branching paths (A/B/C) diverge at Prog 11-14, sharing the same prog targets.
 
 ## Constraint Rule
 
@@ -40,23 +40,23 @@ No cross-story validation needed since no player classes can change.
 
 | Prog | Target | Range | Tier | Battles |
 |------|--------|-------|------|---------|
-| 0 | 75% | 72-78% | Base | S3_DreamMeadow |
-| 1 | 73% | 70-76% | Base | S3_DreamMirrorHall, S3_DreamFogGarden |
-| 3 | 70% | 67-73% | T1 | S3_DreamReturn |
-| 4 | 68% | 65-71% | T1 | S3_DreamThreads |
-| 5 | 66% | 63-69% | T1 | S3_DreamDrownedCorridor, S3_DreamShatteredGallery |
-| 6 | 64% | 61-67% | T1 | S3_DreamShadowChase |
-| 7 | 62% | 59-65% | T1 | S3_DreamLabyrinth, S3_DreamClockTower |
-| 8 | 60% | 57-63% | T1 | S3_DreamNightmare *(Act II boss)* |
-| 9 | 58% | 55-61% | T2 | S3_MarketConfrontation |
-| 10 | 56% | 53-59% | T2 | S3_CellarDiscovery |
-| 11 | 54% | 51-57% | T2 | S3_LucidDream / S3_B_InnSearch |
-| 12 | 52% | 49-55% | T2 | S3_DreamTemple, S3_DreamVoid / S3_B_CultConfrontation |
-| 13 | 50% | 47-53% | T2 | S3_DreamSanctum / S3_B_TunnelBreach |
-| 14 | 48% | 45-51% | T2 | S3_CultUnderbelly / S3_B_ThornesWard / S3_C_DreamDescent |
-| 15 | 46% | 43-49% | T2 | S3_CultCatacombs / S3_B_LoomHeart / S3_C_CultInterception |
-| 16 | 44% | 41-47% | T2 | S3_CultRitualChamber / S3_B_DreamInvasion / S3_C_ThreadmasterLair |
-| 17 | 42% | 39-45% | T2 | S3_DreamNexus / S3_B_DreamNexus / S3_C_DreamNexus *(final boss)* |
+| 0 | 85% | 82-88% | Base | S3_DreamMeadow |
+| 1 | 83% | 80-86% | Base | S3_DreamMirrorHall, S3_DreamFogGarden |
+| 3 | 81% | 78-84% | T1 | S3_DreamReturn *(T1 breather)* |
+| 4 | 79% | 76-82% | T1 | S3_DreamThreads |
+| 5 | 77% | 74-80% | T1 | S3_DreamDrownedCorridor, S3_DreamShatteredGallery |
+| 6 | 75% | 72-78% | T1 | S3_DreamShadowChase |
+| 7 | 73% | 70-76% | T1 | S3_DreamLabyrinth, S3_DreamClockTower |
+| 8 | 71% | 68-74% | T1 | S3_DreamNightmare *(Act II boss)* |
+| 9 | 71% | 68-74% | T2 | S3_MarketConfrontation *(T2 breather)* |
+| 10 | 69% | 66-72% | T2 | S3_CellarDiscovery |
+| 11 | 67% | 64-70% | T2 | S3_LucidDream / S3_B_InnSearch |
+| 12 | 65% | 62-68% | T2 | S3_DreamTemple, S3_DreamVoid / S3_B_CultConfrontation |
+| 13 | 63% | 60-66% | T2 | S3_DreamSanctum / S3_B_TunnelBreach |
+| 14 | 61% | 58-64% | T2 | S3_CultUnderbelly / S3_B_ThornesWard / S3_C_DreamDescent |
+| 15 | 59% | 56-62% | T2 | S3_CultCatacombs / S3_B_LoomHeart / S3_C_CultInterception |
+| 16 | 57% | 54-60% | T2 | S3_CultRitualChamber / S3_B_DreamInvasion / S3_C_ThreadmasterLair |
+| 17 | 55% | 52-58% | T2 | S3_DreamNexus / S3_B_DreamNexus / S3_C_DreamNexus *(final boss)* |
 
 ## Class Band Table
 
@@ -64,23 +64,23 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 
 | Prog | Tier | Target | Floor | Ceiling |
 |------|------|--------|-------|---------|
-| 0 | base | 75% | 60% | 90% |
-| 1 | base | 73% | 58% | 88% |
-| 3 | T1 | 70% | 57.5% | 82.5% |
-| 4 | T1 | 68% | 55.5% | 80.5% |
-| 5 | T1 | 66% | 53.5% | 78.5% |
-| 6 | T1 | 64% | 51.5% | 76.5% |
-| 7 | T1 | 62% | 49.5% | 74.5% |
-| 8 | T1 | 60% | 47.5% | 72.5% |
-| 9 | T2 | 58% | 48% | 68% |
-| 10 | T2 | 56% | 46% | 66% |
-| 11 | T2 | 54% | 44% | 64% |
-| 12 | T2 | 52% | 42% | 62% |
-| 13 | T2 | 50% | 40% | 60% |
-| 14 | T2 | 48% | 38% | 58% |
-| 15 | T2 | 46% | 36% | 56% |
-| 16 | T2 | 44% | 34% | 54% |
-| 17 | T2 | 42% | 32% | 52% |
+| 0 | base | 85% | 70% | 100% |
+| 1 | base | 83% | 68% | 98% |
+| 3 | T1 | 81% | 68.5% | 93.5% |
+| 4 | T1 | 79% | 66.5% | 91.5% |
+| 5 | T1 | 77% | 64.5% | 89.5% |
+| 6 | T1 | 75% | 62.5% | 87.5% |
+| 7 | T1 | 73% | 60.5% | 85.5% |
+| 8 | T1 | 71% | 58.5% | 83.5% |
+| 9 | T2 | 71% | 61% | 81% |
+| 10 | T2 | 69% | 59% | 79% |
+| 11 | T2 | 67% | 57% | 77% |
+| 12 | T2 | 65% | 55% | 75% |
+| 13 | T2 | 63% | 53% | 73% |
+| 14 | T2 | 61% | 51% | 71% |
+| 15 | T2 | 59% | 49% | 69% |
+| 16 | T2 | 57% | 47% | 67% |
+| 17 | T2 | 55% | 45% | 65% |
 
 ## Battle -> Enemy Mapping
 

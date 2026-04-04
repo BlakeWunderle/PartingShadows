@@ -1,12 +1,12 @@
 "AppBuild"
 {
 	"AppID" "4545380"
-	"Desc" "Echoes of Choice build"
-	"BuildOutput" "C:\Projects\EchoesOfChoice\build\steampipe_output"
+	"Desc" "Parting Shadows build"
+	"BuildOutput" "C:\Projects\PartingShadows\build\steampipe_output"
 	"Depots"
 	{
-		"4545382" "C:\Projects\EchoesOfChoice\steampipe\depot_build_4545382.vdf"
-		"4545383" "C:\Projects\EchoesOfChoice\steampipe\depot_build_4545383.vdf"
-		"4545384" "C:\Projects\EchoesOfChoice\steampipe\depot_build_4545384.vdf"
+		"4545382" "C:\Projects\PartingShadows\steampipe\depot_build_4545382.vdf"
+		"4545383" "C:\Projects\PartingShadows\steampipe\depot_build_4545383.vdf"
+		"4545384" "C:\Projects\PartingShadows\steampipe\depot_build_4545384.vdf"
 	}
 }

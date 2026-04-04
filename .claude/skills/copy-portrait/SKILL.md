@@ -12,9 +12,9 @@ Copies downloaded portrait images from the user's Downloads folder into the corr
 
 | Type | Directory |
 |------|-----------|
-| Enemy portraits | `EchoesOfChoice/assets/art/portraits/enemies/` |
-| Class portraits (male) | `EchoesOfChoice/assets/art/portraits/classes/` |
-| Class portraits (female) | `EchoesOfChoice/assets/art/portraits/classes/` |
+| Enemy portraits | `PartingShadows/assets/art/portraits/enemies/` |
+| Class portraits (male) | `PartingShadows/assets/art/portraits/classes/` |
+| Class portraits (female) | `PartingShadows/assets/art/portraits/classes/` |
 
 ## Filename Mapping
 
@@ -46,7 +46,7 @@ After copying a batch of portraits, run Godot import to generate `.import` files
 
 ```bash
 GODOT="C:/Users/blake/AppData/Local/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6.1-stable_win64_console.exe"
-"$GODOT" --path EchoesOfChoice --headless --import --quit
+"$GODOT" --path PartingShadows --headless --import --quit
 ```
 
 ## Tracking Progress

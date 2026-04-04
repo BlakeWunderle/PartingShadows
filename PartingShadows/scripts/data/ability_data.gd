@@ -1,0 +1,95 @@
+class_name AbilityData extends Resource
+
+## Mirrors C# Ability.cs. Defines a single ability's properties.
+
+const Enums := preload("res://scripts/data/enums.gd")
+
+@export var ability_name: String
+@export var flavor_text: String
+@export var modified_stat: Enums.StatType
+@export var modifier: int
+@export var impacted_turns: int  ## 0 = instant damage/heal
+@export var use_on_enemy: bool = true
+@export var mana_cost: int
+@export var target_all: bool = false
+@export var damage_per_turn: int = 0
+@export var life_steal_percent: float = 0.0
+## Heal fires at Priority 1 only when wounded ally is below this fraction of max HP.
+## Default 0.5 (50%). Set lower (e.g. 0.25) for heals that should be last resort.
+@export var heal_threshold: float = 0.5
+
+
+func get_description() -> String:
+	var target: String
+	if target_all:
+		target = "AoE" if use_on_enemy else "Party"
+	else:
+		target = "" if use_on_enemy else "Ally"
+
+	var effect: String
+	if not use_on_enemy and impacted_turns == 0:
+		effect = "Heal"
+	elif impacted_turns > 0:
+		var stat_abbrev: String
+		match modified_stat:
+			Enums.StatType.ATTACK: stat_abbrev = "ATK"
+			Enums.StatType.DEFENSE: stat_abbrev = "DEF"
+			Enums.StatType.PHYSICAL_ATTACK: stat_abbrev = "P.ATK"
+			Enums.StatType.PHYSICAL_DEFENSE: stat_abbrev = "P.DEF"
+			Enums.StatType.MAGIC_ATTACK: stat_abbrev = "M.ATK"
+			Enums.StatType.MAGIC_DEFENSE: stat_abbrev = "M.DEF"
+			Enums.StatType.SPEED: stat_abbrev = "SPD"
+			Enums.StatType.DODGE_CHANCE: stat_abbrev = "DODGE"
+			Enums.StatType.TAUNT: stat_abbrev = "TAUNT"
+			_: stat_abbrev = "STAT"
+		var arrow: String = "▼" if use_on_enemy else "▲"
+		effect = "%s%s %dt" % [arrow, stat_abbrev, impacted_turns]
+	else:
+		match modified_stat:
+			Enums.StatType.PHYSICAL_ATTACK: effect = "Phys"
+			Enums.StatType.MAGIC_ATTACK: effect = "Magic"
+			Enums.StatType.MIXED_ATTACK: effect = "Mixed"
+			_: effect = "DMG"
+
+	if target.is_empty():
+		return effect
+	return "%s · %s" % [target, effect]
+
+
+func get_compendium_description() -> String:
+	var effect: String
+	if not use_on_enemy and impacted_turns == 0:
+		effect = "Heals"
+	elif impacted_turns > 0:
+		var stat_name: String
+		match modified_stat:
+			Enums.StatType.ATTACK: stat_name = "Attack"
+			Enums.StatType.DEFENSE: stat_name = "Defense"
+			Enums.StatType.PHYSICAL_ATTACK: stat_name = "Physical Attack"
+			Enums.StatType.PHYSICAL_DEFENSE: stat_name = "Physical Defense"
+			Enums.StatType.MAGIC_ATTACK: stat_name = "Magic Attack"
+			Enums.StatType.MAGIC_DEFENSE: stat_name = "Magic Defense"
+			Enums.StatType.SPEED: stat_name = "Speed"
+			Enums.StatType.DODGE_CHANCE: stat_name = "Dodge"
+			Enums.StatType.TAUNT: stat_name = "Taunt"
+			_: stat_name = "Stats"
+		var verb: String = "Reduces" if use_on_enemy else "Boosts"
+		effect = "%s %s for %d turn(s)" % [verb, stat_name, impacted_turns]
+	else:
+		match modified_stat:
+			Enums.StatType.PHYSICAL_ATTACK: effect = "Physical damage"
+			Enums.StatType.MAGIC_ATTACK: effect = "Magic damage"
+			Enums.StatType.MIXED_ATTACK: effect = "Mixed damage"
+			_: effect = "Damage"
+
+	if target_all:
+		effect += " (all)"
+
+	if life_steal_percent > 0:
+		effect += ", drains %d%%" % int(life_steal_percent * 100)
+	if damage_per_turn > 0:
+		effect += ", %d/turn" % damage_per_turn
+
+	if not flavor_text.is_empty():
+		return flavor_text + " (" + effect + ")"
+	return effect

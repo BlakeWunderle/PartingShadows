@@ -1,0 +1,147 @@
+class_name EnemyAbilityDBS3PathC
+
+## Story 3 Path C enemy abilities (deep dream entities, dream-projected cult, Threadmaster).
+
+const AbilityData := preload("res://scripts/data/ability_data.gd")
+const Enums := preload("res://scripts/data/enums.gd")
+const AbilityDB := preload("res://scripts/data/ability_db.gd")
+
+
+static func _make(p_name: String, flavor: String, stat: Enums.StatType, mod: int,
+		turns: int, on_enemy: bool, cost: int, all: bool = false,
+		dot: int = 0, steal: float = 0.0) -> AbilityData:
+	return AbilityDB._make(p_name, flavor, stat, mod, turns, on_enemy, cost, all, dot, steal)
+
+
+# =============================================================================
+# Deep dream entities (S3_C_DreamDescent)
+# =============================================================================
+
+# --- Abyssal Dreamer ---
+
+static func void_pulse() -> AbilityData:
+	return _make("Void Pulse", "A wave of emptiness rolls outward from the deep dream.", Enums.StatType.MAGIC_ATTACK, 6, 0, true, 4, true, 0, 0.0)
+
+static func deep_slumber() -> AbilityData:
+	return _make("Deep Slumber", "The abyss tugs at consciousness, dragging the mind down.", Enums.StatType.SPEED, 8, 2, true, 3, false, 0, 0.0)
+
+# --- Thread Devourer ---
+
+static func thread_bite() -> AbilityData:
+	return _make("Thread Bite", "Jaws made of frayed dream-stuff tear and swallow.", Enums.StatType.MIXED_ATTACK, 7, 0, true, 3, false, 0, 0.2)
+
+static func unravel_ward() -> AbilityData:
+	return _make("Unravel Ward", "Defenses come apart at the seams.", Enums.StatType.DEFENSE, 10, 2, true, 3, false, 0, 0.0)
+
+# --- Slumbering Colossus ---
+
+static func crushing_dream() -> AbilityData:
+	return _make("Crushing Dream", "A fist the size of a house descends with the weight of sleep.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 4, false, 0, 0.0)
+
+static func ancient_yawn() -> AbilityData:
+	return _make("Ancient Yawn", "A yawn that spans centuries settles over the battlefield.", Enums.StatType.SPEED, 6, 2, true, 4, true, 0, 0.0)
+
+
+# =============================================================================
+# Dream-projected cult members (S3_C_CultInterception)
+# =============================================================================
+
+# --- Dream Priest (P15 — SUPPORT healer, Thorne's dream form) ---
+
+static func dream_suture() -> AbilityData:
+	return _make("Dream Suture", "Threads of faith stitch wounds closed from within the dreaming.", Enums.StatType.HEALTH, 20, 0, false, 4, false, 0, 0.0)
+
+static func condemning_light() -> AbilityData:
+	return _make("Condemning Light", "Holy radiance sears those the priest deems heretical.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+# --- Astral Enforcer (P15 — fast crit DPS) ---
+
+static func astral_cleave() -> AbilityData:
+	return _make("Astral Cleave", "A shimmering blade carves through the boundary between thought and flesh.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
+
+static func star_fracture() -> AbilityData:
+	return _make("Star Fracture", "The enforcer tears a seam in the dreamscape and drives a fist through the gap.", Enums.StatType.PHYSICAL_ATTACK, 13, 0, true, 5, false, 0, 0.0)
+
+# --- Oneiric Hexer ---
+
+static func nightmare_hex() -> AbilityData:
+	return _make("Nightmare Hex", "A curse woven from bad dreams saps the will to fight.", Enums.StatType.ATTACK, 11, 2, true, 4, true, 0, 0.0)
+
+static func dream_bolt() -> AbilityData:
+	return _make("Dream Bolt", "A concentrated shard of dreaming strikes like lightning.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+
+# =============================================================================
+# Threadmaster's personal guardians (S3_C_ThreadmasterLair)
+# =============================================================================
+
+# --- Memory Eater ---
+
+static func devour_memory() -> AbilityData:
+	return _make("Devour Memory", "It feeds on what you remember and grows stronger.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.2)
+
+static func amnesia_fog() -> AbilityData:
+	return _make("Amnesia Fog", "A haze that strips away the knowledge of how to defend.", Enums.StatType.MAGIC_DEFENSE, 13, 2, true, 4, true, 0, 0.0)
+
+# --- Nightmare Sentinel ---
+
+static func nightmare_blade() -> AbilityData:
+	return _make("Nightmare Blade", "A blade forged in the deepest fears of a thousand sleepers.", Enums.StatType.PHYSICAL_ATTACK, 9, 0, true, 3, false, 0, 0.0)
+
+static func terror_ward() -> AbilityData:
+	return _make("Terror Aura", "Fear radiates outward, sapping the will to fight from every enemy.", Enums.StatType.ATTACK, 11, 2, true, 4, true, 0, 0.0)
+
+# --- Anchor Chain ---
+
+static func binding_pull() -> AbilityData:
+	return _make("Binding Pull", "The chain tightens and the blood slows.", Enums.StatType.SPEED, 6, 3, true, 3, false, 0, 0.0)
+
+static func iron_link() -> AbilityData:
+	return _make("Chain Strike", "The chain whips outward and crashes into the nearest target.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
+
+
+# =============================================================================
+# The Ancient Threadmaster and its servants (S3_C_DreamNexus)
+# =============================================================================
+
+# --- The Ancient Threadmaster ---
+
+static func primordial_weave() -> AbilityData:
+	return _make("Primordial Weave", "Thread and dream, flesh and thought. The original weaver makes no distinction.", Enums.StatType.MIXED_ATTACK, 15, 0, true, 4, false, 0, 0.0)
+
+static func reality_tear() -> AbilityData:
+	return _make("Reality Tear", "The Ancient Threadmaster pulls reality apart at the seams.", Enums.StatType.MIXED_ATTACK, 11, 0, true, 3, true, 0, 0.0)
+
+static func ancient_lash() -> AbilityData:
+	return _make("Ancient Lash", "A tendril of raw, pre-human thread strikes with the weight of aeons.", Enums.StatType.PHYSICAL_ATTACK, 14, 0, true, 3, false, 0, 0.0)
+
+static func forgotten_curse() -> AbilityData:
+	return _make("Forgotten Curse", "A hex older than language, weakening body and mind alike.", Enums.StatType.ATTACK, 13, 2, true, 4, true, 0, 0.0)
+
+static func ageless_hunger() -> AbilityData:
+	return _make("Ageless Hunger", "It has been feeding on dream-energy since before the cult existed.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.2)
+
+# --- Dream Shackle ---
+
+static func binding_lash() -> AbilityData:
+	return _make("Binding Lash", "A length of chain whips outward, seeking to reclaim.", Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+static func reclaim() -> AbilityData:
+	return _make("Reclaim", "The shackle drags everything toward the Threadmaster.", Enums.StatType.SPEED, 8, 2, true, 4, true, 0, 0.0)
+
+# --- Loom Heart ---
+
+static func pulse_of_the_loom() -> AbilityData:
+	return _make("Pulse of the Loom", "The Loom's heartbeat reverberates through everything, rattling armor and resolve.", Enums.StatType.DEFENSE, 10, 2, true, 3, true, 0, 0.0)
+
+static func loom_storm() -> AbilityData:
+	return _make("Loom Storm", "Threads of raw energy lash outward in every direction.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
+
+
+# --- Oneiric Guardian (dream-projected cult tank, life steal) ---
+
+static func warden_strike() -> AbilityData:
+	return _make("Warden's Strike", "A massive fist crashes down with the weight of the dream behind it.", Enums.StatType.PHYSICAL_ATTACK, 8, 0, true, 3, false, 0, 0.0)
+
+static func dream_siphon() -> AbilityData:
+	return _make("Dream Siphon", "The guardian draws strength from the dreams of those it strikes.", Enums.StatType.PHYSICAL_ATTACK, 6, 0, true, 3, false, 0, 0.2)

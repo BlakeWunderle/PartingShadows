@@ -5,7 +5,7 @@ description: Sync the ability catalog memory file with the GDScript ability data
 
 # Update Ability Catalog
 
-Keep `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\abilities.md` in sync with the GDScript ability databases in `EchoesOfChoice/scripts/data/`.
+Keep `C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\abilities.md` in sync with the GDScript ability databases in `PartingShadows/scripts/data/`.
 
 ## When to Run
 
@@ -23,17 +23,17 @@ For each class tier, find which abilities each class uses:
 
 ```bash
 # Base classes (T0)
-grep -n "abilities\s*=" EchoesOfChoice/scripts/data/fighter_db.gd
+grep -n "abilities\s*=" PartingShadows/scripts/data/fighter_db.gd
 
 # Tier 1 classes
-grep -n "abilities\s*=" EchoesOfChoice/scripts/data/fighter_db_t1.gd
+grep -n "abilities\s*=" PartingShadows/scripts/data/fighter_db_t1.gd
 
 # Tier 2 classes
-grep -n "abilities\s*=" EchoesOfChoice/scripts/data/fighter_db_t2.gd
-grep -n "abilities\s*=" EchoesOfChoice/scripts/data/fighter_db_t2b.gd
+grep -n "abilities\s*=" PartingShadows/scripts/data/fighter_db_t2.gd
+grep -n "abilities\s*=" PartingShadows/scripts/data/fighter_db_t2b.gd
 
 # Enemies
-grep -n "abilities\s*=" EchoesOfChoice/scripts/data/enemy_db.gd
+grep -n "abilities\s*=" PartingShadows/scripts/data/enemy_db.gd
 ```
 
 ### Step 2: Read ability definitions
@@ -41,9 +41,9 @@ grep -n "abilities\s*=" EchoesOfChoice/scripts/data/enemy_db.gd
 For each ability function, extract: ability_name, modified_stat, modifier, impacted_turns, use_on_enemy, mana_cost, target_all, damage_per_turn, life_steal_percent, flavor_text.
 
 Ability functions are in:
-- `EchoesOfChoice/scripts/data/ability_db.gd` -- base/shared player abilities (T0 classes + shared)
-- `EchoesOfChoice/scripts/data/ability_db_player.gd` -- T1 and T2 player abilities
-- `EchoesOfChoice/scripts/data/enemy_ability_db.gd` -- enemy-specific abilities
+- `PartingShadows/scripts/data/ability_db.gd` -- base/shared player abilities (T0 classes + shared)
+- `PartingShadows/scripts/data/ability_db_player.gd` -- T1 and T2 player abilities
+- `PartingShadows/scripts/data/enemy_ability_db.gd` -- enemy-specific abilities
 
 Each ability is a static function returning an AbilityData via the `_make()` helper:
 ```gdscript
@@ -110,16 +110,16 @@ ABILITY CATALOG SYNC
 
 ## Key Files
 
-- Base/shared abilities: `EchoesOfChoice/scripts/data/ability_db.gd`
-- T1/T2 player abilities: `EchoesOfChoice/scripts/data/ability_db_player.gd`
-- Enemy abilities: `EchoesOfChoice/scripts/data/enemy_ability_db.gd`
-- Ability data model: `EchoesOfChoice/scripts/data/ability_data.gd`
-- Stat enums: `EchoesOfChoice/scripts/data/enums.gd`
-- Base player classes: `EchoesOfChoice/scripts/data/fighter_db.gd`
-- T1 player classes: `EchoesOfChoice/scripts/data/fighter_db_t1.gd`
-- T2 player classes: `EchoesOfChoice/scripts/data/fighter_db_t2.gd`, `fighter_db_t2b.gd`
-- Enemy factories: `EchoesOfChoice/scripts/data/enemy_db.gd`
-- Catalog: `C:\Users\blake\.claude\projects\c--Projects-EchoesOfChoice\memory\abilities.md`
+- Base/shared abilities: `PartingShadows/scripts/data/ability_db.gd`
+- T1/T2 player abilities: `PartingShadows/scripts/data/ability_db_player.gd`
+- Enemy abilities: `PartingShadows/scripts/data/enemy_ability_db.gd`
+- Ability data model: `PartingShadows/scripts/data/ability_data.gd`
+- Stat enums: `PartingShadows/scripts/data/enums.gd`
+- Base player classes: `PartingShadows/scripts/data/fighter_db.gd`
+- T1 player classes: `PartingShadows/scripts/data/fighter_db_t1.gd`
+- T2 player classes: `PartingShadows/scripts/data/fighter_db_t2.gd`, `fighter_db_t2b.gd`
+- Enemy factories: `PartingShadows/scripts/data/enemy_db.gd`
+- Catalog: `C:\Users\blake\.claude\projects\c--Projects-PartingShadows\memory\abilities.md`
 
 ## Related
 
