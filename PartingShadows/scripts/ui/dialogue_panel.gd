@@ -6,10 +6,6 @@ class_name DialoguePanel extends PanelContainer
 signal all_text_finished
 
 var CHAR_DELAY: float = 0.02  ## Seconds between characters for typewriter effect
-const BLIP_PATH: String = "res://assets/audio/sfx/ui/Dark Cybernetic Interface Pop-Up Sound 1.wav"
-const BLIP_VOLUME: float = 0.12
-const BLIP_INTERVAL_NORMAL: int = 2  ## Play blip every N characters
-const BLIP_INTERVAL_FAST: int = 4  ## Less frequent when text speed is fast
 
 var _lines: Array = []
 var _current_line: int = 0
@@ -95,8 +91,6 @@ func _type_next_line() -> void:
 	_typing = true
 
 	var chars_added: int = 0
-	var blip_counter: int = 0
-	var blip_interval: int = BLIP_INTERVAL_FAST if CHAR_DELAY <= 0.01 else BLIP_INTERVAL_NORMAL
 	for ch: String in _full_text:
 		if gen != _gen:
 			return  # A new show_text() was called; abort this stale loop
@@ -107,12 +101,6 @@ func _type_next_line() -> void:
 			var remaining: String = _full_text.substr(chars_added)
 			_label.append_text(remaining)
 			break
-		# Dialog blip on non-whitespace characters at interval
-		if CHAR_DELAY > 0.0 and SettingsManager.dialog_blips and ch.strip_edges() != "":
-			blip_counter += 1
-			if blip_counter >= blip_interval:
-				blip_counter = 0
-				SFXManager.play_at_path_pitched(BLIP_PATH, BLIP_VOLUME, 0.95, 1.05)
 		await get_tree().create_timer(CHAR_DELAY, false).timeout
 		# In multiplayer the tree isn't paused, so wait while pause overlay is open
 		while PauseOverlay._panel and PauseOverlay._panel.visible:

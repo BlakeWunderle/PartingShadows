@@ -21,7 +21,6 @@ var _resolution_row: HBoxContainer
 var _color_blind_btn: OptionButton
 var _screen_reader_btn: CheckButton
 var _reduced_motion_btn: CheckButton
-var _dialog_blips_btn: CheckButton
 var _keys_btn: Button
 var _defaults_btn: Button
 var _back_btn: Button
@@ -140,11 +139,6 @@ func _build_ui() -> void:
 	_add_toggle_row(inner, "Reduce Motion", _reduced_motion_btn)
 	_reduced_motion_btn.toggled.connect(_on_reduced_motion_toggled)
 
-	# Dialog Blips
-	_dialog_blips_btn = CheckButton.new()
-	_add_toggle_row(inner, "Dialog Blips", _dialog_blips_btn)
-	_dialog_blips_btn.toggled.connect(_on_dialog_blips_toggled)
-
 	# Bottom buttons
 	var btn_row := HBoxContainer.new()
 	btn_row.add_theme_constant_override("separation", 12)
@@ -172,10 +166,10 @@ func _build_ui() -> void:
 	_back_btn.focus_neighbor_right = _keys_btn.get_path()
 
 	# Wire focus: last toggle ↔ bottom buttons ↔ music slider (wrap)
-	_dialog_blips_btn.focus_neighbor_bottom = _keys_btn.get_path()
-	_keys_btn.focus_neighbor_top = _dialog_blips_btn.get_path()
-	_defaults_btn.focus_neighbor_top = _dialog_blips_btn.get_path()
-	_back_btn.focus_neighbor_top = _dialog_blips_btn.get_path()
+	_reduced_motion_btn.focus_neighbor_bottom = _keys_btn.get_path()
+	_keys_btn.focus_neighbor_top = _reduced_motion_btn.get_path()
+	_defaults_btn.focus_neighbor_top = _reduced_motion_btn.get_path()
+	_back_btn.focus_neighbor_top = _reduced_motion_btn.get_path()
 	_keys_btn.focus_neighbor_bottom = _music_slider.get_path()
 	_defaults_btn.focus_neighbor_bottom = _music_slider.get_path()
 	_back_btn.focus_neighbor_bottom = _music_slider.get_path()
@@ -312,7 +306,6 @@ func _sync_from_settings() -> void:
 	_color_blind_btn.select(_find_index_str(COLOR_BLIND_MODES, SettingsManager.color_blind_mode, 0))
 	_screen_reader_btn.set_pressed_no_signal(SettingsManager.screen_reader)
 	_reduced_motion_btn.set_pressed_no_signal(SettingsManager.reduced_motion)
-	_dialog_blips_btn.set_pressed_no_signal(SettingsManager.dialog_blips)
 
 
 func _find_index(arr: Array[float], val: float, fallback: int) -> int:
@@ -387,9 +380,6 @@ func _on_screen_reader_toggled(pressed: bool) -> void:
 func _on_reduced_motion_toggled(pressed: bool) -> void:
 	SettingsManager.reduced_motion = pressed
 
-
-func _on_dialog_blips_toggled(pressed: bool) -> void:
-	SettingsManager.dialog_blips = pressed
 
 
 func _input(event: InputEvent) -> void:

@@ -80,21 +80,6 @@ func play_at_path(path: String, volume: float = 1.0) -> void:
 	_play_on_player(player, path, volume)
 
 
-func play_at_path_pitched(path: String, volume: float, pitch_min: float, pitch_max: float) -> void:
-	if _headless:
-		return
-	var player := _get_available_player()
-	var stream: AudioStream = _load_cached_stream(path)
-	if stream == null:
-		return
-	player.stream = stream
-	player.volume_db = linear_to_db(maxf(0.0001, volume))
-	player.pitch_scale = randf_range(pitch_min, pitch_max)
-	player.play()
-	var idx: int = _players.find(player)
-	if idx >= 0:
-		_play_times[idx] = Time.get_ticks_msec()
-
 
 func stop_all() -> void:
 	for player: AudioStreamPlayer in _players:
