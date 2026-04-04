@@ -579,17 +579,15 @@ func _wire_load_focus() -> void:
 		below_chain.append(_load_mode_box)
 	below_chain.append(_load_back_btn)
 
-	# Wire all slot buttons → first item below
+	# Wire last slot button → first item below
 	if last_slot_btn and below_chain.size() > 0:
 		var target: Control = below_chain[0]
 		var focus_btn: Button = _focus_entry(target)
-		for btn: Button in _menu._buttons:
-			btn.focus_neighbor_bottom = focus_btn.get_path()
+		last_slot_btn.focus_neighbor_bottom = focus_btn.get_path()
 
-	# Wire slot buttons top → wrap to back
+	# Wire first slot button top → wrap to back
 	if first_slot_btn:
-		for btn: Button in _menu._buttons:
-			btn.focus_neighbor_top = _load_back_btn.get_path()
+		first_slot_btn.focus_neighbor_top = _load_back_btn.get_path()
 
 	# Wire consecutive items in below_chain
 	for idx: int in below_chain.size():
