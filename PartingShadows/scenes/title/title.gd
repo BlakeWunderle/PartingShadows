@@ -191,7 +191,7 @@ func _build_ui() -> void:
 	_compendium_panel = CompendiumPanelNew.new()
 	_compendium_panel.visible = false
 	_compendium_panel.set_context(CompendiumPanelNew.Context.GLOBAL, -1)
-	_compendium_panel.close_requested.connect(_show_main_menu)
+	_compendium_panel.close_requested.connect(_show_main_menu, CONNECT_DEFERRED)
 	_vbox.add_child(_compendium_panel)
 
 	# Version label (bottom-right corner)

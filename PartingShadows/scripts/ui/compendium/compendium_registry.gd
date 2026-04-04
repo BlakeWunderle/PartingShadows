@@ -323,10 +323,20 @@ static func get_all_battle_ids() -> Array:
 	]
 
 
-## Get a portrait path for a player class.
+## Get a portrait path for a player class (seeded-random M or F variant).
 static func get_class_portrait_path(class_id: String) -> String:
-	var display_name: String = _FighterDB.get_display_name(class_id)
-	return "res://assets/art/portraits/classes/%s_m.png" % to_portrait_key(display_name)
+	var key: String = to_portrait_key(_FighterDB.get_display_name(class_id))
+	var suffix: String = "_f" if class_id.hash() % 2 == 0 else "_m"
+	return "res://assets/art/portraits/classes/%s%s.png" % [key, suffix]
+
+
+## Get both portrait paths (M and F) for a player class.
+static func get_class_portrait_paths(class_id: String) -> Dictionary:
+	var key: String = to_portrait_key(_FighterDB.get_display_name(class_id))
+	return {
+		"m": "res://assets/art/portraits/classes/%s_m.png" % key,
+		"f": "res://assets/art/portraits/classes/%s_f.png" % key,
+	}
 
 
 ## Get a portrait path for an enemy.

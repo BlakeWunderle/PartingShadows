@@ -383,7 +383,7 @@ func _on_reduced_motion_toggled(pressed: bool) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not visible:
+	if not is_visible_in_tree():
 		return
 	if event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()

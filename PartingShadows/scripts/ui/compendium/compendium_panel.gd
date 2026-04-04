@@ -208,6 +208,7 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 					"mana_cost": a.mana_cost,
 
 				})
+		var _paths: Dictionary = Registry.get_class_portrait_paths(class_id) if is_discovered else {}
 		var item_dict := {
 			"is_discovered": is_discovered,
 			"data": {
@@ -215,6 +216,8 @@ func _build_classes_tab(discoveries: Dictionary) -> void:
 				"name": _FighterDB.get_display_name(class_id) if is_discovered else "???",
 				"tier": CompendiumManager.get_tier(class_id),
 				"portrait_path": Registry.get_class_portrait_path(class_id) if is_discovered else "",
+				"portrait_path_m": _paths.get("m", ""),
+				"portrait_path_f": _paths.get("f", ""),
 				"flavor_text": _FighterDB.get_flavor_text(class_id) if is_discovered else "",
 				"abilities": abilities,
 				"display_name": _FighterDB.get_display_name(class_id) if is_discovered else "???",

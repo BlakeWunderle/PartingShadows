@@ -43,19 +43,23 @@ func build_content(container: VBoxContainer) -> void:
 	left_panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	hbox.add_child(left_panel)
 
-	# Portrait
-	var portrait := TextureRect.new()
-	portrait.custom_minimum_size = Vector2(200, 200)
-	portrait.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	# Portraits (M and F side by side)
+	var portrait_row := HBoxContainer.new()
+	portrait_row.add_theme_constant_override("separation", 8)
+	left_panel.add_child(portrait_row)
 
-	var portrait_path: String = class_data.get("portrait_path", "")
-	if portrait_path.is_empty() or not ResourceLoader.exists(portrait_path):
-		portrait_path = "res://assets/art/ui/placeholder_portrait.png"
-	if ResourceLoader.exists(portrait_path):
-		portrait.texture = load(portrait_path)
+	for suffix: String in ["m", "f"]:
+		var portrait := TextureRect.new()
+		portrait.custom_minimum_size = Vector2(150, 150)
+		portrait.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 
-	left_panel.add_child(portrait)
+		var p_path: String = class_data.get("portrait_path_" + suffix, "")
+		if p_path.is_empty() or not ResourceLoader.exists(p_path):
+			p_path = "res://assets/art/ui/placeholder_portrait.png"
+		if ResourceLoader.exists(p_path):
+			portrait.texture = load(p_path)
+		portrait_row.add_child(portrait)
 
 	# Tier tree
 	var tree_label := Label.new()
@@ -252,12 +256,15 @@ func _navigate_to_class(target_class_id: String) -> void:
 			"description": a.get_compendium_description(),
 			"mana_cost": a.mana_cost,
 		})
+	var _paths: Dictionary = Registry.get_class_portrait_paths(target_class_id)
 	var target_data := {
 		"class_id": target_class_id,
 		"display_name": _FighterDB.get_display_name(target_class_id),
 		"name": _FighterDB.get_display_name(target_class_id),
 		"tier": tier,
 		"portrait_path": Registry.get_class_portrait_path(target_class_id),
+		"portrait_path_m": _paths["m"],
+		"portrait_path_f": _paths["f"],
 		"flavor_text": _FighterDB.get_flavor_text(target_class_id),
 		"abilities": abilities,
 	}
@@ -281,7 +288,7 @@ func _add_portrait_thumb(row: HBoxContainer, class_id: String, is_discovered: bo
 	thumb.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	thumb.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	if is_discovered:
-		var path: String = "res://assets/art/portraits/classes/%s_m.png" % Registry.to_portrait_key(display_name)
+		var path: String = Registry.get_class_portrait_path(class_id)
 		if ResourceLoader.exists(path):
 			thumb.texture = load(path)
 	row.add_child(thumb)
