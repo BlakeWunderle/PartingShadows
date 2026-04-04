@@ -44,6 +44,12 @@ savegame.json
 credentials.json
 *cookies*.txt
 
+# Old project directory
+EchoesOfChoice/
+
+# Tool-generated images
+PartingShadows/tools/*.png
+
 # Build output
 build/
 *.zip
