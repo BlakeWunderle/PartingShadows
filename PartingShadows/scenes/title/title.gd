@@ -191,7 +191,7 @@ func _build_ui() -> void:
 	_compendium_panel = CompendiumPanelNew.new()
 	_compendium_panel.visible = false
 	_compendium_panel.set_context(CompendiumPanelNew.Context.GLOBAL, -1)
-	_compendium_panel.close_requested.connect(_show_main_menu, CONNECT_DEFERRED)
+	_compendium_panel.close_requested.connect(_show_main_menu)
 	_vbox.add_child(_compendium_panel)
 
 	# Version label (bottom-right corner)
@@ -258,7 +258,9 @@ func _show_main_menu() -> void:
 	_mode = Mode.MAIN_MENU
 	_has_saves = SaveManager.has_any_save()
 	_settings_margin.visible = false
+	_settings_panel.visible = false
 	_remap_margin.visible = false
+	_remap_panel.visible = false
 	_compendium_panel.visible = false
 	_load_pagination.visible = false
 	_load_mode_box.visible = false
@@ -395,6 +397,8 @@ func _show_settings() -> void:
 	_menu.hide_menu()
 	_center.visible = false
 	_remap_margin.visible = false
+	_remap_panel.visible = false
+	_settings_panel.visible = true
 	_fade_in(_settings_margin)
 	_settings_panel.focus_first()
 
@@ -403,6 +407,8 @@ func _show_key_bindings() -> void:
 	_mode = Mode.KEY_BINDINGS
 	_center.visible = false
 	_settings_margin.visible = false
+	_settings_panel.visible = false
+	_remap_panel.visible = true
 	_fade_in(_remap_margin)
 	_remap_panel.focus_first()
 
