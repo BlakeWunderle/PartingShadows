@@ -124,7 +124,12 @@ func _is_mp_guest() -> bool:
 
 func _start_battle() -> void:
 	_engine = BattleEngine.new()
-	_engine.difficulty_level = SettingsManager.get_difficulty_level()
+	# Enemy AI scales with party tier: T0=easy, T1=normal, T2=hard
+	var _FighterDB := preload("res://scripts/data/fighter_db.gd")
+	var max_tier: int = 0
+	for f: FighterData in GameState.party:
+		max_tier = maxi(max_tier, _FighterDB.get_class_tier(f.class_id))
+	_engine.difficulty_level = max_tier
 	_engine.combat_message.connect(_on_combat_message)
 	_engine.combat_event.connect(_on_combat_event)
 	_engine.fighter_died.connect(_on_fighter_died)

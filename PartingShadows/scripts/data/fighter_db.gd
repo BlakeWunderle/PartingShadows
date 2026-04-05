@@ -243,6 +243,19 @@ static func get_default_upgrade_items(class_id: String) -> Array[String]:
 	return []
 
 
+static func get_class_tier(class_id: String) -> int:
+	## Returns 0 for T0 (base), 1 for T1, 2 for T2.
+	match class_id:
+		"Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer":
+			return 0
+		"Duelist", "Ranger", "MartialArtist", "Invoker", "Acolyte", \
+		"Bard", "Dervish", "Orator", "Artificer", "Philosopher", \
+		"Arithmancer", "Herbalist", "Shaman", "Beastcaller", \
+		"Sentinel", "Pathfinder":
+			return 1
+	return 2
+
+
 # =============================================================================
 # Class upgrade: item determines new class, keeps accumulated stats
 # =============================================================================

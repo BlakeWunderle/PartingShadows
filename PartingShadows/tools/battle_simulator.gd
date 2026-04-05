@@ -23,7 +23,7 @@ var _combo_worker_mode := false
 var _all_results: Array = []
 var _all_stages: Array = []
 var _exclude_combos: Array[String] = []
-var _difficulty_level: int = 1
+var _difficulty_level: int = -1  ## -1 = auto (derive from stage tier)
 
 
 func _init() -> void:
@@ -218,10 +218,13 @@ func _init() -> void:
 	if not _worker_mode:
 		print("=== Parting Shadows Battle Simulator ===\n")
 
-	SR._get_sim_engine().difficulty_level = _difficulty_level
-	if _difficulty_level != 1 and not _worker_mode:
-		var diff_names: Array[String] = ["Easy", "Normal", "Hard"]
-		print("  Difficulty: %s\n" % diff_names[_difficulty_level])
+	if _difficulty_level >= 0:
+		SR._get_sim_engine().difficulty_level = _difficulty_level
+		if not _worker_mode:
+			var diff_names: Array[String] = ["Easy", "Normal", "Hard"]
+			print("  Difficulty: %s (override)\n" % diff_names[_difficulty_level])
+	elif not _worker_mode:
+		print("  Difficulty: auto (T0=easy, T1=normal, T2=hard)\n")
 
 	if run_progressive:
 		SP.run(stages, sims_per_combo, auto_sims, sample_size,
@@ -297,6 +300,10 @@ func _run_single(stage: Dictionary, sims_per_combo: int,
 		_all_stages.append(stage)
 		return
 
+	# Auto-detect difficulty from stage tier when not overridden
+	if _difficulty_level < 0:
+		SR._get_sim_engine().difficulty_level = _tier_to_difficulty(stage.get("tier", "base"))
+
 	if not quiet:
 		print("\nRunning %d sims/combo for %s..." % [sims_per_combo, stage.name])
 	var sw := Time.get_ticks_msec()
@@ -361,6 +368,10 @@ func _run_stages(stages: Array, sims_per_combo: int,
 			sims = SR.calculate_sims_for_party_count(count)
 		else:
 			sims = sims_per_combo
+
+		# Auto-detect difficulty from stage tier when not overridden
+		if _difficulty_level < 0:
+			SR._get_sim_engine().difficulty_level = _tier_to_difficulty(stage.get("tier", "base"))
 
 		var cached := SC.get_cached(stage.name, stage.get("story", 1),
 			sims, sample_size) if _use_cache else {}
@@ -473,7 +484,7 @@ func _print_help() -> void:
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
 	print("  --combo-worker <N/M> Combo-worker mode: run 1/M of party combos per stage (used by parallel coordinator)")
 	print("  --compact            Minimal output (1 line/PASS, details to file)")
-	print("  --difficulty <mode>   AI difficulty: easy, normal, hard (default: normal)")
+	print("  --difficulty <mode>   AI difficulty: easy, normal, hard (default: auto by tier)")
 	print("  --diagnostics        Show detailed analysis of WEAK classes")
 	print("  --no-cache           Skip cache lookups, force re-simulation")
 	print("  --clear-cache        Delete cached results and exit")
@@ -494,3 +505,11 @@ func _print_help() -> void:
 	print("  ... -- --progressive --story 1 --auto --sample 100")
 	print("  ... -- --progressive --from 3 --story 2 --sims 50")
 	print("  ... -- --auto --battles S3_DreamShadowChase,S3_DreamLabyrinth,S3_DreamNightmare")
+
+
+static func _tier_to_difficulty(tier: String) -> int:
+	## Maps stage tier to enemy AI difficulty: base=0 (easy), tier1=1 (normal), tier2=2 (hard).
+	match tier:
+		"tier1": return 1
+		"tier2": return 2
+	return 0

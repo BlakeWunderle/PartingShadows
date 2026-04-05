@@ -1042,12 +1042,12 @@ func _smart_choose_target(unit: FighterData, targets: Array,
 
 
 func _find_focus_target(targets: Array) -> FighterData:
-	## Focus fire: pick the most wounded target below 40% HP. 70% chance to commit.
+	## Focus fire: pick the most wounded target below 25% HP. 70% chance to commit.
 	var best: FighterData = null
 	var best_pct: float = 1.0
 	for t: FighterData in targets:
 		var pct: float = float(t.health) / float(t.max_health)
-		if pct < 0.4 and pct < best_pct:
+		if pct < 0.25 and pct < best_pct:
 			best_pct = pct
 			best = t
 	if best != null and randf() < 0.7:
