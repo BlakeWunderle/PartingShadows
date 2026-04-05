@@ -10,7 +10,7 @@ const ConfirmDialog := preload("res://scripts/ui/confirm_dialog.gd")
 const CompendiumPanelNew := preload("res://scripts/ui/compendium/compendium_panel.gd")
 const InputRemapPanel := preload("res://scripts/ui/input_remap_panel.gd")
 
-enum Mode { MAIN_MENU, PLAY_MODE, LOAD_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS }
+enum Mode { MAIN_MENU, PLAY_MODE, DIFFICULTY_SELECT, LOAD_SLOTS, SETTINGS, COMPENDIUM, KEY_BINDINGS }
 
 var _title_label: Label
 var _subtitle_label: Label
@@ -25,6 +25,7 @@ var _compendium_panel: CompendiumPanelNew
 var _confirm_dialog: ConfirmDialog
 var _pending_delete_slot: int = -1
 var _accepting_input: bool = false
+var _pending_play_index: int = -1  ## Stores play mode index while difficulty is being selected
 var _center: CenterContainer
 var _settings_margin: MarginContainer
 var _remap_margin: MarginContainer
@@ -294,6 +295,8 @@ func _on_menu_choice(index: int) -> void:
 			_handle_main_choice(index)
 		Mode.PLAY_MODE:
 			_handle_play_mode_choice(index)
+		Mode.DIFFICULTY_SELECT:
+			_handle_difficulty_choice(index)
 		Mode.LOAD_SLOTS:
 			_handle_load_choice(index)
 
@@ -366,6 +369,44 @@ func _show_play_mode() -> void:
 
 
 func _handle_play_mode_choice(index: int) -> void:
+	# Check for Back option first
+	var back_index: int = 4 if SteamManager.is_steam_running else 3
+	if index == back_index:
+		_show_main_menu()
+		return
+	_pending_play_index = index
+	_show_difficulty_select()
+
+
+func _show_difficulty_select() -> void:
+	_mode = Mode.DIFFICULTY_SELECT
+	var current_idx: int = SettingsManager.get_difficulty_level()
+	var labels: Array[String] = ["Easy", "Normal", "Hard"]
+	var descriptions: Array[String] = [
+		"Classic enemy AI.",
+		"Enemies finish off wounded targets and coordinate abilities.",
+		"Enemies hunt your strongest characters and adapt their strategy.",
+	]
+	var options: Array[Dictionary] = []
+	for i: int in labels.size():
+		var suffix: String = " (current)" if i == current_idx else ""
+		options.append({"label": labels[i] + suffix, "description": descriptions[i]})
+	options.append({"label": "Back"})
+	_menu.show_choices(options)
+
+
+func _handle_difficulty_choice(index: int) -> void:
+	match index:
+		0: SettingsManager.difficulty = "easy"
+		1: SettingsManager.difficulty = "normal"
+		2: SettingsManager.difficulty = "hard"
+		3:  # Back
+			_show_play_mode()
+			return
+	_launch_play_mode(_pending_play_index)
+
+
+func _launch_play_mode(index: int) -> void:
 	match index:
 		0:  # Single Player
 			if UnlockManager.is_unlocked("story_1_complete"):
@@ -379,13 +420,9 @@ func _handle_play_mode_choice(index: int) -> void:
 		2:  # Local Co-op (3 Players)
 			LocalCoop.start(3)
 			SceneManager.change_scene("res://scenes/controller_assign/controller_assign.tscn")
-		3:  # Online Multiplayer (Steam) or Back (no Steam)
+		3:  # Online Multiplayer (Steam)
 			if SteamManager.is_steam_running:
 				SceneManager.change_scene("res://scenes/lobby/lobby.tscn")
-			else:
-				_show_main_menu()
-		4:  # Back (only reached when Online Multiplayer was shown)
-			_show_main_menu()
 
 
 # =============================================================================
@@ -435,6 +472,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			Mode.PLAY_MODE:
 				get_viewport().set_input_as_handled()
 				_show_main_menu()
+			Mode.DIFFICULTY_SELECT:
+				get_viewport().set_input_as_handled()
+				_show_play_mode()
 			Mode.LOAD_SLOTS:
 				get_viewport().set_input_as_handled()
 				_show_main_menu()
