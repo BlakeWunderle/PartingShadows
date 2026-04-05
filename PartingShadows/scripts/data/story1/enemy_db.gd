@@ -67,7 +67,7 @@ static func create_wolf(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.speed = EH.es(23, 28, 2, 3, lvl, 2)
+	f.speed = EH.es(24, 28, 2, 3, lvl, 2)
 	f.crit_chance = 7; f.crit_damage = 1; f.dodge_chance = 11
 	f.abilities = [EAB.bite(), EAB.howl()]
 	f.flavor_text = "Forest predators that hunt in packs, emboldened by moonlight."
@@ -77,7 +77,7 @@ static func create_boar(n: String, lvl: int = 2) -> FighterData:
 	var f := EH.base(n, "Boar", lvl)
 	f.health = EH.es(65, 74, 4, 6, lvl, 2); f.max_health = f.health
 	f.mana = EH.es(4, 6, 1, 2, lvl, 2); f.max_mana = f.mana
-	f.physical_attack = EH.es(19, 22, 2, 3, lvl, 2)
+	f.physical_attack = EH.es(20, 22, 2, 3, lvl, 2)
 	f.physical_defense = EH.es(10, 13, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(2, 4, 0, 1, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
@@ -95,7 +95,7 @@ static func create_thornviper(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(5, 8, 0, 1, lvl, 2)
 	f.magic_attack = EH.es(13, 16, 1, 2, lvl, 2)
 	f.magic_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.speed = EH.es(25, 31, 2, 3, lvl, 2)
+	f.speed = EH.es(26, 31, 2, 3, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 13
 	f.abilities = [EAB.fang_strike(), EAB.venom()]
 	f.flavor_text = "A sleek forest serpent with barbed scales and venom that burns like fire. It strikes from the undergrowth without warning."
@@ -110,7 +110,7 @@ static func create_goblin(n: String, lvl: int = 2) -> FighterData:
 	f.physical_defense = EH.es(9, 12, 1, 2, lvl, 2)
 	f.magic_attack = EH.es(3, 6, 0, 2, lvl, 2)
 	f.magic_defense = EH.es(3, 6, 0, 2, lvl, 2)
-	f.speed = EH.es(26, 32, 2, 4, lvl, 2)
+	f.speed = EH.es(25, 32, 2, 4, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 18
 	f.abilities = [EAB.stab(), EAB.throw_rock(), EAB.scurry()]
 	f.flavor_text = "Small, vicious, and surprisingly quick. What they lack in strength they make up for in cunning."
@@ -122,7 +122,7 @@ static func create_hound(n: String, lvl: int = 2) -> FighterData:
 	f.mana = EH.es(5, 7, 1, 2, lvl, 2); f.max_mana = f.mana
 	f.physical_attack = EH.es(8, 11, 0, 2, lvl, 2)
 	f.physical_defense = EH.es(7, 10, 1, 2, lvl, 2)
-	f.magic_attack = EH.es(16, 20, 2, 3, lvl, 2)
+	f.magic_attack = EH.es(14, 20, 2, 3, lvl, 2)
 	f.magic_defense = EH.es(8, 11, 1, 2, lvl, 2)
 	f.speed = EH.es(26, 31, 2, 3, lvl, 2)
 	f.crit_chance = 9; f.crit_damage = 1; f.dodge_chance = 11
@@ -134,7 +134,7 @@ static func create_bandit(n: String, lvl: int = 3) -> FighterData:
 	var f := EH.base(n, "Bandit", lvl)
 	f.health = EH.es(76, 89, 4, 7, lvl, 3); f.max_health = f.health
 	f.mana = EH.es(5, 7, 1, 2, lvl, 3); f.max_mana = f.mana
-	f.physical_attack = EH.es(22, 27, 2, 3, lvl, 3)
+	f.physical_attack = EH.es(20, 27, 2, 3, lvl, 3)
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 3)
 	f.magic_attack = EH.es(4, 7, 0, 2, lvl, 3)
 	f.magic_defense = EH.es(5, 9, 1, 2, lvl, 3)
