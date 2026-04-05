@@ -23,6 +23,7 @@ var _combo_worker_mode := false
 var _all_results: Array = []
 var _all_stages: Array = []
 var _exclude_combos: Array[String] = []
+var _difficulty_level: int = 1
 
 
 func _init() -> void:
@@ -139,6 +140,13 @@ func _init() -> void:
 					i += 1
 			"--sentinel-path":
 				i += 1  # already handled above; skip value argument
+			"--difficulty":
+				if i + 1 < args.size():
+					match args[i + 1].to_lower():
+						"easy": _difficulty_level = 0
+						"hard": _difficulty_level = 2
+						_: _difficulty_level = 1
+					i += 1
 			"--diagnostics":
 				_diagnostics = true
 			"--compact":
@@ -209,6 +217,11 @@ func _init() -> void:
 
 	if not _worker_mode:
 		print("=== Parting Shadows Battle Simulator ===\n")
+
+	SR._get_sim_engine().difficulty_level = _difficulty_level
+	if _difficulty_level != 1 and not _worker_mode:
+		var diff_names: Array[String] = ["Easy", "Normal", "Hard"]
+		print("  Difficulty: %s\n" % diff_names[_difficulty_level])
 
 	if run_progressive:
 		SP.run(stages, sims_per_combo, auto_sims, sample_size,
@@ -460,6 +473,7 @@ func _print_help() -> void:
 	print("  --worker <N/M>       Worker mode: run stage slice N of M (used by parallel coordinator)")
 	print("  --combo-worker <N/M> Combo-worker mode: run 1/M of party combos per stage (used by parallel coordinator)")
 	print("  --compact            Minimal output (1 line/PASS, details to file)")
+	print("  --difficulty <mode>   AI difficulty: easy, normal, hard (default: normal)")
 	print("  --diagnostics        Show detailed analysis of WEAK classes")
 	print("  --no-cache           Skip cache lookups, force re-simulation")
 	print("  --clear-cache        Delete cached results and exit")
