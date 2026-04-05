@@ -19,6 +19,7 @@ var dead_units: Array = [] ## Dead party members (revived at end)
 
 var sim_mode: bool = false  ## Skip signal emissions for headless simulation
 var difficulty_level: int = 1  ## 0=easy, 1=normal, 2=hard. Set by caller.
+var _eff_diff: int = 1  ## Effective difficulty for current turn (player always 2)
 var sim_stats: Dictionary = {}  ## Per-fighter combat stats (sim mode only)
 var _acting_units: Array = []
 
@@ -523,7 +524,9 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		allies: Array) -> void:
 	if targets.is_empty():
 		return
-	if not unit.is_user_controlled and difficulty_level > 0:
+	# Player auto-battle always uses full smart AI; enemies use difficulty setting
+	_eff_diff = 2 if unit.is_user_controlled else difficulty_level
+	if _eff_diff > 0:
 		_execute_smart_ai_turn(unit, targets, allies)
 		return
 	var affordable: Array[AbilityData] = []
@@ -843,13 +846,13 @@ func _execute_smart_ai_turn(unit: FighterData, targets: Array,
 
 	# -- Adaptive aggression (Hard only) --
 	var battle_state: float = 0.5
-	if difficulty_level >= 2:
+	if _eff_diff >= 2:
 		battle_state = _calc_battle_state(allies, targets)
 
 	# -- Priority 1: Heal wounded ally --
 	if not heal_abilities.is_empty():
 		var heal_threshold_mult: float = 1.0
-		if difficulty_level >= 2:
+		if _eff_diff >= 2:
 			if battle_state > 0.6:
 				heal_threshold_mult = 0.6
 			elif battle_state < 0.4:
@@ -888,7 +891,7 @@ func _execute_smart_ai_turn(unit: FighterData, targets: Array,
 			return
 
 	# -- Priority 2: Coordinated debuff (Normal + Hard) --
-	if not debuff_abilities.is_empty() and not (difficulty_level >= 2 and battle_state > 0.7):
+	if not debuff_abilities.is_empty() and not (_eff_diff >= 2 and battle_state > 0.7):
 		var best_debuff: AbilityData = null
 		var best_debuff_target: FighterData = null
 		var best_debuff_score: float = -1.0
@@ -929,7 +932,7 @@ func _execute_smart_ai_turn(unit: FighterData, targets: Array,
 
 	# -- Priority 3: Buff allies --
 	if not buff_abilities.is_empty():
-		var skip_buff: bool = difficulty_level >= 2 and battle_state > 0.65
+		var skip_buff: bool = _eff_diff >= 2 and battle_state > 0.65
 		if not skip_buff:
 			var buff_roll: int = randi_range(0, 4)
 			var try_buff: bool = buff_roll == 0 or (buff_roll <= 1 and has_aoe_buff)
@@ -1030,7 +1033,7 @@ func _smart_choose_target(unit: FighterData, targets: Array,
 	if focus != null:
 		return focus
 
-	if difficulty_level >= 2:
+	if _eff_diff >= 2:
 		return _highest_threat_target(targets)
 
 	var pick_lowest: bool = magic_ratio > 0.6 \
