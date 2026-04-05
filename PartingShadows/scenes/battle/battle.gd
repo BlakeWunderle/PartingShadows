@@ -124,6 +124,7 @@ func _is_mp_guest() -> bool:
 
 func _start_battle() -> void:
 	_engine = BattleEngine.new()
+	_engine.difficulty_level = SettingsManager.get_difficulty_level()
 	_engine.combat_message.connect(_on_combat_message)
 	_engine.combat_event.connect(_on_combat_event)
 	_engine.fighter_died.connect(_on_fighter_died)

@@ -18,6 +18,7 @@ var enemies: Array = []    ## Enemy team (alive)
 var dead_units: Array = [] ## Dead party members (revived at end)
 
 var sim_mode: bool = false  ## Skip signal emissions for headless simulation
+var difficulty_level: int = 1  ## 0=easy, 1=normal, 2=hard. Set by caller.
 var sim_stats: Dictionary = {}  ## Per-fighter combat stats (sim mode only)
 var _acting_units: Array = []
 
@@ -522,6 +523,9 @@ func execute_ai_turn(unit: FighterData, targets: Array,
 		allies: Array) -> void:
 	if targets.is_empty():
 		return
+	if not unit.is_user_controlled and difficulty_level > 0:
+		_execute_smart_ai_turn(unit, targets, allies)
+		return
 	var affordable: Array[AbilityData] = []
 	var heal_abilities: Array[AbilityData] = []
 	var buff_abilities: Array[AbilityData] = []
@@ -801,3 +805,299 @@ func _choose_offensive_ability(unit: FighterData,
 	if not preferred_list.is_empty():
 		return _weighted_pick(preferred_list)
 	return _weighted_pick(offensive_abilities)
+
+
+# =============================================================================
+# Smart AI (Normal + Hard difficulty)
+# =============================================================================
+
+func _execute_smart_ai_turn(unit: FighterData, targets: Array,
+		allies: Array) -> void:
+	# -- Classify abilities --
+	var heal_abilities: Array[AbilityData] = []
+	var buff_abilities: Array[AbilityData] = []
+	var offensive_abilities: Array[AbilityData] = []
+	var debuff_abilities: Array[AbilityData] = []
+	var taunt_ability: AbilityData = null
+	var has_aoe_buff: bool = false
+
+	for a: AbilityData in unit.abilities:
+		if a.mana_cost > unit.mana:
+			continue
+		if a.use_on_enemy:
+			if a.impacted_turns > 0:
+				debuff_abilities.append(a)
+			else:
+				offensive_abilities.append(a)
+		elif a.impacted_turns == 0:
+			heal_abilities.append(a)
+		elif a.modified_stat == Enums.StatType.TAUNT:
+			taunt_ability = a
+		else:
+			buff_abilities.append(a)
+			if a.target_all:
+				has_aoe_buff = true
+
+	var total_attack: float = unit.magic_attack + unit.physical_attack
+	var magic_ratio: float = unit.magic_attack / total_attack if total_attack > 0 else 0.5
+
+	# -- Adaptive aggression (Hard only) --
+	var battle_state: float = 0.5
+	if difficulty_level >= 2:
+		battle_state = _calc_battle_state(allies, targets)
+
+	# -- Priority 1: Heal wounded ally --
+	if not heal_abilities.is_empty():
+		var heal_threshold_mult: float = 1.0
+		if difficulty_level >= 2:
+			if battle_state > 0.6:
+				heal_threshold_mult = 0.6
+			elif battle_state < 0.4:
+				heal_threshold_mult = 1.4
+		var wounded: FighterData = null
+		for ally: FighterData in allies:
+			if ally.health > 0 and ally.health < ally.max_health * 0.5 * heal_threshold_mult:
+				if wounded == null or ally.health < wounded.health:
+					wounded = ally
+		if wounded != null:
+			var hp_frac: float = float(wounded.health) / float(wounded.max_health)
+			var eligible: Array[AbilityData] = heal_abilities.filter(
+				func(h: AbilityData) -> bool: return hp_frac < h.heal_threshold)
+			if not eligible.is_empty():
+				var heal: AbilityData = _weighted_pick(eligible)
+				unit.mana -= heal.mana_cost
+				if heal.target_all:
+					if not sim_mode:
+						combat_message.emit(heal.flavor_text)
+					for ally2: FighterData in allies:
+						if ally2.health > 0:
+							use_ability_on_teammate(unit, ally2, heal, true)
+				else:
+					use_ability_on_teammate(unit, wounded, heal)
+				return
+
+	# -- Priority 1.5: Taunt if defensive unit --
+	if taunt_ability != null and not _has_modifier(unit, Enums.StatType.TAUNT, false):
+		var def_total: float = unit.physical_defense + unit.magic_defense
+		var off_total: float = unit.physical_attack + unit.magic_attack
+		var tank_ratio: float = def_total / (def_total + off_total)
+		var taunt_chance: float = tank_ratio * (targets.size() / 3.0)
+		if randf() < taunt_chance:
+			unit.mana -= taunt_ability.mana_cost
+			use_ability_on_teammate(unit, unit, taunt_ability)
+			return
+
+	# -- Priority 2: Coordinated debuff (Normal + Hard) --
+	if not debuff_abilities.is_empty() and not (difficulty_level >= 2 and battle_state > 0.7):
+		var best_debuff: AbilityData = null
+		var best_debuff_target: FighterData = null
+		var best_debuff_score: float = -1.0
+		for d: AbilityData in debuff_abilities:
+			if d.target_all:
+				var unbuffed_count: int = 0
+				for t: FighterData in targets:
+					if not _has_modifier(t, d.modified_stat, true):
+						unbuffed_count += 1
+				if unbuffed_count >= ceili(targets.size() / 2.0):
+					var score: float = float(d.mana_cost + 1) * float(unbuffed_count)
+					if score > best_debuff_score:
+						best_debuff_score = score
+						best_debuff = d
+						best_debuff_target = null
+			else:
+				for t: FighterData in targets:
+					if _has_modifier(t, d.modified_stat, true):
+						continue
+					if d.damage_per_turn > 0 and _has_dot(t):
+						continue
+					var score: float = (float(d.mana_cost + 1)
+						* _stat_relevance(t, d.modified_stat, false))
+					if score > best_debuff_score:
+						best_debuff_score = score
+						best_debuff = d
+						best_debuff_target = t
+		if best_debuff != null and randf() < 0.4:
+			unit.mana -= best_debuff.mana_cost
+			if best_debuff.target_all:
+				if not sim_mode:
+					combat_message.emit(best_debuff.flavor_text)
+				for t: FighterData in targets:
+					use_ability_on_enemy(unit, t, best_debuff, true)
+			else:
+				use_ability_on_enemy(unit, best_debuff_target, best_debuff)
+			return
+
+	# -- Priority 3: Buff allies --
+	if not buff_abilities.is_empty():
+		var skip_buff: bool = difficulty_level >= 2 and battle_state > 0.65
+		if not skip_buff:
+			var buff_roll: int = randi_range(0, 4)
+			var try_buff: bool = buff_roll == 0 or (buff_roll <= 1 and has_aoe_buff)
+			if try_buff:
+				var buff: AbilityData = _weighted_pick(buff_abilities)
+				if buff.target_all:
+					var any_unbuffed: bool = false
+					for ally: FighterData in allies:
+						if ally.health > 0 and not _has_modifier(ally, buff.modified_stat, false):
+							any_unbuffed = true
+							break
+					if any_unbuffed:
+						unit.mana -= buff.mana_cost
+						if not sim_mode:
+							combat_message.emit(buff.flavor_text)
+						for ally: FighterData in allies:
+							if ally.health > 0:
+								use_ability_on_teammate(unit, ally, buff, true)
+						return
+				else:
+					var buff_target := _best_buff_target(allies, buff)
+					if buff_target != null:
+						unit.mana -= buff.mana_cost
+						use_ability_on_teammate(unit, buff_target, buff)
+						return
+
+	# -- Priority 4: Block or Rest --
+	var hp_pct: float = float(unit.health) / float(unit.max_health)
+	var mp_pct: float = float(unit.mana) / float(unit.max_mana) if unit.max_mana > 0 else 1.0
+
+	if hp_pct < 0.35 and not _has_defense_buff(unit):
+		if randf() < 0.25:
+			perform_block(unit)
+			return
+
+	if mp_pct < 0.3 and hp_pct >= 0.35:
+		if randf() < 0.25:
+			perform_rest(unit)
+			return
+
+	# -- Priority 5: Life steal when wounded --
+	if hp_pct < 0.7 and not offensive_abilities.is_empty():
+		var steal_abilities: Array[AbilityData] = []
+		for a: AbilityData in offensive_abilities:
+			if a.life_steal_percent > 0:
+				steal_abilities.append(a)
+		if not steal_abilities.is_empty() and randf() < 0.6:
+			var ability: AbilityData = _weighted_pick(steal_abilities)
+			unit.mana -= ability.mana_cost
+			var target: FighterData = _smart_choose_target(unit, targets, magic_ratio)
+			use_ability_on_enemy(unit, target, ability)
+			return
+
+	# -- Priority 6: Offense --
+	var ability_chance: float = magic_ratio
+	if magic_ratio < 0.4 and not offensive_abilities.is_empty():
+		for a: AbilityData in offensive_abilities:
+			if a.modified_stat == Enums.StatType.PHYSICAL_ATTACK \
+					or a.modified_stat == Enums.StatType.MIXED_ATTACK:
+				ability_chance = 0.4
+				break
+
+	# Include debuff abilities in the offensive pool if they weren't used earlier
+	var all_offensive: Array[AbilityData] = offensive_abilities.duplicate()
+	all_offensive.append_array(debuff_abilities)
+
+	var use_ability: bool = not all_offensive.is_empty() and randf() < ability_chance
+
+	if use_ability:
+		var ability: AbilityData = _choose_offensive_ability(
+			unit, all_offensive, magic_ratio)
+		unit.mana -= ability.mana_cost
+		if ability.target_all:
+			if not sim_mode:
+				combat_message.emit(ability.flavor_text)
+			for target: FighterData in targets:
+				use_ability_on_enemy(unit, target, ability, true)
+		else:
+			var target: FighterData
+			if ability.impacted_turns > 0:
+				target = _best_debuff_target(targets, ability)
+			else:
+				target = _smart_choose_target(unit, targets, magic_ratio)
+			use_ability_on_enemy(unit, target, ability)
+	else:
+		var target: FighterData = _smart_choose_target(unit, targets, magic_ratio)
+		physical_attack(unit, target)
+
+
+func _smart_choose_target(unit: FighterData, targets: Array,
+		magic_ratio: float) -> FighterData:
+	## Smart targeting: taunt > focus fire > threat (Hard) > HP-based.
+	var taunter: FighterData = get_taunt_target(targets)
+	if taunter != null:
+		return taunter
+
+	var focus: FighterData = _find_focus_target(targets)
+	if focus != null:
+		return focus
+
+	if difficulty_level >= 2:
+		return _highest_threat_target(targets)
+
+	var pick_lowest: bool = magic_ratio > 0.6 \
+		or (magic_ratio >= 0.4 and randf() < 0.6)
+	return _find_min_health(targets) if pick_lowest else _find_max_health(targets)
+
+
+func _find_focus_target(targets: Array) -> FighterData:
+	## Focus fire: pick the most wounded target below 40% HP. 70% chance to commit.
+	var best: FighterData = null
+	var best_pct: float = 1.0
+	for t: FighterData in targets:
+		var pct: float = float(t.health) / float(t.max_health)
+		if pct < 0.4 and pct < best_pct:
+			best_pct = pct
+			best = t
+	if best != null and randf() < 0.7:
+		return best
+	return null
+
+
+func _highest_threat_target(targets: Array) -> FighterData:
+	## Threat targeting: score by offense + heal capability (1.5x weight).
+	var best: FighterData = null
+	var best_score: float = -1.0
+	for t: FighterData in targets:
+		var offense: float = float(t.physical_attack + t.magic_attack)
+		var heal_power: float = 0.0
+		for a: AbilityData in t.abilities:
+			if not a.use_on_enemy and a.impacted_turns == 0:
+				heal_power += float(a.modifier + t.magic_attack / 2)
+		var score: float = offense + heal_power * 1.5
+		if score > best_score:
+			best_score = score
+			best = t
+	return best if best != null else targets[0]
+
+
+func _calc_battle_state(allies: Array, targets: Array) -> float:
+	## Returns 0.0 (losing) to 1.0 (winning). Blends HP ratio and unit count.
+	var ally_hp: float = 0.0
+	var ally_count: int = 0
+	for a: FighterData in allies:
+		if a.health > 0:
+			ally_hp += float(a.health) / float(a.max_health)
+			ally_count += 1
+	var target_hp: float = 0.0
+	var target_count: int = 0
+	for t: FighterData in targets:
+		if t.health > 0:
+			target_hp += float(t.health) / float(t.max_health)
+			target_count += 1
+	if ally_count == 0:
+		return 0.0
+	if target_count == 0:
+		return 1.0
+	var ally_avg: float = ally_hp / ally_count
+	var target_avg: float = target_hp / target_count
+	var hp_ratio: float = ally_avg / (ally_avg + target_avg) \
+		if (ally_avg + target_avg) > 0.0 else 0.5
+	var count_ratio: float = float(ally_count) / float(ally_count + target_count)
+	return hp_ratio * 0.6 + count_ratio * 0.4
+
+
+func _has_dot(fighter: FighterData) -> bool:
+	## Check if a fighter already has a damage-over-time effect.
+	for mod: Dictionary in fighter.modified_stats:
+		if mod.get("damage_per_turn", 0) > 0:
+			return true
+	return false
