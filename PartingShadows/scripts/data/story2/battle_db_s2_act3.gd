@@ -199,7 +199,6 @@ static func s2_forgotten_archive() -> BattleData:
 	b.enemies = [
 		EnemyDBS2Act3.create_ink_devourer("Blotch"),
 		EnemyDBS2Act3.create_silent_archivist("Cataloger"),
-		EnemyDBS2Act3.create_lost_record("Lost Entry"),
 		EnemyDBS2Act3.create_maw_codex("Gnawledge"),
 	]
 	b.pre_battle_text = [

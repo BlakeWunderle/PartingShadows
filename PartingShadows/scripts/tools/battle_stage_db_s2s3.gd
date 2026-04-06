@@ -212,8 +212,7 @@ static func create_enemies(stage_name: String) -> Array:
 		"S2_EchoGallery":
 			return [EnemyDBS2Act3.create_hollow_watcher("Flicker"),
 				EnemyDBS2Act3.create_grief_shade("Reverb"),
-				EnemyDBS2Act3.create_shattered_frame("Whisper"),
-				EnemyDBS2Act3.create_shattered_frame("Echo")]
+				EnemyDBS2Act3.create_shattered_frame("Whisper")]
 		"S2_ShatteredSanctum":
 			return [EnemyDBS2Act3.create_mirror_self("Reflection"),
 				EnemyDBS2Act3.create_void_weaver("Unmaker"),
@@ -225,7 +224,6 @@ static func create_enemies(stage_name: String) -> Array:
 		"S2_ForgottenArchive":
 			return [EnemyDBS2Act3.create_ink_devourer("Blotch"),
 				EnemyDBS2Act3.create_silent_archivist("Cataloger"),
-				EnemyDBS2Act3.create_lost_record("Lost Entry"),
 				EnemyDBS2Act3.create_maw_codex("Gnawledge")]
 		"S2_TheReveal":
 			return [EnemyDBS2Act3.create_the_warden("The Warden"),
