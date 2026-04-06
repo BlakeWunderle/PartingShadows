@@ -1034,7 +1034,7 @@ func _smart_choose_target(unit: FighterData, targets: Array,
 		return focus
 
 	if _eff_diff >= 2:
-		return _highest_threat_target(targets)
+		return _weighted_threat_target(targets)
 
 	var pick_lowest: bool = magic_ratio > 0.6 \
 		or (magic_ratio >= 0.4 and randf() < 0.6)
@@ -1055,10 +1055,10 @@ func _find_focus_target(targets: Array) -> FighterData:
 	return null
 
 
-func _highest_threat_target(targets: Array) -> FighterData:
-	## Threat targeting: score by offense + heal capability (1.5x weight).
-	var best: FighterData = null
-	var best_score: float = -1.0
+func _weighted_threat_target(targets: Array) -> FighterData:
+	## Threat targeting: weighted random using offense + heal score as probability.
+	var scores: Array[float] = []
+	var total: float = 0.0
 	for t: FighterData in targets:
 		var offense: float = float(t.physical_attack + t.magic_attack)
 		var heal_power: float = 0.0
@@ -1066,10 +1066,17 @@ func _highest_threat_target(targets: Array) -> FighterData:
 			if not a.use_on_enemy and a.impacted_turns == 0:
 				heal_power += float(a.modifier + t.magic_attack / 2)
 		var score: float = offense + heal_power * 1.5
-		if score > best_score:
-			best_score = score
-			best = t
-	return best if best != null else targets[0]
+		scores.append(score)
+		total += score
+	if total <= 0.0:
+		return targets[0]
+	var roll: float = randf() * total
+	var cumulative: float = 0.0
+	for i: int in range(targets.size()):
+		cumulative += scores[i]
+		if roll <= cumulative:
+			return targets[i]
+	return targets[targets.size() - 1]
 
 
 func _calc_battle_state(allies: Array, targets: Array) -> float:

@@ -51,21 +51,21 @@ static func _get_story1_stages() -> Array:
 		# (MirrorBattle at prog 7 = 73% — not in sim DB yet)
 		# Prog 8: Tier 2 (breather — same as P7 = 73%)
 		_s("ReturnToCityStreetBattle", 10, "tier2", 0.73, 8),
-		# Prog 9: Tier 2, -3pp
-		_s("StrangerTowerBattle", 11, "tier2", 0.70, 9),
-		# Prog 10: Tier 2, -3pp
-		_s("CorruptedCityBattle", 12, "tier2", 0.67, 10),
-		_s("CorruptedWildsBattle", 12, "tier2", 0.67, 10),
-		# Prog 11: Tier 2, -3pp
-		_s("DepthsBattle", 13, "tier2", 0.64, 11),
-		# Prog 12: Tier 2, -3pp
-		_s("GateBattle", 14, "tier2", 0.61, 12, 1, "a"),
-		# Prog 13: Tier 2, -3pp (final boss)
-		_s("StrangerFinalBattle", 15, "tier2", 0.58, 13, 1, "a"),
+		# Prog 9: Tier 2, -2pp
+		_s("StrangerTowerBattle", 11, "tier2", 0.71, 9),
+		# Prog 10: Tier 2, -2pp
+		_s("CorruptedCityBattle", 12, "tier2", 0.69, 10),
+		_s("CorruptedWildsBattle", 12, "tier2", 0.69, 10),
+		# Prog 11: Tier 2, -1pp
+		_s("DepthsBattle", 13, "tier2", 0.68, 11),
+		# Prog 12: Tier 2, -1pp
+		_s("GateBattle", 14, "tier2", 0.67, 12, 1, "a"),
+		# Prog 13: Tier 2, -2pp (final boss)
+		_s("StrangerFinalBattle", 15, "tier2", 0.65, 13, 1, "a"),
 		# Path B: Sever the Ritual (branches from GateBattle, same progs)
-		_s("RitualAnchorBattle", 14, "tier2", 0.61, 12, 1, "b"),
-		_s("SanctumCollapseBattle", 15, "tier2", 0.58, 13, 1, "b"),
-		_s("StrangerUndoneBattle", 15, "tier2", 0.58, 13, 1, "b"),
+		_s("RitualAnchorBattle", 14, "tier2", 0.67, 12, 1, "b"),
+		_s("SanctumCollapseBattle", 15, "tier2", 0.65, 13, 1, "b"),
+		_s("StrangerUndoneBattle", 15, "tier2", 0.65, 13, 1, "b"),
 	]
 
 
