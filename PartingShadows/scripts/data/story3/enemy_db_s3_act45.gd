@@ -23,7 +23,7 @@ static func create_cult_acolyte(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 15)
 	f.physical_defense = EH.es(38, 47, 2, 3, lvl, 15)
-	f.magic_attack = EH.es(119, 135, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(121, 137, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(47, 57, 2, 4, lvl, 15)
 	f.speed = EH.es(30, 37, 2, 3, lvl, 15)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 25
@@ -69,7 +69,7 @@ static func create_thread_guard(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Thread Guard", lvl)
 	f.health = EH.es(480, 550, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(10, 13, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(142, 162, 4, 6, lvl, 16)
+	f.physical_attack = EH.es(144, 164, 4, 6, lvl, 16)
 	f.physical_defense = EH.es(28, 36, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 16)
 	f.magic_defense = EH.es(48, 56, 2, 4, lvl, 16)
@@ -121,7 +121,7 @@ static func create_cult_ritualist(n: String, lvl: int = 17) -> FighterData:
 	f.physical_defense = EH.es(44, 54, 2, 4, lvl, 17)
 	f.magic_attack = EH.es(132, 149, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(56, 64, 2, 4, lvl, 17)
-	f.speed = EH.es(36, 42, 2, 3, lvl, 17)
+	f.speed = EH.es(38, 44, 2, 3, lvl, 17)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.ritual_chant(), EAB.ancient_rite(), EAB.blood_weaving()]
 	f.flavor_text = "A senior cultist who leads the binding rituals at the heart of the Thread cult's operations. Their chants strengthen the weave and lash at any who would disrupt the ceremony."
@@ -135,7 +135,7 @@ static func create_high_weaver(n: String, lvl: int = 17) -> FighterData:
 	f.mana = EH.es(22, 25, 2, 3, lvl, 17); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 17)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 17)
-	f.magic_attack = EH.es(138, 157, 3, 6, lvl, 17)
+	f.magic_attack = EH.es(140, 159, 3, 6, lvl, 17)
 	f.magic_defense = EH.es(54, 62, 2, 4, lvl, 17)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 17)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20
@@ -154,7 +154,7 @@ static func create_dread_tailor(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "DreadTailor", lvl)
 	f.health = EH.es(575, 662, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(105, 120, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(106, 121, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(31, 39, 1, 3, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(51, 59, 2, 3, lvl, 15)
@@ -236,11 +236,11 @@ static func create_the_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "The Threadmaster", lvl)
 	f.health = EH.es(1695, 1915, 16, 25, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = EH.es(116, 131, 4, 6, lvl, 18)
+	f.physical_attack = EH.es(118, 133, 4, 6, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
 	f.magic_attack = EH.es(108, 123, 3, 5, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
-	f.speed = EH.es(39, 45, 3, 4, lvl, 18)
+	f.speed = EH.es(40, 46, 3, 4, lvl, 18)
 	f.crit_chance = 25; f.crit_damage = 4; f.dodge_chance = 25
 	f.abilities = [EAB.thread_lash(), EAB.loom_crush(), EAB.sever(), EAB.thread_bind(), EAB.puppets_drain()]
 	f.flavor_text = "The architect of the Woven Night, a figure who has spent a lifetime learning to reshape reality through the fabric of dreams. To face them is to challenge the dreaming world itself."

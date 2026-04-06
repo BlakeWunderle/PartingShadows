@@ -15,9 +15,9 @@ static func create_fractured_scholar(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Fractured Scholar", lvl)
 	f.health = EH.es(748, 848, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(109, 122, 2, 4, lvl, 13)
+	f.physical_attack = EH.es(111, 124, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(43, 52, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(97, 110, 2, 4, lvl, 13)
+	f.magic_attack = EH.es(98, 111, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(47, 55, 2, 3, lvl, 13)
 	f.speed = EH.es(50, 56, 2, 3, lvl, 13)
 	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 20
@@ -49,7 +49,7 @@ static func create_pipeline_warden(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Pipeline Warden", lvl)
 	f.health = EH.es(840, 955, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(12, 15, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(114, 129, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(116, 131, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(66, 77, 3, 4, lvl, 14)
 	f.magic_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.magic_defense = EH.es(42, 52, 2, 3, lvl, 14)
@@ -64,9 +64,9 @@ static func create_maintenance_drone(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Maintenance Drone", lvl)
 	f.health = EH.es(545, 623, 5, 7, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(64, 73, 2, 4, lvl, 14)
+	f.physical_attack = EH.es(65, 74, 2, 4, lvl, 14)
 	f.physical_defense = EH.es(35, 44, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(65, 75, 2, 4, lvl, 14)
+	f.magic_attack = EH.es(66, 76, 2, 4, lvl, 14)
 	f.magic_defense = EH.es(41, 50, 2, 3, lvl, 14)
 	f.speed = EH.es(47, 54, 2, 3, lvl, 14)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20
@@ -81,7 +81,7 @@ static func create_resonance_node(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(22, 26, 2, 3, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(14, 19, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(33, 41, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(102, 116, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(104, 118, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(53, 63, 2, 4, lvl, 14)
 	f.speed = EH.es(43, 50, 2, 3, lvl, 14)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 10
@@ -198,7 +198,7 @@ static func create_the_unblinking_eye(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(46, 53, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(26, 34, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(56, 66, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(159, 180, 5, 8, lvl, 15)
+	f.magic_attack = EH.es(161, 182, 5, 8, lvl, 15)
 	f.magic_defense = EH.es(70, 79, 4, 6, lvl, 15)
 	f.speed = EH.es(62, 68, 2, 4, lvl, 15)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 17

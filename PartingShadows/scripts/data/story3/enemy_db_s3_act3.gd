@@ -85,9 +85,9 @@ static func create_dream_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Dream Warden", lvl)
 	f.health = EH.es(510, 585, 5, 8, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(17, 20, 1, 2, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(93, 104, 2, 4, lvl, 13)
+	f.physical_attack = EH.es(96, 107, 2, 4, lvl, 13)
 	f.physical_defense = EH.es(37, 44, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(85, 96, 2, 4, lvl, 13)
+	f.magic_attack = EH.es(88, 99, 2, 4, lvl, 13)
 	f.magic_defense = EH.es(37, 44, 2, 3, lvl, 13)
 	f.speed = EH.es(30, 36, 2, 3, lvl, 13)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 10
@@ -206,9 +206,9 @@ static func create_sanctum_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Sanctum Guardian", lvl)
 	f.health = EH.es(694, 779, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(93, 106, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(94, 107, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(44, 53, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(92, 105, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(93, 106, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(44, 53, 2, 3, lvl, 14)
 	f.speed = EH.es(35, 41, 2, 3, lvl, 14)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 10

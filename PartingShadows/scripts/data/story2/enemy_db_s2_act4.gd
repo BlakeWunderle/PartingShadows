@@ -126,7 +126,7 @@ static func create_the_iris(n: String, lvl: int = 15) -> FighterData:
 	f.mana = EH.es(30, 35, 2, 3, lvl, 15); f.max_mana = f.mana
 	f.physical_attack = EH.es(27, 36, 1, 3, lvl, 15)
 	f.physical_defense = EH.es(61, 72, 3, 5, lvl, 15)
-	f.magic_attack = EH.es(144, 163, 4, 7, lvl, 15)
+	f.magic_attack = EH.es(146, 165, 4, 7, lvl, 15)
 	f.magic_defense = EH.es(77, 87, 3, 5, lvl, 15)
 	f.speed = EH.es(55, 61, 1, 3, lvl, 15)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 17
@@ -139,11 +139,11 @@ static func create_the_lidless_eye(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "The Lidless Eye", lvl)
 	f.health = EH.es(1008, 1146, 9, 13, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(43, 49, 2, 3, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(166, 186, 5, 8, lvl, 15)
+	f.physical_attack = EH.es(167, 187, 5, 8, lvl, 15)
 	f.physical_defense = EH.es(64, 76, 3, 5, lvl, 15)
 	f.magic_attack = EH.es(48, 58, 1, 3, lvl, 15)
 	f.magic_defense = EH.es(82, 96, 4, 6, lvl, 15)
-	f.speed = EH.es(60, 66, 2, 3, lvl, 15)
+	f.speed = EH.es(61, 67, 2, 3, lvl, 15)
 	f.crit_chance = 22; f.crit_damage = 4; f.dodge_chance = 17
 	f.abilities = [EABL.crushing_gaze(), EABL.desperate_lunge(), EABL.death_throes(), EABL.collapse(), EABL.last_tremor()]
 	f.flavor_text = "The Eye of Oblivion, stripped bare by Sera's sacrifice. Its armor is gone, its reserves burned away. What remains is pure, desperate hunger. It has nothing left but the will to take everything with it."

@@ -104,7 +104,7 @@ static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(113, 127, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(115, 129, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(42, 50, 2, 4, lvl, 14)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 14)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
@@ -139,7 +139,7 @@ static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(42, 51, 2, 4, lvl, 14)
-	f.magic_attack = EH.es(127, 142, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(131, 146, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(48, 58, 2, 4, lvl, 14)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 17
@@ -152,7 +152,7 @@ static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Passage Guardian", lvl)
 	f.health = EH.es(686, 785, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(129, 146, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(131, 148, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(63, 71, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
 	f.magic_defense = EH.es(39, 49, 2, 3, lvl, 14)
@@ -187,9 +187,9 @@ static func create_shadow_innkeeper(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Shadow Innkeeper", lvl)
 	f.health = EH.es(549, 631, 6, 9, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(19, 23, 1, 2, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(92, 104, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(95, 107, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(44, 52, 2, 4, lvl, 15)
-	f.magic_attack = EH.es(91, 103, 3, 5, lvl, 15)
+	f.magic_attack = EH.es(93, 105, 3, 5, lvl, 15)
 	f.magic_defense = EH.es(44, 52, 2, 4, lvl, 15)
 	f.speed = EH.es(36, 42, 2, 3, lvl, 15)
 	f.crit_chance = 25; f.crit_damage = 3; f.dodge_chance = 17
@@ -233,7 +233,7 @@ static func create_loom_parasite(n: String, lvl: int = 15) -> FighterData:
 	var f := EH.base(n, "Loom Parasite", lvl)
 	f.health = EH.es(440, 506, 5, 8, lvl, 15); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 15); f.max_mana = f.mana
-	f.physical_attack = EH.es(104, 118, 3, 5, lvl, 15)
+	f.physical_attack = EH.es(106, 120, 3, 5, lvl, 15)
 	f.physical_defense = EH.es(34, 41, 2, 3, lvl, 15)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 15)
 	f.magic_defense = EH.es(36, 43, 2, 3, lvl, 15)

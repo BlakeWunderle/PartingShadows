@@ -62,7 +62,7 @@ static func create_thought_eater(n: String, lvl: int = 11) -> FighterData:
 	f.mana = EH.es(17, 20, 1, 2, lvl, 11); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 11)
 	f.physical_defense = EH.es(24, 30, 1, 3, lvl, 11)
-	f.magic_attack = EH.es(89, 102, 2, 5, lvl, 11)
+	f.magic_attack = EH.es(91, 104, 2, 5, lvl, 11)
 	f.magic_defense = EH.es(40, 47, 2, 3, lvl, 11)
 	f.speed = EH.es(43, 49, 2, 3, lvl, 11)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 25
@@ -141,7 +141,7 @@ static func create_void_weaver(n: String, lvl: int = 12) -> FighterData:
 	f.mana = EH.es(23, 27, 1, 2, lvl, 12); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 12)
 	f.physical_defense = EH.es(27, 34, 1, 3, lvl, 12)
-	f.magic_attack = EH.es(76, 90, 3, 5, lvl, 12)
+	f.magic_attack = EH.es(78, 92, 3, 5, lvl, 12)
 	f.magic_defense = EH.es(35, 42, 2, 4, lvl, 12)
 	f.speed = EH.es(41, 47, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
@@ -338,7 +338,7 @@ static func create_maw_codex(n: String, lvl: int = 11) -> FighterData:
 	var f := EH.base(n, "Maw Codex", lvl)
 	f.health = EH.es(490, 560, 5, 7, lvl, 11); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 11); f.max_mana = f.mana
-	f.physical_attack = EH.es(82, 94, 2, 4, lvl, 11)
+	f.physical_attack = EH.es(84, 96, 2, 4, lvl, 11)
 	f.physical_defense = EH.es(30, 37, 2, 3, lvl, 11)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 11)
 	f.magic_defense = EH.es(28, 35, 1, 3, lvl, 11)

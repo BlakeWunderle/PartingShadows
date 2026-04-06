@@ -245,7 +245,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(19, 25, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(67, 76, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(69, 78, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 10)
 	f.speed = EH.es(28, 34, 2, 3, lvl, 10)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 17
