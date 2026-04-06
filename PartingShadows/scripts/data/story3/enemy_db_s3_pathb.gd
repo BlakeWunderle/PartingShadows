@@ -17,11 +17,11 @@ static func create_cellar_sentinel(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Cellar Sentinel", lvl)
 	f.health = EH.es(566, 647, 5, 8, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(94, 106, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(83, 95, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(47, 55, 2, 4, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
-	f.speed = EH.es(30, 36, 2, 3, lvl, 12)
+	f.speed = EH.es(27, 33, 2, 3, lvl, 12)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 10
 	f.abilities = [EAB.petrified_slam(), EAB.stagnant_chill()]
 	f.flavor_text = "A stone-like guardian that has stood watch in the cellar for so long it has calcified into the walls. It attacks with petrifying force and radiates an unnatural cold."
@@ -32,11 +32,11 @@ static func create_bound_stalker(n: String, lvl: int = 12) -> FighterData:
 	var f := EH.base(n, "Bound Stalker", lvl)
 	f.health = EH.es(425, 489, 4, 7, lvl, 12); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 12); f.max_mana = f.mana
-	f.physical_attack = EH.es(89, 100, 3, 5, lvl, 12)
+	f.physical_attack = EH.es(79, 90, 3, 5, lvl, 12)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 12)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 12)
 	f.magic_defense = EH.es(30, 36, 2, 3, lvl, 12)
-	f.speed = EH.es(38, 44, 2, 3, lvl, 12)
+	f.speed = EH.es(35, 41, 2, 3, lvl, 12)
 	f.crit_chance = 17; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.tethered_lunge(), EAB.fraying_bite()]
 	f.flavor_text = "A lean creature bound by fraying threads to the cellar's hidden sanctum. It lunges at intruders with desperate speed, its bite unraveling both flesh and resolve."
@@ -54,9 +54,9 @@ static func create_thread_disciple(n: String, lvl: int = 13) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 13); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 13)
 	f.physical_defense = EH.es(38, 45, 2, 3, lvl, 13)
-	f.magic_attack = EH.es(118, 133, 3, 5, lvl, 13)
+	f.magic_attack = EH.es(113, 128, 3, 5, lvl, 13)
 	f.magic_defense = EH.es(44, 53, 2, 4, lvl, 13)
-	f.speed = EH.es(33, 39, 2, 3, lvl, 13)
+	f.speed = EH.es(31, 37, 2, 3, lvl, 13)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.unstable_channeling(), EAB.siphon_faith()]
 	f.flavor_text = "A young cultist whose devotion outpaces their skill. Their channeling is unstable and volatile, but their faith in the Thread grants them power beyond their training."
@@ -67,11 +67,11 @@ static func create_thread_warden(n: String, lvl: int = 13) -> FighterData:
 	var f := EH.base(n, "Thread Warden", lvl)
 	f.health = EH.es(698, 799, 6, 9, lvl, 13); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 13); f.max_mana = f.mana
-	f.physical_attack = EH.es(124, 140, 3, 5, lvl, 13)
+	f.physical_attack = EH.es(116, 132, 3, 5, lvl, 13)
 	f.physical_defense = EH.es(58, 66, 2, 4, lvl, 13)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 13)
 	f.magic_defense = EH.es(36, 44, 2, 3, lvl, 13)
-	f.speed = EH.es(27, 33, 2, 3, lvl, 13)
+	f.speed = EH.es(22, 28, 2, 3, lvl, 13)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 10
 	f.abilities = [EAB.shielding_blow(), EAB.guardians_oath()]
 	f.flavor_text = "A seasoned warrior sworn to protect the Thread cult's sanctum. Bound by an oath woven into their very being, they fight with unwavering purpose and crushing strength."
@@ -87,7 +87,7 @@ static func create_tunnel_sentinel(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Tunnel Sentinel", lvl)
 	f.health = EH.es(622, 711, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(120, 135, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(118, 133, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(56, 65, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
 	f.magic_defense = EH.es(36, 44, 2, 3, lvl, 14)
@@ -104,7 +104,7 @@ static func create_thread_sniper(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(32, 39, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(117, 131, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(116, 130, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(42, 50, 2, 4, lvl, 14)
 	f.speed = EH.es(37, 43, 2, 3, lvl, 14)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 17
@@ -119,7 +119,7 @@ static func create_pale_devotee(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(31, 39, 2, 3, lvl, 14)
-	f.magic_attack = EH.es(113, 127, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(112, 126, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(49, 58, 2, 4, lvl, 14)
 	f.speed = EH.es(33, 39, 2, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 17
@@ -139,9 +139,9 @@ static func create_thread_ritualist(n: String, lvl: int = 14) -> FighterData:
 	f.mana = EH.es(19, 23, 1, 2, lvl, 14); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 14)
 	f.physical_defense = EH.es(42, 51, 2, 4, lvl, 14)
-	f.magic_attack = EH.es(125, 140, 3, 5, lvl, 14)
+	f.magic_attack = EH.es(123, 138, 3, 5, lvl, 14)
 	f.magic_defense = EH.es(48, 58, 2, 4, lvl, 14)
-	f.speed = EH.es(38, 44, 2, 3, lvl, 14)
+	f.speed = EH.es(37, 43, 2, 3, lvl, 14)
 	f.crit_chance = 10; f.crit_damage = 3; f.dodge_chance = 17
 	f.abilities = [EAB.binding_rite(), EAB.enervation_chant()]
 	f.flavor_text = "A ritualist who maintains Thorne's protective ward through constant chanting. Their binding rites sap the strength of intruders while reinforcing the dream's barriers."
@@ -152,7 +152,7 @@ static func create_passage_guardian(n: String, lvl: int = 14) -> FighterData:
 	var f := EH.base(n, "Passage Guardian", lvl)
 	f.health = EH.es(686, 785, 6, 9, lvl, 14); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 14); f.max_mana = f.mana
-	f.physical_attack = EH.es(126, 143, 3, 5, lvl, 14)
+	f.physical_attack = EH.es(125, 142, 3, 5, lvl, 14)
 	f.physical_defense = EH.es(63, 71, 2, 4, lvl, 14)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 14)
 	f.magic_defense = EH.es(39, 49, 2, 3, lvl, 14)
@@ -253,9 +253,9 @@ static func create_cathedral_warden(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "Cathedral Warden", lvl)
 	f.health = EH.es(700, 800, 6, 9, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(18, 22, 1, 2, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(113, 129, 3, 5, lvl, 16)
+	f.physical_attack = EH.es(119, 135, 3, 5, lvl, 16)
 	f.physical_defense = EH.es(52, 61, 2, 4, lvl, 16)
-	f.magic_attack = EH.es(113, 129, 3, 5, lvl, 16)
+	f.magic_attack = EH.es(118, 134, 3, 5, lvl, 16)
 	f.magic_defense = EH.es(52, 61, 2, 4, lvl, 16)
 	f.speed = EH.es(40, 46, 2, 3, lvl, 16)
 	f.crit_chance = 20; f.crit_damage = 3; f.dodge_chance = 20
@@ -301,7 +301,7 @@ static func create_weft_stalker(n: String, lvl: int = 16) -> FighterData:
 	var f := EH.base(n, "WeftStalker", lvl)
 	f.health = EH.es(580, 668, 5, 8, lvl, 16); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 16); f.max_mana = f.mana
-	f.physical_attack = EH.es(126, 142, 3, 5, lvl, 16)
+	f.physical_attack = EH.es(129, 145, 3, 5, lvl, 16)
 	f.physical_defense = EH.es(38, 46, 2, 3, lvl, 16)
 	f.magic_attack = EH.es(46, 56, 2, 3, lvl, 16)
 	f.magic_defense = EH.es(60, 69, 2, 4, lvl, 16)
@@ -321,11 +321,11 @@ static func create_lira_threadmaster(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Lira, the Threadmaster", lvl)
 	f.health = EH.es(1425, 1602, 12, 18, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(25, 30, 2, 3, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = EH.es(112, 128, 3, 5, lvl, 18)
+	f.physical_attack = EH.es(104, 120, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(53, 61, 2, 4, lvl, 18)
-	f.magic_attack = EH.es(141, 160, 4, 6, lvl, 18)
+	f.magic_attack = EH.es(126, 145, 4, 6, lvl, 18)
 	f.magic_defense = EH.es(55, 63, 2, 4, lvl, 18)
-	f.speed = EH.es(41, 47, 3, 4, lvl, 18)
+	f.speed = EH.es(37, 43, 3, 4, lvl, 18)
 	f.crit_chance = 20; f.crit_damage = 4; f.dodge_chance = 20
 	f.abilities = [EAB.inn_keepers_embrace(), EAB.veil_of_lies(), EAB.shattered_trust(), EAB.charm_of_ages(), EAB.stolen_warmth()]
 	f.flavor_text = "Lira revealed as the true Threadmaster, her gentle demeanor shed to expose the master weaver beneath. She commands the loom with absolute authority, puppeting dreams and harvesting the sleeping minds of an entire town."
@@ -338,7 +338,7 @@ static func create_tattered_deception(n: String, lvl: int = 18) -> FighterData:
 	f.mana = EH.es(18, 22, 1, 2, lvl, 18); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 18)
 	f.physical_defense = EH.es(36, 44, 2, 3, lvl, 18)
-	f.magic_attack = EH.es(136, 154, 3, 6, lvl, 18)
+	f.magic_attack = EH.es(129, 147, 3, 6, lvl, 18)
 	f.magic_defense = EH.es(46, 55, 2, 4, lvl, 18)
 	f.speed = EH.es(43, 49, 3, 4, lvl, 18)
 	f.crit_chance = 17; f.crit_damage = 3; f.dodge_chance = 20
@@ -351,7 +351,7 @@ static func create_dream_bastion(n: String, lvl: int = 18) -> FighterData:
 	var f := EH.base(n, "Dream Bastion", lvl)
 	f.health = EH.es(676, 777, 6, 9, lvl, 18); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 1, lvl, 18); f.max_mana = f.mana
-	f.physical_attack = EH.es(149, 168, 3, 5, lvl, 18)
+	f.physical_attack = EH.es(141, 160, 3, 5, lvl, 18)
 	f.physical_defense = EH.es(65, 73, 2, 4, lvl, 18)
 	f.magic_attack = EH.es(8, 12, 0, 1, lvl, 18)
 	f.magic_defense = EH.es(40, 49, 2, 4, lvl, 18)

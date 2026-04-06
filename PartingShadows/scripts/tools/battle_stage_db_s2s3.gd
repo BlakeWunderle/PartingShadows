@@ -326,12 +326,12 @@ static func create_enemies(stage_name: String) -> Array:
 				EnemyDBS3Act3.create_loom_sentinel("Stone Thread")]
 		"S3_DreamVoid":
 			return [EnemyDBS3Act3.create_void_spinner("Thread Ripper"),
-				EnemyDBS3Act3.create_lucid_phantom("Watcher"),
-				EnemyDBS3Act3.create_thread_spinner("Mender")]
+				EnemyDBS3Act3.create_void_phantom("Watcher"),
+				EnemyDBS3Act3.create_rift_mender("Mender")]
 		"S3_DreamSanctum":
 			return [EnemyDBS3Act3.create_sanctum_guardian("Loom Guardian"),
-				EnemyDBS3Act3.create_cult_shade("Shadow Weaver"),
-				EnemyDBS3Act3.create_dream_warden("Core Defender")]
+				EnemyDBS3Act3.create_sanctum_shade("Shadow Weaver"),
+				EnemyDBS3Act3.create_loom_warden("Core Defender")]
 		"S3_CultUnderbelly":
 			return [EnemyDBS3Act45.create_cult_acolyte("Brother Voss"),
 				EnemyDBS3Act45.create_cult_enforcer("Sister Maren"),
