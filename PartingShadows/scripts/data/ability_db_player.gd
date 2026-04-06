@@ -65,9 +65,9 @@ static func lance() -> AbilityData:
 	return _make("Lance", "A devastating mounted charge.",
 		Enums.StatType.PHYSICAL_ATTACK, 22, 0, true, 4, false, 0, 0.0)
 
-static func cavalry_charge() -> AbilityData:
-	return _make("Cavalry Charge", "Crash into the enemy with unstoppable momentum.",
-		Enums.StatType.PHYSICAL_ATTACK, 22, 0, true, 5, false, 0, 0.3)
+static func spur() -> AbilityData:
+	return _make("Spur", "Dig in the heels and surge forward.",
+		Enums.StatType.SPEED, 11, 2, false, 3, false, 0, 0.0)
 
 static func trample() -> AbilityData:
 	return _make("Trample", "Charge through the enemy lines, crushing body and spirit alike.",
@@ -161,7 +161,7 @@ static func elemental_focus() -> AbilityData:
 # Acolyte
 static func cure() -> AbilityData:
 	return _make("Cure", "Mend wounds with holy light.",
-		Enums.StatType.HEALTH, 8, 0, false, 5, false, 0, 0.0)
+		Enums.StatType.HEALTH, 6, 0, false, 5, false, 0, 0.0)
 
 static func protect() -> AbilityData:
 	return _make("Protect", "A ward of light shields an ally.",
@@ -275,7 +275,7 @@ static func melody() -> AbilityData:
 
 static func encourage() -> AbilityData:
 	return _make("Encourage", "Inspiring words that bolster attack.",
-		Enums.StatType.ATTACK, 11, 2, false, 2, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 11, 2, false, 2, false, 0, 0.0)
 
 # Dervish
 static func mesmerize() -> AbilityData:
@@ -293,7 +293,7 @@ static func whirling_step() -> AbilityData:
 # Orator
 static func oration() -> AbilityData:
 	return _make("Oration", "Words sharp enough to wound.",
-		Enums.StatType.MAGIC_ATTACK, 6, 0, true, 3, false, 0, 0.0)
+		Enums.StatType.MAGIC_ATTACK, 8, 0, true, 3, false, 0, 0.0)
 
 static func rebuke() -> AbilityData:
 	return _make("Rebuke", "Harsh words that slow the mind.",

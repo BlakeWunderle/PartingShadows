@@ -17,7 +17,7 @@ static func upgrade_to_cavalry(f: FighterData) -> void:
 	f.health += 17; f.max_health += 17; f.mana += 1; f.max_mana += 1
 	f.physical_attack += 14; f.physical_defense += 5; f.magic_attack += 2; f.magic_defense += 4
 	f.speed += 5; f.crit_chance += 6; f.crit_damage += 2; f.dodge_chance += 3
-	f.abilities = [PAB.lance(), PAB.trample(), PAB.cavalry_charge()]
+	f.abilities = [PAB.lance(), PAB.trample(), PAB.spur()]
 	f.upgrade_items = []
 
 static func upgrade_to_dragoon(f: FighterData) -> void:
@@ -195,7 +195,7 @@ static func _lu_tempest(f: FighterData) -> void:
 static func upgrade_to_paladin(f: FighterData) -> void:
 	f.class_id = "Paladin"; f.character_type = "Paladin"
 	f.health += 17; f.max_health += 17; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 11; f.physical_defense += 6; f.magic_attack += 12; f.magic_defense += 4
+	f.physical_attack += 11; f.physical_defense += 6; f.magic_attack += 16; f.magic_defense += 4
 	f.speed += 3; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.lay_on_hands(), PAB.holy_strike(), PAB.smite()]
 	f.upgrade_items = []
@@ -203,7 +203,7 @@ static func upgrade_to_paladin(f: FighterData) -> void:
 static func upgrade_to_priest(f: FighterData) -> void:
 	f.class_id = "Priest"; f.character_type = "Priest"
 	f.health += 13; f.max_health += 13; f.mana += 3; f.max_mana += 3
-	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 15; f.magic_defense += 7
+	f.physical_attack += 2; f.physical_defense += 5; f.magic_attack += 19; f.magic_defense += 7
 	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.restoration(), PAB.heavenly_body(), PAB.holy()]
 	f.upgrade_items = []
@@ -211,7 +211,7 @@ static func upgrade_to_priest(f: FighterData) -> void:
 static func upgrade_to_warlock(f: FighterData) -> void:
 	f.class_id = "Warlock"; f.character_type = "Warlock"
 	f.health += 14; f.max_health += 14; f.mana += 2; f.max_mana += 2
-	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 16; f.magic_defense += 6
+	f.physical_attack += 2; f.physical_defense += 4; f.magic_attack += 20; f.magic_defense += 6
 	f.speed += 5; f.crit_chance += 2; f.crit_damage += 2; f.dodge_chance += 2
 	f.abilities = [PAB.shadow_bolt(), PAB.hex(), PAB.drain_life()]
 	f.upgrade_items = []

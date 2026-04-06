@@ -114,7 +114,7 @@ static func get_abilities_for_class(class_id: String) -> Array:
 		"Sentinel": return [PAB_B.shield_bash(), PAB_B.barrier(), PAB_B.fortify()]
 		"Pathfinder": return [PAB_B.keen_strike(), PAB_B.exploit_weakness(), PAB_B.adaptable_strike()]
 		# T2:Squire
-		"Cavalry": return [PAB.lance(), PAB.trample(), PAB.cavalry_charge()]
+		"Cavalry": return [PAB.lance(), PAB.trample(), PAB.spur()]
 		"Dragoon": return [PAB.dragon_scales(), PAB.wyvern_strike(), PAB.dragon_dive()]
 		"Mercenary": return [PAB.gun_shot(), PAB.called_shot(), PAB.suppressing_fire()]
 		"Hunter": return [PAB.triple_arrow(), PAB.snare(), PAB.hunters_mark()]

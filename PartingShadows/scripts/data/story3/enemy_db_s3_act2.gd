@@ -144,11 +144,11 @@ static func create_gallery_shade(n: String, lvl: int = 6) -> FighterData:
 	var f := EH.base(n, "Gallery Shade", lvl)
 	f.health = EH.es(185, 215, 3, 5, lvl, 6); f.max_health = f.health
 	f.mana = EH.es(8, 11, 1, 2, lvl, 6); f.max_mana = f.mana
-	f.physical_attack = EH.es(28, 32, 1, 3, lvl, 6)
+	f.physical_attack = EH.es(29, 33, 1, 3, lvl, 6)
 	f.physical_defense = EH.es(15, 18, 1, 2, lvl, 6)
 	f.magic_attack = EH.es(12, 15, 0, 2, lvl, 6)
 	f.magic_defense = EH.es(12, 15, 1, 2, lvl, 6)
-	f.speed = EH.es(29, 34, 1, 3, lvl, 6)
+	f.speed = EH.es(30, 35, 1, 3, lvl, 6)
 	f.crit_chance = 22; f.crit_damage = 2; f.dodge_chance = 17
 	f.abilities = [EAB.gallery_bolt(), EAB.shatter_ward()]
 	f.flavor_text = "A dark silhouette that steps out of painted portraits in the shattered gallery. It hurls splinters of broken frames and conjures wards from cracked canvas."

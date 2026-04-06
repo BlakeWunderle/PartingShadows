@@ -89,7 +89,7 @@ static func create_wisp(n: String, lvl: int = 4) -> FighterData:
 	f.mana = EH.es(15, 25, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = EH.es(13, 18, 1, 2, lvl, 4)
 	f.physical_defense = EH.es(6, 10, 1, 2, lvl, 4)
-	f.magic_attack = EH.es(29, 35, 3, 5, lvl, 4)
+	f.magic_attack = EH.es(30, 36, 3, 5, lvl, 4)
 	f.magic_defense = EH.es(14, 20, 1, 3, lvl, 4)
 	f.speed = EH.es(28, 38, 2, 3, lvl, 4)
 	f.crit_chance = 10; f.crit_damage = 1; f.dodge_chance = 11
