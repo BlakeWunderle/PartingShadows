@@ -78,8 +78,8 @@ static func s3_cult_ritual_chamber() -> BattleData:
 	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/cult_ritual_chamber.png"
 	b.enemies = [
-		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
 		EnemyDB.create_high_weaver("Weaver Aldric"),
+		EnemyDB.create_cult_ritualist("High Ritualist Thorne"),
 		EnemyDB.create_loom_crusher("The Loom's Fist"),
 	]
 	b.pre_battle_text = [
@@ -117,8 +117,8 @@ static func s3_dream_nexus() -> BattleData:
 	b.is_final_battle = true
 	b.is_boss = true
 	b.enemies = [
-		EnemyDB.create_the_threadmaster("The Threadmaster"),
 		EnemyDB.create_shadow_fragment("Tattered Shadow"),
+		EnemyDB.create_the_threadmaster("The Threadmaster"),
 		EnemyDB.create_shadow_fragment("Fraying Darkness"),
 	]
 	b.pre_battle_text = [

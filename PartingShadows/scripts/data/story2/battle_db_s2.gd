@@ -32,8 +32,8 @@ static func s2_cave_awakening() -> BattleData:
 	b.scene_image = "res://assets/art/battles/cave_awakening.png"
 	b.enemies = [
 		EnemyDBS2.create_glow_worm("Luminara"),
-		EnemyDBS2.create_glow_worm("Flicker"),
 		EnemyDBS2.create_crystal_spider("Prism"),
+		EnemyDBS2.create_glow_worm("Flicker"),
 	]
 	b.pre_battle_text = [
 		"The cave stretches ahead, lit only by veins of faintly glowing crystal running through the walls.",

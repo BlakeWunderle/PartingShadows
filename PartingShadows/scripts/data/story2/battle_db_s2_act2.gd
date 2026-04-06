@@ -70,8 +70,8 @@ static func s2_fishing_village() -> BattleData:
 	b.scene_image = "res://assets/art/battles/fishing_village.png"
 	b.enemies = [
 		EnemyDBS2Act2.create_driftwood_bandit("Scarhand"),
-		EnemyDBS2Act2.create_driftwood_bandit("Rust"),
 		EnemyDBS2Act2.create_tideside_channeler("Riptide"),
+		EnemyDBS2Act2.create_driftwood_bandit("Rust"),
 	]
 	b.pre_battle_text = [
 		"A small fishing village. Nets hang drying between the houses. Smoke curls from a dozen chimneys.",
@@ -226,8 +226,8 @@ static func s2_blackwater_bay() -> BattleData:
 	b.scene_image = "res://assets/art/battles/blackwater_bay.png"
 	b.enemies = [
 		EnemyDBS2Act2.create_drowned_sailor("The Drowned"),
-		EnemyDBS2Act2.create_drowned_sailor("The Forgotten"),
 		EnemyDBS2Act2.create_depth_horror("Undertow"),
+		EnemyDBS2Act2.create_drowned_sailor("The Forgotten"),
 	]
 	b.pre_battle_text = [
 		"Blackwater Bay. A stretch of dark-sand beach where the town's fishing boats do not go.",

@@ -110,8 +110,8 @@ static func s3_dream_shadow_chase() -> BattleData:
 	b.is_boss = true
 	b.scene_image = "res://assets/art/battles/dream_shadow_chase.png"
 	b.enemies = [
-		EnemyDB.create_shadow_pursuer("The Hunter"),
 		EnemyDB.create_dread_tendril("Dark Arm"),
+		EnemyDB.create_shadow_pursuer("The Hunter"),
 		EnemyDB.create_faded_voice("Whisper"),
 	]
 	b.pre_battle_text = [

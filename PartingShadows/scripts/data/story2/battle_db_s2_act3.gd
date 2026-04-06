@@ -33,8 +33,8 @@ static func s2_beneath_the_lighthouse() -> BattleData:
 	b.scene_image = "res://assets/art/battles/memory_sanctum.png"
 	b.enemies = [
 		EnemyDBS2Act3.create_fading_wisp("Glimmer"),
-		EnemyDBS2Act3.create_fading_wisp("Shimmer"),
 		EnemyDBS2Act3.create_dim_guardian("Resonance"),
+		EnemyDBS2Act3.create_fading_wisp("Shimmer"),
 	]
 	b.pre_battle_text = [
 		"The key with the wave-and-eye symbol fits the door beneath the lighthouse foundation. A staircase spirals downward into blue-lit stone.",

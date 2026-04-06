@@ -158,8 +158,8 @@ static func s3_c_dream_nexus() -> BattleData:
 	b.is_final_battle = true
 	b.is_boss = true
 	b.enemies = [
-		EnemyDB.create_ancient_threadmaster("The Threadmaster"),
 		EnemyDB.create_dream_shackle("Binding of Ages"),
+		EnemyDB.create_ancient_threadmaster("The Threadmaster"),
 		EnemyDB.create_loom_heart("Heart of the Loom"),
 	]
 	b.pre_battle_text = [

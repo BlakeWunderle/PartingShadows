@@ -47,8 +47,8 @@ static func corrupted_city_battle() -> BattleData:
 	b.battle_id = "CorruptedCityBattle"
 	b.scene_image = "res://assets/art/battles/corrupted_market.png"
 	b.enemies = [
-		EnemyDB.create_lich("Mortuus"),
 		EnemyDB.create_ghast("Putrefax"),
+		EnemyDB.create_lich("Mortuus"),
 		EnemyDB.create_ghast("Bloatus"),
 	]
 	b.pre_battle_text = [
@@ -109,8 +109,8 @@ static func depths_battle() -> BattleData:
 	b.battle_id = "DepthsBattle"
 	b.scene_image = "res://assets/art/battles/tunnels.png"
 	b.enemies = [
-		EnemyDB.create_sigil_wretch("Skritch"),
 		EnemyDB.create_tunnel_lurker("Silkfang"),
+		EnemyDB.create_sigil_wretch("Skritch"),
 		EnemyDB.create_tunnel_lurker("Webweaver"),
 	]
 	b.pre_battle_text = [

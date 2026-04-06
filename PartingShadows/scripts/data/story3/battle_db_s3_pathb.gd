@@ -32,8 +32,8 @@ static func s3_b_inn_search() -> BattleData:
 	b.battle_id = "S3_B_InnSearch"
 	b.scene_image = "res://assets/art/battles/weary_traveler_night.png"
 	b.enemies = [
-		EnemyDB.create_cellar_sentinel("Bound Sentinel"),
 		EnemyDB.create_bound_stalker("Sleeping Fang"),
+		EnemyDB.create_cellar_sentinel("Bound Sentinel"),
 		EnemyDB.create_bound_stalker("Night Prowler"),
 	]
 	b.pre_battle_text = [
@@ -240,8 +240,8 @@ static func s3_b_dream_nexus() -> BattleData:
 	b.is_final_battle = true
 	b.is_boss = true
 	b.enemies = [
-		EnemyDB.create_lira_threadmaster("Lira, the Threadmaster"),
 		EnemyDB.create_tattered_deception("Tattered Shadow"),
+		EnemyDB.create_lira_threadmaster("Lira, the Threadmaster"),
 		EnemyDB.create_dream_bastion("Dream's Last Defense"),
 	]
 	b.pre_battle_text = [

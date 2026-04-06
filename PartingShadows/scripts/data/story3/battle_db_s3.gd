@@ -51,8 +51,8 @@ static func s3_dream_meadow() -> BattleData:
 	b.scene_image = "res://assets/art/battles/dream_meadow.png"
 	b.enemies = [
 		EnemyDB.create_dream_wisp("Glimmer"),
-		EnemyDB.create_dream_wisp("Flicker"),
 		EnemyDB.create_phantasm("The Unseen"),
+		EnemyDB.create_dream_wisp("Flicker"),
 	]
 	b.pre_battle_text = [
 		"A meadow stretches in every direction, lit by a sky that has no sun. The grass moves without wind, and the colors are slightly wrong.",
@@ -232,8 +232,8 @@ static func s3_dream_nightmare() -> BattleData:
 	b.battle_id = "S3_DreamNightmare"
 	b.scene_image = "res://assets/art/battles/dream_nightmare.png"
 	b.enemies = [
-		EnemyDB.create_the_nightmare("The Nightmare"),
 		EnemyDB.create_nightmare_guard("Dread Sentinel"),
+		EnemyDB.create_the_nightmare("The Nightmare"),
 		EnemyDB.create_void_echo("Fading Cry"),
 	]
 	b.pre_battle_text = [
