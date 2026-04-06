@@ -1,6 +1,6 @@
 # Story 2 Balance Reference
 
-Story 2 has 18 progressions (Prog 0-17), 24 battle stages (+5 Path B). 85% down to 55% (-2pp/prog with breathers at tier transitions). T1 transition at Prog 3, T2 at Prog 6.
+Story 2 has 18 progressions (Prog 0-17), 24 battle stages (+5 Path B). T0 85%→81% (Easy AI), T1 81%→77% (Normal AI), T2 77%→62% (Hard AI). T1 transition at Prog 3, T2 at Prog 6.
 
 ## Constraint Rule
 
@@ -52,17 +52,17 @@ Story 2 has 18 progressions (Prog 0-17), 24 battle stages (+5 Path B). 85% down 
 | 4 | 79% | 76-82% | T1 | S2_CoastalDescent |
 | 5 | 77% | 74-80% | T1 | S2_FishingVillage, S2_SmugglersBluff |
 | 6 | 77% | 74-80% | T2 | S2_WreckersCove, S2_CoastalRuins *(T2 breather)* |
-| 7 | 75% | 72-78% | T2 | S2_BlackwaterBay |
-| 8 | 73% | 70-76% | T2 | S2_LighthouseStorm |
-| 9 | 71% | 68-74% | T2 | S2_BeneathTheLighthouse |
-| 10 | 69% | 66-72% | T2 | S2_MemoryVault, S2_EchoGallery |
-| 11 | 67% | 64-70% | T2 | S2_ShatteredSanctum |
-| 12 | 65% | 62-68% | T2 | S2_GuardiansThreshold, S2_ForgottenArchive |
-| 13 | 63% | 60-66% | T2 | S2_TheReveal, S2_B_ArchiveAwakening (Path B) |
-| 14 | 61% | 58-64% | T2 | S2_DepthsOfRemembrance, S2_B_LighthouseCore (Path B) |
-| 15 | 59% | 56-62% | T2 | S2_MawOfTheEye, S2_B_ResonanceChamber (Path B) |
-| 16 | 57% | 54-60% | T2 | S2_EyeAwakening, S2_B_MemoryFlood (Path B) |
-| 17 | 55% | 52-58% | T2 | S2_EyeOfOblivion, S2_B_EyeUnblinking (Path B) |
+| 7 | 76% | 73-79% | T2 | S2_BlackwaterBay |
+| 8 | 74% | 71-77% | T2 | S2_LighthouseStorm |
+| 9 | 73% | 70-76% | T2 | S2_BeneathTheLighthouse |
+| 10 | 71% | 68-74% | T2 | S2_MemoryVault, S2_EchoGallery |
+| 11 | 70% | 67-73% | T2 | S2_ShatteredSanctum |
+| 12 | 68% | 65-71% | T2 | S2_GuardiansThreshold, S2_ForgottenArchive |
+| 13 | 67% | 64-70% | T2 | S2_TheReveal, S2_B_ArchiveAwakening (Path B) |
+| 14 | 66% | 63-69% | T2 | S2_DepthsOfRemembrance, S2_B_LighthouseCore (Path B) |
+| 15 | 65% | 62-68% | T2 | S2_MawOfTheEye, S2_B_ResonanceChamber (Path B) |
+| 16 | 63% | 60-66% | T2 | S2_EyeAwakening, S2_B_MemoryFlood (Path B) |
+| 17 | 62% | 59-65% | T2 | S2_EyeOfOblivion, S2_B_EyeUnblinking (Path B) |
 
 ## Class Band Table
 
@@ -77,17 +77,17 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 | 4 | T1 | 79% | 66.5% | 91.5% |
 | 5 | T1 | 77% | 64.5% | 89.5% |
 | 6 | T2 | 77% | 67% | 87% |
-| 7 | T2 | 75% | 65% | 85% |
-| 8 | T2 | 73% | 63% | 83% |
-| 9 | T2 | 71% | 61% | 81% |
-| 10 | T2 | 69% | 59% | 79% |
-| 11 | T2 | 67% | 57% | 77% |
-| 12 | T2 | 65% | 55% | 75% |
-| 13 | T2 | 63% | 53% | 73% |
-| 14 | T2 | 61% | 51% | 71% |
-| 15 | T2 | 59% | 49% | 69% |
-| 16 | T2 | 57% | 47% | 67% |
-| 17 | T2 | 55% | 45% | 65% |
+| 7 | T2 | 76% | 66% | 86% |
+| 8 | T2 | 74% | 64% | 84% |
+| 9 | T2 | 73% | 63% | 83% |
+| 10 | T2 | 71% | 61% | 81% |
+| 11 | T2 | 70% | 60% | 80% |
+| 12 | T2 | 68% | 58% | 78% |
+| 13 | T2 | 67% | 57% | 77% |
+| 14 | T2 | 66% | 56% | 76% |
+| 15 | T2 | 65% | 55% | 75% |
+| 16 | T2 | 63% | 53% | 73% |
+| 17 | T2 | 62% | 52% | 72% |
 
 ## Battle -> Enemy Mapping
 

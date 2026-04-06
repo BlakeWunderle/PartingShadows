@@ -139,9 +139,9 @@ BALANCE LOG UPDATED
 
 When creating a new log, use the battle-sim skill's difficulty gradient table (from the active story) to populate the status table. Reference:
 
-- Story 1: 14 progressions (Prog 0-13), targets from 85% down to 65%, T1 bump at Prog 3 (+5%), T2 bump at Prog 8 (+5%)
-- Story 2: 18 progressions (Prog 0-17), targets from 80% down to 55%, T1 bump at Prog 3 (+4%), T2 bump at Prog 6 (+4%)
-- Story 3: 18 progressions (Prog 0-17, Prog 2 skipped), targets from 75% down to 42%, T1 at Prog 3, T2 at Prog 9, 3 branching paths (hardest story)
+- Story 1: 14 progressions (Prog 0-13), T0 85%->78% (Easy), T1 83%->75% (Normal), T2 73%->65% (Hard)
+- Story 2: 18 progressions (Prog 0-17), T0 85%->81% (Easy), T1 81%->77% (Normal), T2 77%->62% (Hard)
+- Story 3: 18 progressions (Prog 0-17, Prog 2 skipped), T0 85%->83% (Easy), T1 81%->71% (Normal), T2 71%->62% (Hard), 3 branching paths
 
 ```markdown
 # Balance Tuning Log

@@ -1,6 +1,6 @@
 # Story 3 Balance Reference
 
-Story 3 ("The Woven Night") has 18 progressions (Prog 0-17, Prog 2 skipped). 85% down to 55% (-2pp/prog with breathers at tier transitions). T1 transition at Prog 3, T2 at Prog 9. Three branching paths (A/B/C) diverge at Prog 11-14, sharing the same prog targets.
+Story 3 ("The Woven Night") has 18 progressions (Prog 0-17, Prog 2 skipped). T0 85%→83% (Easy AI), T1 81%→71% (Normal AI), T2 71%→62% (Hard AI). T1 transition at Prog 3, T2 at Prog 9. Three branching paths (A/B/C) diverge at Prog 11-14, sharing the same prog targets.
 
 ## Constraint Rule
 
@@ -49,14 +49,14 @@ No cross-story validation needed since no player classes can change.
 | 7 | 73% | 70-76% | T1 | S3_DreamLabyrinth, S3_DreamClockTower |
 | 8 | 71% | 68-74% | T1 | S3_DreamNightmare *(Act II boss)* |
 | 9 | 71% | 68-74% | T2 | S3_MarketConfrontation *(T2 breather)* |
-| 10 | 69% | 66-72% | T2 | S3_CellarDiscovery |
-| 11 | 67% | 64-70% | T2 | S3_LucidDream / S3_B_InnSearch |
-| 12 | 65% | 62-68% | T2 | S3_DreamTemple, S3_DreamVoid / S3_B_CultConfrontation |
-| 13 | 63% | 60-66% | T2 | S3_DreamSanctum / S3_B_TunnelBreach |
-| 14 | 61% | 58-64% | T2 | S3_CultUnderbelly / S3_B_ThornesWard / S3_C_DreamDescent |
-| 15 | 59% | 56-62% | T2 | S3_CultCatacombs / S3_B_LoomHeart / S3_C_CultInterception |
-| 16 | 57% | 54-60% | T2 | S3_CultRitualChamber / S3_B_DreamInvasion / S3_C_ThreadmasterLair |
-| 17 | 55% | 52-58% | T2 | S3_DreamNexus / S3_B_DreamNexus / S3_C_DreamNexus *(final boss)* |
+| 10 | 70% | 67-73% | T2 | S3_CellarDiscovery |
+| 11 | 69% | 66-72% | T2 | S3_LucidDream / S3_B_InnSearch |
+| 12 | 68% | 65-71% | T2 | S3_DreamTemple, S3_DreamVoid / S3_B_CultConfrontation |
+| 13 | 67% | 64-70% | T2 | S3_DreamSanctum / S3_B_TunnelBreach |
+| 14 | 66% | 63-69% | T2 | S3_CultUnderbelly / S3_B_ThornesWard / S3_C_DreamDescent |
+| 15 | 65% | 62-68% | T2 | S3_CultCatacombs / S3_B_LoomHeart / S3_C_CultInterception |
+| 16 | 63% | 60-66% | T2 | S3_CultRitualChamber / S3_B_DreamInvasion / S3_C_ThreadmasterLair |
+| 17 | 62% | 59-65% | T2 | S3_DreamNexus / S3_B_DreamNexus / S3_C_DreamNexus *(final boss)* |
 
 ## Class Band Table
 
@@ -73,14 +73,14 @@ Band width narrows by tier: base +/- 15%, T1 +/- 12.5%, T2 +/- 10%.
 | 7 | T1 | 73% | 60.5% | 85.5% |
 | 8 | T1 | 71% | 58.5% | 83.5% |
 | 9 | T2 | 71% | 61% | 81% |
-| 10 | T2 | 69% | 59% | 79% |
-| 11 | T2 | 67% | 57% | 77% |
-| 12 | T2 | 65% | 55% | 75% |
-| 13 | T2 | 63% | 53% | 73% |
-| 14 | T2 | 61% | 51% | 71% |
-| 15 | T2 | 59% | 49% | 69% |
-| 16 | T2 | 57% | 47% | 67% |
-| 17 | T2 | 55% | 45% | 65% |
+| 10 | T2 | 70% | 60% | 80% |
+| 11 | T2 | 69% | 59% | 79% |
+| 12 | T2 | 68% | 58% | 78% |
+| 13 | T2 | 67% | 57% | 77% |
+| 14 | T2 | 66% | 56% | 76% |
+| 15 | T2 | 65% | 55% | 75% |
+| 16 | T2 | 63% | 53% | 73% |
+| 17 | T2 | 62% | 52% | 72% |
 
 ## Battle -> Enemy Mapping
 
