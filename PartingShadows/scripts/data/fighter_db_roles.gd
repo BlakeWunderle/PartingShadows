@@ -122,7 +122,7 @@ static func get_subtypes(class_id: String) -> Array:
 		"Sentinel": return [Enums.Subtype.BUFFER]
 		"Pathfinder": return []
 		# T2: Squire
-		"Cavalry": return [Enums.Subtype.GLASS_CANNON, Enums.Subtype.CRIT]
+		"Cavalry": return [Enums.Subtype.AOE, Enums.Subtype.CRIT]
 		"Dragoon": return [Enums.Subtype.AOE]
 		"Mercenary": return [Enums.Subtype.GLASS_CANNON, Enums.Subtype.CRIT]
 		"Hunter": return [Enums.Subtype.DEBUFFER]
@@ -278,7 +278,7 @@ static func get_defense_type(class_id: String) -> Enums.DamageType:
 		"Sentinel": return Enums.DamageType.MIXED
 		"Pathfinder": return Enums.DamageType.MIXED
 		# T2: Squire
-		"Cavalry": return Enums.DamageType.MIXED
+		"Cavalry": return Enums.DamageType.PHYSICAL
 		"Dragoon": return Enums.DamageType.MIXED
 		"Mercenary": return Enums.DamageType.PHYSICAL
 		"Hunter": return Enums.DamageType.PHYSICAL

@@ -143,24 +143,20 @@ static func create_enemies(stage_name: String) -> Array:
 		"ReturnToCityStreetBattle":
 			return [EnemyDBAct345.create_royal_guard("Aldric"),
 				EnemyDBAct345.create_guard_sergeant("Brennan"),
-				EnemyDBAct345.create_guard_archer("Tamsin"),
-				EnemyDBAct345.create_guard_archer("Corwin")]
+				EnemyDBAct345.create_guard_archer("Tamsin")]
 		"StrangerTowerBattle":
 			return [EnemyDBAct345.create_stranger("The Stranger")]
 		"CorruptedCityBattle":
 			return [EnemyDBAct345.create_lich("Mortuus"),
 				EnemyDBAct345.create_ghast("Putrefax"),
-				EnemyDBAct345.create_ghast("Bloatus"),
-				EnemyDBAct345.create_lich("Necrus")]
+				EnemyDBAct345.create_ghast("Bloatus")]
 		"CorruptedWildsBattle":
 			return [EnemyDBAct345.create_demon("Bael"),
 				EnemyDBAct345.create_corrupted_treant("Rothollow"),
-				EnemyDBAct345.create_corrupted_treant("Blightsnarl"),
 				EnemyDBAct345.create_demon("Moloch")]
 		"GateBattle":
 			return [EnemyDBAct345.create_dark_knight("Ser Malachar"),
 				EnemyDBAct345.create_fell_hound("Duskfang"),
-				EnemyDBAct345.create_fell_hound("Gloomjaw"),
 				EnemyDBAct345.create_dark_knight("Ser Dravus")]
 		"DepthsBattle":
 			return [EnemyDBAct345.create_sigil_wretch("Skritch"),

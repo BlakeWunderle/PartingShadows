@@ -41,7 +41,6 @@ static func return_to_city_street_battle() -> BattleData:
 		EnemyDB.create_royal_guard("Aldric"),
 		EnemyDB.create_guard_sergeant("Brennan"),
 		EnemyDB.create_guard_archer("Tamsin"),
-		EnemyDB.create_guard_archer("Corwin"),
 	]
 	b.pre_battle_text = [
 		"The party enters the city and finds it changed. The streets are empty, shops shuttered. Lanterns that once lit the cobblestone roads hang dark and cold.",

@@ -50,13 +50,12 @@ static func corrupted_city_battle() -> BattleData:
 		EnemyDB.create_lich("Mortuus"),
 		EnemyDB.create_ghast("Putrefax"),
 		EnemyDB.create_ghast("Bloatus"),
-		EnemyDB.create_lich("Necrus"),
 	]
 	b.pre_battle_text = [
 		"The party cuts through the city toward the market square. These are the same streets they walked that first night, cobblestones they know by feel, but the lanterns are shattered and the air smells of ash and something older.",
 		"The market square is unrecognizable. Stalls are overturned, awnings shredded. The fountain that once ran clear is dry and cracked, dark energy seeping from the basin like fog.",
 		"A lich stands atop the ruined fountain, arms raised, pulling the dead toward it from every alley and doorway.",
-		"A ghast lurches from the wreckage of a flower cart, its bulk filling the road. Behind it, another lich drifts through the carnage.",
+		"Two ghasts lurch from the wreckage, their bulk filling the road. The stench of decay chokes the air.",
 	]
 	b.post_battle_text = [
 		"The lich crumbles to dust and the ghast collapses. The necrotic energy fades but doesn't disappear. It's being fed from somewhere else.",
@@ -79,7 +78,6 @@ static func corrupted_wilds_battle() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_demon("Bael"),
 		EnemyDB.create_corrupted_treant("Rothollow"),
-		EnemyDB.create_corrupted_treant("Blightsnarl"),
 		EnemyDB.create_demon("Moloch"),
 	]
 	b.pre_battle_text = [
@@ -147,7 +145,6 @@ static func gate_battle() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_dark_knight("Ser Malachar"),
 		EnemyDB.create_fell_hound("Duskfang"),
-		EnemyDB.create_fell_hound("Gloomjaw"),
 		EnemyDB.create_dark_knight("Ser Dravus"),
 	]
 	b.pre_battle_text = [
