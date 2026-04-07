@@ -213,7 +213,7 @@ static func create_market_watcher(n: String, lvl: int = 10) -> FighterData:
 	var f := EH.base(n, "Market Watcher", lvl)
 	f.health = EH.es(438, 504, 4, 7, lvl, 10); f.max_health = f.health
 	f.mana = EH.es(7, 10, 1, 1, lvl, 10); f.max_mana = f.mana
-	f.physical_attack = EH.es(71, 83, 2, 4, lvl, 10)
+	f.physical_attack = EH.es(73, 85, 2, 4, lvl, 10)
 	f.physical_defense = EH.es(41, 48, 2, 3, lvl, 10)
 	f.magic_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.magic_defense = EH.es(24, 32, 1, 3, lvl, 10)
@@ -245,7 +245,7 @@ static func create_hex_herbalist(n: String, lvl: int = 10) -> FighterData:
 	f.mana = EH.es(16, 19, 1, 2, lvl, 10); f.max_mana = f.mana
 	f.physical_attack = EH.es(10, 14, 0, 2, lvl, 10)
 	f.physical_defense = EH.es(19, 25, 1, 3, lvl, 10)
-	f.magic_attack = EH.es(69, 78, 2, 4, lvl, 10)
+	f.magic_attack = EH.es(71, 80, 2, 4, lvl, 10)
 	f.magic_defense = EH.es(34, 41, 2, 3, lvl, 10)
 	f.speed = EH.es(28, 34, 2, 3, lvl, 10)
 	f.crit_chance = 10; f.crit_damage = 2; f.dodge_chance = 17

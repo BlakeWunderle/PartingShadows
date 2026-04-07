@@ -82,8 +82,8 @@ static func _lu_hunter(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 3); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(6, 8); f.physical_defense += randi_range(2, 3)
-	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(3, 4)
+	f.physical_attack += randi_range(6, 8); f.physical_defense += randi_range(3, 4)
+	f.magic_attack += randi_range(1, 2); f.magic_defense += randi_range(4, 5)
 	f.speed += randi_range(2, 2)
 	f.dodge_chance += randi_range(1, 2)
 	f.crit_chance += randi_range(1, 2)
@@ -230,9 +230,9 @@ static func _lu_priest(f: FighterData) -> void:
 	f.level += 1
 	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
-	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(2, 3)
+	f.physical_attack += randi_range(1, 2); f.physical_defense += randi_range(3, 4)
 	f.magic_attack += randi_range(7, 9); f.magic_defense += randi_range(4, 5)
-	f.speed += randi_range(2, 2)
+	f.speed += randi_range(2, 3)
 	f.crit_chance += randi_range(0, 1)
 	f.dodge_chance += randi_range(0, 1)
 
@@ -241,7 +241,7 @@ static func _lu_warlock(f: FighterData) -> void:
 	var hp := randi_range(13, 15); f.health += hp; f.max_health += hp
 	var mp := randi_range(2, 4); f.mana += mp; f.max_mana += mp
 	f.physical_attack += randi_range(0, 1); f.physical_defense += randi_range(3, 4)
-	f.magic_attack += randi_range(8, 10); f.magic_defense += randi_range(4, 5)
+	f.magic_attack += randi_range(8, 10); f.magic_defense += randi_range(5, 6)
 	f.speed += randi_range(2, 3)
 	f.dodge_chance += randi_range(0, 1)
 	f.crit_chance += randi_range(0, 1)
