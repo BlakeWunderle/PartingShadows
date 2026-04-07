@@ -275,18 +275,18 @@ static func memory_fracture() -> AbilityData:
 static func fractured_blessing() -> AbilityData:
 	return _make("Fractured Blessing", "She blesses her enemies with inverted mercy, drawing their vitality into herself.", Enums.StatType.MAGIC_ATTACK, 11, 0, true, 3, false, 0, 0.2)
 
-# --- The Iris (2 new abilities) ---
+# --- The Iris ---
 
-static func eye_lance() -> AbilityData:
-	return _make("Eye Lance", "A focused beam that destroys what it sees, leaving only void where memory was.", Enums.StatType.MAGIC_ATTACK, 13, 0, true, 4, false, 0, 0.0)
+static func oppressive_gaze() -> AbilityData:
+	return _make("Oppressive Gaze", "The Eye's focus becomes an oppressive weight, bearing down on body and bone.", Enums.StatType.PHYSICAL_ATTACK, 16, 0, true, 4, false, 0, 0.0)
 
 static func memory_erosion() -> AbilityData:
 	return _make("Memory Erosion", "The Iris dissolves the magical protection from a single target, preparing the killing blow.", Enums.StatType.MAGIC_DEFENSE, 18, 2, true, 3, false, 0, 0.0)
 
-# --- Void Iris (boss support redesign) ---
+# --- Void Iris (boss support) ---
 
-static func void_pulse() -> AbilityData:
-	return _make("Void Pulse", "A scattered burst of the Eye's light scours every target.", Enums.StatType.MAGIC_ATTACK, 7, 0, true, 3, true, 0, 0.0)
+static func void_lash() -> AbilityData:
+	return _make("Void Lash", "A tendril of collapsing void strikes with physical force.", Enums.StatType.PHYSICAL_ATTACK, 7, 0, true, 3, false, 0, 0.0)
 
 static func refraction_link() -> AbilityData:
 	return _make("Refraction Link", "The Void Iris amplifies its master's destructive potential through prismatic resonance.", Enums.StatType.ATTACK, 13, 2, false, 3, false, 0, 0.0)
