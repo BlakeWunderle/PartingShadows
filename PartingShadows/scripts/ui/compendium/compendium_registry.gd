@@ -51,7 +51,7 @@ static func get_all_enemy_ids() -> Array:
 		{"class_id": "Harpy", "story_id": s1},
 		{"class_id": "Witch", "story_id": s1},
 		{"class_id": "Wisp", "story_id": s1},
-		{"class_id": "Sprite", "story_id": s1},
+		{"class_id": "Treant", "story_id": s1},
 		{"class_id": "Siren", "story_id": s1},
 		{"class_id": "Merfolk", "story_id": s1},
 		{"class_id": "Captain", "story_id": s1},

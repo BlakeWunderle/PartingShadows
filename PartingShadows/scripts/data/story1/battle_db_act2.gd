@@ -43,7 +43,7 @@ static func deep_forest_battle() -> BattleData:
 	b.enemies = [
 		EnemyDB.create_witch("Morwen"),
 		EnemyDB.create_wisp("Flicker"),
-		EnemyDB.create_sprite("Briar"),
+		EnemyDB.create_treant("Briar"),
 	]
 	b.pre_battle_text = [
 		"Pushing deeper, the forest grows denser. The trees here are older, thick-rooted and close-set, their canopy blocking out most of the sky. The path narrows to barely a trail.",

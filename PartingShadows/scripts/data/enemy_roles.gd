@@ -33,7 +33,7 @@ const _DATA: Dictionary = {
 	"Harpy": { "s": [S.AOE, S.EVASION], "d": D.MIXED },
 	"Witch": { "r": [R.SUPPORT, R.FIGHTER], "s": [S.BUFFER, S.DEBUFFER, S.GLASS_CANNON], "d": D.MAGICAL },
 	"Wisp": { "r": [R.DPS], "s": [S.GLASS_CANNON], "d": D.MAGICAL },
-	"Sprite": { "s": [S.GLASS_CANNON] },
+	"Treant": { "s": [S.GLASS_CANNON] },
 	"Siren": { "s": [S.GLASS_CANNON], "d": D.MAGICAL },
 	"Merfolk": { "s": [S.AOE, S.GLASS_CANNON], "d": D.MIXED },
 	"Captain": { "r": [R.SUPPORT, R.TANK, R.FIGHTER], "s": [S.BUFFER, S.AOE, S.CRIT, S.EVASION], "t": T.LEADER },

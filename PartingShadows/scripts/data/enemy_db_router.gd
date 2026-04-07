@@ -52,7 +52,7 @@ static func create_enemy(class_id: String) -> FighterData:
 		"Harpy": return S1A2.create_harpy("")
 		"Witch": return S1A2.create_witch("")
 		"Wisp": return S1A2.create_wisp("")
-		"Sprite": return S1A2.create_sprite("")
+		"Treant": return S1A2.create_treant("")
 		"Siren": return S1A2.create_siren("")
 		"Merfolk": return S1A2.create_merfolk("")
 		"Captain": return S1A2.create_captain("")

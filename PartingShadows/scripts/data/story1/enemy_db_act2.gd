@@ -97,8 +97,8 @@ static func create_wisp(n: String, lvl: int = 4) -> FighterData:
 	f.flavor_text = "Flickering motes of pale light that drift through the marshes, leading the unwary astray."
 	return f
 
-static func create_sprite(n: String, lvl: int = 4) -> FighterData:
-	var f := EH.base(n, "Sprite", lvl)
+static func create_treant(n: String, lvl: int = 4) -> FighterData:
+	var f := EH.base(n, "Treant", lvl)
 	f.health = EH.es(81, 107, 3, 8, lvl, 4); f.max_health = f.health
 	f.mana = EH.es(14, 23, 1, 3, lvl, 4); f.max_mana = f.mana
 	f.physical_attack = EH.es(24, 29, 2, 4, lvl, 4)
@@ -108,7 +108,7 @@ static func create_sprite(n: String, lvl: int = 4) -> FighterData:
 	f.speed = EH.es(25, 36, 1, 3, lvl, 4)
 	f.crit_chance = 16; f.crit_damage = 1; f.dodge_chance = 14
 	f.abilities = [EAB.thorn(), EAB.pollen()]
-	f.flavor_text = "Mischievous fey creatures born from old magic. They defend their groves with barbed thorns."
+	f.flavor_text = "A walking tangle of roots and branches, ancient and territorial. It lashes out with barbed limbs to guard its grove."
 	return f
 
 static func create_siren(n: String, lvl: int = 4) -> FighterData:

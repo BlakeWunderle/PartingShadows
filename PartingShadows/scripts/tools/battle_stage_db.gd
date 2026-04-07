@@ -103,7 +103,7 @@ static func create_enemies(stage_name: String) -> Array:
 		"DeepForestBattle":
 			return [EnemyDBAct2.create_witch("Morwen"),
 				EnemyDBAct2.create_wisp("Flicker"),
-				EnemyDBAct2.create_sprite("Briar")]
+				EnemyDBAct2.create_treant("Briar")]
 		"ShoreBattle":
 			return [EnemyDBAct2.create_siren("Lorelei"),
 				EnemyDBAct2.create_merfolk("Thalassa"),
