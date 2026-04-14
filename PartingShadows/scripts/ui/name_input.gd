@@ -74,7 +74,7 @@ func _build_ui() -> void:
 	_virtual_kb.visible = false
 	_virtual_kb.character_entered.connect(_on_vk_char)
 	_virtual_kb.backspace_pressed.connect(_on_vk_backspace)
-	_virtual_kb.confirmed.connect(_on_confirm_pressed)
+	_virtual_kb.confirmed.connect(_hide_virtual_keyboard)
 	add_child(_virtual_kb)
 
 	# Focus neighbors for controller navigation
@@ -106,9 +106,14 @@ func _input(event: InputEvent) -> void:
 			if event is InputEventJoypadButton:
 				_show_virtual_keyboard()
 				get_viewport().set_input_as_handled()
-	# Keyboard input while virtual keyboard shown -> hide it
-	elif event is InputEventKey and event.pressed and not event.echo:
-		_hide_virtual_keyboard()
+	# Start button or keyboard input while virtual keyboard shown -> hide it
+	elif _virtual_kb.visible:
+		if event is InputEventJoypadButton and event.pressed \
+				and event.button_index == JOY_BUTTON_START:
+			_hide_virtual_keyboard()
+			get_viewport().set_input_as_handled()
+		elif event is InputEventKey and event.pressed and not event.echo:
+			_hide_virtual_keyboard()
 
 
 func _show_virtual_keyboard() -> void:
@@ -159,5 +164,5 @@ func _on_confirm_pressed() -> void:
 
 
 func _on_font_size_changed(size: int) -> void:
-	if _label:
-		_label.add_theme_font_size_override("normal_font_size", size - 2)
+	if _prompt_label:
+		_prompt_label.add_theme_font_size_override("font_size", size)
