@@ -225,7 +225,7 @@ func _add_log(text: String) -> void:
 
 
 func _add_log_separator() -> void:
-	_action_text.append_text("\n[color=gray]───────────[/color]")
+	_action_text.append_text("\n[color=gray]-----------[/color]")
 
 
 # =============================================================================

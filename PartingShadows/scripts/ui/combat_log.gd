@@ -37,7 +37,7 @@ func add_message(text: String) -> void:
 
 
 func add_separator() -> void:
-	_label.append_text("\n[color=gray]───────────────────[/color]")
+	_label.append_text("\n[color=gray]-------------------[/color]")
 
 
 func _on_font_size_changed(size: int) -> void:
