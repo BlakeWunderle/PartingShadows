@@ -53,3 +53,6 @@ PartingShadows/tools/*.png
 # Build output
 build/
 *.zip
+
+# 3D models (post-launch update, not in engine yet)
+3d_models/
