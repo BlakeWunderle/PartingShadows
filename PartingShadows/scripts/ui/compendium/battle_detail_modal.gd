@@ -63,8 +63,13 @@ func build_content(container: VBoxContainer) -> void:
 	info_panel.add_child(story_label)
 
 	# Completion status
+	var battle_id_val: String = battle_data.get("battle_id", "")
+	var win_count: int = CompendiumManager.get_battle_win_count(battle_id_val)
 	var status_label := Label.new()
-	status_label.text = "✓ Completed"
+	if win_count > 1:
+		status_label.text = "Completed (%d times)" % win_count
+	else:
+		status_label.text = "Completed"
 	status_label.add_theme_font_size_override("font_size", SettingsManager.font_size)
 	status_label.add_theme_color_override("font_color", Color(0.5, 0.9, 0.5))
 	info_panel.add_child(status_label)

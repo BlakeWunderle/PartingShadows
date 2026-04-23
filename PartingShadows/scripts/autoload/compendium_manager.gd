@@ -42,11 +42,13 @@ const STORY_3_BATTLES: Array[String] = [
 
 var _seen_enemies: Dictionary = {}  # class_id -> {name, abilities, story_id, timestamp}
 var _seen_classes: Dictionary = {}  # class_id -> {display_name, tier, timestamp}
-var _battles_completed: Dictionary = {}  # battle_id -> timestamp
+var _battles_completed: Dictionary = {}  # battle_id -> {first: timestamp, count: int}
+var _total_victories: int = 0
 
 
 func _ready() -> void:
 	_load()
+	_reconcile_achievements()
 
 
 func record_enemy(fighter: RefCounted, story_id: String) -> void:
@@ -94,10 +96,18 @@ func record_class(class_id: String, display_name: String) -> void:
 
 
 func mark_battle_complete(battle_id: String) -> void:
+	_total_victories += 1
 	if _battles_completed.has(battle_id):
+		_battles_completed[battle_id]["count"] += 1
+		_save()
+		_check_victory_milestones()
 		return
-	_battles_completed[battle_id] = Time.get_unix_time_from_system()
+	_battles_completed[battle_id] = {
+		"first": Time.get_unix_time_from_system(),
+		"count": 1,
+	}
 	_save()
+	_check_victory_milestones()
 	_check_battle_achievements()
 
 
@@ -110,11 +120,33 @@ func _check_battle_achievements() -> void:
 		SteamManager.set_achievement("ALL_BATTLES_S3")
 
 
+func _check_victory_milestones() -> void:
+	if _total_victories >= 1:
+		SteamManager.set_achievement("FIRST_VICTORY")
+	if _total_victories >= 10:
+		SteamManager.set_achievement("TEN_VICTORIES")
+	if _total_victories >= 50:
+		SteamManager.set_achievement("FIFTY_VICTORIES")
+	if _total_victories >= 100:
+		SteamManager.set_achievement("HUNDRED_VICTORIES")
+
+
 func _has_all_battles(battle_list: Array[String]) -> bool:
 	for bid: String in battle_list:
 		if not _battles_completed.has(bid):
 			return false
 	return true
+
+
+func get_total_victories() -> int:
+	return _total_victories
+
+
+func get_battle_win_count(battle_id: String) -> int:
+	var entry: Variant = _battles_completed.get(battle_id)
+	if entry is Dictionary:
+		return entry.get("count", 0)
+	return 0
 
 
 func get_seen_enemies() -> Dictionary:
@@ -275,6 +307,31 @@ func get_tier(class_id: String) -> int:
 	return 2
 
 
+func _reconcile_achievements() -> void:
+	_check_victory_milestones()
+	_check_battle_achievements()
+	if _seen_enemies.size() >= 50:
+		SteamManager.set_achievement("COMPENDIUM_50_ENEMIES")
+	if _seen_enemies.size() >= TOTAL_ENEMIES:
+		SteamManager.set_achievement("ALL_ENEMIES")
+	var has_t2: bool = false
+	var t0: Array[String] = ["Squire", "Mage", "Entertainer", "Tinker", "Wildling", "Wanderer"]
+	var all_t0: bool = true
+	for c: String in t0:
+		if not _seen_classes.has(c):
+			all_t0 = false
+	for c: String in _seen_classes:
+		if get_tier(c) == 2:
+			has_t2 = true
+			break
+	if has_t2:
+		SteamManager.set_achievement("CLASS_TIER_2")
+	if all_t0:
+		SteamManager.set_achievement("ALL_BASE_CLASSES")
+	if _seen_classes.size() >= 56:
+		SteamManager.set_achievement("ALL_CLASSES")
+
+
 func _load() -> void:
 	var text: String = ""
 	if FileAccess.file_exists(COMPENDIUM_PATH):
@@ -292,6 +349,18 @@ func _load() -> void:
 	_seen_enemies = data.get("enemies", {})
 	_seen_classes = data.get("classes", {})
 	_battles_completed = data.get("battles", {})
+	_total_victories = data.get("total_victories", 0)
+	# Migrate old format: battle_id -> timestamp (float) to {first, count}
+	var migrated: bool = false
+	for bid: String in _battles_completed:
+		if not (_battles_completed[bid] is Dictionary):
+			_battles_completed[bid] = {"first": _battles_completed[bid], "count": 1}
+			migrated = true
+	if migrated:
+		# Estimate total victories from battle count for old data
+		if _total_victories == 0:
+			_total_victories = _battles_completed.size()
+		_save()
 
 
 func _save() -> void:
@@ -299,6 +368,7 @@ func _save() -> void:
 		"enemies": _seen_enemies,
 		"classes": _seen_classes,
 		"battles": _battles_completed,
+		"total_victories": _total_victories,
 	}
 	var json_str: String = JSON.stringify(data, "\t")
 	var file := FileAccess.open(COMPENDIUM_PATH, FileAccess.WRITE)
