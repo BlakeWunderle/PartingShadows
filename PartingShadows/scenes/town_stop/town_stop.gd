@@ -394,7 +394,10 @@ func _check_branch_or_advance() -> void:
 		_dialogue.visible = false
 		var options: Array[Dictionary] = []
 		for choice: Dictionary in battle.choices:
-			options.append({"label": choice["label"]})
+			var opt: Dictionary = {"label": choice["label"]}
+			if choice.has("description"):
+				opt["description"] = choice["description"]
+			options.append(opt)
 
 		# Multi-player: use voting panel
 		if LocalCoop.is_active:
