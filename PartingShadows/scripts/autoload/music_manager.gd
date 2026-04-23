@@ -44,8 +44,9 @@ func _ready() -> void:
 
 func set_music_volume(linear: float) -> void:
 	_music_volume_linear = clampf(linear, 0.0, 1.0)
-	if _player and _player.playing:
-		_player.volume_db = linear_to_db(maxf(0.0001, _music_volume_linear))
+	var bus_idx: int = AudioServer.get_bus_index(&"Music")
+	if bus_idx >= 0:
+		AudioServer.set_bus_volume_db(bus_idx, linear_to_db(maxf(0.0001, _music_volume_linear)))
 
 
 func play_context(context: int, fade: float = 1.0) -> void:
@@ -87,7 +88,7 @@ func play_music(path: String, fade_duration: float = 0.5) -> void:
 	_player.finished.connect(_player.play)
 	_player.play()
 	var tween := _player.create_tween()
-	tween.tween_property(_player, "volume_db", linear_to_db(maxf(0.0001, _music_volume_linear)), fade_duration)
+	tween.tween_property(_player, "volume_db", 0.0, fade_duration)
 
 
 func stop_music(fade_duration: float = 0.5) -> void:

@@ -294,7 +294,10 @@ func _apply_all() -> void:
 	_apply_font_size(font_size, font_size)
 	# Apply master volume to the Master audio bus
 	AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, master_volume)))
-	# Apply music volume
+	# Apply music volume to Music bus
+	var music_bus: int = AudioServer.get_bus_index(&"Music")
+	if music_bus >= 0:
+		AudioServer.set_bus_volume_db(music_bus, linear_to_db(maxf(0.0001, music_volume)))
 	music_volume_changed.emit(music_volume)
 	# Apply SFX volume
 	var sfx_bus: int = AudioServer.get_bus_index(&"SFX")
